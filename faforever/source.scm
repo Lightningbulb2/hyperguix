@@ -112,7 +112,7 @@
   ;; chayleaf).
   (gradle-deps-tree "faf-client-gradle-deps"
                     (string-append (host-dirname (host-dirname (current-filename)))
-                                   "/deps-stable.json")))
+                                   "deps-stable.json")))
 
 (define-public faf-client-src
   (package
