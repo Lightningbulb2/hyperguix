@@ -103,7 +103,7 @@
       ;; (only the prebuilt binary release, used above and in the
       ;; binary-repackage package). Run `guix download' on the URL above
       ;; to fill this in for real before building.
-      "0000000000000000000000000000000000000000000000000000"))))
+      "11cpl35cbch5g0b1qmj2j20c9nqpxwkmsdwmyyym6n69438inq2x"))))
 
 (define %gradle-deps
   ;; The tested decompression logic, applied to nix-gaming's real,
@@ -112,7 +112,7 @@
   ;; chayleaf).
   (gradle-deps-tree "faf-client-gradle-deps"
                     (string-append (host-dirname (host-dirname (current-filename)))
-                                   "/faforever/deps-stable.json")))
+                                   "/deps-stable.json")))
 
 (define-public faf-client-src
   (package
