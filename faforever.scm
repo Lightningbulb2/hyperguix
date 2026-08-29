@@ -1,23 +1,43 @@
-;;; faforever.scm --- A Guix package for the Forged Alliance Forever client
+;;; faforever.scm --- Guix packages for Forged Alliance Forever
 ;;;
 ;;; IMPORTANT — read README.md before using this channel. Short version:
 ;;;
-;;;   * This is ONE package, `faf-client', not two. It repackages
-;;;     FAForever's own official prebuilt Linux release tarball of
-;;;     https://github.com/FAForever/downlords-faf-client (a Gradle/JavaFX
-;;;     app) rather than building it from source, which is why this lives
-;;;     in a personal channel and not upstream Guix.
+;;;   * Two packages, both in this one file (in dependency order:
+;;;     `fhs-run' first, since `faf-client' propagates it as a
+;;;     dependency -- see below -- and needs it defined first):
 ;;;
-;;;   * It installs two commands: `faf-client' (the lobby/matchmaking
-;;;     app) and `faf-client-setup' (a detect-and-configure script for
-;;;     Supreme Commander: Forged Alliance, which you must already own
-;;;     and have installed via Steam, or already have set up under plain
-;;;     Wine). Earlier drafts of this channel split these into two
-;;;     packages and additionally tried to reimplement
-;;;     https://github.com/FAForever/faf-linux's approach of downloading
-;;;     Proton-GE/a Steam Runtime image/DXVK/DirectX at setup time. Both
-;;;     of those decisions were wrong: see README.md for why, and for the
-;;;     credit this design actually owes to nix-gaming.
+;;;     - `fhs-run': a genuine general-purpose "run an arbitrary
+;;;       command inside Steam's FHS sandbox" tool, needed because
+;;;       nonguix's own `steam' package doesn't expose one (confirmed
+;;;       from its actual source: it always execs one hardcoded target,
+;;;       Steam itself, with no equivalent of nixpkgs' `steam-run').
+;;;       Built from nonguix's own `nonguix-container' machinery,
+;;;       reusing its exact `steam-container-libs' list.
+;;;
+;;;     - `faf-client': repackages FAForever's own official prebuilt
+;;;       Linux release of https://github.com/FAForever/downlords-faf-client
+;;;       (a Gradle/JavaFX app) rather than building it from source,
+;;;       which is why this lives in a personal channel and not
+;;;       upstream Guix. Installs two commands: `faf-client' itself,
+;;;       and `faf-client-setup' (a detect-and-configure script for
+;;;       Supreme Commander: Forged Alliance, which you must already
+;;;       own and have installed via Steam, or already have set up
+;;;       under plain Wine). `faf-client-setup.py' is a separate FILE
+;;;       purely for readability (600+ lines of Python is unwieldy as
+;;;       an escaped Scheme string) -- it is NOT a separate package;
+;;;       it's built directly into `faf-client's own output. `faf-client'
+;;;       also `propagated-inputs's `fhs-run', so `guix install
+;;;       faf-client' alone gets you both.
+;;;
+;;;   * An earlier revision of this channel also had an experimental,
+;;;     from-source `faf-client-src' (via a Gradle+mitm-cache build) in
+;;;     two extra files, plus a from-scratch attempt at reimplementing
+;;;     https://github.com/FAForever/faf-linux's Proton/DXVK-downloading
+;;;     approach as a *third* package before that. Both were dropped:
+;;;     neither was needed to actually get FAF running, and "so many
+;;;     files/packages" was a fair complaint on its own. See README.md
+;;;     if you want the full history/reasoning, or want that from-source
+;;;     build back.
 ;;;
 ;;; Not appropriate for upstreaming into Guix proper.
 
@@ -27,22 +47,87 @@
   #:use-module (guix gexp)
   #:use-module (guix build-system copy)
   #:use-module ((guix licenses) #:prefix license:)
-  #:use-module (gnu packages)          ; for `specification->package'
-  #:use-module (gnu packages bash)     ; bash-minimal
-  #:use-module (faforever source)      ; faf-client-src (experimental)
-  #:use-module (faforever fhs-run)     ; fhs-run (nonguix FHS sandbox tool)
-  #:re-export (faf-client-src
-               fhs-run))
+  #:use-module (gnu packages)              ; for `specification->package'
+  #:use-module (gnu packages bash)         ; bash-minimal
+  #:use-module (gnu packages base)         ; coreutils, for fhs-run
+  #:use-module (nonguix multiarch-container))
 
-;; See the comment on this same helper in the previous revision of this
-;; file: packages are looked up by name via `specification->package'
-;; rather than imported module-by-module, purely so a wrong guess at
-;; which gnu/packages/*.scm file something lives in produces a clear
-;; runtime error naming the package, instead of a module-import failure
-;; that's harder to place. Swap for direct #:use-module imports once
-;; you've confirmed module paths against a real Guix checkout.
+;; Packages are looked up by name via `specification->package' rather
+;; than imported module-by-module, purely so a wrong guess at which
+;; gnu/packages/*.scm file something lives in produces a clear runtime
+;; error naming the package, instead of a module-import failure that's
+;; harder to place.
 (define (spec name)
   (specification->package name))
+
+;; ---------------------------------------------------------------------
+;; fhs-run
+;; ---------------------------------------------------------------------
+;;
+;; nonguix's own `steam' package (nongnu/packages/game-client.scm) is
+;; architecturally single-purpose: its `nonguix-container' is built with
+;; `(run "/bin/steam")', and `fhs-internal' (the script that actually
+;; sets up the FHS symlinks inside the container) always execs that one
+;; hardcoded target. There is no general "run arbitrary command X inside
+;; this same sandbox" mechanism exposed, unlike nixpkgs' `steam-run'.
+;;
+;; This recreates that missing general-purpose tool using nonguix's own
+;; `nonguix-container' machinery directly: the same FHS union of
+;; libraries Steam itself uses (literally the same `steam-container-libs'
+;; list, reused via `(@@ ...)' since it's a private binding in
+;; game-client.scm -- not copied/reconstructed by hand, to avoid getting
+;; a large, easy-to-typo library list subtly wrong), but with `run'
+;; pointed at plain `env' instead of Steam's launcher. Since
+;; `env PROGRAM ARGS...' just execs PROGRAM with ARGS, invoking the
+;; resulting `fhs-run' command as
+;;
+;;   fhs-run /path/to/some/binary --some-arg --another-arg
+;;
+;; runs that exact command inside the same FHS-configured container
+;; Steam uses, with full control over the executable and every
+;; argument -- which is what FAF's `executableDecorator' + "%s"
+;; substitution actually needs (unlike `steam -applaunch', which only
+;; ever launches Steam's own configured executable for an App ID and
+;; can't substitute a different one).
+;;
+;; NOTE: `(run "/bin/env")' below MUST keep its leading slash.
+;; `file-append' concatenates the package's own store path directly with
+;; this string, with no separator inserted automatically -- omitting the
+;; slash here previously produced a literal, broken path
+;; ("...coreutils-9.1bin/env") and a real "No such file or directory"
+;; failure at the exec step. Confirmed by matching against nonguix's own
+;; `(run "/bin/steam")' convention in game-client.scm.
+(define (steam-container-libs*)
+  ;; `steam-container-libs' is a plain (define ...), not (define-public
+  ;; ...), in (nongnu packages game-client) -- not exported. `(@@ ...)'
+  ;; is the standard, precedented way to reach an unexported binding in
+  ;; another module when you specifically want it (nonguix's own
+  ;; multiarch-container.scm does exactly this for `glibc-for-fhs' in
+  ;; (gnu packages base)).
+  (@@ (nongnu packages game-client) steam-container-libs))
+
+(define fhs-run-container
+  (nonguix-container
+   (name "fhs-run")
+   (wrap-package coreutils)
+   (run "/bin/env")
+   (packages (steam-container-libs*))
+   (link-files '())
+   (home-page "https://gitlab.com/nonguix/nonguix")
+   (synopsis "Run an arbitrary command inside Steam's FHS sandbox")
+   (description
+    "This provides a single command, @command{fhs-run}, that runs
+whatever program and arguments you give it inside the same FHS-
+compatible Guix container nonguix's own @code{steam} package uses --
+same bundled libraries, same @file{$HOME/.local/share/guix-sandbox-home}
+convention -- but without Steam itself in the loop. Useful for anything
+that needs to run inside that same sandbox with a specific, externally-
+controlled command line (for example, a game launcher like the Forged
+Alliance Forever client that constructs its own precise launch command
+rather than just wanting extra arguments appended to whatever Steam
+already knows how to launch).")))
+
+(define-public fhs-run (nonguix-container->package fhs-run-container))
 
 ;; ---------------------------------------------------------------------
 ;; faf-client
@@ -54,21 +139,11 @@
 ;; against, and the launcher script's JVM flags and classpath-building
 ;; trick were adapted from, nix-gaming's faf-client package
 ;; (https://github.com/fufexan/nix-gaming/blob/master/pkgs/faf-client/,
-;; MIT, credit: chayleaf and contributors) — a real, currently-maintained
-;; package doing the same job for Nix. Notably, nix-gaming *builds from
-;; source* using nixpkgs' `gradle.fetchDeps` (a mitm-proxy tool that
-;; records every Maven/Gradle download once into a lockfile, then replays
-;; it offline in the sandbox — nixpkgs' answer to "Gradle wants the
-;; network mid-build"). Guix has no equivalent tool yet, which is the
-;; concrete, specific gap blocking a from-source Guix package here (not
-;; that the dependencies — Spring, Jackson, JavaFX, ~195 jars in total —
-;; are individually unusual; they aren't). Building that tool, or
-;; hand-writing ~195 Guix package definitions instead, is real work
-;; that's out of scope for this channel; see README.md.
+;; MIT, credit: chayleaf and contributors).
 ;;
-;; So: this package instead repackages FAForever's own prebuilt Linux
-;; release tarball (named e.g. "faf_unix_2026_7_0.tar.gz", attached to
-;; GitHub release v2026.7.0). Inside it:
+;; This repackages FAForever's own prebuilt Linux release tarball
+;; (named e.g. "faf_unix_2026_7_0.tar.gz", attached to GitHub release
+;; v2026.7.0). Inside it:
 ;;
 ;;   - lib/*.jar        ~195 jars, incl. `faf-client-<ver>-plain.jar',
 ;;                       the actual application
@@ -126,16 +201,16 @@
             (lambda* (#:key outputs #:allow-other-keys)
               ;; Two ENOENT errors in a row (first from `execve', then
               ;; from `chmod', both against the exact same computed
-              ;; path) indicate copy-build-system's install-plan simply
-              ;; wasn't putting natives/faf-uid where I assumed --
-              ;; rather than guess again at its exact directory-copy
-              ;; semantics, do this one explicitly myself: copy straight
-              ;; from the still-current unpacked source tree (phases
-              ;; don't change the working directory, so "natives/..."
-              ;; below is still valid here, after 'install) to a path I
-              ;; fully control, and set the permission bit on that exact
-              ;; same path -- no more guessing about what an
-              ;; intermediate copy step does or doesn't preserve.
+              ;; path) indicated copy-build-system's install-plan simply
+              ;; wasn't putting natives/faf-uid where assumed -- rather
+              ;; than guess again at its exact directory-copy semantics,
+              ;; this is done explicitly instead: copy straight from the
+              ;; still-current unpacked source tree (phases don't change
+              ;; the working directory, so "natives/..." below is still
+              ;; valid here, after 'install) to a path fully controlled
+              ;; here, and set the permission bit on that exact same
+              ;; path -- no more guessing about what an intermediate
+              ;; copy step does or doesn't preserve.
               (let* ((out     (assoc-ref outputs "out"))
                      (natives (string-append out "/share/faf-client/natives")))
                 (mkdir-p natives)
@@ -232,6 +307,11 @@ exec ~a \\
                 (substitute* launcher
                   (("@LIB_PLACEHOLDER@") path))))))))
     (native-inputs '())
+    (propagated-inputs (list fhs-run)) ; so `guix install faf-client'
+                                        ; alone gets you `fhs-run' too --
+                                        ; faf-client-setup needs it to
+                                        ; build the actual game launch
+                                        ; command
     (inputs
      (list bash-minimal
            (spec "openjdk")   ; MUST be >= 25 -- see README.md

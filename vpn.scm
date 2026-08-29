@@ -14,11 +14,12 @@
 ;;;
 ;;; Every package name below has now been checked against an actual Guix
 ;;; checkout (gnu/packages/*.scm), not just recollection -- see README.md
-;;; for what that did and didn't catch. One placeholder is left:
+;;; for what that did and didn't catch.
 ;;;
-;;;   The `sha256' below is the standard all-zero Guix placeholder.
-;;;   Run `guix build -f guix.scm`; it will fail with a hash mismatch and
-;;;   print the real one to paste in here.
+;;; The file ends with a bare `radmin-vpn-linux' reference (after the
+;;; `define-public') so `guix build -f vpn.scm' returns the package
+;;; directly -- `define-public' alone doesn't hand back its value as the
+;;; file's last-evaluated expression.
 ;;; ---------------------------------------------------------------------
 
 (define-module (radmin-vpn packages vpn)
@@ -117,7 +118,6 @@
                (commit commit)))
          (file-name (git-file-name "radmin-vpn-linux" commit))
          (sha256
-          ;; Placeholder -- see the big comment at the top of this file.
           (base32
            "1w8l23slb2fdybpky9q3y7vl4v37b5cc52pww4p9y35q8r31q32m")))))
     (build-system gnu-build-system)
@@ -178,6 +178,22 @@
                                  (return filename))
                                #t))
                         #f))))
+              ;; Same idea as directory-named, but for a specific file --
+              ;; used below to find wherever libntoskrnl.a/libhal.a
+              ;; actually live, the same way directory-named locates
+              ;; "ddk". Returns *all* directories containing a matching
+              ;; file (not just the first) -- see why below.
+              (define (files-named root name)
+                (or (and root
+                         (let ((matches '()))
+                           (ftw root
+                                (lambda (filename statinfo flag)
+                                  (when (and (eq? flag 'regular)
+                                             (string=? (basename filename) name))
+                                    (set! matches (cons (dirname filename) matches)))
+                                  #t))
+                           (reverse matches)))
+                    '()))
               ;; rvpnnetmp.sys (the only Makefile target that reads
               ;; DDK_INC) is built with $(MINGW64) = x86_64-w64-mingw32-gcc,
               ;; so this must only search x86_64-labeled inputs -- not just
@@ -186,51 +202,149 @@
               ;; match, so without this filter it silently resolves to the
               ;; 32-bit ddk headers instead (wrong arch, no build error,
               ;; just a broken/mismatched rvpnnetmp.sys).
-              (let* ((mingw64-inputs
-                      (filter (lambda (input)
-                                (and (string-contains (car input) "mingw")
-                                     (string-contains (car input) "x86_64")))
-                              inputs))
+              (define (arch-mingw-inputs arch)
+                (filter (lambda (input)
+                          (and (string-contains (car input) "mingw")
+                               (string-contains (car input) arch)))
+                        inputs))
+              ;; adapter_hook.dll, rvpn_launcher.exe, netsh.exe,
+              ;; netsh64.exe, and drvinst.exe pass zero -I flags at all
+              ;; -- upstream wrote this Makefile assuming the
+              ;; cross-compiler's own default sysroot already covers
+              ;; <windows.h>, <winsock2.h>, etc. the way Debian/Fedora's
+              ;; mingw-w64-gcc packages do. Guix's cross-gcc doesn't (see
+              ;; the DDK_INC/excpt.h story above -- same root cause,
+              ;; different header). <windows.h> is the one header
+              ;; guaranteed to sit directly in any non-trivial mingw-w64
+              ;; header tree's top-level include dir, so anchor on it to
+              ;; find that directory for a given arch's inputs.
+              (define (base-header-dir arch-inputs)
+                (let ((candidates (append-map
+                                    (lambda (input) (files-named (cdr input) "windows.h"))
+                                    arch-inputs)))
+                  (and (pair? candidates) (car candidates))))
+              ;; adapter_hook.dll, rvpn_launcher.exe, netsh.exe,
+              ;; netsh64.exe, and drvinst.exe also pass no -L or default
+              ;; libraries at all -- same missing-sysroot story, but for
+              ;; the linker: <dllcrt2.o> (the DLL startup object) and the
+              ;; usual runtime import libs (kernel32, msvcrt, mingw32,
+              ;; mingwex, etc.) all need an explicit -L too. Don't assume
+              ;; this is the same directory as libntoskrnl.a's above --
+              ;; ddk/ turned out to be its own separate subdirectory
+              ;; rather than merged into the main headers, so the kernel
+              ;; DDK import libs may equally be split from the general
+              ;; runtime ones. Anchor on <dllcrt2.o> specifically, the
+              ;; exact file `ld' reported missing, and apply the same
+              ;; lib32-exclusion as libntoskrnl.a on the off chance the
+              ;; x86_64 package's split applies here too.
+              (define (base-lib-dir arch-inputs)
+                (let ((candidates (append-map
+                                    (lambda (input) (files-named (cdr input) "dllcrt2.o"))
+                                    arch-inputs)))
+                  (find (lambda (dir) (not (string-contains dir "lib32")))
+                        candidates)))
+              (let* ((mingw64-inputs (arch-mingw-inputs "x86_64"))
+                     (mingw32-inputs (arch-mingw-inputs "i686"))
                      (ddk (any (lambda (input) (directory-named (cdr input) "ddk"))
                                mingw64-inputs)))
                 (unless ddk
                   (error "could not find a 'ddk' directory under any x86_64 mingw input; searched:"
                          (map car mingw64-inputs)))
-                (setenv "RADMIN_DDK_INC" ddk))))
+                ;; wdm.h (pulled in via ntddk.h from inside ddk/) also
+                ;; expects plain CRT headers like <excpt.h> to be
+                ;; reachable on the include path. On the Debian/Fedora
+                ;; layouts this Makefile's own DDK_INC comment was
+                ;; written for, that's automatic: the base include dir
+                ;; (ddk's parent) is already on the cross-compiler's own
+                ;; default search path. Guix's cross-gcc doesn't bake
+                ;; that in the same way, and this particular package
+                ;; ships ddk/ without excpt.h landing anywhere the
+                ;; compiler already looks -- so add ddk's parent
+                ;; explicitly too. Since DDK_INC is substituted directly
+                ;; after a single `-I' in the Makefile with no quoting,
+                ;; a second "-I<dir>" appended here becomes a genuine
+                ;; second -I flag on the actual compile line.
+                (setenv "RADMIN_DDK_INC"
+                        (string-append ddk " -I" (dirname ddk)))
+                ;; Same disease as DDK_INC, one Makefile variable over:
+                ;; MINGW64_LIB is also a wildcard over Debian/Fedora FHS
+                ;; paths (/usr/x86_64-w64-mingw32/lib and friends), none
+                ;; of which exist in the store, so it silently resolves
+                ;; empty and the rvpnnetmp.sys recipe's `-L' never gets
+                ;; added -- `ld' then can't find -lntoskrnl/-lhal at all.
+                ;; Find wherever libntoskrnl.a actually landed instead.
+                ;; MINGW64_LIB is also a plain `:=' assignment, so this
+                ;; command-line override wins the same way DDK_INC's does.
+                ;;
+                ;; This particular package ships BOTH a 32-bit compat
+                ;; copy under .../lib32 AND the real x86_64 one
+                ;; elsewhere -- confirmed on a real build, where `any'
+                ;; grabbed lib32 first (directory-walk order, not
+                ;; architecture) and `ld' rejected it as "incompatible"
+                ;; for every symbol. So collect every directory that has
+                ;; a copy and explicitly exclude lib32, rather than
+                ;; trusting the first one found to be the right one.
+                (let* ((candidates
+                        (append-map (lambda (input)
+                                      (files-named (cdr input) "libntoskrnl.a"))
+                                    mingw64-inputs))
+                       (lib (find (lambda (dir) (not (string-contains dir "lib32")))
+                                  candidates)))
+                  (unless lib
+                    (error "could not find an x86_64-compatible directory containing libntoskrnl.a (only lib32 copies, if any); candidates were:"
+                           candidates))
+                  (setenv "RADMIN_MINGW64_LIB" lib))
+                (let ((hdr32 (base-header-dir mingw32-inputs))
+                      (hdr64 (base-header-dir mingw64-inputs)))
+                  (unless hdr32
+                    (error "could not find windows.h under any i686 mingw input"))
+                  (unless hdr64
+                    (error "could not find windows.h under any x86_64 mingw input"))
+                  (setenv "RADMIN_MINGW32_INC" hdr32)
+                  (setenv "RADMIN_MINGW64_INC" hdr64))
+                (let ((libdir32 (base-lib-dir mingw32-inputs))
+                      (libdir64 (base-lib-dir mingw64-inputs)))
+                  (unless libdir32
+                    (error "could not find an i686-compatible directory containing dllcrt2.o"))
+                  (unless libdir64
+                    (error "could not find an x86_64-compatible directory containing dllcrt2.o"))
+                  (setenv "RADMIN_MINGW32_LIBDIR" libdir32)
+                  (setenv "RADMIN_MINGW64_LIBDIR" libdir64)))))
           (replace 'build
             (lambda _
-              ;; The mingw-w64/winpthreads inputs (needed so the cross
-              ;; $(MINGW32)/$(MINGW64) targets can find <windows.h>,
-              ;; <pthread.h>, the DDK's <excpt.h>, etc.) get their
-              ;; include/lib dirs exported onto CPATH/C_INCLUDE_PATH/
+              ;; The mingw-w64/winpthreads inputs get their include/lib
+              ;; dirs exported onto CPATH/C_INCLUDE_PATH/
               ;; CPLUS_INCLUDE_PATH/LIBRARY_PATH by Guix's generic input
-              ;; search-path machinery, and the *cross* targets genuinely
-              ;; rely on that: rvpnnetmp.sys only gets -I$(DDK_INC)
-              ;; explicitly from the Makefile, and pulls in everything
-              ;; else wdm.h needs (excpt.h and friends) via the ambient
-              ;; CPATH. So these variables can't be stripped for the
-              ;; whole `make' invocation -- tried that, broke
-              ;; rvpnnetmp.sys.
+              ;; search-path machinery. That's what breaks the *native*
+              ;; $(CC) targets (tap_bridge, the two LD_PRELOAD .so
+              ;; shims, rvpn_filter_ui): they see Windows-only
+              ;; headers/libs ahead of glibc's, and _mingw.h's Win32-only
+              ;; #error, or `ld' picking mingw's crt1.o over glibc's,
+              ;; follow.
               ;;
-              ;; They also can't just be blanked out *for the CC wrapper
-              ;; either*: the same variables carry legitimate entries the
-              ;; native compiler needs too (e.g. the Linux kernel headers
+              ;; It turned out NOT to be what the cross targets rely on,
+              ;; though -- despite looking that way at first. Guix's
+              ;; cross-gcc doesn't bake in a default sysroot the way
+              ;; Debian/Fedora's mingw-w64-gcc packages do (confirmed
+              ;; directly: rvpnnetmp.sys still couldn't find <excpt.h>
+              ;; even with CPATH completely untouched, until it got an
+              ;; explicit -I below). So the cross targets need *explicit*
+              ;; -I flags regardless of what's on CPATH; see
+              ;; find-ddk-headers above and the MINGW32/MINGW64
+              ;; overrides below for where those come from.
+              ;;
+              ;; What CPATH/etc *do* still carry are legitimate entries
+              ;; the native compiler needs (e.g. the Linux kernel headers
               ;; behind glibc's <bits/fcntl-linux.h> -> <linux/falloc.h>)
-              ;; -- tried `env -u VAR' for the wrapper, and that stripped
-              ;; those right along with the mingw ones, breaking
-              ;; tap_bridge again the other way.
-              ;;
-              ;; So: compute each variable with only its mingw-labeled
-              ;; entries removed (keeping everything else, e.g. the
-              ;; kernel headers), and pass those filtered values
-              ;; explicitly to `env' rather than either unsetting them
-              ;; globally or unsetting them in the wrapper. This is
-              ;; scoped to just the native $(CC) targets (tap_bridge, the
-              ;; two LD_PRELOAD .so shims, rvpn_filter_ui) via a
-              ;; command-line override of the Makefile's CC variable (a
-              ;; plain `=' assignment, so the override wins);
-              ;; $(MINGW32)/$(MINGW64) keep the full, unfiltered ambient
-              ;; environment they need.
+              ;; mixed in alongside the mingw ones -- so those variables
+              ;; can't just be blanked for the CC wrapper either (tried
+              ;; `env -u VAR', which stripped the kernel headers right
+              ;; along with the mingw entries and broke tap_bridge the
+              ;; other way). Compute each variable with only its
+              ;; mingw-labeled entries removed instead, scoped to just
+              ;; the native $(CC) targets via a command-line override of
+              ;; the Makefile's CC variable (a plain `=' assignment, so
+              ;; the override wins).
               (define (filtered-path var)
                 (let ((val (getenv var)))
                   (if val
@@ -247,9 +361,34 @@
                  " CPLUS_INCLUDE_PATH=" (filtered-path "CPLUS_INCLUDE_PATH")
                  " LIBRARY_PATH=" (filtered-path "LIBRARY_PATH")
                  " gcc"))
+              ;; adapter_hook.dll, rvpn_launcher.exe, netsh.exe,
+              ;; netsh64.exe, and drvinst.exe pass no -I at all (and
+              ;; adapter_hook.dll's recipe doesn't even reference
+              ;; $(CFLAGS), so a CFLAGS= override can't reach it
+              ;; either). Bake the needed -I directly into the compiler
+              ;; command itself via a command-line override of MINGW32/
+              ;; MINGW64 (also plain `=' assignments) -- same trick as
+              ;; DDK_INC and CC above: Make substitutes these verbatim
+              ;; into the recipe with no quoting, so extra words here
+              ;; just become extra arguments on the actual compile line.
+              ;; -L for the general runtime import libs/dllcrt2.o rides
+              ;; along the same way, for the same reason (no -L reaches
+              ;; these recipes either -- only rvpnnetmp.sys's own
+              ;; explicit -L$(MINGW64_LIB) is wired up in the Makefile).
+              (define mingw32-wrapper
+                (string-append "i686-w64-mingw32-gcc"
+                                " -I" (getenv "RADMIN_MINGW32_INC")
+                                " -L" (getenv "RADMIN_MINGW32_LIBDIR")))
+              (define mingw64-wrapper
+                (string-append "x86_64-w64-mingw32-gcc"
+                                " -I" (getenv "RADMIN_MINGW64_INC")
+                                " -L" (getenv "RADMIN_MINGW64_LIBDIR")))
               (invoke "make"
                       (string-append "DDK_INC=" (getenv "RADMIN_DDK_INC"))
-                      (string-append "CC=" cc-wrapper))))
+                      (string-append "MINGW64_LIB=" (getenv "RADMIN_MINGW64_LIB"))
+                      (string-append "CC=" cc-wrapper)
+                      (string-append "MINGW32=" mingw32-wrapper)
+                      (string-append "MINGW64=" mingw64-wrapper))))
 
           ;; There's no `install' target upstream, so this replaces the
           ;; default phase entirely.  Layout mirrors what the companion
@@ -421,4 +560,9 @@ package input.")
     (home-page "https://github.com/baptisterajaut/radmin-vpn-linux")
     ;; Upstream LICENSE is GPL-3.0 (not "or later").
     (license license:gpl3)))
+
+;; So `guix build -f vpn.scm' works directly: `define-public' doesn't
+;; hand its value back as the file's last-evaluated expression, so a
+;; bare reference to the name has to be the actual last thing in the
+;; file.
 radmin-vpn-linux
