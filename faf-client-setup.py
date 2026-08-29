@@ -107,11 +107,45 @@ def exit_err(*args, **kwargs):
     sys.exit(1)
 
 
-steam_paths = [
-    join(xdg_data_home(), "Steam"),
-    expanduser("~/.steam/steam"),
-    expanduser("~/.var/app/com.valvesoftware.Steam/.local/share/Steam"),
-]
+def read_path(prompt):
+    """input() but tolerant of what people actually paste: surrounding
+    whitespace, and a single layer of matching quote marks (many file
+    managers' "copy path" wraps the path in quotes for shell-pasting,
+    which input() has no reason to strip on its own)."""
+    s = input(prompt).strip()
+    if len(s) >= 2 and s[0] == s[-1] and s[0] in ('"', "'"):
+        s = s[1:-1]
+    return s.strip()
+
+
+def candidate_home_roots():
+    """Real HOME, plus any sandboxed home directories belonging to
+    Guix's `nonguix' Steam package, which runs Steam inside an FHS
+    container with its own isolated $HOME so it doesn't scatter dotfiles
+    across your real one -- meaning Steam's actual library data can live
+    somewhere this script's own (unsandboxed) view of $HOME never
+    checks by default. `guix-sandbox-home` is the naming this was
+    confirmed against directly (not verified against nonguix's source,
+    which I couldn't get to from here) -- if yours differs, the game
+    path prompt further down still accepts a manually typed path
+    regardless."""
+    roots = [expanduser("~")]
+    sandbox = expanduser("~/.local/share/guix-sandbox-home")
+    if isdir(sandbox):
+        roots.append(sandbox)
+    return roots
+
+
+def steam_candidate_paths():
+    paths = []
+    for home in candidate_home_roots():
+        paths.append(join(home, ".local/share/Steam"))
+        paths.append(join(home, ".steam/steam"))
+        paths.append(join(home, ".var/app/com.valvesoftware.Steam/.local/share/Steam"))
+    return paths
+
+
+steam_paths = steam_candidate_paths()
 
 steam_path = None
 for path in steam_paths:
@@ -279,7 +313,7 @@ if game_path is not None:
     if not ask_yn(f"Detected game path:\n{game_path}.\n\nCorrect?", True):
         game_path = None
 while game_path is None:
-    p = ensure(isdir, input("Please enter game path: "))
+    p = ensure(isdir, read_path("Please enter game path: "))
     if p is None:
         print("Invalid game path!")
     else:
@@ -319,33 +353,106 @@ def command(proton, runtime, wrapper, reaper, launcher, prepend):
     return prepend + '"%s"'
 
 
-old_setup = not ask_yn(
-    "Use the new setup wizard for Steam+Proton? Answer no if you plan to "
-    "use plain Wine.", True)
+def resolve_command(name):
+    """Resolve NAME to an absolute path via *this script's* PATH,
+    rather than leaving the bare command name in client.prefs for a
+    completely different process (the FAF client itself, launched
+    separately -- via a desktop menu entry, a different shell, or a
+    different Guix profile's PATH -- with no guarantee it shares this
+    script's environment) to look up on its own PATH later. Returns
+    None if not found even here (callers decide how to handle that)."""
+    return shutil.which(name)
 
-if not old_setup:
-    input("1. Set Supreme Commander: Forged Alliance's launch options in "
-          "Steam to `PROTON_NO_ESYNC=1 PROTON_DUMP_DEBUG_COMMANDS=1 "
-          "%command%` and press enter. ")
-    input("2. Run Supreme Commander: Forged Alliance at least once and "
-          "press enter. ")
-    source_path = f"/tmp/proton_{os.environ.get('USER', '')}/run"
-    while not os.path.exists(source_path):
-        if ask_yn(f"Failed to locate {source_path}. Switch to legacy "
-                  f"wizard instead? If not, run Supreme Commander again "
-                  f"and answer no to try again.", True):
-            old_setup = True
-            break
 
-if not old_setup:
+def resolve_steam_run_equivalent():
+    """`fhs-run' (this channel's own package, faforever/fhs-run.scm) is
+    tried first: it's a genuine general-purpose "run this exact command
+    inside Steam's FHS sandbox" tool, built from nonguix's own
+    nonguix-container machinery, needed because nonguix's `steam'
+    package itself doesn't expose one (confirmed from its actual
+    source: `fhs-internal' always execs one hardcoded target, Steam
+    itself). Falls back to a literal `steam-run' if that happens to
+    exist (e.g. a differently-set-up system), then to None."""
+    return resolve_command("fhs-run") or resolve_command("steam-run")
+
+
+steam_run_equiv = resolve_steam_run_equivalent()
+steam_binary_path = resolve_command("steam")
+
+via_steam_applaunch = False
+if steam_run_equiv is None:
+    print("Neither `fhs-run' nor `steam-run' is available. Without one of "
+          "these, there's no way to run FAF's own precisely-constructed "
+          "launch command (pointing at FAF's own patched game files, not "
+          "just the vanilla Steam install) inside a working FHS/Proton "
+          "environment.")
+    print("Strongly recommended: build and install `fhs-run' from this "
+          "channel (faforever/fhs-run.scm), then re-run this script.")
+    if steam_binary_path is not None:
+        via_steam_applaunch = ask_yn(
+            "As a fallback ONLY (not recommended -- see below), set the "
+            "launch command to `steam -applaunch 9420 \"%s\"' anyway?",
+            False)
+        if via_steam_applaunch:
+            print("Warning: `-applaunch' launches Steam's OWN configured "
+                  "executable for this App ID, appending arguments to it -- "
+                  "it can NOT substitute FAF's own patched executable the "
+                  "way `%s' is meant to. This will very likely not actually "
+                  "work for playing FAF games; it's here only so you have "
+                  "*something* written to client.prefs rather than nothing.")
+
+if via_steam_applaunch:
+    old_setup = False  # unused in this branch, but keeps later code simple
+    cmd = f'{steam_binary_path} -applaunch 9420 "%s"'
+    print(f"\nLaunch command set to `{cmd}'.")
+    needs_setup = True
+else:
+    old_setup = not ask_yn(
+        "Use the new setup wizard for Steam+Proton? Answer no if you plan to "
+        "use plain Wine.", True)
+
+    if not old_setup:
+        input("1. Set Supreme Commander: Forged Alliance's launch options in "
+              "Steam to `PROTON_NO_ESYNC=1 PROTON_DUMP_DEBUG_COMMANDS=1 "
+              "%command%` and press enter. ")
+        input("2. Run Supreme Commander: Forged Alliance at least once and "
+              "press enter. ")
+        source_path = f"/tmp/proton_{os.environ.get('USER', '')}/run"
+        while not os.path.exists(source_path):
+            if ask_yn(f"Failed to locate {source_path}. Switch to legacy "
+                      f"wizard instead? If not, run Supreme Commander again "
+                      f"and answer no to try again.", True):
+                old_setup = True
+                break
+
+
+def _resolve_or_bare(name):
+    """Like resolve_command, but falls back to the bare name (with a
+    warning) -- used for the legacy reconstruction path below, where
+    giving up isn't an option since we're already committed to it."""
+    resolved = resolve_command(name)
+    if resolved is None:
+        print(f"Warning: couldn't find `{name}' on PATH even here -- "
+              f"writing the bare command name, but the FAF client will "
+              f"likely fail to launch the game with a \"No such file or "
+              f"directory\" error until `{name}' is actually installed "
+              f"and on PATH.")
+        return name
+    return resolved
+
+
+if via_steam_applaunch:
+    pass  # cmd already set above
+elif not old_setup:
     os.makedirs(expanduser("~/.local/share/faforever"), exist_ok=True)
     target_path = expanduser("~/.local/share/faforever/run.sh")
     shutil.copy2(source_path, target_path)
-    print(f"Launch command will be set to `steam-run {target_path} \"%s\"`. "
+    steam_run = steam_run_equiv or _resolve_or_bare("fhs-run")
+    print(f"Launch command will be set to `{steam_run} {target_path} \"%s\"`. "
           f"You may modify the `run.sh` script as necessary.")
-    cmd: Optional[str] = f'steam-run {target_path} "%s"'
+    cmd: Optional[str] = f'{steam_run} {target_path} "%s"'
 else:
-    launcher: Optional[str] = "steam-run"
+    launcher: Optional[str] = steam_run_equiv or _resolve_or_bare("fhs-run")
     env = {"PROTON_NO_ESYNC": "1"} if proton_path else {}
 
     def cur_cmd():
@@ -394,33 +501,33 @@ else:
             env["STEAM_COMPAT_CLIENT_INSTALL_PATH"] = steam_path
             if prefix_path is not None and os.path.split(prefix_path)[-1] == "pfx":
                 pfx = os.path.split(prefix_path)[0]
-                pfx1 = expanduser(input(f"Enter prefix path (Default: {prefix_path}): "))
+                pfx1 = expanduser(read_path(f"Enter prefix path (Default: {prefix_path}): "))
                 pfx = pfx1 or pfx
             else:
-                pfx = expanduser(input("Enter prefix path: "))
+                pfx = expanduser(read_path("Enter prefix path: "))
             needs_setup = True
             env["STEAM_COMPAT_DATA_PATH"] = pfx
             prefix_path = join(pfx, "pfx")
             if proton_path is not None:
                 cmd = ask_cmd()
             if cmd is None:
-                proton_path = expanduser(input("Enter path to proton binary: "))
+                proton_path = expanduser(read_path("Enter path to proton binary: "))
         elif ask_yn("Use Wine?", True):
             env.pop("PROTON_NO_ESYNC", None)
             env.pop("PROTON_NO_FSYNC", None)
             proton_path = None
             if ask_yn("Use 32-bit WINEARCH?", True):
                 env["WINEARCH"] = "win32"
-            prefix_path = expanduser(input("Enter prefix path (default: ~/.wine): "))
+            prefix_path = expanduser(read_path("Enter prefix path (default: ~/.wine): "))
             if prefix_path:
                 env["WINEPREFIX"] = prefix_path
             else:
                 prefix_path = expanduser("~/.wine")
             needs_setup = True
-            launcher = "wine"
+            launcher = resolve_command("wine")
             cmd = ask_cmd()
             if cmd is None:
-                launcher = expanduser(input("Enter custom path to wine binary: "))
+                launcher = expanduser(read_path("Enter custom path to wine binary: "))
                 cmd = ask_cmd()
         else:
             launcher = None
@@ -433,13 +540,13 @@ else:
             opts = ["Custom"] + protons
             proton_path = choose(opts, "Choose the Proton version.", 1)
             if proton_path == "Custom":
-                proton_path = expanduser(input("Enter custom path to proton binary: "))
+                proton_path = expanduser(read_path("Enter custom path to proton binary: "))
             cmd = ask_cmd()
         if cmd is None and not ask_yn("Is the correct Steam Runtime being used?", True):
             opts = ["Custom"] + runtimes
             runtime_path = choose(opts, "Choose the Steam Runtime", 1)
             if runtime_path == "Custom":
-                runtime_path = expanduser(input(
+                runtime_path = expanduser(read_path(
                     "Enter custom Steam runtime path (must have a "
                     "_v2-entry-point binary inside): "))
             cmd = ask_cmd()
@@ -484,7 +591,7 @@ if save_path:
 save_is_default = True
 if not save_path or not ask_yn("\nCorrect?", True):
     save_is_default = False
-    save_path = expanduser(input("Enter Game.prefs save path (inside the Wine prefix): "))
+    save_path = expanduser(read_path("Enter Game.prefs save path (inside the Wine prefix): "))
     save_base = os.path.split(save_path)[0]
 
 config = {"forgedAlliance": {"installationPath": game_path,

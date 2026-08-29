@@ -1,0 +1,10 @@
+;; -*- mode: scheme; -*-
+;; Guix channel declaration.  This is what lets `guix pull` (or
+;; `guix time-machine`) treat this repository as a channel, and what
+;; lets `guix package -A radmin-vpn-linux` find the package once the
+;; channel is added to ~/.config/guix/channels.scm.
+;;
+;; See: info '(guix) Channels' and info '(guix) Creating a Channel'.
+
+(channel
+  (version 0))

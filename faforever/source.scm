@@ -103,7 +103,7 @@
       ;; (only the prebuilt binary release, used above and in the
       ;; binary-repackage package). Run `guix download' on the URL above
       ;; to fill this in for real before building.
-      "11cpl35cbch5g0b1qmj2j20c9nqpxwkmsdwmyyym6n69438inq2x"))))
+      "0000000000000000000000000000000000000000000000000000"))))
 
 (define %gradle-deps
   ;; The tested decompression logic, applied to nix-gaming's real,

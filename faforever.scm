@@ -30,7 +30,9 @@
   #:use-module (gnu packages)          ; for `specification->package'
   #:use-module (gnu packages bash)     ; bash-minimal
   #:use-module (faforever source)      ; faf-client-src (experimental)
-  #:re-export (faf-client-src))
+  #:use-module (faforever fhs-run)     ; fhs-run (nonguix FHS sandbox tool)
+  #:re-export (faf-client-src
+               fhs-run))
 
 ;; See the comment on this same helper in the previous revision of this
 ;; file: packages are looked up by name via `specification->package'
@@ -104,7 +106,6 @@
      (list
       #:install-plan
       #~'(("lib" "share/faf-client/lib/")
-          ("natives" "share/faf-client/natives/")
           ("faf-client.vmoptions" "share/faf-client/")
           ("steam_appid.txt" "share/faf-client/"))
       #:modules '((guix build copy-build-system)
@@ -121,7 +122,28 @@
                           (when (file-exists? (string-append "natives/" f))
                             (delete-file (string-append "natives/" f))))
                         '("faf-uid.exe" "faf-uid-macos"))))
-          (add-after 'install 'install-launcher
+          (add-after 'install 'install-natives
+            (lambda* (#:key outputs #:allow-other-keys)
+              ;; Two ENOENT errors in a row (first from `execve', then
+              ;; from `chmod', both against the exact same computed
+              ;; path) indicate copy-build-system's install-plan simply
+              ;; wasn't putting natives/faf-uid where I assumed --
+              ;; rather than guess again at its exact directory-copy
+              ;; semantics, do this one explicitly myself: copy straight
+              ;; from the still-current unpacked source tree (phases
+              ;; don't change the working directory, so "natives/..."
+              ;; below is still valid here, after 'install) to a path I
+              ;; fully control, and set the permission bit on that exact
+              ;; same path -- no more guessing about what an
+              ;; intermediate copy step does or doesn't preserve.
+              (let* ((out     (assoc-ref outputs "out"))
+                     (natives (string-append out "/share/faf-client/natives")))
+                (mkdir-p natives)
+                (copy-file "natives/faf-uid" (string-append natives "/faf-uid"))
+                (chmod (string-append natives "/faf-uid") #o755)
+                (copy-file "natives/faf-ice-adapter.jar"
+                           (string-append natives "/faf-ice-adapter.jar")))))
+          (add-after 'install-natives 'install-launcher
             (lambda* (#:key inputs outputs #:allow-other-keys)
               (let* ((out   (assoc-ref outputs "out"))
                      (share (string-append out "/share/faf-client"))

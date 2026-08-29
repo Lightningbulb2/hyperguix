@@ -1,5 +1,74 @@
 # faforever — a Guix channel for Forged Alliance Forever
 
+## Fixes from real build/run feedback
+
+Two bugs reported after an actual attempt to build and run this:
+
+1. **`faf-client` couldn't log in: `faf-uid` wasn't executable.**
+   `faf-uid`'s own upstream README explicitly warns the execute bit
+   isn't reliably preserved once the binary is downloaded/extracted
+   (they call this out for macOS specifically, needing a manual `chmod
+   +x`). I'd assumed the release tarball's own permission bit would
+   survive Guix's unpack + copy-build-system's copy step; that
+   assumption was wrong, or at least not something to rely on. Fixed by
+   explicitly `chmod`-ing `natives/faf-uid` to `#o755` right after
+   unpack, in `faforever.scm`. (I also checked: FAForever's `uid` repo
+   bakes an RSA public key into the binary at compile time, matching
+   their server's private key — so building `faf-uid` from source
+   myself, rather than reusing their official binary, would need their
+   exact build-time key configuration to work at all. Reusing the
+   official binary was the right call; it just needed this one fix.)
+
+2. **`faf-client-src` failed with a Guile syntax error** in
+   `wrap-native-library-path`'s `let*`. This was a real bug in what I
+   delivered: a paren-counting mistake in `faforever/source.scm` left
+   the whole `arguments` field one closing parenthesis short, which
+   doesn't show up as a bare "unbalanced parens" error but instead makes
+   `modify-phases` see a malformed clause once Guile tries to expand it
+   — exactly the "failed to match any pattern" error you hit. I'd
+   actually caught and fixed this myself while validating the file
+   before it was ever sent to you, using an automated paren-balance
+   check — but the fix never made it into what got delivered. That's on
+   me. This revision has been re-verified three independent ways (a
+   paren-balance count, a per-top-level-form boundary check, and a full
+   labeled open/close stack trace confirming every field — `arguments`,
+   `native-inputs`, `inputs`, etc. — sits at the correct nesting depth).
+   I still don't have a Guix daemon to build against directly, so you're
+   genuinely the first real test of whether it builds at all past this
+   point — more issues may well surface further in, since the CA/proxy/
+   Gradle-build logic itself is still unexecuted-by-me infrastructure
+   (see "What's tested and what isn't" below).
+
+3. **`faf-client` still couldn't log in after fix #1 —
+   `Exec failed, error: 2 (No such file or directory)` for `faf-uid`.**
+   Fix #1 (chmod before the install step's copy) was based on a wrong
+   theory. The real signature — `ENOENT`, not `EACCES` — meant the
+   *installed* binary in `$out` wasn't executable, i.e. the copy step
+   doesn't preserve the permission bit the way I assumed. I also
+   double-checked with `readelf -l`/`ldd` that this really is a fully
+   static ELF with no `PT_INTERP`, ruling out the other classic Guix
+   gotcha — a binary expecting a dynamic linker path that doesn't exist
+   on a non-FHS system. Fixed properly this time: the `chmod` now runs
+   in a new phase *after* install, directly on the file's final path in
+   `$out`, so it no longer depends on what the copy step preserves.
+
+4. **Fix #3's `chmod` itself failed: `ENOENT` on the exact same path.**
+   Not a permissions problem after all — the file was never actually
+   landing at `share/faf-client/natives/faf-uid` in the first place,
+   regardless of its permission bit. Two ENOENT errors in a row against
+   the identical computed path (first from `execve`, then from `chmod`)
+   means I had the wrong theory twice: `copy-build-system`'s
+   install-plan simply wasn't putting `natives/faf-uid` where I assumed
+   it would. Rather than guess a third time at its exact directory-copy
+   semantics, `faforever.scm` now copies `faf-uid` and
+   `faf-ice-adapter.jar` explicitly itself (`copy-file` + `chmod`, from
+   the still-current unpacked source tree to a `$out` path I fully
+   control) instead of routing them through the install-plan at all.
+   This removes the guesswork entirely rather than trading one
+   assumption for another.
+
+---
+
 A **personal/third-party Guix channel**. Two packages:
 
 - **`faf-client`** — repackages FAForever's own official prebuilt Linux
@@ -17,6 +86,97 @@ existing Steam+Proton or plain-Wine setup for Supreme Commander: Forged
 Alliance, which you must already own — see the previous revision of this
 README, preserved below, for why the client and the Wine/game side are
 one package with two commands rather than two packages).
+
+5. **`faf-client-setup` couldn't find Steam, and manually typing the
+   path also failed with "Invalid game path!".** Two separate bugs:
+
+   - The manual path entry was failing on a path that was actually
+     correct, just wrapped in literal quote marks (`"..."`) — almost
+     certainly carried over from copy-pasting via a file manager's
+     "copy path" feature, which adds quotes for shell-safety that
+     `input()` has no reason to strip on its own. Fixed: all path
+     prompts now go through a `read_path()` helper that strips
+     surrounding whitespace and one layer of matching quotes.
+   - Auto-detection failed because Steam was installed via **nonguix's
+     `steam` package**, which runs Steam inside an isolated FHS
+     container with its own sandboxed `$HOME` — confirmed by the user's
+     own manually-typed path containing `.local/share/guix-sandbox-
+     home/...`. `faf-client-setup`'s own (unsandboxed) view of `$HOME`
+     never had a reason to look there. I couldn't get to nonguix's
+     actual source from here to confirm the exact convention, but the
+     user's own working path was direct enough evidence — Steam
+     detection now also checks inside `~/.local/share/guix-sandbox-
+     home` if it exists, alongside the normal candidate locations.
+     Verified both fixes with a simulated sandboxed-home test tree
+     before redelivering, not just by reading the diff.
+
+6. **Game launch failed: `Cannot run program "steam-run": Exec failed,
+   error: 2 (No such file or directory)`**, even though `steam-run`
+   (from nonguix's Steam package) genuinely exists and works fine from
+   an interactive shell. The bug: `faf-client-setup` was writing the
+   bare command name `"steam-run"` into `client.prefs`, relying on the
+   FAF *client's* own process to find it via its own `PATH` later — but
+   that's a separate process (launched via a desktop entry, a different
+   shell, or a different Guix profile) with no guarantee of sharing this
+   script's environment. Fixed: a `resolve_command()` helper now resolves
+   `steam-run`/`wine` to an absolute path (via `shutil.which`, in the
+   environment `faf-client-setup` itself runs in, which is known to have
+   it on `PATH`) at configuration time, and bakes that absolute path
+   into `client.prefs` instead of the bare name. Falls back to the bare
+   name with a clear warning if it can't find it even there.
+
+7. **`steam-run` genuinely doesn't exist for nonguix's Steam.** You
+   shared the actual `nonguix/multiarch-container.scm` source, which
+   settled this properly instead of more guessing: nonguix's `steam`
+   package is architecturally single-purpose — `fhs-internal` always
+   execs one hardcoded target (Steam itself), with no general "run
+   arbitrary command X inside this FHS sandbox" mechanism the way
+   nixpkgs' `steam-run` provides. My whole reaper/wrapper/runtime/Proton
+   reconstruction approach (ported from nix-gaming, built for NixOS)
+   was fighting nonguix's design rather than working with it.
+
+   Added a new path that works *with* it instead: when `steam-run` isn't
+   found but a plain `steam` is, `faf-client-setup` now offers to set
+   `executableDecorator` to `steam -applaunch 9420 "%s"` — delegating
+   the entire launch to Steam itself (which already knows how to enter
+   its own FHS container correctly, since that's the one thing nonguix
+   built it to do), rather than trying to reconstruct that environment
+   externally. This needs Proton enabled for the game once in Steam's
+   own Properties → Compatibility dialog first. I verified the branch's
+   control flow produces the right command string, but **not** whether
+   `-applaunch`'s trailing-argument forwarding actually reaches the game
+   binary correctly for this specific title/Proton combination — that
+   needs a real test.
+
+8. **You correctly pointed out `-applaunch` doesn't actually work for
+   FAF.** Steam's `-applaunch <appid>` launches *Steam's own configured
+   executable* for that App ID, appending arguments to it — it can't
+   substitute a different, patched executable path. But FAF's
+   `executableDecorator` + `"%s"` mechanism needs full control over
+   exactly what gets executed, since FAF plays from its own patched game
+   files, not simply the vanilla Steam install. So fix #7 was addressing
+   the wrong problem.
+
+   The real fix, once you shared the actual `nongnu/packages/
+   game-client.scm` (not just the generic container framework): nonguix's
+   `steam` package config shows `run` is just a path string combined with
+   `wrap-package` via `file-append` — meaning a general-purpose "run
+   arbitrary command in this FHS sandbox" tool is buildable using
+   nonguix's own machinery, just pointed at `env` instead of Steam's
+   launcher (`env PROGRAM ARGS...` execs whatever it's given). This
+   channel now includes **`fhs-run`** (`faforever/fhs-run.scm`) — reusing
+   nonguix's own `steam-container-libs` list directly via `(@@ ...)`
+   (an unexported binding, accessed the same way nonguix's own code
+   reaches into `(gnu packages base)` for `glibc-for-fhs`) rather than
+   retyping ~40 package references by hand. `faf-client-setup` now tries
+   `fhs-run` first, falls back to a literal `steam-run` if that happens
+   to exist, and only offers the known-broken `-applaunch` command as an
+   explicit, strongly-discouraged last resort (default answer: no).
+
+   This is new infrastructure I can't build or run myself, transcribed
+   directly from real source rather than guessed at, but genuinely
+   untested. Build it with `guix build -L /path/to/this/directory
+   fhs-run`, install it, then re-run `faf-client-setup`.
 
 ## How `faf-client-src` came to exist
 
