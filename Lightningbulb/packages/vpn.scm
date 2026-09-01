@@ -22,7 +22,7 @@
 ;;; file's last-evaluated expression.
 ;;; ---------------------------------------------------------------------
 
-(define-module (radmin-vpn packages vpn)
+(define-module (Lightningbulb packages radmin-vpn-linux)
   #:use-module (guix packages)
   #:use-module (guix git-download)
   #:use-module (guix gexp)

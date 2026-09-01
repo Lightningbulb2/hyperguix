@@ -1,3 +1,22 @@
+;; This is an EXAMPLE. Copy this to ~/local-channel/.guix-channel
+;; (note the leading dot -- it's a hidden file, at the ROOT of the
+;; local-channel git repository, not inside config.scm or local-packages/).
+;;
+;; It tells Guix that `local-channel` depends on `nonguix`, so when Guix
+;; compiles local-channel's own modules, nonguix's modules (including
+;; (nonguix multiarch-container)) are already on the load path.
+;;
+;; The introduction below is copied from the nonguix entry already in
+;; your %my-channels, so it's the exact same commit/signer you already
+;; trust -- nothing new to authenticate.
 (channel
   (version 0)
-  (news-file "news.txt"))
+  (dependencies
+    (channel
+      (name nonguix)
+      (url "https://gitlab.com/nonguix/nonguix")
+      (introduction
+        (channel-introduction
+          (version 0)
+          (commit "897c1a470da759236cc11798f4e0a5f7d4d59fbc")
+          (signer "2A39 3FFF 68F4 EF7A 3D29 12AF 6F51 20A0 22FB B2D5"))))))
