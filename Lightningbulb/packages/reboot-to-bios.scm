@@ -7,7 +7,7 @@
 ;; imported via `use-modules` is compiled through the normal module
 ;; system, where (guix gexp) is loaded before this file's body is read.
 
-(define-module (local-packages reboot-to-bios)
+(define-module (Lightningbulb packages reboot-to-bios)
   #:use-module (guix packages)
   #:use-module (guix gexp)
   #:use-module (guix build-system trivial)
