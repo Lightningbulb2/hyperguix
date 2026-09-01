@@ -50,6 +50,7 @@
   #:use-module (gnu packages)              ; for `specification->package'
   #:use-module (gnu packages bash)         ; bash-minimal
   #:use-module (gnu packages base)         ; coreutils, for fhs-run
+  #:use-module (nonguix multiarch-container)
 )
 
 ;; Packages are looked up by name via `specification->package' rather
