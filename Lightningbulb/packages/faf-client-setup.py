@@ -334,22 +334,52 @@ if runtime_path is None:
     proton_path = None
 
 
+def to_sandbox_path(path):
+    """Paths that will be used as arguments to programs running INSIDE
+    the fhs-run/nonguix Steam sandbox need rewriting: nonguix's
+    container bind-mounts $HOME/.local/share/guix-sandbox-home AT $HOME
+    itself, inside the container -- so a path that's
+    "$HOME/.local/share/guix-sandbox-home/foo" from outside the sandbox
+    is just "$HOME/foo" from inside it. Passing the outside-form path to
+    something that runs inside the sandbox resolves to a nonexistent,
+    doubly-nested location. Confirmed in practice:
+    `env: '.../guix-sandbox-home/.local/share/Steam/ubuntu12_32/reaper':
+    No such file or directory`, even though that exact path is real and
+    correct from outside the sandbox -- the reaper/wrapper/runtime/
+    Proton chain, and the game's own install path, all run *inside* the
+    sandbox and need the short form. Only apply this to those; NOT to
+    paths the FAF client itself (a normal, unsandboxed process) reads
+    directly, like preferencesFile or the vault/mods/maps directories,
+    which should keep their real, full paths. Idempotent -- safe to
+    call more than once on the same value."""
+    if not path:
+        return path
+    real_home = expanduser("~")
+    sandbox_home = expanduser("~/.local/share/guix-sandbox-home")
+    if path.startswith(sandbox_home + "/"):
+        return real_home + path[len(sandbox_home):]
+    return path
+
+
 def command(proton, runtime, wrapper, reaper, launcher, prepend):
     if launcher:
+        # launcher is fhs-run's own store path, not something living
+        # inside the sandbox -- deliberately not passed through
+        # to_sandbox_path.
         return command(proton, runtime, wrapper, reaper, None,
                         prepend + shlex.quote(launcher) + " ")
     if reaper is not None:
         return command(proton, runtime, wrapper, None, None,
-                        prepend + f"{shlex.quote(reaper)} SteamLaunch AppId=9420 -- ")
+                        prepend + f"{shlex.quote(to_sandbox_path(reaper))} SteamLaunch AppId=9420 -- ")
     if wrapper is not None:
         return command(proton, runtime, None, None, None,
-                        prepend + f"{shlex.quote(wrapper)} -- ")
+                        prepend + f"{shlex.quote(to_sandbox_path(wrapper))} -- ")
     if runtime is not None:
         return command(proton, None, None, None, None,
-                        prepend + f"{shlex.quote(join(runtime, '_v2-entry-point'))} --verb=waitforexitandrun -- ")
+                        prepend + f"{shlex.quote(to_sandbox_path(join(runtime, '_v2-entry-point')))} --verb=waitforexitandrun -- ")
     if proton is not None:
         return command(None, None, None, None, None,
-                        prepend + f"{shlex.quote(proton)} waitforexitandrun ")
+                        prepend + f"{shlex.quote(to_sandbox_path(proton))} waitforexitandrun ")
     return prepend + '"%s"'
 
 
@@ -594,7 +624,7 @@ if not save_path or not ask_yn("\nCorrect?", True):
     save_path = expanduser(read_path("Enter Game.prefs save path (inside the Wine prefix): "))
     save_base = os.path.split(save_path)[0]
 
-config = {"forgedAlliance": {"installationPath": game_path,
+config = {"forgedAlliance": {"installationPath": to_sandbox_path(game_path),
                               "preferencesFile": save_path,
                               "executableDecorator": cmd}}
 

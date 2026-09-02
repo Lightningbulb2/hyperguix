@@ -93,6 +93,24 @@ guix build -L /path/to/this/directory fhs-run
   `/usr/share/...` directory, say), that's the place to look first —
   it reuses nonguix's own library list, but the `env`-based invocation
   itself is new.
+- **Sandboxed-home path rewriting.** nonguix's Steam sandbox
+  bind-mounts `$HOME/.local/share/guix-sandbox-home` *at* `$HOME`
+  itself, inside the container — so a path that's
+  `$HOME/.local/share/guix-sandbox-home/foo` from outside the sandbox
+  is just `$HOME/foo` from inside it. `faf-client-setup` correctly
+  detects Steam using the *outside* (full) form, but the actual game
+  launch command — reaper, steam-launch-wrapper, the Steam Linux
+  Runtime entry point, Proton, and the game's own install path — all
+  run *inside* the sandbox, and need the *short* form instead. Passing
+  the outside form to something running inside it resolves to a
+  nonexistent, doubly-nested path (confirmed in practice:
+  `env: '.../guix-sandbox-home/.local/share/Steam/ubuntu12_32/reaper':
+  No such file or directory`, even though that exact path is completely
+  real from outside the sandbox). Fixed with a `to_sandbox_path()`
+  rewrite applied specifically to those paths — not to
+  `preferencesFile` or the vault/mods/maps directories, which the FAF
+  *client* itself reads directly as a normal, unsandboxed process, and
+  which correctly keep their real, full paths.
 - **32-bit Vulkan**, only relevant if you go the plain-Wine (not
   Steam/Proton) route — Steam/Proton already handles this if you're
   using that path instead.
