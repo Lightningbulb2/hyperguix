@@ -1,0 +1,8 @@
+(define-module (Lightningbulb packages scrcpy)
+    #:use-module (gnu packages)
+    #:use-module (gnu packages video)
+    #:use-module (guix packages)
+    #:use-module (guix git-download)
+    #:use-module (guix build-system cmake)
+    #:use-module (guix gexp)
+    #:use-module ((guix licenses) #:prefix license:))

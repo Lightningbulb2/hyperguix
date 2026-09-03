@@ -8,8 +8,8 @@ Four files total:
 
 - **`.guix-channel`** — channel declaration.
 - **`faforever.scm`** — both packages, `faf-client` and `fhs-run`.
-- **`faf-client-setup.py`** — the interactive setup script `faf-client`
-  installs as `faf-client-setup`.
+- **`faf-client-setup.py`** — the fully automatic (no prompts) setup
+  script `faf-client` installs as `faf-client-setup`.
 - **`README.md`** — this file.
 
 (An earlier revision had 8 files across 3 extra packages — an
@@ -25,9 +25,27 @@ detours, dropped" at the bottom if you want the history.)
   MIT), packaged by repackaging FAForever's own official prebuilt Linux
   release tarball. Installs two commands:
   - `faf-client` itself.
-  - `faf-client-setup` — detects your existing Steam+Proton (or asks
-    about plain Wine) setup for Supreme Commander: Forged Alliance,
-    which you must already own, and writes `~/.faforever/client.prefs`.
+  - `faf-client-setup` — detects your existing Steam+Proton setup for
+    Supreme Commander: Forged Alliance (which you must already own and
+    have run at least once via Steam), and writes
+    `~/.faforever/client.prefs`. Steam+Proton only — no standalone Wine
+    option; relies entirely on Guix's native Steam. Runs once with no
+    prompts: it either auto-detects everything and writes the config,
+    or fails with a clear message saying what to check. Sets up this
+    layout:
+    - `~/.config/faforever` — `client.prefs` itself (`~/.faforever` is
+      symlinked here, since the client hardcodes that path).
+    - `~/.local/share/faforever` — FAF's own managed copy of the game
+      (unchanged from before).
+    - `~/.config/Gas-Powered-Games/Supreme-Commander-Forged-Alliance` —
+      `Game.prefs`, symlinked in from the Proton prefix's
+      `AppData/Local/Gas Powered Games/Supreme Commander Forged
+      Alliance`.
+    - `~/.local/share/Gas-Powered-Games/Supreme-Commander-Forged-Alliance`
+      — mods/maps, symlinked in from the Proton prefix's `My
+      Documents/My Games/Gas Powered Games/Supreme Commander Forged
+      Alliance` (a *different* in-prefix location than Game.prefs —
+      see the script's own docstring for why both are needed).
 - **`fhs-run`** — a general-purpose "run an arbitrary command inside
   Steam's FHS sandbox" tool, built from nonguix's own `nonguix-container`
   machinery (same library set nonguix's `steam` package uses). Needed
@@ -64,9 +82,13 @@ guix build -L /path/to/this/directory fhs-run
 2. Own Supreme Commander: Forged Alliance on Steam. In Steam, right-click
    it → Properties → Compatibility → force a specific Proton version,
    and run it once through Steam normally.
-3. Run `faf-client-setup` (interactive, from a terminal) and follow the
-   prompts. It should auto-detect Steam and the game; if not, it'll ask
-   for the path manually.
+3. Run `faf-client-setup`. No prompts — it auto-detects Steam, the
+   game, Proton, and the Steam Linux Runtime, and writes
+   `client.prefs`. If any of those can't be found, it exits with a
+   message explaining what's missing rather than asking you to type a
+   path; `FAF_GAME_PATH`, `FAF_PROTON_PATH`, and `FAF_RUNTIME_PATH`
+   environment variables are available to override detection for a
+   specific piece if you need to.
 4. Run `faf-client` to log in and play.
 
 ## Known risk areas
@@ -100,20 +122,91 @@ guix build -L /path/to/this/directory fhs-run
   is just `$HOME/foo` from inside it. `faf-client-setup` correctly
   detects Steam using the *outside* (full) form, but the actual game
   launch command — reaper, steam-launch-wrapper, the Steam Linux
-  Runtime entry point, Proton, and the game's own install path — all
-  run *inside* the sandbox, and need the *short* form instead. Passing
-  the outside form to something running inside it resolves to a
-  nonexistent, doubly-nested path (confirmed in practice:
+  Runtime entry point, and Proton — all run *inside* the sandbox, and
+  need the *short* form instead. Passing the outside form to something
+  running inside it resolves to a nonexistent, doubly-nested path
+  (confirmed in practice:
   `env: '.../guix-sandbox-home/.local/share/Steam/ubuntu12_32/reaper':
   No such file or directory`, even though that exact path is completely
   real from outside the sandbox). Fixed with a `to_sandbox_path()`
   rewrite applied specifically to those paths — not to
-  `preferencesFile` or the vault/mods/maps directories, which the FAF
-  *client* itself reads directly as a normal, unsandboxed process, and
-  which correctly keep their real, full paths.
-- **32-bit Vulkan**, only relevant if you go the plain-Wine (not
-  Steam/Proton) route — Steam/Proton already handles this if you're
-  using that path instead.
+  `preferencesFile`, `installationPath`, or the vault/mods/maps
+  directories, which the FAF *client* itself reads directly as a
+  normal, unsandboxed process (never passed into the launch command at
+  all), and which correctly keep their real, full paths. An earlier
+  revision of this script *did* wrongly wrap `installationPath` in
+  `to_sandbox_path()` — fixed now, but if you're on an old copy of the
+  channel, regenerate `client.prefs` after updating.
+- **No Wine support.** `faf-client-setup` only knows how to detect a
+  Steam+Proton install. If you'd rather use a standalone Wine prefix,
+  you'll need to write `client.prefs` by hand (see downlords-faf-client's
+  own docs) — this channel doesn't help with that path.
+- **Two different in-prefix directories, easy to conflate.** Proton
+  prefixes have both an `AppData/Local/Gas Powered Games/...` (where
+  Game.prefs lives) and a separate `My Documents/My Games/Gas Powered
+  Games/...` (where mods/maps live) — `faf-client-setup` redirects both,
+  to `~/.config/...` and `~/.local/share/...` respectively. Redirecting
+  only one of the two is a real, previously-reported failure mode
+  (mods/maps silently not showing up in-game) if you're hand-editing
+  this later.
+- **Steam's own config files also need un-sandboxing.** It's not just
+  the launch command that needs `to_sandbox_path()` — Steam itself
+  writes `libraryfolders.vdf` from *inside* its own sandbox, so the
+  `"path"` field it records for each library is in the short,
+  in-sandbox form too. Read literally by this (unsandboxed) script,
+  that path doesn't exist on disk, so an app can be correctly listed
+  under a library's `"apps"` map and still get reported as "not
+  found" — this silently broke game, Proton, *and* Steam Linux Runtime
+  detection all at once, since they all resolve library paths through
+  the same code path. Fixed with `from_sandbox_path()`, the inverse of
+  `to_sandbox_path()`, applied where library paths are read out of the
+  vdf.
+- **Quoting in `executableDecorator` must use double quotes, not
+  single.** There's no real shell involved in launching the game — the
+  FAF client tokenizes this string itself and execs the result
+  directly (its own logs show a literal `["env",
+  "PROTON_NO_ESYNC=1", ...]` array). Its parser doesn't treat single
+  quotes as grouping, only double quotes (matching its own convention
+  of always writing the substitution placeholder as `"%s"`). Any path
+  in the chain with a space in it — a Proton build like `Proton -
+  Experimental` is the common case — needs `"..."`, not POSIX
+  `'...'`-style quoting, or it gets silently torn into multiple broken
+  arguments and the game exits immediately without actually launching.
+  Fixed with a small `faf_quote()` helper used throughout `command()`
+  in place of `shlex.quote()`.
+- **`fhs-internal` (nonguix's own, not this channel's) silently drops
+  everything after the LAST `--` in its own argv.** Shared by every
+  `nonguix-container`, not specific to `fhs-run` — see nonguix's
+  `nonguix/multiarch-container.scm`, `make-internal-script`:
+  `(package-args (if fhs-args (reverse (cdr (member "--" (reverse
+  all-args)))) all-args))`. It's designed to let you pass FHS-specific
+  options (like `--asound32`) after a trailing `--`, on the assumption
+  that the wrapped command's own argv has at most one meaningful `--`.
+  The Steam Linux Runtime launch chain needs three of its own (reaper's,
+  steam-launch-wrapper's, and `_v2-entry-point`'s — the last one right
+  before `proton ... game.exe` itself), so fhs-internal's "last `--`"
+  is always one of *ours*, and it was unconditionally truncating the
+  command right there — silently discarding `proton waitforexitandrun
+  ForgedAlliance.exe` and every game argument after it (`/init`,
+  `/gpgnet`, `/savereplay`, ...), leaving `_v2-entry-point` with
+  nothing to run at all. Confirmed in practice: the client's own log
+  shows "Launching coreutils in sandbox" (fhs-run starting up fine)
+  immediately followed by `_v2-entry-point[N]: Error: A command to run
+  is required`. Not fixable by reshuffling `--`s — fhs-internal drops
+  whatever's after the *last* one no matter where it falls. Fixed by
+  having `command()` write the whole reaper/wrapper/runtime/proton
+  chain out as a real, on-disk shell script (`faf-launch.sh`, quoted
+  with plain `shlex.quote()`) and invoking that (via an explicit
+  `/bin/sh`) with a single substituted argument, instead of building
+  one long string with embedded `--`s — so fhs-run's own argv never
+  contains a bare `--` for fhs-internal to trip over in the first
+  place. The script has to live *inside*
+  `~/.local/share/guix-sandbox-home` (the same directory nonguix
+  bind-mounts *at* `$HOME` inside the sandbox), not the real `$HOME` —
+  anything written under the real, unsandboxed home isn't visible to
+  the sandboxed process at all. If you're on an old copy of the
+  channel, regenerate `client.prefs` (re-run `faf-client-setup`) after
+  updating.
 
 ## Why this isn't upstream Guix material
 
