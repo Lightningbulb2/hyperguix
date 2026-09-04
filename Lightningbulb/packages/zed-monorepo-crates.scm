@@ -4,18 +4,23 @@
 ;;; Generated against zed-industries/zed @ 184e124bba43220e1e39f73ff63f563fc8f27c76.
 ;;; External (crates.io) dep versions match Pandora's own Cargo.lock exactly.
 ;;;
+;;; REVISION 3: cargo regenerates Cargo.lock per-WORKSPACE, not per-crate,
+;;; so building any one of these with all 18 still listed as `members`
+;;; drags in whatever optional/test-only deps any *sibling* declares (this
+;;; is how `async-process`, never in Pandora's real Cargo.lock, showed up
+;;; on a `rust-gpui-util` build that has nothing to do with it). Fix: each
+;;; package now re-prunes `members` a second time, at build time, down to
+;;; just its own transitive closure within our 18 -- computed for real via
+;;; a dependency-graph walk, not guessed.
+;;;
 ;;; REVISION 2: #:cargo-inputs / #:cargo-development-inputs are deprecated
-;;; in this Guix version (confirmed by a real `guix build` attempt) -- the
-;;; current model wants crate-source origins supplied as plain (inputs
-;;; (list ...)) instead, which is what this version does.
+;;; -- crate-source origins go in plain (inputs (list ...)) instead.
 ;;;
 ;;; NOTE on external references: individual rust-<name>-<version> bindings
 ;;; in (gnu packages rust-crates) are NOT exported (only lookup-cargo-inputs
-;;; is, and it returns an unfiltered, unscoped list keyed by top-level
-;;; import name -- not useful here). We reach the private bindings directly
-;;; via Guile's (@@ module binding) syntax. This works but steps around
-;;; that module's declared public interface -- a future reorg of
-;;; rust-crates.scm owes this file no compatibility.
+;;; is, and it returns an unfiltered, unscoped list -- not useful here). We
+;;; reach the private bindings via Guile's (@@ module binding) syntax,
+;;; which steps around that module's declared public interface.
 ;;;
 ;;; TODO before this builds:
 ;;;   1. Replace the placeholder sha256 -- run `guix build`, paste in the
@@ -32,26 +37,6 @@
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (gnu packages rust-crates))
 
-(define %zed-workspace-members
-  '("crates/gpui_util"
-    "crates/collections"
-    "crates/refineable/derive_refineable"
-    "crates/gpui_macros"
-    "crates/gpui_shared_string"
-    "crates/http_client"
-    "crates/refineable"
-    "crates/scheduler"
-    "crates/zlog"
-    "crates/ztracing_macro"
-    "crates/ztracing"
-    "crates/sum_tree"
-    "tooling/perf"
-    "crates/util_macros"
-    "crates/gpui"
-    "crates/gpui_wgpu"
-    "crates/gpui_linux"
-    "crates/gpui_platform"))
-
 (define zed-checkout
   (origin
     (method git-fetch)
@@ -62,37 +47,40 @@
     ;; Placeholder -- see TODO #1 above.
     (sha256 (base32 "1bhxwmlw3k50nvym5yf7ri2fnv5a55q63gjbnf8ak57wjbaa2wx0"))
     (modules '((ice-9 rdelim) (srfi srfi-13)))
+    ;; Outer bound: prune from the full ~500-crate editor down to our 18.
+    ;; Each package prunes further, to just its own closure, at build time.
     (snippet
-     '(let ((keep '("crates/gpui_util" "crates/collections" "crates/refineable/derive_refineable" "crates/gpui_macros" "crates/gpui_shared_string" "crates/http_client" "crates/refineable" "crates/scheduler" "crates/zlog" "crates/ztracing_macro" "crates/ztracing" "crates/sum_tree" "tooling/perf" "crates/util_macros" "crates/gpui" "crates/gpui_wgpu" "crates/gpui_linux" "crates/gpui_platform")))
-        (call-with-output-file "Cargo.toml.pruned"
-          (lambda (out)
-            (call-with-input-file "Cargo.toml"
-              (lambda (in)
-                (let loop ((in-members? #f))
-                  (let ((line (read-line in)))
-                    (cond
-                     ((eof-object? line) #t)
-                     ((and (not in-members?)
-                           (string-prefix? "members = [" line))
-                      (display "members = [\n" out)
-                      (for-each (lambda (p)
-                                  (display "    \"" out)
-                                  (display p out)
-                                  (display "\",\n" out))
-                                keep)
-                      (loop #t))
-                     ((and in-members? (string=? line "]"))
-                      (display "]\n" out)
-                      (loop #f))
-                     (in-members?
-                      (loop #t))
-                     (else
-                      (display line out)
-                      (newline out)
-                      (loop #f)))))))))
-        (rename-file "Cargo.toml.pruned" "Cargo.toml")))))
+     '(let ((keep (list "crates/gpui_util" "crates/collections" "crates/refineable/derive_refineable" "crates/gpui_macros" "crates/gpui_shared_string" "crates/http_client" "crates/refineable" "crates/scheduler" "crates/zlog" "crates/ztracing_macro" "crates/ztracing" "crates/sum_tree" "tooling/perf" "crates/util_macros" "crates/gpui" "crates/gpui_wgpu" "crates/gpui_linux" "crates/gpui_platform")))
+             (use-modules (ice-9 rdelim) (srfi srfi-13))
+             (call-with-output-file "Cargo.toml.pruned"
+               (lambda (out)
+                 (call-with-input-file "Cargo.toml"
+                   (lambda (in)
+                     (let loop ((in-members? #f))
+                       (let ((line (read-line in)))
+                         (cond
+                          ((eof-object? line) #t)
+                          ((and (not in-members?)
+                                (string-prefix? "members = [" line))
+                           (display "members = [\n" out)
+                           (for-each (lambda (p)
+                                       (display "    \"" out)
+                                       (display p out)
+                                       (display "\",\n" out))
+                                     keep)
+                           (loop #t))
+                          ((and in-members? (string=? line "]"))
+                           (display "]\n" out)
+                           (loop #f))
+                          (in-members?
+                           (loop #t))
+                          (else
+                           (display line out)
+                           (newline out)
+                           (loop #f)))))))))
+             (rename-file "Cargo.toml.pruned" "Cargo.toml")))))
 
-;;; --- gpui_util 0.1.0  (crates/gpui_util) ---
+;;; --- gpui_util 0.1.0  (crates/gpui_util)  closure: ['gpui_util'] ---
 (define-public rust-gpui-util
   (package
     (name "rust-gpui-util")
@@ -103,7 +91,37 @@
      (list
       #:phases
       #~(modify-phases %standard-phases
-          (add-after 'unpack 'chdir
+          (add-after 'unpack 'prune-workspace-members
+            (lambda _ (let ((keep (list "crates/gpui_util")))
+             (use-modules (ice-9 rdelim) (srfi srfi-13))
+             (call-with-output-file "Cargo.toml.pruned"
+               (lambda (out)
+                 (call-with-input-file "Cargo.toml"
+                   (lambda (in)
+                     (let loop ((in-members? #f))
+                       (let ((line (read-line in)))
+                         (cond
+                          ((eof-object? line) #t)
+                          ((and (not in-members?)
+                                (string-prefix? "members = [" line))
+                           (display "members = [\n" out)
+                           (for-each (lambda (p)
+                                       (display "    \"" out)
+                                       (display p out)
+                                       (display "\",\n" out))
+                                     keep)
+                           (loop #t))
+                          ((and in-members? (string=? line "]"))
+                           (display "]\n" out)
+                           (loop #f))
+                          (in-members?
+                           (loop #t))
+                          (else
+                           (display line out)
+                           (newline out)
+                           (loop #f)))))))))
+             (rename-file "Cargo.toml.pruned" "Cargo.toml"))))
+          (add-after 'prune-workspace-members 'chdir
             (lambda _ (chdir "crates/gpui_util"))))))
     (inputs
      (list (@@ (gnu packages rust-crates) rust-anyhow-1.0.102)
@@ -113,7 +131,7 @@
     (description "Internal gpui_util crate from the zed-industries/zed monorepo, used by gpui.")
     (license license:asl2.0)))
 
-;;; --- collections 0.1.0  (crates/collections) ---
+;;; --- collections 0.1.0  (crates/collections)  closure: ['collections', 'gpui_util'] ---
 (define-public rust-collections
   (package
     (name "rust-collections")
@@ -124,7 +142,37 @@
      (list
       #:phases
       #~(modify-phases %standard-phases
-          (add-after 'unpack 'chdir
+          (add-after 'unpack 'prune-workspace-members
+            (lambda _ (let ((keep (list "crates/collections" "crates/gpui_util")))
+             (use-modules (ice-9 rdelim) (srfi srfi-13))
+             (call-with-output-file "Cargo.toml.pruned"
+               (lambda (out)
+                 (call-with-input-file "Cargo.toml"
+                   (lambda (in)
+                     (let loop ((in-members? #f))
+                       (let ((line (read-line in)))
+                         (cond
+                          ((eof-object? line) #t)
+                          ((and (not in-members?)
+                                (string-prefix? "members = [" line))
+                           (display "members = [\n" out)
+                           (for-each (lambda (p)
+                                       (display "    \"" out)
+                                       (display p out)
+                                       (display "\",\n" out))
+                                     keep)
+                           (loop #t))
+                          ((and in-members? (string=? line "]"))
+                           (display "]\n" out)
+                           (loop #f))
+                          (in-members?
+                           (loop #t))
+                          (else
+                           (display line out)
+                           (newline out)
+                           (loop #f)))))))))
+             (rename-file "Cargo.toml.pruned" "Cargo.toml"))))
+          (add-after 'prune-workspace-members 'chdir
             (lambda _ (chdir "crates/collections"))))))
     (inputs
      (list rust-gpui-util
@@ -135,7 +183,7 @@
     (description "Standard collection types used by Zed and GPUI")
     (license license:asl2.0)))
 
-;;; --- derive_refineable 0.1.0  (crates/refineable/derive_refineable) ---
+;;; --- derive_refineable 0.1.0  (crates/refineable/derive_refineable)  closure: ['derive_refineable'] ---
 (define-public rust-derive-refineable
   (package
     (name "rust-derive-refineable")
@@ -146,7 +194,37 @@
      (list
       #:phases
       #~(modify-phases %standard-phases
-          (add-after 'unpack 'chdir
+          (add-after 'unpack 'prune-workspace-members
+            (lambda _ (let ((keep (list "crates/refineable/derive_refineable")))
+             (use-modules (ice-9 rdelim) (srfi srfi-13))
+             (call-with-output-file "Cargo.toml.pruned"
+               (lambda (out)
+                 (call-with-input-file "Cargo.toml"
+                   (lambda (in)
+                     (let loop ((in-members? #f))
+                       (let ((line (read-line in)))
+                         (cond
+                          ((eof-object? line) #t)
+                          ((and (not in-members?)
+                                (string-prefix? "members = [" line))
+                           (display "members = [\n" out)
+                           (for-each (lambda (p)
+                                       (display "    \"" out)
+                                       (display p out)
+                                       (display "\",\n" out))
+                                     keep)
+                           (loop #t))
+                          ((and in-members? (string=? line "]"))
+                           (display "]\n" out)
+                           (loop #f))
+                          (in-members?
+                           (loop #t))
+                          (else
+                           (display line out)
+                           (newline out)
+                           (loop #f)))))))))
+             (rename-file "Cargo.toml.pruned" "Cargo.toml"))))
+          (add-after 'prune-workspace-members 'chdir
             (lambda _ (chdir "crates/refineable/derive_refineable"))))))
     (inputs
      (list (@@ (gnu packages rust-crates) rust-proc-macro2-1.0.101)
@@ -157,7 +235,7 @@
     (description "A derive macro for creating refinement types in Rust")
     (license license:asl2.0)))
 
-;;; --- gpui_macros 0.1.0  (crates/gpui_macros) ---
+;;; --- gpui_macros 0.1.0  (crates/gpui_macros)  closure: ['gpui_macros'] ---
 (define-public rust-gpui-macros
   (package
     (name "rust-gpui-macros")
@@ -168,7 +246,37 @@
      (list
       #:phases
       #~(modify-phases %standard-phases
-          (add-after 'unpack 'chdir
+          (add-after 'unpack 'prune-workspace-members
+            (lambda _ (let ((keep (list "crates/gpui_macros")))
+             (use-modules (ice-9 rdelim) (srfi srfi-13))
+             (call-with-output-file "Cargo.toml.pruned"
+               (lambda (out)
+                 (call-with-input-file "Cargo.toml"
+                   (lambda (in)
+                     (let loop ((in-members? #f))
+                       (let ((line (read-line in)))
+                         (cond
+                          ((eof-object? line) #t)
+                          ((and (not in-members?)
+                                (string-prefix? "members = [" line))
+                           (display "members = [\n" out)
+                           (for-each (lambda (p)
+                                       (display "    \"" out)
+                                       (display p out)
+                                       (display "\",\n" out))
+                                     keep)
+                           (loop #t))
+                          ((and in-members? (string=? line "]"))
+                           (display "]\n" out)
+                           (loop #f))
+                          (in-members?
+                           (loop #t))
+                          (else
+                           (display line out)
+                           (newline out)
+                           (loop #f)))))))))
+             (rename-file "Cargo.toml.pruned" "Cargo.toml"))))
+          (add-after 'prune-workspace-members 'chdir
             (lambda _ (chdir "crates/gpui_macros"))))))
     (inputs
      (list (@@ (gnu packages rust-crates) rust-heck-0.5.0)
@@ -180,7 +288,7 @@
     (description "Macros used by gpui")
     (license license:asl2.0)))
 
-;;; --- gpui_shared_string 0.1.0  (crates/gpui_shared_string) ---
+;;; --- gpui_shared_string 0.1.0  (crates/gpui_shared_string)  closure: ['gpui_shared_string'] ---
 (define-public rust-gpui-shared-string
   (package
     (name "rust-gpui-shared-string")
@@ -191,7 +299,37 @@
      (list
       #:phases
       #~(modify-phases %standard-phases
-          (add-after 'unpack 'chdir
+          (add-after 'unpack 'prune-workspace-members
+            (lambda _ (let ((keep (list "crates/gpui_shared_string")))
+             (use-modules (ice-9 rdelim) (srfi srfi-13))
+             (call-with-output-file "Cargo.toml.pruned"
+               (lambda (out)
+                 (call-with-input-file "Cargo.toml"
+                   (lambda (in)
+                     (let loop ((in-members? #f))
+                       (let ((line (read-line in)))
+                         (cond
+                          ((eof-object? line) #t)
+                          ((and (not in-members?)
+                                (string-prefix? "members = [" line))
+                           (display "members = [\n" out)
+                           (for-each (lambda (p)
+                                       (display "    \"" out)
+                                       (display p out)
+                                       (display "\",\n" out))
+                                     keep)
+                           (loop #t))
+                          ((and in-members? (string=? line "]"))
+                           (display "]\n" out)
+                           (loop #f))
+                          (in-members?
+                           (loop #t))
+                          (else
+                           (display line out)
+                           (newline out)
+                           (loop #f)))))))))
+             (rename-file "Cargo.toml.pruned" "Cargo.toml"))))
+          (add-after 'prune-workspace-members 'chdir
             (lambda _ (chdir "crates/gpui_shared_string"))))))
     (inputs
      (list (@@ (gnu packages rust-crates) rust-schemars-1.0.4)
@@ -202,7 +340,7 @@
     (description "Internal gpui_shared_string crate from the zed-industries/zed monorepo, used by gpui.")
     (license license:asl2.0)))
 
-;;; --- http_client 0.1.0  (crates/http_client) ---
+;;; --- http_client 0.1.0  (crates/http_client)  closure: ['http_client'] ---
 (define-public rust-http-client
   (package
     (name "rust-http-client")
@@ -213,7 +351,37 @@
      (list
       #:phases
       #~(modify-phases %standard-phases
-          (add-after 'unpack 'chdir
+          (add-after 'unpack 'prune-workspace-members
+            (lambda _ (let ((keep (list "crates/http_client")))
+             (use-modules (ice-9 rdelim) (srfi srfi-13))
+             (call-with-output-file "Cargo.toml.pruned"
+               (lambda (out)
+                 (call-with-input-file "Cargo.toml"
+                   (lambda (in)
+                     (let loop ((in-members? #f))
+                       (let ((line (read-line in)))
+                         (cond
+                          ((eof-object? line) #t)
+                          ((and (not in-members?)
+                                (string-prefix? "members = [" line))
+                           (display "members = [\n" out)
+                           (for-each (lambda (p)
+                                       (display "    \"" out)
+                                       (display p out)
+                                       (display "\",\n" out))
+                                     keep)
+                           (loop #t))
+                          ((and in-members? (string=? line "]"))
+                           (display "]\n" out)
+                           (loop #f))
+                          (in-members?
+                           (loop #t))
+                          (else
+                           (display line out)
+                           (newline out)
+                           (loop #f)))))))))
+             (rename-file "Cargo.toml.pruned" "Cargo.toml"))))
+          (add-after 'prune-workspace-members 'chdir
             (lambda _ (chdir "crates/http_client"))))))
     (inputs
      (list (@@ (gnu packages rust-crates) rust-anyhow-1.0.102)
@@ -234,7 +402,7 @@
     (description "A HTTP client library for Zed and GPUI")
     (license license:asl2.0)))
 
-;;; --- refineable 0.1.0  (crates/refineable) ---
+;;; --- refineable 0.1.0  (crates/refineable)  closure: ['derive_refineable', 'refineable'] ---
 (define-public rust-refineable
   (package
     (name "rust-refineable")
@@ -245,7 +413,37 @@
      (list
       #:phases
       #~(modify-phases %standard-phases
-          (add-after 'unpack 'chdir
+          (add-after 'unpack 'prune-workspace-members
+            (lambda _ (let ((keep (list "crates/refineable/derive_refineable" "crates/refineable")))
+             (use-modules (ice-9 rdelim) (srfi srfi-13))
+             (call-with-output-file "Cargo.toml.pruned"
+               (lambda (out)
+                 (call-with-input-file "Cargo.toml"
+                   (lambda (in)
+                     (let loop ((in-members? #f))
+                       (let ((line (read-line in)))
+                         (cond
+                          ((eof-object? line) #t)
+                          ((and (not in-members?)
+                                (string-prefix? "members = [" line))
+                           (display "members = [\n" out)
+                           (for-each (lambda (p)
+                                       (display "    \"" out)
+                                       (display p out)
+                                       (display "\",\n" out))
+                                     keep)
+                           (loop #t))
+                          ((and in-members? (string=? line "]"))
+                           (display "]\n" out)
+                           (loop #f))
+                          (in-members?
+                           (loop #t))
+                          (else
+                           (display line out)
+                           (newline out)
+                           (loop #f)))))))))
+             (rename-file "Cargo.toml.pruned" "Cargo.toml"))))
+          (add-after 'prune-workspace-members 'chdir
             (lambda _ (chdir "crates/refineable"))))))
     (inputs
      (list rust-derive-refineable))
@@ -254,7 +452,7 @@
     (description "A macro for creating 'refinement' types that can be used to partially initialize or mutate a complex struct")
     (license license:asl2.0)))
 
-;;; --- scheduler 0.1.0  (crates/scheduler) ---
+;;; --- scheduler 0.1.0  (crates/scheduler)  closure: ['scheduler'] ---
 (define-public rust-scheduler
   (package
     (name "rust-scheduler")
@@ -265,7 +463,37 @@
      (list
       #:phases
       #~(modify-phases %standard-phases
-          (add-after 'unpack 'chdir
+          (add-after 'unpack 'prune-workspace-members
+            (lambda _ (let ((keep (list "crates/scheduler")))
+             (use-modules (ice-9 rdelim) (srfi srfi-13))
+             (call-with-output-file "Cargo.toml.pruned"
+               (lambda (out)
+                 (call-with-input-file "Cargo.toml"
+                   (lambda (in)
+                     (let loop ((in-members? #f))
+                       (let ((line (read-line in)))
+                         (cond
+                          ((eof-object? line) #t)
+                          ((and (not in-members?)
+                                (string-prefix? "members = [" line))
+                           (display "members = [\n" out)
+                           (for-each (lambda (p)
+                                       (display "    \"" out)
+                                       (display p out)
+                                       (display "\",\n" out))
+                                     keep)
+                           (loop #t))
+                          ((and in-members? (string=? line "]"))
+                           (display "]\n" out)
+                           (loop #f))
+                          (in-members?
+                           (loop #t))
+                          (else
+                           (display line out)
+                           (newline out)
+                           (loop #f)))))))))
+             (rename-file "Cargo.toml.pruned" "Cargo.toml"))))
+          (add-after 'prune-workspace-members 'chdir
             (lambda _ (chdir "crates/scheduler"))))))
     (inputs
      (list (@@ (gnu packages rust-crates) rust-async-task-4.7.1)
@@ -281,7 +509,7 @@
     (description "Internal scheduler crate from the zed-industries/zed monorepo, used by gpui.")
     (license license:asl2.0)))
 
-;;; --- zlog 0.1.0  (crates/zlog) ---
+;;; --- zlog 0.1.0  (crates/zlog)  closure: ['collections', 'gpui_util', 'zlog'] ---
 (define-public rust-zlog
   (package
     (name "rust-zlog")
@@ -292,7 +520,37 @@
      (list
       #:phases
       #~(modify-phases %standard-phases
-          (add-after 'unpack 'chdir
+          (add-after 'unpack 'prune-workspace-members
+            (lambda _ (let ((keep (list "crates/collections" "crates/gpui_util" "crates/zlog")))
+             (use-modules (ice-9 rdelim) (srfi srfi-13))
+             (call-with-output-file "Cargo.toml.pruned"
+               (lambda (out)
+                 (call-with-input-file "Cargo.toml"
+                   (lambda (in)
+                     (let loop ((in-members? #f))
+                       (let ((line (read-line in)))
+                         (cond
+                          ((eof-object? line) #t)
+                          ((and (not in-members?)
+                                (string-prefix? "members = [" line))
+                           (display "members = [\n" out)
+                           (for-each (lambda (p)
+                                       (display "    \"" out)
+                                       (display p out)
+                                       (display "\",\n" out))
+                                     keep)
+                           (loop #t))
+                          ((and in-members? (string=? line "]"))
+                           (display "]\n" out)
+                           (loop #f))
+                          (in-members?
+                           (loop #t))
+                          (else
+                           (display line out)
+                           (newline out)
+                           (loop #f)))))))))
+             (rename-file "Cargo.toml.pruned" "Cargo.toml"))))
+          (add-after 'prune-workspace-members 'chdir
             (lambda _ (chdir "crates/zlog"))))))
     (inputs
      (list rust-collections
@@ -304,7 +562,7 @@
     (description "Internal zlog crate from the zed-industries/zed monorepo, used by gpui.")
     (license license:gpl3+)))
 
-;;; --- ztracing_macro 0.1.0  (crates/ztracing_macro) ---
+;;; --- ztracing_macro 0.1.0  (crates/ztracing_macro)  closure: ['ztracing_macro'] ---
 (define-public rust-ztracing-macro
   (package
     (name "rust-ztracing-macro")
@@ -315,14 +573,44 @@
      (list
       #:phases
       #~(modify-phases %standard-phases
-          (add-after 'unpack 'chdir
+          (add-after 'unpack 'prune-workspace-members
+            (lambda _ (let ((keep (list "crates/ztracing_macro")))
+             (use-modules (ice-9 rdelim) (srfi srfi-13))
+             (call-with-output-file "Cargo.toml.pruned"
+               (lambda (out)
+                 (call-with-input-file "Cargo.toml"
+                   (lambda (in)
+                     (let loop ((in-members? #f))
+                       (let ((line (read-line in)))
+                         (cond
+                          ((eof-object? line) #t)
+                          ((and (not in-members?)
+                                (string-prefix? "members = [" line))
+                           (display "members = [\n" out)
+                           (for-each (lambda (p)
+                                       (display "    \"" out)
+                                       (display p out)
+                                       (display "\",\n" out))
+                                     keep)
+                           (loop #t))
+                          ((and in-members? (string=? line "]"))
+                           (display "]\n" out)
+                           (loop #f))
+                          (in-members?
+                           (loop #t))
+                          (else
+                           (display line out)
+                           (newline out)
+                           (loop #f)))))))))
+             (rename-file "Cargo.toml.pruned" "Cargo.toml"))))
+          (add-after 'prune-workspace-members 'chdir
             (lambda _ (chdir "crates/ztracing_macro"))))))
     (home-page "https://github.com/zed-industries/zed")
     (synopsis "Internal ztracing_macro crate from the zed-industries/zed monorepo, us")
     (description "Internal ztracing_macro crate from the zed-industries/zed monorepo, used by gpui.")
     (license license:gpl3+)))
 
-;;; --- ztracing 0.1.0  (crates/ztracing) ---
+;;; --- ztracing 0.1.0  (crates/ztracing)  closure: ['collections', 'gpui_util', 'zlog', 'ztracing', 'ztracing_macro'] ---
 (define-public rust-ztracing
   (package
     (name "rust-ztracing")
@@ -333,7 +621,37 @@
      (list
       #:phases
       #~(modify-phases %standard-phases
-          (add-after 'unpack 'chdir
+          (add-after 'unpack 'prune-workspace-members
+            (lambda _ (let ((keep (list "crates/collections" "crates/gpui_util" "crates/zlog" "crates/ztracing" "crates/ztracing_macro")))
+             (use-modules (ice-9 rdelim) (srfi srfi-13))
+             (call-with-output-file "Cargo.toml.pruned"
+               (lambda (out)
+                 (call-with-input-file "Cargo.toml"
+                   (lambda (in)
+                     (let loop ((in-members? #f))
+                       (let ((line (read-line in)))
+                         (cond
+                          ((eof-object? line) #t)
+                          ((and (not in-members?)
+                                (string-prefix? "members = [" line))
+                           (display "members = [\n" out)
+                           (for-each (lambda (p)
+                                       (display "    \"" out)
+                                       (display p out)
+                                       (display "\",\n" out))
+                                     keep)
+                           (loop #t))
+                          ((and in-members? (string=? line "]"))
+                           (display "]\n" out)
+                           (loop #f))
+                          (in-members?
+                           (loop #t))
+                          (else
+                           (display line out)
+                           (newline out)
+                           (loop #f)))))))))
+             (rename-file "Cargo.toml.pruned" "Cargo.toml"))))
+          (add-after 'prune-workspace-members 'chdir
             (lambda _ (chdir "crates/ztracing"))))))
     (inputs
      (list rust-zlog
@@ -345,7 +663,7 @@
     (description "Internal ztracing crate from the zed-industries/zed monorepo, used by gpui.")
     (license license:gpl3+)))
 
-;;; --- sum_tree 0.1.0  (crates/sum_tree) ---
+;;; --- sum_tree 0.1.0  (crates/sum_tree)  closure: ['collections', 'gpui_util', 'sum_tree', 'zlog', 'ztracing', 'ztracing_macro'] ---
 (define-public rust-sum-tree
   (package
     (name "rust-sum-tree")
@@ -356,7 +674,37 @@
      (list
       #:phases
       #~(modify-phases %standard-phases
-          (add-after 'unpack 'chdir
+          (add-after 'unpack 'prune-workspace-members
+            (lambda _ (let ((keep (list "crates/collections" "crates/gpui_util" "crates/sum_tree" "crates/zlog" "crates/ztracing" "crates/ztracing_macro")))
+             (use-modules (ice-9 rdelim) (srfi srfi-13))
+             (call-with-output-file "Cargo.toml.pruned"
+               (lambda (out)
+                 (call-with-input-file "Cargo.toml"
+                   (lambda (in)
+                     (let loop ((in-members? #f))
+                       (let ((line (read-line in)))
+                         (cond
+                          ((eof-object? line) #t)
+                          ((and (not in-members?)
+                                (string-prefix? "members = [" line))
+                           (display "members = [\n" out)
+                           (for-each (lambda (p)
+                                       (display "    \"" out)
+                                       (display p out)
+                                       (display "\",\n" out))
+                                     keep)
+                           (loop #t))
+                          ((and in-members? (string=? line "]"))
+                           (display "]\n" out)
+                           (loop #f))
+                          (in-members?
+                           (loop #t))
+                          (else
+                           (display line out)
+                           (newline out)
+                           (loop #f)))))))))
+             (rename-file "Cargo.toml.pruned" "Cargo.toml"))))
+          (add-after 'prune-workspace-members 'chdir
             (lambda _ (chdir "crates/sum_tree"))))))
     (inputs
      (list rust-ztracing
@@ -369,7 +717,7 @@
     (description "A sum tree data structure, a concurrency-friendly B-tree")
     (license license:asl2.0)))
 
-;;; --- perf 0.1.0  (tooling/perf) ---
+;;; --- perf 0.1.0  (tooling/perf)  closure: ['collections', 'gpui_util', 'perf'] ---
 (define-public rust-perf
   (package
     (name "rust-perf")
@@ -380,7 +728,37 @@
      (list
       #:phases
       #~(modify-phases %standard-phases
-          (add-after 'unpack 'chdir
+          (add-after 'unpack 'prune-workspace-members
+            (lambda _ (let ((keep (list "crates/collections" "crates/gpui_util" "tooling/perf")))
+             (use-modules (ice-9 rdelim) (srfi srfi-13))
+             (call-with-output-file "Cargo.toml.pruned"
+               (lambda (out)
+                 (call-with-input-file "Cargo.toml"
+                   (lambda (in)
+                     (let loop ((in-members? #f))
+                       (let ((line (read-line in)))
+                         (cond
+                          ((eof-object? line) #t)
+                          ((and (not in-members?)
+                                (string-prefix? "members = [" line))
+                           (display "members = [\n" out)
+                           (for-each (lambda (p)
+                                       (display "    \"" out)
+                                       (display p out)
+                                       (display "\",\n" out))
+                                     keep)
+                           (loop #t))
+                          ((and in-members? (string=? line "]"))
+                           (display "]\n" out)
+                           (loop #f))
+                          (in-members?
+                           (loop #t))
+                          (else
+                           (display line out)
+                           (newline out)
+                           (loop #f)))))))))
+             (rename-file "Cargo.toml.pruned" "Cargo.toml"))))
+          (add-after 'prune-workspace-members 'chdir
             (lambda _ (chdir "tooling/perf"))))))
     (inputs
      (list rust-collections
@@ -391,7 +769,7 @@
     (description "A tool for measuring Zed test performance, with too many Clippy lints")
     (license license:asl2.0)))
 
-;;; --- util_macros 0.1.0  (crates/util_macros) ---
+;;; --- util_macros 0.1.0  (crates/util_macros)  closure: ['collections', 'gpui_util', 'perf', 'util_macros'] ---
 (define-public rust-util-macros
   (package
     (name "rust-util-macros")
@@ -402,7 +780,37 @@
      (list
       #:phases
       #~(modify-phases %standard-phases
-          (add-after 'unpack 'chdir
+          (add-after 'unpack 'prune-workspace-members
+            (lambda _ (let ((keep (list "crates/collections" "crates/gpui_util" "tooling/perf" "crates/util_macros")))
+             (use-modules (ice-9 rdelim) (srfi srfi-13))
+             (call-with-output-file "Cargo.toml.pruned"
+               (lambda (out)
+                 (call-with-input-file "Cargo.toml"
+                   (lambda (in)
+                     (let loop ((in-members? #f))
+                       (let ((line (read-line in)))
+                         (cond
+                          ((eof-object? line) #t)
+                          ((and (not in-members?)
+                                (string-prefix? "members = [" line))
+                           (display "members = [\n" out)
+                           (for-each (lambda (p)
+                                       (display "    \"" out)
+                                       (display p out)
+                                       (display "\",\n" out))
+                                     keep)
+                           (loop #t))
+                          ((and in-members? (string=? line "]"))
+                           (display "]\n" out)
+                           (loop #f))
+                          (in-members?
+                           (loop #t))
+                          (else
+                           (display line out)
+                           (newline out)
+                           (loop #f)))))))))
+             (rename-file "Cargo.toml.pruned" "Cargo.toml"))))
+          (add-after 'prune-workspace-members 'chdir
             (lambda _ (chdir "crates/util_macros"))))))
     (inputs
      (list rust-perf
@@ -413,7 +821,7 @@
     (description "Utility macros for Zed")
     (license license:asl2.0)))
 
-;;; --- gpui 0.2.2  (crates/gpui) ---
+;;; --- gpui 0.2.2  (crates/gpui)  closure: ['collections', 'derive_refineable', 'gpui', 'gpui_macros', 'gpui_shared_string', 'gpui_util', 'http_client', 'perf', 'refineable', 'scheduler', 'sum_tree', 'util_macros', 'zlog', 'ztracing', 'ztracing_macro'] ---
 (define-public rust-gpui
   (package
     (name "rust-gpui")
@@ -424,7 +832,37 @@
      (list
       #:phases
       #~(modify-phases %standard-phases
-          (add-after 'unpack 'chdir
+          (add-after 'unpack 'prune-workspace-members
+            (lambda _ (let ((keep (list "crates/collections" "crates/refineable/derive_refineable" "crates/gpui" "crates/gpui_macros" "crates/gpui_shared_string" "crates/gpui_util" "crates/http_client" "tooling/perf" "crates/refineable" "crates/scheduler" "crates/sum_tree" "crates/util_macros" "crates/zlog" "crates/ztracing" "crates/ztracing_macro")))
+             (use-modules (ice-9 rdelim) (srfi srfi-13))
+             (call-with-output-file "Cargo.toml.pruned"
+               (lambda (out)
+                 (call-with-input-file "Cargo.toml"
+                   (lambda (in)
+                     (let loop ((in-members? #f))
+                       (let ((line (read-line in)))
+                         (cond
+                          ((eof-object? line) #t)
+                          ((and (not in-members?)
+                                (string-prefix? "members = [" line))
+                           (display "members = [\n" out)
+                           (for-each (lambda (p)
+                                       (display "    \"" out)
+                                       (display p out)
+                                       (display "\",\n" out))
+                                     keep)
+                           (loop #t))
+                          ((and in-members? (string=? line "]"))
+                           (display "]\n" out)
+                           (loop #f))
+                          (in-members?
+                           (loop #t))
+                          (else
+                           (display line out)
+                           (newline out)
+                           (loop #f)))))))))
+             (rename-file "Cargo.toml.pruned" "Cargo.toml"))))
+          (add-after 'prune-workspace-members 'chdir
             (lambda _ (chdir "crates/gpui"))))))
     (inputs
      (list rust-collections
@@ -488,7 +926,7 @@
     (description "Zed's GPU-accelerated UI framework")
     (license license:asl2.0)))
 
-;;; --- gpui_wgpu 0.1.0  (crates/gpui_wgpu) ---
+;;; --- gpui_wgpu 0.1.0  (crates/gpui_wgpu)  closure: ['collections', 'derive_refineable', 'gpui', 'gpui_macros', 'gpui_shared_string', 'gpui_util', 'gpui_wgpu', 'http_client', 'perf', 'refineable', 'scheduler', 'sum_tree', 'util_macros', 'zlog', 'ztracing', 'ztracing_macro'] ---
 (define-public rust-gpui-wgpu
   (package
     (name "rust-gpui-wgpu")
@@ -499,7 +937,37 @@
      (list
       #:phases
       #~(modify-phases %standard-phases
-          (add-after 'unpack 'chdir
+          (add-after 'unpack 'prune-workspace-members
+            (lambda _ (let ((keep (list "crates/collections" "crates/refineable/derive_refineable" "crates/gpui" "crates/gpui_macros" "crates/gpui_shared_string" "crates/gpui_util" "crates/gpui_wgpu" "crates/http_client" "tooling/perf" "crates/refineable" "crates/scheduler" "crates/sum_tree" "crates/util_macros" "crates/zlog" "crates/ztracing" "crates/ztracing_macro")))
+             (use-modules (ice-9 rdelim) (srfi srfi-13))
+             (call-with-output-file "Cargo.toml.pruned"
+               (lambda (out)
+                 (call-with-input-file "Cargo.toml"
+                   (lambda (in)
+                     (let loop ((in-members? #f))
+                       (let ((line (read-line in)))
+                         (cond
+                          ((eof-object? line) #t)
+                          ((and (not in-members?)
+                                (string-prefix? "members = [" line))
+                           (display "members = [\n" out)
+                           (for-each (lambda (p)
+                                       (display "    \"" out)
+                                       (display p out)
+                                       (display "\",\n" out))
+                                     keep)
+                           (loop #t))
+                          ((and in-members? (string=? line "]"))
+                           (display "]\n" out)
+                           (loop #f))
+                          (in-members?
+                           (loop #t))
+                          (else
+                           (display line out)
+                           (newline out)
+                           (loop #f)))))))))
+             (rename-file "Cargo.toml.pruned" "Cargo.toml"))))
+          (add-after 'prune-workspace-members 'chdir
             (lambda _ (chdir "crates/gpui_wgpu"))))))
     (inputs
      (list rust-collections
@@ -525,7 +993,7 @@
     (description "Internal gpui_wgpu crate from the zed-industries/zed monorepo, used by gpui.")
     (license license:asl2.0)))
 
-;;; --- gpui_linux 0.1.0  (crates/gpui_linux) ---
+;;; --- gpui_linux 0.1.0  (crates/gpui_linux)  closure: ['collections', 'derive_refineable', 'gpui', 'gpui_linux', 'gpui_macros', 'gpui_shared_string', 'gpui_util', 'gpui_wgpu', 'http_client', 'perf', 'refineable', 'scheduler', 'sum_tree', 'util_macros', 'zlog', 'ztracing', 'ztracing_macro'] ---
 (define-public rust-gpui-linux
   (package
     (name "rust-gpui-linux")
@@ -536,7 +1004,37 @@
      (list
       #:phases
       #~(modify-phases %standard-phases
-          (add-after 'unpack 'chdir
+          (add-after 'unpack 'prune-workspace-members
+            (lambda _ (let ((keep (list "crates/collections" "crates/refineable/derive_refineable" "crates/gpui" "crates/gpui_linux" "crates/gpui_macros" "crates/gpui_shared_string" "crates/gpui_util" "crates/gpui_wgpu" "crates/http_client" "tooling/perf" "crates/refineable" "crates/scheduler" "crates/sum_tree" "crates/util_macros" "crates/zlog" "crates/ztracing" "crates/ztracing_macro")))
+             (use-modules (ice-9 rdelim) (srfi srfi-13))
+             (call-with-output-file "Cargo.toml.pruned"
+               (lambda (out)
+                 (call-with-input-file "Cargo.toml"
+                   (lambda (in)
+                     (let loop ((in-members? #f))
+                       (let ((line (read-line in)))
+                         (cond
+                          ((eof-object? line) #t)
+                          ((and (not in-members?)
+                                (string-prefix? "members = [" line))
+                           (display "members = [\n" out)
+                           (for-each (lambda (p)
+                                       (display "    \"" out)
+                                       (display p out)
+                                       (display "\",\n" out))
+                                     keep)
+                           (loop #t))
+                          ((and in-members? (string=? line "]"))
+                           (display "]\n" out)
+                           (loop #f))
+                          (in-members?
+                           (loop #t))
+                          (else
+                           (display line out)
+                           (newline out)
+                           (loop #f)))))))))
+             (rename-file "Cargo.toml.pruned" "Cargo.toml"))))
+          (add-after 'prune-workspace-members 'chdir
             (lambda _ (chdir "crates/gpui_linux"))))))
     (inputs
      (list rust-collections
@@ -589,7 +1087,7 @@
     (description "Internal gpui_linux crate from the zed-industries/zed monorepo, used by gpui.")
     (license license:asl2.0)))
 
-;;; --- gpui_platform 0.1.0  (crates/gpui_platform) ---
+;;; --- gpui_platform 0.1.0  (crates/gpui_platform)  closure: ['collections', 'derive_refineable', 'gpui', 'gpui_linux', 'gpui_macros', 'gpui_platform', 'gpui_shared_string', 'gpui_util', 'gpui_wgpu', 'http_client', 'perf', 'refineable', 'scheduler', 'sum_tree', 'util_macros', 'zlog', 'ztracing', 'ztracing_macro'] ---
 (define-public rust-gpui-platform
   (package
     (name "rust-gpui-platform")
@@ -600,7 +1098,37 @@
      (list
       #:phases
       #~(modify-phases %standard-phases
-          (add-after 'unpack 'chdir
+          (add-after 'unpack 'prune-workspace-members
+            (lambda _ (let ((keep (list "crates/collections" "crates/refineable/derive_refineable" "crates/gpui" "crates/gpui_linux" "crates/gpui_macros" "crates/gpui_platform" "crates/gpui_shared_string" "crates/gpui_util" "crates/gpui_wgpu" "crates/http_client" "tooling/perf" "crates/refineable" "crates/scheduler" "crates/sum_tree" "crates/util_macros" "crates/zlog" "crates/ztracing" "crates/ztracing_macro")))
+             (use-modules (ice-9 rdelim) (srfi srfi-13))
+             (call-with-output-file "Cargo.toml.pruned"
+               (lambda (out)
+                 (call-with-input-file "Cargo.toml"
+                   (lambda (in)
+                     (let loop ((in-members? #f))
+                       (let ((line (read-line in)))
+                         (cond
+                          ((eof-object? line) #t)
+                          ((and (not in-members?)
+                                (string-prefix? "members = [" line))
+                           (display "members = [\n" out)
+                           (for-each (lambda (p)
+                                       (display "    \"" out)
+                                       (display p out)
+                                       (display "\",\n" out))
+                                     keep)
+                           (loop #t))
+                          ((and in-members? (string=? line "]"))
+                           (display "]\n" out)
+                           (loop #f))
+                          (in-members?
+                           (loop #t))
+                          (else
+                           (display line out)
+                           (newline out)
+                           (loop #f)))))))))
+             (rename-file "Cargo.toml.pruned" "Cargo.toml"))))
+          (add-after 'prune-workspace-members 'chdir
             (lambda _ (chdir "crates/gpui_platform"))))))
     (inputs
      (list rust-gpui
