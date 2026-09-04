@@ -269,6 +269,28 @@ guix build -L /path/to/this/directory fhs-run
   ```
   If you're not sure which driver your own `steam` package actually
   uses, check whatever manifest/config first installed it for you.
+- **A first attempt at `fhs-run-nvda` broke the whole channel for
+  everyone, not just NVIDIA users.** Every top-level form in a Guile
+  module gets evaluated whenever *any* package from that module is
+  looked up — that's just how modules work — so defining
+  `fhs-run-nvda` as a bare `(fhs-run-for (specification->package
+  "nvda"))` meant that call had to succeed for the module to load *at
+  all*, even for someone who just wanted plain `faf-client`. On a
+  pinned nonguix commit where `"nvda"` isn't resolvable by that exact
+  name (version-suffixed only, say), this took the entire module down:
+  `guix repl: error: nvda: unknown package` from `guix pull`, and
+  `faf-client: unknown package` from a plain `guix build -L` right
+  after, for the same underlying reason. `false-if-exception` looks
+  like the obvious fix and *isn't* one: `specification->package`'s
+  failure path (`leave`, in Guix's own `guix/diagnostics.scm`) prints
+  an error and calls `(exit 1)` directly — a hard process exit, not a
+  raised Scheme condition — so nothing built on ordinary exception
+  handling can catch it. Fixed with `find-best-packages-by-name`
+  instead (the lower-level procedure `specification->package` itself
+  is built on, in `gnu/packages.scm`): it returns an empty list on no
+  match rather than exiting, so a missing `"nvda"` can be handled as
+  plain data — `fhs-run-nvda` quietly becomes `#f` instead of a
+  package, and everything else in the file keeps working.
 - **`STEAM_COMPAT_LIBRARY_PATHS` needs each library's `steamapps`
   subdirectory, not the bare library root.** Proton's own
   `get_validated_steamapps_parent()` (used for its "gamedrive" feature)

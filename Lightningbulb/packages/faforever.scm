@@ -47,7 +47,9 @@
   #:use-module (guix gexp)
   #:use-module (guix build-system copy)
   #:use-module ((guix licenses) #:prefix license:)
-  #:use-module (gnu packages)              ; for `specification->package'
+  #:use-module (ice-9 match)               ; for fhs-run-nvda's lookup
+  #:use-module (gnu packages)              ; specification->package,
+                                            ; find-best-packages-by-name
   #:use-module (gnu packages bash)         ; bash-minimal
   #:use-module (gnu packages base)         ; coreutils, for fhs-run
   #:use-module (nonguix multiarch-container))
@@ -167,7 +169,38 @@ already knows how to launch).")))
 ;; propagates it) in the same profile, since both provide an identical
 ;; `bin/fhs-run'; use a package transformation instead:
 ;;   guix install faf-client --with-input=fhs-run=fhs-run-nvda
-(define-public fhs-run-nvda (fhs-run-for (spec "nvda")))
+;;
+;; Deliberately NOT just `(fhs-run-for (spec "nvda"))': every top-level
+;; form in this file gets evaluated whenever *any* package from it is
+;; looked up (that's just how Guile modules work), so if `spec' ever
+;; fails to resolve "nvda" here -- e.g. because whatever nonguix commit
+;; is actually pinned doesn't have a package by that exact name, or
+;; names it version-suffixed only -- it takes the *entire module* down
+;; with it, `faf-client' included, not just this one optional variant.
+;; Confirmed in practice: that's exactly what happened here (`guix
+;; repl: error: nvda: unknown package' during `guix pull', and
+;; `faf-client: unknown package' from a plain `guix build -L'
+;; afterwards, for the exact same underlying reason) -- and
+;; `false-if-exception' *cannot* fix this, because `specification->
+;; package''s failure path (`leave', in guix/diagnostics.scm) prints an
+;; error and calls `(exit 1)' directly -- a hard process exit, not a
+;; raised Scheme condition, so nothing short of avoiding the call
+;; entirely can make this recoverable. `find-best-packages-by-name' is
+;; the lower-level procedure `specification->package' itself is built
+;; on (gnu/packages.scm) -- it just returns an empty list on no match,
+;; no `leave', no exit, so failure here can be handled as plain data
+;; instead of crashing the module.
+;;
+;; If `nvda' isn't resolvable on your pinned nonguix, `fhs-run-nvda'
+;; below quietly becomes `#f' instead of a package -- everything else
+;; in this file keeps working -- and `guix package -A "^nvda"' (or
+;; `guix search nvidia') will tell you the actual name to use instead,
+;; passed directly to `fhs-run-for' in your own manifest, e.g.:
+;;   (fhs-run-for (specification->package "nvda-570"))
+(define-public fhs-run-nvda
+  (match (find-best-packages-by-name "nvda" #f)
+    ((driver . _) (fhs-run-for driver))
+    (_ #f)))
 
 ;; ---------------------------------------------------------------------
 ;; faf-client
