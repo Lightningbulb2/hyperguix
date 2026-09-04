@@ -113,6 +113,17 @@
    (run "/bin/env")
    (packages (steam-container-libs*))
    (link-files '())
+   ;; nonguix's own default preserved-env list already covers anything
+   ;; starting with STEAM_ (needed for STEAM_COMPAT_DATA_PATH and
+   ;; friends, which Proton requires -- see faf-client-setup.py's
+   ;; write_launch_script docstring), but PROTON_NO_ESYNC doesn't match
+   ;; any of its patterns and would otherwise be silently stripped by
+   ;; `guix shell --container`'s environment filtering before ever
+   ;; reaching Proton -- confirmed against nonguix's own
+   ;; multiarch-container.scm, where only variables matching an
+   ;; explicit preserved-env pattern get forwarded into the container
+   ;; at all.
+   (preserved-env '("^PROTON_"))
    (home-page "https://gitlab.com/nonguix/nonguix")
    (synopsis "Run an arbitrary command inside Steam's FHS sandbox")
    (description

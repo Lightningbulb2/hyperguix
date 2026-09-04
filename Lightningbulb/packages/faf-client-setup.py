@@ -610,9 +610,29 @@ if launcher is None:
         "`guix install faf-client`, which pulls it in automatically), "
         "then re-run this script.")
 
-env = {"PROTON_NO_ESYNC": "1"}
-env_s = "env " + "".join(f"{faf_quote(k)}={faf_quote(v)} "
-                          for k, v in env.items())
+env = {
+    "PROTON_NO_ESYNC": "1",
+    # Required -- Proton's own `proton` script does a hard `sys.exit(1)`
+    # ("No compat data path?") at startup if STEAM_COMPAT_DATA_PATH isn't
+    # set, and reads STEAM_COMPAT_CLIENT_INSTALL_PATH unconditionally a
+    # few lines into setup_prefix() right after (KeyError otherwise --
+    # confirmed against ValveSoftware/Proton's own `proton` source).
+    # Normally Steam itself sets both before ever invoking Proton; since
+    # this whole reaper/wrapper/runtime/proton chain bypasses Steam's
+    # own launcher entirely, nothing else will set them for us.
+    "STEAM_COMPAT_DATA_PATH": to_sandbox_path(os.path.dirname(prefix_path)),
+    "STEAM_COMPAT_CLIENT_INSTALL_PATH": to_sandbox_path(steam_path),
+    # Not required to get past the crash above, but genuinely read by
+    # Proton (STEAM_COMPAT_APP_ID gates a handful of per-game Proton bug
+    # workarounds; STEAM_COMPAT_INSTALL_PATH/LIBRARY_PATHS enable its
+    # "gamedrive" feature for games that reference sibling files in the
+    # same Steam library by relative path) -- included for parity with
+    # what real Steam would set, at negligible cost.
+    "STEAM_COMPAT_APP_ID": "9420",
+    "STEAM_COMPAT_INSTALL_PATH": to_sandbox_path(game_path),
+    "STEAM_COMPAT_LIBRARY_PATHS": to_sandbox_path(steam_path),
+}
+env_s = "env " + "".join(f"{faf_quote(f'{k}={v}')} " for k, v in env.items())
 cmd = command(proton_path, runtime_path, launch_wrapper_path, reaper_path,
               launcher, env_s)
 note("launch command:")

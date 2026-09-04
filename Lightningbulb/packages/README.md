@@ -207,6 +207,37 @@ guix build -L /path/to/this/directory fhs-run
   the sandboxed process at all. If you're on an old copy of the
   channel, regenerate `client.prefs` (re-run `faf-client-setup`) after
   updating.
+- **Proton needs `STEAM_COMPAT_DATA_PATH`/`STEAM_COMPAT_CLIENT_INSTALL_PATH`
+  set, and won't get them from anywhere else.** Normally Steam itself
+  sets these (plus a few more) before ever invoking Proton; since this
+  channel's whole reaper/wrapper/runtime/proton chain bypasses Steam's
+  own launcher entirely (see `fhs-run`, above), nothing else sets them.
+  Without `STEAM_COMPAT_DATA_PATH`, Proton's own `proton` script exits
+  immediately with `Proton: No compat data path?`; confirmed against
+  ValveSoftware/Proton's own source (`proton`, checked right at
+  `if __name__ == "__main__"`) — and `STEAM_COMPAT_CLIENT_INSTALL_PATH`
+  is read unconditionally a few lines into `setup_prefix()` right after,
+  with no guard at all (a plain `os.environ[...]`, `KeyError` if
+  unset). Fixed by having `faf-client-setup` set both explicitly (in
+  the same short/in-sandbox path form as everything else in the launch
+  command, via `to_sandbox_path()`), plus `STEAM_COMPAT_APP_ID`,
+  `STEAM_COMPAT_INSTALL_PATH`, and `STEAM_COMPAT_LIBRARY_PATHS` for
+  parity with what real Steam sets (optional but genuinely read, per
+  Proton's own source, for a handful of per-game bug workarounds and
+  its "gamedrive" feature). One more wrinkle this surfaced: `guix
+  shell --container` only forwards environment variables matching an
+  explicit allow-list into the container (nonguix's own
+  `multiarch-container.scm`) — `STEAM_`-prefixed names are already
+  covered by nonguix's own default list, but `PROTON_NO_ESYNC` (already
+  present in `client.prefs` before any of this) matched nothing on that
+  list and was quietly being dropped the entire time, container-side,
+  regardless of what `env` set. Fixed with `(preserved-env
+  '("^PROTON_"))` added to `fhs-run`'s own package definition in
+  `faforever.scm` (additive — confirmed against the same source that
+  this doesn't replace nonguix's own built-in list, just extends it).
+  This means updating past this point needs a rebuild of `fhs-run`
+  itself, not just re-running `faf-client-setup` — see "Setup, start
+  to finish" for the channel-update steps that entails.
 
 ## Why this isn't upstream Guix material
 
