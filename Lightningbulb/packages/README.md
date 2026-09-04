@@ -78,7 +78,11 @@ guix build -L /path/to/this/directory fhs-run
 
 ## Setup, start to finish
 
-1. `guix install faf-client` (brings in `fhs-run` with it).
+1. `guix install faf-client` (brings in `fhs-run` with it). **On the
+   NVIDIA proprietary driver** (i.e. if your own `steam` package is
+   `(steam-for nvda)`, not plain `steam`) use
+   `guix install faf-client --with-input=fhs-run=fhs-run-nvda` instead
+   — see "Known risk areas" below for why.
 2. Own Supreme Commander: Forged Alliance on Steam. In Steam, right-click
    it → Properties → Compatibility → force a specific Proton version,
    and run it once through Steam normally.
@@ -238,6 +242,42 @@ guix build -L /path/to/this/directory fhs-run
   This means updating past this point needs a rebuild of `fhs-run`
   itself, not just re-running `faf-client-setup` — see "Setup, start
   to finish" for the channel-update steps that entails.
+- **`fhs-run` only worked for mesa/open-source-driver hosts, silently,
+  regardless of what driver your own `steam` package actually used.**
+  nonguix's own `steam` package is parametrized by graphics driver
+  (`steam-container-for`/`steam-for` in
+  `nongnu/packages/game-client.scm`; NVIDIA-proprietary-driver users are
+  expected to install `(steam-for nvda)` rather than plain `steam`, so
+  the FHS union's GLX/Vulkan libraries match whatever's actually bound
+  to the host GPU) — but this channel's `fhs-run` reused the raw,
+  unmodified `steam-container-libs` list, which always meant mesa, no
+  matter which variant of `steam` you'd actually installed. For NVIDIA
+  users this doesn't error cleanly; the container can still see the
+  GPU's PCI device, it just never gets a matching driver bound to it
+  (`glx: failed to create dri3 screen` / `failed to load driver:
+  nvidia-drm`, with the game exiting immediately with no clearer
+  message than that). Fixed by parametrizing `fhs-run` the same way
+  nonguix parametrizes `steam` — `fhs-run` (mesa, the default, for
+  AMD/Intel/open-source-driver hosts) and `fhs-run-nvda` (for NVIDIA)
+  are both exposed now. Since both provide an identical `bin/fhs-run`
+  and can't coexist in one profile (and `faf-client` already
+  `propagated-inputs`'s the mesa variant), NVIDIA users need a package
+  transformation rather than installing `fhs-run-nvda` alongside
+  `faf-client` directly:
+  ```
+  guix install faf-client --with-input=fhs-run=fhs-run-nvda
+  ```
+  If you're not sure which driver your own `steam` package actually
+  uses, check whatever manifest/config first installed it for you.
+- **`STEAM_COMPAT_LIBRARY_PATHS` needs each library's `steamapps`
+  subdirectory, not the bare library root.** Proton's own
+  `get_validated_steamapps_parent()` (used for its "gamedrive" feature)
+  specifically checks `os.path.basename(path) == "steamapps"` before
+  using its parent as the game-drive root; passing the library root
+  itself just makes that check silently fail, logging `Proton: Error:
+  unable to use parent for game drive, path ...` and disabling
+  gamedrive rather than crashing outright. Harmless to leave broken if
+  you don't hit it, but there's no reason to.
 
 ## Why this isn't upstream Guix material
 

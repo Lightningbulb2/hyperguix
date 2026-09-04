@@ -106,12 +106,28 @@
   ;; (gnu packages base)).
   (@@ (nongnu packages game-client) steam-container-libs))
 
-(define fhs-run-container
+;; Parametrized by `driver' for exactly the same reason nonguix's own
+;; `steam-container-for'/`steam-for' are (nongnu/packages/game-client.scm):
+;; the FHS union's OpenGL/Vulkan/GLX libraries have to be the *same*
+;; graphics driver package as whatever's bound to the host's GPU, or the
+;; container can't create a working GL/Vulkan context against it at all.
+;; An earlier revision of this hardcoded `(steam-container-libs*)'
+;; unmodified -- i.e. always mesa, regardless of what driver the user's
+;; own `steam' package was actually built with -- which silently broke
+;; NVIDIA-proprietary-driver users: mesa's own DRI drivers don't know how
+;; to talk to the NVIDIA kernel module, so the sandboxed process could
+;; see the GPU's PCI device but never get a driver bound to it (confirmed
+;; in practice: "glx: failed to create dri3 screen" / "failed to load
+;; driver: nvidia-drm", with mesa still selected). Fixed by threading a
+;; `driver' parameter through, mirroring nonguix's own pattern exactly.
+(define (fhs-run-container-for driver)
   (nonguix-container
    (name "fhs-run")
    (wrap-package coreutils)
    (run "/bin/env")
-   (packages (steam-container-libs*))
+   (packages
+    (modify-inputs (steam-container-libs*)
+      (replace "mesa" driver)))
    (link-files '())
    ;; nonguix's own default preserved-env list already covers anything
    ;; starting with STEAM_ (needed for STEAM_COMPAT_DATA_PATH and
@@ -138,7 +154,20 @@ Alliance Forever client that constructs its own precise launch command
 rather than just wanting extra arguments appended to whatever Steam
 already knows how to launch).")))
 
-(define-public fhs-run (nonguix-container->package fhs-run-container))
+(define-public fhs-run-for
+  (compose nonguix-container->package fhs-run-container-for))
+;; Matches nonguix's own default (`steam' = `(steam-for mesa)') -- pick
+;; this one unless you're on the NVIDIA proprietary driver, in which case
+;; see `fhs-run-nvda' below instead.
+(define-public fhs-run (fhs-run-for (spec "mesa")))
+;; For NVIDIA-proprietary-driver hosts (i.e. wherever your `steam'
+;; package is actually `(steam-for nvda)`, not plain `steam'). Provides
+;; the same `fhs-run' command, just built against `nvda' instead --
+;; can't be installed alongside plain `fhs-run' (or `faf-client', which
+;; propagates it) in the same profile, since both provide an identical
+;; `bin/fhs-run'; use a package transformation instead:
+;;   guix install faf-client --with-input=fhs-run=fhs-run-nvda
+(define-public fhs-run-nvda (fhs-run-for (spec "nvda")))
 
 ;; ---------------------------------------------------------------------
 ;; faf-client

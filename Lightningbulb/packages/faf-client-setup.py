@@ -630,7 +630,15 @@ env = {
     # what real Steam would set, at negligible cost.
     "STEAM_COMPAT_APP_ID": "9420",
     "STEAM_COMPAT_INSTALL_PATH": to_sandbox_path(game_path),
-    "STEAM_COMPAT_LIBRARY_PATHS": to_sandbox_path(steam_path),
+    # Must be the *steamapps* subdirectory of each library, not the bare
+    # library root -- confirmed against Proton's own source
+    # (get_validated_steamapps_parent() specifically checks
+    # `os.path.basename(path) == "steamapps"` before using its parent as
+    # the game-drive root; passing the library root itself just makes
+    # that check silently fail and log `Error: unable to use parent for
+    # game drive, path ...`, disabling the gamedrive feature rather than
+    # crashing outright -- but there's no reason to leave it broken).
+    "STEAM_COMPAT_LIBRARY_PATHS": to_sandbox_path(join(steam_path, "steamapps")),
 }
 env_s = "env " + "".join(f"{faf_quote(f'{k}={v}')} " for k, v in env.items())
 cmd = command(proton_path, runtime_path, launch_wrapper_path, reaper_path,
