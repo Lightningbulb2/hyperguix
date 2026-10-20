@@ -1,55 +1,86 @@
-(define-module (Lightningbulb packages scrcpy)
-    #:use-module (gnu packages)
-    #:use-module (gnu packages video)
-    #:use-module (guix packages)
-    #:use-module (guix git-download)
-    #:use-module (guix build-system meson)
-    #:use-module (guix gexp)
-    #:use-module ((guix licenses) #:prefix license:)
+;;; Lightningbulb channel --- scrcpy
+;;;
+;;; scrcpy is two pieces: the desktop client (C, built here with Meson) and
+;;; "scrcpy-server", a dex/jar that is pushed to and run *on the phone*.
+;;; Building the server needs the Android SDK (android.jar, d8, aidl), which
+;;; Guix does not have, so -- like Debian, Nix and Arch -- we use upstream's
+;;; prebuilt server for the exact same version.  The client refuses to talk to
+;;; a server whose version string differs, so keep the two in lockstep.
 
-    #:use-module (gnu packages android)
-    #:use-module (gnu packages libusb)
-    #:use-module (gnu packages pkg-config)
-    #:use-module (gnu packages sdl)
-    #:use-module (gnu packages version-control)
-    #:use-module (gnu packages gcc)
-    #:use-module (gnu packages java)
-    #:use-module (gnu packages gstreamer)
-    #:use-module (guix search-paths)
-    )
+(define-module (Lightningbulb packages scrcpy)
+  #:use-module (guix packages)
+  #:use-module (guix gexp)
+  #:use-module (guix download)
+  #:use-module (guix git-download)
+  #:use-module (guix build-system meson)
+  #:use-module ((guix licenses) #:prefix license:)
+  #:use-module (gnu packages bash)
+  #:use-module (gnu packages android)
+  #:use-module (gnu packages libusb)
+  #:use-module (gnu packages pkg-config)
+  #:use-module (gnu packages sdl)
+  #:use-module (gnu packages video)
+  #:use-module (gnu packages xdisorg))
+
+(define %scrcpy-version "5.0.1")
+
+;; Upstream pins this digest in install_release.sh.
+(define scrcpy-server-prebuilt
+  (origin
+    (method url-fetch)
+    (uri (string-append "https://github.com/Genymobile/scrcpy/releases/download/v"
+                        %scrcpy-version "/scrcpy-server-v" %scrcpy-version))
+    (file-name (string-append "scrcpy-server-" %scrcpy-version))
+    (sha256
+     (base32 "0dn57gjn5dizpzbrgf31g969ka9bi0h12d6zx4gj3m8ik3vvckkn"))))
 
 (define-public scrcpy
+  (let ((commit "a60891aea193d92e7e5c3942700eca63f9d19a5f"))
     (package
-        (name "scrcpy")
-        (version "4.1")
-        (source (origin
-                (method git-fetch)
-                (uri (git-reference
-                     (url "https://github.com/genymobile/scrcpy")
-                     (commit (string-append "v" version))))
-                (sha256
-                 (base32
-                 "1gm1jz428lkfw96fs1gxsa8fy3lrwi7v02v67s17b2vm2hvh5cn7"))))
-    (build-system meson-build-system)
-    (arguments
-        (list #:phases
-              #~(modify-phases %standard-phases
-                  (add-before 'configure 'set-java-home
-                      (lambda* (#:key inputs #:allow-other-keys)
-                          (setenv "JAVA_HOME"
-                              (dirname (dirname (search-input-file inputs "bin/java")))))))))
-    (outputs `("out" "debug"))
-    (native-inputs (list pkg-config
-                     gcc
-                     git
-                     ffms2
-                     openjdk17
-                     gst-libav))
-    (inputs (list ffmpeg
-              sdl3
-              adb
-              libusb))
-    (synopsis "android screen viewing tool")
-    (description "scrcpy or screen copy, is a tool to show a connected android device's screen in a desktop window")
-    (home-page "https://github.com/genymobile/scrcpy")
-    (license license:asl2.0)))
+      (name "scrcpy")
+      (version %scrcpy-version)
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/Genymobile/scrcpy")
+               (commit commit)))
+         (file-name (git-file-name name version))
+         (sha256
+          (base32 "062fnhm5pj39cxygs276zqw780blfw6rf850r442iw587a63fsyf"))))
+      (build-system meson-build-system)
+      (arguments
+       (list
+        #:configure-flags
+        #~(list (string-append "-Dprebuilt_server=" #$scrcpy-server-prebuilt))
+        #:phases
+        #~(modify-phases %standard-phases
+            (add-after 'unpack 'fix-desktop-files
+              ;; The launchers go through "$SHELL -i" so that a PATH/ADB set
+              ;; in .bashrc is honoured.  Our wrapper already provides adb.
+              (lambda _
+                (substitute* '("app/data/scrcpy.desktop"
+                               "app/data/scrcpy-console.desktop")
+                  (("^Exec=.*-c 'scrcpy ([^']*)'\"" _ args)
+                   (string-append "Exec=" #$output "/bin/scrcpy " args))
+                  (("^Exec=.*-c scrcpy\"")
+                   (string-append "Exec=" #$output "/bin/scrcpy")))))
+            (add-after 'install 'wrap-program
+              ;; scrcpy shells out to adb.  Append rather than prepend so a
+              ;; user-installed adb (or $ADB) still wins.
+              (lambda* (#:key inputs #:allow-other-keys)
+                (wrap-program (string-append #$output "/bin/scrcpy")
+                  `("PATH" suffix
+                    (,(dirname (search-input-file inputs "bin/adb"))))))))))
+      (native-inputs (list pkg-config))
+      (inputs (list adb bash-minimal ffmpeg libdrm libusb libva sdl3))
+      (home-page "https://github.com/Genymobile/scrcpy")
+      (synopsis "Display and control Android devices over USB or TCP/IP")
+      (description
+       "scrcpy mirrors the screen (and audio, on Android 11+) of an Android
+device connected over USB or TCP/IP, and lets you control it with the
+computer's keyboard and mouse.  It needs no root access and installs nothing
+permanent on the device.  It can also use the device camera as a webcam source
+(through V4L2), record to a file, and act as a HID keyboard/mouse/gamepad
+(OTG mode).")
+      (license license:asl2.0))))

@@ -1,422 +1,318 @@
-;;; faforever.scm --- Guix packages for Forged Alliance Forever
+;;; Lightningbulb channel --- FAForever client (Rust + Tauri rewrite)
 ;;;
-;;; IMPORTANT — read README.md before using this channel. Short version:
+;;; The client is built from source: the React front end with pnpm against an
+;;; offline mirror of pnpm-lock.yaml (see js-offline.scm), the Rust/Tauri
+;;; shell with cargo against the crates in Cargo.lock (rust-crates.scm).
 ;;;
-;;;   * Two packages, both in this one file (in dependency order:
-;;;     `fhs-run' first, since `faf-client' propagates it as a
-;;;     dependency -- see below -- and needs it defined first):
+;;; Its "natives" are a different matter.  Upstream's `pnpm tauri' downloads
+;;; them, checksum-verified, at build time; we fetch the very same files with
+;;; the very same SHA-256 digests (copied from scripts/ensure-*.mjs):
 ;;;
-;;;     - `fhs-run': a genuine general-purpose "run an arbitrary
-;;;       command inside Steam's FHS sandbox" tool, needed because
-;;;       nonguix's own `steam' package doesn't expose one (confirmed
-;;;       from its actual source: it always execs one hardcoded target,
-;;;       Steam itself, with no equivalent of nixpkgs' `steam-run').
-;;;       Built from nonguix's own `nonguix-container' machinery,
-;;;       reusing its exact `steam-container-libs' list.
+;;;   faf-uid          FAF's official machine-id helper.  It embeds a secret
+;;;                    key, so a self-built copy is rejected by the lobby;
+;;;                    the prebuilt binary is the only one that works.
+;;;   faf-pioneer      Go ICE adapter (experimental, selectable in Settings).
+;;;   faf-ice-adapter  Java ICE adapter (the default) + GodFuper's WebRTC
+;;;                    build as the "experimental" choice.
+;;;   libsteam_api.so  Valve Steamworks, for Steam "now playing" status; it
+;;;                    lives in the client's own repository.
 ;;;
-;;;     - `faf-client': repackages FAForever's own official prebuilt
-;;;       Linux release of https://github.com/FAForever/downlords-faf-client
-;;;       (a Gradle/JavaFX app) rather than building it from source,
-;;;       which is why this lives in a personal channel and not
-;;;       upstream Guix. Installs two commands: `faf-client' itself,
-;;;       and `faf-client-setup' (a detect-and-configure script for
-;;;       Supreme Commander: Forged Alliance, which you must already
-;;;       own and have installed via Steam, or already have set up
-;;;       under plain Wine). `faf-client-setup.py' is a separate FILE
-;;;       purely for readability (600+ lines of Python is unwieldy as
-;;;       an escaped Scheme string) -- it is NOT a separate package;
-;;;       it's built directly into `faf-client's own output. `faf-client'
-;;;       also `propagated-inputs's `fhs-run', so `guix install
-;;;       faf-client' alone gets you both.
-;;;
-;;;   * An earlier revision of this channel also had an experimental,
-;;;     from-source `faf-client-src' (via a Gradle+mitm-cache build) in
-;;;     two extra files, plus a from-scratch attempt at reimplementing
-;;;     https://github.com/FAForever/faf-linux's Proton/DXVK-downloading
-;;;     approach as a *third* package before that. Both were dropped:
-;;;     neither was needed to actually get FAF running, and "so many
-;;;     files/packages" was a fair complaint on its own. See README.md
-;;;     if you want the full history/reasoning, or want that from-source
-;;;     build back.
-;;;
-;;; Not appropriate for upstreaming into Guix proper.
+;;; Instead of upstream's bundled Temurin JRE, the adapters run on Guix's
+;;; OpenJDK.  The game itself (Forged Alliance) still has to come from your
+;;; own Steam/Wine setup and is configured inside the client.
 
 (define-module (Lightningbulb packages faforever)
   #:use-module (guix packages)
-  #:use-module (guix download)
   #:use-module (guix gexp)
-  #:use-module (guix build-system copy)
+  #:use-module (guix download)
+  #:use-module (guix git-download)
+  #:use-module (guix build-system cargo)
+  #:use-module (guix build-system glib-or-gtk)
   #:use-module ((guix licenses) #:prefix license:)
-  #:use-module (ice-9 match)               ; for fhs-run-nvda's lookup
-  #:use-module (gnu packages)              ; specification->package,
-                                            ; find-best-packages-by-name
-  #:use-module (gnu packages bash)         ; bash-minimal
-  #:use-module (gnu packages base)         ; coreutils, for fhs-run
-  #:use-module (nonguix multiarch-container))
+  #:use-module (gnu packages bash)
+  #:use-module (gnu packages compression)
+  #:use-module (gnu packages elf)
+  #:use-module (gnu packages freedesktop)
+  #:use-module (gnu packages gcc)
+  #:use-module (gnu packages glib)
+  #:use-module (gnu packages gnome)
+  #:use-module (gnu packages gtk)
+  #:use-module (gnu packages java)
+  #:use-module (gnu packages node)
+  #:use-module (gnu packages pkg-config)
+  #:use-module (gnu packages tls)
+  #:use-module (gnu packages webkit)
+  #:use-module (Lightningbulb packages js-offline)
+  #:use-module (Lightningbulb packages node-deps)
+  #:use-module (Lightningbulb packages rust-crates))
 
-;; Packages are looked up by name via `specification->package' rather
-;; than imported module-by-module, purely so a wrong guess at which
-;; gnu/packages/*.scm file something lives in produces a clear runtime
-;; error naming the package, instead of a module-import failure that's
-;; harder to place.
-(define (spec name)
-  (specification->package name))
+(define (github-release-asset owner repo tag asset hash)
+  (origin
+    (method url-fetch)
+    (uri (string-append "https://github.com/" owner "/" repo
+                        "/releases/download/" tag "/" asset))
+    (file-name asset)
+    (sha256 (base32 hash))))
 
-;; ---------------------------------------------------------------------
-;; fhs-run
-;; ---------------------------------------------------------------------
-;;
-;; nonguix's own `steam' package (nongnu/packages/game-client.scm) is
-;; architecturally single-purpose: its `nonguix-container' is built with
-;; `(run "/bin/steam")', and `fhs-internal' (the script that actually
-;; sets up the FHS symlinks inside the container) always execs that one
-;; hardcoded target. There is no general "run arbitrary command X inside
-;; this same sandbox" mechanism exposed, unlike nixpkgs' `steam-run'.
-;;
-;; This recreates that missing general-purpose tool using nonguix's own
-;; `nonguix-container' machinery directly: the same FHS union of
-;; libraries Steam itself uses (literally the same `steam-container-libs'
-;; list, reused via `(@@ ...)' since it's a private binding in
-;; game-client.scm -- not copied/reconstructed by hand, to avoid getting
-;; a large, easy-to-typo library list subtly wrong), but with `run'
-;; pointed at plain `env' instead of Steam's launcher. Since
-;; `env PROGRAM ARGS...' just execs PROGRAM with ARGS, invoking the
-;; resulting `fhs-run' command as
-;;
-;;   fhs-run /path/to/some/binary --some-arg --another-arg
-;;
-;; runs that exact command inside the same FHS-configured container
-;; Steam uses, with full control over the executable and every
-;; argument -- which is what FAF's `executableDecorator' + "%s"
-;; substitution actually needs (unlike `steam -applaunch', which only
-;; ever launches Steam's own configured executable for an App ID and
-;; can't substitute a different one).
-;;
-;; NOTE: `(run "/bin/env")' below MUST keep its leading slash.
-;; `file-append' concatenates the package's own store path directly with
-;; this string, with no separator inserted automatically -- omitting the
-;; slash here previously produced a literal, broken path
-;; ("...coreutils-9.1bin/env") and a real "No such file or directory"
-;; failure at the exec step. Confirmed by matching against nonguix's own
-;; `(run "/bin/steam")' convention in game-client.scm.
-(define (steam-container-libs*)
-  ;; `steam-container-libs' is a plain (define ...), not (define-public
-  ;; ...), in (nongnu packages game-client) -- not exported. `(@@ ...)'
-  ;; is the standard, precedented way to reach an unexported binding in
-  ;; another module when you specifically want it (nonguix's own
-  ;; multiarch-container.scm does exactly this for `glibc-for-fhs' in
-  ;; (gnu packages base)).
-  (@@ (nongnu packages game-client) steam-container-libs))
+(define faf-uid-binary
+  ;; scripts/ensure-faf-uid.mjs, v4.0.7
+  (github-release-asset "FAForever" "uid" "v4.0.7" "faf-uid"
+                        "1nk1mk6bj7rsga5dkzfpcfzr1rmsqkd3y13mscm6hqbyrphx0dhi"))
 
-;; Parametrized by `driver' for exactly the same reason nonguix's own
-;; `steam-container-for'/`steam-for' are (nongnu/packages/game-client.scm):
-;; the FHS union's OpenGL/Vulkan/GLX libraries have to be the *same*
-;; graphics driver package as whatever's bound to the host's GPU, or the
-;; container can't create a working GL/Vulkan context against it at all.
-;; An earlier revision of this hardcoded `(steam-container-libs*)'
-;; unmodified -- i.e. always mesa, regardless of what driver the user's
-;; own `steam' package was actually built with -- which silently broke
-;; NVIDIA-proprietary-driver users: mesa's own DRI drivers don't know how
-;; to talk to the NVIDIA kernel module, so the sandboxed process could
-;; see the GPU's PCI device but never get a driver bound to it (confirmed
-;; in practice: "glx: failed to create dri3 screen" / "failed to load
-;; driver: nvidia-drm", with mesa still selected). Fixed by threading a
-;; `driver' parameter through, mirroring nonguix's own pattern exactly.
-(define (fhs-run-container-for driver)
-  (nonguix-container
-   (name "fhs-run")
-   (wrap-package coreutils)
-   (run "/bin/env")
-   (packages
-    (modify-inputs (steam-container-libs*)
-      (replace "mesa" driver)))
-   (link-files '())
-   ;; nonguix's own default preserved-env list already covers anything
-   ;; starting with STEAM_ (needed for STEAM_COMPAT_DATA_PATH and
-   ;; friends, which Proton requires -- see faf-client-setup.py's
-   ;; write_launch_script docstring), but PROTON_NO_ESYNC doesn't match
-   ;; any of its patterns and would otherwise be silently stripped by
-   ;; `guix shell --container`'s environment filtering before ever
-   ;; reaching Proton -- confirmed against nonguix's own
-   ;; multiarch-container.scm, where only variables matching an
-   ;; explicit preserved-env pattern get forwarded into the container
-   ;; at all.
-   (preserved-env '("^PROTON_"))
-   (home-page "https://gitlab.com/nonguix/nonguix")
-   (synopsis "Run an arbitrary command inside Steam's FHS sandbox")
-   (description
-    "This provides a single command, @command{fhs-run}, that runs
-whatever program and arguments you give it inside the same FHS-
-compatible Guix container nonguix's own @code{steam} package uses --
-same bundled libraries, same @file{$HOME/.local/share/guix-sandbox-home}
-convention -- but without Steam itself in the loop. Useful for anything
-that needs to run inside that same sandbox with a specific, externally-
-controlled command line (for example, a game launcher like the Forged
-Alliance Forever client that constructs its own precise launch command
-rather than just wanting extra arguments appended to whatever Steam
-already knows how to launch).")))
+(define faf-pioneer-binary
+  ;; scripts/ensure-faf-pioneer.mjs, 0.2.2
+  (github-release-asset "FAForever" "faf-pioneer" "0.2.2"
+                        "faf-pioneer-0.2.2-linux-amd64"
+                        "0azm1zx76p9rl6vni9gscklzsdf2nmzkhklfagrq80cwq32mv7wl"))
 
-(define-public fhs-run-for
-  (compose nonguix-container->package fhs-run-container-for))
-;; Matches nonguix's own default (`steam' = `(steam-for mesa)') -- pick
-;; this one unless you're on the NVIDIA proprietary driver, in which case
-;; see `fhs-run-nvda' below instead.
-(define-public fhs-run (fhs-run-for (spec "mesa")))
-;; For NVIDIA-proprietary-driver hosts (i.e. wherever your `steam'
-;; package is actually `(steam-for nvda)`, not plain `steam'). Provides
-;; the same `fhs-run' command, just built against `nvda' instead --
-;; can't be installed alongside plain `fhs-run' (or `faf-client', which
-;; propagates it) in the same profile, since both provide an identical
-;; `bin/fhs-run'; use a package transformation instead:
-;;   guix install faf-client --with-input=fhs-run=fhs-run-nvda
-;;
-;; Deliberately NOT just `(fhs-run-for (spec "nvda"))': every top-level
-;; form in this file gets evaluated whenever *any* package from it is
-;; looked up (that's just how Guile modules work), so if `spec' ever
-;; fails to resolve "nvda" here -- e.g. because whatever nonguix commit
-;; is actually pinned doesn't have a package by that exact name, or
-;; names it version-suffixed only -- it takes the *entire module* down
-;; with it, `faf-client' included, not just this one optional variant.
-;; Confirmed in practice: that's exactly what happened here (`guix
-;; repl: error: nvda: unknown package' during `guix pull', and
-;; `faf-client: unknown package' from a plain `guix build -L'
-;; afterwards, for the exact same underlying reason) -- and
-;; `false-if-exception' *cannot* fix this, because `specification->
-;; package''s failure path (`leave', in guix/diagnostics.scm) prints an
-;; error and calls `(exit 1)' directly -- a hard process exit, not a
-;; raised Scheme condition, so nothing short of avoiding the call
-;; entirely can make this recoverable. `find-best-packages-by-name' is
-;; the lower-level procedure `specification->package' itself is built
-;; on (gnu/packages.scm) -- it just returns an empty list on no match,
-;; no `leave', no exit, so failure here can be handled as plain data
-;; instead of crashing the module.
-;;
-;; If `nvda' isn't resolvable on your pinned nonguix, `fhs-run-nvda'
-;; below quietly becomes `#f' instead of a package -- everything else
-;; in this file keeps working -- and `guix package -A "^nvda"' (or
-;; `guix search nvidia') will tell you the actual name to use instead,
-;; passed directly to `fhs-run-for' in your own manifest, e.g.:
-;;   (fhs-run-for (specification->package "nvda-570"))
-(define-public fhs-run-nvda
-  (match (find-best-packages-by-name "nvda" #f)
-    ((driver . _) (fhs-run-for driver))
-    (_ #f)))
+(define faf-java-ice-adapter
+  ;; scripts/ensure-java-ice-adapter.mjs, 3.3.14
+  (github-release-asset "FAForever" "java-ice-adapter" "3.3.14"
+                        "faf-ice-adapter-3.3.14-linux.jar"
+                        "0mnn0x8zy10yhpc4dcq184704xc3mz7kk0zlxkdlska2d74c6mnp"))
 
-;; ---------------------------------------------------------------------
-;; faf-client
-;; ---------------------------------------------------------------------
-;;
-;; Upstream: https://github.com/FAForever/downlords-faf-client (MIT)
-;;
-;; Packaging approach and the native-library list below were checked
-;; against, and the launcher script's JVM flags and classpath-building
-;; trick were adapted from, nix-gaming's faf-client package
-;; (https://github.com/fufexan/nix-gaming/blob/master/pkgs/faf-client/,
-;; MIT, credit: chayleaf and contributors).
-;;
-;; This repackages FAForever's own prebuilt Linux release tarball
-;; (named e.g. "faf_unix_2026_7_0.tar.gz", attached to GitHub release
-;; v2026.7.0). Inside it:
-;;
-;;   - lib/*.jar        ~195 jars, incl. `faf-client-<ver>-plain.jar',
-;;                       the actual application
-;;                       (Main-Class: com.faforever.client.Main).
-;;   - natives/          faf-uid (static ELF, no dynamic deps; also a
-;;                       .exe/macOS build we don't need and drop),
-;;                       faf-ice-adapter.jar.
-;;   - .install4j/        install4j's proprietary runtime + a generated
-;;                       launcher wrapper. Not needed to run the app —
-;;                       `com.faforever.client.Main' can be started with
-;;                       a plain classpath invocation instead (confirmed
-;;                       from the jar's own manifest) — so we drop this
-;;                       directory entirely and never touch it.
-(define-public faf-client
-  (package
-    (name "faf-client")
-    (version "2026.7.0")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (string-append
-             "https://github.com/FAForever/downlords-faf-client/releases/"
-             "download/v" version "/faf_unix_"
-             (string-map (lambda (c) (if (char=? c #\.) #\_ c)) version)
-             ".tar.gz"))
-       (sha256
-        (base32
-         ;; Computed locally from the actual downloaded tarball
-         ;; (sha256 hex: 28bcddcf6b5b5b0e0b1441229346507837aa586c2c16d518011f35f93adcbc46)
-         ;; and converted to Guix's base32 by hand -- double-check this
-         ;; against `guix download <url>' before relying on it.
-         "0imwvhxgjd8z04cda5icdicaldvqa13968j12h5hwnsvdg7xvg18"))))
-    (build-system copy-build-system)
-    (arguments
-     (list
-      #:install-plan
-      #~'(("lib" "share/faf-client/lib/")
-          ("faf-client.vmoptions" "share/faf-client/")
-          ("steam_appid.txt" "share/faf-client/"))
-      #:modules '((guix build copy-build-system)
-                  (guix build utils))
-      #:phases
-      #~(modify-phases %standard-phases
-          (add-after 'unpack 'drop-nonfree-install4j-bits
-            (lambda _
-              (when (file-exists? ".install4j")
-                (delete-file-recursively ".install4j"))
-              ;; Windows/macOS-only; drop rather than ship other-OS/arch
-              ;; binaries in a Linux-only package.
-              (for-each (lambda (f)
-                          (when (file-exists? (string-append "natives/" f))
-                            (delete-file (string-append "natives/" f))))
-                        '("faf-uid.exe" "faf-uid-macos"))))
-          (add-after 'install 'install-natives
-            (lambda* (#:key outputs #:allow-other-keys)
-              ;; Two ENOENT errors in a row (first from `execve', then
-              ;; from `chmod', both against the exact same computed
-              ;; path) indicated copy-build-system's install-plan simply
-              ;; wasn't putting natives/faf-uid where assumed -- rather
-              ;; than guess again at its exact directory-copy semantics,
-              ;; this is done explicitly instead: copy straight from the
-              ;; still-current unpacked source tree (phases don't change
-              ;; the working directory, so "natives/..." below is still
-              ;; valid here, after 'install) to a path fully controlled
-              ;; here, and set the permission bit on that exact same
-              ;; path -- no more guessing about what an intermediate
-              ;; copy step does or doesn't preserve.
-              (let* ((out     (assoc-ref outputs "out"))
-                     (natives (string-append out "/share/faf-client/natives")))
-                (mkdir-p natives)
-                (copy-file "natives/faf-uid" (string-append natives "/faf-uid"))
-                (chmod (string-append natives "/faf-uid") #o755)
-                (copy-file "natives/faf-ice-adapter.jar"
-                           (string-append natives "/faf-ice-adapter.jar")))))
-          (add-after 'install-natives 'install-launcher
-            (lambda* (#:key inputs outputs #:allow-other-keys)
-              (let* ((out   (assoc-ref outputs "out"))
-                     (share (string-append out "/share/faf-client"))
-                     (bin   (string-append out "/bin"))
-                     (java  (search-input-file inputs "bin/java")))
-                (mkdir-p bin)
-                ;; JVM flags and the "classpath = every jar except the
-                ;; ice-adapter one" trick both follow nix-gaming's
-                ;; start.sh, which has been shaking out real-world
-                ;; problems (memory limits, GC pauses, javafx cache
-                ;; location) for a while now.
-                (call-with-output-file (string-append bin "/faf-client")
-                  (lambda (port)
-                    (format port
-                            "#!~a
-# Bypasses upstream's install4j launcher and starts the real application
-# entry point directly; see the comment on the `faf-client' package in
-# faforever.scm for why that's fine.
-set -e
-cd ~a
-export LD_LIBRARY_PATH=\"~a${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}\"
-export LOG_DIR=\"${LOG_DIR:-$HOME/.faforever/logs}\"
-cp=\"$(find ~a/lib -type f -name '*.jar' \\
-       ! -name 'faf-ice-adapter.jar' -printf '%p:' | sed 's/:$//')\"
-exec ~a \\
-     -Xmx712m -XX:ConcGCThreads=1 -XX:ParallelGCThreads=1 -XX:+UseG1GC \\
-     -XX:+HeapDumpOnOutOfMemoryError \\
-     -Djava.net.preferIPv4Stack=true \\
-     \"-DnativeDir=~a/natives\" \\
-     -Dprism.forceGPU=true \\
-     \"-Djava.library.path=~a/lib\" \\
-     --add-opens=java.base/java.lang=ALL-UNNAMED \\
-     \"-Djavafx.cachedir=${XDG_CACHE_HOME:-$HOME/.cache}/openjfx\" \\
-     -classpath \"$cp\" \\
-     com.faforever.client.Main \"$@\"\n"
-                            (search-input-file inputs "bin/bash")
-                            share
-                            "@LIB_PLACEHOLDER@"
-                            share java share share)))
-                (chmod (string-append bin "/faf-client") #o755)
-                ;; The setup script has zero Guix-specific dependencies
-                ;; (stdlib-only port of nix-gaming's faf-client-setup.py;
-                ;; see README.md), so it's just copied in and chmod'd.
-                (copy-file #$(local-file "faf-client-setup.py")
-                           (string-append bin "/faf-client-setup"))
-                (chmod (string-append bin "/faf-client-setup") #o755)
-                ;; The script's own shebang says `#!/usr/bin/env python3',
-                ;; which only works if python3 happens to be on the
-                ;; invoking user's PATH already. `patch-shebang' rewrites
-                ;; it to the absolute store path of the `python' input
-                ;; instead, which is the standard Guix fix for exactly
-                ;; this situation.
-                (patch-shebang (string-append bin "/faf-client-setup")))))
-          (add-after 'install-launcher 'wrap-native-library-path
-            (lambda* (#:key inputs outputs #:allow-other-keys)
-              (let* ((out (assoc-ref outputs "out"))
-                     ;; JavaFX on Linux ships its own native libraries
-                     ;; (libglass.so, libprism_es2.so,
-                     ;; libgstreamer-lite.so, libjfxwebkit.so, ...)
-                     ;; *inside* the javafx-*-linux jars, extracted to a
-                     ;; cache dir at runtime, carrying no RPATH/RUNPATH
-                     ;; at all (checked with readelf), so on a non-FHS
-                     ;; system they need LD_LIBRARY_PATH to find their
-                     ;; deps. This exact 9-package list is what
-                     ;; nix-gaming's working package uses for the same
-                     ;; jars (mesa/libGL, libx11, libxxf86vm, libxtst,
-                     ;; gtk+/gtk3, pango, glib, fontconfig, freetype,
-                     ;; alsa-lib) — cairo/atk/gdk-pixbuf aren't listed
-                     ;; separately because gtk+'s own RPATH already
-                     ;; resolves those once LD_LIBRARY_PATH gets it that
-                     ;; far, on both Nix and Guix.
-                     (lib-inputs
-                      '("mesa" "libx11" "libxxf86vm" "libxtst" "gtk+"
-                        "pango" "glib" "fontconfig" "freetype" "alsa-lib"))
-                     (path (let loop ((names lib-inputs) (acc ""))
-                             (if (null? names)
-                                 acc
-                                 (let ((dir (string-append
-                                             (assoc-ref inputs (car names))
-                                             "/lib")))
-                                   (loop (cdr names)
-                                         (if (= (string-length acc) 0)
-                                             dir
-                                             (string-append acc ":" dir)))))))
-                     (launcher (string-append out "/bin/faf-client")))
-                (substitute* launcher
-                  (("@LIB_PLACEHOLDER@") path))))))))
-    (native-inputs '())
-    (propagated-inputs (list fhs-run)) ; so `guix install faf-client'
-                                        ; alone gets you `fhs-run' too --
-                                        ; faf-client-setup needs it to
-                                        ; build the actual game launch
-                                        ; command
-    (inputs
-     (list bash-minimal
-           (spec "openjdk")   ; MUST be >= 25 -- see README.md
-           (spec "mesa")
-           (spec "libx11")
-           (spec "libxxf86vm")
-           (spec "libxtst")
-           (spec "gtk+")
-           (spec "pango")
-           (spec "glib")
-           (spec "fontconfig")
-           (spec "freetype")
-           (spec "alsa-lib")
-           (spec "python")))  ; runs faf-client-setup
-    (home-page "https://faforever.com/")
-    (synopsis "Client for the Forged Alliance Forever community game service")
-    (description
-     "This package repackages FAForever's own official prebuilt Linux
-release of @code{downlords-faf-client}, the JavaFX-based lobby, patcher,
-and matchmaking client for Supreme Commander: Forged Alliance, played
-online via the Forged Alliance Forever (FAF) community project. It
-provides two commands:
+(define faf-exp-java-ice-adapter
+  ;; scripts/ensure-exp-java-ice-adapter.mjs, 4.0.1
+  (github-release-asset "GodFuper" "java-ice-adapter" "4.0.1"
+                        "faf-ice-adapter-4.0.1-linux.jar"
+                        "0yzxnd053bhm4jxqn92dy4xil9gpn9fm1zby7w8gvjzkh5s8wm7d"))
 
-@table @command
-@item faf-client
-The lobby/matchmaking application itself.
-@item faf-client-setup
-A detect-and-configure script for the game launch command: it looks for
-an existing Steam install of Supreme Commander: Forged Alliance (which
-you must already own — this package cannot provide it) and its
-Steam-managed Proton prefix, or asks you to point it at a plain Wine
-prefix instead, and writes @file{~/.faforever/client.prefs} accordingly.
-It does not install or download Wine, Proton, or DXVK itself.
-@end table")
-    (license license:expat)))
+(define-public faforever-client
+  (let ((commit "e5533b3c8c096797bc4169d43cf7564b628932d1")
+        (revision "0"))
+    (package
+      (name "faforever-client")
+      (version (git-version "0.9.1" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/FAForeverRustClient/FAForeverRustClient")
+               (commit commit)))
+         (file-name (git-file-name name version))
+         (sha256
+          (base32 "18wil8wnx4c8d3w3r3i3vj2lhgs3cg1r1533xm1sj9p0d1q2wnwz"))))
+      (build-system cargo-build-system)
+      (arguments
+       (list
+        #:install-source? #f
+        #:tests? #f                     ;several suites need network/display
+        #:imported-modules `(,@%cargo-build-system-modules
+                             ,@%glib-or-gtk-build-system-modules)
+        #:modules '((guix build cargo-build-system)
+                    ((guix build glib-or-gtk-build-system) #:prefix gtk:)
+                    (guix build utils))
+        #:phases
+        #~(modify-phases %standard-phases
+            (add-after 'unpack 'build-frontend
+              (lambda _
+                (let ((top (getcwd)))
+                  (setenv "HOME" (string-append top "/.home"))
+                  (setenv "XDG_DATA_HOME" (string-append top "/.home/share"))
+                  (setenv "XDG_CACHE_HOME" (string-append top "/.home/cache"))
+                  (setenv "XDG_CONFIG_HOME" (string-append top "/.home/config"))
+                  (mkdir-p ".pnpm")
+                  (invoke "tar" "xf" #$faforever-client-pnpm-tarball "-C" ".pnpm")
+                  ;; Upstream refuses packages younger than a day; checking
+                  ;; that needs registry metadata we don't have (and the
+                  ;; lockfile already pins everything by hash).
+                  (substitute* ".npmrc"
+                    (("^minimum-release-age=.*") ""))
+                  (let ((port (open-file "pnpm-workspace.yaml" "a")))
+                    (display "\nminimumReleaseAge: 0\n" port)
+                    (close-port port))
+                  (let ((registry #$(start-offline-npm-registry
+                                     (offline-npm-registry
+                                      "faforever-client"
+                                      faforever-client-npm-tarballs))))
+                    (invoke "node" ".pnpm/package/bin/pnpm.mjs" "install"
+                            "--frozen-lockfile" "--ignore-scripts"
+                            "--reporter=append-only"
+                            (string-append "--registry="
+                                           (getenv "npm_config_registry"))
+                            (string-append "--store-dir=" top "/.pnpm-store"))
+                    (kill registry SIGTERM))
+                  ;; "pnpm build" minus its pnpm-only guard script -> ui/dist
+                  (invoke "node" "node_modules/vite/bin/vite.js" "build"))))
+            (add-after 'unpack 'find-nonguix-steam
+              ;; Also auto-detect Forged Alliance under the sandbox home of
+              ;; nonguix's `steam' package, next to the native and Flatpak
+              ;; Steam folders upstream already checks.
+              (lambda _
+                (substitute* "crates/faf-app/src/infra/game_updater/install.rs"
+                  (("^( *)roots\\.push\\(home\\.join\\(\"\\.var/app/com\\.valvesoftware\\.Steam/\\.local/share/Steam\"\\)\\);"
+                    all indent)
+                   (string-append
+                    all "\n" indent
+                    "roots.push(home.join(\".local/share/guix-sandbox-home/.local/share/Steam\"));")))))
+            (replace 'build
+              (lambda _
+                (invoke "cargo" "build" "--offline" "--release"
+                        "--package" "faforever-rust-client"
+                        "--features" "tauri/custom-protocol")))
+            (replace 'install
+              (lambda* (#:key inputs #:allow-other-keys)
+                (define (cargo-output name)
+                  ;; target/release/NAME, or target/<triplet>/release/NAME
+                  ;; when the build system sets CARGO_BUILD_TARGET.
+                  (let ((hits (filter (lambda (f)
+                                        (string-suffix?
+                                         (string-append "/release/" name) f))
+                                      (find-files "target"
+                                                  (string-append "^" name "$")))))
+                    (if (null? hits)
+                        (error "cannot find cargo output" name)
+                        (car hits))))
+                (let* ((libdir  (string-append #$output "/lib/faforever-client"))
+                       (natives (string-append libdir "/natives"))
+                       (bin     (string-append #$output "/bin"))
+                       (real    (string-append libdir "/faforever-rust-client"))
+                       (ld.so   (search-input-file inputs
+                                                   "lib/ld-linux-x86-64.so.2"))
+                       ;; gcc:lib is referenced here rather than listed as an
+                       ;; input: an input labelled "gcc" would replace the
+                       ;; compiler cargo-build-system exports as $CC.
+                       (rpath   (string-append (ungexp gcc "lib") "/lib"
+                                               ":" (dirname ld.so))))
+                  (define (install-native source target)
+                    (mkdir-p (dirname target))
+                    (copy-file source target)
+                    (chmod target #o755))
+                  (define (patch-prebuilt file)
+                    ;; Make the prebuilt ELF files usable on Guix: point the
+                    ;; dynamic ones at Guix's loader and libraries.  Static
+                    ;; ones have no interpreter and are left alone.
+                    (when (false-if-exception
+                           (invoke "patchelf" "--print-interpreter" file))
+                      (invoke "patchelf" "--set-interpreter" ld.so file))
+                    (when (false-if-exception
+                           (invoke "patchelf" "--print-needed" file))
+                      (invoke "patchelf" "--set-rpath" rpath file)))
+                  ;; The client resolves its helpers relative to its own
+                  ;; executable, so it lives next to natives/ in libdir.
+                  (install-file (cargo-output "faforever-rust-client") libdir)
+                  (install-native #$faf-uid-binary
+                                  (string-append natives "/faf-uid"))
+                  (install-native #$faf-pioneer-binary
+                                  (string-append natives "/faf-pioneer"))
+                  (install-native #$faf-java-ice-adapter
+                                  (string-append natives
+                                                 "/java-ice-adapter/faf-ice-adapter.jar"))
+                  (install-native #$faf-exp-java-ice-adapter
+                                  (string-append natives
+                                                 "/exp-java-ice-adapter/faf-ice-adapter.jar"))
+                  (install-native "vendor/steamworks/linux64/libsteam_api.so"
+                                  (string-append natives "/steam/libsteam_api.so"))
+                  (for-each patch-prebuilt
+                            (map (lambda (f) (string-append natives f))
+                                 '("/faf-uid" "/faf-pioneer"
+                                   "/steam/libsteam_api.so")))
+                  ;; Launcher.  Every default can be overridden from the
+                  ;; environment, as documented in upstream's README.
+                  (mkdir-p bin)
+                  (call-with-output-file (string-append bin "/faforever-client")
+                    (lambda (port)
+                      (format port "#!~a
+export FAF_JAVA_PATH=\"${FAF_JAVA_PATH:-~a}\"
+export FAF_UID_PATH=\"${FAF_UID_PATH:-~a/faf-uid}\"
+export FAF_ICE_ADAPTER_JAR=\"${FAF_ICE_ADAPTER_JAR:-~a/java-ice-adapter/faf-ice-adapter.jar}\"
+export FAF_EXP_JAVA_ICE_ADAPTER_JAR=\"${FAF_EXP_JAVA_ICE_ADAPTER_JAR:-~a/exp-java-ice-adapter/faf-ice-adapter.jar}\"
+export FAF_ICE_ADAPTER_PATH=\"${FAF_ICE_ADAPTER_PATH:-~a/faf-pioneer}\"
+export FAF_STEAM_API_PATH=\"${FAF_STEAM_API_PATH:-~a/steam/libsteam_api.so}\"
+exec -a \"$0\" ~a \"$@\"~%"
+                              (search-input-file inputs "bin/bash")
+                              (search-input-file inputs "bin/java")
+                              natives natives natives natives natives
+                              real)))
+                  (chmod (string-append bin "/faforever-client") #o755)
+                  ;; Desktop integration (incl. the replay file types the
+                  ;; Tauri bundle would register).
+                  (for-each
+                   (lambda (pair)
+                     (let ((dir (string-append #$output "/share/icons/hicolor/"
+                                               (cdr pair) "/apps")))
+                       (mkdir-p dir)
+                       (copy-file (string-append "src-tauri/icons/" (car pair))
+                                  (string-append dir "/faforever-client.png"))))
+                   '(("32x32.png" . "32x32")
+                     ("64x64.png" . "64x64")
+                     ("128x128.png" . "128x128")
+                     ("128x128@2x.png" . "256x256")
+                     ("icon.png" . "512x512")))
+                  (let ((apps (string-append #$output "/share/applications"))
+                        (mime (string-append #$output "/share/mime/packages")))
+                    (mkdir-p apps)
+                    (mkdir-p mime)
+                    (call-with-output-file (string-append apps "/faforever-client.desktop")
+                      (lambda (port)
+                        (format port "[Desktop Entry]
+Type=Application
+Name=FAForever Client
+Comment=Forged Alliance Forever client
+Exec=~a/faforever-client %f
+Icon=faforever-client
+Terminal=false
+Categories=Game;StrategyGame;
+MimeType=application/x-fafreplay;application/x-scfareplay;
+StartupWMClass=faforever-rust-client
+" bin)))
+                    (call-with-output-file (string-append mime "/faforever-client.xml")
+                      (lambda (port)
+                        (display "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<mime-info xmlns=\"http://www.freedesktop.org/standards/shared-mime-info\">
+  <mime-type type=\"application/x-fafreplay\">
+    <comment>Forged Alliance Forever replay</comment>
+    <glob pattern=\"*.fafreplay\"/>
+  </mime-type>
+  <mime-type type=\"application/x-scfareplay\">
+    <comment>Supreme Commander replay</comment>
+    <glob pattern=\"*.scfareplay\"/>
+  </mime-type>
+</mime-info>
+" port)))))))
+            ;; Prebuilt natives: don't strip them, and don't fail the build
+            ;; over libraries they may dlopen from the game environment.
+            (delete 'strip)
+            (delete 'validate-runpath)
+            (add-after 'install 'glib-or-gtk-wrap
+              (assoc-ref gtk:%standard-phases 'glib-or-gtk-wrap))
+            (add-after 'glib-or-gtk-wrap 'wrap-program
+              (lambda* (#:key inputs #:allow-other-keys)
+                (wrap-program (string-append #$output "/bin/faforever-client")
+                  ;; The tray icon dlopen()s libappindicator3.
+                  `("LD_LIBRARY_PATH" suffix
+                    (,#$(file-append (this-package-input "libappindicator")
+                                     "/lib")))
+                  ;; "Open in browser" etc. go through xdg-open.
+                  `("PATH" suffix
+                    (,(dirname (search-input-file inputs "bin/xdg-open"))))
+                  `("WEBKIT_DISABLE_DMABUF_RENDERER" = ("1"))))))))
+      (native-inputs (list node patchelf pkg-config))
+      (inputs
+       (append
+        (list bash-minimal
+              dbus                    ;libdbus-sys
+              glib-networking
+              gsettings-desktop-schemas
+              gtk+
+              libappindicator
+              librsvg
+              openjdk
+              openssl
+              webkitgtk-for-gtk3
+              xdg-utils
+              ;; Guix makes zstd-sys link the system libzstd.
+              `(,zstd "lib"))
+        faforever-client-cargo-inputs))
+      (supported-systems '("x86_64-linux"))
+      (home-page "https://github.com/FAForeverRustClient/FAForeverRustClient")
+      (synopsis "Client for Forged Alliance Forever, written in Rust and Tauri")
+      (description
+       "This is a modular client for FAForever, the community-run online
+platform for Supreme Commander: Forged Alliance.  It covers logging in
+(OAuth), custom games and matchmaking (parties, map pool vetoes, co-op,
+Galactic War), lobby chat, the map/mod/replay vault with live spectating and
+the Neroxis map generator, tournaments, leaderboards and clans.  It needs a
+separately installed copy of Forged Alliance (e.g. Steam with Proton/Wine) to
+actually play.")
+      (license license:expat))))
