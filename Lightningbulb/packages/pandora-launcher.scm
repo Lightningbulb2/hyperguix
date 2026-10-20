@@ -34,6 +34,7 @@
   #:use-module (gnu packages linux)
   #:use-module (gnu packages pkg-config)
   #:use-module (gnu packages pulseaudio)
+  #:use-module (gnu packages rust)
   #:use-module (gnu packages sqlite)
   #:use-module (gnu packages tls)
   #:use-module (gnu packages vulkan)
@@ -58,6 +59,8 @@
       (build-system cargo-build-system)
       (arguments
        (list
+        ;; Zed's GPUI uses std APIs stabilised in Rust 1.95.
+        #:rust rust-1.95
         #:install-source? #f
         #:tests? #f
         #:phases
@@ -71,17 +74,6 @@
                     indent "\"" #$(this-package-input "glfw") "/lib/\",\n"
                     indent "\"" #$(this-package-input "openal") "/lib/\",\n"
                     all)))))
-            (add-after 'unpack 'allow-rust-1.93
-              ;; Zed's gpui uses two std APIs stabilised in Rust 1.95; Guix
-              ;; ships 1.93.  Both have exact older equivalents:
-              ;;  * std::hint::cold_path() is only an optimisation hint;
-              ;;  * Atomic*::try_update is the renamed fetch_update.
-              (lambda _
-                (substitute* (find-files "vendor/gpui/src" "\\.rs$")
-                  (("std::hint::cold_path\\(\\);") "();"))
-                (substitute* "vendor/gpui-base/src/text_selection.rs"
-                  (("\\.try_update\\(") ".fetch_update("))
-                #t))
             (add-before 'configure 'save-upstream-cargo-setup
               (lambda _
                 (copy-file "Cargo.lock" "Cargo.lock.upstream")
@@ -100,7 +92,7 @@
             ;; checksum rewriting would only break that.
             (delete 'patch-cargo-checksums)
             (add-before 'build 'relax-vendor-checksums
-              ;; Guix's shebang patching (and the edits above) touch files
+              ;; Guix's shebang patching touches files
               ;; under vendor/, which cargo verifies file by file.  Drop the
               ;; per-file lists but keep each crate's "package" checksum, so
               ;; the tarball contents are still tied to Cargo.lock.
