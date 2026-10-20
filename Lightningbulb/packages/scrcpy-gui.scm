@@ -138,10 +138,12 @@ StartupWMClass=scrcpy-gui-v3
                             (dirname (search-input-file inputs
                                                         (string-append "bin/" cmd))))
                           '("scrcpy" "adb" "xdotool" "pkill")))
-                  ;; Same workarounds as upstream's Nix flake: WebKitGTK's
-                  ;; DMA-BUF renderer misbehaves on many GPU/driver combos.
-                  `("WEBKIT_DISABLE_DMABUF_RENDERER" = ("1"))
-                  `("WEBKIT_DISABLE_COMPOSITING_MODE" = ("1")))))
+                  ;; WebKitGTK's DMA-BUF renderer misbehaves with many
+                  ;; GPU/driver combinations (NVIDIA in particular).  Unlike
+                  ;; upstream's Nix flake we do not also force
+                  ;; WEBKIT_DISABLE_COMPOSITING_MODE: it can leave the
+                  ;; window's title-bar buttons unresponsive.
+                  `("WEBKIT_DISABLE_DMABUF_RENDERER" = ("1")))))
             (add-after 'wrap-program 'add-short-name
               (lambda _
                 (symlink "scrcpy-gui-v3"
