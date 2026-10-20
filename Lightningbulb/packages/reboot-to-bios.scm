@@ -5,7 +5,7 @@
 ;; EFI_OS_INDICATIONS_BOOT_TO_FW_UI bit in the OsIndications efivar --
 ;; without disturbing any other bits already set in that variable.
 
-(define-module (reboot-to-bios)
+(define-module (Lightningbulb packages reboot-to-bios)
   #:use-module (guix packages)
   #:use-module (guix build-system trivial)
   #:use-module (guix gexp)
