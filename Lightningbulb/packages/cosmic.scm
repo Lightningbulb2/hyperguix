@@ -101,6 +101,17 @@
       #:phases
       #~(modify-phases %standard-phases
           #$@(vendor-git-crates-phases git-crates)
+          (add-after 'unpack 'patch-justfile-shebangs
+            ;; Recipes like `install-plugins' run through `#!/usr/bin/env
+            ;; sh'; the build sandbox has no /usr/bin/env.  (Guix's
+            ;; shebang patching only looks at the first line of a file.)
+            (lambda _
+              (for-each
+               (lambda (file)
+                 (substitute* file
+                   (("#!/usr/bin/env (sh|bash)" _ shell)
+                    (string-append "#!" (which shell)))))
+               (find-files "." "^(justfile|Justfile|.*\\.just)$"))))
           (add-after 'unpack 'set-build-environment
             (lambda _
               (for-each (lambda (pair) (setenv (car pair) (cdr pair)))
