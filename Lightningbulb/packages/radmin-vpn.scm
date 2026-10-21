@@ -194,8 +194,14 @@ exec ~a \"~a/~a\" \"$@\"~%"
             (add-after 'install 'wrap-launchers
               (lambda* (#:key inputs #:allow-other-keys)
                 (let ((path (map (lambda (cmd)
-                                   (dirname (search-input-file inputs
-                                                               (string-append "bin/" cmd))))
+                                   ;; Some tools live in sbin/ (iproute's
+                                   ;; `ip', for one), so look in both.
+                                   (dirname
+                                    (or (false-if-exception
+                                         (search-input-file
+                                          inputs (string-append "bin/" cmd)))
+                                        (search-input-file
+                                         inputs (string-append "sbin/" cmd)))))
                                  '("wine" "bash" "ls" "sed" "grep" "awk" "find"
                                    "cmp" "pgrep" "ip" "modprobe" "dmesg" "iconv"
                                    "curl" "python3" "zenity"))))
