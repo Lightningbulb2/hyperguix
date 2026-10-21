@@ -470,7 +470,17 @@ remotes."))
                     "08rzvxxj0009k370c80vpqry4hilcr8v8hc3pg8scgqa9xa41kck"
                     #:cargo-inputs cosmic-viewer-cargo-inputs
                     #:git-crates cosmic-viewer-git-crates
-                    #:extra-inputs (list libheif libjpeg-turbo)
+                    #:extra-inputs (list libheif libjpeg-turbo-3) ;turbojpeg-sys wants >= 3.0
+                    ;; Both -sys crates default to compiling bundled copies
+                    ;; with CMake (libheif with a dozen codecs); link
+                    ;; Guix's libheif and libjpeg-turbo through pkg-config.
+                    #:build-env '(("TURBOJPEG_SOURCE" . "pkg-config"))
+                    #:extra-phases
+                    (list
+                     #~(add-after 'unpack 'use-system-libheif
+                         (lambda _
+                           (substitute* "Cargo.toml"
+                             (("\"embedded-libheif\",") "")))))
                     #:synopsis "Image viewer of the COSMIC desktop"
                     #:description
                     "COSMIC Image Viewer displays images, including HEIF and
