@@ -41,6 +41,7 @@
   #:use-module (gnu packages package-management)
   #:use-module (gnu packages pkg-config)
   #:use-module (gnu packages python)
+  #:use-module (gnu packages regex)
   #:use-module (gnu packages rust)
   #:use-module (gnu packages rust-apps)
   #:use-module (gnu packages tls)
@@ -417,6 +418,9 @@ search, network and trash locations, and desktop-icon support."))
                     "1qsyrxfg5cl40hkb004807z8ywsh62k6la7152v4jv6p403ln7pg"
                     #:cargo-inputs cosmic-edit-cargo-inputs
                     #:git-crates cosmic-edit-git-crates
+                    ;; Guix's cargo-build-system sets RUSTONIG_SYSTEM_LIBONIG,
+                    ;; so onig_sys (syntax highlighting) links the system copy.
+                    #:extra-inputs (list oniguruma)
                     #:synopsis "Text editor of the COSMIC desktop"
                     #:description
                     "COSMIC Text Editor is a tabbed text editor with syntax
