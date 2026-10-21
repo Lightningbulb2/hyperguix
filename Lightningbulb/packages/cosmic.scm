@@ -82,6 +82,7 @@
                            (build-env '())
                            (just-vars #f)
                            (build-recipe "build-release")
+                           (build-args '())
                            (install-recipes '("install"))
                            (extra-phases '())
                            (license license:gpl3)
@@ -108,7 +109,7 @@
               (setenv "CARGO_NET_OFFLINE" "true")))
           (replace 'build
             (lambda _
-              (invoke "just" #$build-recipe)))
+              (apply invoke "just" #$build-recipe '#$build-args)))
           (replace 'install
             (lambda _
               (apply invoke "just"
@@ -177,6 +178,10 @@ workspaces, multi-monitor and multi-GPU support, and XWayland."))
    #:cargo-inputs cosmic-session-cargo-inputs
    #:git-crates cosmic-session-git-crates
    #:extra-inputs (list bash-minimal)
+   ;; Without systemd, cosmic-session itself must start the XDG autostart
+   ;; entries (~/.config/autostart, /etc/xdg/autostart); that code is behind
+   ;; a non-default feature.
+   #:build-args '("--features" "autostart")
    #:just-vars #~(list "prefix" #$output "rootdir" ""
                        ;; Screen reader started by the session (optional).
                        "orca" "orca")
