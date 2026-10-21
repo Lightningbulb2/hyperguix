@@ -332,6 +332,15 @@ applications, with user-defined folders."))
                     #:version "1.0.12"
                     #:cargo-inputs cosmic-workspaces-epoch-cargo-inputs
                     #:git-crates cosmic-workspaces-epoch-git-crates
+                    ;; The one component with a Makefile instead of a justfile.
+                    #:extra-phases
+                    (list
+                     #~(replace 'build
+                         (lambda _ (invoke "make")))
+                     #~(replace 'install
+                         (lambda _
+                           (invoke "make" "install"
+                                   (string-append "prefix=" #$output)))))
                     #:synopsis "Workspace overview of the COSMIC desktop"
                     #:description
                     "cosmic-workspaces shows all workspaces and their windows,
