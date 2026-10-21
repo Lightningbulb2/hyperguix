@@ -176,7 +176,7 @@
                     #:build-env '(("GIT_HASH"
                                    . "41497b42d9744d9963c4c6d17e8add49489b45ee"))
                     #:git-crates cosmic-comp-git-crates
-                    #:extra-inputs (list libdisplay-info seatd)
+                    #:extra-inputs (list libdisplay-info libseat) ;Guix's seatd drops lib/ and include/
                     #:synopsis "Wayland compositor of the COSMIC desktop"
                     #:description
                     "cosmic-comp is the Smithay-based Wayland compositor at the
@@ -524,8 +524,11 @@ disk, network and GPU usage."))
   (cosmic-component "cosmic-greeter" "98df07df93df1cb091c95451f7162dca1a2ae2dd"
                     "17sdkfjfg1dzrdgwazarm65w0aq2v7w546800ih8yvr2ilwq57c9"
                     #:cargo-inputs cosmic-greeter-cargo-inputs
+                    ;; build.rs only skips git (absent in Guix checkouts)
+                    ;; when both of these are set.
                     #:build-env '(("VERGEN_GIT_SHA"
-                                   . "98df07df93df1cb091c95451f7162dca1a2ae2dd"))
+                                   . "98df07df93df1cb091c95451f7162dca1a2ae2dd")
+                                  ("VERGEN_GIT_COMMIT_DATE" . "2026-10-07"))
                     #:git-crates cosmic-greeter-git-crates
                     #:extra-inputs (list dav1d linux-pam)
                     #:extra-native-inputs (list clang)
