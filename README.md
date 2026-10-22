@@ -1,96 +1,154 @@
-# Lightningbulb channel additions
+# Lightningbulb's Guix channel
 
-Drop the `Lightningbulb/` directory into the root of your channel (next to your
-existing `Lightningbulb/packages/*.scm`). Modules are named
-`(Lightningbulb packages <file>)`, so the directory name must match exactly.
+Packages Guix doesn't have (or doesn't have in a usable form), used by the
+`thekitchen` system config (`~/config_cosmic.scm`). Modules are named
+`(Lightningbulb packages <file>)`.
 
-| Module | Package(s) | Command(s) |
-| --- | --- | --- |
-| `scrcpy.scm` | `scrcpy` 5.0.1 | `scrcpy` |
-| `scrcpy-gui.scm` | `scrcpy-gui` 4.1.0 | `scrcpy-gui` (`scrcpy-gui-v3`) |
-| `faforever.scm` | `faforever-client` 0.9.1 (Rust/Tauri client) | `faforever-client` |
-| `pandora-launcher.scm` | `pandora-launcher` 5.3.1 | `pandora-launcher` |
-| `radmin-vpn.scm` | `radmin-vpn-linux` 1.1.0 | `radmin-vpn`, `radmin-vpn-health-check`, `radmin-vpn-vps`, `radmin-vpn-datacenter` |
-| `craft.scm` | `photocraft` 0.10.0, `effectcraft` 0.12.0, `filmcraft` 0.9.0 | `photocraft`, `effectcraft`, `filmcraft` (+ `*-cli`) |
-| `cosmic.scm` | `cosmic` (meta) + 26 components incl. `xdg-desktop-portal-cosmic`, `pop-launcher`, `cosmic-icons`, `cosmic-sound-theme`, `cosmic-wallpapers` | log in to the "COSMIC" session |
-
-Support modules (no packages of their own):
-
-- `rust-crates.scm` *(generated)*: one origin per crate in the scrcpy-gui and
-  FAForever `Cargo.lock` files. Hashes are the lockfile checksums.
-- `node-deps.scm` *(generated)*: one origin per npm tarball in their
-  `package-lock.json` / `pnpm-lock.yaml` (plus pnpm itself).
-- `craft-crates.scm`, `cosmic-crates.scm` *(generated)*: crates.io origins plus
-  pinned git checkouts for crates the lockfiles take from git.
-- `cargo-git.scm` + `aux-files/vendor-git-crates.py`: vendors those git
-  crates offline (what `cargo vendor` would do) so cargo can build without
-  network.
-- `js-offline.scm`: serves those tarballs from a throw-away HTTP registry on
-  127.0.0.1 during the build, so `npm ci` / `pnpm install --frozen-lockfile`
-  run unmodified with no network.
-
-```sh
-guix build -L /path/to/channel scrcpy scrcpy-gui faforever-client \
-                               pandora-launcher radmin-vpn-linux
+```scheme
+(channel
+  (name 'local-channel)
+  (url "file:///home/Lightningbulb/local-channel")
+  (branch "master"))
 ```
+
+Changes only count once committed; then `guix pull -C ~/config_cosmic.scm
+--unsafe-channel-evaluation --allow-downgrades` and `sudo guix system
+reconfigure ~/config_cosmic.scm`. To try uncommitted changes:
+`guix build -L ~/local-channel PACKAGE`.
+
+The channel depends on nonguix (`.guix-channel`): several packages use its
+`linux` kernel, NVIDIA driver, Electron, fonts or binary build systems.
+
+## Packages
+
+| Module | Package(s) | Notes |
+| --- | --- | --- |
+| `cosmic.scm` | `cosmic` (meta) and all its components, `cosmic-greeter`, `pop-launcher`, `cosmic-icons`, `pop-icon-theme`, `cosmic-sound-theme`, `cosmic-wallpapers` (COSMIC epoch 1.11.0) | see *COSMIC* below |
+| `xwayland.scm` | `xwayland-with-idle-time` | Xwayland used by cosmic-comp; see *COSMIC* |
+| `timedated.scm` | `timedated` | systemd's timedated built alone (org.freedesktop.timedate1), for COSMIC Settings |
+| `craft.scm` | `photocraft`, `effectcraft`, `filmcraft`, `pdfcraft`, `lightcraft`, `vectorcraft`, `gridcraft`, `wordcraft`, `soundcraft`, `cadcraft`, `figcraft`, `designcraft`, `deckcraft`, `craft-launcher` | the storytold "Craft" suite, each with its `*-cli` |
+| `ladybird.scm` | `ladybird` (git master), plus private Skia 148, ANGLE, ffmpeg 9, curl+OpenSSL | Qt 6 UI; its sandbox needs Landlock (`lsm=landlock,...` kernel argument) |
+| `scrcpy.scm`, `scrcpy-gui.scm` | `scrcpy` 5.0.1, `scrcpy-gui` 4.1.0 | Android mirroring |
+| `faforever.scm` | `faforever-client` 0.9.2 | Rust/Tauri FAF client |
+| `pandora-launcher.scm` | `pandora-launcher` 6.0.0 | Minecraft launcher on Guix JDKs |
+| `r2modman.scm` | `r2modman` 3.2.20 | built from source, runs on nonguix's Electron 38 |
+| `radmin-vpn.scm` | `radmin-vpn-linux`, `wine64-wow64`, `wine64-wow64/prefix-update` | Radmin VPN under Wine; the Wine variants are also used by `bfme.scm` |
+| `bfme.scm` | `bfme-aio-launcher` | BFME All In One Launcher under Wine (nonfree; upstream's own builds) |
+| `gamescope.scm` | `gamescope` 3.16.31, `heroic-nvidia-new-feature-gamescope` | Heroic with gamescope inside its FHS container |
+| `claude-desktop.scm` | `claude-desktop` | Anthropic's official Linux beta, repackaged (nonfree) |
+| `chrome-remote-desktop.scm` | `chrome-remote-desktop`, `chrome-remote-desktop-service-type` | Google's host, virtual Xfce desktop (nonfree; currently disabled in the config) |
+| `openrazer.scm` | `openrazer-kernel-modules`, `%openrazer-keyboard-services` | `razerkbd` only, patched to put the BlackWidow (1532:011a) in driver mode so M1–M5 send F13–F17 |
+| `reboot-to-bios.scm` | `reboot-to-bios` | |
+
+Support modules:
+
+- **Generated** (never edit by hand): `cosmic-crates.scm`, `craft-crates.scm`,
+  `ladybird-crates.scm`, `rust-crates.scm`, `node-deps.scm`,
+  `r2modman-deps.scm`.
+- `cargo-git.scm` with `aux-files/vendor-git-crates.py` vendors crates that
+  lockfiles take from git, as `cargo vendor` would, so cargo builds offline.
+- `js-offline.scm` serves pinned npm tarballs from a throw-away 127.0.0.1
+  registry during a build, so `npm ci` / `pnpm install --frozen-lockfile` run
+  unmodified.
+- `aux-files/` holds patches and launcher scripts the packages install.
 
 ## Updating
 
-Each package pins an upstream commit and its `git-fetch` hash (computed from
-the exact snapshots you gave me). To move to a newer commit, change `commit`
-and `version`, then set the hash to `guix hash -x -r <checkout>`.
+Each package pins an upstream commit or tag and its hash. To move to a new
+one, change `commit`/`version`, set the hash to zeros, build once
+(`guix build -L . -S PACKAGE`) and paste the reported hash.
 
-For scrcpy-gui and the FAForever client, also regenerate the dependency
-modules from checkouts of the new commits:
+Then regenerate its dependency module from the new lockfiles:
 
 ```sh
+# Rust packages with git dependencies (COSMIC, Craft, Ladybird):
+python3 contrib/cargo-lock-to-guix.py "Lightningbulb packages cosmic-crates" \
+        Lightningbulb/packages/cosmic-crates.scm NAME=path/to/Cargo.lock ...
+# scrcpy-gui and the FAForever client (Cargo.lock + npm/pnpm locks):
 python3 contrib/update-lockfile-deps.py Lightningbulb/packages \
         ~/src/scrcpy-gui ~/src/FAForeverRustClient
+# r2modman (pnpm-lock.yaml; also takes the pnpm version as a 5th argument):
+python3 contrib/pnpm-lock-to-guix.py "Lightningbulb packages r2modman-deps" \
+        Lightningbulb/packages/r2modman-deps.scm r2modman path/to/pnpm-lock.yaml
 ```
 
-(Python 3.11+, PyYAML, and curl. Crate hashes are read straight from
-`Cargo.lock`. Npm tarballs are downloaded once, checked against the
-lockfile's sha512, and recorded by sha256.)
+The generators need git, network access and `guix hash`; set
+`GIT_CACHE_DIR` to reuse checkouts between runs.
 
-For the Craft apps and COSMIC (anything with git dependencies), use the
-general generator, which also fetches and hashes the git checkouts:
+Before rebuilding, check that each `substitute*` pattern still matches the
+new source: in this Guix a pattern that matches nothing is **not** an error,
+so a stale patch silently does nothing.
 
-```sh
-python3 contrib/cargo-lock-to-guix.py "Lightningbulb packages craft-crates" \
-        Lightningbulb/packages/craft-crates.scm \
-        photocraft=~/src/photocraft/Cargo.lock effectcraft=... filmcraft=...
-```
+Pitfalls for new Rust packages:
 
-For scrcpy, update `%scrcpy-version` and the server hash from
-`install_release.sh` (`PREBUILT_SERVER_SHA256`, convert with
-`guix hash`/nix-base32). For the FAForever natives, copy the digests from
-`scripts/ensure-*.mjs` the same way.
+- Use `#:rust rust-1.95` (or newer); the default `rust` is too old.
+- cargo-build-system forces system libraries through `*_SYS_USE_PKG_CONFIG`
+  and similar variables: grep each `Cargo.lock` for `libgit2-sys`,
+  `libsqlite3-sys`, `zstd-sys`, `onig_sys`, `libsodium-sys`, `libssh2-sys`
+  and add the matching inputs.
+- `-sys` crates that build bundled C code may need `cmake` (`aws-lc-sys`);
+  prefer the system library. Check `[target.'cfg(...)']` sections first:
+  many -sys crates in lockfiles only build on Windows or macOS.
+- No `/usr/bin/env`, no `.git` and no network in the build sandbox.
+- Repositories that keep images in Git LFS need `git-fetch/lfs`; a plain
+  checkout only has text pointers (`cosmic-wallpapers`,
+  `cosmic-initial-setup`, `cosmic-greeter` use `#:lfs? #t`).
 
 ## Runtime notes
 
-- **scrcpy**: uses the `adb` on your `PATH` first, otherwise Guix's. You need
-  the usual udev rule or `adbusers` group for USB access.
-- **scrcpy-gui**: its built-in "update scrcpy" download can't write to the
-  store. It uses the packaged `scrcpy`/`adb` instead.
-- **faforever-client**: Java ICE adapter runs on Guix's `openjdk`. Override
-  any helper with the env vars from upstream's README (`FAF_JAVA_PATH`,
-  `FAF_UID_PATH`, `FAF_ICE_ADAPTER_JAR`, ...). The game itself (Forged
-  Alliance via Steam/Proton or Wine) is set up inside the client.
-- **pandora-launcher**: launches Minecraft with Guix JDKs 8/16/17/21/25 through
-  upstream's `FORCE_EXTERNAL_JAVA`. Mojang's own runtimes are glibc-FHS
-  builds and won't start on Guix. Set your own `FORCE_EXTERNAL_JAVA` to
-  prepend other JDKs. The per-instance "Java binary" setting still overrides
-  everything.
-- **radmin-vpn-linux**: needs Wine ≥ 11 (Guix's `wine64` is 11.0), the `tun`
-  module and `sudo` (the setuid one from your system config). The first run
-  downloads Radmin VPN itself into `~/.local/share/radmin-vpn-linux`.
-- **Craft apps** (`photocraft`, `effectcraft`, `filmcraft`): built with
-  Guix's `rust-1.95`, which may compile locally once if there's no substitute.
-- **COSMIC**: add `cosmic` to your *system* packages (so SDDM/GDM sees the
-  `cosmic.desktop` session and `start-cosmic` finds the components on PATH),
-  reconfigure, and pick "COSMIC" at login. It needs elogind (part of
-  `%desktop-services`) for seat access. COSMIC's own greeter
-  (`cosmic-greeter`) is packaged but requires a greetd service you configure
-  yourself. `cosmic-wallpapers` has a placeholder hash (Git LFS): build it
-  once, paste the reported hash, and add it to your packages if you want the
-  stock wallpapers.
+### COSMIC
+
+- `cosmic` goes in the system `packages`; the config logs in through
+  `cosmic-greeter` under greetd, which lists COSMIC and Plasma.
+- Fixes made for Guix (search `cosmic.scm` for the comments):
+  - Xwayland and xrdb by store path;
+  - input devices tracked by kernel name: a mouse that shows up as several
+    same-named devices (Razer) otherwise ignored speed changes;
+  - logs go to `~/.local/state/cosmic/session.log` instead of a missing
+    journald;
+  - XKB data, sound themes and themes looked up in the store or the system
+    profile instead of `/usr/share`;
+  - `loginctl suspend` instead of `systemctl suspend`;
+  - default cursor theme (Pop);
+  - `QT_PLUGIN_PATH` no longer clobbered by `start-cosmic`;
+  - the initial setup's language and timezone pages are dropped (Guix sets
+    those in the OS config);
+  - `COSMIC_DRM_DITHERING[_<CONNECTOR>]` turns NVIDIA's dithering on or off
+    per monitor (opt-in).
+- `xwayland-with-idle-time`:
+  - keeps MIT-SCREEN-SAVER and counts `xset s reset` as activity, so Steam's
+    Away detection works with an idle helper;
+  - finds the NVIDIA EGL/GBM back ends, which cosmic-comp's sparse
+    environment otherwise hid, leaving X11 apps on llvmpipe.
+- COSMIC Settings needs the systemd D-Bus services `locale1`, `timedate1` and
+  `hostname1`: the config provides localed, `timedated` and gardenhostd.
+
+### Wine packages (`radmin-vpn-linux`, `bfme-aio-launcher`)
+
+- Guix's `wine64` has ELF builtins and old-style WoW64, which breaks both
+  programs. `wine64-wow64` is the same Wine 11.0 built with mingw PE builtins
+  and the new WoW64 mode.
+- Every store file has mtime 1, so Wine's own "prefix needs updating" check
+  never fires after a Wine change. `wine64-wow64/prefix-update` records the
+  Wine build in `$WINEPREFIX/.guix-wine` and runs `wineboot -u` when it
+  changes.
+- Prefixes live under `$XDG_DATA_HOME` (`radmin-vpn-linux/wineprefix`,
+  `bfme-aio-launcher/prefix`), with winemenubuilder disabled. BFME's games
+  go to drive `D:` (`$XDG_DATA_HOME/bfme-aio-launcher/games`).
+
+### Others
+
+- **faforever-client**: finds Steam inside nonguix's container home
+  (`$GUIX_SANDBOX_HOME`, default `~/.local/share/guix-sandbox-home`); its own
+  data is in `$XDG_DATA_HOME/faforever`. The game runs through Wine (set a
+  prefix and `wine` as launch command in the client).
+- **r2modman**: also finds that sandboxed Steam library and launches games
+  with `steam -applaunch`; mods need its profile directory shared into the
+  Steam container (`GUIX_SANDBOX_EXTRA_SHARES`, set by the config).
+- **scrcpy**: runs as a native Wayland client (`SDL_VIDEO_DRIVER=wayland,x11`).
+- **pandora-launcher**: uses Guix JDKs through upstream's
+  `FORCE_EXTERNAL_JAVA`; Mojang's runtimes don't run on Guix.
+- **gamescope**: in Heroic, enable it per game under Settings > Other.
+- **openrazer-kernel-modules**: in driver mode the keyboard's own backlight
+  and macro-recording keys stop working; turn it off with the kernel
+  argument `razerkbd.driver_mode=0`.

@@ -35,6 +35,7 @@
   #:use-module (gnu packages curl)
   #:use-module (gnu packages gnome)
   #:use-module (gnu packages image)
+  #:use-module (gnu packages xorg)
   #:use-module ((Lightningbulb packages radmin-vpn) #:select (wine64-wow64/prefix-update))
   #:use-module ((nongnu packages fonts)
                 #:select (font-microsoft-arial font-microsoft-courier-new
@@ -69,177 +70,31 @@
                        (script (string-append bin "/bfme-aio-launcher"))
                        (apps (string-append #$output "/share/applications"))
                        (icons (string-append #$output "/share/icons/hicolor")))
+                  ;; The script: aux-files/bfme-aio-launcher.sh.
                   (mkdir-p bin)
-                  (call-with-output-file script
-                    (lambda (port)
-                      (format port "#!~a
-# BFME All In One Launcher under Wine, in its own prefix.
-#   BFME_WINEPREFIX  prefix to use (default: $XDG_DATA_HOME/bfme-aio-launcher/prefix)
-#   BFME_WINE        wine executable (default: wine64-wow64, PE builtins)
-#   BFME_DXVK=1      use DXVK (Direct3D 9-11 over Vulkan) instead of WineD3D
-#   BFME_DPI         Windows DPI (default 96, i.e. 100%).  The launcher scales
-#                    its whole UI with its window, whatever the DPI, so this
-#                    only matters for other programs (and DPI-unaware games
-#                    may get scaled by Wine when it is not 96).
-# Drive D: is $XDG_DATA_HOME/bfme-aio-launcher/games, for the game installs;
-# C: is the prefix's own drive_c.
-set -e
-data=\"${XDG_DATA_HOME:-$HOME/.local/share}/bfme-aio-launcher\"
-export WINEPREFIX=\"${BFME_WINEPREFIX:-$data/prefix}\"
-wine=\"${BFME_WINE:-~a}\"
-dxvk=\"~a\"
-fonts=\"~a\"
-# Don't let Wine put menu entries/icons for the launcher's shortcuts into
-# ~/.local/share/applications; this package provides its own entry.
-overrides=\"winemenubuilder.exe=d\"
-
-notify() {
-  zenity --notification --text=\"$1\" 2>/dev/null || echo \"$1\" >&2
-}
-
-if [ ! -f \"$WINEPREFIX/system.reg\" ]; then
-  notify \"Setting up the Wine prefix for the BFME All In One Launcher...\"
-  mkdir -p \"$WINEPREFIX\"
-  WINEDLLOVERRIDES=\"$overrides\" \"$wine\" wineboot -i
-  # Keep the prefix self-contained: Wine links Desktop, Documents etc. to
-  # the folders in $HOME, and the launcher drops a shortcut on the desktop.
-  for dir in \"$WINEPREFIX\"/drive_c/users/*/; do
-    for f in Desktop Documents Downloads Music Pictures Videos Templates; do
-      if [ -L \"$dir$f\" ]; then
-        rm -f -- \"${dir:?}$f\"
-        mkdir -p -- \"$dir$f\"
-      fi
-    done
-  done
-  # WPF's Direct3D path is the least reliable part of WPF under Wine.
-  WINEDLLOVERRIDES=\"$overrides\" \"$wine\" reg add \\
-    'HKCU\\Software\\Microsoft\\Avalon.Graphics' \\
-    /v DisableHWAcceleration /t REG_DWORD /d 1 /f >/dev/null
-fi
-
-# Settings kept in the prefix, re-applied only when they change.
-# - winemenubuilder off in the registry too, so no Wine process in this
-#   prefix (prefix updates, the games) adds menu entries;
-# - the DPI;
-# - Arial, Times New Roman and Courier New, installed and registered like
-#   on Windows.  WPF looks fonts up through DirectWrite, which only sees
-#   fonts registered in the prefix, and when a text needs a font the
-#   launcher doesn't bring (its error popups and message boxes ask for
-#   Consolas or Segoe UI) WPF falls back to Arial -- and terminates the
-#   process (\"Unrecoverable system error\") if there is no Arial.
-dpi=\"${BFME_DPI:-96}\"
-settings=\"menubuilder-off dpi=$dpi fonts=$fonts\"
-applied=\"$WINEPREFIX/.bfme-aio-launcher-settings\"
-if [ \"$(cat \"$applied\" 2>/dev/null)\" != \"$settings\" ]; then
-  WINEDLLOVERRIDES=\"$overrides\" \"$wine\" reg add \\
-    'HKCU\\Software\\Wine\\DllOverrides' \\
-    /v winemenubuilder.exe /t REG_SZ /d '' /f >/dev/null
-  WINEDLLOVERRIDES=\"$overrides\" \"$wine\" reg add \\
-    'HKCU\\Control Panel\\Desktop' \\
-    /v LogPixels /t REG_DWORD /d \"$dpi\" /f >/dev/null
-  for dir in $fonts; do
-    for f in \"$dir\"/*.ttf; do
-      install -m 644 \"$f\" \"$WINEPREFIX/drive_c/windows/Fonts/\"
-    done
-  done
-  while IFS='|' read -r name file; do
-    WINEDLLOVERRIDES=\"$overrides\" \"$wine\" reg add \\
-      'HKLM\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' \\
-      /v \"$name (TrueType)\" /t REG_SZ /d \"$file\" /f >/dev/null
-  done <<'EOF'
-Arial|Arial.ttf
-Arial Bold|Arialbd.ttf
-Arial Bold Italic|Arialbi.ttf
-Arial Italic|Ariali.ttf
-Times New Roman|Times.ttf
-Times New Roman Bold|Timesbd.ttf
-Times New Roman Bold Italic|Timesbi.ttf
-Times New Roman Italic|Timesi.ttf
-Courier New|cour.ttf
-Courier New Bold|courbd.ttf
-Courier New Bold Italic|courbi.ttf
-Courier New Italic|couri.ttf
-EOF
-  echo \"$settings\" > \"$applied\"
-fi
-rm -f \"$data/applied\"                 # where older versions kept it
-
-# D: is where the games go, in a folder that's easy to find.
-mkdir -p \"$data/games\"
-ln -sfn \"$data/games\" \"$WINEPREFIX/dosdevices/d:\"
-
-# The launcher counts a game as installed as soon as its folder exists, and
-# creates the (empty) folder before installing anything; an install that
-# was interrupted early leaves the game \"installed\" with nothing to start.
-# The launcher always installs to <drive>:\\BFME1, BFME2 or RotWK.
-for dir in \"$WINEPREFIX/drive_c\" \"$data/games\"; do
-  for game in BFME1 BFME2 RotWK; do
-    rmdir -- \"$dir/$game\" 2>/dev/null || true
-  done
-done
-
-if [ \"${BFME_DXVK:-0}\" = 1 ]; then
-  sys=\"$WINEPREFIX/drive_c/windows\"
-  for dll in d3d9 d3d10core d3d11 dxgi; do
-    cp -f \"$dxvk/share/dxvk/lib/$dll.dll\" \"$sys/system32/$dll.dll\"
-    cp -f \"$dxvk/share/dxvk/lib32/$dll.dll\" \"$sys/syswow64/$dll.dll\"
-  done
-  overrides=\"$overrides;d3d9,d3d10core,d3d11,dxgi=n,b\"
-fi
-export WINEDLLOVERRIDES=\"$overrides${WINEDLLOVERRIDES:+;$WINEDLLOVERRIDES}\"
-
-appdata=$(\"$wine\" cmd /c 'echo %APPDATA%' 2>/dev/null | tr -d '\\r')
-appdata=$(\"$wine\" winepath -u \"$appdata\" 2>/dev/null)
-appdir=\"$appdata/BFME All In One Launcher\"
-exe=\"$appdir/AllInOneLauncher.exe\"
-
-# Before the first game install the launcher runs Microsoft's DirectX 9
-# redistributable (DXSETUP), unless this flag says it has, behind a
-# \"Windows needs permission for this step\" notice that stays up for a
-# minute or two with no sign of progress.  Under Wine that's pointless:
-# Wine has its own d3dx9, d3dcompiler, xinput, xaudio etc., and loads them
-# rather than the DLLs DXSETUP copies into system32.
-mkdir -p \"$appdata/BFME Workshop/Config\"
-flag=\"$appdata/BFME Workshop/Config/dx_version.flag\"
-[ -e \"$flag\" ] || printf 'v1\\n0' > \"$flag\"
-
-# First start: what upstream's installer does.  Later updates are done by
-# the launcher itself.
-if [ ! -f \"$exe\" ]; then
-  mkdir -p \"$appdir\"
-  hash=$(curl -fsSL 'https://bfmeladder.com/api/applications/versionHash?name=all-in-one-launcher&version=main')
-  notify \"Downloading the BFME All In One Launcher (about 280 MB)...\"
-  curl -fL --retry 3 -o \"$exe.part\" \\
-    'https://arena-files.bfmeladder.com/application-builds/all-in-one-launcher-main'
-  if [ \"$(md5sum \"$exe.part\" | cut -d' ' -f1)\" != \"$hash\" ]; then
-    rm -f \"$exe.part\"
-    notify \"BFME All In One Launcher: download corrupted, try again.\"
-    exit 1
-  fi
-  mv \"$exe.part\" \"$exe\"
-fi
-
-cd \"$appdir\"
-exec \"$wine\" \"$exe\" \"$@\"~%"
-                              (search-input-file inputs "bin/bash")
-                              (search-input-file inputs "bin/wine")
-                              #$(this-package-input "dxvk")
-                              (string-join
-                               (map (lambda (font)
-                                      (string-append font "/share/fonts/truetype"))
-                                    (list #$(this-package-input
-                                             "font-microsoft-arial")
-                                          #$(this-package-input
-                                             "font-microsoft-courier-new")
-                                          #$(this-package-input
-                                             "font-microsoft-times-new-roman")))))))
+                  (copy-file #$(local-file "aux-files/bfme-aio-launcher.sh")
+                             script)
+                  (substitute* script
+                    (("@bash@") (search-input-file inputs "bin/bash"))
+                    (("@wine@") (search-input-file inputs "bin/wine"))
+                    (("@dxvk@") #$(this-package-input "dxvk"))
+                    (("@fonts@")
+                     (string-join
+                      (map (lambda (font)
+                             (string-append font "/share/fonts/truetype"))
+                           (list #$(this-package-input "font-microsoft-arial")
+                                 #$(this-package-input
+                                    "font-microsoft-courier-new")
+                                 #$(this-package-input
+                                    "font-microsoft-times-new-roman"))))))
                   (chmod script #o755)
                   (wrap-program script
                     `("PATH" prefix
                       ,(map (lambda (cmd)
                               (dirname (search-input-file
                                         inputs (string-append "bin/" cmd))))
-                            '("wine" "curl" "md5sum" "zenity"))))
+                            '("wine" "curl" "md5sum" "sed" "zenity"
+                              "wrestool" "xrandr"))))
                   ;; Icon: upstream's .ico, split into hicolor PNGs.
                   (invoke "icotool" "-x" "-o" "."
                           "src/BfmeFoundationProject_AllInOneLauncher/allinonelaunchericon.ico")
@@ -254,26 +109,59 @@ exec \"$wine\" \"$exe\" \"$@\"~%"
                        (mkdir-p dir)
                        (copy-file png (string-append dir "/bfme-aio-launcher.png"))))
                    (find-files "." "^allinonelaunchericon_.*\\.png$"))
+                  ;; Menu entry, and entries that only name windows: docks
+                  ;; match windows to entries by StartupWMClass, which has
+                  ;; to be what Wine sets as the X11 WM_CLASS and Wayland
+                  ;; app_id, the lowercased .exe file name.  Without one,
+                  ;; COSMIC names a window after the last dot-separated part
+                  ;; of that ("EXE"), with no icon.  The menu entry claims
+                  ;; the virtual desktop (the default), whose window is
+                  ;; explorer.exe's; the game icons are taken from the
+                  ;; games by the script.  The Quit action (in the dock's
+                  ;; menu) ends the launcher and the games, which a fullscreen
+                  ;; game may not do on a close request.
                   (mkdir-p apps)
-                  (call-with-output-file
-                      (string-append apps "/bfme-aio-launcher.desktop")
-                    (lambda (port)
-                      (format port "[Desktop Entry]
+                  (for-each
+                   (lambda (entry)
+                     (call-with-output-file
+                         (string-append apps "/" (car entry) ".desktop")
+                       (lambda (port)
+                         (format port "[Desktop Entry]
 Type=Application
-Name=BFME All In One Launcher
-Comment=Install, patch and play The Battle for Middle-earth games (Wine)
+Name=~a
+Comment=~a
 Exec=~a
-Icon=bfme-aio-launcher
+Icon=~a
 Terminal=false
-Categories=Game;
-# Wine names windows after the lowercased .exe (X11 WM_CLASS and Wayland
-# app_id).
-StartupWMClass=allinonelauncher.exe
-" script)))))))))
+~aStartupWMClass=~a
+Actions=quit;
+
+[Desktop Action quit]
+Name=Quit
+Exec=~a --stop
+"
+                                 (list-ref entry 1) (list-ref entry 2) script
+                                 (list-ref entry 3) (list-ref entry 4)
+                                 (list-ref entry 5) script))))
+                   ;; file, name, comment, icon, other keys, window class
+                   `(("bfme-aio-launcher" "BFME All In One Launcher"
+                      "Install, patch and play The Battle for Middle-earth games (Wine)"
+                      "bfme-aio-launcher" "Categories=Game;\n" "explorer.exe")
+                     ("bfme-aio-launcher-window" "BFME All In One Launcher"
+                      "The launcher's window, without a virtual desktop"
+                      "bfme-aio-launcher" "NoDisplay=true\n"
+                      "allinonelauncher.exe")
+                     ("bfme-rotwk"
+                      "The Lord of the Rings: The Rise of the Witch-king"
+                      "The game's window, without a virtual desktop"
+                      "bfme-rotwk" "NoDisplay=true\n" "lotrbfme2ep1.exe")
+                     ("bfme-game" "The Battle for Middle-earth"
+                      "The game's window (I and II), without a virtual desktop"
+                      "bfme-game" "NoDisplay=true\n" "game.dat")))))))))
       (native-inputs (list icoutils))
       (inputs (list bash-minimal coreutils curl dxvk-next font-microsoft-arial
                     font-microsoft-courier-new font-microsoft-times-new-roman
-                    wine64-wow64/prefix-update zenity))
+                    icoutils sed wine64-wow64/prefix-update xrandr zenity))
       (supported-systems '("x86_64-linux"))
       (home-page "https://bfmeladder.com/")
       (synopsis "Run the BFME All In One Launcher under Wine")
@@ -285,7 +173,12 @@ the BFME Workshop.  This package runs it under Wine in a prefix of its own,
 @file{$XDG_DATA_HOME/bfme-aio-launcher/prefix}, where the games it installs
 also live.  On first start it downloads the launcher from bfmeladder.com, as
 upstream's installer does; the launcher then keeps itself up to date.  Set
-@env{BFME_DXVK} to 1 to use DXVK for the games.")
+@env{BFME_DXVK} to 1 to use DXVK for the games.  The launcher and the games
+run in a Wine virtual desktop the size of the primary monitor, which keeps
+the mouse right on multi-monitor setups under Xwayland; set
+@env{BFME_VIRTUAL_DESKTOP} to @code{off}, or to a size such as
+@code{1600x900}, to change that.  @command{bfme-aio-launcher --stop} ends the
+launcher and the games.")
       ;; The launcher has no license, and the build it downloads is
       ;; proprietary.
       (license (license:nonfree

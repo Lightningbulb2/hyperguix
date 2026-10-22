@@ -30,6 +30,7 @@
   #:use-module ((nonguix licenses) #:prefix license:)
   #:use-module (gnu packages admin)
   #:use-module (gnu packages base)
+  #:use-module (gnu packages bash)
   #:use-module (gnu packages freedesktop)
   #:use-module (gnu packages gcc)
   #:use-module (gnu packages gl)
@@ -246,9 +247,44 @@ exec ~a/bin/dbus-run-session -- /bin/sh -c \"$*\"~%"
                    (symlink (string-append lib "/" name)
                             (string-append bin "/" name)))
                  '("chrome-remote-desktop" "start-host"
-                   "remote-session-info"))))))))
+                   "remote-session-info")))))
+          (add-after 'finish-install 'use-single-process-host
+            (lambda* (#:key inputs #:allow-other-keys)
+              ;; start-host and the native-messaging host first ask
+              ;; "systemctl is-active chrome-remote-desktop.service" whether
+              ;; the GDM-only multi-process host is in use, and log an error
+              ;; when there is no systemctl.  Give them a stand-in that says
+              ;; "inactive" so they always take the single-process (virtual
+              ;; X11 desktop) path, which the Shepherd service runs.
+              (let* ((lib (string-append #$output "/lib/chrome-remote-desktop"))
+                     (stub-dir (string-append #$output
+                                              "/libexec/chrome-remote-desktop"))
+                     (stub (string-append stub-dir "/systemctl"))
+                     (sh (search-input-file inputs "bin/bash")))
+                (mkdir-p stub-dir)
+                (call-with-output-file stub
+                  (lambda (port)
+                    (format port "#!~a
+# Guix stand-in for systemctl, used only by Chrome Remote Desktop's setup
+# tools: the multi-process host (chrome-remote-desktop.service) does not exist.
+case \"$1\" in
+  is-active) echo inactive; exit 3 ;;
+  disable|stop|is-enabled) exit 0 ;;
+  *) echo \"chrome-remote-desktop: systemctl $* is not available on Guix;\" \\
+          \"use 'herd start chrome-remote-desktop'\" >&2
+     exit 1 ;;
+esac~%" sh)))
+                (chmod stub #o755)
+                (for-each
+                 (lambda (exe)
+                   (wrap-program (string-append lib "/" exe)
+                     #:sh sh
+                     `("PATH" prefix (,stub-dir))))
+                 '("start-host" "native-messaging-host"
+                   "remote-assistance-host"))))))))
     (inputs
      (list at-spi2-core
+           bash-minimal
            cairo
            coreutils
            dbus
@@ -360,6 +396,17 @@ exec " dbus "/bin/dbus-run-session -- "
             (if use-xvfb? " CHROME_REMOTE_DESKTOP_USE_XVFB=1" "")
             " /opt/google/chrome-remote-desktop/chrome-remote-desktop"
             " --start --new-session")))
+      (define host-config?
+        ;; Whether start-host / the web page has registered a host yet.
+        #~(lambda ()
+            (let ((dir (string-append (passwd:dir (getpwnam #$user))
+                                      "/.config/chrome-remote-desktop")))
+              (pair? (or (scandir dir
+                                  (lambda (f)
+                                    (and (string-prefix? "host#" f)
+                                         (string-suffix? ".json" f))))
+                         '())))))
+      (define log-file "/var/log/chrome-remote-desktop.log")
       (list
        (shepherd-service
         (provision '(chrome-remote-desktop))
@@ -369,30 +416,43 @@ exec " dbus "/bin/dbus-run-session -- "
         (modules `((ice-9 ftw) (srfi srfi-1) ,@%default-modules))
         (start
          #~(lambda _
-             (let* ((home (passwd:dir (getpwnam #$user)))
-                    (dir (string-append home "/.config/chrome-remote-desktop"))
-                    (configs (or (scandir dir
-                                          (lambda (f)
-                                            (and (string-prefix? "host#" f)
-                                                 (string-suffix? ".json" f))))
-                                 '())))
-               (if (null? configs)
-                   (begin
-                     (format #t "chrome-remote-desktop: ~a has no host \
-configuration yet; set the host up with start-host first.~%" dir)
-                     #f)
-                   ;; su opens a PAM session (elogind session, runtime dir)
-                   ;; the way systemd's PAMName= does for upstream's unit.
-                   (fork+exec-command
-                    (list #$(file-append shadow "/bin/su") "-l" #$user
-                          "-c" #$command)
-                    #:log-file "/var/log/chrome-remote-desktop.log")))))
+             (if (#$host-config?)
+                 ;; su opens a PAM session (elogind session, runtime dir)
+                 ;; the way systemd's PAMName= does for upstream's unit.
+                 (fork+exec-command
+                  (list #$(file-append shadow "/bin/su") "-l" #$user
+                        "-c" #$command)
+                  #:log-file #$log-file)
+                 (begin
+                   ;; Only in the log file, never on the console.
+                   (let ((port (open-file #$log-file "a")))
+                     (format port "chrome-remote-desktop: no host \
+configuration in ~~~a/.config/chrome-remote-desktop yet; set the host up \
+with start-host first.~%" #$user)
+                     (close-port port))
+                   #f))))
         (stop #~(make-kill-destructor))
         ;; The script exits with 41 to be restarted after the remote user
         ;; logs out of the virtual desktop.
         (respawn? #t)
         (respawn-delay 5)
-        (auto-start? #t))))))
+        ;; Started at boot by chrome-remote-desktop-autostart (only once a
+        ;; host is registered), and by start-host / the web page through
+        ;; "herd start chrome-remote-desktop".
+        (auto-start? #f))
+       (shepherd-service
+        (provision '(chrome-remote-desktop-autostart))
+        (requirement '(user-processes networking))
+        (documentation
+         "Start chrome-remote-desktop at boot if a host is registered.")
+        (modules `((ice-9 ftw) (srfi srfi-1) ,@%default-modules))
+        (one-shot? #t)
+        (start
+         #~(lambda _
+             (when (#$host-config?)
+               (false-if-exception
+                (start-service (lookup-service 'chrome-remote-desktop))))
+             #t)))))))
 
 (define (chrome-remote-desktop-activation config)
   (let ((package (chrome-remote-desktop-configuration-package config)))

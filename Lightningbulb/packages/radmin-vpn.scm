@@ -33,6 +33,7 @@
   #:use-module (gnu packages pkg-config)
   #:use-module (gnu packages python)
   #:use-module (gnu packages wine)
+  #:use-module ((nongnu packages fonts) #:select (font-microsoft-arial))
   #:export (wine64-wow64 wine64-wow64/prefix-update))
 
 (define %mingw32 "i686-w64-mingw32")
@@ -242,6 +243,8 @@ exec ~a/bin/wine \"$@\"
                        (share (string-append #$output "/share/radmin-vpn-linux"))
                        (bin   (string-append #$output "/bin"))
                        (launcher (string-append bin "/radmin-vpn"))
+                       ;; Directory with nothing but run.sh's `sudo'.
+                       (shim (string-append #$output "/libexec/radmin-vpn-linux"))
                        (bash  (search-input-file inputs "bin/bash")))
                   ;; Build artefacts, where run.sh looks for them via $BUILD_DIR.
                   (for-each (lambda (f) (install-file (string-append "build/" f) lib))
@@ -264,27 +267,48 @@ exec ~a/bin/wine \"$@\"
                               "health_check.sh" "lib.sh"
                               "patch_qwindows_font.py"))
                   (install-file "contrib/run-in-netns.sh" share)
-                  ;; Entry point: upstream's AppRun minus the bundled Wine.
-                  (mkdir-p bin)
-                  (copy-file "packaging/AppRun" launcher)
-                  (substitute* launcher
-                    (("^#!/bin/bash") (string-append "#!" bash))
-                    (("^APPDIR=.*") "")
-                    ;; wine64-wow64 (above) is used instead of the AppImage's
-                    ;; Kron4ek build; it is built the same way (PE builtins,
-                    ;; new WoW64).
-                    (("^export (PATH|WINELOADER|WINESERVER)=\"\\$APPDIR/wine.*") "")
-                    (("\"\\$APPDIR/usr/lib/radmin-vpn\"")
-                     (string-append "\"" lib "\""))
-                    (("\"\\$APPDIR/usr/bin/run.sh\"")
-                     (string-append "\"" share "/run.sh\""))
-                    ;; Started from the menu, it re-ran itself in a terminal
-                    ;; just for the sudo prompt.  It already asks through a
-                    ;; zenity dialog when there's no terminal, and logs to
-                    ;; $XDG_DATA_HOME/radmin-vpn-linux/run.log, so don't.
-                    (("^if \\[ ! -t 1 \\] && \\[ -z \"\\$\\{RADMIN_IN_TERM:-\\}\" \\]; then")
-                     "if false; then"))
-                  (chmod launcher #o755)
+                  ;; Entry point.  Upstream's AppImage starts run.sh through
+                  ;; packaging/AppRun; this is that script, minus the bundled
+                  ;; Wine (wine64-wow64 above is built the same way: PE
+                  ;; builtins, new WoW64) and the re-run in a terminal (it
+                  ;; asks for the password with a zenity dialog and logs to
+                  ;; $XDG_DATA_HOME/radmin-vpn-linux/run.log), plus:
+                  ;;  - every sudo of run.sh goes through one "sudo broker"
+                  ;;    process, so the password is asked once -- without a
+                  ;;    terminal, sudo asks again for each parent process;
+                  ;;  - `radmin-vpn --stop' quits it (the tray menu, with its
+                  ;;    Exit, can't be opened from COSMIC's panel);
+                  ;;  - started again, it shows the running one's window.
+                  (define (install-script template file . substitutions)
+                    (mkdir-p (dirname file))
+                    (copy-file template file)
+                    (for-each (lambda (pair)
+                                (substitute* file
+                                  (((car pair)) (cdr pair))))
+                              (cons (cons "@bash@" bash) substitutions))
+                    (chmod file #o755))
+                  (install-script #$(local-file "aux-files/radmin-vpn-launcher.sh")
+                                  launcher
+                                  (cons "@lib@" lib)
+                                  (cons "@share@" share)
+                                  (cons "@shim@" shim))
+                  (install-script #$(local-file "aux-files/radmin-vpn-sudo.sh")
+                                  (string-append shim "/sudo")
+                                  (cons "@flock@"
+                                        (search-input-file inputs "bin/flock")))
+                  ;; Fonts for the GUI, set up by run.sh once Radmin is
+                  ;; installed in the prefix.
+                  (install-script #$(local-file "aux-files/radmin-vpn-fonts.sh")
+                                  (string-append share "/radmin-vpn-fonts.sh")
+                                  (cons "@arial@"
+                                        #$(this-package-input
+                                           "font-microsoft-arial")))
+                  (substitute* (string-append share "/run.sh")
+                    (("^install_components\n" all)
+                     (string-append
+                      all "bash \"$DIR/radmin-vpn-fonts.sh\" "
+                      "|| warn \"could not set up the GUI fonts\"\n")))
+                  (invoke "grep" "-q" "radmin-vpn-fonts" (string-append share "/run.sh"))
                   ;; Same treatment for the health check and headless modes.
                   (for-each
                    (lambda (entry)
@@ -321,7 +345,16 @@ exec ~a \"~a/~a\" \"$@\"~%"
                       ;; app_id "rvrvpngui.exe"); upstream's mixed-case
                       ;; value never matches, so docks show no icon.
                       (("^StartupWMClass=.*")
-                       "StartupWMClass=rvrvpngui.exe\n"))))))
+                       "StartupWMClass=rvrvpngui.exe\n"))
+                    ;; Shown in the dock's and the app library's menu for it.
+                    (let ((port (open-file desktop "a")))
+                      (format port "Actions=quit;
+
+[Desktop Action quit]
+Name=Quit Radmin VPN
+Exec=~a --stop
+" launcher)
+                      (close-port port))))))
             (add-after 'install 'wrap-launchers
               (lambda* (#:key inputs #:allow-other-keys)
                 (let ((path (map (lambda (cmd)
@@ -354,9 +387,9 @@ exec ~a \"~a/~a\" \"$@\"~%"
                (mingw-toolchain %mingw32)
                (mingw-toolchain %mingw64)))
       (inputs
-       (list bash coreutils curl diffutils findutils gawk glibc grep gtk
-             iproute kmod procps python sed util-linux wine64-wow64/prefix-update
-             zenity))
+       (list bash coreutils curl diffutils findutils font-microsoft-arial gawk
+             glibc grep gtk iproute kmod procps python sed util-linux
+             wine64-wow64/prefix-update zenity))
       (supported-systems '("x86_64-linux"))
       (home-page "https://github.com/baptisterajaut/radmin-vpn-linux")
       (synopsis "Run the Radmin VPN Windows client on Linux through Wine")
@@ -368,8 +401,10 @@ interface (@code{radminvpn0}), so peers on Radmin networks become reachable
 from native Linux programs.  A hook DLL papers over Wine incompatibilities in
 adapter naming and registry permissions.
 
-Start it with @command{radmin-vpn}.  On first run it downloads the pinned
-Radmin VPN installer into @file{~/.local/share/radmin-vpn-linux}.  Root (via
-@command{sudo}) is needed to create the TAP device and routes.  Radmin VPN
+Start it with @command{radmin-vpn}, and quit it with @command{radmin-vpn
+--stop} (also the menu entry's ``Quit Radmin VPN'' action).  On first run it
+downloads the pinned Radmin VPN installer into
+@file{~/.local/share/radmin-vpn-linux}.  Root (via @command{sudo}) is needed
+to create the TAP device and routes; the password is asked once per start.  Radmin VPN
 itself is proprietary and is not part of this package.")
       (license license:gpl3))))
