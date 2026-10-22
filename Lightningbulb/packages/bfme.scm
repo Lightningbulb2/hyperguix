@@ -36,6 +36,9 @@
   #:use-module (gnu packages gnome)
   #:use-module (gnu packages image)
   #:use-module ((Lightningbulb packages radmin-vpn) #:select (wine64-wow64/prefix-update))
+  #:use-module ((nongnu packages fonts)
+                #:select (font-microsoft-arial font-microsoft-courier-new
+                          font-microsoft-times-new-roman))
   #:use-module ((nongnu packages wine) #:select (dxvk-next)))
 
 (define-public bfme-aio-launcher
@@ -74,7 +77,10 @@
 #   BFME_WINEPREFIX  prefix to use (default: $XDG_DATA_HOME/bfme-aio-launcher/prefix)
 #   BFME_WINE        wine executable (default: wine64-wow64, PE builtins)
 #   BFME_DXVK=1      use DXVK (Direct3D 9-11 over Vulkan) instead of WineD3D
-#   BFME_DPI         Windows DPI (default 120, i.e. 125%; 96 is 100%)
+#   BFME_DPI         Windows DPI (default 96, i.e. 100%).  The launcher scales
+#                    its whole UI with its window, whatever the DPI, so this
+#                    only matters for other programs (and DPI-unaware games
+#                    may get scaled by Wine when it is not 96).
 # Drive D: is $XDG_DATA_HOME/bfme-aio-launcher/games, for the game installs;
 # C: is the prefix's own drive_c.
 set -e
@@ -82,6 +88,7 @@ data=\"${XDG_DATA_HOME:-$HOME/.local/share}/bfme-aio-launcher\"
 export WINEPREFIX=\"${BFME_WINEPREFIX:-$data/prefix}\"
 wine=\"${BFME_WINE:-~a}\"
 dxvk=\"~a\"
+fonts=\"~a\"
 # Don't let Wine put menu entries/icons for the launcher's shortcuts into
 # ~/.local/share/applications; this package provides its own entry.
 overrides=\"winemenubuilder.exe=d\"
@@ -113,22 +120,63 @@ fi
 # Settings kept in the prefix, re-applied only when they change.
 # - winemenubuilder off in the registry too, so no Wine process in this
 #   prefix (prefix updates, the games) adds menu entries;
-# - the DPI: at Wine's default 96 the launcher's UI comes out tiny.
-dpi=\"${BFME_DPI:-120}\"
-settings=\"menubuilder-off dpi=$dpi\"
-if [ \"$(cat \"$data/applied\" 2>/dev/null)\" != \"$settings\" ]; then
+# - the DPI;
+# - Arial, Times New Roman and Courier New, installed and registered like
+#   on Windows.  WPF looks fonts up through DirectWrite, which only sees
+#   fonts registered in the prefix, and when a text needs a font the
+#   launcher doesn't bring (its error popups and message boxes ask for
+#   Consolas or Segoe UI) WPF falls back to Arial -- and terminates the
+#   process (\"Unrecoverable system error\") if there is no Arial.
+dpi=\"${BFME_DPI:-96}\"
+settings=\"menubuilder-off dpi=$dpi fonts=$fonts\"
+applied=\"$WINEPREFIX/.bfme-aio-launcher-settings\"
+if [ \"$(cat \"$applied\" 2>/dev/null)\" != \"$settings\" ]; then
   WINEDLLOVERRIDES=\"$overrides\" \"$wine\" reg add \\
     'HKCU\\Software\\Wine\\DllOverrides' \\
     /v winemenubuilder.exe /t REG_SZ /d '' /f >/dev/null
   WINEDLLOVERRIDES=\"$overrides\" \"$wine\" reg add \\
     'HKCU\\Control Panel\\Desktop' \\
     /v LogPixels /t REG_DWORD /d \"$dpi\" /f >/dev/null
-  echo \"$settings\" > \"$data/applied\"
+  for dir in $fonts; do
+    for f in \"$dir\"/*.ttf; do
+      install -m 644 \"$f\" \"$WINEPREFIX/drive_c/windows/Fonts/\"
+    done
+  done
+  while IFS='|' read -r name file; do
+    WINEDLLOVERRIDES=\"$overrides\" \"$wine\" reg add \\
+      'HKLM\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Fonts' \\
+      /v \"$name (TrueType)\" /t REG_SZ /d \"$file\" /f >/dev/null
+  done <<'EOF'
+Arial|Arial.ttf
+Arial Bold|Arialbd.ttf
+Arial Bold Italic|Arialbi.ttf
+Arial Italic|Ariali.ttf
+Times New Roman|Times.ttf
+Times New Roman Bold|Timesbd.ttf
+Times New Roman Bold Italic|Timesbi.ttf
+Times New Roman Italic|Timesi.ttf
+Courier New|cour.ttf
+Courier New Bold|courbd.ttf
+Courier New Bold Italic|courbi.ttf
+Courier New Italic|couri.ttf
+EOF
+  echo \"$settings\" > \"$applied\"
 fi
+rm -f \"$data/applied\"                 # where older versions kept it
 
 # D: is where the games go, in a folder that's easy to find.
 mkdir -p \"$data/games\"
 ln -sfn \"$data/games\" \"$WINEPREFIX/dosdevices/d:\"
+
+# The launcher counts a game as installed as soon as its folder exists, and
+# creates the (empty) folder before installing anything; an install that
+# was interrupted early leaves the game \"installed\" with nothing to start.
+# The launcher always installs to <drive>:\\BFME1, BFME2 or RotWK.
+for dir in \"$WINEPREFIX/drive_c\" \"$data/games\"; do
+  for game in BFME1 BFME2 RotWK; do
+    rmdir -- \"$dir/$game\" 2>/dev/null || true
+  done
+done
 
 if [ \"${BFME_DXVK:-0}\" = 1 ]; then
   sys=\"$WINEPREFIX/drive_c/windows\"
@@ -141,8 +189,19 @@ fi
 export WINEDLLOVERRIDES=\"$overrides${WINEDLLOVERRIDES:+;$WINEDLLOVERRIDES}\"
 
 appdata=$(\"$wine\" cmd /c 'echo %APPDATA%' 2>/dev/null | tr -d '\\r')
-appdir=\"$(\"$wine\" winepath -u \"$appdata\" 2>/dev/null)/BFME All In One Launcher\"
+appdata=$(\"$wine\" winepath -u \"$appdata\" 2>/dev/null)
+appdir=\"$appdata/BFME All In One Launcher\"
 exe=\"$appdir/AllInOneLauncher.exe\"
+
+# Before the first game install the launcher runs Microsoft's DirectX 9
+# redistributable (DXSETUP), unless this flag says it has, behind a
+# \"Windows needs permission for this step\" notice that stays up for a
+# minute or two with no sign of progress.  Under Wine that's pointless:
+# Wine has its own d3dx9, d3dcompiler, xinput, xaudio etc., and loads them
+# rather than the DLLs DXSETUP copies into system32.
+mkdir -p \"$appdata/BFME Workshop/Config\"
+flag=\"$appdata/BFME Workshop/Config/dx_version.flag\"
+[ -e \"$flag\" ] || printf 'v1\\n0' > \"$flag\"
 
 # First start: what upstream's installer does.  Later updates are done by
 # the launcher itself.
@@ -164,7 +223,16 @@ cd \"$appdir\"
 exec \"$wine\" \"$exe\" \"$@\"~%"
                               (search-input-file inputs "bin/bash")
                               (search-input-file inputs "bin/wine")
-                              #$(this-package-input "dxvk"))))
+                              #$(this-package-input "dxvk")
+                              (string-join
+                               (map (lambda (font)
+                                      (string-append font "/share/fonts/truetype"))
+                                    (list #$(this-package-input
+                                             "font-microsoft-arial")
+                                          #$(this-package-input
+                                             "font-microsoft-courier-new")
+                                          #$(this-package-input
+                                             "font-microsoft-times-new-roman")))))))
                   (chmod script #o755)
                   (wrap-program script
                     `("PATH" prefix
@@ -203,8 +271,9 @@ Categories=Game;
 StartupWMClass=allinonelauncher.exe
 " script)))))))))
       (native-inputs (list icoutils))
-      (inputs (list bash-minimal coreutils curl dxvk-next wine64-wow64/prefix-update
-                    zenity))
+      (inputs (list bash-minimal coreutils curl dxvk-next font-microsoft-arial
+                    font-microsoft-courier-new font-microsoft-times-new-roman
+                    wine64-wow64/prefix-update zenity))
       (supported-systems '("x86_64-linux"))
       (home-page "https://bfmeladder.com/")
       (synopsis "Run the BFME All In One Launcher under Wine")

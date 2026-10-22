@@ -133,7 +133,10 @@ if [ -z \"$GUIX_WINE_UPDATING\" ] && [ -f \"$prefix/system.reg\" ] &&
     # wineboot reports failure when it can't overwrite files it once copied
     # read-only from the store (identical ones); the prefix is updated anyway.
     GUIX_WINE_UPDATING=1 ~a/bin/wine wineboot -u
-    ~a/bin/wineserver -w
+    # The update also starts what the prefix autostarts (Radmin's GUI and
+    # its service in SCM mode); stop them -- the caller starts what it
+    # wants -- instead of waiting for them to exit, which never happens.
+    ~a/bin/wineserver -k
     echo ~s > \"$prefix/.guix-wine\"
 fi
 exec ~a/bin/wine \"$@\"
@@ -274,7 +277,13 @@ exec ~a/bin/wine \"$@\"
                     (("\"\\$APPDIR/usr/lib/radmin-vpn\"")
                      (string-append "\"" lib "\""))
                     (("\"\\$APPDIR/usr/bin/run.sh\"")
-                     (string-append "\"" share "/run.sh\"")))
+                     (string-append "\"" share "/run.sh\""))
+                    ;; Started from the menu, it re-ran itself in a terminal
+                    ;; just for the sudo prompt.  It already asks through a
+                    ;; zenity dialog when there's no terminal, and logs to
+                    ;; $XDG_DATA_HOME/radmin-vpn-linux/run.log, so don't.
+                    (("^if \\[ ! -t 1 \\] && \\[ -z \"\\$\\{RADMIN_IN_TERM:-\\}\" \\]; then")
+                     "if false; then"))
                   (chmod launcher #o755)
                   ;; Same treatment for the health check and headless modes.
                   (for-each
@@ -306,6 +315,7 @@ exec ~a \"~a/~a\" \"$@\"~%"
                     (copy-file "packaging/radmin-vpn.desktop" desktop)
                     (substitute* desktop
                       (("^Exec=.*") (string-append "Exec=" launcher "\n"))
+                      (("^Terminal=true") "Terminal=false")
                       ;; Wine's X11 and Wayland drivers both name windows
                       ;; after the lowercased .exe file name (WM_CLASS and
                       ;; app_id "rvrvpngui.exe"); upstream's mixed-case

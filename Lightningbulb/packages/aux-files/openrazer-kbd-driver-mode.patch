@@ -1,0 +1,80 @@
+--- a/driver/razerkbd_driver.c
++++ b/driver/razerkbd_driver.c
+@@ -29,6 +29,29 @@
+ MODULE_VERSION(DRIVER_VERSION);
+ MODULE_LICENSE(DRIVER_LICENSE);
+ 
++/*
++ * Put keyboards whose dedicated macro keys only report in "driver mode"
++ * into that mode on probe and after resume, so M1-M5 emit F13-F17 (see
++ * razer_raw_event_standard) without the OpenRazer daemon.
++ */
++static bool driver_mode = true;
++module_param(driver_mode, bool, 0644);
++MODULE_PARM_DESC(driver_mode, "Switch keyboards with dedicated macro keys (BlackWidow Ultimate 2013) to driver mode so M1-M5 send F13-F17 (default: on)");
++
++static bool razer_kbd_wants_driver_mode(unsigned short pid)
++{
++    if (!driver_mode) {
++        return false;
++    }
++
++    switch (pid) {
++    case 0x011A: // BlackWidow Ultimate 2013
++        return true;
++    default:
++        return false;
++    }
++}
++
+ // KEY_MACRO* has been added in Linux 5.5, so define ourselves for older kernels.
+ // See also https://git.kernel.org/torvalds/c/b5625db
+ #ifndef KEY_MACRO1
+@@ -5498,7 +5521,9 @@
+         // Set device to regular mode, not driver mode
+         // When the daemon discovers the device it will instruct it to enter driver mode
+         // Tartarus Pro resets when it receives this command
+-        if (usb_dev->descriptor.idProduct != USB_DEVICE_ID_RAZER_TARTARUS_PRO) {
++        if (razer_kbd_wants_driver_mode(usb_dev->descriptor.idProduct)) {
++            razer_set_device_mode(dev, 0x03, 0x00);
++        } else if (usb_dev->descriptor.idProduct != USB_DEVICE_ID_RAZER_TARTARUS_PRO) {
+             razer_set_device_mode(dev, 0x00, 0x00);
+         }
+     } else if(intf->cur_altsetting->desc.bInterfaceProtocol == USB_INTERFACE_PROTOCOL_KEYBOARD) {
+@@ -6201,6 +6226,25 @@
+ 
+ MODULE_DEVICE_TABLE(hid, razer_devices);
+ 
++#ifdef CONFIG_PM
++/**
++ * The keyboard falls back to its normal mode after suspend or a USB reset;
++ * put it back into driver mode.
++ */
++static int razer_kbd_resume(struct hid_device *hdev)
++{
++    struct razer_kbd_device *device = hid_get_drvdata(hdev);
++
++    if (device != NULL &&
++        device->usb_interface_protocol == USB_INTERFACE_PROTOCOL_MOUSE &&
++        razer_kbd_wants_driver_mode(device->usb_pid)) {
++        razer_set_device_mode(device, 0x03, 0x00);
++    }
++
++    return 0;
++}
++#endif
++
+ /**
+  * Describes the contents of the driver
+  */
+@@ -6213,6 +6257,10 @@
+     .event = razer_event,
+     .raw_event = razer_raw_event,
+     .input_configured = razer_input_configured,
++#ifdef CONFIG_PM
++    .resume = razer_kbd_resume,
++    .reset_resume = razer_kbd_resume,
++#endif
+ };
+ 
+ module_hid_driver(razer_kbd_driver);
