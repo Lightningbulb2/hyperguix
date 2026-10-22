@@ -15,6 +15,7 @@
 (define-module (Lightningbulb packages radmin-vpn)
   #:use-module (guix packages)
   #:use-module (guix gexp)
+  #:use-module (guix utils)
   #:use-module (guix git-download)
   #:use-module (guix build-system gnu)
   #:use-module ((guix licenses) #:prefix license:)
@@ -30,7 +31,8 @@
   #:use-module (gnu packages mingw)
   #:use-module (gnu packages pkg-config)
   #:use-module (gnu packages python)
-  #:use-module (gnu packages wine))
+  #:use-module (gnu packages wine)
+  #:export (wine64-wow64))
 
 (define %mingw32 "i686-w64-mingw32")
 (define %mingw64 "x86_64-w64-mingw32")
@@ -40,6 +42,54 @@
                    #:xbinutils (cross-binutils triplet)
                    #:libc (cross-libc triplet))
         (cross-binutils triplet)))
+
+(define wine64-wow64
+  ;; Guix's wine64 is built without a PE cross compiler, so every builtin
+  ;; DLL is an ELF ".dll.so" that the Unix loader maps at a different
+  ;; address in each process, and it runs 32-bit programs in a separate
+  ;; 32-bit Wine ("old WoW64").  Windows programs (and upstream's injector)
+  ;; that assume kernel32 is mapped at the same address in every process,
+  ;; or that unwind exceptions through system DLLs, break on that.  This is
+  ;; the same Wine 11.0, built the way WineHQ and the Kron4ek builds that
+  ;; radmin-vpn-linux tests with are: PE builtins compiled with mingw-w64,
+  ;; and the new WoW64 mode (one 64-bit Unix process also runs 32-bit code,
+  ;; so no 32-bit host libraries are involved).
+  (package
+    (inherit wine64)
+    (name "wine64-wow64")
+    (inputs (modify-inputs (package-inputs wine64)
+              (delete "wine")))
+    (native-inputs
+     (modify-inputs (package-native-inputs wine64)
+       (append (car (mingw-toolchain %mingw32))
+               (cadr (mingw-toolchain %mingw32))
+               (car (mingw-toolchain %mingw64))
+               (cadr (mingw-toolchain %mingw64)))))
+    (arguments
+     (substitute-keyword-arguments (package-arguments wine64)
+       ((#:phases phases)
+        #~(modify-phases #$phases
+            (delete 'copy-wine32-libraries)
+            (delete 'copy-wine32-manpage)
+            (add-before 'configure 'isolate-cross-compilers
+              (lambda _
+                ;; Wine builds its PE side against its own headers and CRT,
+                ;; but configure's compiler checks include the C library
+                ;; headers.  Give mingw's gcc the mingw-w64 headers (they
+                ;; serve both architectures) and keep the native glibc ones
+                ;; out of its search path.
+                (setenv "CROSS_C_INCLUDE_PATH"
+                        #$(file-append mingw-w64-x86_64-winpthreads "/include"))
+                (for-each unsetenv
+                          '("CROSS_CPLUS_INCLUDE_PATH" "CROSS_LIBRARY_PATH"))))
+            (add-after 'configure 'check-pe-build
+              (lambda _
+                ;; Fail early rather than silently producing ELF builtins.
+                (unless (zero? (system* "grep" "-q" "w64-mingw32-gcc" "Makefile"))
+                  (error "configure did not pick up the mingw-w64 compiler"))))))
+       ((#:configure-flags flags #~'())
+        #~(list "--enable-archs=i386,x86_64"))))
+    (synopsis "Implementation of the Windows API (new WoW64, PE builtins)")))
 
 (define-public radmin-vpn-linux
   (let ((commit "754389524327ad8e9ec0eb7de8348a74cacfd1f6")
@@ -154,7 +204,9 @@
                   (substitute* launcher
                     (("^#!/bin/bash") (string-append "#!" bash))
                     (("^APPDIR=.*") "")
-                    ;; Guix's wine64 is used instead of the AppImage's copy.
+                    ;; wine64-wow64 (above) is used instead of the AppImage's
+                    ;; Kron4ek build; it is built the same way (PE builtins,
+                    ;; new WoW64).
                     (("^export (PATH|WINELOADER|WINESERVER)=\"\\$APPDIR/wine.*") "")
                     (("\"\\$APPDIR/usr/lib/radmin-vpn\"")
                      (string-append "\"" lib "\""))
@@ -230,7 +282,7 @@ exec ~a \"~a/~a\" \"$@\"~%"
                (mingw-toolchain %mingw64)))
       (inputs
        (list bash coreutils curl diffutils findutils gawk glibc grep gtk
-             iproute kmod procps python sed util-linux wine64 zenity))
+             iproute kmod procps python sed util-linux wine64-wow64 zenity))
       (supported-systems '("x86_64-linux"))
       (home-page "https://github.com/baptisterajaut/radmin-vpn-linux")
       (synopsis "Run the Radmin VPN Windows client on Linux through Wine")

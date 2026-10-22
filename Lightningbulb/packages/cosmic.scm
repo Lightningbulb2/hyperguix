@@ -369,7 +369,21 @@ workspaces, multi-monitor and multi-GPU support, and XWayland."))
                ;; (ALL ends with the newline.)
                (string-append all
                               "export XCURSOR_THEME=\"${XCURSOR_THEME:-Pop}\"\n"
-                              "export XCURSOR_SIZE=\"${XCURSOR_SIZE:-24}\"\n")))
+                              "export XCURSOR_SIZE=\"${XCURSOR_SIZE:-24}\"\n"))
+              ;; greetd hands the session its VT as stdout/stderr, so the
+              ;; whole session's log (compositor and components included)
+              ;; scrolled by on an invisible console.  Keep it in a file, the
+              ;; previous session's next to it.
+              (("^export XDG_CURRENT_DESKTOP=.*" all)
+               (string-append
+                "if [ -t 2 ]; then\n"
+                "    log_dir=\"${XDG_STATE_HOME:-$HOME/.local/state}/cosmic\"\n"
+                "    mkdir -p \"$log_dir\"\n"
+                "    [ -f \"$log_dir/session.log\" ] && "
+                "mv -f \"$log_dir/session.log\" \"$log_dir/session.log.old\"\n"
+                "    exec >>\"$log_dir/session.log\" 2>&1\n"
+                "fi\n"
+                all)))
             (substitute* (string-append #$output
                                         "/share/wayland-sessions/cosmic.desktop")
               (("^Exec=.*")

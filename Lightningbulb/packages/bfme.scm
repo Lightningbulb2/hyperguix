@@ -35,7 +35,7 @@
   #:use-module (gnu packages curl)
   #:use-module (gnu packages gnome)
   #:use-module (gnu packages image)
-  #:use-module (gnu packages wine)
+  #:use-module ((Lightningbulb packages radmin-vpn) #:select (wine64-wow64))
   #:use-module ((nongnu packages wine) #:select (dxvk-next)))
 
 (define-public bfme-aio-launcher
@@ -72,7 +72,7 @@
                       (format port "#!~a
 # BFME All In One Launcher under Wine, in its own prefix.
 #   BFME_WINEPREFIX  prefix to use (default: $XDG_DATA_HOME/bfme-aio-launcher/prefix)
-#   BFME_WINE        wine executable (default: Guix's wine64)
+#   BFME_WINE        wine executable (default: wine64-wow64, PE builtins)
 #   BFME_DXVK=1      use DXVK (Direct3D 9-11 over Vulkan) instead of WineD3D
 set -e
 data=\"${XDG_DATA_HOME:-$HOME/.local/share}/bfme-aio-launcher\"
@@ -180,7 +180,7 @@ Categories=Game;
 StartupWMClass=allinonelauncher.exe
 " script)))))))))
       (native-inputs (list icoutils))
-      (inputs (list bash-minimal coreutils curl dxvk-next wine64 zenity))
+      (inputs (list bash-minimal coreutils curl dxvk-next wine64-wow64 zenity))
       (supported-systems '("x86_64-linux"))
       (home-page "https://bfmeladder.com/")
       (synopsis "Run the BFME All In One Launcher under Wine")
