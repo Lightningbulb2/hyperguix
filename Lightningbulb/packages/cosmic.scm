@@ -25,6 +25,7 @@
   #:use-module (gnu packages cmake)
   #:use-module (gnu packages compression)
   #:use-module (gnu packages elf)
+  #:use-module (gnu packages fonts)
   #:use-module (gnu packages fontutils)
   #:use-module (gnu packages freedesktop)
   #:use-module (gnu packages gettext)
@@ -234,6 +235,19 @@ at cosmic-wallpapers."
                              (("Command::new\\(\"xrdb\"\\)")
                               (format #f "Command::new(~s)"
                                       (search-input-file inputs "bin/xrdb"))))))
+                     ;; Input devices are tracked by name, but one mouse can
+                     ;; show up as several devices with the same name (a
+                     ;; Razer DeathAdder is three).  Only the last one added
+                     ;; was kept, so settings changed at run time (pointer
+                     ;; speed, ...) skipped the actual pointer.  Key them by
+                     ;; their unique kernel name (eventN) instead.
+                     #~(add-after 'unpack 'track-input-devices-by-sysname
+                         (lambda _
+                           (substitute* "src/backend/kms/mod.rs"
+                             (("\\.insert\\(device\\.name\\(\\)\\.into\\(\\)")
+                              ".insert(device.sysname().into()")
+                             (("\\.remove\\(&\\*device\\.name\\(\\)\\)")
+                              ".remove(device.sysname())"))))
                      #~(add-after 'vendor-git-crates 'patch-xwayland-path
                          (lambda* (#:key inputs #:allow-other-keys)
                            (let ((files (filter (lambda (f)
@@ -269,6 +283,19 @@ workspaces, multi-monitor and multi-GPU support, and XWayland."))
                        "orca" "orca")
    #:extra-phases
    (list
+    ;; tracing_journald::layer() succeeds without a journal (it only opens
+    ;; a socket), so every log line of the session -- the compositor's and
+    ;; the components' included -- went nowhere.  Log to stderr, which the
+    ;; display manager saves (SDDM: ~/.local/share/sddm/wayland-session.log),
+    ;; unless journald is really there.
+    #~(add-after 'unpack 'log-to-stderr-without-journald
+        (lambda _
+          (substitute* "src/main.rs"
+            (("if let Ok\\(journald\\) = tracing_journald::layer\\(\\)")
+             "if let Some(journald) = std::path::Path::new(\"/run/systemd/journal/socket\")
+\t\t.exists()
+\t\t.then(tracing_journald::layer)
+\t\t.and_then(Result::ok)"))))
     #~(add-after 'install 'fix-session-paths
         (lambda* (#:key inputs #:allow-other-keys)
           (let ((dbus-run-session (search-input-file inputs "bin/dbus-run-session")))
@@ -468,10 +495,34 @@ panel and dock, displays, input, sound, networking, users, and more."))
                     #:extra-native-inputs (list cmake-minimal)
                     ;; Its autostart entry goes under ROOTDIR/etc.
                     #:just-vars #~(list "rootdir" #$output "prefix" "")
+                    #:extra-phases
+                    (list
+                     #~(add-after 'unpack 'adapt-to-guix-system
+                         (lambda _
+                           ;; The language page sets the locale through
+                           ;; systemd-localed and the location page the time
+                           ;; zone through timedatectl; Guix has neither, and
+                           ;; both are declared in the operating-system
+                           ;; instead.  Drop the pages, as the `nixos' feature
+                           ;; does (its other changes are NixOS paths).
+                           (substitute* "src/page/mod.rs"
+                             (("#\\[cfg\\(not\\(feature = \"nixos\"\\)\\)\\]")
+                              "#[cfg(any())]"))
+                           ;; Extra themes and panel layouts are installed
+                           ;; with the program, not under /usr/share.
+                           (substitute* "src/page/appearance.rs"
+                             (("/usr/share/cosmic-themes/")
+                              (string-append #$output "/share/cosmic-themes/")))
+                           (substitute* "src/page/layout.rs"
+                             (("/usr/share/cosmic-layouts/")
+                              (string-append #$output
+                                             "/share/cosmic-layouts/"))))))
                     #:synopsis "First-run setup assistant of COSMIC"
                     #:description
-                    "cosmic-initial-setup walks a new user through language,
-appearance and layout choices on the first COSMIC login."))
+                    "cosmic-initial-setup walks a new user through
+accessibility, keyboard, appearance and panel layout choices on the first
+COSMIC login.  On Guix System the language and time zone pages are left out:
+both are set in the operating-system declaration."))
 
 (define-public xdg-desktop-portal-cosmic
   (cosmic-component "xdg-desktop-portal-cosmic"
@@ -721,7 +772,13 @@ scripts, ...) over a JSON protocol on standard input and output."))
            cosmic-viewer cosmic-monitor
            xdg-desktop-portal xdg-desktop-portal-cosmic
            ;; cosmic-portals.conf falls back to GTK's portal.
-           xdg-desktop-portal-gtk))
+           xdg-desktop-portal-gtk
+           ;; COSMIC's default interface and monospace fonts: Open Sans and
+           ;; Noto Sans Mono (which Guix ships only in font-google-noto).
+           font-open-sans font-google-noto
+           ;; GIO back ends: network shares, phones (MTP), cameras and
+           ;; other mounts in COSMIC Files.
+           gvfs))
     (home-page "https://system76.com/cosmic")
     (synopsis "COSMIC desktop environment")
     (description
