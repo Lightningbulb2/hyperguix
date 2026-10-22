@@ -1,11 +1,11 @@
 ;;; Lightningbulb channel --- the COSMIC desktop environment (System76)
 ;;;
 ;;; One package per component, pinned to the commits the cosmic-epoch
-;;; meta-repository points at.  Every component is a Rust workspace built
-;;; with its own justfile (just build-release / just install), against the
-;;; crates in cosmic-crates.scm; crates COSMIC takes from git (libcosmic and
-;;; its iced fork, smithay, cosmic-protocols, ...) are vendored by the helper
-;;; in cargo-git.scm.
+;;; meta-repository points at (currently its epoch-1.11.0 tag).  Every
+;;; component is a Rust workspace built with its own justfile (just
+;;; build-release / just install), against the crates in cosmic-crates.scm;
+;;; crates COSMIC takes from git (libcosmic and its iced fork, smithay,
+;;; cosmic-protocols, ...) are vendored by the helper in cargo-git.scm.
 ;;;
 ;;; `cosmic' at the bottom is the meta package: put it in your system's
 ;;; packages and pick "COSMIC" in your display manager's session menu.
@@ -20,6 +20,7 @@
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (gnu packages)
   #:use-module (gnu packages admin)
+  #:use-module (gnu packages base)
   #:use-module (gnu packages bash)
   #:use-module (gnu packages build-tools)
   #:use-module (gnu packages cmake)
@@ -49,9 +50,10 @@
   #:use-module (gnu packages xdisorg)
   #:use-module (gnu packages xorg)
   #:use-module (Lightningbulb packages cargo-git)
-  #:use-module (Lightningbulb packages cosmic-crates))
+  #:use-module (Lightningbulb packages cosmic-crates)
+  #:use-module (Lightningbulb packages xwayland))
 
-(define %cosmic-version "1.10.0")
+(define %cosmic-version "1.11.0")
 
 (define (cosmic-source name commit hash)
   (origin
@@ -153,6 +155,53 @@ at cosmic-wallpapers."
                    (("#!/usr/bin/env (sh|bash)" _ shell)
                     (string-append "#!" (which shell)))))
                (find-files "." "^(justfile|Justfile|.*\\.just)$"))))
+          (add-after 'unpack 'log-to-stderr-without-journald
+            ;; tracing_journald::layer() succeeds without a journal (it only
+            ;; opens a socket), so the components that prefer journald
+            ;; (session, greeter, panel, launcher, notifications, portal...)
+            ;; logged nowhere.  Log to stderr, which the session or the
+            ;; display manager saves, unless journald is really there.
+            (lambda _
+              (substitute*
+                  (find-files "." (lambda (file stat)
+                                    (and (string-suffix? ".rs" file)
+                                         (not (string-prefix? "./guix-vendor/"
+                                                              file)))))
+                (("if let Ok\\(([a-z_]+)\\) = tracing_journald::layer\\(\\)"
+                  _ name)
+                 (string-append
+                  "if let Some(" name ") = std::path::Path::new("
+                  "\"/run/systemd/journal/socket\").exists()"
+                  ".then(tracing_journald::layer).and_then(Result::ok)")))))
+          (add-after 'unpack-rust-crates 'patch-vendored-crates
+            (lambda _
+              (define (crate-files crate file)
+                (find-files "guix-vendor"
+                            (lambda (f stat)
+                              (and (string-contains
+                                    f (string-append "/rust-" crate "-"))
+                                   (string-suffix? file f)))))
+              ;; xkb-data reads the keyboard layout lists from
+              ;; /usr/share/X11/xkb; without them the keyboard pages of
+              ;; Settings and the initial setup were empty.
+              (substitute* (crate-files "xkb-data" "/src/lib.rs")
+                (("/usr/share/X11/xkb/")
+                 #$(file-append xkeyboard-config "/share/X11/xkb/")))
+              ;; Windows are matched to desktop entries by app ID; the last
+              ;; resort compares it with the Exec command, which on Guix is
+              ;; an absolute store file name (Exec=/gnu/store/...-vscodium-
+              ;; .../bin/codium for the app ID "codium").  Compare its base
+              ;; name as well, so the dock and app list find such entries
+              ;; and their icons.
+              (substitute* (crate-files "freedesktop-desktop-entry"
+                                        "/src/lib.rs")
+                (("^( *)\\.is_some_and\\(\\|exec\\| exec == app_id\\)\n"
+                  _ indent)
+                 (string-append
+                  indent ".is_some_and(|exec| exec == app_id\n"
+                  indent "    || std::path::Path::new(exec).file_name()\n"
+                  indent "        .and_then(|name| name.to_str())\n"
+                  indent "        .is_some_and(|name| name == app_id))\n")))))
           (add-after 'unpack 'set-build-environment
             (lambda _
               (for-each (lambda (pair) (setenv (car pair) (cdr pair)))
@@ -213,16 +262,18 @@ at cosmic-wallpapers."
 ;;;
 
 (define-public cosmic-comp
-  (cosmic-component "cosmic-comp" "41497b42d9744d9963c4c6d17e8add49489b45ee"
-                    "15p0kjrp2ib7cbhkm4niah6j8m1pkfc3kllf5wlk6p2mbgzhyj0y"
+  (cosmic-component "cosmic-comp" "8cb1802caada438bb5cc7670dfabdaca5fad0502"
+                    "0b4gqfaj3hpanbsil1ywi9xv3i0z3rj4wqj4l6xy6lnjvwqjxr6n"
                     #:version "1.0.0"
                     #:cargo-inputs cosmic-comp-cargo-inputs
                     #:build-env '(("GIT_HASH"
-                                   . "41497b42d9744d9963c4c6d17e8add49489b45ee"))
+                                   . "8cb1802caada438bb5cc7670dfabdaca5fad0502"))
                     #:git-crates cosmic-comp-git-crates
                     #:extra-inputs (list libdisplay-info
                                          libseat ;Guix's seatd drops lib/ and include/
-                                         xorg-server-xwayland
+                                         ;; Rootless Xwayland with MIT-SCREEN-SAVER
+                                         ;; (Steam's idle detection).
+                                         xwayland-with-idle-time
                                          xrdb)
                     #:extra-phases
                     ;; Xwayland and xrdb are otherwise looked up in PATH, which
@@ -241,6 +292,13 @@ at cosmic-wallpapers."
                      ;; was kept, so settings changed at run time (pointer
                      ;; speed, ...) skipped the actual pointer.  Key them by
                      ;; their unique kernel name (eventN) instead.
+                     ;; Opt-in NVIDIA "dithering mode" per connector, from
+                     ;; COSMIC_DRM_DITHERING[_<CONNECTOR>] (see the patch).
+                     #~(add-after 'unpack 'apply-dithering-patch
+                         (lambda _
+                           (invoke "patch" "-p1" "--input"
+                                   #$(local-file
+                                      "aux-files/cosmic-comp-dithering-env.patch"))))
                      #~(add-after 'unpack 'track-input-devices-by-sysname
                          (lambda _
                            (substitute* "src/backend/kms/mod.rs"
@@ -269,8 +327,8 @@ workspaces, multi-monitor and multi-GPU support, and XWayland."))
 
 (define-public cosmic-session
   (cosmic-component
-   "cosmic-session" "8093b59bb1262b0612d814e6540ba936303f735a"
-   "0byq559kir0dp2kshanf1nk8m66hn14hsp6nhrk4cxc1x0v0p6il"
+   "cosmic-session" "4b0a0a24e98b9e755b6a7146e4cb29539cacda0a"
+   "10bk51psw8jsbwqsnn0cafzkq62qbjgb76d9z0pbkxyxajawy5qx"
    #:cargo-inputs cosmic-session-cargo-inputs
    #:git-crates cosmic-session-git-crates
    #:extra-inputs (list bash-minimal)
@@ -283,19 +341,8 @@ workspaces, multi-monitor and multi-GPU support, and XWayland."))
                        "orca" "orca")
    #:extra-phases
    (list
-    ;; tracing_journald::layer() succeeds without a journal (it only opens
-    ;; a socket), so every log line of the session -- the compositor's and
-    ;; the components' included -- went nowhere.  Log to stderr, which the
-    ;; display manager saves (SDDM: ~/.local/share/sddm/wayland-session.log),
-    ;; unless journald is really there.
-    #~(add-after 'unpack 'log-to-stderr-without-journald
-        (lambda _
-          (substitute* "src/main.rs"
-            (("if let Ok\\(journald\\) = tracing_journald::layer\\(\\)")
-             "if let Some(journald) = std::path::Path::new(\"/run/systemd/journal/socket\")
-\t\t.exists()
-\t\t.then(tracing_journald::layer)
-\t\t.and_then(Result::ok)"))))
+    ;; (The session's log goes to stderr, which the display manager saves:
+    ;; see log-to-stderr-without-journald in cosmic-component.)
     #~(add-after 'install 'fix-session-paths
         (lambda* (#:key inputs #:allow-other-keys)
           (let ((dbus-run-session (search-input-file inputs "bin/dbus-run-session")))
@@ -304,7 +351,25 @@ workspaces, multi-monitor and multi-GPU support, and XWayland."))
                (string-append "#!" (search-input-file inputs "bin/sh")))
               (("/usr/bin/dbus-run-session") dbus-run-session)
               (("/usr/bin/cosmic-session")
-               (string-append #$output "/bin/cosmic-session")))
+               (string-append #$output "/bin/cosmic-session"))
+              ;; The CuteCosmic probe used QT_PLUGIN_PATH as its loop
+              ;; variable, leaving it set to "/usr/lib/*/qt6/plugins" and
+              ;; hiding the profiles' Qt plugins (Wayland platform, image
+              ;; formats, themes) from every Qt application.
+              (("for QT_PLUGIN_PATH in .*; do")
+               "for qt_plugin_dir in $(IFS=:; echo ${QT_PLUGIN_PATH}); do")
+              (("\\$\\{QT_PLUGIN_PATH\\}/platformthemes")
+               "${qt_plugin_dir}/platformthemes")
+              ;; Without XCURSOR_THEME the compositor (and Xwayland, which
+              ;; it hands the theme to) looks for a theme called "default";
+              ;; there is none on Guix, so every pointer shape -- links,
+              ;; text, resize edges -- fell back to the same built-in
+              ;; arrow.  Use COSMIC's own cursor theme (pop-icon-theme).
+              (("^export DCONF_PROFILE=.*" all)
+               ;; (ALL ends with the newline.)
+               (string-append all
+                              "export XCURSOR_THEME=\"${XCURSOR_THEME:-Pop}\"\n"
+                              "export XCURSOR_SIZE=\"${XCURSOR_SIZE:-24}\"\n")))
             (substitute* (string-append #$output
                                         "/share/wayland-sessions/cosmic.desktop")
               (("^Exec=.*")
@@ -318,12 +383,32 @@ session file display managers list."))
 
 (define-public cosmic-settings-daemon
   (cosmic-component "cosmic-settings-daemon"
-                    "9e4ae69fc175191f15789d35423806ea0f093c9d"
-                    "0dgczy5yxqfgy783y42dh18y6fnwy0cj5j7cpgn7hrzbsij6k63q"
+                    "655b14fb9572dd7f7231ec6c343c63984e99741a"
+                    "0v56l3m0mjg445pmsdq1qd33nqvdljw51xjg4j6v4nrxrchwdi49"
                     #:cargo-inputs cosmic-settings-daemon-cargo-inputs
                     #:git-crates cosmic-settings-daemon-git-crates
                     #:extra-inputs (list pipewire)
                     #:extra-native-inputs (list clang)
+                    #:extra-phases
+                    ;; Sound themes (event sounds) and the adw-gtk3 themes
+                    ;; it switches GTK 3 to are looked up under /usr/share.
+                    (list
+                     #~(add-after 'unpack 'use-system-profile-data
+                         (lambda _
+                           (substitute* '("src/pipewire.rs" "src/battery.rs"
+                                          "src/theme.rs")
+                             (("/usr/share/(sounds|themes)/" _ dir)
+                              (string-append "/run/current-system/profile/share/"
+                                             dir "/")))))
+                     ;; The default Suspend action (also what cosmic-idle
+                     ;; runs after the idle timeout) is `systemctl suspend';
+                     ;; without systemd that does nothing.  elogind's
+                     ;; loginctl does the same through logind.
+                     #~(add-after 'unpack 'suspend-with-loginctl
+                         (lambda _
+                           (substitute* "data/system_actions.ron"
+                             (("\"systemctl suspend\"")
+                              "\"loginctl suspend\"")))))
                     #:license license:gpl3+
                     #:synopsis "Settings daemon of the COSMIC desktop"
                     #:description
@@ -332,8 +417,8 @@ themes and appearance, brightness and volume keys, input devices, and other
 system integration."))
 
 (define-public cosmic-panel
-  (cosmic-component "cosmic-panel" "3ce6ce1cec97669f91e809962d9446aaefe8a06e"
-                    "16cvzwysb84p280gb4jd0lkjzpdjd7mx5sxxagpc6r86c2l9k1ay"
+  (cosmic-component "cosmic-panel" "ca20ce3185b3b4404f429d59d429c40b58a2ddef"
+                    "0sjpzhf2589gd2y6l6d3i5cdqvf39d0ahp95pl6ljlapf1y21034"
                     #:cargo-inputs cosmic-panel-cargo-inputs
                     #:git-crates cosmic-panel-git-crates
                     #:synopsis "Panel and dock of the COSMIC desktop"
@@ -342,8 +427,8 @@ system integration."))
 the applets shown in them."))
 
 (define-public cosmic-applets
-  (cosmic-component "cosmic-applets" "406d1b7d627138fdf4078f654268d3d8774e50f1"
-                    "13pfbppzsg2fxf6jqz11zv203in6wm11lmm0m9lq56vk4zjh27pg"
+  (cosmic-component "cosmic-applets" "328d142faac17c9cc3e00d434d05060411c007ea"
+                    "05xk984jhhxzral08l36x6krcbhsm2a4qm5k55fdv0wk0n25qif0"
                     #:cargo-inputs cosmic-applets-cargo-inputs
                     #:git-crates cosmic-applets-git-crates
                     #:synopsis "Panel applets of the COSMIC desktop"
@@ -353,8 +438,8 @@ battery, Bluetooth, network, notifications, power, status area (tray),
 tiling, time, workspaces, input sources and accessibility."))
 
 (define-public cosmic-bg
-  (cosmic-component "cosmic-bg" "91d525b7310f5a497c9fd09a25d2710eb9f8a6f7"
-                    "03qf54xfpnhrcin9s962a6a8k6pac3g7xip7d7q5a7xr0d504xlx"
+  (cosmic-component "cosmic-bg" "9520e16758693bc2f6845d52680f236d548edda2"
+                    "1vx7aamb3kl91ygxqxzs1mq6hddnzrbkxp5mdnp41q5n4ajvfknv"
                     #:cargo-inputs cosmic-bg-cargo-inputs
                     #:git-crates cosmic-bg-git-crates
                     #:extra-inputs (list dav1d)
@@ -368,18 +453,27 @@ tiling, time, workspaces, input sources and accessibility."))
 output, from images, colors or gradients."))
 
 (define-public cosmic-idle
-  (cosmic-component "cosmic-idle" "21e983c63e75640ab0055495e768a5c616742c19"
-                    "1ix8a55rph6cihj1q4yiib23qlmjwp8fbacf4ax9cd75g19k2j7r"
+  (cosmic-component "cosmic-idle" "6d6f07af60bb307882cdcbd0bda0a6fc76bd0df3"
+                    "0chm03yrzcbnwy1v4kw1kqpkjaccmqabk1666cw3ng4yz5ha8m4g"
                     #:cargo-inputs cosmic-idle-cargo-inputs
                     #:git-crates cosmic-idle-git-crates
+                    #:extra-phases
+                    ;; Its fallback when no Suspend action is configured;
+                    ;; see cosmic-settings-daemon.
+                    (list
+                     #~(add-after 'unpack 'suspend-with-loginctl
+                         (lambda _
+                           (substitute* "src/main.rs"
+                             (("\"systemctl suspend\"")
+                              "\"loginctl suspend\"")))))
                     #:synopsis "Idle daemon of the COSMIC desktop"
                     #:description
                     "cosmic-idle blanks the screen and suspends the system after
 the configured idle time."))
 
 (define-public cosmic-osd
-  (cosmic-component "cosmic-osd" "9b14ee017fb8fdb7d03d73da597cf17b89d890f7"
-                    "1fk05h00wbrkz3zk6pyl5y4wvxqlzn9m8r6bnyi4z5bky8yp7gks"
+  (cosmic-component "cosmic-osd" "4f96e98981712f02b98f704a6f19c4c6a58b378b"
+                    "1yqv4a4v0p5lv6ynpwbpx0c1kd2rvq012bdfz0sxpj4dvmcbpxcw"
                     #:cargo-inputs cosmic-osd-cargo-inputs
                     #:git-crates cosmic-osd-git-crates
                     ;; Guix's polkit service installs the setuid helper here.
@@ -393,8 +487,8 @@ brightness, ...) and acts as its polkit authentication agent."))
 
 (define-public cosmic-notifications
   (cosmic-component "cosmic-notifications"
-                    "1e4c1f11fdcae273d6954fd0bfc54749a6145267"
-                    "0py0ij70lxzb5nxwsazng5hjj8xisvywpfkl4z9xymna0vzzhn2c"
+                    "382927dc48964f3b098429ad6b836cc4b7e7ecf2"
+                    "0js0k0l52r957awrx117h95kacg7k9ydxy6mvyhnr8mw6rslh0x0"
                     #:cargo-inputs cosmic-notifications-cargo-inputs
                     #:git-crates cosmic-notifications-git-crates
                     #:synopsis "Notification daemon of the COSMIC desktop"
@@ -403,8 +497,8 @@ brightness, ...) and acts as its polkit authentication agent."))
 notification service for the COSMIC desktop."))
 
 (define-public cosmic-launcher
-  (cosmic-component "cosmic-launcher" "03195ddb097c6ad83c4072917d60d900b8bd944f"
-                    "0ap3jhl8xiqlmmigd908szlhk6yny21n2ccjfq8c545s58928l22"
+  (cosmic-component "cosmic-launcher" "b6c2ed7d1224a94568b083162ea6b79409ef111b"
+                    "1cjnki0jrb0qsa2bvynbd5wxs2bnn87sql6jzg7d082ddh0b69ql"
                     #:cargo-inputs cosmic-launcher-cargo-inputs
                     #:git-crates cosmic-launcher-git-crates
                     #:synopsis "Application launcher of the COSMIC desktop"
@@ -414,8 +508,8 @@ to pop-launcher's search plugins."))
 
 (define-public cosmic-app-library
   (cosmic-component "cosmic-app-library"
-                    "1107375789e3f60e120b6dc5b81379771ecaa811"
-                    "1lhqb4ci4lhybd35r4y5db1cflzmvpaxc43xv02pr7jgnksxz38r"
+                    "3651caff79bcf36f7c16ba5ed4f41de530c7b1a7"
+                    "0mfkdc2zmdlq2ssdradzdxlqing1bxf8g2kqc99v65kcflp2v6jw"
                     #:cargo-inputs cosmic-app-library-cargo-inputs
                     #:git-crates cosmic-app-library-git-crates
                     #:synopsis "Application library of the COSMIC desktop"
@@ -446,8 +540,8 @@ applications, with user-defined folders."))
 and lets you move windows between them."))
 
 (define-public cosmic-randr
-  (cosmic-component "cosmic-randr" "85efc7febb99876094cf90af6dbce0927ad8cca7"
-                    "117fnwghcpavsi0pnx8qaf9z1q1g9a5qmwp8ydav33dvm86af0hy"
+  (cosmic-component "cosmic-randr" "f1a97655c97e8799bf4a37a8f5103a8ab5e5068d"
+                    "02sk9s270hypszdsq9icwvyhk2mhx9j140fp1imc3y2s9aidzvzx"
                     #:cargo-inputs cosmic-randr-cargo-inputs
                     #:git-crates cosmic-randr-git-crates
                     #:license license:mpl2.0
@@ -457,8 +551,8 @@ and lets you move windows between them."))
 refresh rate, position, scale) of the COSMIC compositor."))
 
 (define-public cosmic-screenshot
-  (cosmic-component "cosmic-screenshot" "07e27587eb387ecf38cb4692ccbf25ad20760d22"
-                    "1dmcm0gdgq0kjavvfrasg9fakwxxig3mwzvcz9qf8fs2g6z8slfv"
+  (cosmic-component "cosmic-screenshot" "45549f7e940d495ecee9268f58824668814e970c"
+                    "084j0sl4abfnz7bd2fsdkav48xd32b19wy42gnn8qqsdxa7r5cid"
                     #:cargo-inputs cosmic-screenshot-cargo-inputs
                     #:git-crates cosmic-screenshot-git-crates
                     #:synopsis "Screenshot tool of the COSMIC desktop"
@@ -467,8 +561,8 @@ refresh rate, position, scale) of the COSMIC compositor."))
 portal."))
 
 (define-public cosmic-osk
-  (cosmic-component "cosmic-osk" "1b7ec698b79d248d6a59ff426f453fc7ce3edc91"
-                    "09cbwzzzxvajjhr2k023mam9nbr05ncc2cmz69b2fyd4c2w5s4h9"
+  (cosmic-component "cosmic-osk" "6b146a2b0a23d88ae84223ad06c6813bda5a9386"
+                    "0dv3d5d3a3kqc6v01ihcq0d3ccgxmciis4rz1bkcrr1b30rh23xg"
                     #:cargo-inputs cosmic-osk-cargo-inputs
                     #:git-crates cosmic-osk-git-crates
                     #:synopsis "On-screen keyboard of the COSMIC desktop"
@@ -476,8 +570,8 @@ portal."))
                     "cosmic-osk is COSMIC's on-screen keyboard."))
 
 (define-public cosmic-settings
-  (cosmic-component "cosmic-settings" "58aeb65244b8830880e8b6ced89dcd25663f20b1"
-                    "07xivp1am8sbfk40sgy84sx59r0rc6125fz1brzfcfcr79dkffv6"
+  (cosmic-component "cosmic-settings" "f1d00fc06e18203e880771617657067c10c43321"
+                    "0jxvzn66jxkk0dk876h9b3kc7xchr1x84kqa2l7ragavlhmjlxgr"
                     #:cargo-inputs cosmic-settings-cargo-inputs
                     #:git-crates cosmic-settings-git-crates
                     #:extra-inputs (list dav1d)
@@ -488,8 +582,8 @@ panel and dock, displays, input, sound, networking, users, and more."))
 
 (define-public cosmic-initial-setup
   (cosmic-component "cosmic-initial-setup"
-                    "8b025bc9eec4844d8c01fb238e5298b3db920b3f"
-                    "0y4040jk3hpm9qk4cjy9kny8g1z50bsi02d8fi9x881ygz12m0mk"
+                    "653a4db1841e70ef8e36d3c6f0a14b7fce335697"
+                    "0kqfjg9s7vhg33zsdvjl07n6485n45kjg0lpsvd9j5kff2kw284l"
                     #:cargo-inputs cosmic-initial-setup-cargo-inputs
                     #:git-crates cosmic-initial-setup-git-crates
                     #:extra-native-inputs (list cmake-minimal)
@@ -526,8 +620,8 @@ both are set in the operating-system declaration."))
 
 (define-public xdg-desktop-portal-cosmic
   (cosmic-component "xdg-desktop-portal-cosmic"
-                    "9d35e6300b69cf06da723a502a9a56604a022786"
-                    "1zjmh0jn2bsmrz6rr83w5r9a677acc10zymd4zzc23klyg5r5rhs"
+                    "f448ddfb296bf7bb23517b24b2f532559a334a1c"
+                    "1ww3pvax94y0rf5bka1194k5x9a1i89ss4s9y0h0mvq9nm8xynji"
                     #:cargo-inputs xdg-desktop-portal-cosmic-cargo-inputs
                     #:git-crates xdg-desktop-portal-cosmic-git-crates
                     #:extra-inputs (list gstreamer pipewire)
@@ -550,8 +644,8 @@ by browsers for screen sharing."))
 ;;;
 
 (define-public cosmic-files
-  (cosmic-component "cosmic-files" "ac5cef76fa60b5a329bfda3d30825489ec28af53"
-                    "1aq9wwnsp10ddia58wwf8hl017j9xz9sv0lia5p9p1zkkcd4lzym"
+  (cosmic-component "cosmic-files" "3cc4b8003e8d08349c7ced8a9cdd10cdfa45d38c"
+                    "109sh2nnzrfpxcw3x48nnhl6vj7xsdyrddrpv1r9ra8fb5l8xy4h"
                     #:cargo-inputs cosmic-files-cargo-inputs
                     #:git-crates cosmic-files-git-crates
                     #:synopsis "File manager of the COSMIC desktop"
@@ -560,8 +654,8 @@ by browsers for screen sharing."))
 search, network and trash locations, and desktop-icon support."))
 
 (define-public cosmic-edit
-  (cosmic-component "cosmic-edit" "5ddf5115995e02fd71851a42bf0e6a9c9b5a1ce5"
-                    "1qsyrxfg5cl40hkb004807z8ywsh62k6la7152v4jv6p403ln7pg"
+  (cosmic-component "cosmic-edit" "4ac1cc84f784d4f89327f3d3459af2633ceb4f12"
+                    "0j95s73647p8wlrqixxpgba1h9cr43954svl0iplnz1zzn6bbnfg"
                     #:cargo-inputs cosmic-edit-cargo-inputs
                     #:git-crates cosmic-edit-git-crates
                     ;; Guix's cargo-build-system sets RUSTONIG_SYSTEM_LIBONIG,
@@ -573,8 +667,8 @@ search, network and trash locations, and desktop-icon support."))
 highlighting, project folders, search and replace, and Git status."))
 
 (define-public cosmic-term
-  (cosmic-component "cosmic-term" "3bfca1eb804de2f069e62d0709982beca908cb01"
-                    "0jyfdp4hykhhcfx8csbrwxizmfnpxmwl97n9sf43ksfdw14j7v9k"
+  (cosmic-component "cosmic-term" "699ac42384b917029082d45a01a9261a4ba75c45"
+                    "1qm3lan6aw23cj80znphkhls0imp8ckyzvl308g39a31hzzdnlzw"
                     #:cargo-inputs cosmic-term-cargo-inputs
                     #:git-crates cosmic-term-git-crates
                     #:synopsis "Terminal emulator of the COSMIC desktop"
@@ -583,8 +677,8 @@ highlighting, project folders, search and replace, and Git status."))
 alacritty_terminal, with tabs, split panes and themes."))
 
 (define-public cosmic-store
-  (cosmic-component "cosmic-store" "c7b36a2fdccf1ce88944793af67c3664413ee560"
-                    "147nrasvmbjlwc5swhjnr0ygafx3vz2scr83y6pcdh0wf6w3llxk"
+  (cosmic-component "cosmic-store" "16b1667e43c634318a99995c8eb77c23603ae560"
+                    "1p3hnk6bq16a33awfh5fc9d9k0p04cazy6qy4zxrvnv9ycx8qb3w"
                     #:cargo-inputs cosmic-store-cargo-inputs
                     #:git-crates cosmic-store-git-crates
                     #:extra-inputs (list flatpak)
@@ -596,11 +690,11 @@ remotes."))
 
 (define-public cosmic-player
   (cosmic-component
-   "cosmic-player" "900453787f999ec151b8d58683923e3110b727e1"
-   "0fjcpca0v72i7hhj2xvvacbax7p0n2v06rzrr6j5lspqd1cvkp3v"
+   "cosmic-player" "34a41f247a37eb681dd5c27c832e2d1f3c1dc1e4"
+   "07jvqslkn6rcqcsn7bccl8w22yjpp2zzr1kr9yjakv38snyz34qi"
    #:cargo-inputs cosmic-player-cargo-inputs
    ;; No .git in the checkout for vergen to read.
-   #:build-env '(("VERGEN_GIT_SHA" . "900453787f999ec151b8d58683923e3110b727e1"))
+   #:build-env '(("VERGEN_GIT_SHA" . "34a41f247a37eb681dd5c27c832e2d1f3c1dc1e4"))
    #:git-crates cosmic-player-git-crates
    #:extra-inputs (list bash-minimal gstreamer gst-plugins-base gst-plugins-good
                         gst-plugins-bad gst-libav)
@@ -616,8 +710,8 @@ remotes."))
    "COSMIC Media Player plays audio and video files through GStreamer."))
 
 (define-public cosmic-viewer
-  (cosmic-component "cosmic-viewer" "77ba62deb7027217efab1999e90670f3c89c5a02"
-                    "08rzvxxj0009k370c80vpqry4hilcr8v8hc3pg8scgqa9xa41kck"
+  (cosmic-component "cosmic-viewer" "300210f1c7d86ba14a43602e40dd5fe1deb16703"
+                    "1sj8h9gjvc1vhsgw9isq89wrbxjh39wdbn7q9xfv0v0i7x0wc7qx"
                     #:cargo-inputs cosmic-viewer-cargo-inputs
                     #:git-crates cosmic-viewer-git-crates
                     #:extra-inputs (list libheif libjpeg-turbo-3) ;turbojpeg-sys wants >= 3.0
@@ -637,8 +731,8 @@ remotes."))
 camera formats, with a gallery of the surrounding folder."))
 
 (define-public cosmic-monitor
-  (cosmic-component "cosmic-monitor" "a79ce9e7d2259a82150d56978fb7a094bd4ec2f0"
-                    "0wlyg6qnkzqjfliwv85c6p5p58ip2k2kwzsjijjzzmhk7c9afgdw"
+  (cosmic-component "cosmic-monitor" "d79ff440dfa899ea6e9a3019dcfd9f9e8a44448d"
+                    "153n3hh98ravbb535x9kmwvmxf5dzfp5f1qwwpbgz9qknxznbwy2"
                     #:cargo-inputs cosmic-monitor-cargo-inputs
                     #:git-crates cosmic-monitor-git-crates
                     #:synopsis "System monitor of the COSMIC desktop"
@@ -647,23 +741,86 @@ camera formats, with a gallery of the surrounding folder."))
 disk, network and GPU usage."))
 
 (define-public cosmic-greeter
-  (cosmic-component "cosmic-greeter" "98df07df93df1cb091c95451f7162dca1a2ae2dd"
-                    "17sdkfjfg1dzrdgwazarm65w0aq2v7w546800ih8yvr2ilwq57c9"
+  (cosmic-component "cosmic-greeter" "80e8a104b75a01ab8df52bca7b8bde6dbcdb8133"
+                    "0cnxqfs5lh64lz386hqs0xmnhjz6y2az7gznjwbspwipx5zl9xvl"
                     #:cargo-inputs cosmic-greeter-cargo-inputs
                     ;; build.rs only skips git (absent in Guix checkouts)
                     ;; when both of these are set.
                     #:build-env '(("VERGEN_GIT_SHA"
-                                   . "98df07df93df1cb091c95451f7162dca1a2ae2dd")
-                                  ("VERGEN_GIT_COMMIT_DATE" . "2026-10-07"))
+                                   . "80e8a104b75a01ab8df52bca7b8bde6dbcdb8133")
+                                  ("VERGEN_GIT_COMMIT_DATE" . "2026-10-20"))
                     #:git-crates cosmic-greeter-git-crates
-                    #:extra-inputs (list dav1d linux-pam)
+                    #:extra-inputs (list bash-minimal coreutils dav1d linux-pam)
                     #:extra-native-inputs (list clang)
                     ;; "install" adds systemd sysusers/tmpfiles snippets.
                     #:install-recipes '("install-debian")
+                    #:extra-phases
+                    (list
+                     #~(add-after 'unpack 'patch-session-commands
+                         (lambda* (#:key inputs #:allow-other-keys)
+                           ;; Sessions are started through /usr/bin/env (to
+                           ;; set XDG_SESSION_TYPE and friends), and the
+                           ;; screen reader from /usr/bin.
+                           (substitute* "src/greeter.rs"
+                             (("\"/usr/bin/env\"")
+                              (format #f "~s" (search-input-file inputs
+                                                                 "bin/env")))
+                             (("\"/usr/bin/orca\"") "\"orca\""))))
+                     #~(add-after 'install 'adapt-to-guix-system
+                         (lambda* (#:key inputs #:allow-other-keys)
+                           ;; greetd runs this as the cosmic-greeter user.
+                           ;; It sources /etc/profile first (source_profile),
+                           ;; but don't count on it for what the greeter
+                           ;; needs: the session files and programs of the
+                           ;; system profile, a cursor theme, and a runtime
+                           ;; directory (elogind normally provides one).
+                           ;; Unlike upstream's, keep the compositor's
+                           ;; output: it ends up in greetd's log.
+                           (call-with-output-file
+                               (string-append #$output "/bin/cosmic-greeter-start")
+                             (lambda (port)
+                               (format port "#!~a
+export PATH=\"${PATH:+$PATH:}/run/current-system/profile/bin\"
+export XDG_DATA_DIRS=\"${XDG_DATA_DIRS:-/run/current-system/profile/share}\"
+export XCURSOR_PATH=\"${XCURSOR_PATH:-/run/current-system/profile/share/icons}\"
+export XCURSOR_THEME=\"${XCURSOR_THEME:-Pop}\"
+if [ -z \"$XDG_RUNTIME_DIR\" ] || [ ! -w \"$XDG_RUNTIME_DIR\" ]; then
+    export XDG_RUNTIME_DIR=/run/cosmic-greeter/runtime
+    ~a -p -m 0700 \"$XDG_RUNTIME_DIR\"
+fi
+~a -rf /run/cosmic-greeter/cosmic/com.system76.CosmicSettingsDaemon/v1/*
+exec cosmic-comp ~a/bin/cosmic-greeter~%"
+                                       (search-input-file inputs "bin/sh")
+                                       (search-input-file inputs "bin/mkdir")
+                                       (search-input-file inputs "bin/rm")
+                                       #$output)))
+                           (chmod (string-append #$output
+                                                 "/bin/cosmic-greeter-start")
+                                  #o555)
+                           ;; Let D-Bus start the daemon (it runs as root
+                           ;; and serves user names, avatars and
+                           ;; backgrounds to the greeter) on first use; the
+                           ;; bus policy is installed by install-debian.
+                           (let ((dir (string-append
+                                       #$output "/share/dbus-1/system-services")))
+                             (mkdir-p dir)
+                             (call-with-output-file
+                                 (string-append
+                                  dir "/com.system76.CosmicGreeter.service")
+                               (lambda (port)
+                                 (format port "[D-BUS Service]
+Name=com.system76.CosmicGreeter
+Exec=~a/bin/cosmic-greeter-daemon
+User=root~%"
+                                         #$output)))))))
                     #:synopsis "Login greeter and screen locker of the COSMIC desktop"
                     #:description
                     "cosmic-greeter is COSMIC's login screen, a greeter for the
-greetd display manager.  Run inside a user session, the same program is the
+greetd display manager, started by @command{cosmic-greeter-start} as the
+@code{cosmic-greeter} user.  It offers the sessions of the system profile's
+@file{share/wayland-sessions} and @file{share/xsessions} (the latter through
+@command{startx}), and talks to @command{cosmic-greeter-daemon}, which D-Bus
+starts on the system bus.  Run inside a user session, the same program is the
 COSMIC screen locker, which cosmic-session starts.  It authenticates through
 the @code{cosmic-greeter} PAM service, which must exist on the system (on Guix
 System, for instance @code{(unix-pam-service \"cosmic-greeter\")}): without
@@ -677,8 +834,8 @@ it, PAM denies every unlock attempt.  This is why it is not part of the
 
 (define-public pop-launcher
   (cosmic-component
-   "pop-launcher" "8a09fa50a9fbbe66a97afe3865b5e61dd1d0432c"
-   "1diwh41wiakwzgxd7wnm0pnldivq469jd9b7vsh0iq3ry2fv4fyf"
+   "pop-launcher" "86c2639ba82f4d846c801abe84fcea8ae8e7d716"
+   "02grp90fa75zrzmmikmknlmyjvr6bnhs5xqdgfz45p02z5l3ys1b"
    #:repository "launcher"
    #:version "1.2.7"
    #:cargo-inputs pop-launcher-cargo-inputs
@@ -734,6 +891,39 @@ scripts, ...) over a JSON protocol on standard input and output."))
     (description "The Cosmic icon theme, COSMIC's default icons.")
     (license license:cc-by-sa4.0)))
 
+(define-public pop-icon-theme
+  (package
+    (name "pop-icon-theme")
+    (version "3.5.1")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/pop-os/icon-theme")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0fqh6w2dnzn8ncaas2x6w3znsfa2r4g4gnzj719jdm924gxazm86"))))
+    (build-system meson-build-system)
+    (arguments
+     (list
+      #:phases
+      #~(modify-phases %standard-phases
+          (add-after 'unpack 'skip-icon-cache
+            ;; The post-install script runs gtk-update-icon-cache; Guix
+            ;; builds the icon caches of profiles itself.
+            (lambda _
+              (substitute* "meson.build"
+                (("^meson\\.add_install_script.*") "")))))))
+    (propagated-inputs (list hicolor-icon-theme))
+    (home-page "https://github.com/pop-os/icon-theme")
+    (synopsis "Icon and cursor theme of Pop!_OS and COSMIC")
+    (description
+     "The Pop icon theme, based on Paper, and the Pop cursor theme.  COSMIC's
+own icon theme falls back to it, and its cursors are COSMIC's default pointer
+theme.")
+    (license license:cc-by-sa4.0)))
+
 (define-public cosmic-sound-theme
   (package
     (name "cosmic-sound-theme")
@@ -766,7 +956,7 @@ scripts, ...) over a JSON protocol on standard input and output."))
            cosmic-applets cosmic-bg cosmic-idle cosmic-osd cosmic-notifications
            cosmic-launcher pop-launcher cosmic-app-library cosmic-workspaces
            cosmic-randr cosmic-screenshot cosmic-osk cosmic-settings
-           cosmic-initial-setup cosmic-icons cosmic-sound-theme
+           cosmic-initial-setup cosmic-icons pop-icon-theme cosmic-sound-theme
            cosmic-wallpapers
            cosmic-files cosmic-edit cosmic-term cosmic-store cosmic-player
            cosmic-viewer cosmic-monitor

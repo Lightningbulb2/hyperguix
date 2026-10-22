@@ -1,0 +1,95 @@
+cosmic-comp: opt-in control of the NVIDIA "dithering mode" connector property.
+
+The NVIDIA driver exposes "dithering mode" (auto, off, static 2x2, dynamic 2x2,
+temporal, on) instead of "max bpc", and cosmic-comp never sets it; temporal
+dithering can make some panels flicker on certain colours.  When an output is
+set up, set it from COSMIC_DRM_DITHERING_<CONNECTOR> (e.g.
+COSMIC_DRM_DITHERING_DP_2=off for DP-2) or else COSMIC_DRM_DITHERING.  Nothing
+changes when neither is set or the connector lacks the property.
+
+diff --git a/src/backend/kms/drm_helpers.rs b/src/backend/kms/drm_helpers.rs
+index 4665961..6a0f620 100644
+--- a/src/backend/kms/drm_helpers.rs
++++ b/src/backend/kms/drm_helpers.rs
+@@ -335,6 +335,49 @@ pub fn set_max_bpc(dev: &impl ControlDevice, conn: connector::Handle, bpc: u32)
+     })
+ }
+ 
++/// Set the connector property "dithering mode" (exposed by the NVIDIA
++/// driver, enum values such as "auto", "off", "static 2x2", "dynamic 2x2",
++/// "temporal", "on") as requested through the environment:
++/// COSMIC_DRM_DITHERING_<CONNECTOR> (e.g. COSMIC_DRM_DITHERING_DP_2 for
++/// "DP-2") or else COSMIC_DRM_DITHERING.  Returns Ok(None) when neither is
++/// set or the connector has no such property.
++pub fn set_dithering_from_env(
++    dev: &impl ControlDevice,
++    conn: connector::Handle,
++    output_name: &str,
++) -> Result<Option<String>> {
++    let per_connector = format!(
++        "COSMIC_DRM_DITHERING_{}",
++        output_name.to_ascii_uppercase().replace(['-', ' '], "_")
++    );
++    let Some(wanted) = std::env::var(&per_connector)
++        .or_else(|_| std::env::var("COSMIC_DRM_DITHERING"))
++        .ok()
++        .filter(|value| !value.is_empty())
++    else {
++        return Ok(None);
++    };
++    let Ok(prop) = get_prop(dev, conn, "dithering mode") else {
++        return Ok(None);
++    };
++    let info = dev.get_property(prop)?;
++    let property::ValueType::Enum(values) = info.value_type() else {
++        return Err(anyhow!("dithering mode is not an enum property"));
++    };
++    let (_, entries) = values.values();
++    let entry = entries
++        .iter()
++        .find(|entry| {
++            entry
++                .name()
++                .to_str()
++                .is_ok_and(|name| name.eq_ignore_ascii_case(wanted.trim()))
++        })
++        .ok_or_else(|| anyhow!("dithering mode has no value {:?}", wanted))?;
++    dev.set_property(conn, prop, entry.value())?;
++    Ok(Some(wanted))
++}
++
+ pub fn panel_orientation(dev: &impl ControlDevice, conn: connector::Handle) -> Result<Transform> {
+     let (val_type, val) = get_property_val(dev, conn, "panel orientation")?;
+     match val_type.convert_value(val) {
+diff --git a/src/backend/kms/mod.rs b/src/backend/kms/mod.rs
+index 4dcffc7..1b75006 100644
+--- a/src/backend/kms/mod.rs
++++ b/src/backend/kms/mod.rs
+@@ -1140,6 +1140,27 @@ impl KmsGuard<'_> {
+                             );
+                         }
+ 
++                        // Opt-in: COSMIC_DRM_DITHERING[_<CONNECTOR>] selects the
++                        // NVIDIA "dithering mode" (temporal dithering can make
++                        // some panels flicker on certain colours).
++                        match drm_helpers::set_dithering_from_env(
++                            drm.device(),
++                            conn,
++                            &surface.output.name(),
++                        ) {
++                            Ok(Some(mode)) => info!(
++                                ?mode,
++                                "Set dithering mode on connector: {}",
++                                surface.output.name()
++                            ),
++                            Ok(None) => {}
++                            Err(err) => warn!(
++                                ?err,
++                                "Failed to set dithering mode on connector: {}",
++                                surface.output.name()
++                            ),
++                        }
++
+                         let vrr = output_config.0.vrr;
+                         std::mem::drop(output_config);
+ 

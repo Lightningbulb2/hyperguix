@@ -61,7 +61,7 @@
   #:export (skia-for-ladybird
             angle-for-ladybird))
 
-(define %ladybird-commit "bc4dfc0d5397985b19b08715d2bb7605ff50dfa3")
+(define %ladybird-commit "b60be2e29b721f4748998e598cda2361d05462f6")
 
 (define %ladybird-source
   (origin
@@ -71,7 +71,7 @@
           (commit %ladybird-commit)))
     (file-name (git-file-name "ladybird" (string-take %ladybird-commit 7)))
     (sha256
-     (base32 "1qd34slfl6d410lg846zrh94w7nrylmcd7vzwynzrm2zh9arg9gf"))))
+     (base32 "1aqh7cwjvm5m1zv91gdpf9158x47kp3zy7526wvqk9mci94sv88v"))))
 
 (define (ladybird-file file)
   "FILE from Ladybird's source tree (a vcpkg overlay port patch, say)."
@@ -660,6 +660,21 @@ holds the viewer files Ladybird embeds.")
               ;; speeds up drawing an animated border.
               (substitute* "UI/Qt/ChromeStyle.cpp"
                 (("^ *path\\.setCachingEnabled\\(true\\);") ""))
+              ;; The Landlock sandbox of the Compositor and the video decoder
+              ;; allows the FHS library and data directories, plus the
+              ;; directories of the libraries loaded so far and the files
+              ;; that the GPU loader manifests name.  On Guix, drivers load
+              ;; their own dependencies (libnvidia-glsi, LLVM, zstd...) and
+              ;; read manifests, fontconfig files and fonts from other store
+              ;; items, all reached through profile symlinks; without this
+              ;; Vulkan instance creation fails and painting falls back to
+              ;; the CPU.  The store is world-readable and immutable.
+              (substitute* "Libraries/LibSandbox/GpuDriverPaths.cpp"
+                (("^( *)TRY\\(add_landlock_path_if_exists\\(paths, \"/usr/local/lib\"sv, .*" all indent)
+                 (string-append all indent
+                                "TRY(add_landlock_path_if_exists(paths, \""
+                                (%store-directory)
+                                "\"sv, LandlockPath::Access::ReadOnly));\n")))
               ;; No .git in the checkout.
               (substitute* "Meta/Generators/generate-build-information.py"
                 (("revision, state = git_revision\\(source\\)")

@@ -1,0 +1,41 @@
+Keep MIT-SCREEN-SAVER in rootless Xwayland and count a forced screen saver
+reset as user activity, so X11 programs (Steam) get a usable idle time when a
+helper resets the screen saver while the user is active on the Wayland side.
+
+--- a/dix/window.c
++++ b/dix/window.c
+@@ -3097,8 +3097,13 @@
+     XID vlist[2];
+ 
+     if (on == SCREEN_SAVER_FORCER) {
+-        if (mode == ScreenSaverReset)
++        if (mode == ScreenSaverReset) {
+             what = SCREEN_SAVER_OFF;
++            /* Count a forced reset as user activity: MIT-SCREEN-SAVER
++             * measures idle time from the last device event.  */
++            UpdateCurrentTimeIf();
++            NoticeTime(inputInfo.pointer, currentTime);
++        }
+         else
+             what = SCREEN_SAVER_ON;
+         type = what;
+--- a/hw/xwayland/xwayland-screen.c
++++ b/hw/xwayland/xwayland-screen.c
+@@ -903,14 +903,10 @@
+         if (strcmp(argv[i], "-rootless") == 0) {
+             xwl_screen->rootless = 1;
+ 
+-            /* Disable the XSS extension on Xwayland rootless.
+-             *
+-             * Xwayland is just a Wayland client, no X11 screensaver
+-             * should be expected to work reliably on Xwayland rootless.
++            /* Keep the XSS extension on Xwayland rootless: X11 clients
++             * such as Steam read the idle time from it.  Blanking stays
++             * disabled by the timeouts below.
+              */
+-#ifdef SCREENSAVER
+-            noScreenSaverExtension = TRUE;
+-#endif
+             ScreenSaverTime = 0;
+             ScreenSaverInterval = 0;
+             defaultScreenSaverTime = 0;

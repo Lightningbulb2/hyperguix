@@ -19,7 +19,11 @@
 ;;;
 ;;; Instead of upstream's bundled Temurin JRE, the adapters run on Guix's
 ;;; OpenJDK.  The game itself (Forged Alliance) still has to come from your
-;;; own Steam/Wine setup and is configured inside the client.
+;;; own Steam/Wine setup and is configured inside the client: FAF copies the
+;;; original game's libraries into its own install ($XDG_DATA_HOME/faforever
+;;; here) and runs that ForgedAlliance.exe through Settings -> Game ->
+;;; "Launch command", e.g. `wine' from Guix's wine64 package.  Nothing runs
+;;; it by default, so that setting is required.
 
 (define-module (Lightningbulb packages faforever)
   #:use-module (guix packages)
@@ -78,8 +82,8 @@
                         "0yzxnd053bhm4jxqn92dy4xil9gpn9fm1zby7w8gvjzkh5s8wm7d"))
 
 (define-public faforever-client
-  (let ((commit "e5533b3c8c096797bc4169d43cf7564b628932d1")
-        (revision "0"))
+  (let ((commit "547ee8207dfef0b1b6cd38c038e941ee6d89bb10")
+        (revision "1"))
     (package
       (name "faforever-client")
       (version (git-version "0.9.1" revision commit))
@@ -91,7 +95,7 @@
                (commit commit)))
          (file-name (git-file-name name version))
          (sha256
-          (base32 "18wil8wnx4c8d3w3r3i3vj2lhgs3cg1r1533xm1sj9p0d1q2wnwz"))))
+          (base32 "0i6krwny0risfjpcq38mvk9mfsxhv3wclzpkmm4q2hic4d96cc0d"))))
       (build-system cargo-build-system)
       (arguments
        (list
@@ -137,14 +141,47 @@
             (add-after 'unpack 'find-nonguix-steam
               ;; Also auto-detect Forged Alliance under the sandbox home of
               ;; nonguix's `steam' package, next to the native and Flatpak
-              ;; Steam folders upstream already checks.
+              ;; Steam folders upstream already checks.  That Steam runs in a
+              ;; container whose $HOME is the sandbox home, so the library
+              ;; paths it writes to libraryfolders.vdf are translated too.
               (lambda _
                 (substitute* "crates/faf-app/src/infra/game_updater/install.rs"
                   (("^( *)roots\\.push\\(home\\.join\\(\"\\.var/app/com\\.valvesoftware\\.Steam/\\.local/share/Steam\"\\)\\);"
                     all indent)
                    (string-append
                     all "\n" indent
-                    "roots.push(home.join(\".local/share/guix-sandbox-home/.local/share/Steam\"));")))))
+                    "roots.extend(guix_sandbox_home().map(|h| h.join(\".local/share/Steam\")));"))
+                  (("^( *)\\.flat_map\\(\\|vdf\\| steam_library_paths\\(&vdf\\)\\)" all indent)
+                   (string-append
+                    all "\n" indent
+                    ".flat_map(|library| {
+            let inside = directories::BaseDirs::new().and_then(|dirs| {
+                let rel = library.strip_prefix(dirs.home_dir()).ok()?;
+                Some(guix_sandbox_home()?.join(rel))
+            });
+            std::iter::once(library).chain(inside)
+        })"))
+                  (("^fn steam_retail_install_paths_in\\(" all)
+                   (string-append
+                    "/// nonguix's containerised Steam: $GUIX_SANDBOX_HOME, by default
+/// ~/.local/share/guix-sandbox-home, is its $HOME.
+fn guix_sandbox_home() -> Option<PathBuf> {
+    match std::env::var_os(\"GUIX_SANDBOX_HOME\").filter(|v| !v.is_empty()) {
+        Some(dir) => Some(PathBuf::from(dir)),
+        None => directories::BaseDirs::new()
+            .map(|dirs| dirs.home_dir().join(\".local/share/guix-sandbox-home\")),
+    }
+}
+
+" all)))))
+            (add-after 'unpack 'xdg-data-home
+              ;; FAF's own copy of the game (and replay install) goes to
+              ;; $XDG_DATA_HOME/faforever instead of ~/.faforever.  An
+              ;; existing ~/.faforever (the Java client's) is still found.
+              (lambda _
+                (substitute* "crates/faf-app/src/infra/game.rs"
+                  (("directories::BaseDirs::new\\(\\)\\.map\\(\\|dirs\\| dirs\\.home_dir\\(\\)\\.join\\(\"\\.faforever\"\\)\\)")
+                   "directories::BaseDirs::new().map(|dirs| dirs.data_dir().join(\"faforever\"))"))))
             (replace 'build
               (lambda _
                 (invoke "cargo" "build" "--offline" "--release"
@@ -208,7 +245,9 @@
                                  '("/faf-uid" "/faf-pioneer"
                                    "/steam/libsteam_api.so")))
                   ;; Launcher.  Every default can be overridden from the
-                  ;; environment, as documented in upstream's README.
+                  ;; environment, as documented in upstream's README.  GTK
+                  ;; names the window (Wayland app_id) after argv[0], so that
+                  ;; is fixed to match the .desktop file and StartupWMClass.
                   (mkdir-p bin)
                   (call-with-output-file (string-append bin "/faforever-client")
                     (lambda (port)
@@ -219,7 +258,7 @@ export FAF_ICE_ADAPTER_JAR=\"${FAF_ICE_ADAPTER_JAR:-~a/java-ice-adapter/faf-ice-
 export FAF_EXP_JAVA_ICE_ADAPTER_JAR=\"${FAF_EXP_JAVA_ICE_ADAPTER_JAR:-~a/exp-java-ice-adapter/faf-ice-adapter.jar}\"
 export FAF_ICE_ADAPTER_PATH=\"${FAF_ICE_ADAPTER_PATH:-~a/faf-pioneer}\"
 export FAF_STEAM_API_PATH=\"${FAF_STEAM_API_PATH:-~a/steam/libsteam_api.so}\"
-exec -a \"$0\" ~a \"$@\"~%"
+exec -a faforever-client ~a \"$@\"~%"
                               (search-input-file inputs "bin/bash")
                               (search-input-file inputs "bin/java")
                               natives natives natives natives natives
@@ -254,7 +293,7 @@ Icon=faforever-client
 Terminal=false
 Categories=Game;StrategyGame;
 MimeType=application/x-fafreplay;application/x-scfareplay;
-StartupWMClass=faforever-rust-client
+StartupWMClass=faforever-client
 " bin)))
                     (call-with-output-file (string-append mime "/faforever-client.xml")
                       (lambda (port)
@@ -283,8 +322,7 @@ StartupWMClass=faforever-rust-client
                                      "/lib")))
                   ;; "Open in browser" etc. go through xdg-open.
                   `("PATH" suffix
-                    (,(dirname (search-input-file inputs "bin/xdg-open"))))
-                  `("WEBKIT_DISABLE_DMABUF_RENDERER" = ("1"))))))))
+                    (,(dirname (search-input-file inputs "bin/xdg-open"))))))))))
       (native-inputs (list node patchelf pkg-config))
       (inputs
        (append

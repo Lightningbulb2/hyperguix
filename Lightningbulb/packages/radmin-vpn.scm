@@ -190,7 +190,13 @@ exec ~a \"~a/~a\" \"$@\"~%"
                     (mkdir-p (dirname desktop))
                     (copy-file "packaging/radmin-vpn.desktop" desktop)
                     (substitute* desktop
-                      (("^Exec=.*") (string-append "Exec=" launcher "\n")))))))
+                      (("^Exec=.*") (string-append "Exec=" launcher "\n"))
+                      ;; Wine's X11 and Wayland drivers both name windows
+                      ;; after the lowercased .exe file name (WM_CLASS and
+                      ;; app_id "rvrvpngui.exe"); upstream's mixed-case
+                      ;; value never matches, so docks show no icon.
+                      (("^StartupWMClass=.*")
+                       "StartupWMClass=rvrvpngui.exe\n"))))))
             (add-after 'install 'wrap-launchers
               (lambda* (#:key inputs #:allow-other-keys)
                 (let ((path (map (lambda (cmd)

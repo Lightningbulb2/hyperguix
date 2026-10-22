@@ -76,6 +76,17 @@
                 ;; do not resolve inside the build container.
                 (invoke "node" "node_modules/typescript/bin/tsc")
                 (invoke "node" "node_modules/vite/bin/vite.js" "build")))
+            (add-after 'unpack 'keep-webkit-compositing
+              ;; Upstream forces WEBKIT_DISABLE_COMPOSITING_MODE=1 against a
+              ;; blank window on NVIDIA, which is really the DMA-BUF
+              ;; renderer's doing.  Without compositing, WebKitGTK draws every
+              ;; frame in software on the main thread, so there is no
+              ;; asynchronous or kinetic scrolling and scrolling stutters.
+              ;; Leave the choice to the user's environment.
+              (lambda _
+                (substitute* "src-tauri/src/lib.rs"
+                  (("std::env::set_var\\(\"WEBKIT_DISABLE_COMPOSITING_MODE\", \"1\"\\);")
+                   ""))))
             (add-after 'build-frontend 'enter-tauri-dir
               (lambda _ (chdir "src-tauri")))
             (replace 'build
@@ -119,32 +130,34 @@ Type=Application
 Name=ScrcpyGUI
 GenericName=Android Remote Control
 Comment=A modern GUI for scrcpy
-Exec=~a/scrcpy-gui-v3
+Exec=~a/scrcpy-gui
 Icon=scrcpy-gui
 Terminal=false
 Categories=Utility;Development;
 Keywords=adb;android;scrcpy;mirror;
-StartupWMClass=scrcpy-gui-v3
+StartupWMClass=scrcpy-gui
 " bin))))))
             (add-after 'install 'glib-or-gtk-wrap
               (assoc-ref gtk:%standard-phases 'glib-or-gtk-wrap))
             (add-after 'glib-or-gtk-wrap 'wrap-program
               (lambda* (#:key inputs #:allow-other-keys)
                 (wrap-program (string-append #$output "/bin/scrcpy-gui-v3")
+                  ;; No WEBKIT_DISABLE_DMABUF_RENDERER: that renderer is
+                  ;; WebKitGTK's only GPU path, and it works with NVIDIA's
+                  ;; 615 driver.  Set it (or WEBKIT_DISABLE_COMPOSITING_MODE)
+                  ;; yourself if the window stays blank.
+                  ;;
                   ;; scrcpy, adb, xdotool (window recentring on X11) and
                   ;; pkill are all looked up on PATH.
                   `("PATH" suffix
                     ,(map (lambda (cmd)
                             (dirname (search-input-file inputs
                                                         (string-append "bin/" cmd))))
-                          '("scrcpy" "adb" "xdotool" "pkill")))
-                  ;; WebKitGTK's DMA-BUF renderer misbehaves with many
-                  ;; GPU/driver combinations (NVIDIA in particular).  Unlike
-                  ;; upstream's Nix flake we do not also force
-                  ;; WEBKIT_DISABLE_COMPOSITING_MODE: it can leave the
-                  ;; window's title-bar buttons unresponsive.
-                  `("WEBKIT_DISABLE_DMABUF_RENDERER" = ("1")))))
+                          '("scrcpy" "adb" "xdotool" "pkill"))))))
             (add-after 'wrap-program 'add-short-name
+              ;; Tauri does not set a GTK application ID here, so GTK names
+              ;; the window (Wayland app_id) after argv[0]: the .desktop file
+              ;; starts this name and declares it as StartupWMClass.
               (lambda _
                 (symlink "scrcpy-gui-v3"
                          (string-append #$output "/bin/scrcpy-gui")))))))

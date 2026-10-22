@@ -880,8 +880,8 @@
   (crate "rustls" "0.23.46" "1pwg7i8drr70374amj96952cils9mpwyijd5rx1mqdp9q3c3pqa8"))
 (define rust-rustls-pki-types-1.14.1
   (crate "rustls-pki-types" "1.14.1" "1a9pr54y0f3qr97bxpd3ahjldq0gqdld0h799xbnwdzbwxx1k9rh"))
-(define rust-rustls-webpki-0.103.15
-  (crate "rustls-webpki" "0.103.15" "1hhanq3lz384v4nccacnjfwsyy99n3yc6m6iw8kljz8yicfwzhzk"))
+(define rust-rustls-webpki-0.103.16
+  (crate "rustls-webpki" "0.103.16" "10djm2f00xzi5qlbcfqjhhn2smk2h9aw8b4l74qncz4xsfvb2hs4"))
 (define rust-rustversion-1.0.22
   (crate "rustversion" "1.0.22" "0vfl70jhv72scd9rfqgr2n11m5i9l1acnk684m2w83w0zbqdx75k"))
 (define rust-ryu-1.0.23
@@ -2477,7 +2477,7 @@
         rust-rustix-1.1.4
         rust-rustls-0.23.46
         rust-rustls-pki-types-1.14.1
-        rust-rustls-webpki-0.103.15
+        rust-rustls-webpki-0.103.16
         rust-rustversion-1.0.22
         rust-ryu-1.0.23
         rust-same-file-1.0.6

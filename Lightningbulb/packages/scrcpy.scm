@@ -64,14 +64,31 @@
                   (("^Exec=.*-c 'scrcpy ([^']*)'\"" _ args)
                    (string-append "Exec=" #$output "/bin/scrcpy " args))
                   (("^Exec=.*-c scrcpy\"")
-                   (string-append "Exec=" #$output "/bin/scrcpy")))))
+                   (string-append "Exec=" #$output "/bin/scrcpy")))
+                ;; Matches SDL_APP_ID below, so docks associate the window
+                ;; with this launcher (and its icon).
+                (substitute* "app/data/scrcpy.desktop"
+                  (("^StartupNotify=.*" all)
+                   (string-append all "StartupWMClass=scrcpy\n")))))
             (add-after 'install 'wrap-program
               ;; scrcpy shells out to adb.  Append rather than prepend so a
               ;; user-installed adb (or $ADB) still wins.
               (lambda* (#:key inputs #:allow-other-keys)
                 (wrap-program (string-append #$output "/bin/scrcpy")
                   `("PATH" suffix
-                    (,(dirname (search-input-file inputs "bin/adb"))))))))))
+                    (,(dirname (search-input-file inputs "bin/adb"))))
+                  ;; Without this SDL names the window (Wayland app_id, X11
+                  ;; WM_CLASS) after the executable, i.e. ".scrcpy-real".
+                  `("SDL_APP_ID" = ("scrcpy"))
+                  ;; SDL 3 prefers X11 (Xwayland) on compositors without the
+                  ;; fifo-v1 protocol, such as COSMIC.  Under Xwayland GL may
+                  ;; be Mesa's software renderer, which cannot import the
+                  ;; VA-API (DMA-BUF) frames scrcpy decodes by default: the
+                  ;; window stays black, logging "could not import DMA-BUF as
+                  ;; EGLImage".  Natively on Wayland, EGL is the GPU driver's
+                  ;; and this works.  Appended, so a driver list the user set
+                  ;; still comes first; SDL skips drivers that fail to start.
+                  `("SDL_VIDEO_DRIVER" "," suffix ("wayland" "x11"))))))))
       (native-inputs (list pkg-config))
       (inputs (list adb bash-minimal ffmpeg libdrm libusb libva sdl3))
       (home-page "https://github.com/Genymobile/scrcpy")

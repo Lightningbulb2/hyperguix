@@ -42,176 +42,178 @@
   #:use-module (gnu packages xorg))
 
 (define-public pandora-launcher
-  (let ((commit "2d83d6f22c43e804d9b544e8dc98d49d4874e3af")
-        (revision "0"))
-    (package
-      (name "pandora-launcher")
-      (version (git-version "5.3.1" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/Moulberry/PandoraLauncher")
-               (commit commit)))
-         (file-name (git-file-name name version))
-         (sha256
-          (base32 "0nsyaj3iiqj110w0c50glhjcc2xwisjf47jy5fmwbghvijpc183x"))))
-      (build-system cargo-build-system)
-      (arguments
-       (list
-        ;; Zed's GPUI uses std APIs stabilised in Rust 1.95.
-        #:rust rust-1.95
-        #:install-source? #f
-        #:tests? #f
-        #:phases
-        #~(modify-phases %standard-phases
-            (add-after 'unpack 'use-guix-libraries
-              (lambda* (#:key inputs #:allow-other-keys)
-                ;; "Auto" GLFW/OpenAL only probes FHS directories.
-                (substitute* "crates/schema/src/instance.rs"
-                  (("^( *)\"/lib/\"," all indent)
-                   (string-append
-                    indent "\"" #$(this-package-input "glfw") "/lib/\",\n"
-                    indent "\"" #$(this-package-input "openal") "/lib/\",\n"
-                    all)))))
-            (add-before 'configure 'save-upstream-cargo-setup
-              (lambda _
-                (copy-file "Cargo.lock" "Cargo.lock.upstream")
-                (copy-file ".cargo/config.toml" "cargo-config.upstream")))
-            (add-after 'configure 'restore-upstream-cargo-setup
-              ;; configure points crates.io at an (empty) guix-vendor
-              ;; directory and may drop Cargo.lock; put back upstream's
-              ;; vendor/ redirection (which also covers the git crates) and
-              ;; lockfile, so the build is exactly upstream's `--frozen' one.
-              (lambda _
-                (for-each (lambda (f) (when (file-exists? f) (delete-file f)))
-                          '(".cargo/config" ".cargo/config.toml" "Cargo.lock"))
-                (rename-file "cargo-config.upstream" ".cargo/config.toml")
-                (rename-file "Cargo.lock.upstream" "Cargo.lock")))
-            ;; The vendored checksums already match Cargo.lock; Guix's
-            ;; checksum rewriting would only break that.
-            (delete 'patch-cargo-checksums)
-            (add-before 'build 'relax-vendor-checksums
-              ;; Guix's shebang patching touches files
-              ;; under vendor/, which cargo verifies file by file.  Drop the
-              ;; per-file lists but keep each crate's "package" checksum, so
-              ;; the tarball contents are still tied to Cargo.lock.
-              (lambda _
-                (substitute* (find-files "vendor" "^\\.cargo-checksum\\.json$")
-                  (("\"files\":\\{[^}]*\\}") "\"files\":{}"))))
-            (replace 'build
-              (lambda _
-                (setenv "PANDORA_RELEASE_VERSION" #$(package-version this-package))
-                (setenv "PANDORA_DISTRIBUTION" "Guix (lightningbulb channel)")
-                (invoke "cargo" "build" "--release" "--frozen"
-                        "--package" "pandora_launcher")))
-            (replace 'install
-              (lambda _
-                (define (cargo-output name)
-                  ;; target/release/NAME, or target/<triplet>/release/NAME
-                  ;; when the build system sets CARGO_BUILD_TARGET.
-                  (let ((hits (filter (lambda (f)
-                                        (string-suffix?
-                                         (string-append "/release/" name) f))
-                                      (find-files "target"
-                                                  (string-append "^" name "$")))))
-                    (if (null? hits)
-                        (error "cannot find cargo output" name)
-                        (car hits))))
-                (let ((bin (string-append #$output "/bin"))
-                      (icons (string-append #$output "/share/icons/hicolor"))
-                      (apps (string-append #$output "/share/applications"))
-                      (metainfo (string-append #$output "/share/metainfo")))
-                  (mkdir-p bin)
-                  (copy-file (cargo-output "pandora_launcher")
-                             (string-append bin "/pandora-launcher"))
-                  (for-each
-                   (lambda (size)
-                     (let ((dir (string-append icons "/" size "x" size "/apps")))
-                       (mkdir-p dir)
-                       (copy-file (string-append "package/windows_icons/icon_"
-                                                 size "x" size ".png")
-                                  (string-append
-                                   dir "/com.moulberry.PandoraLauncher.png"))))
-                   '("16" "32" "48" "256"))
-                  (install-file "package/flatpak/com.moulberry.PandoraLauncher.metainfo.xml"
-                                metainfo)
-                  ;; Not named com.moulberry.PandoraLauncher.desktop: that ID
-                  ;; belongs to the Flatpak, and with both installed the menu
-                  ;; would show only one of them -- often the Flatpak.
-                  (mkdir-p apps)
-                  (copy-file "package/flatpak/com.moulberry.PandoraLauncher.desktop"
-                             (string-append apps "/pandora-launcher.desktop"))
-                  (substitute* (string-append apps "/pandora-launcher.desktop")
-                    (("^Name=.*") "Name=Pandora Launcher (Guix)\n")
-                    (("^Exec=.*")
-                     (string-append "Exec=" bin "/pandora-launcher\n"))
-                    (("^X-Flatpak=.*") "")))))
-            (add-after 'install 'wrap-program
-              (lambda* (#:key inputs #:allow-other-keys)
-                (define (lib name)
-                  (dirname (search-input-file inputs (string-append "lib/" name))))
-                (wrap-program (string-append #$output "/bin/pandora-launcher")
-                  ;; Java homes, matched by exact major version per Minecraft
-                  ;; release.  Appended, so your own FORCE_EXTERNAL_JAVA wins.
-                  `("FORCE_EXTERNAL_JAVA" suffix
-                    ;; (Referenced directly: every OpenJDK package is
-                    ;; named "openjdk", so input labels can't tell them apart.)
-                    (#$icedtea                ;8:  MC <= 1.16
-                     #$openjdk16              ;16: MC 1.17
-                     #$openjdk17              ;17: MC 1.18 - 1.20.4
-                     #$openjdk21              ;21: MC 1.20.5 - 1.21.x
-                     #$openjdk))              ;25: MC 26.x
-                  ;; dlopen()ed by GPUI (wgpu/Vulkan, Wayland) and, through
-                  ;; the inherited environment, by Minecraft's LWJGL.
-                  `("LD_LIBRARY_PATH" suffix
-                    ,(map lib '("libvulkan.so.1" "libwayland-client.so.0"
-                                "libxkbcommon.so.0" "libGL.so.1" "libEGL.so.1"
-                                "libX11.so.6" "libXcursor.so.1" "libXrandr.so.2"
-                                "libXi.so.6" "libXxf86vm.so.1" "libXext.so.6"
-                                "libglfw.so" "libopenal.so" "libpulse.so.0"
-                                "libasound.so.2" "libudev.so.1")))
-                  ;; LWJGL 2 (old Minecraft) shells out to xrandr; GPUI's file
-                  ;; pickers go through the XDG portal, falling back to zenity.
-                  `("PATH" suffix
-                    (,(dirname (search-input-file inputs "bin/xrandr"))
-                     ,(dirname (search-input-file inputs "bin/zenity"))))))))))
-      (native-inputs (list cmake-minimal pkg-config))
-      (inputs
-       (list alsa-lib
-             bash-minimal
-             dbus
-             eudev
-             fontconfig
-             freetype
-             glfw
-             libseccomp
-             libx11
-             libxcb
-             libxcursor
-             libxext
-             libxi
-             libxkbcommon
-             libxrandr
-             libxxf86vm
-             mesa
-             openal
-             openssl
-             pulseaudio
-             sqlite
-             vulkan-loader
-             wayland
-             xrandr
-             zenity
-             `(,zstd "lib")))
-      (supported-systems '("x86_64-linux"))
-      (home-page "https://github.com/Moulberry/PandoraLauncher")
-      (synopsis "Native Minecraft launcher with sandboxing and modpack tools")
-      (description
-       "Pandora Launcher is a Minecraft launcher with a native (GPUI) user
+  (package
+    (name "pandora-launcher")
+    (version "6.0.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/Moulberry/PandoraLauncher")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "1q9g4xy405iisswp68agl84da8lxfmk13ha9h53vivwhq6ysa9ci"))))
+    (build-system cargo-build-system)
+    (arguments
+     (list
+      ;; Zed's GPUI uses std APIs stabilised in Rust 1.95.
+      #:rust rust-1.95
+      #:install-source? #f
+      #:tests? #f
+      #:phases
+      #~(modify-phases %standard-phases
+          (add-after 'unpack 'use-guix-libraries
+            (lambda* (#:key inputs #:allow-other-keys)
+              ;; "Auto" GLFW/OpenAL only probes FHS directories.
+              (substitute* "crates/schema/src/instance.rs"
+                (("^( *)\"/lib/\"," all indent)
+                 (string-append
+                  indent "\"" #$(this-package-input "glfw") "/lib/\",\n"
+                  indent "\"" #$(this-package-input "openal") "/lib/\",\n"
+                  all)))))
+          (add-before 'configure 'save-upstream-cargo-setup
+            (lambda _
+              (copy-file "Cargo.lock" "Cargo.lock.upstream")
+              (copy-file ".cargo/config.toml" "cargo-config.upstream")))
+          (add-after 'configure 'restore-upstream-cargo-setup
+            ;; configure points crates.io at an (empty) guix-vendor
+            ;; directory and may drop Cargo.lock; put back upstream's
+            ;; vendor/ redirection (which also covers the git crates) and
+            ;; lockfile, so the build is exactly upstream's `--frozen' one.
+            (lambda _
+              (for-each (lambda (f) (when (file-exists? f) (delete-file f)))
+                        '(".cargo/config" ".cargo/config.toml" "Cargo.lock"))
+              (rename-file "cargo-config.upstream" ".cargo/config.toml")
+              (rename-file "Cargo.lock.upstream" "Cargo.lock")))
+          ;; The vendored checksums already match Cargo.lock; Guix's
+          ;; checksum rewriting would only break that.
+          (delete 'patch-cargo-checksums)
+          (add-before 'build 'relax-vendor-checksums
+            ;; Guix's shebang patching touches files
+            ;; under vendor/, which cargo verifies file by file.  Drop the
+            ;; per-file lists but keep each crate's "package" checksum, so
+            ;; the tarball contents are still tied to Cargo.lock.
+            (lambda _
+              (substitute* (find-files "vendor" "^\\.cargo-checksum\\.json$")
+                (("\"files\":\\{[^}]*\\}") "\"files\":{}"))))
+          (replace 'build
+            (lambda _
+              (setenv "PANDORA_RELEASE_VERSION" #$(package-version this-package))
+              (setenv "PANDORA_DISTRIBUTION" "Guix (lightningbulb channel)")
+              (invoke "cargo" "build" "--release" "--frozen"
+                      "--package" "pandora_launcher")))
+          (replace 'install
+            (lambda _
+              (define (cargo-output name)
+                ;; target/release/NAME, or target/<triplet>/release/NAME
+                ;; when the build system sets CARGO_BUILD_TARGET.
+                (let ((hits (filter (lambda (f)
+                                      (string-suffix?
+                                       (string-append "/release/" name) f))
+                                    (find-files "target"
+                                                (string-append "^" name "$")))))
+                  (if (null? hits)
+                      (error "cannot find cargo output" name)
+                      (car hits))))
+              (let ((bin (string-append #$output "/bin"))
+                    (icons (string-append #$output "/share/icons/hicolor"))
+                    (apps (string-append #$output "/share/applications"))
+                    (metainfo (string-append #$output "/share/metainfo")))
+                (mkdir-p bin)
+                (copy-file (cargo-output "pandora_launcher")
+                           (string-append bin "/pandora-launcher"))
+                (for-each
+                 (lambda (size)
+                   (let ((dir (string-append icons "/" size "x" size "/apps")))
+                     (mkdir-p dir)
+                     (copy-file (string-append "package/windows_icons/icon_"
+                                               size "x" size ".png")
+                                (string-append
+                                 dir "/com.moulberry.PandoraLauncher.png"))))
+                 '("16" "32" "256"))
+                (install-file "package/flatpak/com.moulberry.PandoraLauncher.metainfo.xml"
+                              metainfo)
+                ;; Named after the Wayland app_id (and X11 WM_CLASS) that
+                ;; every window sets, "PandoraLauncher", so docks and
+                ;; taskbars find this entry and its icon for the running
+                ;; windows.  (Not com.moulberry.PandoraLauncher.desktop:
+                ;; that ID belongs to the Flatpak, and with both installed
+                ;; the menu would show only one of them.)
+                (mkdir-p apps)
+                (copy-file "package/flatpak/com.moulberry.PandoraLauncher.desktop"
+                           (string-append apps "/PandoraLauncher.desktop"))
+                (substitute* (string-append apps "/PandoraLauncher.desktop")
+                  (("^Name=.*") "Name=Pandora Launcher (Guix)\n")
+                  (("^Exec=.*")
+                   (string-append "Exec=" bin "/pandora-launcher\n"
+                                  "StartupWMClass=PandoraLauncher\n"))
+                  (("^X-Flatpak=.*") "")))))
+          (add-after 'install 'wrap-program
+            (lambda* (#:key inputs #:allow-other-keys)
+              (define (lib name)
+                (dirname (search-input-file inputs (string-append "lib/" name))))
+              (wrap-program (string-append #$output "/bin/pandora-launcher")
+                ;; Java homes, matched by exact major version per Minecraft
+                ;; release.  Appended, so your own FORCE_EXTERNAL_JAVA wins.
+                `("FORCE_EXTERNAL_JAVA" suffix
+                  ;; (Referenced directly: every OpenJDK package is
+                  ;; named "openjdk", so input labels can't tell them apart.)
+                  (#$icedtea                ;8:  MC <= 1.16
+                   #$openjdk16              ;16: MC 1.17
+                   #$openjdk17              ;17: MC 1.18 - 1.20.4
+                   #$openjdk21              ;21: MC 1.20.5 - 1.21.x
+                   #$openjdk))              ;25: MC 26.x
+                ;; dlopen()ed by GPUI (wgpu/Vulkan, Wayland) and, through
+                ;; the inherited environment, by Minecraft's LWJGL.
+                `("LD_LIBRARY_PATH" suffix
+                  ,(map lib '("libvulkan.so.1" "libwayland-client.so.0"
+                              "libxkbcommon.so.0" "libGL.so.1" "libEGL.so.1"
+                              "libX11.so.6" "libXcursor.so.1" "libXrandr.so.2"
+                              "libXi.so.6" "libXxf86vm.so.1" "libXext.so.6"
+                              "libglfw.so" "libopenal.so" "libpulse.so.0"
+                              "libasound.so.2" "libudev.so.1")))
+                ;; LWJGL 2 (old Minecraft) shells out to xrandr; GPUI's file
+                ;; pickers go through the XDG portal, falling back to zenity.
+                `("PATH" suffix
+                  (,(dirname (search-input-file inputs "bin/xrandr"))
+                   ,(dirname (search-input-file inputs "bin/zenity"))))))))))
+    (native-inputs (list cmake-minimal pkg-config))
+    (inputs
+     (list alsa-lib
+           bash-minimal
+           dbus
+           eudev
+           fontconfig
+           freetype
+           glfw
+           libseccomp
+           libx11
+           libxcb
+           libxcursor
+           libxext
+           libxi
+           libxkbcommon
+           libxrandr
+           libxxf86vm
+           mesa
+           openal
+           openssl
+           pulseaudio
+           sqlite
+           vulkan-loader
+           wayland
+           xrandr
+           zenity
+           `(,zstd "lib")))
+    (supported-systems '("x86_64-linux"))
+    (home-page "https://github.com/Moulberry/PandoraLauncher")
+    (synopsis "Native Minecraft launcher with sandboxing and modpack tools")
+    (description
+     "Pandora Launcher is a Minecraft launcher with a native (GPUI) user
 interface.  It can optionally sandbox the game (seccomp/namespaces) so mods
 cannot harm the system, syncs options and saves across instances, deduplicates
 mods with reflinks or hard links, keeps account credentials in the platform
 keyring, browses Modrinth and CurseForge, manages modpacks, and streams the
 full game log live with access tokens redacted.")
-      (license license:expat))))
+    (license license:expat)))
