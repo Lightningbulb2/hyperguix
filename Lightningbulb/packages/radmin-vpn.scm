@@ -18,6 +18,7 @@
   #:use-module (guix utils)
   #:use-module (guix git-download)
   #:use-module (guix build-system gnu)
+  #:use-module (guix build-system trivial)
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (gnu packages)
   #:use-module (gnu packages base)
@@ -32,7 +33,7 @@
   #:use-module (gnu packages pkg-config)
   #:use-module (gnu packages python)
   #:use-module (gnu packages wine)
-  #:export (wine64-wow64))
+  #:export (wine64-wow64 wine64-wow64/prefix-update))
 
 (define %mingw32 "i686-w64-mingw32")
 (define %mingw64 "x86_64-w64-mingw32")
@@ -90,6 +91,59 @@
        ((#:configure-flags flags #~'())
         #~(list "--enable-archs=i386,x86_64"))))
     (synopsis "Implementation of the Windows API (new WoW64, PE builtins)")))
+
+(define wine64-wow64/prefix-update
+  ;; Wine updates a prefix when wine.inf is newer than the prefix's
+  ;; .update-timestamp -- but every file in the store has mtime 1, so after
+  ;; switching Wine builds the stamp still matches and the prefix is never
+  ;; updated.  Prefixes made with Guix's wine64 then lack wow64.dll and the
+  ;; other new-WoW64 files, and 32-bit programs fail with "could not load
+  ;; wow64.dll" (Radmin's service).  This `wine' records which Wine build
+  ;; last updated the prefix and runs `wineboot -u' when that changes; the
+  ;; other commands are wine64-wow64's own.
+  (package
+    (inherit wine64-wow64)
+    (name "wine64-wow64-prefix-update")
+    (source #f)
+    (build-system trivial-build-system)
+    (arguments
+     (list
+      #:modules '((guix build utils))
+      #:builder
+      #~(begin
+          (use-modules (guix build utils))
+          (let ((wine #$wine64-wow64)
+                (bin (string-append #$output "/bin")))
+            (mkdir-p bin)
+            (for-each (lambda (dir)
+                        (symlink (string-append wine "/" dir)
+                                 (string-append #$output "/" dir)))
+                      '("lib" "share"))
+            (for-each (lambda (program)
+                        (unless (string=? (basename program) "wine")
+                          (symlink program
+                                   (string-append bin "/" (basename program)))))
+                      (find-files (string-append wine "/bin")))
+            (call-with-output-file (string-append bin "/wine")
+              (lambda (port)
+                (format port "#!~a
+prefix=\"${WINEPREFIX:-$HOME/.wine}\"
+if [ -z \"$GUIX_WINE_UPDATING\" ] && [ -f \"$prefix/system.reg\" ] &&
+   [ \"$(cat \"$prefix/.guix-wine\" 2>/dev/null)\" != ~s ]; then
+    # wineboot reports failure when it can't overwrite files it once copied
+    # read-only from the store (identical ones); the prefix is updated anyway.
+    GUIX_WINE_UPDATING=1 ~a/bin/wine wineboot -u
+    ~a/bin/wineserver -w
+    echo ~s > \"$prefix/.guix-wine\"
+fi
+exec ~a/bin/wine \"$@\"
+"
+                        #$(file-append bash-minimal "/bin/sh")
+                        wine wine wine wine wine)))
+            (chmod (string-append bin "/wine") #o555)))))
+    (native-inputs '())
+    (inputs (list bash-minimal wine64-wow64))
+    (propagated-inputs '())))
 
 (define-public radmin-vpn-linux
   (let ((commit "754389524327ad8e9ec0eb7de8348a74cacfd1f6")
@@ -192,6 +246,15 @@
                               "rvpn_filter_ui" "rvpnnetmp.sys" "netsh64.exe"
                               "adapter_hook.dll" "rvpn_launcher.exe" "netsh.exe"
                               "drvinst.exe"))
+                  ;; Half a second after starting rvpn_launcher.exe the
+                  ;; scripts already require RvControlSvc.exe, which the
+                  ;; launcher only spawns once Wine is up -- seconds later
+                  ;; when Wine first updates the prefix (as after a Wine
+                  ;; upgrade).  They then declared the service dead and tore
+                  ;; everything down.  Count the launcher as alive too.
+                  (substitute* '("run.sh" "run_vps.sh" "run_datacenter.sh")
+                    (("pgrep -f RvControlSvc >/dev/null \\|\\|")
+                     "pgrep -f 'RvControlSvc|rvpn_launcher' >/dev/null ||"))
                   ;; Launcher scripts; run.sh sources lib.sh from its own dir.
                   (for-each (lambda (f) (install-file f share))
                             '("run.sh" "run_vps.sh" "run_datacenter.sh"
@@ -282,7 +345,8 @@ exec ~a \"~a/~a\" \"$@\"~%"
                (mingw-toolchain %mingw64)))
       (inputs
        (list bash coreutils curl diffutils findutils gawk glibc grep gtk
-             iproute kmod procps python sed util-linux wine64-wow64 zenity))
+             iproute kmod procps python sed util-linux wine64-wow64/prefix-update
+             zenity))
       (supported-systems '("x86_64-linux"))
       (home-page "https://github.com/baptisterajaut/radmin-vpn-linux")
       (synopsis "Run the Radmin VPN Windows client on Linux through Wine")

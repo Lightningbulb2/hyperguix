@@ -55,9 +55,12 @@
 
 (define %cosmic-version "1.11.0")
 
-(define (cosmic-source name commit hash)
+(define* (cosmic-source name commit hash #:key lfs?)
+  "Return the source of pop-os/NAME at COMMIT.  When LFS? is true, also fetch
+the files the repository keeps in Git LFS; a plain checkout only has small
+text pointers in their place."
   (origin
-    (method git-fetch)
+    (method (if lfs? git-fetch/lfs git-fetch))
     (uri (git-reference
           (url (string-append "https://github.com/pop-os/" name))
           (commit commit)))
@@ -119,6 +122,7 @@ at cosmic-wallpapers."
 (define* (cosmic-component name commit hash
                            #:key
                            (repository name)
+                           lfs?
                            (version %cosmic-version)
                            cargo-inputs git-crates
                            (extra-inputs '())
@@ -134,7 +138,7 @@ at cosmic-wallpapers."
   (package
     (name name)
     (version (git-version version "0" commit))
-    (source (cosmic-source repository commit hash))
+    (source (cosmic-source repository commit hash #:lfs? lfs?))
     (build-system cargo-build-system)
     (arguments
      (list
@@ -597,7 +601,9 @@ panel and dock, displays, input, sound, networking, users, and more."))
 (define-public cosmic-initial-setup
   (cosmic-component "cosmic-initial-setup"
                     "653a4db1841e70ef8e36d3c6f0a14b7fce335697"
-                    "0kqfjg9s7vhg33zsdvjl07n6485n45kjg0lpsvd9j5kff2kw284l"
+                    "1a2bi8scl1gapzlqsb5nilyi94zya0m3krn2gidpl2wcirhjz84f"
+                    ;; Theme previews (built-in and extra) are in Git LFS.
+                    #:lfs? #t
                     #:cargo-inputs cosmic-initial-setup-cargo-inputs
                     #:git-crates cosmic-initial-setup-git-crates
                     #:extra-native-inputs (list cmake-minimal)
@@ -756,7 +762,9 @@ disk, network and GPU usage."))
 
 (define-public cosmic-greeter
   (cosmic-component "cosmic-greeter" "80e8a104b75a01ab8df52bca7b8bde6dbcdb8133"
-                    "0cnxqfs5lh64lz386hqs0xmnhjz6y2az7gznjwbspwipx5zl9xvl"
+                    "167cyaa52n2w16mjdqvab5f4clnf71rw7ga9fdsdqbkgg0zn18fb"
+                    ;; Its built-in login background is in Git LFS.
+                    #:lfs? #t
                     #:cargo-inputs cosmic-greeter-cargo-inputs
                     ;; build.rs only skips git (absent in Guix checkouts)
                     ;; when both of these are set.

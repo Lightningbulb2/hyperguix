@@ -22,6 +22,7 @@
 (define-module (Lightningbulb packages chrome-remote-desktop)
   #:use-module (guix packages)
   #:use-module (guix gexp)
+  #:use-module (guix profiles)
   #:use-module (guix download)
   #:use-module (guix records)
   #:use-module (ice-9 match)
@@ -322,20 +323,32 @@ found by the Chrome Remote Desktop add-on.")
   ;; it exists, takes precedence.
   (session-command chrome-remote-desktop-configuration-session-command
                    (default "startxfce4"))
-  ;; Packages providing that desktop, added to the system profile.
+  ;; Packages providing that desktop.  They get a profile of their own that
+  ;; only the remote session sees, so they don't show up in the local
+  ;; desktop's menus (Thunar & co. in COSMIC).
   (desktop-packages chrome-remote-desktop-configuration-desktop-packages
                     (default (list xfce))))
 
+(define (chrome-remote-desktop-desktop-profile config)
+  (profile
+    (name "chrome-remote-desktop-desktop")
+    (content (packages->manifest
+              (chrome-remote-desktop-configuration-desktop-packages config)))))
+
 (define (chrome-remote-desktop-session-file config)
-  (mixed-text-file "chrome-remote-desktop-session"
-                   "#!/bin/sh
+  (let ((desktop (chrome-remote-desktop-desktop-profile config)))
+    (mixed-text-file "chrome-remote-desktop-session"
+                     "#!/bin/sh
 # Desktop started inside the Chrome Remote Desktop virtual X display.
 # (COSMIC can't run here: cosmic-comp needs a real GPU/DRM device.)
 unset WAYLAND_DISPLAY
 export XDG_SESSION_TYPE=x11
+export PATH=\"" desktop "/bin:$PATH\"
+export XDG_DATA_DIRS=\"" desktop "/share:${XDG_DATA_DIRS:-/run/current-system/profile/share}\"
+export XDG_CONFIG_DIRS=\"" desktop "/etc/xdg:${XDG_CONFIG_DIRS:-/etc/xdg}\"
 exec " dbus "/bin/dbus-run-session -- "
-                   (chrome-remote-desktop-configuration-session-command config)
-                   "\n"))
+                     (chrome-remote-desktop-configuration-session-command config)
+                     "\n")))
 
 (define (chrome-remote-desktop-shepherd-service config)
   (match-record config <chrome-remote-desktop-configuration>
@@ -418,11 +431,8 @@ configuration yet; set the host up with start-host first.~%" dir)
                              (const (list (unix-pam-service
                                            "chrome-remote-desktop"))))
           (service-extension profile-service-type
-                             (lambda (config)
-                               (cons (chrome-remote-desktop-configuration-package
-                                      config)
-                                     (chrome-remote-desktop-configuration-desktop-packages
-                                      config))))))
+                             (compose list
+                                      chrome-remote-desktop-configuration-package))))
    (description
     "Run the Chrome Remote Desktop host for one user, serving a virtual X11
 desktop.")))

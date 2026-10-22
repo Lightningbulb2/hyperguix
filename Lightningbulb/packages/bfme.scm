@@ -35,7 +35,7 @@
   #:use-module (gnu packages curl)
   #:use-module (gnu packages gnome)
   #:use-module (gnu packages image)
-  #:use-module ((Lightningbulb packages radmin-vpn) #:select (wine64-wow64))
+  #:use-module ((Lightningbulb packages radmin-vpn) #:select (wine64-wow64/prefix-update))
   #:use-module ((nongnu packages wine) #:select (dxvk-next)))
 
 (define-public bfme-aio-launcher
@@ -74,6 +74,9 @@
 #   BFME_WINEPREFIX  prefix to use (default: $XDG_DATA_HOME/bfme-aio-launcher/prefix)
 #   BFME_WINE        wine executable (default: wine64-wow64, PE builtins)
 #   BFME_DXVK=1      use DXVK (Direct3D 9-11 over Vulkan) instead of WineD3D
+#   BFME_DPI         Windows DPI (default 120, i.e. 125%; 96 is 100%)
+# Drive D: is $XDG_DATA_HOME/bfme-aio-launcher/games, for the game installs;
+# C: is the prefix's own drive_c.
 set -e
 data=\"${XDG_DATA_HOME:-$HOME/.local/share}/bfme-aio-launcher\"
 export WINEPREFIX=\"${BFME_WINEPREFIX:-$data/prefix}\"
@@ -106,6 +109,26 @@ if [ ! -f \"$WINEPREFIX/system.reg\" ]; then
     'HKCU\\Software\\Microsoft\\Avalon.Graphics' \\
     /v DisableHWAcceleration /t REG_DWORD /d 1 /f >/dev/null
 fi
+
+# Settings kept in the prefix, re-applied only when they change.
+# - winemenubuilder off in the registry too, so no Wine process in this
+#   prefix (prefix updates, the games) adds menu entries;
+# - the DPI: at Wine's default 96 the launcher's UI comes out tiny.
+dpi=\"${BFME_DPI:-120}\"
+settings=\"menubuilder-off dpi=$dpi\"
+if [ \"$(cat \"$data/applied\" 2>/dev/null)\" != \"$settings\" ]; then
+  WINEDLLOVERRIDES=\"$overrides\" \"$wine\" reg add \\
+    'HKCU\\Software\\Wine\\DllOverrides' \\
+    /v winemenubuilder.exe /t REG_SZ /d '' /f >/dev/null
+  WINEDLLOVERRIDES=\"$overrides\" \"$wine\" reg add \\
+    'HKCU\\Control Panel\\Desktop' \\
+    /v LogPixels /t REG_DWORD /d \"$dpi\" /f >/dev/null
+  echo \"$settings\" > \"$data/applied\"
+fi
+
+# D: is where the games go, in a folder that's easy to find.
+mkdir -p \"$data/games\"
+ln -sfn \"$data/games\" \"$WINEPREFIX/dosdevices/d:\"
 
 if [ \"${BFME_DXVK:-0}\" = 1 ]; then
   sys=\"$WINEPREFIX/drive_c/windows\"
@@ -180,7 +203,8 @@ Categories=Game;
 StartupWMClass=allinonelauncher.exe
 " script)))))))))
       (native-inputs (list icoutils))
-      (inputs (list bash-minimal coreutils curl dxvk-next wine64-wow64 zenity))
+      (inputs (list bash-minimal coreutils curl dxvk-next wine64-wow64/prefix-update
+                    zenity))
       (supported-systems '("x86_64-linux"))
       (home-page "https://bfmeladder.com/")
       (synopsis "Run the BFME All In One Launcher under Wine")
