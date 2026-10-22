@@ -270,10 +270,8 @@ StartupWMClass=faforever-rust-client
   </mime-type>
 </mime-info>
 " port)))))))
-            ;; Prebuilt natives: don't strip them, and don't fail the build
-            ;; over libraries they may dlopen from the game environment.
+            ;; Prebuilt natives: leave them as upstream shipped them.
             (delete 'strip)
-            (delete 'validate-runpath)
             (add-after 'install 'glib-or-gtk-wrap
               (assoc-ref gtk:%standard-phases 'glib-or-gtk-wrap))
             (add-after 'glib-or-gtk-wrap 'wrap-program

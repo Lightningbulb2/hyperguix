@@ -216,8 +216,8 @@ exec ~a \"~a/~a\" \"$@\"~%"
                    '("radmin-vpn" "radmin-vpn-health-check" "radmin-vpn-vps"
                      "radmin-vpn-datacenter"))))))))
       ;; The mingw-w64 runtimes are referenced directly from the build phase
-      ;; (see `cross-env!'), not listed here, so that their headers never
-      ;; leak into the native half of the build.
+      ;; (see `cross-cc'), not listed here, so that their headers never leak
+      ;; into the native half of the build.
       (native-inputs
        (append (list pkg-config)
                (mingw-toolchain %mingw32)

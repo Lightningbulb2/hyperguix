@@ -9,9 +9,6 @@
 ;;;
 ;;; `cosmic' at the bottom is the meta package: put it in your system's
 ;;; packages and pick "COSMIC" in your display manager's session menu.
-;;;
-;;; Not fully pinned: cosmic-wallpapers (the images are in Git LFS); see
-;;; below.
 
 (define-module (Lightningbulb packages cosmic)
   #:use-module (guix packages)
@@ -49,6 +46,7 @@
   #:use-module (gnu packages vulkan)
   #:use-module (gnu packages window-management)
   #:use-module (gnu packages xdisorg)
+  #:use-module (gnu packages xorg)
   #:use-module (Lightningbulb packages cargo-git)
   #:use-module (Lightningbulb packages cosmic-crates))
 
@@ -65,13 +63,55 @@
 
 ;; Linked by most components (smithay-client-toolkit, libcosmic, zbus...).
 (define %cosmic-common-inputs
-  (list dbus eudev fontconfig freetype gettext-minimal glib libdrm libinput
+  (list dbus eudev fontconfig freetype glib libdrm libinput
         libxkbcommon mesa openssl pixman vulkan-loader wayland
         (list zstd "lib")))
 
-;; dlopen()ed at run time by wgpu/winit/wayland-rs; added to RUNPATH.
+;; dlopen()ed at run time by wgpu/winit/wayland-rs; added to RUNPATH.  The X11
+;; libraries are what winit's X11 back end opens when an application runs
+;; outside a Wayland session (e.g. under Plasma X11); without them it panics
+;; with "libXi.so.6: cannot open shared object file".
 (define %cosmic-dlopen-libraries
-  (list libxkbcommon mesa vulkan-loader wayland))
+  (list libx11 libxcb libxi libxkbcommon mesa vulkan-loader wayland))
+
+;; The images are stored with Git LFS, hence git-fetch/lfs.  Defined up here
+;; because cosmic-bg and xdg-desktop-portal-cosmic refer to it for their
+;; default background.
+(define-public cosmic-wallpapers
+  (package
+    (name "cosmic-wallpapers")
+    (version (git-version %cosmic-version "0"
+                          "da595bba495cb8fc57f26505621fc25000218349"))
+    (source
+     (origin
+       (method git-fetch/lfs)
+       (uri (git-reference
+             (url "https://github.com/pop-os/cosmic-wallpapers")
+             (commit "da595bba495cb8fc57f26505621fc25000218349")))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0ds9p3sa9csd7vdpkw0mdl138m4b27v8wjjy64fk4cx5r64y33cv"))))
+    (build-system gnu-build-system)
+    (arguments
+     (list #:tests? #f
+           #:make-flags #~(list (string-append "prefix=" #$output))
+           #:phases #~(modify-phases %standard-phases
+                        (delete 'configure))))
+    (home-page "https://github.com/pop-os/cosmic-wallpapers")
+    (synopsis "Wallpapers of the COSMIC desktop")
+    (description "Default background images of the COSMIC desktop.")
+    (license license:cc-by-sa4.0)))
+
+(define %cosmic-default-backgrounds
+  (file-append cosmic-wallpapers "/share/backgrounds/cosmic/"))
+
+(define (use-store-backgrounds files)
+  "Return a phase pointing the /usr/share/backgrounds/cosmic/ paths in FILES
+at cosmic-wallpapers."
+  #~(add-after 'unpack 'use-store-backgrounds
+      (lambda _
+        (substitute* '#$files
+          (("/usr/share/backgrounds/cosmic/") #$%cosmic-default-backgrounds)))))
 
 (define* (cosmic-component name commit hash
                            #:key
@@ -154,7 +194,10 @@
                              '()))))))
           #$@extra-phases)))
     (native-inputs
-     (append (list just patchelf pkg-config python) extra-native-inputs))
+     ;; util-linux: install recipes pipe through `rev'; without it they
+     ;; silently install nothing (no panel/applet defaults, no icons).
+     (append (list gettext-minimal just patchelf pkg-config python util-linux)
+             extra-native-inputs))
     (inputs
      (append %cosmic-common-inputs extra-inputs cargo-inputs))
     (supported-systems '("x86_64-linux" "aarch64-linux"))
@@ -176,7 +219,34 @@
                     #:build-env '(("GIT_HASH"
                                    . "41497b42d9744d9963c4c6d17e8add49489b45ee"))
                     #:git-crates cosmic-comp-git-crates
-                    #:extra-inputs (list libdisplay-info libseat) ;Guix's seatd drops lib/ and include/
+                    #:extra-inputs (list libdisplay-info
+                                         libseat ;Guix's seatd drops lib/ and include/
+                                         xorg-server-xwayland
+                                         xrdb)
+                    #:extra-phases
+                    ;; Xwayland and xrdb are otherwise looked up in PATH, which
+                    ;; need not contain them; X11 applications (Steam, ...)
+                    ;; would then fail to start.
+                    (list
+                     #~(add-after 'unpack 'patch-xrdb-path
+                         (lambda* (#:key inputs #:allow-other-keys)
+                           (substitute* "src/xwayland.rs"
+                             (("Command::new\\(\"xrdb\"\\)")
+                              (format #f "Command::new(~s)"
+                                      (search-input-file inputs "bin/xrdb"))))))
+                     #~(add-after 'vendor-git-crates 'patch-xwayland-path
+                         (lambda* (#:key inputs #:allow-other-keys)
+                           (let ((files (filter (lambda (f)
+                                                  (string-contains f "/smithay-"))
+                                                (find-files "guix-vendor"
+                                                            "^xserver\\.rs$"))))
+                             (when (null? files)
+                               (error "smithay's xwayland/xserver.rs not found"))
+                             (substitute* files
+                               (("Command::new\\(\"Xwayland\"\\)")
+                                (format #f "Command::new(~s)"
+                                        (search-input-file inputs
+                                                           "bin/Xwayland"))))))))
                     #:synopsis "Wayland compositor of the COSMIC desktop"
                     #:description
                     "cosmic-comp is the Smithay-based Wayland compositor at the
@@ -261,6 +331,9 @@ tiling, time, workspaces, input sources and accessibility."))
                     #:cargo-inputs cosmic-bg-cargo-inputs
                     #:git-crates cosmic-bg-git-crates
                     #:extra-inputs (list dav1d)
+                    #:extra-phases
+                    (list (use-store-backgrounds '("config/src/lib.rs"
+                                                   "data/v1/all")))
                     #:license license:mpl2.0
                     #:synopsis "Wallpaper service of the COSMIC desktop"
                     #:description
@@ -316,7 +389,6 @@ to pop-launcher's search plugins."))
   (cosmic-component "cosmic-app-library"
                     "1107375789e3f60e120b6dc5b81379771ecaa811"
                     "1lhqb4ci4lhybd35r4y5db1cflzmvpaxc43xv02pr7jgnksxz38r"
-                    #:repository "cosmic-applibrary"
                     #:cargo-inputs cosmic-app-library-cargo-inputs
                     #:git-crates cosmic-app-library-git-crates
                     #:synopsis "Application library of the COSMIC desktop"
@@ -410,6 +482,9 @@ appearance and layout choices on the first COSMIC login."))
                     #:extra-inputs (list gstreamer pipewire)
                     #:extra-native-inputs (list clang)
                     #:build-recipe "build"
+                    #:extra-phases
+                    (list (use-store-backgrounds '("src/screenshot.rs"
+                                                   "src/widget/screenshot.rs")))
                     #:license license:gpl3+
                     #:synopsis "XDG desktop portal back end for COSMIC"
                     #:description
@@ -534,11 +609,15 @@ disk, network and GPU usage."))
                     #:extra-native-inputs (list clang)
                     ;; "install" adds systemd sysusers/tmpfiles snippets.
                     #:install-recipes '("install-debian")
-                    #:synopsis "Login greeter of the COSMIC desktop (for greetd)"
+                    #:synopsis "Login greeter and screen locker of the COSMIC desktop"
                     #:description
                     "cosmic-greeter is COSMIC's login screen, a greeter for the
-greetd display manager.  It is not used by the @code{cosmic} meta package;
-you need a greetd service configured to run it."))
+greetd display manager.  Run inside a user session, the same program is the
+COSMIC screen locker, which cosmic-session starts.  It authenticates through
+the @code{cosmic-greeter} PAM service, which must exist on the system (on Guix
+System, for instance @code{(unix-pam-service \"cosmic-greeter\")}): without
+it, PAM denies every unlock attempt.  This is why it is not part of the
+@code{cosmic} meta package."))
 
 
 ;;;
@@ -618,34 +697,6 @@ scripts, ...) over a JSON protocol on standard input and output."))
     (description "The freedesktop.org sound theme used by COSMIC.")
     (license license:cc-by-sa4.0)))
 
-;; The wallpapers are stored with Git LFS, which this package's author could
-;; not fetch to pin.  The first build will fail with a hash mismatch; put the
-;; "actual hash" it reports below and build again.  Not part of `cosmic'.
-(define-public cosmic-wallpapers
-  (package
-    (name "cosmic-wallpapers")
-    (version (git-version %cosmic-version "0"
-                          "da595bba495cb8fc57f26505621fc25000218349"))
-    (source
-     (origin
-       (method git-fetch/lfs)
-       (uri (git-reference
-             (url "https://github.com/pop-os/cosmic-wallpapers")
-             (commit "da595bba495cb8fc57f26505621fc25000218349")))
-       (file-name (git-file-name name version))
-       (sha256
-        (base32 "0000000000000000000000000000000000000000000000000000"))))
-    (build-system gnu-build-system)
-    (arguments
-     (list #:tests? #f
-           #:make-flags #~(list (string-append "prefix=" #$output))
-           #:phases #~(modify-phases %standard-phases
-                        (delete 'configure))))
-    (home-page "https://github.com/pop-os/cosmic-wallpapers")
-    (synopsis "Wallpapers of the COSMIC desktop")
-    (description "Default background images of the COSMIC desktop.")
-    (license license:cc-by-sa4.0)))
-
 
 ;;;
 ;;; Meta package.
@@ -665,6 +716,7 @@ scripts, ...) over a JSON protocol on standard input and output."))
            cosmic-launcher pop-launcher cosmic-app-library cosmic-workspaces
            cosmic-randr cosmic-screenshot cosmic-osk cosmic-settings
            cosmic-initial-setup cosmic-icons cosmic-sound-theme
+           cosmic-wallpapers
            cosmic-files cosmic-edit cosmic-term cosmic-store cosmic-player
            cosmic-viewer cosmic-monitor
            xdg-desktop-portal xdg-desktop-portal-cosmic
