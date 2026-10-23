@@ -59,6 +59,20 @@
   (package
     (inherit wine64)
     (name "wine64-wow64")
+    (source
+     (origin
+       (inherit (package-source wine64))
+       ;; A desktop set for a program in HKCU\Software\Wine\AppDefaults\
+       ;; <program>\Explorer is also used when another program starts it.
+       ;; Upstream, a program started by another always runs on its
+       ;; parent's desktop, so a game started by a launcher can't have a
+       ;; virtual desktop of its own while the launcher runs normally
+       ;; (bfme-aio-launcher needs that).  And when such a virtual desktop
+       ;; ends, the programs on the normal desktop get the host's display
+       ;; configuration back (the virtual desktop replaced it with its
+       ;; own; the launcher's window was then off-screen and unmapped).
+       (patches (cons (local-file "aux-files/wine-app-desktop.patch")
+                      (origin-patches (package-source wine64))))))
     (inputs (modify-inputs (package-inputs wine64)
               (delete "wine")))
     (native-inputs
@@ -296,19 +310,20 @@ exec ~a/bin/wine \"$@\"
                                   (string-append shim "/sudo")
                                   (cons "@flock@"
                                         (search-input-file inputs "bin/flock")))
-                  ;; Fonts for the GUI, set up by run.sh once Radmin is
+                  ;; Prefix settings for the GUI (fonts, and drawing that
+                  ;; Xwayland shows right), made by run.sh once Radmin is
                   ;; installed in the prefix.
-                  (install-script #$(local-file "aux-files/radmin-vpn-fonts.sh")
-                                  (string-append share "/radmin-vpn-fonts.sh")
+                  (install-script #$(local-file "aux-files/radmin-vpn-prefix.sh")
+                                  (string-append share "/radmin-vpn-prefix.sh")
                                   (cons "@arial@"
                                         #$(this-package-input
                                            "font-microsoft-arial")))
                   (substitute* (string-append share "/run.sh")
                     (("^install_components\n" all)
                      (string-append
-                      all "bash \"$DIR/radmin-vpn-fonts.sh\" "
-                      "|| warn \"could not set up the GUI fonts\"\n")))
-                  (invoke "grep" "-q" "radmin-vpn-fonts" (string-append share "/run.sh"))
+                      all "bash \"$DIR/radmin-vpn-prefix.sh\" "
+                      "|| warn \"could not set up the prefix for the GUI\"\n")))
+                  (invoke "grep" "-q" "radmin-vpn-prefix" (string-append share "/run.sh"))
                   ;; Same treatment for the health check and headless modes.
                   (for-each
                    (lambda (entry)

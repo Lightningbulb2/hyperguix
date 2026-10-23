@@ -303,6 +303,15 @@ at cosmic-wallpapers."
                            (invoke "patch" "-p1" "--input"
                                    #$(local-file
                                       "aux-files/cosmic-comp-dithering-env.patch"))))
+                     ;; Don't show override-redirect X11 windows whose
+                     ;; _NET_WM_WINDOW_OPACITY is 0, as KWin doesn't:
+                     ;; xembedsniproxy's tray icon containers, black squares
+                     ;; at Xwayland's (0,0) otherwise (see the patch).
+                     #~(add-after 'unpack 'apply-xwayland-opacity-patch
+                         (lambda _
+                           (invoke "patch" "-p1" "--input"
+                                   #$(local-file
+                                      "aux-files/cosmic-comp-xwayland-opacity.patch"))))
                      #~(add-after 'unpack 'track-input-devices-by-sysname
                          (lambda _
                            (substitute* "src/backend/kms/mod.rs"
@@ -322,7 +331,25 @@ at cosmic-wallpapers."
                                (("Command::new\\(\"Xwayland\"\\)")
                                 (format #f "Command::new(~s)"
                                         (search-input-file inputs
-                                                           "bin/Xwayland"))))))))
+                                                           "bin/Xwayland")))))))
+                     ;; Wayland->X11 clipboard transfers of 64 KiB or more
+                     ;; (images) use INCR, which stalled for requestors
+                     ;; whose window is InputOnly, as Chromium/Electron's
+                     ;; (Steam, Discord): nothing pasted, or a freeze.
+                     #~(add-after 'vendor-git-crates 'patch-xwm-incr
+                         (lambda _
+                           (let ((files (filter (lambda (f)
+                                                  (string-contains
+                                                   f "/src/xwayland/xwm/"))
+                                                (find-files "guix-vendor"
+                                                            "^selection\\.rs$"))))
+                             (when (null? files)
+                               (error "smithay's xwayland/xwm not found"))
+                             (with-directory-excursion
+                                 (dirname (dirname (dirname (dirname (car files)))))
+                               (invoke "patch" "-p1" "--input"
+                                       #$(local-file
+                                          "aux-files/smithay-xwm-incr-property-change.patch")))))))
                     #:synopsis "Wayland compositor of the COSMIC desktop"
                     #:description
                     "cosmic-comp is the Smithay-based Wayland compositor at the
@@ -449,6 +476,18 @@ the applets shown in them."))
                     "05xk984jhhxzral08l36x6krcbhsm2a4qm5k55fdv0wk0n25qif0"
                     #:cargo-inputs cosmic-applets-cargo-inputs
                     #:git-crates cosmic-applets-git-crates
+                    #:extra-phases
+                    ;; Status area: right-clicking an item without a DBusMenu
+                    ;; opened an empty popup.  Call the item's ContextMenu
+                    ;; instead, as other hosts do, so that the XEmbed icons
+                    ;; xembedsniproxy proxies (Wine programs...) show their
+                    ;; own menu (see the patch).
+                    (list
+                     #~(add-after 'unpack 'apply-status-area-context-menu-patch
+                         (lambda _
+                           (invoke "patch" "-p1" "--input"
+                                   #$(local-file
+                                      "aux-files/cosmic-applets-status-area-context-menu.patch")))))
                     #:synopsis "Panel applets of the COSMIC desktop"
                     #:description
                     "The standard COSMIC panel applets: app list, audio,
@@ -483,7 +522,14 @@ output, from images, colors or gradients."))
                          (lambda _
                            (substitute* "src/main.rs"
                              (("\"systemctl suspend\"")
-                              "\"loginctl suspend\"")))))
+                              "\"loginctl suspend\""))))
+                     ;; org.freedesktop.ScreenSaver.GetSessionIdleTime, which
+                     ;; Steam polls for its Away status (KDE provides it).
+                     #~(add-after 'unpack 'add-session-idle-time
+                         (lambda _
+                           (invoke "patch" "-p1" "--input"
+                                   #$(local-file
+                                      "aux-files/cosmic-idle-session-idle-time.patch")))))
                     #:synopsis "Idle daemon of the COSMIC desktop"
                     #:description
                     "cosmic-idle blanks the screen and suspends the system after

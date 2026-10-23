@@ -1,0 +1,105 @@
+--- a/cosmic-applet-status-area/src/components/app.rs
++++ b/cosmic-applet-status-area/src/components/app.rs
+@@ -37,6 +37,8 @@
+     StatusNotifier(status_notifier_watcher::Event),
+     TogglePopup(usize),
+     Hovered(Option<usize>),
++    ContextMenu(usize),
++    Output(String, Option<(i32, i32, i32, i32)>),
+     WheelScrolled(ScrollDelta),
+     Surface(surface::Action<Msg>),
+     ToggleOverflow,
+@@ -56,6 +58,8 @@
+     hovered_menu: Option<usize>,
+     scroll_states: BTreeMap<usize, DiscreteScrollState>,
+     token_tx: Option<calloop::channel::Sender<TokenRequest>>,
++    /// Logical geometry (x, y, width, height) of the outputs, by name.
++    outputs: BTreeMap<String, (i32, i32, i32, i32)>,
+ }
+ 
+ impl App {
+@@ -163,6 +167,42 @@
+     fn update(&mut self, message: Msg) -> app::Task<Msg> {
+         match message {
+             Msg::None => Task::none(),
++            Msg::Output(name, geometry) => {
++                match geometry {
++                    Some(geometry) => self.outputs.insert(name, geometry),
++                    None => self.outputs.remove(&name),
++                };
++                Task::none()
++            }
++            // Items without a DBusMenu, such as the XEmbed icons that
++            // xembedsniproxy proxies (Wine, Java, ...), draw their menu
++            // themselves: ask them to, as other hosts do.  The coordinates
++            // are a corner of this panel's output, near the panel, since an
++            // applet doesn't know where on the output it is; X11 clients
++            // open their menu there and keep it on screen.
++            Msg::ContextMenu(id) => {
++                let Some(menu) = self.menus.get(&id) else {
++                    return Task::none();
++                };
++                if menu.item.menu_proxy().is_some() || menu.item.is_menu() {
++                    return self.update(Msg::TogglePopup(id));
++                }
++                let (x, y) = self
++                    .outputs
++                    .get(&self.core.applet.output_name)
++                    .map_or((0, 0), |&(x, y, w, h)| match self.core.applet.anchor {
++                        PanelAnchor::Top => (x + w - 1, y),
++                        PanelAnchor::Left => (x, y + h - 1),
++                        PanelAnchor::Right | PanelAnchor::Bottom => (x + w - 1, y + h - 1),
++                    });
++                let item_proxy = menu.item.item_proxy().clone();
++                Task::future(async move {
++                    if let Err(err) = item_proxy.context_menu(x, y).await {
++                        tracing::error!("ContextMenu failed for {}: {}", id, err);
++                    }
++                    cosmic::action::app(Msg::None)
++                })
++            }
+             Msg::Activate(id) => {
+                 if let Some(token_tx) = self.token_tx.as_ref() {
+                     let _ = token_tx.send(TokenRequest {
+@@ -524,6 +564,21 @@
+             (Mouse(mouse::Event::WheelScrolled { delta }), event::Status::Ignored) => {
+                 Some(Msg::WheelScrolled(delta))
+             }
++            (
++                iced::Event::PlatformSpecific(event::PlatformSpecific::Wayland(
++                    event::wayland::Event::Output(
++                        event::wayland::OutputEvent::Created(Some(info))
++                        | event::wayland::OutputEvent::InfoUpdate(info),
++                        _,
++                    ),
++                )),
++                _,
++            ) => {
++                let name = info.name.clone()?;
++                let (x, y) = info.logical_position?;
++                let (w, h) = info.logical_size?;
++                Some(Msg::Output(name, Some((x, y, w, h))))
++            }
+             _ => None,
+         }));
+ 
+@@ -539,7 +594,7 @@
+             .take(overflow_index.unwrap_or(self.menus.len()))
+             .map(|(id, menu)| {
+                 mouse_area(menu_icon_button(&self.core.applet, menu).on_press(Msg::Activate(*id)))
+-                    .on_right_press(Msg::TogglePopup(*id))
++                    .on_right_press(Msg::ContextMenu(*id))
+                     .on_enter(Msg::Hovered(Some(*id)))
+                     .on_exit(Msg::Hovered(None))
+                     .into()
+--- a/cosmic-applet-status-area/src/subscriptions/status_notifier_item.rs
++++ b/cosmic-applet-status-area/src/subscriptions/status_notifier_item.rs
+@@ -201,6 +201,8 @@
+ 
+     fn activate(&self, x: i32, y: i32) -> zbus::Result<()>;
+ 
++    fn context_menu(&self, x: i32, y: i32) -> zbus::Result<()>;
++
+     fn secondary_activate(&self, x: i32, y: i32) -> zbus::Result<()>;
+ 
+     fn scroll(&self, delta: i32, orientation: &str) -> zbus::Result<()>;

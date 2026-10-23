@@ -4,6 +4,7 @@
 #   bfme-aio-launcher [ARGS]   start the launcher
 #   bfme-aio-launcher --stop   end the launcher and the games, whatever state
 #                              they are in (wineserver -k)
+#   bfme-aio-launcher --stop-game  end the games only
 #   BFME_WINEPREFIX  prefix to use (default: $XDG_DATA_HOME/bfme-aio-launcher/prefix)
 #   BFME_WINE        wine executable (default: wine64-wow64, PE builtins)
 #   BFME_DXVK=1      use DXVK (Direct3D 9-11 over Vulkan) instead of WineD3D
@@ -11,18 +12,21 @@
 #                    its whole UI with its window, whatever the DPI, so this
 #                    only matters for other programs (and DPI-unaware games
 #                    may get scaled by Wine when it is not 96).
-#   BFME_VIRTUAL_DESKTOP  where the launcher and the games run:
+#   BFME_VIRTUAL_DESKTOP  where the games run (the launcher is a normal
+#                    window either way):
 #                    auto (default)  in a Wine virtual desktop as big as the
 #                                    primary monitor, shown fullscreen;
 #                    WIDTHxHEIGHT    in a virtual desktop of that size, in a
 #                                    normal window;
-#                    off             each in its own window(s).
-#                    The games go fullscreen.  On their own, under Xwayland
-#                    with several monitors, the compositor may put them on a
-#                    monitor other than the one Wine thinks they are on, and
-#                    then the mouse acts as if they were on the other one.
-#                    In a virtual desktop, Wine maps the mouse relative to
-#                    the desktop's window, wherever that is.
+#                    off             in their own fullscreen window.
+#                    On their own, under Xwayland with several monitors, the
+#                    compositor may put the games on a monitor other than the
+#                    one Wine thinks they are on, and then the mouse acts as
+#                    if they were on the other one.  In a virtual desktop,
+#                    Wine maps the mouse relative to the desktop's window,
+#                    wherever that is.  The desktop, "BFME", is set for the
+#                    game programs in AppDefaults; wine64-wow64 is patched so
+#                    that this works when the launcher starts them.
 # Drive D: is $XDG_DATA_HOME/bfme-aio-launcher/games, for the game installs;
 # C: is the prefix's own drive_c.
 set -e
@@ -39,11 +43,22 @@ notify() {
   zenity --notification --text="$1" 2>/dev/null || echo "$1" >&2
 }
 
-if [ "${1:-}" = "--stop" ]; then
-  server="$(dirname "$wine")/wineserver"
-  [ -x "$server" ] || server=wineserver
-  exec "$server" -k
-fi
+# The programs the games run as; their windows are named after them.
+games="lotrbfme.exe lotrbfme2.exe lotrbfme2ep1.exe game.dat"
+
+case "${1:-}" in
+  --stop)
+    server="$(dirname "$wine")/wineserver"
+    [ -x "$server" ] || server=wineserver
+    exec "$server" -k ;;
+  --stop-game)
+    [ -f "$WINEPREFIX/system.reg" ] || exit 0
+    for game in $games; do
+      GUIX_WINE_UPDATING=1 WINEDEBUG=-all "$wine" taskkill /f /im "$game" \
+        >/dev/null 2>&1 || true
+    done
+    exit 0 ;;
+esac
 
 if [ ! -f "$WINEPREFIX/system.reg" ]; then
   notify "Setting up the Wine prefix for the BFME All In One Launcher..."
@@ -92,7 +107,7 @@ case "$desktop" in
   *) notify "BFME_VIRTUAL_DESKTOP=$desktop: expected auto, off or WIDTHxHEIGHT"
      exit 1 ;;
 esac
-settings="menubuilder-off dpi=$dpi fonts=$fonts desktop=$desktop black-desktop"
+settings="menubuilder-off dpi=$dpi fonts=$fonts game-desktop=$desktop black-desktop"
 applied="$WINEPREFIX/.bfme-aio-launcher-settings"
 if [ "$(cat "$applied" 2>/dev/null)" != "$settings" ]; then
   WINEDLLOVERRIDES="$overrides" "$wine" reg add \
@@ -101,13 +116,22 @@ if [ "$(cat "$applied" 2>/dev/null)" != "$settings" ]; then
   WINEDLLOVERRIDES="$overrides" "$wine" reg add \
     'HKCU\Control Panel\Desktop' \
     /v LogPixels /t REG_DWORD /d "$dpi" /f >/dev/null
-  if [ "$desktop" = off ]; then
-    WINEDLLOVERRIDES="$overrides" "$wine" reg delete \
-      'HKCU\Software\Wine\Explorer' /v Desktop /f >/dev/null 2>&1 || true
-  else
-    # Its window is named "BFME - Wine desktop", and belongs to explorer.exe.
-    WINEDLLOVERRIDES="$overrides" "$wine" reg add \
-      'HKCU\Software\Wine\Explorer' /v Desktop /t REG_SZ /d BFME /f >/dev/null
+  # No desktop for everything (older versions of this script set one).
+  WINEDLLOVERRIDES="$overrides" "$wine" reg delete \
+    'HKCU\Software\Wine\Explorer' /v Desktop /f >/dev/null 2>&1 || true
+  for game in $games; do
+    if [ "$desktop" = off ]; then
+      WINEDLLOVERRIDES="$overrides" "$wine" reg delete \
+        "HKCU\\Software\\Wine\\AppDefaults\\$game\\Explorer" /v Desktop /f \
+        >/dev/null 2>&1 || true
+    else
+      WINEDLLOVERRIDES="$overrides" "$wine" reg add \
+        "HKCU\\Software\\Wine\\AppDefaults\\$game\\Explorer" \
+        /v Desktop /t REG_SZ /d BFME /f >/dev/null
+    fi
+  done
+  # Its window is named "BFME - Wine desktop", and belongs to explorer.exe.
+  if [ "$desktop" != off ]; then
     WINEDLLOVERRIDES="$overrides" "$wine" reg add \
       'HKCU\Software\Wine\Explorer\Desktops' \
       /v BFME /t REG_SZ /d "$desktop" /f >/dev/null
@@ -192,6 +216,9 @@ for dir in "$data/games" "$WINEPREFIX/drive_c"; do
   extract_icon bfme-rotwk "$dir/RotWK/lotrbfme2ep1.exe"
   # BFME I and II start game.dat, so their windows are "game.dat".
   extract_icon bfme-game "$dir/BFME2/lotrbfme2.exe" "$dir/BFME1/lotrbfme.exe"
+  # The virtual desktop's window.
+  extract_icon bfme-desktop "$dir/RotWK/lotrbfme2ep1.exe" \
+               "$dir/BFME2/lotrbfme2.exe" "$dir/BFME1/lotrbfme.exe"
 done
 
 if [ "${BFME_DXVK:-0}" = 1 ]; then

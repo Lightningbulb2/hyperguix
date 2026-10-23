@@ -114,12 +114,12 @@
                   ;; to be what Wine sets as the X11 WM_CLASS and Wayland
                   ;; app_id, the lowercased .exe file name.  Without one,
                   ;; COSMIC names a window after the last dot-separated part
-                  ;; of that ("EXE"), with no icon.  The menu entry claims
-                  ;; the virtual desktop (the default), whose window is
-                  ;; explorer.exe's; the game icons are taken from the
-                  ;; games by the script.  The Quit action (in the dock's
-                  ;; menu) ends the launcher and the games, which a fullscreen
-                  ;; game may not do on a close request.
+                  ;; of that ("EXE"), with no icon.  The games run in a
+                  ;; virtual desktop by default, whose window is
+                  ;; explorer.exe's; the game icons are taken from the games
+                  ;; by the script.  The Quit actions (in the dock's menu)
+                  ;; end the games, or everything, which a fullscreen game
+                  ;; may not do on a close request.
                   (mkdir-p apps)
                   (for-each
                    (lambda (entry)
@@ -137,27 +137,33 @@ Terminal=false
 Actions=quit;
 
 [Desktop Action quit]
-Name=Quit
-Exec=~a --stop
+Name=~a
+Exec=~a ~a
 "
                                  (list-ref entry 1) (list-ref entry 2) script
                                  (list-ref entry 3) (list-ref entry 4)
-                                 (list-ref entry 5) script))))
-                   ;; file, name, comment, icon, other keys, window class
+                                 (list-ref entry 5) (list-ref entry 6) script
+                                 (list-ref entry 7)))))
+                   ;; file, name, comment, icon, other keys, window class,
+                   ;; quit action name and option
                    `(("bfme-aio-launcher" "BFME All In One Launcher"
                       "Install, patch and play The Battle for Middle-earth games (Wine)"
-                      "bfme-aio-launcher" "Categories=Game;\n" "explorer.exe")
-                     ("bfme-aio-launcher-window" "BFME All In One Launcher"
-                      "The launcher's window, without a virtual desktop"
-                      "bfme-aio-launcher" "NoDisplay=true\n"
-                      "allinonelauncher.exe")
+                      "bfme-aio-launcher" "Categories=Game;\n"
+                      "allinonelauncher.exe"
+                      "Quit the launcher and the games" "--stop")
+                     ("bfme-desktop" "The Battle for Middle-earth"
+                      "The games' virtual desktop"
+                      "bfme-desktop" "NoDisplay=true\n" "explorer.exe"
+                      "Quit the game" "--stop-game")
                      ("bfme-rotwk"
                       "The Lord of the Rings: The Rise of the Witch-king"
                       "The game's window, without a virtual desktop"
-                      "bfme-rotwk" "NoDisplay=true\n" "lotrbfme2ep1.exe")
+                      "bfme-rotwk" "NoDisplay=true\n" "lotrbfme2ep1.exe"
+                      "Quit the game" "--stop-game")
                      ("bfme-game" "The Battle for Middle-earth"
                       "The game's window (I and II), without a virtual desktop"
-                      "bfme-game" "NoDisplay=true\n" "game.dat")))))))))
+                      "bfme-game" "NoDisplay=true\n" "game.dat"
+                      "Quit the game" "--stop-game")))))))))
       (native-inputs (list icoutils))
       (inputs (list bash-minimal coreutils curl dxvk-next font-microsoft-arial
                     font-microsoft-courier-new font-microsoft-times-new-roman
@@ -173,12 +179,12 @@ the BFME Workshop.  This package runs it under Wine in a prefix of its own,
 @file{$XDG_DATA_HOME/bfme-aio-launcher/prefix}, where the games it installs
 also live.  On first start it downloads the launcher from bfmeladder.com, as
 upstream's installer does; the launcher then keeps itself up to date.  Set
-@env{BFME_DXVK} to 1 to use DXVK for the games.  The launcher and the games
-run in a Wine virtual desktop the size of the primary monitor, which keeps
-the mouse right on multi-monitor setups under Xwayland; set
-@env{BFME_VIRTUAL_DESKTOP} to @code{off}, or to a size such as
-@code{1600x900}, to change that.  @command{bfme-aio-launcher --stop} ends the
-launcher and the games.")
+@env{BFME_DXVK} to 1 to use DXVK for the games.  The games run in a Wine
+virtual desktop the size of the primary monitor, which keeps the mouse right
+on multi-monitor setups under Xwayland; set @env{BFME_VIRTUAL_DESKTOP} to
+@code{off}, or to a size such as @code{1600x900}, to change that.
+@command{bfme-aio-launcher --stop-game} ends the games, @command{--stop} the
+launcher too.")
       ;; The launcher has no license, and the build it downloads is
       ;; proprietary.
       (license (license:nonfree

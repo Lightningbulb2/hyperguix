@@ -22,8 +22,8 @@
 ;;; own Steam/Wine setup and is configured inside the client: FAF copies the
 ;;; original game's libraries into its own install ($XDG_DATA_HOME/faforever
 ;;; here) and runs that ForgedAlliance.exe through Settings -> Game ->
-;;; "Launch command", e.g. `wine' from Guix's wine64 package.  Nothing runs
-;;; it by default, so that setting is required.
+;;; "Launch command".  Left empty, that is our faf-wine: Wine (new WoW64)
+;;; with DXVK, in the prefix $XDG_DATA_HOME/faforever/wine.
 
 (define-module (Lightningbulb packages faforever)
   #:use-module (guix packages)
@@ -33,6 +33,7 @@
   #:use-module (guix build-system cargo)
   #:use-module (guix build-system glib-or-gtk)
   #:use-module ((guix licenses) #:prefix license:)
+  #:use-module (gnu packages base)
   #:use-module (gnu packages bash)
   #:use-module (gnu packages compression)
   #:use-module (gnu packages elf)
@@ -46,6 +47,9 @@
   #:use-module (gnu packages pkg-config)
   #:use-module (gnu packages tls)
   #:use-module (gnu packages webkit)
+  #:use-module ((nongnu packages wine) #:select (dxvk-next))
+  #:use-module ((Lightningbulb packages radmin-vpn)
+                #:select (wine64-wow64/prefix-update))
   #:use-module (Lightningbulb packages js-offline)
   #:use-module (Lightningbulb packages node-deps)
   #:use-module (Lightningbulb packages rust-crates))
@@ -180,7 +184,68 @@ fn guix_sandbox_home() -> Option<PathBuf> {
               (lambda _
                 (substitute* "crates/faf-app/src/infra/game.rs"
                   (("directories::BaseDirs::new\\(\\)\\.map\\(\\|dirs\\| dirs\\.home_dir\\(\\)\\.join\\(\"\\.faforever\"\\)\\)")
-                   "directories::BaseDirs::new().map(|dirs| dirs.data_dir().join(\"faforever\"))"))))
+                   "directories::BaseDirs::new().map(|dirs| dirs.data_dir().join(\"faforever\"))"))
+                ;; The map/mod vault defaults to "Documents/My Games/...", but
+                ;; without an XDG Documents directory that became the
+                ;; relative "./My Games/..." -- i.e. ~/My Games when started
+                ;; from the desktop.  Use $XDG_DATA_HOME/faforever/vault.
+                (substitute* "crates/faf-app/src/infra/faf_content.rs"
+                  (("vec!\\[vault\\(documents\\.unwrap_or\\(Path::new\\(\"\\.\"\\)\\)\\)\\]")
+                   "vec![documents.map(|d| vault(d)).unwrap_or_else(|| {
+        directories::BaseDirs::new()
+            .map(|dirs| dirs.data_dir().join(\"faforever\").join(\"vault\"))
+            .unwrap_or_else(|| PathBuf::from(\"faforever-vault\"))
+    })]"))))
+            (add-after 'unpack 'default-launch-command
+              ;; Forged Alliance is a Windows program, and with Settings ->
+              ;; Game -> "Launch command" empty the client exec()s the .exe
+              ;; itself, which fails with EACCES -- shown as "The folder is
+              ;; locked or read-only".  An empty setting now means
+              ;; $FAF_DEFAULT_LAUNCH_WRAPPER, which the launcher points at
+              ;; our faf-wine (below).  Set here, so the game's arguments
+              ;; also get Wine (Z:\) paths, as for a typed launch command.
+              (lambda _
+                (substitute* "crates/faf-app/src/infra/game.rs"
+                  (("^( *)config\\.launch_wrapper = wrapper;" _ indent)
+                   (string-append
+                    indent "config.launch_wrapper = if wrapper.trim().is_empty() {\n"
+                    indent "    std::env::var(\"FAF_DEFAULT_LAUNCH_WRAPPER\").unwrap_or_default()\n"
+                    indent "} else {\n"
+                    indent "    wrapper\n"
+                    indent "};")))))
+            (add-after 'unpack 'disable-self-update
+              ;; The client offers its own AppImage/.deb/.rpm as updates,
+              ;; including a "required" update gate; none of that can replace
+              ;; a store item.  Release notes ("What's new") still load.
+              (lambda _
+                (substitute* "crates/faf-app/src/infra/client_update.rs"
+                  (("Ok\\(pick_release\\(&releases, channel\\)\\)")
+                   "Ok(pick_release(&releases, channel).filter(|_| false))"))))
+            (add-after 'unpack 'quit-argument
+              ;; `faforever-client --quit' asks a running client to quit,
+              ;; as the tray menu's Quit does (asking first during a game).
+              ;; For the .desktop action: the tray icon only opens its menu
+              ;; on right click, and a client hidden to the tray during a
+              ;; game is otherwise hard to end.
+              (lambda _
+                (substitute* "src-tauri/src/lib.rs"
+                  (("^( *)tray::restore_main_window\\(app\\);" all indent)
+                   (string-append
+                    indent "if argv.iter().any(|arg| arg == \"--quit\") {\n"
+                    indent "    if crate::exit::on_close_request(app, crate::exit::Origin::Tray)\n"
+                    indent "        == crate::exit::Decision::Exit\n"
+                    indent "    {\n"
+                    indent "        app.exit(0);\n"
+                    indent "    }\n"
+                    indent "    return;\n"
+                    indent "}\n" all))
+                  ;; ...and without a running client, does nothing.
+                  (("^( *)\\.setup\\(\\|app\\| \\{" all indent)
+                   (string-append
+                    all "\n" indent
+                    "    if std::env::args().any(|arg| arg == \"--quit\") {\n"
+                    indent "        std::process::exit(0);\n"
+                    indent "    }")))))
             (replace 'build
               (lambda _
                 (invoke "cargo" "build" "--offline" "--release"
@@ -257,12 +322,58 @@ export FAF_ICE_ADAPTER_JAR=\"${FAF_ICE_ADAPTER_JAR:-~a/java-ice-adapter/faf-ice-
 export FAF_EXP_JAVA_ICE_ADAPTER_JAR=\"${FAF_EXP_JAVA_ICE_ADAPTER_JAR:-~a/exp-java-ice-adapter/faf-ice-adapter.jar}\"
 export FAF_ICE_ADAPTER_PATH=\"${FAF_ICE_ADAPTER_PATH:-~a/faf-pioneer}\"
 export FAF_STEAM_API_PATH=\"${FAF_STEAM_API_PATH:-~a/steam/libsteam_api.so}\"
+export FAF_DEFAULT_LAUNCH_WRAPPER=\"${FAF_DEFAULT_LAUNCH_WRAPPER:-~a}\"
+# The client reads game.prefs from the same prefix the game runs in.
+export WINEPREFIX=\"${WINEPREFIX:-${XDG_DATA_HOME:-$HOME/.local/share}/faforever/wine}\"
 exec -a faforever-client ~a \"$@\"~%"
                               (search-input-file inputs "bin/bash")
                               (search-input-file inputs "bin/java")
                               natives natives natives natives natives
+                              (string-append libdir "/faf-wine")
                               real)))
                   (chmod (string-append bin "/faforever-client") #o755)
+                  ;; The default launch command: Wine, with DXVK's Direct3D 9
+                  ;; (Vulkan) instead of wined3d.  The DLL goes next to the
+                  ;; executable (the FAF-managed bin/ directory, not the
+                  ;; prefix), where a native override finds it first.
+                  ;; The game also hangs after loading its sound banks with
+                  ;; Wine's builtin XACT, so -- as Steam does on first launch
+                  ;; -- the DirectX redistributable shipped with the original
+                  ;; game (fa_path in fa_path.lua) is installed into the
+                  ;; prefix once, and its XACT engines are preferred.  Gecko
+                  ;; and Mono are not packaged; don't offer them.
+                  (call-with-output-file (string-append libdir "/faf-wine")
+                    (lambda (port)
+                      (format port "#!~a
+# Usage: faf-wine GAME.EXE [ARGUMENT...]
+exe=\"$1\"
+d3d9=~a/share/dxvk/lib32/d3d9.dll
+mkdir -p \"$WINEPREFIX\"
+wine=\"${FAF_WINE:-~a}\"
+if [ -f \"$exe\" ]; then
+  ~a -m 644 \"$d3d9\" \"${exe%/*}/d3d9.dll\"
+fi
+xact=xactengine2_0,xactengine2_1,xactengine2_2,xactengine2_3,xactengine2_4
+xact=$xact,xactengine2_5,xactengine2_6,xactengine2_7,xactengine2_8
+xact=$xact,xactengine2_9,xactengine2_10
+export WINEDLLOVERRIDES=\"mscoree,mshtml=;d3d9=n,b;$xact=n,b${WINEDLLOVERRIDES:+;$WINEDLLOVERRIDES}\"
+stamp=\"$WINEPREFIX/.faf-directx-installed\"
+if [ ! -e \"$stamp\" ] && [ -f \"${exe%/*}/../fa_path.lua\" ]; then
+  while IFS= read -r line; do
+    case $line in
+      'fa_path = \"'*) retail=${line#'fa_path = \"'}; retail=${retail%\\\"*} ;;
+    esac
+  done < \"${exe%/*}/../fa_path.lua\"
+  if [ -f \"$retail/DirectX/DXSETUP.exe\" ]; then
+    \"$wine\" \"$retail/DirectX/DXSETUP.exe\" /silent && : > \"$stamp\"
+  fi
+fi
+exec \"$wine\" \"$@\"~%"
+                              (search-input-file inputs "bin/bash")
+                              #$(this-package-input "dxvk")
+                              (search-input-file inputs "bin/wine")
+                              (search-input-file inputs "bin/install"))))
+                  (chmod (string-append libdir "/faf-wine") #o755)
                   ;; Desktop integration (incl. the replay file types the
                   ;; Tauri bundle would register).
                   (for-each
@@ -293,7 +404,12 @@ Terminal=false
 Categories=Game;StrategyGame;
 MimeType=application/x-fafreplay;application/x-scfareplay;
 StartupWMClass=faforever-client
-" bin)))
+Actions=quit;
+
+[Desktop Action quit]
+Name=Quit
+Exec=~a/faforever-client --quit
+" bin bin)))
                     (call-with-output-file (string-append mime "/faforever-client.xml")
                       (lambda (port)
                         (display "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
@@ -326,7 +442,9 @@ StartupWMClass=faforever-client
       (inputs
        (append
         (list bash-minimal
+              coreutils
               dbus                    ;libdbus-sys
+              dxvk-next
               glib-networking
               gsettings-desktop-schemas
               gtk+
@@ -335,6 +453,7 @@ StartupWMClass=faforever-client
               openjdk
               openssl
               webkitgtk-for-gtk3
+              wine64-wow64/prefix-update
               xdg-utils
               ;; Guix makes zstd-sys link the system libzstd.
               `(,zstd "lib"))

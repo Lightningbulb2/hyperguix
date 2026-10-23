@@ -1,0 +1,117 @@
+--- a/dlls/win32u/winstation.c
++++ b/dlls/win32u/winstation.c
+@@ -922,7 +922,12 @@
+  *
+  * Get the name of the desktop to use for this app if not specified explicitly.
+  */
+-static const WCHAR *get_default_desktop( void *buf, size_t buf_size )
++/***********************************************************************
++ *           get_app_desktop
++ *
++ * Get the name of the desktop configured for this app, if any.
++ */
++static const WCHAR *get_app_desktop( void *buf, size_t buf_size )
+ {
+     const WCHAR *p, *appname = NtCurrentTeb()->Peb->ProcessParameters->ImagePathName.Buffer;
+     KEY_VALUE_PARTIAL_INFORMATION *info = buf;
+@@ -930,12 +935,11 @@
+     HKEY tmpkey, appkey;
+     DWORD len;
+ 
+-    static const WCHAR defaultW[] = {'D','e','f','a','u','l','t',0};
+-
++    if (!appname) return NULL;
+     if ((p = wcsrchr( appname, '/' ))) appname = p + 1;
+     if ((p = wcsrchr( appname, '\\' ))) appname = p + 1;
+     len = lstrlenW(appname);
+-    if (len > MAX_PATH) return defaultW;
++    if (len > MAX_PATH) return NULL;
+     memcpy( buffer, appname, len * sizeof(WCHAR) );
+     asciiz_to_unicode( buffer + len, "\\Explorer" );
+ 
+@@ -951,6 +955,19 @@
+             if (len) return (const WCHAR *)info->Data;
+         }
+     }
++    return NULL;
++}
++
++static const WCHAR *get_default_desktop( void *buf, size_t buf_size )
++{
++    KEY_VALUE_PARTIAL_INFORMATION *info = buf;
++    const WCHAR *app_desktop;
++    HKEY appkey;
++    DWORD len;
++
++    static const WCHAR defaultW[] = {'D','e','f','a','u','l','t',0};
++
++    if ((app_desktop = get_app_desktop( buf, buf_size ))) return app_desktop;
+ 
+     /* @@ Wine registry key: HKCU\Software\Wine\Explorer */
+     if ((appkey = reg_open_hkcu_key( "Software\\Wine\\Explorer" )))
+@@ -976,6 +993,8 @@
+     OBJECT_ATTRIBUTES attr;
+     UNICODE_STRING str;
+ 
++    char app_desktop_buffer[4096];
++
+     static const WCHAR winsta0[] = {'W','i','n','S','t','a','0',0};
+ 
+     if (params->Desktop.Length)
+@@ -1015,7 +1034,11 @@
+             }
+         }
+     }
+-    if (buffer || !NtUserGetThreadDesktop( GetCurrentThreadId() ))
++    /* A desktop configured for the app in AppDefaults is used even when the
++     * process inherited one, so that a program can get a virtual desktop of
++     * its own when another program starts it. */
++    if (buffer || !NtUserGetThreadDesktop( GetCurrentThreadId() ) ||
++        get_app_desktop( app_desktop_buffer, sizeof(app_desktop_buffer) ))
+     {
+         char buffer[4096];
+         str.Buffer = (WCHAR *)(desktop ? desktop : get_default_desktop( buffer, sizeof(buffer) ));
+--- a/programs/explorer/desktop.c
++++ b/programs/explorer/desktop.c
+@@ -866,6 +866,24 @@
+     return !*end;
+ }
+ 
++/* The display configuration is shared by all the desktops, and a virtual
++ * desktop replaces it with its own.  When a virtual desktop ends while
++ * programs keep running on the default desktop (a game in its own virtual
++ * desktop, started by a launcher that is not), give them back the host's
++ * configuration: switching a thread from a virtual desktop to a normal one
++ * makes win32u query the host displays again. */
++static DWORD WINAPI restore_host_displays( void *arg )
++{
++    HDESK desktop = OpenDesktopW( L"Default", 0, FALSE, DESKTOP_ALL_ACCESS );
++
++    if (desktop)
++    {
++        if (!SetThreadDesktop( desktop )) WARN( "could not switch to the default desktop\n" );
++        CloseDesktop( desktop );
++    }
++    return 0;
++}
++
+ /* retrieve the desktop name to use if not specified on the command line */
+ static const WCHAR *get_default_desktop_name(void)
+ {
+@@ -1333,6 +1351,16 @@
+ 
+     if (pShellDDEInit) pShellDDEInit( FALSE );
+ 
++    if (!using_root && name && wcsicmp( name, L"Default" ))
++    {
++        HANDLE restore = CreateThread( NULL, 0, restore_host_displays, NULL, 0, NULL );
++        if (restore)
++        {
++            WaitForSingleObject( restore, 5000 );
++            CloseHandle( restore );
++        }
++    }
++
+     ExitProcess( 0 );
+ }
+ 

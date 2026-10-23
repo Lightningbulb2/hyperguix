@@ -1,0 +1,13 @@
+--- a/src/shell/focus/order.rs
++++ b/src/shell/focus/order.rs
+@@ -313,6 +313,10 @@
+             .override_redirect_windows
+             .iter()
+             .rev()
++            // Fully transparent (_NET_WM_WINDOW_OPACITY 0) windows are not
++            // meant to be seen, like xembedsniproxy's tray icon containers,
++            // which are black squares otherwise.
++            .filter(|or| or.opacity() != Some(0))
+             .filter(|or| {
+                 (*or)
+                     .last_configure()

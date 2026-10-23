@@ -1,0 +1,98 @@
+Implement org.freedesktop.ScreenSaver.GetSessionIdleTime (milliseconds since
+the last input, like KDE) from a 1-second ext-idle-notify notification.
+Steam polls it to decide when the user is Away; without it, Steam only saw
+input to its own windows and went Away while other programs were in use.
+
+diff -ru a/src/freedesktop_screensaver.rs b/src/freedesktop_screensaver.rs
+--- a/src/freedesktop_screensaver.rs
++++ b/src/freedesktop_screensaver.rs
+@@ -6,9 +6,18 @@
+     Arc, Mutex,
+     atomic::{AtomicU32, Ordering},
+ };
++use std::time::{Duration, Instant};
+ 
+ use crate::{Event, EventSender};
+ 
++/// When the session went idle (no input), or `None` while it's in use.
++static IDLE_SINCE: Mutex<Option<Instant>> = Mutex::new(None);
++
++/// Record the session going idle (`is_idle`) `idle_for` ago, or resuming.
++pub fn set_session_idle(is_idle: bool, idle_for: Duration) {
++    *IDLE_SINCE.lock().unwrap() = is_idle.then(|| Instant::now() - idle_for);
++}
++
+ #[derive(Debug)]
+ pub struct Inhibitor {
+     cookie: u32,
+@@ -55,6 +64,15 @@
+         cookie
+     }
+ 
++    /// Milliseconds since the last user input, as KDE's implementation
++    /// returns; Steam polls this to decide when to mark the user Away.
++    fn get_session_idle_time(&self) -> u32 {
++        IDLE_SINCE
++            .lock()
++            .unwrap()
++            .map_or(0, |since| since.elapsed().as_millis().min(u32::MAX as u128) as u32)
++    }
++
+     fn un_inhibit(&mut self, cookie: u32) {
+         let mut inhibitors = self.inhibitors.lock().unwrap();
+         if let Some(idx) = inhibitors.iter().position(|x| x.cookie == cookie) {
+diff -ru a/src/main.rs b/src/main.rs
+--- a/src/main.rs
++++ b/src/main.rs
+@@ -98,6 +98,9 @@
+     conf: CosmicIdleConfig,
+     screen_off_idle_notification: Option<IdleNotification>,
+     suspend_idle_notification: Option<IdleNotification>,
++    // Fires after a second without input; tracks idle time for
++    // org.freedesktop.ScreenSaver.GetSessionIdleTime.
++    activity_idle_notification: Option<IdleNotification>,
+     on_battery: bool,
+     screensaver_inhibit: bool,
+     system_actions: shortcuts::SystemActions,
+@@ -299,6 +302,7 @@
+         },
+         screen_off_idle_notification: None,
+         suspend_idle_notification: None,
++        activity_idle_notification: None,
+         outputs: Vec::new(),
+         conf,
+         on_battery: false,
+@@ -314,6 +318,10 @@
+         }
+     });
+     state.recreate_notifications();
++    state.activity_idle_notification = Some(IdleNotification::new(
++        &state.inner,
++        ACTIVITY_IDLE_MS,
++    ));
+ 
+     WaylandSource::new(connection, event_queue)
+         .insert(event_loop.handle())
+@@ -417,10 +425,22 @@
+             == Some(notification)
+         {
+             state.update_suspend_idle(is_idle);
++        } else if state
++            .activity_idle_notification
++            .as_ref()
++            .map(|x| &x.notification)
++            == Some(notification)
++        {
++            freedesktop_screensaver::set_session_idle(
++                is_idle,
++                std::time::Duration::from_millis(ACTIVITY_IDLE_MS.into()),
++            );
+         }
+     }
+ }
+ 
++const ACTIVITY_IDLE_MS: u32 = 1000;
++
+ delegate_noop!(State: ignore wl_output::WlOutput);
+ delegate_noop!(State: zwlr_output_power_manager_v1::ZwlrOutputPowerManagerV1);
+ delegate_noop!(State: ignore zwlr_output_power_v1::ZwlrOutputPowerV1);

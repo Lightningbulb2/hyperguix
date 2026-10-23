@@ -191,8 +191,8 @@ fonts it lists (CJK, Arabic, Thai, ...) through CRAFT_FONTS_DIR."
     (license (list license:expat license:asl2.0 license:silofl1.1))))
 
 (define-public photocraft
-  (craft-app "photocraft" "0.12.0" "38bc5e916c4d0d8536d8d81f2a4d3f2950b4c749"
-             "0pynnlzf399q17v3042s77rx6rrrz8k5wxmihg5l4bv8ahadml07"
+  (craft-app "photocraft" "0.14.0" "ff4738810134d7f7e68b49f2e4f231b686282ff3"
+             "0hfic84cv9frzq7vdprdpgbwmyy5x3hbaqil23vqs1qwj008jikn"
              #:cargo-inputs photocraft-cargo-inputs
              #:git-crates photocraft-git-crates
              ;; As in upstream's release builds: open HEIC/HEIF photos.
@@ -210,8 +210,8 @@ including HEIC/HEIF.  It also ships @command{photocraft-cli} for batch
 processing."))
 
 (define-public effectcraft
-  (craft-app "effectcraft" "0.14.0" "f37f20ffd07d0f79e163eef1ad703b87db427dc3"
-             "1frb1q98fhna0kr2hyiffk2kn5mnb2jf557zyxx5pfw6g7yrxfnq"
+  (craft-app "effectcraft" "0.16.0" "9581b53c3f8945683252af0eb5fac79e0e43aed4"
+             "08x5q62rsgkyj8w1knxn1v3gx4iywk0l4akv63ykwd69sqk87kj1"
              #:cargo-inputs effectcraft-cargo-inputs
              #:git-crates effectcraft-git-crates
              ;; cpal (audio preview).
@@ -225,8 +225,8 @@ and a render queue.  @command{effectcraft-cli} renders projects from the
 command line."))
 
 (define-public filmcraft
-  (craft-app "filmcraft" "0.10.0" "45901fccd06f1c2aa1dcdaac67cc00262a85f1be"
-             "1rydrz4gqckd2a6mx7i638svcdiifyz15wn0vjf5s0aw326g5nfs"
+  (craft-app "filmcraft" "0.12.0" "abf44fda9015f4b7a96dc338f6042499bf8e9d9f"
+             "0h9z6171x22cka6m3z9s1a41ml4dns38l0dw833dw1kf2qyny93r"
              #:cargo-inputs filmcraft-cargo-inputs
              #:git-crates filmcraft-git-crates
              #:fonts (craft-fonts "abb83316d96aa59c1cf64784289e378fe9fa5695"
@@ -242,8 +242,8 @@ and containers.  @command{filmcraft-cli} renders and converts projects from
 the command line."))
 
 (define-public lightcraft
-  (craft-app "lightcraft" "0.11.0" "bfb23db2cab66c259627414943fd4eb51d00bfe1"
-             "02w85sdwzxy9xv0sh0hj76sjif3y1vhmwy12bcfl3zdsrxyw5nq0"
+  (craft-app "lightcraft" "0.13.0" "23e181283cb448205d865e8cd288b56afe987986"
+             "0j45f3aify4a42mya2mi2q9wvna4fsjm6qd4im51d46nfiw7vb9m"
              #:cargo-inputs lightcraft-cargo-inputs
              #:git-crates lightcraft-git-crates
              ;; As in upstream's release builds: open HEIC/HEIF photos.
@@ -260,9 +260,8 @@ vignette and grain.  It opens camera raw files, JPEG, PNG, TIFF, WebP and
 HEIC/HEIF.  @command{lightcraft-cli} renders photos without a window."))
 
 (define-public vectorcraft
-  (craft-app "vectorcraft" "0.14.0" "56b7dc300d0e882c6bc6a93cc78aa5e6ba76c25b"
-             "162sah7mx39z9gi3nyaxgvk0gn34y6r43sih7d039qnl7m0vkk93"
-             #:revision "1"
+  (craft-app "vectorcraft" "0.16.0" "4a7cba0dd32e4ac249e4dc50af486b89531481aa"
+             "0695kyk88n773qkx8nh87alfacaxxcjxl8yj4rasdk2ydl2fi8if"
              #:cargo-inputs vectorcraft-cargo-inputs
              #:git-crates vectorcraft-git-crates
              #:fonts (craft-fonts "a71c20e30af613287c504f7e685ca8fad77752bc"
@@ -276,8 +275,8 @@ Illustrator files, and exports PNG, JPEG and WebP.  @command{vectorcraft-cli}
 runs batch jobs without a window."))
 
 (define-public designcraft
-  (craft-app "designcraft" "0.11.0" "438d7b6d79e74b3491f84eef5e295951a07b925c"
-             "0yqv2hn6lyj09izgbh3f70zlwbndzv6y6agv846zld5hs8fzwwif"
+  (craft-app "designcraft" "0.12.0" "e74208dd7e0c801d15dfdf926d64cfe5e3b346d3"
+             "09z6iwyh0f7m4pz7xvdczmp5dbr66zxb5b5sr8d77fpifird26fw"
              #:cargo-inputs designcraft-cargo-inputs
              #:git-crates designcraft-git-crates
              #:fonts (craft-fonts "abb83316d96aa59c1cf64784289e378fe9fa5695"
@@ -292,8 +291,8 @@ and PDF/A-2b), EPUB, PPTX and PNG.  @command{designcraft-cli} converts and
 exports documents from the command line."))
 
 (define-public pdfcraft
-  (craft-app "pdfcraft" "0.11.0" "88dad98dd478d255399b1405b33765f4da542704"
-             "05h88zc82ijasxaxlbgk1mw0876ig58f69b2llj7z23az0wvq086"
+  (craft-app "pdfcraft" "0.13.0" "0dc77fe4ed8810b9e9f25b9dd050afae662c062a"
+             "1gkcds4zac0cp2ib08dd7734kvvgf8m9phkg8fxl43jkp5pg00fw"
              #:cargo-inputs pdfcraft-cargo-inputs
              #:git-crates pdfcraft-git-crates
              #:fonts (craft-fonts "3d9ab3a132ed0eff457e424226a435a901da30d3"
@@ -310,9 +309,8 @@ are kept.  @command{pdfcraft-cli} inspects and renders PDF files from the
 command line."))
 
 (define-public wordcraft
-  (craft-app "wordcraft" "0.9.0" "5a6d2b6070bdfb7d1a41bb55b60e86bf09a1fc52"
-             "0i1q5m90ccn51h0vc4v5p6m99yvxn34mz39j5r52dyfbmf97cl2w"
-             #:revision "1"
+  (craft-app "wordcraft" "0.10.0" "3a4770ef8ce037d2650c93e2d5764536549357c7"
+             "0514sqg0r3ziz1fbrfrb4gpl410yx79n57dzr7zix0w7gr23lb2w"
              #:cargo-inputs wordcraft-cargo-inputs
              #:git-crates wordcraft-git-crates
              #:fonts (craft-fonts "8dcdacd5153e64560d109541a47d806f26f048c0"
@@ -327,8 +325,8 @@ PDF.  @command{wordcraft-cli} converts, inspects and renders documents from
 the command line."))
 
 (define-public gridcraft
-  (craft-app "gridcraft" "0.10.0" "912b817abe7bb81d7e6c3079953fbf478431bee5"
-             "0nyg7slbqp135fryywsdk69ah2kpi7bwzw5q4m6lwpwa3g4mmi8x"
+  (craft-app "gridcraft" "0.11.1" "ac8da7d49cbeb4be6aa1ad5869f3d29fe2da8cd9"
+             "1jyi01gcih2bdcs74zczg4j5l0g7xyrm7q2lgkibkyfp0d6925k6"
              #:cargo-inputs gridcraft-cargo-inputs
              #:git-crates gridcraft-git-crates
              #:fonts (craft-fonts "abb83316d96aa59c1cf64784289e378fe9fa5695"
@@ -343,8 +341,8 @@ and TSV, and imports XLS, XLSB and ODS data.  @command{gridcraft-cli}
 inspects, converts and evaluates workbooks from the command line."))
 
 (define-public soundcraft
-  (craft-app "soundcraft" "0.11.0" "9b8283b90877813a929f5e28b2dc92e5774da933"
-             "1gzzz1c2db8facqqb72pabwxr3dj50vd2xyf757s559f8frf0l58"
+  (craft-app "soundcraft" "0.12.1" "52471b37e957feaea56dfd48932ef16d314cc74a"
+             "0hg1w0naijqfrmqc9320qp5zw1p6f1wm02wrfilnzhl6sxkidny5"
              #:cargo-inputs soundcraft-cargo-inputs
              #:git-crates soundcraft-git-crates
              ;; cpal (audio input and output).
@@ -358,8 +356,8 @@ instruments, and CLAP plug-ins.  @command{soundcraft-cli} edits, converts and
 bounces sessions from the command line."))
 
 (define-public cadcraft
-  (craft-app "cadcraft" "0.10.0" "75d9d7270378081f4ffbced674f66433c1acb7ad"
-             "12yzsh96vcvphyfl8qsyrsl9c76zamcpc8rlpcn75wd5b64ly37q"
+  (craft-app "cadcraft" "0.12.0" "1977a493c7d8340249185126744c5143f096dc86"
+             "0bjyfcp7488dyk4q4i81n7xwzyhg0gx5z9w1x9ny13kzm7lqv04w"
              #:cargo-inputs cadcraft-cargo-inputs
              #:git-crates cadcraft-git-crates
              #:fonts (craft-fonts "3d9ab3a132ed0eff457e424226a435a901da30d3"
@@ -373,8 +371,8 @@ hatches and blocks, and reading and writing DXF and DWG drawings.
 the command line."))
 
 (define-public figcraft
-  (craft-app "figcraft" "0.9.0" "a86897dc919b8ae7fb0142fe7e0034c10715f7d9"
-             "15d9h1gbv22rchsd1mixs519dzyim8m8hm540xxk6r6qzqm3azqf"
+  (craft-app "figcraft" "0.10.0" "80f916326fb94f3a88cb24e64f396f564a0ebc06"
+             "1clv4ama3yambdihj5knadkzrkk4dqfscmq8vh0afll1rri08dqr"
              #:cargo-inputs figcraft-cargo-inputs
              #:git-crates figcraft-git-crates
              #:fonts (craft-fonts "43913056ce82a3fdad0ef69f6b88d1dc922a8104"
@@ -388,8 +386,8 @@ WebP and PDF, and opens Figma files.  @command{figcraft-cli} exports,
 converts and renders files from the command line."))
 
 (define-public deckcraft
-  (craft-app "deckcraft" "0.9.0" "128cb0b883c1210a8aeda30c713b889f5d92a984"
-             "0867d517xj0pr1cfyp6qf391v75a8lxyh2x8k6bz46ixkq0k0ajj"
+  (craft-app "deckcraft" "0.10.0" "b47195feec0f0fe4220d8943ad1c8add5dad8072"
+             "08jhnikqciqa5chk4yp1jkncbpv3dzpcc3r35nagd476f50ihpxb"
              #:cargo-inputs deckcraft-cargo-inputs
              #:git-crates deckcraft-git-crates
              #:fonts (craft-fonts "43913056ce82a3fdad0ef69f6b88d1dc922a8104"
@@ -405,11 +403,10 @@ and saves PPTX presentations.  @command{deckcraft-cli} converts and renders
 decks from the command line."))
 
 (define-public craft-launcher
-  (craft-app "craft-launcher" "0.6.1" "bf39e92f30bcf1f86d07d7aae1e877632f74bce6"
-             "0ip0nm7yncqkc0lyslc1dni0admg9c814nfdp36k9v99fg7scav7"
+  (craft-app "craft-launcher" "0.7.0" "9419d8977bc70f80373da8558356e4ba7387c7b2"
+             "0qvcs71k44nijnm46p9lcp5fxiql31xx9icahbddbvc2w5y5d1qq"
              #:cargo-inputs craft-launcher-cargo-inputs
              #:git-crates craft-launcher-git-crates
-             #:revision "1"
              #:binaries '("artcraft-launcher")
              #:app-id "ai.storyteller.artcraft-launcher"
              #:extra-phases

@@ -1,0 +1,28 @@
+diff --git a/src/xwayland/xwm/mod.rs b/src/xwayland/xwm/mod.rs
+index e7446699..41350735 100644
+--- a/src/xwayland/xwm/mod.rs
++++ b/src/xwayland/xwm/mod.rs
+@@ -2195,6 +2195,23 @@ where
+                             return Ok(());
+                         }
+ 
++                        // Incremental (INCR) transfers are driven by the requestor deleting
++                        // the property, which we only hear about if we selected
++                        // PropertyChange events on its window. Top-level InputOutput windows
++                        // get that in CreateNotify, but not InputOnly ones (as Chromium/Electron
++                        // use for their clipboard), nor children of other windows: these
++                        // transfers would stall after the INCR announcement. Add the mask to
++                        // the one we have on the window, so as to keep e.g. FocusChange.
++                        if let Ok(attrs) = conn.get_window_attributes(n.requestor)?.reply() {
++                            if !attrs.your_event_mask.contains(EventMask::PROPERTY_CHANGE) {
++                                conn.change_window_attributes(
++                                    n.requestor,
++                                    &ChangeWindowAttributesAux::new()
++                                        .event_mask(attrs.your_event_mask | EventMask::PROPERTY_CHANGE),
++                                )?;
++                            }
++                        }
++
+                         let (recv_fd, send_fd) = rustix::pipe::pipe_with(
+                             rustix::pipe::PipeFlags::CLOEXEC | rustix::pipe::PipeFlags::NONBLOCK,
+                         )
