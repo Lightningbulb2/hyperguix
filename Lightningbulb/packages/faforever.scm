@@ -23,7 +23,7 @@
 ;;; original game's libraries into its own install ($XDG_DATA_HOME/faforever
 ;;; here) and runs that ForgedAlliance.exe through Settings -> Game ->
 ;;; "Launch command".  Left empty, that is our faf-wine: Wine (new WoW64)
-;;; with DXVK, in the prefix $XDG_DATA_HOME/faforever/wine.
+;;; with DXVK, in the prefix $XDG_DATA_HOME/faforever/wine ($FAF_WINEPREFIX).
 
 (define-module (Lightningbulb packages faforever)
   #:use-module (guix packages)
@@ -324,8 +324,11 @@ export FAF_EXP_JAVA_ICE_ADAPTER_JAR=\"${FAF_EXP_JAVA_ICE_ADAPTER_JAR:-~a/exp-jav
 export FAF_ICE_ADAPTER_PATH=\"${FAF_ICE_ADAPTER_PATH:-~a/faf-pioneer}\"
 export FAF_STEAM_API_PATH=\"${FAF_STEAM_API_PATH:-~a/steam/libsteam_api.so}\"
 export FAF_DEFAULT_LAUNCH_WRAPPER=\"${FAF_DEFAULT_LAUNCH_WRAPPER:-~a}\"
-# The client reads game.prefs from the same prefix the game runs in.
-export WINEPREFIX=\"${WINEPREFIX:-${XDG_DATA_HOME:-$HOME/.local/share}/faforever/wine}\"
+# The client reads game.prefs from the same prefix the game runs in.  Its
+# own variable, so that a WINEPREFIX set for other programs doesn't apply.
+export WINEPREFIX=\"${FAF_WINEPREFIX:-${XDG_DATA_HOME:-$HOME/.local/share}/faforever/wine}\"
+# Replays in the data directory, not ~/FAForever/replays.
+export FAF_REPLAYS_DIR=\"${FAF_REPLAYS_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/faforever/replays}\"
 exec -a faforever-client ~a \"$@\"~%"
                               (search-input-file inputs "bin/bash")
                               (search-input-file inputs "bin/java")
@@ -342,7 +345,9 @@ exec -a faforever-client ~a \"$@\"~%"
                   ;; -- the DirectX redistributable shipped with the original
                   ;; game (fa_path in fa_path.lua) is installed into the
                   ;; prefix once, and its XACT engines are preferred.  Gecko
-                  ;; and Mono are not packaged; don't offer them.
+                  ;; and Mono are not packaged; don't offer them.  Wine's
+                  ;; menu builder is off: it put entries for the prefix's
+                  ;; file types in ~/.local/share/applications.
                   ;; In its own fullscreen window, the game switched the
                   ;; (Xwayland-emulated) display mode to its default
                   ;; 1024x768 and back, flickering, and could hang on the
@@ -359,13 +364,19 @@ exe=\"$1\"
 d3d9=~a/share/dxvk/lib32/d3d9.dll
 mkdir -p \"$WINEPREFIX\"
 wine=\"${FAF_WINE:-~a}\"
+# DXVK's log and pipeline cache, which it otherwise writes to the working
+# directory (often $HOME) or next to the game.
+dxvk_cache=\"${XDG_CACHE_HOME:-$HOME/.cache}/faforever/dxvk\"
+mkdir -p \"$dxvk_cache\"
+export DXVK_LOG_PATH=\"${DXVK_LOG_PATH:-$dxvk_cache}\"
+export DXVK_STATE_CACHE_PATH=\"${DXVK_STATE_CACHE_PATH:-$dxvk_cache}\"
 if [ -f \"$exe\" ]; then
   ~a -m 644 \"$d3d9\" \"${exe%/*}/d3d9.dll\"
 fi
 xact=xactengine2_0,xactengine2_1,xactengine2_2,xactengine2_3,xactengine2_4
 xact=$xact,xactengine2_5,xactengine2_6,xactengine2_7,xactengine2_8
 xact=$xact,xactengine2_9,xactengine2_10
-export WINEDLLOVERRIDES=\"mscoree,mshtml=;d3d9=n,b;$xact=n,b${WINEDLLOVERRIDES:+;$WINEDLLOVERRIDES}\"
+export WINEDLLOVERRIDES=\"mscoree,mshtml=;winemenubuilder.exe=d;d3d9=n,b;$xact=n,b${WINEDLLOVERRIDES:+;$WINEDLLOVERRIDES}\"
 desktop=\"${FAF_VIRTUAL_DESKTOP:-auto}\"
 if [ \"$desktop\" = auto ]; then
   desktop=
@@ -457,6 +468,24 @@ Actions=quit;
 Name=Quit
 Exec=~a/faforever-client --quit
 " bin bin)))
+                    ;; The game's window, for docks: its virtual desktop
+                    ;; ("faf", see faf-wine) or, without one, the game's own.
+                    (for-each
+                     (lambda (class)
+                       (call-with-output-file
+                           (string-append apps "/faforever-game-" class ".desktop")
+                         (lambda (port)
+                           (format port "[Desktop Entry]
+Type=Application
+Name=Supreme Commander: Forged Alliance
+Comment=The game, started from the FAForever client
+Exec=~a/faforever-client
+Icon=faforever-client
+Terminal=false
+NoDisplay=true
+StartupWMClass=~a
+" bin class))))
+                     '("faf" "forgedalliance.exe"))
                     (call-with-output-file (string-append mime "/faforever-client.xml")
                       (lambda (port)
                         (display "<?xml version=\"1.0\" encoding=\"UTF-8\"?>

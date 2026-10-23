@@ -71,8 +71,12 @@
        ;; ends, the programs on the normal desktop get the host's display
        ;; configuration back (the virtual desktop replaced it with its
        ;; own; the launcher's window was then off-screen and unmapped).
-       (patches (cons (local-file "aux-files/wine-app-desktop.patch")
-                      (origin-patches (package-source wine64))))))
+       ;; A virtual desktop's window is also named (WM_CLASS) after the
+       ;; desktop rather than explorer.exe, so docks can tell the games of
+       ;; different packages apart.
+       (patches (cons* (local-file "aux-files/wine-app-desktop.patch")
+                       (local-file "aux-files/wine-desktop-wm-class.patch")
+                       (origin-patches (package-source wine64))))))
     (inputs (modify-inputs (package-inputs wine64)
               (delete "wine")))
     (native-inputs
@@ -335,7 +339,7 @@ exec ~a/bin/wine \"$@\"
                             (format port "#!~a
 DATA_DIR=\"${XDG_DATA_HOME:-$HOME/.local/share}/radmin-vpn-linux\"
 mkdir -p \"$DATA_DIR\"
-export WINEPREFIX=\"${WINEPREFIX:-$DATA_DIR/wineprefix}\"
+export WINEPREFIX=\"${RADMIN_WINEPREFIX:-$DATA_DIR/wineprefix}\"
 export BUILD_DIR=\"~a\"
 export RADMIN_DATA_DIR=\"$DATA_DIR\"
 exec ~a \"~a/~a\" \"$@\"~%"

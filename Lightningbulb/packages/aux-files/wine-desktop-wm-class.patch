@@ -1,0 +1,51 @@
+Name a virtual desktop's X11 window (WM_CLASS) after the desktop, lowercased
+like process names, unless it is the default one.  Every virtual desktop is
+drawn by explorer.exe, so the desktop environment couldn't tell apart the
+programs in different desktops: the FAF game's desktop showed up with the BFME
+games' name and icon.
+
+--- a/dlls/winex11.drv/window.c
++++ b/dlls/winex11.drv/window.c
+@@ -2654,6 +2654,34 @@
+ }
+ 
+ 
++/* Name a virtual desktop's window (WM_CLASS) after the desktop, except the
++ * default one, so that the desktop environment can tell apart the programs
++ * that run in differently named desktops: otherwise they all are the
++ * "explorer.exe" that draws the desktop. */
++static void set_desktop_class_hint( Display *display, Window win )
++{
++    static const WCHAR defaultW[] = {'D','e','f','a','u','l','t',0};
++    WCHAR nameW[MAX_PATH];
++    char name[MAX_PATH * 3], *p;
++    XClassHint *class_hints;
++
++    if (!NtUserGetObjectInformation( NtUserGetThreadDesktop( GetCurrentThreadId() ), UOI_NAME,
++                                     nameW, sizeof(nameW), NULL ))
++        return;
++    nameW[MAX_PATH - 1] = 0;
++    if (!nameW[0] || !wcscmp( nameW, defaultW )) return;
++    ntdll_wcstoumbs( nameW, wcslen( nameW ) + 1, name, sizeof(name), FALSE );
++    /* lowercased, as process names are */
++    for (p = name; *p; p++) if (*p >= 'A' && *p <= 'Z') *p += 'a' - 'A';
++    if ((class_hints = XAllocClassHint()))
++    {
++        class_hints->res_name = name;
++        class_hints->res_class = name;
++        XSetClassHint( display, win, class_hints );
++        XFree( class_hints );
++    }
++}
++
+ /* initialize the desktop window id in the desktop manager process */
+ static BOOL create_desktop_win_data( Window win, HWND hwnd )
+ {
+@@ -2666,6 +2694,7 @@
+     window_set_managed( data, TRUE );
+     NtUserSetProp( data->hwnd, whole_window_prop, (HANDLE)win );
+     set_initial_wm_hints( display, win );
++    set_desktop_class_hint( display, win );
+     if (is_desktop_fullscreen()) window_set_net_wm_state( data, (1 << NET_WM_STATE_FULLSCREEN) );
+     release_win_data( data );
+     if (thread_data->clip_window) XReparentWindow( display, thread_data->clip_window, win, 0, 0 );

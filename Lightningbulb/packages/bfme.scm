@@ -115,9 +115,9 @@
                   ;; app_id, the lowercased .exe file name.  Without one,
                   ;; COSMIC names a window after the last dot-separated part
                   ;; of that ("EXE"), with no icon.  The games run in a
-                  ;; virtual desktop by default, whose window is
-                  ;; explorer.exe's; the game icons are taken from the games
-                  ;; by the script.  The Quit actions (in the dock's menu)
+                  ;; virtual desktop by default, whose window wine64-wow64
+                  ;; names after the desktop, "bfme"; the game icons are
+                  ;; taken from the games by the script.  The Quit actions (in the dock's menu)
                   ;; end the games, or everything, which a fullscreen game
                   ;; may not do on a close request.
                   (mkdir-p apps)
@@ -153,7 +153,7 @@ Exec=~a ~a
                       "Quit the launcher and the games" "--stop")
                      ("bfme-desktop" "The Battle for Middle-earth"
                       "The games' virtual desktop"
-                      "bfme-desktop" "NoDisplay=true\n" "explorer.exe"
+                      "bfme-desktop" "NoDisplay=true\n" "bfme"
                       "Quit the game" "--stop-game")
                      ("bfme-rotwk"
                       "The Lord of the Rings: The Rise of the Witch-king"
