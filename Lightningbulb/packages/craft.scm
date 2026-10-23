@@ -341,8 +341,9 @@ and TSV, and imports XLS, XLSB and ODS data.  @command{gridcraft-cli}
 inspects, converts and evaluates workbooks from the command line."))
 
 (define-public soundcraft
-  (craft-app "soundcraft" "0.12.1" "52471b37e957feaea56dfd48932ef16d314cc74a"
-             "0hg1w0naijqfrmqc9320qp5zw1p6f1wm02wrfilnzhl6sxkidny5"
+  (craft-app "soundcraft" "0.12.1" "fe4bb3fe0cb3cf8363f243e3e4a6c607cdbd83e0"
+             "00awsngd0bhss0bhmrfsazjkjd7jvz8lhbhxvbxl6n0vxlznl2s7"
+             #:revision "1"
              #:cargo-inputs soundcraft-cargo-inputs
              #:git-crates soundcraft-git-crates
              ;; cpal (audio input and output).
@@ -356,8 +357,9 @@ instruments, and CLAP plug-ins.  @command{soundcraft-cli} edits, converts and
 bounces sessions from the command line."))
 
 (define-public cadcraft
-  (craft-app "cadcraft" "0.12.0" "1977a493c7d8340249185126744c5143f096dc86"
-             "0bjyfcp7488dyk4q4i81n7xwzyhg0gx5z9w1x9ny13kzm7lqv04w"
+  (craft-app "cadcraft" "0.12.0" "37150774c6d614776e049ade4c474fec8c0ef32e"
+             "15faajz9qc3p8ljgfgj44fg0d8r1cka474ywgpa49fwn0mxifazl"
+             #:revision "1"
              #:cargo-inputs cadcraft-cargo-inputs
              #:git-crates cadcraft-git-crates
              #:fonts (craft-fonts "3d9ab3a132ed0eff457e424226a435a901da30d3"

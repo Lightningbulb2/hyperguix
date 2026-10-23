@@ -73,7 +73,7 @@
          str.Buffer = (WCHAR *)(desktop ? desktop : get_default_desktop( buffer, sizeof(buffer) ));
 --- a/programs/explorer/desktop.c
 +++ b/programs/explorer/desktop.c
-@@ -866,6 +866,24 @@
+@@ -866,6 +866,35 @@
      return !*end;
  }
  
@@ -83,13 +83,24 @@
 + * desktop, started by a launcher that is not), give them back the host's
 + * configuration: switching a thread from a virtual desktop to a normal one
 + * makes win32u query the host displays again. */
++static BOOL CALLBACK refresh_window( HWND hwnd, LPARAM lparam )
++{
++    /* windows shown meanwhile were placed with the virtual desktop's
++     * configuration, possibly off its screen and so left unmapped */
++    if (IsWindowVisible( hwnd ))
++        SetWindowPos( hwnd, 0, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER |
++                      SWP_NOOWNERZORDER | SWP_NOACTIVATE | SWP_FRAMECHANGED );
++    return TRUE;
++}
++
 +static DWORD WINAPI restore_host_displays( void *arg )
 +{
 +    HDESK desktop = OpenDesktopW( L"Default", 0, FALSE, DESKTOP_ALL_ACCESS );
 +
 +    if (desktop)
 +    {
-+        if (!SetThreadDesktop( desktop )) WARN( "could not switch to the default desktop\n" );
++        if (SetThreadDesktop( desktop )) EnumDesktopWindows( desktop, refresh_window, 0 );
++        else WARN( "could not switch to the default desktop\n" );
 +        CloseDesktop( desktop );
 +    }
 +    return 0;
@@ -98,7 +109,7 @@
  /* retrieve the desktop name to use if not specified on the command line */
  static const WCHAR *get_default_desktop_name(void)
  {
-@@ -1333,6 +1351,16 @@
+@@ -1333,6 +1362,16 @@
  
      if (pShellDDEInit) pShellDDEInit( FALSE );
  

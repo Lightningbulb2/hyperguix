@@ -75,6 +75,11 @@ python3 contrib/pnpm-lock-to-guix.py "Lightningbulb packages r2modman-deps" \
 The generators need git, network access and `guix hash`; set
 `GIT_CACHE_DIR` to reuse checkouts between runs.
 
+Upstream HEAD is sometimes an automated dependency bump that doesn't
+compile (cadcraft and soundcraft both had one). When a build fails in
+upstream code right after such a bump, look for a later "fix build" commit
+upstream before suspecting the generator.
+
 Before rebuilding, check that each `substitute*` pattern still matches the
 new source: in this Guix a pattern that matches nothing is **not** an error,
 so a stale patch silently does nothing.
@@ -93,6 +98,42 @@ Pitfalls for new Rust packages:
 - Repositories that keep images in Git LFS need `git-fetch/lfs`; a plain
   checkout only has text pointers (`cosmic-wallpapers`,
   `cosmic-initial-setup`, `cosmic-greeter` use `#:lfs? #t`).
+
+## Channel pins and updating a single app
+
+The config pins `guix` and `nonguix` to commits; `guix-discord` and this
+channel follow their branches. A `guix` commit pins *every* package Guix
+provides, so bumping it updates (and may rebuild) everything at once.
+
+- **Packages in this channel** pin their own upstream commits. Updating one
+  (see *Updating*) changes only that package, whatever the `guix` pin.
+- **A newer version of a package Guix itself provides**: add an override to
+  this channel that inherits the Guix package and changes only its version
+  and source. It builds against the pinned Guix, nothing else moves, and it
+  stays reproducible:
+
+  ```scheme
+  (define-public foo/newer
+    (package
+      (inherit foo)
+      (version "1.2.3")
+      (source (origin
+                (inherit (package-source foo))
+                (uri ...)                ;same form as Guix's, new version
+                (sha256 (base32 "..."))))))
+  ```
+
+  Then use `foo/newer` instead of `foo` in the config.
+- **When a newer Guix's whole recipe is needed** (new dependencies, a
+  rewritten build): take just that package from a newer Guix commit with an
+  inferior (`(guix inferior)`, `inferior-for-channels`). It costs a one-time
+  build of that Guix, and the package brings its own newer dependencies.
+- Transformations such as `--with-version`/`with-latest` are quick but not
+  hash-pinned, so not reproducible; avoid them in the config.
+- Bump the `guix` pin deliberately (for example monthly, for security fixes)
+  and `nonguix` together with it. `guix describe -f channels > lock.scm`
+  records the exact current state; `guix time-machine -C lock.scm -- system
+  reconfigure ...` rebuilds it later.
 
 ## Runtime notes
 
@@ -114,12 +155,15 @@ Pitfalls for new Rust packages:
   - the initial setup's language and timezone pages are dropped (Guix sets
     those in the OS config);
   - `COSMIC_DRM_DITHERING[_<CONNECTOR>]` turns NVIDIA's dithering on or off
-    per monitor (opt-in).
-- `xwayland-with-idle-time`:
-  - keeps MIT-SCREEN-SAVER and counts `xset s reset` as activity, so Steam's
-    Away detection works with an idle helper;
-  - finds the NVIDIA EGL/GBM back ends, which cosmic-comp's sparse
-    environment otherwise hid, leaving X11 apps on llvmpipe.
+    per monitor (opt-in);
+  - cosmic-idle answers `org.freedesktop.ScreenSaver.GetSessionIdleTime`
+    (milliseconds, as KDE does), which Steam polls for its Away status;
+  - smithay's X11 clipboard bridge subscribes to property changes on the
+    requestor window, so INCR transfers (anything over 64 KiB, i.e. images)
+    to Chromium/Electron apps (Steam, Discord) no longer stall.
+- `xwayland-with-idle-time` finds the NVIDIA EGL/GBM back ends, which
+  cosmic-comp's sparse environment otherwise hid, leaving X11 apps on
+  llvmpipe.  It also keeps MIT-SCREEN-SAVER for X11 idle queries.
 - COSMIC Settings needs the systemd D-Bus services `locale1`, `timedate1` and
   `hostname1`: the config provides localed, `timedated` and gardenhostd.
 
@@ -140,8 +184,10 @@ Pitfalls for new Rust packages:
 
 - **faforever-client**: finds Steam inside nonguix's container home
   (`$GUIX_SANDBOX_HOME`, default `~/.local/share/guix-sandbox-home`); its own
-  data is in `$XDG_DATA_HOME/faforever`. The game runs through Wine (set a
-  prefix and `wine` as launch command in the client).
+  data is in `$XDG_DATA_HOME/faforever`. With an empty "Launch command" the
+  game runs through the bundled `faf-wine` (wine64-wow64 + DXVK, prefix
+  `$XDG_DATA_HOME/faforever/wine`); `faforever-client --quit` quits a running
+  client. The self-updater is disabled.
 - **r2modman**: also finds that sandboxed Steam library and launches games
   with `steam -applaunch`; mods need its profile directory shared into the
   Steam container (`GUIX_SANDBOX_EXTRA_SHARES`, set by the config).
