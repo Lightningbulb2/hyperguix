@@ -13,12 +13,21 @@
 ;;;
 ;;; It also finds the system's EGL/GBM drivers (NVIDIA's included) without
 ;;; relying on the environment the compositor passes it; see the wrapper.
+;;;
+;;; And it no longer loses track of the pointer leaving X11 windows once one
+;;; was destroyed under it, which sent mouse buttons forwarded for push to
+;;; talk (Discord) to a stale X11 window; see
+;;; aux-files/xwayland-pointer-lost-focus.patch.
 
 (define-module (Lightningbulb packages xwayland)
   #:use-module (guix packages)
   #:use-module (guix gexp)
   #:use-module (guix utils)
+  #:use-module (guix build-system gnu)
+  #:use-module ((guix licenses) #:prefix license:)
   #:use-module (gnu packages bash)
+  #:use-module (gnu packages glib)
+  #:use-module (gnu packages pkg-config)
   #:use-module (gnu packages xorg))
 
 (define-public xwayland-with-idle-time
@@ -29,8 +38,9 @@
      (origin
        (inherit (package-source xorg-server-xwayland))
        (patches
-        (cons (local-file "aux-files/xwayland-idle-time.patch")
-              (origin-patches (package-source xorg-server-xwayland))))))
+        (cons* (local-file "aux-files/xwayland-idle-time.patch")
+               (local-file "aux-files/xwayland-pointer-lost-focus.patch")
+               (origin-patches (package-source xorg-server-xwayland))))))
     (arguments
      (substitute-keyword-arguments (package-arguments xorg-server-xwayland)
        ((#:phases phases #~%standard-phases)
@@ -63,3 +73,60 @@ keep the MIT-SCREEN-SAVER extension when rootless and to treat a screen saver
 reset as user activity.  Together with a helper that resets the screen saver
 while the user is active on the Wayland side, X11 programs such as Steam get a
 meaningful idle time.")))
+
+;;; Steam doesn't use the X11 idle time after all: it watches the X pointer,
+;;; which under Xwayland stays put while the real pointer is over Wayland
+;;; windows.  This helper moves the X pointer by a pixel while the session is
+;;; in use and no X11 window has the focus (see the source), started with the
+;;; session through XDG autostart; the `cosmic' meta package includes it.
+(define-public xwayland-activity-relay
+  (package
+    (name "xwayland-activity-relay")
+    (version "1.0")
+    (source (local-file "aux-files/xwayland-activity-relay.c"))
+    (build-system gnu-build-system)
+    (arguments
+     (list
+      #:tests? #f
+      #:phases
+      #~(modify-phases %standard-phases
+          (replace 'unpack
+            (lambda* (#:key source #:allow-other-keys)
+              (copy-file source "xwayland-activity-relay.c")))
+          (delete 'configure)
+          (replace 'build
+            (lambda _
+              (invoke "sh" "-c"
+                      (string-append
+                       "gcc -Wall -O2 -o xwayland-activity-relay "
+                       "xwayland-activity-relay.c "
+                       "$(pkg-config --cflags --libs dbus-1 x11)"))))
+          (replace 'install
+            (lambda _
+              (let ((bin (string-append #$output "/bin"))
+                    (autostart (string-append #$output "/etc/xdg/autostart")))
+                (install-file "xwayland-activity-relay" bin)
+                (mkdir-p autostart)
+                (call-with-output-file
+                    (string-append autostart
+                                   "/xwayland-activity-relay.desktop")
+                  (lambda (port)
+                    (format port "[Desktop Entry]
+Type=Application
+Name=Xwayland activity relay
+Comment=Keeps X11 programs such as Steam from marking you Away
+Exec=~a/xwayland-activity-relay
+OnlyShowIn=COSMIC;
+NoDisplay=true
+" bin)))))))))
+    (native-inputs (list pkg-config))
+    (inputs (list dbus libx11))
+    (home-page "https://github.com/pop-os/cosmic-epoch")
+    (synopsis "Report Wayland-side activity to X11 programs")
+    (description
+     "@command{xwayland-activity-relay} asks the session for its idle time
+(@code{org.freedesktop.ScreenSaver.GetSessionIdleTime}) and, while the user is
+active and no X11 window has the focus, moves the Xwayland pointer by one
+pixel and resets the X11 screen saver, so that X11 programs that watch the
+pointer or the idle time, such as Steam, don't consider the user away.")
+    (license license:gpl3+)))

@@ -482,12 +482,23 @@ the applets shown in them."))
                     ;; instead, as other hosts do, so that the XEmbed icons
                     ;; xembedsniproxy proxies (Wine programs...) show their
                     ;; own menu (see the patch).
+                    ;; Its watcher also kept those icons after their program
+                    ;; ended: it only dropped an item when the connection
+                    ;; that registered it went away, and xembedsniproxy
+                    ;; registers them from another connection than the one
+                    ;; it serves them on (see the patch).
                     (list
                      #~(add-after 'unpack 'apply-status-area-context-menu-patch
                          (lambda _
                            (invoke "patch" "-p1" "--input"
                                    #$(local-file
-                                      "aux-files/cosmic-applets-status-area-context-menu.patch")))))
+                                      "aux-files/cosmic-applets-status-area-context-menu.patch"))))
+                     #~(add-after 'apply-status-area-context-menu-patch
+                           'apply-status-area-watcher-unregister-patch
+                         (lambda _
+                           (invoke "patch" "-p1" "--input"
+                                   #$(local-file
+                                      "aux-files/cosmic-applets-status-area-watcher-unregister.patch")))))
                     #:synopsis "Panel applets of the COSMIC desktop"
                     #:description
                     "The standard COSMIC panel applets: app list, audio,
@@ -1028,6 +1039,8 @@ theme.")
            cosmic-wallpapers
            cosmic-files cosmic-edit cosmic-term cosmic-store cosmic-player
            cosmic-viewer cosmic-monitor
+           ;; Keeps Steam from going Away while Wayland programs are used.
+           xwayland-activity-relay
            xdg-desktop-portal xdg-desktop-portal-cosmic
            ;; cosmic-portals.conf falls back to GTK's portal.
            xdg-desktop-portal-gtk

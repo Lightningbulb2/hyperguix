@@ -1,0 +1,53 @@
+Drop a tray item when the bus name it is served on disappears, not only when
+the connection that registered it does (KDE's watcher does the same).
+xembedsniproxy registers every proxied XEmbed icon (Wine, Java programs) from
+its main connection, naming a per-icon connection as the service, and closes
+that connection when the icon goes; those icons stayed in the panel forever.
+
+--- a/cosmic-applet-status-area/src/subscriptions/status_notifier_watcher/server.rs
++++ b/cosmic-applet-status-area/src/subscriptions/status_notifier_watcher/server.rs
+@@ -10,7 +10,7 @@
+     Result,
+     fdo::{DBusProxy, RequestNameFlags, RequestNameReply},
+     message::Header,
+-    names::{BusName, UniqueName, WellKnownName},
++    names::{UniqueName, WellKnownName},
+     object_server::SignalEmitter,
+ };
+ 
+@@ -118,16 +118,25 @@
+                     eprintln!("Lost bus name: {NAME}");
+                     have_bus_name = false;
+                 }
+-            } else if let BusName::Unique(name) = &args.name {
+-                if args.new_owner.is_none() {
+-                    let mut interface = interface.get_mut().await;
+-                    if let Some(idx) = interface
+-                        .items
+-                        .iter()
+-                        .position(|(unique_name, _)| unique_name == name)
+-                    {
+-                        let ctxt = SignalEmitter::new(&connection, OBJECT_PATH).unwrap();
+-                        let service = interface.items.remove(idx).1;
++            } else if args.new_owner.is_none() {
++                // An item is gone when the connection that registered it
++                // or the bus name it is served on goes away.  These differ
++                // for xembedsniproxy, which registers each icon from its
++                // main connection but serves it on a connection of its own
++                // that it closes when the X11 icon goes, so matching the
++                // sender alone left those icons in the panel for good.
++                let name = args.name.as_str();
++                let mut interface = interface.get_mut().await;
++                let (gone, kept): (Vec<_>, Vec<_>) = std::mem::take(&mut interface.items)
++                    .into_iter()
++                    .partition(|(sender, service)| {
++                        sender.as_str() == name
++                            || service.split('/').next() == Some(name)
++                    });
++                interface.items = kept;
++                if !gone.is_empty() {
++                    let ctxt = SignalEmitter::new(&connection, OBJECT_PATH).unwrap();
++                    for (_, service) in gone {
+                         StatusNotifierWatcher::status_notifier_item_unregistered(&ctxt, &service)
+                             .await
+                             .unwrap();

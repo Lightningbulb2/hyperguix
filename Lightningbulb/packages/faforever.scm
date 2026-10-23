@@ -47,6 +47,7 @@
   #:use-module (gnu packages pkg-config)
   #:use-module (gnu packages tls)
   #:use-module (gnu packages webkit)
+  #:use-module (gnu packages xorg)
   #:use-module ((nongnu packages wine) #:select (dxvk-next))
   #:use-module ((Lightningbulb packages radmin-vpn)
                 #:select (wine64-wow64/prefix-update))
@@ -342,6 +343,14 @@ exec -a faforever-client ~a \"$@\"~%"
                   ;; game (fa_path in fa_path.lua) is installed into the
                   ;; prefix once, and its XACT engines are preferred.  Gecko
                   ;; and Mono are not packaged; don't offer them.
+                  ;; In its own fullscreen window, the game switched the
+                  ;; (Xwayland-emulated) display mode to its default
+                  ;; 1024x768 and back, flickering, and could hang on the
+                  ;; loading screen.  So it runs in a Wine virtual desktop
+                  ;; ("FAF", set for ForgedAlliance.exe in AppDefaults) as
+                  ;; big as the monitor, and that default resolution is
+                  ;; replaced by the desktop's.  FAF_VIRTUAL_DESKTOP=off
+                  ;; turns this off; WIDTHxHEIGHT picks another size.
                   (call-with-output-file (string-append libdir "/faf-wine")
                     (lambda (port)
                       (format port "#!~a
@@ -357,6 +366,42 @@ xact=xactengine2_0,xactengine2_1,xactengine2_2,xactengine2_3,xactengine2_4
 xact=$xact,xactengine2_5,xactengine2_6,xactengine2_7,xactengine2_8
 xact=$xact,xactengine2_9,xactengine2_10
 export WINEDLLOVERRIDES=\"mscoree,mshtml=;d3d9=n,b;$xact=n,b${WINEDLLOVERRIDES:+;$WINEDLLOVERRIDES}\"
+desktop=\"${FAF_VIRTUAL_DESKTOP:-auto}\"
+if [ \"$desktop\" = auto ]; then
+  desktop=
+  while IFS= read -r line; do
+    case $line in
+      *' connected primary '[0-9]*x[0-9]*+*)
+        desktop=${line#*' connected primary '}; desktop=${desktop%%+*}; break ;;
+      *' connected '[0-9]*x[0-9]*+*)
+        [ -n \"$desktop\" ] || { desktop=${line#*' connected '}; desktop=${desktop%%+*}; } ;;
+    esac
+  done <<EOF
+$(~a --query 2>/dev/null)
+EOF
+  desktop=${desktop:-1920x1080}
+fi
+key='HKCU\\Software\\Wine\\AppDefaults\\ForgedAlliance.exe\\Explorer'
+stamp=\"$WINEPREFIX/.faf-virtual-desktop\"
+if [ \"$(cat \"$stamp\" 2>/dev/null)\" != \"$desktop\" ]; then
+  case $desktop in
+    off|no|0)
+      \"$wine\" reg delete \"$key\" /v Desktop /f >/dev/null 2>&1 || true ;;
+    *)
+      \"$wine\" reg add \"$key\" /v Desktop /t REG_SZ /d FAF /f >/dev/null
+      \"$wine\" reg add 'HKCU\\Software\\Wine\\Explorer\\Desktops' \\
+        /v FAF /t REG_SZ /d \"$desktop\" /f >/dev/null
+      \"$wine\" reg add 'HKCU\\Control Panel\\Colors' \\
+        /v Background /t REG_SZ /d '0 0 0' /f >/dev/null ;;
+  esac
+  printf '%s\\n' \"$desktop\" > \"$stamp\"
+fi
+case $desktop in
+  [1-9]*x[1-9]*)
+    prefs=\"$WINEPREFIX/drive_c/users/$USER/AppData/Local/Gas Powered Games/Supreme Commander Forged Alliance/Game.prefs\"
+    [ ! -f \"$prefs\" ] ||
+      ~a -i \"s/primary_adapter = '1024,768,60'/primary_adapter = '${desktop%x*},${desktop#*x},60'/\" \"$prefs\" ;;
+esac
 stamp=\"$WINEPREFIX/.faf-directx-installed\"
 if [ ! -e \"$stamp\" ] && [ -f \"${exe%/*}/../fa_path.lua\" ]; then
   while IFS= read -r line; do
@@ -372,7 +417,9 @@ exec \"$wine\" \"$@\"~%"
                               (search-input-file inputs "bin/bash")
                               #$(this-package-input "dxvk")
                               (search-input-file inputs "bin/wine")
-                              (search-input-file inputs "bin/install"))))
+                              (search-input-file inputs "bin/install")
+                              (search-input-file inputs "bin/xrandr")
+                              (search-input-file inputs "bin/sed"))))
                   (chmod (string-append libdir "/faf-wine") #o755)
                   ;; Desktop integration (incl. the replay file types the
                   ;; Tauri bundle would register).
@@ -453,8 +500,10 @@ Exec=~a/faforever-client --quit
               openjdk
               openssl
               webkitgtk-for-gtk3
+              sed
               wine64-wow64/prefix-update
               xdg-utils
+              xrandr
               ;; Guix makes zstd-sys link the system libzstd.
               `(,zstd "lib"))
         faforever-client-cargo-inputs))

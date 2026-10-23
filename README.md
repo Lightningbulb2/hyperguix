@@ -24,7 +24,7 @@ The channel depends on nonguix (`.guix-channel`): several packages use its
 | Module | Package(s) | Notes |
 | --- | --- | --- |
 | `cosmic.scm` | `cosmic` (meta) and all its components, `cosmic-greeter`, `pop-launcher`, `cosmic-icons`, `pop-icon-theme`, `cosmic-sound-theme`, `cosmic-wallpapers` (COSMIC epoch 1.11.0) | see *COSMIC* below |
-| `xwayland.scm` | `xwayland-with-idle-time` | Xwayland used by cosmic-comp; see *COSMIC* |
+| `xwayland.scm` | `xwayland-with-idle-time`, `xwayland-activity-relay` | Xwayland used by cosmic-comp, and the helper that keeps Steam from going Away; see *COSMIC* |
 | `timedated.scm` | `timedated` | systemd's timedated built alone (org.freedesktop.timedate1), for COSMIC Settings |
 | `craft.scm` | `photocraft`, `effectcraft`, `filmcraft`, `pdfcraft`, `lightcraft`, `vectorcraft`, `gridcraft`, `wordcraft`, `soundcraft`, `cadcraft`, `figcraft`, `designcraft`, `deckcraft`, `craft-launcher` | the storytold "Craft" suite, each with its `*-cli` |
 | `ladybird.scm` | `ladybird` (git master), plus private Skia 148, ANGLE, ffmpeg 9, curl+OpenSSL | Qt 6 UI; its sandbox needs Landlock (`lsm=landlock,...` kernel argument) |
@@ -157,13 +157,26 @@ provides, so bumping it updates (and may rebuild) everything at once.
   - `COSMIC_DRM_DITHERING[_<CONNECTOR>]` turns NVIDIA's dithering on or off
     per monitor (opt-in);
   - cosmic-idle answers `org.freedesktop.ScreenSaver.GetSessionIdleTime`
-    (milliseconds, as KDE does), which Steam polls for its Away status;
+    (milliseconds, as KDE does);
+  - Steam decides you are Away from the X pointer, which Xwayland leaves
+    where it last was over an X11 window.  `xwayland-activity-relay`
+    (in the `cosmic` meta package, started through XDG autostart) moves it
+    by a pixel every 20 s while the session is in use and no X11 window has
+    the focus;
+  - the status area (tray) drops XEmbed icons (Wine, Java) when their
+    program ends: xembedsniproxy registers them from another D-Bus
+    connection than the one it serves them on, and the watcher only
+    watched the registering one;
   - smithay's X11 clipboard bridge subscribes to property changes on the
     requestor window, so INCR transfers (anything over 64 KiB, i.e. images)
     to Chromium/Electron apps (Steam, Discord) no longer stall.
 - `xwayland-with-idle-time` finds the NVIDIA EGL/GBM back ends, which
   cosmic-comp's sparse environment otherwise hid, leaving X11 apps on
-  llvmpipe.  It also keeps MIT-SCREEN-SAVER for X11 idle queries.
+  llvmpipe.  It also keeps MIT-SCREEN-SAVER for X11 idle queries, and keeps track of
+  the pointer leaving X11 windows after one was destroyed under it: mouse
+  buttons forwarded for push to talk (COSMIC Settings, *X11 compatibility*,
+  i.e. `xwayland_eavesdropping.pointer`) used to go to a stale X11 window
+  instead of reaching Discord.
 - COSMIC Settings needs the systemd D-Bus services `locale1`, `timedate1` and
   `hostname1`: the config provides localed, `timedated` and gardenhostd.
 
@@ -187,7 +200,10 @@ provides, so bumping it updates (and may rebuild) everything at once.
   data is in `$XDG_DATA_HOME/faforever`. With an empty "Launch command" the
   game runs through the bundled `faf-wine` (wine64-wow64 + DXVK, prefix
   `$XDG_DATA_HOME/faforever/wine`); `faforever-client --quit` quits a running
-  client. The self-updater is disabled.
+  client.  The game runs in a Wine virtual desktop as big as the monitor
+  (`FAF_VIRTUAL_DESKTOP=auto`, `off` or `WIDTHxHEIGHT`), and its default
+  1024x768 fullscreen resolution is replaced by the desktop's: switching
+  display modes under Xwayland made it flicker and hang while loading. The self-updater is disabled.
 - **r2modman**: also finds that sandboxed Steam library and launches games
   with `steam -applaunch`; mods need its profile directory shared into the
   Steam container (`GUIX_SANDBOX_EXTRA_SHARES`, set by the config).

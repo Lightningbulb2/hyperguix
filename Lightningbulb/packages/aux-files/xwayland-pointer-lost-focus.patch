@@ -1,0 +1,29 @@
+Track whether the pointer is over an X11 window by the window that has it,
+not by counting enter and leave events: the compositor can't send a leave for
+a surface destroyed under the pointer (a menu, a tooltip, a closed chat), so
+the count stayed above zero for good.  From then on, while the pointer was
+over Wayland windows, the X pointer stayed over whichever X11 window was at
+its last position, and mouse buttons the compositor forwarded for push to
+talk (cosmic-comp's xwayland_eavesdropping.pointer) went to that window --
+Steam's, say -- instead of the root window, where Discord listens.
+
+--- a/hw/xwayland/xwayland-input.c
++++ b/hw/xwayland/xwayland-input.c
+@@ -3211,7 +3211,16 @@
+     if (!xwl_seat)
+         return FALSE;
+ 
+-    pointer_crossing = (xwl_seat->pointer_enter_count > 0);
++    /* Whether the pointer is over one of our windows.  This used to be
++     * pointer_enter_count > 0, but that count never goes down for a window
++     * destroyed under the pointer -- the compositor can't send a leave for
++     * a dead surface -- and once it was stuck, the sprite stayed over
++     * whatever X11 window was at the pointer's last position while the
++     * pointer was over Wayland windows: buttons forwarded by compositors
++     * that let X11 programs see input meant for others (push to talk) went
++     * to that window instead of the root window.
++     */
++    pointer_crossing = (xwl_seat->focus_window != NULL);
+     master = GetMaster(device, POINTER_OR_FLOAT);
+     if (!master || !master->lastSlave)
+         return FALSE;
