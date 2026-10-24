@@ -212,7 +212,12 @@ provides, so bumping it updates (and may rebuild) everything at once.
   display modes under Xwayland made it flicker.  The game's window gets
   the game's own icon (taken from ForgedAlliance.exe).  Prefix:
   `FAF_WINEPREFIX`; replays in `$XDG_DATA_HOME/faforever/replays`; DXVK's
-  log and cache in `$XDG_CACHE_HOME/faforever/dxvk`. The self-updater is disabled.
+  log in `$XDG_CACHE_HOME/faforever/dxvk`.  Steam status ("playing
+  Forged Alliance", Settings -> Game): the client's helper can't reach
+  nonguix's containerized Steam from the host, so `faf-steam-presence`
+  (`FAF_STEAM_PRESENCE_COMMAND`) runs a small helper inside the running
+  Steam container (`nsenter` into its user, mount, PID and IPC namespaces)
+  for as long as the game runs. The self-updater is disabled.
 - **r2modman**: also finds that sandboxed Steam library and launches games
   with `steam -applaunch`; mods need its profile directory shared into the
   Steam container (`GUIX_SANDBOX_EXTRA_SHARES`, set by the config).

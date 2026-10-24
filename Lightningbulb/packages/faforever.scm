@@ -44,6 +44,7 @@
   #:use-module (gnu packages gtk)
   #:use-module (gnu packages image)
   #:use-module (gnu packages java)
+  #:use-module (gnu packages linux)
   #:use-module (gnu packages node)
   #:use-module (gnu packages pkg-config)
   #:use-module (gnu packages tls)
@@ -214,6 +215,29 @@ fn guix_sandbox_home() -> Option<PathBuf> {
                     indent "} else {\n"
                     indent "    wrapper\n"
                     indent "};")))))
+            (add-after 'unpack 'steam-presence-command
+              ;; Steam status: the client's helper calls SteamAPI_Init on the
+              ;; host, where nonguix's containerized Steam can't be found.
+              ;; With FAF_STEAM_PRESENCE_COMMAND set, that command is started
+              ;; instead (with the same LIBRARY GAME_PID arguments): our
+              ;; faf-steam-presence, which runs a helper inside the Steam
+              ;; container.
+              (lambda _
+                (substitute* "crates/faf-app/src/infra/steam_presence.rs"
+                  (("^( *)let mut command = tokio::process::Command::new\\(executable\\);"
+                    _ indent)
+                   (string-append
+                    indent "let mut command = match std::env::var_os(\"FAF_STEAM_PRESENCE_COMMAND\")\n"
+                    indent "    .filter(|command| !command.is_empty())\n"
+                    indent "{\n"
+                    indent "    Some(wrapper) => tokio::process::Command::new(wrapper),\n"
+                    indent "    None => {\n"
+                    indent "        let mut command = tokio::process::Command::new(executable);\n"
+                    indent "        command.arg(HELPER_FLAG);\n"
+                    indent "        command\n"
+                    indent "    }\n"
+                    indent "};"))
+                  (("^ *\\.arg\\(HELPER_FLAG\\)") ""))))
             (add-after 'unpack 'disable-self-update
               ;; The client offers its own AppImage/.deb/.rpm as updates,
               ;; including a "required" update gate; none of that can replace
@@ -309,6 +333,36 @@ fn guix_sandbox_home() -> Option<PathBuf> {
                             (map (lambda (f) (string-append natives f))
                                  '("/faf-uid" "/faf-pioneer"
                                    "/steam/libsteam_api.so")))
+                  ;; Steam status inside nonguix's Steam container (see
+                  ;; 'steam-presence-command): a helper built for the
+                  ;; container's FHS glibc and an unpatched libsteam_api.so,
+                  ;; kept under share/ where nothing rewrites them.
+                  (let ((dir (string-append #$output
+                                            "/share/faforever-client/steam-presence")))
+                    (mkdir-p dir)
+                    (invoke "gcc" "-O2" "-o"
+                            (string-append dir "/faf-steam-presence-helper")
+                            #$(local-file "aux-files/faf-steam-presence-helper.c"))
+                    (invoke "patchelf" "--set-interpreter"
+                            "/lib64/ld-linux-x86-64.so.2" "--remove-rpath"
+                            (string-append dir "/faf-steam-presence-helper"))
+                    (copy-file "vendor/steamworks/linux64/libsteam_api.so"
+                               (string-append dir "/libsteam_api.so"))
+                    (let ((script (string-append libdir "/faf-steam-presence")))
+                      (copy-file #$(local-file "aux-files/faf-steam-presence.sh")
+                                 script)
+                      (chmod script #o755)
+                      (substitute* script
+                        (("@bash@") (search-input-file inputs "bin/bash"))
+                        (("@helper@")
+                         (string-append dir "/faf-steam-presence-helper"))
+                        (("@library@") (string-append dir "/libsteam_api.so"))
+                        (("@nsenter@") (search-input-file inputs "bin/nsenter"))
+                        (("@pgrep@") (search-input-file inputs "bin/pgrep"))
+                        (("@sed@") (search-input-file inputs "bin/sed"))
+                        (("@(id|head|tr|mkdir|install|tail)@" _ program)
+                         (search-input-file inputs
+                                            (string-append "bin/" program))))))
                   ;; Launcher.  Every default can be overridden from the
                   ;; environment, as documented in upstream's README.  GTK
                   ;; names the window (Wayland app_id) after argv[0], so that
@@ -324,6 +378,7 @@ export FAF_EXP_JAVA_ICE_ADAPTER_JAR=\"${FAF_EXP_JAVA_ICE_ADAPTER_JAR:-~a/exp-jav
 export FAF_ICE_ADAPTER_PATH=\"${FAF_ICE_ADAPTER_PATH:-~a/faf-pioneer}\"
 export FAF_STEAM_API_PATH=\"${FAF_STEAM_API_PATH:-~a/steam/libsteam_api.so}\"
 export FAF_DEFAULT_LAUNCH_WRAPPER=\"${FAF_DEFAULT_LAUNCH_WRAPPER:-~a}\"
+export FAF_STEAM_PRESENCE_COMMAND=\"${FAF_STEAM_PRESENCE_COMMAND:-~a}\"
 # The client reads game.prefs from the same prefix the game runs in.  Its
 # own variable, so that a WINEPREFIX set for other programs doesn't apply.
 export WINEPREFIX=\"${FAF_WINEPREFIX:-${XDG_DATA_HOME:-$HOME/.local/share}/faforever/wine}\"
@@ -334,6 +389,7 @@ exec -a faforever-client ~a \"$@\"~%"
                               (search-input-file inputs "bin/java")
                               natives natives natives natives natives
                               (string-append libdir "/faf-wine")
+                              (string-append libdir "/faf-steam-presence")
                               real)))
                   (chmod (string-append bin "/faforever-client") #o755)
                   ;; The default launch command: Wine, with DXVK's Direct3D 9
@@ -549,8 +605,10 @@ StartupWMClass=~a
               librsvg
               openjdk
               openssl
+              procps                  ;pgrep, for faf-steam-presence
               webkitgtk-for-gtk3
               sed
+              util-linux              ;nsenter, for faf-steam-presence
               wine64-wow64/prefix-update
               xdg-utils
               xrandr
