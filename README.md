@@ -38,6 +38,8 @@ The channel depends on nonguix (`.guix-channel`): several packages use its
 | `claude-desktop.scm` | `claude-desktop` | Anthropic's official Linux beta, repackaged (nonfree) |
 | `chrome-remote-desktop.scm` | `chrome-remote-desktop`, `chrome-remote-desktop-service-type` | Google's host, virtual Xfce desktop (nonfree; currently disabled in the config) |
 | `openrazer.scm` | `openrazer-kernel-modules`, `%openrazer-keyboard-services` | `razerkbd` only, patched to put the BlackWidow (1532:011a) in driver mode so M1–M5 send F13–F17 |
+| `llama-cpp.scm` | `llama-cpp/latest` (Vulkan, OpenBLAS), `llama-cpp-cuda` (also CUDA, compute capability 8.6) | llama.cpp 0.7.0 with its bundled ggml; Guix has 0.5.0 |
+| `cuda.scm` | `cuda-toolkit` | NVIDIA CUDA 13.4: nvcc, cudart, cuBLAS (from NVIDIA's redist archives; nonfree); `libcuda` comes from the driver |
 | `reboot-to-bios.scm` | `reboot-to-bios` | |
 
 Support modules:

@@ -13,6 +13,11 @@ Window placement across outputs.
   started from the dock or a launcher carry the workspace they were started
   on (activation token); that one is kept only if it is on the chosen
   output.
+- A new window on its output's active workspace gets the keyboard focus
+  even when the pointer is on another output (upstream: only on the
+  pointer's output).  With windows opening on the remembered or primary
+  output, games there took no input and only went fullscreen once
+  re-focused.
 
 --- a/src/shell/mod.rs
 +++ b/src/shell/mod.rs
@@ -90,7 +95,40 @@ Window placement across outputs.
          }
  
          let active_handle = self.active_space(&output).unwrap().handle;
-@@ -3133,10 +3169,26 @@
+@@ -3087,9 +3123,11 @@
+ 
+         let mut workspace_state = workspace_state.update();
+ 
+-        let workspace_output = workspace.output.clone();
+-        let was_activated = workspace_handle.is_some()
+-            && (workspace_output != seat.active_output() || active_handle != workspace.handle);
++        // A new window on its output's active workspace gets the focus even
++        // when the pointer is on another output: new windows open on the
++        // remembered or primary output, and left unfocused there, games
++        // took no input and only went fullscreen once re-focused.
++        let was_activated = workspace_handle.is_some() && active_handle != workspace.handle;
+         let workspace_handle = workspace.handle;
+         let is_dialog = layout::is_dialog(&window);
+         let floating_exception = layout::has_floating_exception(&self.tiling_exceptions, &window);
+@@ -3100,7 +3138,7 @@
+                 workspace_state.add_workspace_state(&workspace_handle, WState::Urgent);
+             }
+ 
+-            return (workspace_output == seat.active_output() && active_handle == workspace_handle)
++            return (active_handle == workspace_handle)
+                 .then_some(KeyboardFocusTarget::Fullscreen(window));
+         }
+ 
+@@ -3116,7 +3154,7 @@
+             if was_activated {
+                 workspace_state.add_workspace_state(&workspace_handle, WState::Urgent);
+             }
+-            return (workspace_output == seat.active_output() && active_handle == workspace_handle)
++            return (active_handle == workspace_handle)
+                 .then_some(KeyboardFocusTarget::Element(focused));
+         }
+ 
+@@ -3133,10 +3171,26 @@
  
          let workspace_empty = workspace.mapped().next().is_none();
          if is_dialog || floating_exception || !workspace.tiling_enabled {
@@ -117,7 +155,16 @@ Window placement across outputs.
              } else {
                  workspace.floating_layer.map(mapped.clone(), None);
              }
-@@ -3242,6 +3294,33 @@
+@@ -3170,7 +3224,7 @@
+ 
+         let new_target = if should_be_minimized {
+             None
+-        } else if (workspace_output == seat.active_output() && active_handle == workspace_handle)
++        } else if active_handle == workspace_handle
+             || should_be_sticky
+         {
+             // TODO: enforce focus stealing prevention by also checking the same rules as for the else case.
+@@ -3242,6 +3296,33 @@
      where
          CosmicSurface: PartialEq<S>,
      {
@@ -151,7 +198,7 @@ Window placement across outputs.
          // the focus stack may hold an unrelated window above the parent of a closing modal dialog
          let seats = self.seats.iter().cloned().collect::<Vec<_>>();
          for seat in seats {
-@@ -3306,6 +3385,9 @@
+@@ -3306,6 +3387,9 @@
  
              if let Some(surface) = surface {
                  toplevel_info.remove_toplevel(&surface);
@@ -161,7 +208,7 @@ Window placement across outputs.
                  return Some(PendingWindow {
                      surface,
                      seat: seat.clone(),
-@@ -5435,3 +5517,100 @@
+@@ -5435,3 +5519,100 @@
  
      Some(start_data)
  }
