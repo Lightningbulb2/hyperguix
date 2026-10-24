@@ -36,11 +36,11 @@
   #:use-module (gnu packages gnome)
   #:use-module (gnu packages image)
   #:use-module (gnu packages xorg)
-  #:use-module ((Lightningbulb packages radmin-vpn) #:select (wine64-wow64/prefix-update))
+  #:use-module ((Lightningbulb packages radmin-vpn)
+                #:select (dxvk-3 wine64-wow64/prefix-update))
   #:use-module ((nongnu packages fonts)
                 #:select (font-microsoft-arial font-microsoft-courier-new
-                          font-microsoft-times-new-roman))
-  #:use-module ((nongnu packages wine) #:select (dxvk-next)))
+                          font-microsoft-times-new-roman)))
 
 (define-public bfme-aio-launcher
   (let ((commit "1c8d53935505b6ccecf08a7f25e47b86b7bf5a3c")
@@ -165,7 +165,7 @@ Exec=~a ~a
                       "bfme-game" "NoDisplay=true\n" "game.dat"
                       "Quit the game" "--stop-game")))))))))
       (native-inputs (list icoutils))
-      (inputs (list bash-minimal coreutils curl dxvk-next font-microsoft-arial
+      (inputs (list bash-minimal coreutils curl dxvk-3 font-microsoft-arial
                     font-microsoft-courier-new font-microsoft-times-new-roman
                     icoutils sed wine64-wow64/prefix-update xrandr zenity))
       (supported-systems '("x86_64-linux"))

@@ -650,6 +650,26 @@ portal."))
                     #:cargo-inputs cosmic-settings-cargo-inputs
                     #:git-crates cosmic-settings-git-crates
                     #:extra-inputs (list dav1d)
+                    #:extra-phases
+                    ;; The v2 default themes lack `list_button', which v1 has
+                    ;; and libcosmic reads: every program without a theme of
+                    ;; its own -- the greeter's compositor at boot -- logged
+                    ;; "error loading system dark theme".  The files are v1's
+                    ;; values in v2's notation, as COSMIC Settings writes them.
+                    (list
+                     #~(add-after 'unpack 'add-v2-theme-list-button
+                         (lambda _
+                           (for-each
+                            (lambda (variant)
+                              (copy-file
+                               (string-append
+                                #$(local-file "aux-files/cosmic-theme-v2"
+                                              #:recursive? #t)
+                                "/" variant "-list_button")
+                               (string-append
+                                "resources/default_schema/com.system76.CosmicTheme."
+                                variant "/v2/list_button")))
+                            '("Dark" "Light")))))
                     #:synopsis "Settings application of the COSMIC desktop"
                     #:description
                     "cosmic-settings configures the COSMIC desktop: appearance,

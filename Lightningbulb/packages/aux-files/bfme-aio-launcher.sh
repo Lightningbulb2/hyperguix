@@ -228,12 +228,11 @@ if [ "${BFME_DXVK:-0}" = 1 ]; then
     cp -f "$dxvk/share/dxvk/lib32/$dll.dll" "$sys/syswow64/$dll.dll"
   done
   overrides="$overrides;d3d9,d3d10core,d3d11,dxgi=n,b"
-  # Its log and pipeline cache, which it otherwise writes to the working
-  # directory or next to the game.
+  # Its log, which it otherwise writes to the working directory or next to
+  # the game.
   dxvk_cache="${XDG_CACHE_HOME:-$HOME/.cache}/bfme-aio-launcher/dxvk"
   mkdir -p "$dxvk_cache"
   export DXVK_LOG_PATH="${DXVK_LOG_PATH:-$dxvk_cache}"
-  export DXVK_STATE_CACHE_PATH="${DXVK_STATE_CACHE_PATH:-$dxvk_cache}"
 fi
 export WINEDLLOVERRIDES="$overrides${WINEDLLOVERRIDES:+;$WINEDLLOVERRIDES}"
 

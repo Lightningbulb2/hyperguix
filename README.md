@@ -170,6 +170,8 @@ provides, so bumping it updates (and may rebuild) everything at once.
   - smithay's X11 clipboard bridge subscribes to property changes on the
     requestor window, so INCR transfers (anything over 64 KiB, i.e. images)
     to Chromium/Electron apps (Steam, Discord) no longer stall.
+- The v2 default themes lack `list_button` upstream; cosmic-settings adds
+  it, so the greeter no longer logs "error loading system dark theme".
 - `xwayland-with-idle-time` finds the NVIDIA EGL/GBM back ends, which
   cosmic-comp's sparse environment otherwise hid, leaving X11 apps on
   llvmpipe.  It also keeps MIT-SCREEN-SAVER for X11 idle queries, and keeps track of

@@ -17,6 +17,8 @@
   #:use-module (guix gexp)
   #:use-module (guix utils)
   #:use-module (guix git-download)
+  #:use-module (guix download)
+  #:use-module (guix build-system copy)
   #:use-module (guix build-system gnu)
   #:use-module (guix build-system trivial)
   #:use-module ((guix licenses) #:prefix license:)
@@ -34,6 +36,7 @@
   #:use-module (gnu packages python)
   #:use-module (gnu packages wine)
   #:use-module ((nongnu packages fonts) #:select (font-microsoft-arial))
+  #:use-module ((nongnu packages wine) #:select (dxvk-next))
   #:export (wine64-wow64 wine64-wow64/prefix-update))
 
 (define %mingw32 "i686-w64-mingw32")
@@ -427,3 +430,28 @@ downloads the pinned Radmin VPN installer into
 to create the TAP device and routes; the password is asked once per start.  Radmin VPN
 itself is proprietary and is not part of this package.")
       (license license:gpl3))))
+
+;;; DXVK 3: nonguix stops at 2.0 (2022), whose Direct3D 9 is far behind
+;;; (Forged Alliance's lobby cursor flickered and the game ran slowly).
+;;; Upstream's release, laid out as nonguix's dxvk (share/dxvk/lib for
+;;; 64-bit, lib32 for 32-bit); it no longer ships setup_dxvk.
+(define-public dxvk-3
+  (package
+    (inherit dxvk-next)
+    (version "3.1.1")
+    (source (origin
+              (method url-fetch)
+              (uri (string-append
+                    "https://github.com/doitsujin/dxvk/releases/download/v"
+                    version "/dxvk-" version ".tar.gz"))
+              (sha256
+               (base32
+                "0276ai7vjv8q2x7fdvmsy6qxj5irnas11q547x1w9baaf955nmj0"))))
+    (build-system copy-build-system)
+    (arguments
+     (list #:install-plan
+           #~'(("x64" "share/dxvk/lib")
+               ("x32" "share/dxvk/lib32"))))
+    (inputs '())
+    (supported-systems '("x86_64-linux"))))
+

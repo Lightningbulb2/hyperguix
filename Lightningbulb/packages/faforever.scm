@@ -49,9 +49,8 @@
   #:use-module (gnu packages tls)
   #:use-module (gnu packages webkit)
   #:use-module (gnu packages xorg)
-  #:use-module ((nongnu packages wine) #:select (dxvk-next))
   #:use-module ((Lightningbulb packages radmin-vpn)
-                #:select (wine64-wow64/prefix-update))
+                #:select (dxvk-3 wine64-wow64/prefix-update))
   #:use-module (Lightningbulb packages js-offline)
   #:use-module (Lightningbulb packages node-deps)
   #:use-module (Lightningbulb packages rust-crates))
@@ -365,12 +364,11 @@ exe=\"$1\"
 d3d9=~a/share/dxvk/lib32/d3d9.dll
 mkdir -p \"$WINEPREFIX\"
 wine=\"${FAF_WINE:-~a}\"
-# DXVK's log and pipeline cache, which it otherwise writes to the working
-# directory (often $HOME) or next to the game.
+# DXVK's log, which it otherwise writes to the working directory (often
+# $HOME) or next to the game.
 dxvk_cache=\"${XDG_CACHE_HOME:-$HOME/.cache}/faforever/dxvk\"
 mkdir -p \"$dxvk_cache\"
 export DXVK_LOG_PATH=\"${DXVK_LOG_PATH:-$dxvk_cache}\"
-export DXVK_STATE_CACHE_PATH=\"${DXVK_STATE_CACHE_PATH:-$dxvk_cache}\"
 if [ -f \"$exe\" ]; then
   ~a -m 644 \"$d3d9\" \"${exe%/*}/d3d9.dll\"
 fi
@@ -542,7 +540,7 @@ StartupWMClass=~a
         (list bash-minimal
               coreutils
               dbus                    ;libdbus-sys
-              dxvk-next
+              dxvk-3
               glib-networking
               icoutils
               gsettings-desktop-schemas
