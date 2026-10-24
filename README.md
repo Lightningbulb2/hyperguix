@@ -192,6 +192,10 @@ provides, so bumping it updates (and may rebuild) everything at once.
 - Prefixes live under `$XDG_DATA_HOME` (`radmin-vpn-linux/wineprefix`,
   `bfme-aio-launcher/prefix`), with winemenubuilder disabled. BFME's games
   go to drive `D:` (`$XDG_DATA_HOME/bfme-aio-launcher/games`).
+- A named virtual desktop's window is named (WM_CLASS) after the desktop,
+  lowercased (`faf`, `bfme`), not `explorer.exe`, so docks show each game
+  with its own name and icon.  Radmin's prefix is `RADMIN_WINEPREFIX`, so a
+  global `WINEPREFIX` doesn't move it.
 
 ### Others
 
