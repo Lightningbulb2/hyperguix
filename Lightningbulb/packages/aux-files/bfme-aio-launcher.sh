@@ -14,19 +14,21 @@
 #                    may get scaled by Wine when it is not 96).
 #   BFME_VIRTUAL_DESKTOP  where the games run (the launcher is a normal
 #                    window either way):
-#                    auto (default)  in a Wine virtual desktop as big as the
+#                    off (default)   in their own fullscreen window, which
+#                                    cosmic-comp puts on the monitor Wine
+#                                    chose (the X11 primary);
+#                    auto            in a Wine virtual desktop as big as the
 #                                    primary monitor, shown fullscreen;
 #                    WIDTHxHEIGHT    in a virtual desktop of that size, in a
-#                                    normal window;
-#                    off             in their own fullscreen window.
-#                    On their own, under Xwayland with several monitors, the
-#                    compositor may put the games on a monitor other than the
-#                    one Wine thinks they are on, and then the mouse acts as
-#                    if they were on the other one.  In a virtual desktop,
-#                    Wine maps the mouse relative to the desktop's window,
-#                    wherever that is.  The desktop, "BFME", is set for the
-#                    game programs in AppDefaults; wine64-wow64 is patched so
-#                    that this works when the launcher starts them.
+#                                    normal window.
+#                    A virtual desktop's window is created at the X screen's
+#                    origin, i.e. the left monitor.  (It used to be the
+#                    default because the compositor showed fullscreen games
+#                    on the pointer's monitor, not Wine's, and the mouse then
+#                    acted as if they were on the other one.)  The desktop,
+#                    "BFME", is set for the game programs in AppDefaults;
+#                    wine64-wow64 is patched so that this works when the
+#                    launcher starts them.
 # Drive D: is $XDG_DATA_HOME/bfme-aio-launcher/games, for the game installs;
 # C: is the prefix's own drive_c.
 set -e
@@ -92,7 +94,7 @@ fi
 #   process ("Unrecoverable system error") if there is no Arial.
 # - the virtual desktop (see above).
 dpi="${BFME_DPI:-96}"
-desktop="${BFME_VIRTUAL_DESKTOP:-auto}"
+desktop="${BFME_VIRTUAL_DESKTOP:-off}"
 case "$desktop" in
   auto)
     modes=$(xrandr --query 2>/dev/null || true)

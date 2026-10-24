@@ -404,14 +404,15 @@ exec -a faforever-client ~a \"$@\"~%"
                   ;; and Mono are not packaged; don't offer them.  Wine's
                   ;; menu builder is off: it put entries for the prefix's
                   ;; file types in ~/.local/share/applications.
-                  ;; In its own fullscreen window, the game switched the
-                  ;; (Xwayland-emulated) display mode to its default
-                  ;; 1024x768 and back, flickering, and could hang on the
-                  ;; loading screen.  So it runs in a Wine virtual desktop
-                  ;; ("FAF", set for ForgedAlliance.exe in AppDefaults) as
-                  ;; big as the monitor, and that default resolution is
-                  ;; replaced by the desktop's.  FAF_VIRTUAL_DESKTOP=off
-                  ;; turns this off; WIDTHxHEIGHT picks another size.
+                  ;; The game's default resolution, 1024x768 fullscreen,
+                  ;; made it switch the (Xwayland-emulated) display mode and
+                  ;; back, flickering; it is replaced by the primary
+                  ;; monitor's.  It runs in its own fullscreen window, which
+                  ;; cosmic-comp puts on the monitor Wine chose (the X11
+                  ;; primary).  FAF_VIRTUAL_DESKTOP=auto (or WIDTHxHEIGHT)
+                  ;; runs it in a Wine virtual desktop ("FAF", set for
+                  ;; ForgedAlliance.exe in AppDefaults) instead; that window
+                  ;; is created at the X screen's origin, the left monitor.
                   (call-with-output-file (string-append libdir "/faf-wine")
                     (lambda (port)
                       (format port "#!~a
@@ -450,21 +451,21 @@ xact=xactengine2_0,xactengine2_1,xactengine2_2,xactengine2_3,xactengine2_4
 xact=$xact,xactengine2_5,xactengine2_6,xactengine2_7,xactengine2_8
 xact=$xact,xactengine2_9,xactengine2_10
 export WINEDLLOVERRIDES=\"mscoree,mshtml=;winemenubuilder.exe=d;d3d9=n,b;$xact=n,b${WINEDLLOVERRIDES:+;$WINEDLLOVERRIDES}\"
-desktop=\"${FAF_VIRTUAL_DESKTOP:-auto}\"
-if [ \"$desktop\" = auto ]; then
-  desktop=
-  while IFS= read -r line; do
-    case $line in
-      *' connected primary '[0-9]*x[0-9]*+*)
-        desktop=${line#*' connected primary '}; desktop=${desktop%%+*}; break ;;
-      *' connected '[0-9]*x[0-9]*+*)
-        [ -n \"$desktop\" ] || { desktop=${line#*' connected '}; desktop=${desktop%%+*}; } ;;
-    esac
-  done <<EOF
+# The primary monitor's size (or the first one's).
+monitor=
+while IFS= read -r line; do
+  case $line in
+    *' connected primary '[0-9]*x[0-9]*+*)
+      monitor=${line#*' connected primary '}; monitor=${monitor%%+*}; break ;;
+    *' connected '[0-9]*x[0-9]*+*)
+      [ -n \"$monitor\" ] || { monitor=${line#*' connected '}; monitor=${monitor%%+*}; } ;;
+  esac
+done <<EOF
 $(~a --query 2>/dev/null)
 EOF
-  desktop=${desktop:-1920x1080}
-fi
+monitor=${monitor:-1920x1080}
+desktop=\"${FAF_VIRTUAL_DESKTOP:-off}\"
+[ \"$desktop\" != auto ] || desktop=$monitor
 key='HKCU\\Software\\Wine\\AppDefaults\\ForgedAlliance.exe\\Explorer'
 stamp=\"$WINEPREFIX/.faf-virtual-desktop\"
 if [ \"$(cat \"$stamp\" 2>/dev/null)\" != \"$desktop\" ]; then
@@ -481,11 +482,12 @@ if [ \"$(cat \"$stamp\" 2>/dev/null)\" != \"$desktop\" ]; then
   printf '%s\\n' \"$desktop\" > \"$stamp\"
 fi
 case $desktop in
-  [1-9]*x[1-9]*)
-    prefs=\"$WINEPREFIX/drive_c/users/$USER/AppData/Local/Gas Powered Games/Supreme Commander Forged Alliance/Game.prefs\"
-    [ ! -f \"$prefs\" ] ||
-      ~a -i \"s/primary_adapter = '1024,768,60'/primary_adapter = '${desktop%x*},${desktop#*x},60'/\" \"$prefs\" ;;
+  [1-9]*x[1-9]*) size=$desktop ;;
+  *) size=$monitor ;;
 esac
+prefs=\"$WINEPREFIX/drive_c/users/$USER/AppData/Local/Gas Powered Games/Supreme Commander Forged Alliance/Game.prefs\"
+[ ! -f \"$prefs\" ] ||
+  ~a -i \"s/primary_adapter = '1024,768,60'/primary_adapter = '${size%x*},${size#*x},60'/\" \"$prefs\"
 stamp=\"$WINEPREFIX/.faf-directx-installed\"
 if [ ! -e \"$stamp\" ] && [ -f \"${exe%/*}/../fa_path.lua\" ]; then
   while IFS= read -r line; do

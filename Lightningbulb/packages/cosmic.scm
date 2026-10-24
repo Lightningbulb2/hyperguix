@@ -33,6 +33,7 @@
   #:use-module (gnu packages gl)
   #:use-module (gnu packages glib)
   #:use-module (gnu packages gnome)
+  #:use-module (gnu packages gnome-xyz)
   #:use-module (gnu packages gstreamer)
   #:use-module (gnu packages image)
   #:use-module (gnu packages linux)
@@ -449,7 +450,7 @@ session file display managers list."))
                     "0v56l3m0mjg445pmsdq1qd33nqvdljw51xjg4j6v4nrxrchwdi49"
                     #:cargo-inputs cosmic-settings-daemon-cargo-inputs
                     #:git-crates cosmic-settings-daemon-git-crates
-                    #:extra-inputs (list pipewire)
+                    #:extra-inputs (list pipewire `(,glib "bin"))
                     #:extra-native-inputs (list clang)
                     #:extra-phases
                     ;; Sound themes (event sounds) and the adw-gtk3 themes
@@ -462,6 +463,21 @@ session file display managers list."))
                              (("/usr/share/(sounds|themes)/" _ dir)
                               (string-append "/run/current-system/profile/share/"
                                              dir "/")))))
+                     ;; It syncs the theme to GTK (dark/light, gtk-theme, icons,
+                     ;; fonts) by running `gsettings', which isn't on the
+                     ;; session's PATH: every sync failed silently, and GTK
+                     ;; and Electron apps (Claude) started light after each
+                     ;; boot until the theme was switched by hand.
+                     #~(add-after 'unpack 'command-paths
+                         (lambda* (#:key inputs #:allow-other-keys)
+                           (substitute* "src/theme.rs"
+                             (("Command::new\\(\"gsettings\"\\)")
+                              (format #f "Command::new(~s)"
+                                      (search-input-file inputs "bin/gsettings"))))
+                           (substitute* "src/pipewire.rs"
+                             (("Command::new\\(\"pw-play\"\\)")
+                              (format #f "Command::new(~s)"
+                                      (search-input-file inputs "bin/pw-play"))))))
                      ;; The default Suspend action (also what cosmic-idle
                      ;; runs after the idle timeout) is `systemctl suspend';
                      ;; without systemd that does nothing.  elogind's
@@ -1085,6 +1101,9 @@ theme.")
            cosmic-viewer cosmic-monitor
            ;; Keeps Steam from going Away while Wayland programs are used.
            xwayland-activity-relay
+           ;; The GTK 3 themes cosmic-settings-daemon switches GTK to, so
+           ;; GTK 3 apps follow COSMIC's light/dark theme.
+           adw-gtk3-theme
            xdg-desktop-portal xdg-desktop-portal-cosmic
            ;; cosmic-portals.conf falls back to GTK's portal.
            xdg-desktop-portal-gtk

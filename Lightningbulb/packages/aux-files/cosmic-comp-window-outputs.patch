@@ -4,12 +4,15 @@ Window placement across outputs.
   not on the output the pointer is on.  Wine puts fullscreen games on the
   X11 primary output; shown on another, they stayed black or got the mouse
   offset (BFME), as they kept drawing for the output they asked for.
-- Other new windows (without a parent) open on the output their app's
-  windows were last closed on, if it is still connected, and otherwise where
-  the user is, as before.  The outputs are kept by app id in
-  $XDG_STATE_HOME/cosmic-comp/window-outputs.  Windows started from the
-  dock or a launcher carry the workspace they were started on (activation
-  token); that one is kept only if it is on the remembered output.
+- Other new windows (without a parent) open where their app's windows were
+  last closed: on that output, if it is still connected, and for floating
+  windows at the same position and size.  Without one, they open on the
+  primary output (Xwayland primary, as X11 programs see it), not on the
+  pointer's.  The places are kept by app id in
+  $XDG_STATE_HOME/cosmic-comp/window-outputs, across restarts.  Windows
+  started from the dock or a launcher carry the workspace they were started
+  on (activation token); that one is kept only if it is on the chosen
+  output.
 
 --- a/src/shell/mod.rs
 +++ b/src/shell/mod.rs
@@ -30,7 +33,11 @@ Window placement across outputs.
              override_redirect_windows: Vec::new(),
              session_lock: None,
              previous_workspace_idx: None,
-@@ -3041,11 +3044,37 @@
+@@ -3038,14 +3041,46 @@
+                 Some((handle, parent_output, anchor))
+             });
+ 
++        let mut remembered_geometry = None;
          let (workspace_handle, mut output, parent_geometry) = match parent_placement {
              Some(placement) => placement,
              None => {
@@ -40,77 +47,141 @@ Window placement across outputs.
                      _ => None,
                  };
 -                (handle, output.unwrap_or_else(|| seat.active_output()), None)
-+                // Where the app's windows were last closed, if that output
-+                // is still connected; else where the user is.
-+                let remembered = if output.is_none() {
-+                    self.window_outputs
-+                        .get(&window.app_id())
-+                        .and_then(|name| self.outputs().find(|o| o.name() == name).cloned())
-+                } else {
++                // Where the app's windows were last closed (and where on that
++                // output, for floating windows), if that output is still
++                // connected; else the primary output (the one X11 programs
++                // see as primary), not the one the pointer is on.
++                let requested = output.is_some();
++                let place = if requested {
 +                    None
++                } else {
++                    self.window_outputs.get(&window.app_id()).and_then(|place| {
++                        let output = self.outputs().find(|o| o.name() == place.output)?;
++                        Some((output.clone(), place.geometry))
++                    })
 +                };
-+                if let Some(remembered) = &remembered {
-+                    // Launchers and the dock pass the workspace they were
-+                    // used on (an activation token); that one would put the
-+                    // window back on the pointer's output.  Keep it only if
-+                    // it is on the remembered output.
-+                    if handle.is_some_and(|handle| {
++                remembered_geometry = place.as_ref().and_then(|(_, geometry)| *geometry);
++                let output = output
++                    .or(place.map(|(output, _)| output))
++                    .or_else(|| self.outputs().find(|o| o.config().xwayland_primary).cloned())
++                    .unwrap_or_else(|| seat.active_output());
++                // Launchers and the dock pass the workspace they were used on
++                // (an activation token); that one would put the window on the
++                // pointer's output.  Keep it only if it is on the chosen one.
++                if !requested
++                    && handle.is_some_and(|handle| {
 +                        self.workspaces
 +                            .spaces()
 +                            .find(|space| space.handle == handle)
-+                            .is_none_or(|space| &space.output != remembered)
-+                    }) {
-+                        handle = None;
-+                    }
++                            .is_none_or(|space| space.output != output)
++                    })
++                {
++                    handle = None;
 +                }
-+                let output = output
-+                    .or(remembered)
-+                    .unwrap_or_else(|| seat.active_output());
 +                (handle, output, None)
              }
          };
  
-@@ -3242,6 +3271,18 @@
+@@ -3064,6 +3099,7 @@
+         };
+         if output != workspace.output {
+             output = workspace.output.clone();
++            remembered_geometry = None;
+         }
+ 
+         let active_handle = self.active_space(&output).unwrap().handle;
+@@ -3133,10 +3169,26 @@
+ 
+         let workspace_empty = workspace.mapped().next().is_none();
+         if is_dialog || floating_exception || !workspace.tiling_enabled {
++            let output_size = workspace.output.geometry().size;
+             if let Some(anchor) = modal_anchor {
+                 workspace
+                     .floating_layer
+                     .map_centered_on(mapped.clone(), anchor);
++            } else if let Some(geometry) = remembered_geometry.filter(|geometry| {
++                // Still on the output (its mode may have changed since).
++                !is_dialog
++                    && geometry.loc.x >= 0
++                    && geometry.loc.y >= 0
++                    && geometry.loc.x + geometry.size.w <= output_size.w
++                    && geometry.loc.y + geometry.size.h <= output_size.h
++            }) {
++                // Where and how big it was when last closed.
++                workspace.floating_layer.map_internal(
++                    mapped.clone(),
++                    Some(geometry.loc),
++                    Some(geometry.size.as_logical()),
++                    None,
++                );
+             } else {
+                 workspace.floating_layer.map(mapped.clone(), None);
+             }
+@@ -3242,6 +3294,33 @@
      where
          CosmicSurface: PartialEq<S>,
      {
-+        // The output the window is closed on, to open the app there next time.
++        // The output the window is closed on (and where on it, if it
++        // floats), to open the app there next time.
 +        let closed_on = self.workspaces.sets.iter().find_map(|(output, set)| {
-+            let holds = |m: &CosmicMapped| m.windows().any(|(s, _)| &s == surface);
-+            (set.sticky_layer.mapped().any(&holds)
-+                || set
-+                    .minimized_windows
-+                    .iter()
-+                    .any(|w| w.windows().any(|s| &s == surface))
-+                || set.workspaces.iter().any(|w| w.mapped().any(&holds)))
-+            .then(|| output.name())
++            let holds = |m: &&CosmicMapped| m.windows().any(|(s, _)| &s == surface);
++            let geometry = if let Some(mapped) = set.sticky_layer.mapped().find(&holds) {
++                Some(set.sticky_layer.element_geometry(mapped))
++            } else if let Some((workspace, mapped)) = set
++                .workspaces
++                .iter()
++                .find_map(|w| w.mapped().find(&holds).map(|m| (w, m)))
++            {
++                Some(workspace.floating_layer.element_geometry(mapped))
++            } else if set
++                .minimized_windows
++                .iter()
++                .any(|w| w.windows().any(|s| &s == surface))
++            {
++                Some(None)
++            } else {
++                None
++            }?;
++            Some(WindowPlace {
++                output: output.name(),
++                geometry,
++            })
 +        });
 +
          // the focus stack may hold an unrelated window above the parent of a closing modal dialog
          let seats = self.seats.iter().cloned().collect::<Vec<_>>();
          for seat in seats {
-@@ -3306,6 +3347,9 @@
+@@ -3306,6 +3385,9 @@
  
              if let Some(surface) = surface {
                  toplevel_info.remove_toplevel(&surface);
-+                if let Some(output) = closed_on {
-+                    self.window_outputs.remember(&surface.app_id(), output);
++                if let Some(place) = closed_on {
++                    self.window_outputs.remember(&surface.app_id(), place);
 +                }
                  return Some(PendingWindow {
                      surface,
                      seat: seat.clone(),
-@@ -5435,3 +5479,75 @@
+@@ -5435,3 +5517,100 @@
  
      Some(start_data)
  }
 +
-+/// The output each app's windows were last closed on, by app id, so that the
-+/// app opens there again (rather than wherever the pointer is).  Kept in
-+/// $XDG_STATE_HOME/cosmic-comp/window-outputs, a line "APP-ID<TAB>OUTPUT" per
-+/// app, so it survives restarts.
++/// Where an app's windows were last closed: the output, and for a floating
++/// window its geometry on that output.
++#[derive(Debug, Clone, PartialEq)]
++pub struct WindowPlace {
++    pub output: String,
++    pub geometry: Option<Rectangle<i32, Local>>,
++}
++
++/// Where each app's windows were last closed, by app id, so that the app
++/// opens there again (rather than wherever the pointer is).  Kept in
++/// $XDG_STATE_HOME/cosmic-comp/window-outputs, a line
++/// "APP-ID<TAB>OUTPUT[<TAB>X<TAB>Y<TAB>WIDTH<TAB>HEIGHT]" per app, so it
++/// survives restarts.
 +#[derive(Debug, Default)]
 +pub struct WindowOutputs {
-+    outputs: HashMap<String, String>,
++    places: HashMap<String, WindowPlace>,
 +    loaded: bool,
 +}
 +
@@ -126,6 +197,20 @@ Window placement across outputs.
 +        Some(state.join("cosmic-comp").join("window-outputs"))
 +    }
 +
++    fn parse(line: &str) -> Option<(String, WindowPlace)> {
++        let mut fields = line.split('\t');
++        let app_id = fields.next()?.to_string();
++        let output = fields.next()?.to_string();
++        let numbers = fields
++            .map(|field| field.parse::<i32>().ok())
++            .collect::<Option<Vec<_>>>()?;
++        let geometry = match numbers[..] {
++            [x, y, w, h] if w > 0 && h > 0 => Some(Rectangle::new((x, y).into(), (w, h).into())),
++            _ => None,
++        };
++        Some((app_id, WindowPlace { output, geometry }))
++    }
++
 +    fn load(&mut self) {
 +        if std::mem::replace(&mut self.loaded, true) {
 +            return;
@@ -134,37 +219,39 @@ Window placement across outputs.
 +        else {
 +            return;
 +        };
-+        self.outputs = text
-+            .lines()
-+            .filter_map(|line| line.split_once('\t'))
-+            .map(|(app_id, output)| (app_id.to_string(), output.to_string()))
-+            .collect();
++        self.places = text.lines().filter_map(Self::parse).collect();
 +    }
 +
-+    pub fn get(&mut self, app_id: &str) -> Option<String> {
++    pub fn get(&mut self, app_id: &str) -> Option<WindowPlace> {
 +        if app_id.is_empty() {
 +            return None;
 +        }
 +        self.load();
-+        self.outputs.get(app_id).cloned()
++        self.places.get(app_id).cloned()
 +    }
 +
-+    pub fn remember(&mut self, app_id: &str, output: String) {
++    pub fn remember(&mut self, app_id: &str, place: WindowPlace) {
 +        if app_id.is_empty() {
 +            return;
 +        }
 +        self.load();
-+        if self.outputs.get(app_id) == Some(&output) {
++        if self.places.get(app_id) == Some(&place) {
 +            return;
 +        }
-+        self.outputs.insert(app_id.to_string(), output);
++        self.places.insert(app_id.to_string(), place);
 +        let Some(path) = Self::path() else {
 +            return;
 +        };
 +        let mut lines = self
-+            .outputs
++            .places
 +            .iter()
-+            .map(|(app_id, output)| format!("{app_id}\t{output}\n"))
++            .map(|(app_id, place)| match place.geometry {
++                Some(g) => format!(
++                    "{app_id}\t{}\t{}\t{}\t{}\t{}\n",
++                    place.output, g.loc.x, g.loc.y, g.size.w, g.size.h
++                ),
++                None => format!("{app_id}\t{}\n", place.output),
++            })
 +            .collect::<Vec<_>>();
 +        lines.sort();
 +        if let Some(dir) = path.parent() {
@@ -177,7 +264,7 @@ Window placement across outputs.
 +}
 --- a/src/xwayland.rs
 +++ b/src/xwayland.rs
-@@ -809,7 +809,13 @@
+@@ -809,7 +809,17 @@
                  *context,
              );
          }
@@ -188,11 +275,15 @@ Window placement across outputs.
 +        // offset, since they kept drawing for the output they asked for.
 +        let fullscreen = window
 +            .is_fullscreen()
-+            .then(|| x11_requested_output(&shell, &window).unwrap_or_else(|| seat.active_output()));
++            .then(|| {
++                x11_requested_output(&shell, &window)
++                    .or_else(|| shell.outputs().find(|o| o.config().xwayland_primary).cloned())
++                    .unwrap_or_else(|| seat.active_output())
++            });
          let minimized = window.is_hidden();
          let maximized = window.is_maximized();
          if let Some(pending) = shell
-@@ -1167,9 +1173,19 @@
+@@ -1167,9 +1177,19 @@
      fn fullscreen_request(&mut self, _xwm: XwmId, window: X11Surface) {
          let mut shell = self.common.shell.write();
          let seat = shell.seats.last_active().clone();
@@ -212,7 +303,7 @@ Window placement across outputs.
              .unwrap_or_else(|| seat.focused_or_active_output());
  
          match shell.fullscreen_request(
-@@ -1352,3 +1368,25 @@
+@@ -1352,3 +1372,25 @@
          xwayland_state.xwm = None;
      }
  }

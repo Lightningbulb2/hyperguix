@@ -174,13 +174,18 @@ provides, so bumping it updates (and may rebuild) everything at once.
     to Chromium/Electron apps (Steam, Discord) no longer stall.
 - The v2 default themes lack `list_button` upstream; cosmic-settings adds
   it, so the greeter no longer logs "error loading system dark theme".
-- Window placement: new windows open on the output their app was last
-  closed on (remembered by app id in
-  `~/.local/state/cosmic-comp/window-outputs`), else on the one in use;
+- Window placement: new windows open where their app was last closed --
+  the output, and for floating windows the position and size (remembered by
+  app id in `~/.local/state/cosmic-comp/window-outputs`, across reboots) --
+  else on the primary output (Xwayland primary);
   fullscreen X11 windows (Wine games) on the output they placed themselves
   on, which ended black screens and mouse offsets on the other monitor.
 - Dock: clicking the focused window's icon minimizes it from either
-  monitor's dock.
+  monitor's dock; clicking the panel or dock doesn't take the keyboard
+  focus.
+- cosmic-settings-daemon syncs the theme to GTK (`gsettings`, by store
+  path; it wasn't on the PATH) and adw-gtk3 is installed, so GTK and
+  Electron apps (Claude) start in the current light/dark theme.
 - `xwayland-with-idle-time` finds the NVIDIA EGL/GBM back ends, which
   cosmic-comp's sparse environment otherwise hid, leaving X11 apps on
   llvmpipe.  It also keeps MIT-SCREEN-SAVER for X11 idle queries, and keeps track of
@@ -215,10 +220,12 @@ provides, so bumping it updates (and may rebuild) everything at once.
   data is in `$XDG_DATA_HOME/faforever`. With an empty "Launch command" the
   game runs through the bundled `faf-wine` (wine64-wow64 + DXVK, prefix
   `$XDG_DATA_HOME/faforever/wine`); `faforever-client --quit` quits a running
-  client.  The game runs in a Wine virtual desktop as big as the monitor
-  (`FAF_VIRTUAL_DESKTOP=auto`, `off` or `WIDTHxHEIGHT`), and its default
-  1024x768 fullscreen resolution is replaced by the desktop's: switching
-  display modes under Xwayland made it flicker.  The game's window gets
+  client.  The game runs in its own fullscreen window on the X11 primary monitor;
+  `FAF_VIRTUAL_DESKTOP=auto` (or `WIDTHxHEIGHT`) puts it in a Wine virtual
+  desktop instead (BFME: `BFME_VIRTUAL_DESKTOP`, same values, also `off` by
+  default).  Its default 1024x768 fullscreen resolution is replaced by the
+  primary monitor's: switching display modes under Xwayland made it
+  flicker.  The game's window gets
   the game's own icon (taken from ForgedAlliance.exe).  Prefix:
   `FAF_WINEPREFIX`; replays in `$XDG_DATA_HOME/faforever/replays`; DXVK's
   log in `$XDG_CACHE_HOME/faforever/dxvk`.  Steam status ("playing
