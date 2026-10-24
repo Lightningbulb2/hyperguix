@@ -42,6 +42,7 @@
   #:use-module (gnu packages glib)
   #:use-module (gnu packages gnome)
   #:use-module (gnu packages gtk)
+  #:use-module (gnu packages image)
   #:use-module (gnu packages java)
   #:use-module (gnu packages node)
   #:use-module (gnu packages pkg-config)
@@ -373,6 +374,24 @@ export DXVK_STATE_CACHE_PATH=\"${DXVK_STATE_CACHE_PATH:-$dxvk_cache}\"
 if [ -f \"$exe\" ]; then
   ~a -m 644 \"$d3d9\" \"${exe%/*}/d3d9.dll\"
 fi
+# The game's own logo, for its window's entries (faforever-game-*.desktop).
+icons=\"${XDG_DATA_HOME:-$HOME/.local/share}/icons/hicolor\"
+if [ -f \"$exe\" ] && [ ! -e \"$icons/256x256/apps/faforever-game.png\" ]; then
+  tmp=$(mktemp -d)
+  if ~a -x -t 14 -n IDI_WIN_FAICON -o \"$tmp\" \"$exe\" 2>/dev/null &&
+     ~a -x -o \"$tmp\" \"$tmp\"/*.ico 2>/dev/null; then
+    # NAME_N_WxHxDEPTH.png, by increasing depth: the deepest of a size stays.
+    for depth in 4 8 32; do
+      for png in \"$tmp\"/*x$depth.png; do
+        [ -f \"$png\" ] || continue
+        size=${png##*_}; size=${size%x*}
+        mkdir -p \"$icons/$size/apps\"
+        cp \"$png\" \"$icons/$size/apps/faforever-game.png\"
+      done
+    done
+  fi
+  rm -rf \"$tmp\"
+fi
 xact=xactengine2_0,xactengine2_1,xactengine2_2,xactengine2_3,xactengine2_4
 xact=$xact,xactengine2_5,xactengine2_6,xactengine2_7,xactengine2_8
 xact=$xact,xactengine2_9,xactengine2_10
@@ -429,6 +448,8 @@ exec \"$wine\" \"$@\"~%"
                               #$(this-package-input "dxvk")
                               (search-input-file inputs "bin/wine")
                               (search-input-file inputs "bin/install")
+                              (search-input-file inputs "bin/wrestool")
+                              (search-input-file inputs "bin/icotool")
                               (search-input-file inputs "bin/xrandr")
                               (search-input-file inputs "bin/sed"))))
                   (chmod (string-append libdir "/faf-wine") #o755)
@@ -470,6 +491,7 @@ Exec=~a/faforever-client --quit
 " bin bin)))
                     ;; The game's window, for docks: its virtual desktop
                     ;; ("faf", see faf-wine) or, without one, the game's own.
+                    ;; faf-wine takes the icon from the game.
                     (for-each
                      (lambda (class)
                        (call-with-output-file
@@ -480,7 +502,7 @@ Type=Application
 Name=Supreme Commander: Forged Alliance
 Comment=The game, started from the FAForever client
 Exec=~a/faforever-client
-Icon=faforever-client
+Icon=faforever-game
 Terminal=false
 NoDisplay=true
 StartupWMClass=~a
@@ -522,6 +544,7 @@ StartupWMClass=~a
               dbus                    ;libdbus-sys
               dxvk-next
               glib-networking
+              icoutils
               gsettings-desktop-schemas
               gtk+
               libappindicator

@@ -203,7 +203,10 @@ provides, so bumping it updates (and may rebuild) everything at once.
   client.  The game runs in a Wine virtual desktop as big as the monitor
   (`FAF_VIRTUAL_DESKTOP=auto`, `off` or `WIDTHxHEIGHT`), and its default
   1024x768 fullscreen resolution is replaced by the desktop's: switching
-  display modes under Xwayland made it flicker and hang while loading. The self-updater is disabled.
+  display modes under Xwayland made it flicker.  The game's window gets
+  the game's own icon (taken from ForgedAlliance.exe).  Prefix:
+  `FAF_WINEPREFIX`; replays in `$XDG_DATA_HOME/faforever/replays`; DXVK's
+  log and cache in `$XDG_CACHE_HOME/faforever/dxvk`. The self-updater is disabled.
 - **r2modman**: also finds that sandboxed Steam library and launches games
   with `steam -applaunch`; mods need its profile directory shared into the
   Steam container (`GUIX_SANDBOX_EXTRA_SHARES`, set by the config).
