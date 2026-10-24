@@ -1,0 +1,28 @@
+Dock: clicking the icon of the focused window minimizes it from any output's
+dock, not only from the dock on the window's own output (which, elsewhere,
+activated the window again).
+
+--- a/cosmic-app-list/src/app.rs
++++ b/cosmic-app-list/src/app.rs
+@@ -829,9 +829,19 @@
+         }
+     }
+ 
+-    // Check if a specific toplevel is focused
++    // Check if a specific toplevel is focused: whether it has the keyboard
++    // focus, on whichever output.  (`currently_active_toplevel' only looks at
++    // this dock's output, which is right for its focus indicators, but
++    // clicking a window's icon on another output's dock then activated it
++    // again instead of minimizing it.)
+     fn is_focused(&self, handle: &ExtForeignToplevelHandleV1) -> bool {
+-        self.currently_active_toplevel().contains(handle)
++        self.active_list
++            .iter()
++            .chain(self.pinned_list.iter())
++            .flat_map(|list| list.toplevels.iter())
++            .any(|(info, _)| {
++                &info.foreign_toplevel == handle && info.state.contains(&State::Activated)
++            })
+     }
+ }
+ 

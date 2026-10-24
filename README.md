@@ -172,6 +172,13 @@ provides, so bumping it updates (and may rebuild) everything at once.
     to Chromium/Electron apps (Steam, Discord) no longer stall.
 - The v2 default themes lack `list_button` upstream; cosmic-settings adds
   it, so the greeter no longer logs "error loading system dark theme".
+- Window placement: new windows open on the output their app was last
+  closed on (remembered by app id in
+  `~/.local/state/cosmic-comp/window-outputs`), else on the one in use;
+  fullscreen X11 windows (Wine games) on the output they placed themselves
+  on, which ended black screens and mouse offsets on the other monitor.
+- Dock: clicking the focused window's icon minimizes it from either
+  monitor's dock.
 - `xwayland-with-idle-time` finds the NVIDIA EGL/GBM back ends, which
   cosmic-comp's sparse environment otherwise hid, leaving X11 apps on
   llvmpipe.  It also keeps MIT-SCREEN-SAVER for X11 idle queries, and keeps track of

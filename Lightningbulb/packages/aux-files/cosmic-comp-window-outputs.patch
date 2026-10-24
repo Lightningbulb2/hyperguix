@@ -1,0 +1,182 @@
+Window placement across outputs.
+
+- A fullscreen X11 window is shown on the output its own geometry is on,
+  not on the output the pointer is on.  Wine puts fullscreen games on the
+  X11 primary output; shown on another, they stayed black or got the mouse
+  offset (BFME), as they kept drawing for the output they asked for.
+- Other new windows (without a parent) open on the output their app's
+  windows were last closed on, if it is still connected, and otherwise where
+  the user is, as before.  The outputs are kept by app id in
+  $XDG_STATE_HOME/cosmic-comp/window-outputs.
+
+--- a/src/shell/mod.rs
++++ b/src/shell/mod.rs
+@@ -289,6 +289,8 @@
+     pub pending_windows: Vec<PendingWindow>,
+     pub pending_layers: Vec<PendingLayer>,
+     pub pending_activations: HashMap<ActivationKey, ActivationContext>,
++    /// The output each app's windows were last closed on.
++    pub window_outputs: WindowOutputs,
+     pub override_redirect_windows: Vec<X11Surface>,
+     pub session_lock: Option<SessionLock>,
+     pub seats: Seats,
+@@ -1753,6 +1755,7 @@
+             pending_windows: Vec::new(),
+             pending_layers: Vec::new(),
+             pending_activations: HashMap::new(),
++            window_outputs: WindowOutputs::default(),
+             override_redirect_windows: Vec::new(),
+             session_lock: None,
+             previous_workspace_idx: None,
+@@ -3045,7 +3048,15 @@
+                     Some(ActivationContext::Workspace(handle)) => Some(handle),
+                     _ => None,
+                 };
+-                (handle, output.unwrap_or_else(|| seat.active_output()), None)
++                // Where the app's windows were last closed, if that output
++                // is still connected; else where the user is.
++                let output = output
++                    .or_else(|| {
++                        let name = self.window_outputs.get(&window.app_id())?;
++                        self.outputs().find(|o| o.name() == name).cloned()
++                    })
++                    .unwrap_or_else(|| seat.active_output());
++                (handle, output, None)
+             }
+         };
+ 
+@@ -3242,6 +3253,18 @@
+     where
+         CosmicSurface: PartialEq<S>,
+     {
++        // The output the window is closed on, to open the app there next time.
++        let closed_on = self.workspaces.sets.iter().find_map(|(output, set)| {
++            let holds = |m: &CosmicMapped| m.windows().any(|(s, _)| &s == surface);
++            (set.sticky_layer.mapped().any(&holds)
++                || set
++                    .minimized_windows
++                    .iter()
++                    .any(|w| w.windows().any(|s| &s == surface))
++                || set.workspaces.iter().any(|w| w.mapped().any(&holds)))
++            .then(|| output.name())
++        });
++
+         // the focus stack may hold an unrelated window above the parent of a closing modal dialog
+         let seats = self.seats.iter().cloned().collect::<Vec<_>>();
+         for seat in seats {
+@@ -3306,6 +3329,9 @@
+ 
+             if let Some(surface) = surface {
+                 toplevel_info.remove_toplevel(&surface);
++                if let Some(output) = closed_on {
++                    self.window_outputs.remember(&surface.app_id(), output);
++                }
+                 return Some(PendingWindow {
+                     surface,
+                     seat: seat.clone(),
+@@ -5435,3 +5461,75 @@
+ 
+     Some(start_data)
+ }
++
++/// The output each app's windows were last closed on, by app id, so that the
++/// app opens there again (rather than wherever the pointer is).  Kept in
++/// $XDG_STATE_HOME/cosmic-comp/window-outputs, a line "APP-ID<TAB>OUTPUT" per
++/// app, so it survives restarts.
++#[derive(Debug, Default)]
++pub struct WindowOutputs {
++    outputs: HashMap<String, String>,
++    loaded: bool,
++}
++
++impl WindowOutputs {
++    fn path() -> Option<std::path::PathBuf> {
++        let state = std::env::var_os("XDG_STATE_HOME")
++            .filter(|dir| !dir.is_empty())
++            .map(std::path::PathBuf::from)
++            .or_else(|| {
++                std::env::var_os("HOME")
++                    .map(|home| std::path::PathBuf::from(home).join(".local/state"))
++            })?;
++        Some(state.join("cosmic-comp").join("window-outputs"))
++    }
++
++    fn load(&mut self) {
++        if std::mem::replace(&mut self.loaded, true) {
++            return;
++        }
++        let Some(text) = Self::path().and_then(|path| std::fs::read_to_string(path).ok())
++        else {
++            return;
++        };
++        self.outputs = text
++            .lines()
++            .filter_map(|line| line.split_once('\t'))
++            .map(|(app_id, output)| (app_id.to_string(), output.to_string()))
++            .collect();
++    }
++
++    pub fn get(&mut self, app_id: &str) -> Option<String> {
++        if app_id.is_empty() {
++            return None;
++        }
++        self.load();
++        self.outputs.get(app_id).cloned()
++    }
++
++    pub fn remember(&mut self, app_id: &str, output: String) {
++        if app_id.is_empty() {
++            return;
++        }
++        self.load();
++        if self.outputs.get(app_id) == Some(&output) {
++            return;
++        }
++        self.outputs.insert(app_id.to_string(), output);
++        let Some(path) = Self::path() else {
++            return;
++        };
++        let mut lines = self
++            .outputs
++            .iter()
++            .map(|(app_id, output)| format!("{app_id}\t{output}\n"))
++            .collect::<Vec<_>>();
++        lines.sort();
++        if let Some(dir) = path.parent() {
++            let _ = std::fs::create_dir_all(dir);
++        }
++        if let Err(err) = std::fs::write(&path, lines.concat()) {
++            tracing::warn!(?err, ?path, "Failed to save window outputs");
++        }
++    }
++}
+--- a/src/xwayland.rs
++++ b/src/xwayland.rs
+@@ -809,7 +809,26 @@
+                 *context,
+             );
+         }
+-        let fullscreen = window.is_fullscreen().then(|| seat.active_output());
++        // A fullscreen X11 window covers the output it was placed on (Wine
++        // puts games on the X11 primary output); showing it on another --
++        // the one the pointer is on -- left games black or with the mouse
++        // offset, since they kept drawing for the output they asked for.
++        let fullscreen = window.is_fullscreen().then(|| {
++            let geometry = window.geometry();
++            let (x, y) = (
++                geometry.loc.x + geometry.size.w / 2,
++                geometry.loc.y + geometry.size.h / 2,
++            );
++            shell
++                .outputs()
++                .find(|output| {
++                    let area = output.geometry();
++                    (area.loc.x..area.loc.x + area.size.w).contains(&x)
++                        && (area.loc.y..area.loc.y + area.size.h).contains(&y)
++                })
++                .cloned()
++                .unwrap_or_else(|| seat.active_output())
++        });
+         let minimized = window.is_hidden();
+         let maximized = window.is_maximized();
+         if let Some(pending) = shell

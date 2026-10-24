@@ -312,6 +312,15 @@ at cosmic-wallpapers."
                            (invoke "patch" "-p1" "--input"
                                    #$(local-file
                                       "aux-files/cosmic-comp-xwayland-opacity.patch"))))
+                     ;; New windows open on the output their app was last
+                     ;; closed on, and fullscreen X11 windows (games) on the
+                     ;; output they placed themselves on, instead of on the
+                     ;; output the pointer is on (see the patch).
+                     #~(add-after 'unpack 'apply-window-outputs-patch
+                         (lambda _
+                           (invoke "patch" "-p1" "--input"
+                                   #$(local-file
+                                      "aux-files/cosmic-comp-window-outputs.patch"))))
                      #~(add-after 'unpack 'track-input-devices-by-sysname
                          (lambda _
                            (substitute* "src/backend/kms/mod.rs"
@@ -498,7 +507,14 @@ the applets shown in them."))
                          (lambda _
                            (invoke "patch" "-p1" "--input"
                                    #$(local-file
-                                      "aux-files/cosmic-applets-status-area-watcher-unregister.patch")))))
+                                      "aux-files/cosmic-applets-status-area-watcher-unregister.patch"))))
+                     ;; Dock: the focused window's icon minimizes it from
+                     ;; every output's dock (see the patch).
+                     #~(add-after 'unpack 'apply-app-list-focus-patch
+                         (lambda _
+                           (invoke "patch" "-p1" "--input"
+                                   #$(local-file
+                                      "aux-files/cosmic-applets-app-list-focus-any-output.patch")))))
                     #:synopsis "Panel applets of the COSMIC desktop"
                     #:description
                     "The standard COSMIC panel applets: app list, audio,
