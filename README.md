@@ -176,10 +176,12 @@ provides, so bumping it updates (and may rebuild) everything at once.
     to Chromium/Electron apps (Steam, Discord) no longer stall.
 - The v2 default themes lack `list_button` upstream; cosmic-settings adds
   it, so the greeter no longer logs "error loading system dark theme".
-- Window placement: new windows open where their app was last closed --
-  the output, and for floating windows the position and size (remembered by
-  app id in `~/.local/state/cosmic-comp/window-outputs`, across reboots) --
-  else on the primary output (Xwayland primary);
+- Window placement: new windows open where they were last closed -- the
+  output, and for floating windows the position and size -- remembered per
+  window by app id and title (Steam's library, friends list and chats are
+  told apart) and per app from its last window to close, in
+  `~/.local/state/cosmic-comp/window-outputs` across reboots; else on the
+  primary output (Xwayland primary);
   fullscreen X11 windows (Wine games) on the output they placed themselves
   on, which ended black screens and mouse offsets on the other monitor.
 - Dock: clicking the focused window's icon minimizes it from either

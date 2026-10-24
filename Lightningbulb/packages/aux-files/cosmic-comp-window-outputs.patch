@@ -6,7 +6,11 @@ Window placement across outputs.
   offset (BFME), as they kept drawing for the output they asked for.
 - Other new windows (without a parent) open where their app's windows were
   last closed: on that output, if it is still connected, and for floating
-  windows at the same position and size.  Without one, they open on the
+  windows at the same position and size.  Places are kept per window, by
+  app id and title (Steam's library, friends list and chats share an app
+  id), and per app from its last window to close; a window without its own
+  entry gets the app's output, and its geometry only if it is the app's
+  first window.  Without one, they open on the
   primary output (Xwayland primary, as X11 programs see it), not on the
   pointer's.  The places are kept by app id in
   $XDG_STATE_HOME/cosmic-comp/window-outputs, across restarts.  Windows
@@ -17,9 +21,7 @@ Window placement across outputs.
   even when the pointer is on another output (upstream: only on the
   pointer's output).  With windows opening on the remembered or primary
   output, games there took no input and only went fullscreen once
-  re-focused.
-
---- a/src/shell/mod.rs
+  re-focused.--- a/src/shell/mod.rs
 +++ b/src/shell/mod.rs
 @@ -289,6 +289,8 @@
      pub pending_windows: Vec<PendingWindow>,
@@ -38,7 +40,7 @@ Window placement across outputs.
              override_redirect_windows: Vec::new(),
              session_lock: None,
              previous_workspace_idx: None,
-@@ -3038,14 +3041,46 @@
+@@ -3038,14 +3041,56 @@
                  Some((handle, parent_output, anchor))
              });
  
@@ -60,10 +62,20 @@ Window placement across outputs.
 +                let place = if requested {
 +                    None
 +                } else {
-+                    self.window_outputs.get(&window.app_id()).and_then(|place| {
-+                        let output = self.outputs().find(|o| o.name() == place.output)?;
-+                        Some((output.clone(), place.geometry))
-+                    })
++                    let app_id = window.app_id();
++                    let others_open = self.workspaces.sets.values().any(|set| {
++                        set.sticky_layer
++                            .mapped()
++                            .chain(set.workspaces.iter().flat_map(|w| w.mapped()))
++                            .flat_map(|m| m.windows().map(|(s, _)| s))
++                            .any(|s| s != window && s.app_id() == app_id)
++                    });
++                    self.window_outputs
++                        .get(&app_id, &window.title(), others_open)
++                        .and_then(|place| {
++                            let output = self.outputs().find(|o| o.name() == place.output)?;
++                            Some((output.clone(), place.geometry))
++                        })
 +                };
 +                remembered_geometry = place.as_ref().and_then(|(_, geometry)| *geometry);
 +                let output = output
@@ -87,7 +99,7 @@ Window placement across outputs.
              }
          };
  
-@@ -3064,6 +3099,7 @@
+@@ -3064,6 +3109,7 @@
          };
          if output != workspace.output {
              output = workspace.output.clone();
@@ -95,7 +107,7 @@ Window placement across outputs.
          }
  
          let active_handle = self.active_space(&output).unwrap().handle;
-@@ -3087,9 +3123,11 @@
+@@ -3087,9 +3133,11 @@
  
          let mut workspace_state = workspace_state.update();
  
@@ -110,7 +122,7 @@ Window placement across outputs.
          let workspace_handle = workspace.handle;
          let is_dialog = layout::is_dialog(&window);
          let floating_exception = layout::has_floating_exception(&self.tiling_exceptions, &window);
-@@ -3100,7 +3138,7 @@
+@@ -3100,7 +3148,7 @@
                  workspace_state.add_workspace_state(&workspace_handle, WState::Urgent);
              }
  
@@ -119,7 +131,7 @@ Window placement across outputs.
                  .then_some(KeyboardFocusTarget::Fullscreen(window));
          }
  
-@@ -3116,7 +3154,7 @@
+@@ -3116,7 +3164,7 @@
              if was_activated {
                  workspace_state.add_workspace_state(&workspace_handle, WState::Urgent);
              }
@@ -128,7 +140,7 @@ Window placement across outputs.
                  .then_some(KeyboardFocusTarget::Element(focused));
          }
  
-@@ -3133,10 +3171,26 @@
+@@ -3133,10 +3181,26 @@
  
          let workspace_empty = workspace.mapped().next().is_none();
          if is_dialog || floating_exception || !workspace.tiling_enabled {
@@ -155,7 +167,7 @@ Window placement across outputs.
              } else {
                  workspace.floating_layer.map(mapped.clone(), None);
              }
-@@ -3170,7 +3224,7 @@
+@@ -3170,7 +3234,7 @@
  
          let new_target = if should_be_minimized {
              None
@@ -164,7 +176,7 @@ Window placement across outputs.
              || should_be_sticky
          {
              // TODO: enforce focus stealing prevention by also checking the same rules as for the else case.
-@@ -3242,6 +3296,33 @@
+@@ -3242,6 +3306,55 @@
      where
          CosmicSurface: PartialEq<S>,
      {
@@ -194,21 +206,48 @@ Window placement across outputs.
 +                geometry,
 +            })
 +        });
++        // Whether other windows of the same app stay open: then this one is
++        // not the app's main window (a chat, a splash screen, a dialog), and
++        // only its own entry is updated.
++        let last_of_app = closed_on.as_ref().map(|_| {
++            let all = || {
++                self.workspaces.sets.values().flat_map(|set| {
++                    set.sticky_layer
++                        .mapped()
++                        .chain(set.workspaces.iter().flat_map(|w| w.mapped()))
++                        .flat_map(|m| m.windows().map(|(s, _)| s))
++                        .collect::<Vec<_>>()
++                })
++            };
++            let closing = all().find(|s| s == surface);
++            closing.is_none_or(|closing| {
++                let app_id = closing.app_id();
++                !all().any(|s| {
++                    !<CosmicSurface as PartialEq<CosmicSurface>>::eq(&s, &closing)
++                        && s.app_id() == app_id
++                })
++            })
++        });
 +
          // the focus stack may hold an unrelated window above the parent of a closing modal dialog
          let seats = self.seats.iter().cloned().collect::<Vec<_>>();
          for seat in seats {
-@@ -3306,6 +3387,9 @@
+@@ -3306,6 +3419,14 @@
  
              if let Some(surface) = surface {
                  toplevel_info.remove_toplevel(&surface);
 +                if let Some(place) = closed_on {
-+                    self.window_outputs.remember(&surface.app_id(), place);
++                    self.window_outputs.remember(
++                        &surface.app_id(),
++                        &surface.title(),
++                        place,
++                        last_of_app.unwrap_or(true),
++                    );
 +                }
                  return Some(PendingWindow {
                      surface,
                      seat: seat.clone(),
-@@ -5435,3 +5519,100 @@
+@@ -5435,3 +5556,152 @@
  
      Some(start_data)
  }
@@ -221,14 +260,18 @@ Window placement across outputs.
 +    pub geometry: Option<Rectangle<i32, Local>>,
 +}
 +
-+/// Where each app's windows were last closed, by app id, so that the app
-+/// opens there again (rather than wherever the pointer is).  Kept in
++/// Where each app's windows were last closed, so that they open there again
++/// (rather than wherever the pointer is).  Per window, by app id and title
++/// (Steam's library, friends list and chats share one app id), and per app,
++/// from the last window of the app to close (normally its main window):
++/// used for a window without an entry of its own, with the geometry only if
++/// it is the app's first window.  Kept in
 +/// $XDG_STATE_HOME/cosmic-comp/window-outputs, a line
-+/// "APP-ID<TAB>OUTPUT[<TAB>X<TAB>Y<TAB>WIDTH<TAB>HEIGHT]" per app, so it
-+/// survives restarts.
++/// "APP-ID<TAB>TITLE<TAB>OUTPUT[<TAB>X<TAB>Y<TAB>WIDTH<TAB>HEIGHT]" per entry
++/// (TITLE empty for an app's), so it survives restarts.
 +#[derive(Debug, Default)]
 +pub struct WindowOutputs {
-+    places: HashMap<String, WindowPlace>,
++    places: HashMap<(String, String), WindowPlace>,
 +    loaded: bool,
 +}
 +
@@ -244,18 +287,38 @@ Window placement across outputs.
 +        Some(state.join("cosmic-comp").join("window-outputs"))
 +    }
 +
-+    fn parse(line: &str) -> Option<(String, WindowPlace)> {
-+        let mut fields = line.split('\t');
-+        let app_id = fields.next()?.to_string();
-+        let output = fields.next()?.to_string();
-+        let numbers = fields
++    /// Titles go into a tab-separated line.
++    fn clean(title: &str) -> String {
++        title.replace(['\t', '\n', '\r'], " ")
++    }
++
++    fn parse(line: &str) -> Option<((String, String), WindowPlace)> {
++        let fields = line.split('\t').collect::<Vec<_>>();
++        // Older files had no TITLE field, and their per-app geometry could
++        // be any of the app's windows' (a splash screen's, say): keep only
++        // the output of those.
++        let (app_id, title, rest, old) = match fields.len() {
++            2 | 6 => (fields[0], "", &fields[1..], true),
++            3 | 7 => (fields[0], fields[1], &fields[2..], false),
++            _ => return None,
++        };
++        let numbers = rest[1..]
++            .iter()
 +            .map(|field| field.parse::<i32>().ok())
 +            .collect::<Option<Vec<_>>>()?;
 +        let geometry = match numbers[..] {
-+            [x, y, w, h] if w > 0 && h > 0 => Some(Rectangle::new((x, y).into(), (w, h).into())),
++            [x, y, w, h] if w > 0 && h > 0 && !old => {
++                Some(Rectangle::new((x, y).into(), (w, h).into()))
++            }
 +            _ => None,
 +        };
-+        Some((app_id, WindowPlace { output, geometry }))
++        Some((
++            (app_id.to_string(), title.to_string()),
++            WindowPlace {
++                output: rest[0].to_string(),
++                geometry,
++            },
++        ))
 +    }
 +
 +    fn load(&mut self) {
@@ -269,35 +332,63 @@ Window placement across outputs.
 +        self.places = text.lines().filter_map(Self::parse).collect();
 +    }
 +
-+    pub fn get(&mut self, app_id: &str) -> Option<WindowPlace> {
++    /// Where to open a window of APP-ID titled TITLE; OTHERS-OPEN tells
++    /// whether other windows of the app are open.
++    pub fn get(&mut self, app_id: &str, title: &str, others_open: bool) -> Option<WindowPlace> {
 +        if app_id.is_empty() {
 +            return None;
 +        }
 +        self.load();
-+        self.places.get(app_id).cloned()
++        let title = Self::clean(title);
++        if !title.is_empty()
++            && let Some(place) = self.places.get(&(app_id.to_string(), title))
++        {
++            return Some(place.clone());
++        }
++        let place = self.places.get(&(app_id.to_string(), String::new()))?;
++        Some(WindowPlace {
++            output: place.output.clone(),
++            geometry: if others_open { None } else { place.geometry },
++        })
 +    }
 +
-+    pub fn remember(&mut self, app_id: &str, place: WindowPlace) {
++    /// LAST-OF-APP: whether no other window of the app stays open.
++    pub fn remember(&mut self, app_id: &str, title: &str, place: WindowPlace, last_of_app: bool) {
 +        if app_id.is_empty() {
 +            return;
 +        }
 +        self.load();
-+        if self.places.get(app_id) == Some(&place) {
++        let mut changed = false;
++        let mut keys = vec![(app_id.to_string(), Self::clean(title))];
++        if last_of_app {
++            keys.push((app_id.to_string(), String::new()));
++        }
++        for key in keys {
++            // A window without a title only stands for its app when it is
++            // the app's last.
++            if key.1.is_empty() && !last_of_app {
++                continue;
++            }
++            if self.places.get(&key) != Some(&place) {
++                self.places.insert(key, place.clone());
++                changed = true;
++            }
++        }
++        if !changed {
 +            return;
 +        }
-+        self.places.insert(app_id.to_string(), place);
 +        let Some(path) = Self::path() else {
 +            return;
 +        };
 +        let mut lines = self
 +            .places
 +            .iter()
-+            .map(|(app_id, place)| match place.geometry {
++            .map(|((app_id, title), place)| match place.geometry {
 +                Some(g) => format!(
-+                    "{app_id}\t{}\t{}\t{}\t{}\t{}\n",
++                    "{app_id}\t{title}\t{}\t{}\t{}\t{}\t{}\n",
 +                    place.output, g.loc.x, g.loc.y, g.size.w, g.size.h
 +                ),
-+                None => format!("{app_id}\t{}\n", place.output),
++                None => format!("{app_id}\t{title}\t{}\n", place.output),
 +            })
 +            .collect::<Vec<_>>();
 +        lines.sort();
