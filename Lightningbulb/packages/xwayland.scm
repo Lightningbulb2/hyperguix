@@ -74,11 +74,10 @@ reset as user activity.  Together with a helper that resets the screen saver
 while the user is active on the Wayland side, X11 programs such as Steam get a
 meaningful idle time.")))
 
-;;; Steam doesn't use the X11 idle time after all: it watches the X pointer,
-;;; which under Xwayland stays put while the real pointer is over Wayland
-;;; windows.  This helper moves the X pointer by a pixel while the session is
-;;; in use and no X11 window has the focus (see the source), started with the
-;;; session through XDG autostart; the `cosmic' meta package includes it.
+;;; X11 programs that read the X11 idle time see none of the input to Wayland
+;;; windows.  This helper resets the X11 screen saver while the session is in
+;;; use (see the source), started with the session through XDG autostart; the
+;;; `cosmic' meta package includes it.
 (define-public xwayland-activity-relay
   (package
     (name "xwayland-activity-relay")
@@ -126,7 +125,6 @@ NoDisplay=true
     (description
      "@command{xwayland-activity-relay} asks the session for its idle time
 (@code{org.freedesktop.ScreenSaver.GetSessionIdleTime}) and, while the user is
-active and no X11 window has the focus, moves the Xwayland pointer by one
-pixel and resets the X11 screen saver, so that X11 programs that watch the
-pointer or the idle time, such as Steam, don't consider the user away.")
+active, resets the X11 screen saver, so that X11 programs that read the X11
+idle time don't consider the user idle while Wayland programs are used.")
     (license license:gpl3+)))

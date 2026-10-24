@@ -160,13 +160,11 @@ provides, so bumping it updates (and may rebuild) everything at once.
     per monitor (opt-in);
   - cosmic-idle answers `org.freedesktop.ScreenSaver.GetSessionIdleTime`
     (milliseconds, as KDE does);
-  - Steam decides you are Away from XInput 2 raw input events, which
-    Xwayland only gets for input aimed at X11 windows.
-    `xwayland-activity-relay` (in the `cosmic` meta package, started
+  - `xwayland-activity-relay` (in the `cosmic` meta package, started
     through XDG autostart) resets the X11 screen saver every 20 s while the
-    session is in use; `xwayland-with-idle-time` answers that with a raw
-    motion event of zero (and the relay nudges the X pointer by a pixel
-    while no X11 window has the focus);
+    session is in use, which `xwayland-with-idle-time` counts as activity:
+    the X11 idle time follows the whole session.  (Steam's Away status
+    doesn't: on Linux it only counts input to Steam's own windows.)
   - the status area (tray) drops XEmbed icons (Wine, Java) when their
     program ends: xembedsniproxy registers them from another D-Bus
     connection than the one it serves them on, and the watcher only

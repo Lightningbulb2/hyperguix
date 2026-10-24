@@ -1,21 +1,21 @@
 /* xwayland-activity-relay -- tell X11 programs under Xwayland that the user
    is active while they work in Wayland windows.
 
-   Xwayland only gets input aimed at X11 windows, so X11 programs that judge
-   activity by input -- Steam watches XInput 2 raw events -- consider you away
-   while you use Wayland programs.  Every few seconds this asks the session's
-   idle time (cosmic-idle answers org.freedesktop.ScreenSaver.GetSessionIdleTime),
-   and when there was input, resets the X11 screen saver, which
-   xwayland-with-idle-time counts as activity and answers with a raw motion
-   event of zero; and while no X11 window has the focus -- the real pointer is
-   elsewhere then, so nothing visible moves -- it also moves the X pointer by
-   one pixel, for programs that poll it.
+   Xwayland only gets input aimed at X11 windows, so X11 programs that read
+   the X11 idle time (MIT-SCREEN-SAVER) consider you idle while you use
+   Wayland programs.  Every few seconds this asks the session's idle time
+   (cosmic-idle answers org.freedesktop.ScreenSaver.GetSessionIdleTime), and
+   when there was input, resets the X11 screen saver, which
+   xwayland-with-idle-time counts as activity.  It doesn't touch the pointer:
+   warping it over a game that hides the cursor makes Xwayland lock the
+   pointer to the game, and clicks stopped reaching Wine programs (BFME).
+   (Steam's Away status doesn't follow any of this: on Linux it only counts
+   input to its own windows.)
 
    Usage: xwayland-activity-relay [SECONDS]   (default 20)  */
 
 #include <dbus/dbus.h>
 #include <X11/Xlib.h>
-#include <X11/Xatom.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -45,49 +45,10 @@ session_idle_time (DBusConnection *bus)
   return result;
 }
 
-/* Whether an X11 window has the keyboard focus (the window manager --
-   smithay, for cosmic-comp -- keeps _NET_ACTIVE_WINDOW at None while a
-   Wayland window has it).  */
-static int
-x11_window_focused (Display *display, Window root)
-{
-  Atom type;
-  int format;
-  unsigned long count, after;
-  unsigned char *data = NULL;
-  int focused = 0;
-
-  if (XGetWindowProperty (display, root,
-                          XInternAtom (display, "_NET_ACTIVE_WINDOW", False),
-                          0, 1, False, XA_WINDOW, &type, &format, &count,
-                          &after, &data) == Success
-      && data)
-    {
-      focused = type == XA_WINDOW && format == 32 && count == 1
-                && *(unsigned long *) data != None;
-      XFree (data);
-    }
-  return focused;
-}
-
 static void
 relay_activity (Display *display)
 {
-  Window root = DefaultRootWindow (display), root_return, child;
-  int x, y, win_x, win_y;
-  unsigned int mask;
-
   XResetScreenSaver (display);
-  /* With an X11 window focused, Xwayland gets the input itself; don't
-     disturb a game that may have hidden and locked the pointer.  Otherwise
-     the X pointer is left where it last was over an X11 window: move it.
-     Xwayland handles that warp on the X side only, since the real pointer
-     is over a Wayland window.  */
-  if (!x11_window_focused (display, root)
-      && XQueryPointer (display, root, &root_return, &child, &x, &y,
-                        &win_x, &win_y, &mask))
-    /* Between two neighbouring pixels, so it never drifts.  */
-    XWarpPointer (display, None, root, 0, 0, 0, 0, x ^ 1, y);
   XSync (display, False);
 }
 
