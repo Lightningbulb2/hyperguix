@@ -76,9 +76,11 @@
        ;; own; the launcher's window was then off-screen and unmapped).
        ;; A virtual desktop's window is also named (WM_CLASS) after the
        ;; desktop rather than explorer.exe, so docks can tell the games of
-       ;; different packages apart.
+       ;; different packages apart, and created on the primary monitor
+       ;; rather than the left one.
        (patches (cons* (local-file "aux-files/wine-app-desktop.patch")
                        (local-file "aux-files/wine-desktop-wm-class.patch")
+                       (local-file "aux-files/wine-desktop-primary-monitor.patch")
                        (origin-patches (package-source wine64))))))
     (inputs (modify-inputs (package-inputs wine64)
               (delete "wine")))

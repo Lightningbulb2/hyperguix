@@ -212,7 +212,7 @@ provides, so bumping it updates (and may rebuild) everything at once.
   go to drive `D:` (`$XDG_DATA_HOME/bfme-aio-launcher/games`).
 - A named virtual desktop's window is named (WM_CLASS) after the desktop,
   lowercased (`faf`, `bfme`), not `explorer.exe`, so docks show each game
-  with its own name and icon.  Radmin's prefix is `RADMIN_WINEPREFIX`, so a
+  with its own name and icon, and is created on the primary monitor.  Radmin's prefix is `RADMIN_WINEPREFIX`, so a
   global `WINEPREFIX` doesn't move it.
 
 ### Others
@@ -222,10 +222,10 @@ provides, so bumping it updates (and may rebuild) everything at once.
   data is in `$XDG_DATA_HOME/faforever`. With an empty "Launch command" the
   game runs through the bundled `faf-wine` (wine64-wow64 + DXVK, prefix
   `$XDG_DATA_HOME/faforever/wine`); `faforever-client --quit` quits a running
-  client.  The game runs in its own fullscreen window on the X11 primary monitor;
-  `FAF_VIRTUAL_DESKTOP=auto` (or `WIDTHxHEIGHT`) puts it in a Wine virtual
-  desktop instead (BFME: `BFME_VIRTUAL_DESKTOP`, same values, also `off` by
-  default).  Its default 1024x768 fullscreen resolution is replaced by the
+  client.  The game runs in a Wine virtual desktop as big as the primary monitor
+  and on it (`FAF_VIRTUAL_DESKTOP=auto`, the default; `off` for its own
+  fullscreen window; `WIDTHxHEIGHT`); BFME: `BFME_VIRTUAL_DESKTOP`, same
+  values and default.  Its default 1024x768 fullscreen resolution is replaced by the
   primary monitor's: switching display modes under Xwayland made it
   flicker.  The game's window gets
   the game's own icon (taken from ForgedAlliance.exe).  Prefix:

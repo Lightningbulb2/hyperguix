@@ -14,18 +14,15 @@
 #                    may get scaled by Wine when it is not 96).
 #   BFME_VIRTUAL_DESKTOP  where the games run (the launcher is a normal
 #                    window either way):
-#                    off (default)   in their own fullscreen window, which
-#                                    cosmic-comp puts on the monitor Wine
-#                                    chose (the X11 primary);
-#                    auto            in a Wine virtual desktop as big as the
-#                                    primary monitor, shown fullscreen;
+#                    auto (default)  in a Wine virtual desktop as big as the
+#                                    primary monitor, shown fullscreen on it
+#                                    (wine64-wow64 creates it there);
 #                    WIDTHxHEIGHT    in a virtual desktop of that size, in a
-#                                    normal window.
-#                    A virtual desktop's window is created at the X screen's
-#                    origin, i.e. the left monitor.  (It used to be the
-#                    default because the compositor showed fullscreen games
-#                    on the pointer's monitor, not Wine's, and the mouse then
-#                    acted as if they were on the other one.)  The desktop,
+#                                    normal window;
+#                    off             in their own fullscreen window, which
+#                                    cosmic-comp puts on the monitor Wine
+#                                    chose (the X11 primary).
+#                    The desktop,
 #                    "BFME", is set for the game programs in AppDefaults;
 #                    wine64-wow64 is patched so that this works when the
 #                    launcher starts them.
@@ -94,7 +91,7 @@ fi
 #   process ("Unrecoverable system error") if there is no Arial.
 # - the virtual desktop (see above).
 dpi="${BFME_DPI:-96}"
-desktop="${BFME_VIRTUAL_DESKTOP:-off}"
+desktop="${BFME_VIRTUAL_DESKTOP:-auto}"
 case "$desktop" in
   auto)
     modes=$(xrandr --query 2>/dev/null || true)

@@ -407,12 +407,12 @@ exec -a faforever-client ~a \"$@\"~%"
                   ;; The game's default resolution, 1024x768 fullscreen,
                   ;; made it switch the (Xwayland-emulated) display mode and
                   ;; back, flickering; it is replaced by the primary
-                  ;; monitor's.  It runs in its own fullscreen window, which
-                  ;; cosmic-comp puts on the monitor Wine chose (the X11
-                  ;; primary).  FAF_VIRTUAL_DESKTOP=auto (or WIDTHxHEIGHT)
-                  ;; runs it in a Wine virtual desktop ("FAF", set for
-                  ;; ForgedAlliance.exe in AppDefaults) instead; that window
-                  ;; is created at the X screen's origin, the left monitor.
+                  ;; monitor's.  It runs in a Wine virtual desktop ("FAF",
+                  ;; set for ForgedAlliance.exe in AppDefaults) as big as the
+                  ;; primary monitor and on it (wine64-wow64 is patched to
+                  ;; create it there); FAF_VIRTUAL_DESKTOP=off runs it in its
+                  ;; own fullscreen window, WIDTHxHEIGHT in a desktop window
+                  ;; of that size.
                   (call-with-output-file (string-append libdir "/faf-wine")
                     (lambda (port)
                       (format port "#!~a
@@ -464,7 +464,7 @@ done <<EOF
 $(~a --query 2>/dev/null)
 EOF
 monitor=${monitor:-1920x1080}
-desktop=\"${FAF_VIRTUAL_DESKTOP:-off}\"
+desktop=\"${FAF_VIRTUAL_DESKTOP:-auto}\"
 [ \"$desktop\" != auto ] || desktop=$monitor
 key='HKCU\\Software\\Wine\\AppDefaults\\ForgedAlliance.exe\\Explorer'
 stamp=\"$WINEPREFIX/.faf-virtual-desktop\"

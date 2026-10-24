@@ -1,0 +1,28 @@
+Create a virtual desktop's X11 window on the host's primary monitor instead
+of at the root window's origin, which is the left (or top) monitor.  The
+window manager shows a fullscreen window on the monitor it is on, so the
+FAF and BFME games' desktops opened on the second monitor.
+
+--- a/dlls/winex11.drv/desktop.c
++++ b/dlls/winex11.drv/desktop.c
+@@ -68,6 +68,11 @@
+     XSetWindowAttributes win_attr;
+     Window win;
+     Display *display = thread_init_display();
++    /* On the host's primary monitor rather than at the root window's
++     * origin (the left or top monitor): the window manager puts a
++     * fullscreen window on the monitor it is on. */
++    RECT primary = get_host_primary_monitor_rect();
++    POINT pos = virtual_screen_to_root( primary.left, primary.top );
+ 
+     TRACE( "%s %ux%u\n", debugstr_w(name), width, height );
+ 
+@@ -84,7 +89,7 @@
+         win_attr.colormap = None;
+ 
+     win = XCreateWindow( display, DefaultRootWindow(display),
+-                         0, 0, width, height, 0, default_visual.depth, InputOutput,
++                         pos.x, pos.y, width, height, 0, default_visual.depth, InputOutput,
+                          default_visual.visual, CWEventMask | CWCursor | CWColormap, &win_attr );
+     if (!win) return FALSE;
+ 

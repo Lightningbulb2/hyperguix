@@ -401,6 +401,21 @@ workspaces, multi-monitor and multi-GPU support, and XWayland."))
               (("/usr/bin/dbus-run-session") dbus-run-session)
               (("/usr/bin/cosmic-session")
                (string-append #$output "/bin/cosmic-session"))
+              ;; Without systemd, the session's environment reached the
+              ;; services D-Bus starts (portals...) only through
+              ;; `systemctl --user import-environment'.  Guix Home has the
+              ;; session bus running already, so give its activation
+              ;; environment the variables: the GTK portal backend
+              ;; otherwise read the default dconf database instead of
+              ;; COSMIC's (DCONF_PROFILE), and served GTK and Electron
+              ;; programs (Claude) a light GTK theme at startup.
+              (("^if \\[ -z \"\\$\\{DBUS_SESSION_BUS_ADDRESS\\}\" \\]; then" all)
+               (string-append
+                "if [ -n \"${DBUS_SESSION_BUS_ADDRESS}\" ] && ! command -v systemctl >/dev/null; then\n"
+                "    " (search-input-file inputs "bin/dbus-update-activation-environment")
+                " DCONF_PROFILE XDG_CURRENT_DESKTOP XDG_SESSION_DESKTOP XDG_SESSION_TYPE"
+                " GDK_BACKEND QT_QPA_PLATFORM QT_QPA_PLATFORMTHEME SSH_AUTH_SOCK || true\n"
+                "fi\n\n" all))
               ;; The CuteCosmic probe used QT_PLUGIN_PATH as its loop
               ;; variable, leaving it set to "/usr/lib/*/qt6/plugins" and
               ;; hiding the profiles' Qt plugins (Wayland platform, image
