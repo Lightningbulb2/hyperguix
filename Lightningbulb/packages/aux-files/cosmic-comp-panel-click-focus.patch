@@ -1,0 +1,34 @@
+Clicking the panel or the dock doesn't take the keyboard focus.  The click
+gave their layer surface (keyboard interactivity "on demand") the focus,
+which made its output the focused one, and so that output's last window the
+active one: clicking the focused window's icon on the other monitor's dock
+activated it instead of minimizing it, and focus jumped to the other
+monitor's window.  Applet popups still get the keyboard through their grab.
+
+--- a/src/input/mod.rs
++++ b/src/input/mod.rs
+@@ -1056,7 +1056,23 @@
+                             if let Some(dialog) = redirect {
+                                 self.common.shell.write().shake_modal_dialog(&dialog);
+                             }
+-                            Shell::set_focus(self, Some(&target), &seat, Some(serial), false);
++                            // Clicking the panel or the dock doesn't take the keyboard
++                            // focus, as on other desktops.  It made that output the
++                            // focused one, so its last window became the active one:
++                            // the dock then saw the window to minimize as unfocused
++                            // and activated it instead, and focus jumped to that
++                            // other output's window.  Applet popups still get the
++                            // keyboard (popup grabs).
++                            let is_panel = matches!(
++                                &target,
++                                KeyboardFocusTarget::LayerSurface(layer)
++                                    if layer.cached_state().keyboard_interactivity
++                                        == smithay::wayland::shell::wlr_layer::KeyboardInteractivity::OnDemand
++                                        && matches!(layer.namespace(), "Panel" | "Dock")
++                            );
++                            if !is_panel {
++                                Shell::set_focus(self, Some(&target), &seat, Some(serial), false);
++                            }
+                         }
+                     }
+                 } else {

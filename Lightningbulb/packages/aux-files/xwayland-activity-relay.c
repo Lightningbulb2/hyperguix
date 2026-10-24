@@ -1,14 +1,15 @@
 /* xwayland-activity-relay -- tell X11 programs under Xwayland that the user
    is active while they work in Wayland windows.
 
-   Xwayland only gets input aimed at X11 windows, so its pointer rests where
-   it last left an X11 window.  Steam decides that you are Away from that
-   pointer and the X11 idle time, and went Away while you used other programs.
-   Every few seconds this asks the session's idle time (cosmic-idle answers
-   org.freedesktop.ScreenSaver.GetSessionIdleTime), and when there was input,
-   moves the X pointer by one pixel while no X11 window has the focus -- the
-   real pointer is elsewhere then, so nothing visible moves -- and resets the
-   X11 screen saver (which xwayland-with-idle-time counts as activity).
+   Xwayland only gets input aimed at X11 windows, so X11 programs that judge
+   activity by input -- Steam watches XInput 2 raw events -- consider you away
+   while you use Wayland programs.  Every few seconds this asks the session's
+   idle time (cosmic-idle answers org.freedesktop.ScreenSaver.GetSessionIdleTime),
+   and when there was input, resets the X11 screen saver, which
+   xwayland-with-idle-time counts as activity and answers with a raw motion
+   event of zero; and while no X11 window has the focus -- the real pointer is
+   elsewhere then, so nothing visible moves -- it also moves the X pointer by
+   one pixel, for programs that poll it.
 
    Usage: xwayland-activity-relay [SECONDS]   (default 20)  */
 

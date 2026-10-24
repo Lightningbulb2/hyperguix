@@ -1,10 +1,41 @@
 Keep MIT-SCREEN-SAVER in rootless Xwayland and count a forced screen saver
 reset as user activity, so X11 programs (Steam) get a usable idle time when a
 helper resets the screen saver while the user is active on the Wayland side.
-
+The reset also makes an XInput 2 raw motion event (a relative motion of zero
+on the Wayland pointer): Steam's away detection watches raw input, which an
+X server under Wayland only gets for input aimed at X11 windows.
 --- a/dix/window.c
 +++ b/dix/window.c
-@@ -3097,8 +3097,13 @@
+@@ -3089,6 +3089,28 @@
+     DeliverEvents(pWin, &event, 1, NullWindow);
+ }
+ 
++/* XInput 2 clients that watch raw input events for activity (Steam) only
++ * see input this server gets, and under Wayland that is only input aimed at
++ * X11 windows.  With a forced screen saver reset counted as activity, also
++ * queue a relative motion of zero on the Wayland pointer: it makes a raw
++ * motion event, and moves nothing.  */
++static void
++NoticeForcedActivity(void)
++{
++    DeviceIntPtr dev;
++    ValuatorMask mask;
++
++    for (dev = inputInfo.devices; dev; dev = dev->next) {
++        if (IsMaster(dev) || !dev->enabled || !dev->valuator ||
++            strncmp(dev->name, "xwayland-pointer:", 17) != 0)
++            continue;
++        valuator_mask_zero(&mask);
++        valuator_mask_set_double(&mask, 0, 0.0);
++        QueuePointerEvents(dev, MotionNotify, 0, POINTER_RELATIVE, &mask);
++        return;
++    }
++}
++
+ #define RANDOM_WIDTH 32
+ int
+ dixSaveScreens(ClientPtr client, int on, int mode)
+@@ -3097,8 +3119,14 @@
      XID vlist[2];
  
      if (on == SCREEN_SAVER_FORCER) {
@@ -15,6 +46,7 @@ helper resets the screen saver while the user is active on the Wayland side.
 +             * measures idle time from the last device event.  */
 +            UpdateCurrentTimeIf();
 +            NoticeTime(inputInfo.pointer, currentTime);
++            NoticeForcedActivity();
 +        }
          else
              what = SCREEN_SAVER_ON;

@@ -321,6 +321,14 @@ at cosmic-wallpapers."
                            (invoke "patch" "-p1" "--input"
                                    #$(local-file
                                       "aux-files/cosmic-comp-window-outputs.patch"))))
+                     ;; Clicking the panel or dock doesn't take the keyboard
+                     ;; focus, which broke the dock's click-to-minimize from
+                     ;; the other monitor (see the patch).
+                     #~(add-after 'unpack 'apply-panel-click-focus-patch
+                         (lambda _
+                           (invoke "patch" "-p1" "--input"
+                                   #$(local-file
+                                      "aux-files/cosmic-comp-panel-click-focus.patch"))))
                      #~(add-after 'unpack 'track-input-devices-by-sysname
                          (lambda _
                            (substitute* "src/backend/kms/mod.rs"
