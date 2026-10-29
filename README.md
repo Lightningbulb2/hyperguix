@@ -27,6 +27,7 @@ The channel depends on nonguix (`.guix-channel`): several packages use its
 | `xwayland.scm` | `xwayland-with-idle-time`, `xwayland-activity-relay` | Xwayland used by cosmic-comp, and the helper that keeps Steam from going Away; see *COSMIC* |
 | `timedated.scm` | `timedated` | systemd's timedated built alone (org.freedesktop.timedate1), for COSMIC Settings |
 | `craft.scm` | `photocraft`, `effectcraft`, `filmcraft`, `pdfcraft`, `lightcraft`, `vectorcraft`, `gridcraft`, `wordcraft`, `soundcraft`, `cadcraft`, `figcraft`, `designcraft`, `deckcraft`, `craft-launcher` | the storytold "Craft" suite, each with its `*-cli` |
+| `solidcraft.scm` | `solidcraft` 0.26.1 (with `solidcraft-cli`) | Tangency Labs' parametric 3D CAD; crates in `solidcraft-crates.scm` |
 | `ladybird.scm` | `ladybird` (git master, Qt 6.10 calls guarded for Guix's Qt 6.9), plus private Skia 148, ANGLE, ffmpeg 9, curl+OpenSSL | Qt 6 UI; its sandbox needs Landlock (`lsm=landlock,...` kernel argument) |
 | `scrcpy.scm`, `scrcpy-gui.scm` | `scrcpy` 5.0.1, `scrcpy-gui` 4.1.0 | Android mirroring |
 | `faforever.scm` | `faforever-client` 0.9.2 | Rust/Tauri FAF client |
@@ -187,7 +188,9 @@ provides, so bumping it updates (and may rebuild) everything at once.
   on, which ended black screens and mouse offsets on the other monitor.
   (That position is smithay's `last_configure()`: `geometry()` is
   window-relative, always at 0,0, which put every such window on the
-  left monitor until round 20.)
+  left monitor until round 20.  Until round 21 a size-only configure
+  request before mapping -- Wine sends one for its virtual desktops --
+  also reset that position to 0,0 for the same reason.)
 - Dock: clicking the focused window's icon minimizes it from either
   monitor's dock; clicking the panel or dock doesn't take the keyboard
   focus.

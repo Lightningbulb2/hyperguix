@@ -4,6 +4,10 @@ Window placement across outputs.
   not on the output the pointer is on.  Wine puts fullscreen games on the
   X11 primary output; shown on another, they stayed black or got the mouse
   offset (BFME), as they kept drawing for the output they asked for.
+  That position is the one the window was created at (Wine creates its
+  virtual desktops on the X11 primary): a configure request made before
+  the window is mapped that leaves out x and y keeps it, rather than
+  resetting it to 0,0 (the left output).
 - Other new windows (without a parent) open where their app's windows were
   last closed: on that output, if it is still connected, and for floating
   windows at the same position and size.  Places are kept per window, by
@@ -421,7 +425,19 @@ Window placement across outputs.
          let minimized = window.is_hidden();
          let maximized = window.is_maximized();
          if let Some(pending) = shell
-@@ -1167,9 +1177,19 @@
+@@ -975,6 +985,10 @@
+         } else {
+-            let mut current_geo = window.geometry();
++            // Where it is now: last_configure(), which starts out as its
++            // position at creation.  geometry() is window-relative (0,0), so
++            // a request that only sets the size (Wine's virtual desktops) moved
++            // the window to the left output before it was mapped.
++            let mut current_geo = window.last_configure();
+             if let Some(x) = x {
+                 current_geo.loc.x = x;
+             }
+             if let Some(y) = y {
+@@ -1167,9 +1181,19 @@
      fn fullscreen_request(&mut self, _xwm: XwmId, window: X11Surface) {
          let mut shell = self.common.shell.write();
          let seat = shell.seats.last_active().clone();
@@ -441,7 +457,7 @@ Window placement across outputs.
              .unwrap_or_else(|| seat.focused_or_active_output());
  
          match shell.fullscreen_request(
-@@ -1352,3 +1372,27 @@
+@@ -1352,3 +1376,27 @@
          xwayland_state.xwm = None;
      }
  }
