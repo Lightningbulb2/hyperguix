@@ -23,7 +23,7 @@
   #:use-module (gnu packages tls)
   #:use-module (Lightningbulb packages cuda))
 
-(define llama-cpp-ui-build "11669")
+(define llama-cpp-ui-build "11960")
 
 (define llama-cpp-ui
   (origin
@@ -33,12 +33,12 @@
                         "-ui.tar.gz"))
     (file-name "ui.tar.gz")
     (sha256
-     (base32 "0ng2rsjqdipk8vkpxas783c291cr9137jyz3cf90c7wlw2qkkq6c"))))
+     (base32 "0d5rlgw3qd5wjnlpp1dcnv0a5q2ifrn5pz02r2k91jaaafppcxgj"))))
 
 (define-public llama-cpp/latest
   (package
     (inherit llama-cpp)
-    (version "0.7.0")
+    (version "0.8.0")
     (source
      (origin
        (method git-fetch)
@@ -47,7 +47,7 @@
              (commit (string-append "v" version))))
        (file-name (git-file-name "llama-cpp" version))
        (sha256
-        (base32 "1h56qh5v7az76q9d9jg7visp1pinrmz4abz9f4z3acf0in0dhh54"))))
+        (base32 "19wyflknc5w14l507c0szv4cc8k6wzg23l03nv2agcz8q47js02r"))))
     (arguments
      (substitute-keyword-arguments (package-arguments llama-cpp)
        ((#:configure-flags _)

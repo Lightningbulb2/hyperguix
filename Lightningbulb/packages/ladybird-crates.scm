@@ -10,6 +10,10 @@
   (crate "addr" "0.15.6" "1vrbnzv4r7sx65mmi011aiafc7b1866iywnchx8asc72vd0qlfx9"))
 (define rust-aho-corasick-1.1.4
   (crate "aho-corasick" "1.1.4" "00a32wb2h07im3skkikc495jvncf62jl6s96vwc7bhi70h9imlyx"))
+(define rust-alloc-no-stdlib-3.0.0
+  (crate "alloc-no-stdlib" "3.0.0" "0ync9wrxr8fg5wad8547wd7400f2l2mhxhlm83v6yjdz8zynryy2"))
+(define rust-alloc-stdlib-0.3.0
+  (crate "alloc-stdlib" "0.3.0" "1qc6flsgl4b6231ykik493y8g5418zrba6j1hshvz203g1jihp0b"))
 (define rust-allocator-api2-0.2.21
   (crate "allocator-api2" "0.2.21" "08zrzs022xwndihvzdn78yqarv2b9696y67i6h78nla3ww87jgb8"))
 (define rust-anstream-1.0.0
@@ -24,8 +28,6 @@
   (crate "anstyle-wincon" "3.0.11" "0zblannm70sk3xny337mz7c6d8q8i24vhbqi42ld8v7q1wjnl7i9"))
 (define rust-anyhow-1.0.104
   (crate "anyhow" "1.0.104" "0w34jjcm02p5g9kvsjr1dvpw0zs2fi7igi6nr414fkm5gz85w2ik"))
-(define rust-arbitrary-1.4.2
-  (crate "arbitrary" "1.4.2" "1wcbi4x7i3lzcrkjda4810nqv03lpmvfhb0a85xrq1mbqjikdl63"))
 (define rust-array-init-2.1.0
   (crate "array-init" "2.1.0" "1z0bh6grrkxlbknq3xyipp42rasngi806y92fiddyb2n99lvfqix"))
 (define rust-arrayvec-0.7.6
@@ -36,8 +38,10 @@
   (crate "base64" "0.22.1" "1imqzgh7bxcikp5vx3shqvw9j09g9ly0xr0jma0q66i52r7jbcvj"))
 (define rust-bitflags-2.11.0
   (crate "bitflags" "2.11.0" "1bwjibwry5nfwsfm9kjg2dqx5n5nja9xymwbfl6svnn8jsz6ff44"))
-(define rust-bumpalo-3.20.2
-  (crate "bumpalo" "3.20.2" "1jrgxlff76k9glam0akhwpil2fr1w32gbjdf5hpipc7ld2c7h82x"))
+(define rust-brotli-9.0.0
+  (crate "brotli" "9.0.0" "0ssc7lyjbsw7451vk3yh0gmrm66ikgj2yq9xc9rpiji3bjvm3f7q"))
+(define rust-brotli-decompressor-6.0.1
+  (crate "brotli-decompressor" "6.0.1" "1msbjd00hwgbgg7pdf4cqx5b4my8y4ld98m5dys3rf6s9nyxj74l"))
 (define rust-byteorder-1.5.0
   (crate "byteorder" "1.5.0" "0jzncxyf404mwqdbspihyzpkndfgda450l0893pz5xj685cg5l0z"))
 (define rust-calendrical_calculations-0.2.4
@@ -62,34 +66,6 @@
   (crate "core_detect" "1.0.0" "0j0xp1j6f9lrp4ybylc3d0zdg8jq2hkmr1122qyil14qk84q13vz"))
 (define rust-core_maths-0.1.1
   (crate "core_maths" "0.1.1" "0c0dv11ixxpc9bsx5xasvl98mb1dlprzcm6qq6ls3nsygw0mwx3p"))
-(define rust-cranelift-assembler-x64-0.136.3
-  (crate "cranelift-assembler-x64" "0.136.3" "1zv5d06777ky9is5fhs0f6if367bdc4vg64fmz63lgxsqz409mgn"))
-(define rust-cranelift-assembler-x64-meta-0.136.3
-  (crate "cranelift-assembler-x64-meta" "0.136.3" "1l48npd3035fh60rwzhaf7yvg4fnj9xvv7lnh9pc0ssr0mwparf0"))
-(define rust-cranelift-bforest-0.136.3
-  (crate "cranelift-bforest" "0.136.3" "0gzi5vlb41f4yaga3id8jcyj10lqjfflblc85ygmzz6lshn1d9sw"))
-(define rust-cranelift-bitset-0.136.3
-  (crate "cranelift-bitset" "0.136.3" "126cpdwbn6jyk9x513cks60q7cng7mn2c41s0b29x59x9wnvmhhf"))
-(define rust-cranelift-codegen-0.136.3
-  (crate "cranelift-codegen" "0.136.3" "16kv0iyv5f0lifdv3xhbny1csa59dz9sqlv0vmmxbznm46w4r9ji"))
-(define rust-cranelift-codegen-meta-0.136.3
-  (crate "cranelift-codegen-meta" "0.136.3" "1f7jwz5gq7qg0akf19nvpjwr4yrqypm2ka5mqaipnjd7czif2aql"))
-(define rust-cranelift-codegen-shared-0.136.3
-  (crate "cranelift-codegen-shared" "0.136.3" "1qqd1b4vaw9qvqrhlyfbh7dpkxhq6zbkf09k063cwv6s21agfh8f"))
-(define rust-cranelift-control-0.136.3
-  (crate "cranelift-control" "0.136.3" "1iij53m3igz5irx57i7x1mv9qbbhnxggd7i8r4d9450ws331c9hc"))
-(define rust-cranelift-entity-0.136.3
-  (crate "cranelift-entity" "0.136.3" "1amlxigs457imlvsxnbf0qd2kzgn998qsy7547xz4z47qi28ngm0"))
-(define rust-cranelift-frontend-0.136.3
-  (crate "cranelift-frontend" "0.136.3" "1prykqg3xcm05sfxcw16nnwqv7wna2k5bfhf4598gl2b075zfvrn"))
-(define rust-cranelift-isle-0.136.3
-  (crate "cranelift-isle" "0.136.3" "0i9k6jwblk0f42wx4i8fpgkgj9vhmnpjc7ivrvwgyr4hpxp559ly"))
-(define rust-cranelift-module-0.136.3
-  (crate "cranelift-module" "0.136.3" "1kz1xzm9nkxhh6i84kmfwlqawk4gv85nd3rrwa109z27dg32km6r"))
-(define rust-cranelift-native-0.136.3
-  (crate "cranelift-native" "0.136.3" "1sk49arnc791rspfkbqrdq3cwpi84z9arwv1pjjsh22i7qzk4kdl"))
-(define rust-cranelift-srcgen-0.136.3
-  (crate "cranelift-srcgen" "0.136.3" "085lwys9d0xbzw561hkldmgfzsmi0mm9sxnhnnakpzwiy9l325zw"))
 (define rust-displaydoc-0.2.5
   (crate "displaydoc" "0.2.5" "1q0alair462j21iiqwrr21iabkfnb13d6x5w95lkdg21q2xrqdlp"))
 (define rust-either-1.16.0
@@ -108,8 +84,8 @@
   (crate "find-msvc-tools" "0.1.14" "112ljldlv150fpl8xr2jl5czg51k3kdfn6cy5fqdsvkl14sgpp5f"))
 (define rust-flatbuffers-25.12.19
   (crate "flatbuffers" "25.12.19" "1wvfm49ybn098zknzlim8xpxrfn2y0sazzqyaggav61vgffq7xim"))
-(define rust-fnv-1.0.7
-  (crate "fnv" "1.0.7" "1hc2mcqha06aibcaza94vbi81j6pr9a1bbxrxjfhc91zin8yr7iz"))
+(define rust-flate2-1.1.10
+  (crate "flate2" "1.1.10" "1jvd2cl8j5hyf8imi62y1x7gwzz1hajirni0801yxhds1qp4wqvf"))
 (define rust-foldhash-0.1.5
   (crate "foldhash" "0.1.5" "1wisr1xlc2bj7hk4rgkcjkz3j2x4dhd1h9lwk7mj8p71qpdgbi6r"))
 (define rust-foldhash-0.2.0
@@ -118,8 +94,6 @@
   (crate "form_urlencoded" "1.2.2" "1kqzb2qn608rxl3dws04zahcklpplkd5r1vpabwga5l50d2v4k6b"))
 (define rust-getrandom-0.4.2
   (crate "getrandom" "0.4.2" "0mb5833hf9pvn9dhvxjgfg5dx0m77g8wavvjdpvpnkp9fil1xr8d"))
-(define rust-gimli-0.33.0
-  (crate "gimli" "0.33.0" "0v0jgyxdakhn8z74dvm9l38a0bwvfhrc9b3wiigq0ncmz11z1xqb"))
 (define rust-hashbrown-0.15.5
   (crate "hashbrown" "0.15.5" "189qaczmjxnikm9db748xyhiw04kpmhm9xj9k9hg0sgx7pjwyacj"))
 (define rust-hashbrown-0.16.1
@@ -224,8 +198,6 @@
   (crate "quote" "1.0.45" "095rb5rg7pbnwdp6v8w5jw93wndwyijgci1b5lw8j1h5cscn3wj1"))
 (define rust-r-efi-6.0.0
   (crate "r-efi" "6.0.0" "1gyrl2k5fyzj9k7kchg2n296z5881lg7070msabid09asp3wkp7q"))
-(define rust-regalloc2-0.15.2
-  (crate "regalloc2" "0.15.2" "11bzk983566d84xpm0v76jhmm2skalvlhqymypadd40mwvl14xvm"))
 (define rust-regex-1.12.3
   (crate "regex" "1.12.3" "0xp2q0x7ybmpa5zlgaz00p8zswcirj9h8nry3rxxsdwi9fhm81z1"))
 (define rust-regex-automata-0.4.14
@@ -274,8 +246,6 @@
   (crate "syn" "3.0.4" "17v4ac61x0hvj1879ywqzlwhyzg7n9lr9zniwrsif3b1ykfmq9z6"))
 (define rust-synstructure-0.13.2
   (crate "synstructure" "0.13.2" "1lh9lx3r3jb18f8sbj29am5hm9jymvbwh6jb1izsnnxgvgrp12kj"))
-(define rust-target-lexicon-0.13.5
-  (crate "target-lexicon" "0.13.5" "1jm6lmf9hsn7ri2d6v9gg6fy24lylhskh6pbxh71f82wdxd97dmd"))
 (define rust-tempfile-3.27.0
   (crate "tempfile" "3.27.0" "1gblhnyfjsbg9wjg194n89wrzah7jy3yzgnyzhp56f3v9jd7wj9j"))
 (define rust-thiserror-1.0.69
@@ -316,8 +286,6 @@
   (crate "wasm-metadata" "0.244.0" "02f9dhlnryd2l7zf03whlxai5sv26x4spfibjdvc3g9gd8z3a3mv"))
 (define rust-wasmparser-0.244.0
   (crate "wasmparser" "0.244.0" "1zi821hrlsxfhn39nqpmgzc0wk7ax3dv6vrs5cw6kb0v5v3hgf27"))
-(define rust-wasmtime-internal-core-49.0.3
-  (crate "wasmtime-internal-core" "49.0.3" "1394pb0sh75xv5wk8nlzjvcc7ykv85d8w1jrw2g79c5dfzdwa05s"))
 (define rust-windows-link-0.2.1
   (crate "windows-link" "0.2.1" "1rag186yfr3xx7piv5rg8b6im2dwcf8zldiflvb22xbzwli5507h"))
 (define rust-windows-sys-0.61.2
@@ -356,6 +324,8 @@
   (crate "zerovec" "0.11.8" "1n3xlvyba8riys9s8awy4xp533phqycr78nbsmvdkh86g3hn815v"))
 (define rust-zerovec-derive-0.11.6
   (crate "zerovec-derive" "0.11.6" "1ni5j8v99x3fcf3l8kp64b7aq4vf8y22jshfq74xs9mxkp1nzprl"))
+(define rust-zlib-rs-0.6.8
+  (crate "zlib-rs" "0.6.8" "04j158293bx73kv5pj1i89ai411q7fxc9zwk3wkpqgb9gj7fas5j"))
 (define rust-zmij-1.0.21
   (crate "zmij" "1.0.21" "1amb5i6gz7yjb0dnmz5y669674pqmwbj44p4yfxfv2ncgvk8x15q"))
 
@@ -366,6 +336,8 @@
   (list rust-adblock-0.13.3
         rust-addr-0.15.6
         rust-aho-corasick-1.1.4
+        rust-alloc-no-stdlib-3.0.0
+        rust-alloc-stdlib-0.3.0
         rust-allocator-api2-0.2.21
         rust-anstream-1.0.0
         rust-anstyle-1.0.14
@@ -373,13 +345,13 @@
         rust-anstyle-query-1.1.5
         rust-anstyle-wincon-3.0.11
         rust-anyhow-1.0.104
-        rust-arbitrary-1.4.2
         rust-array-init-2.1.0
         rust-arrayvec-0.7.6
         rust-autocfg-1.5.0
         rust-base64-0.22.1
         rust-bitflags-2.11.0
-        rust-bumpalo-3.20.2
+        rust-brotli-9.0.0
+        rust-brotli-decompressor-6.0.1
         rust-byteorder-1.5.0
         rust-calendrical_calculations-0.2.4
         rust-cbindgen-0.29.2
@@ -392,20 +364,6 @@
         rust-colorchoice-1.0.5
         rust-core_detect-1.0.0
         rust-core_maths-0.1.1
-        rust-cranelift-assembler-x64-0.136.3
-        rust-cranelift-assembler-x64-meta-0.136.3
-        rust-cranelift-bforest-0.136.3
-        rust-cranelift-bitset-0.136.3
-        rust-cranelift-codegen-0.136.3
-        rust-cranelift-codegen-meta-0.136.3
-        rust-cranelift-codegen-shared-0.136.3
-        rust-cranelift-control-0.136.3
-        rust-cranelift-entity-0.136.3
-        rust-cranelift-frontend-0.136.3
-        rust-cranelift-isle-0.136.3
-        rust-cranelift-module-0.136.3
-        rust-cranelift-native-0.136.3
-        rust-cranelift-srcgen-0.136.3
         rust-displaydoc-0.2.5
         rust-either-1.16.0
         rust-encoding_rs-0.8.42
@@ -415,12 +373,11 @@
         rust-fastrand-2.4.0
         rust-find-msvc-tools-0.1.14
         rust-flatbuffers-25.12.19
-        rust-fnv-1.0.7
+        rust-flate2-1.1.10
         rust-foldhash-0.1.5
         rust-foldhash-0.2.0
         rust-form_urlencoded-1.2.2
         rust-getrandom-0.4.2
-        rust-gimli-0.33.0
         rust-hashbrown-0.15.5
         rust-hashbrown-0.16.1
         rust-hashbrown-0.17.1
@@ -473,7 +430,6 @@
         rust-psl-types-2.0.11
         rust-quote-1.0.45
         rust-r-efi-6.0.0
-        rust-regalloc2-0.15.2
         rust-regex-1.12.3
         rust-regex-automata-0.4.14
         rust-regex-syntax-0.8.10
@@ -498,7 +454,6 @@
         rust-syn-2.0.117
         rust-syn-3.0.4
         rust-synstructure-0.13.2
-        rust-target-lexicon-0.13.5
         rust-tempfile-3.27.0
         rust-thiserror-1.0.69
         rust-thiserror-2.0.20
@@ -519,7 +474,6 @@
         rust-wasm-encoder-0.244.0
         rust-wasm-metadata-0.244.0
         rust-wasmparser-0.244.0
-        rust-wasmtime-internal-core-49.0.3
         rust-windows-link-0.2.1
         rust-windows-sys-0.61.2
         rust-winnow-0.7.15
@@ -539,6 +493,7 @@
         rust-zerotrie-0.2.5
         rust-zerovec-0.11.8
         rust-zerovec-derive-0.11.6
+        rust-zlib-rs-0.6.8
         rust-zmij-1.0.21))
 
 (define ladybird-git-crates '())

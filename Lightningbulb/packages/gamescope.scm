@@ -92,7 +92,7 @@ static uid_t overflow_uid(void) {
 (define-public gamescope
   (package
     (name "gamescope")
-    (version "3.16.31")
+    (version "3.17.0")
     (source
      (origin
        (method git-fetch)
@@ -102,7 +102,7 @@ static uid_t overflow_uid(void) {
              (recursive? #t)))
        (file-name (git-file-name name version))
        (sha256
-        (base32 "0hrxpw59iiz325kvygmd3ffygjiqdh16hnv4pr6sq1na4zy9y84q"))
+        (base32 "07vgfsv8jcpx509v44xhlh1z9mn76vc7c29340ja5wzcsgmq5qpg"))
        (modules '((guix build utils)))
        (snippet
         ;; Drop the submodules and wraps replaced by Guix packages (see the

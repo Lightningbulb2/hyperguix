@@ -55,7 +55,7 @@
 (define-public chrome-remote-desktop
   (package
     (name "chrome-remote-desktop")
-    (version "155.0.8059.19")
+    (version "157.0.8103.19")
     (source
      (origin
        (method url-fetch)
@@ -64,7 +64,7 @@
              "c/chrome-remote-desktop/chrome-remote-desktop_" version
              "_amd64.deb"))
        (sha256
-        (base32 "0wpzm9mzdi0x2irwi5wqdf3f2s4lj6nwqg8l13zyvndka5liqw1r"))))
+        (base32 "0qfvscz8661223xn8161x0zybb2gz3wh6lzpl6jmbx5ygzn86f6b"))))
     (supported-systems '("x86_64-linux"))
     (build-system binary-build-system)
     (arguments
@@ -217,14 +217,10 @@ exec ~a/bin/dbus-run-session -- /bin/sh -c \"$*\"~%"
                  (lambda (exe)
                    (let ((file (string-append lib "/" exe)))
                      (invoke "patchelf" "--set-interpreter" ld.so file)
+                     ;; Since 157 the crashpad tools link GLib and D-Bus
+                     ;; too, so every program gets the full RUNPATH.
                      (invoke "patchelf" "--set-rpath"
-                             (if (string-prefix? "crashpad" exe)
-                                 (string-append
-                                  (dirname (search-input-file
-                                            inputs "lib/libgcc_s.so.1"))
-                                  ":" (dirname ld.so))
-                                 (string-append lib ":" rpath))
-                             file)))
+                             (string-append lib ":" rpath) file)))
                  '("chrome-remote-desktop-host" "native-messaging-host"
                    "start-host" "remote-assistance-host" "remote-open-url"
                    "remote-session-info" "remote-webauthn" "migrate-host"

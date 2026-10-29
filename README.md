@@ -27,18 +27,19 @@ The channel depends on nonguix (`.guix-channel`): several packages use its
 | `xwayland.scm` | `xwayland-with-idle-time`, `xwayland-activity-relay` | Xwayland used by cosmic-comp, and the helper that keeps Steam from going Away; see *COSMIC* |
 | `timedated.scm` | `timedated` | systemd's timedated built alone (org.freedesktop.timedate1), for COSMIC Settings |
 | `craft.scm` | `photocraft`, `effectcraft`, `filmcraft`, `pdfcraft`, `lightcraft`, `vectorcraft`, `gridcraft`, `wordcraft`, `soundcraft`, `cadcraft`, `figcraft`, `designcraft`, `deckcraft`, `craft-launcher` | the storytold "Craft" suite, each with its `*-cli` |
-| `ladybird.scm` | `ladybird` (git master), plus private Skia 148, ANGLE, ffmpeg 9, curl+OpenSSL | Qt 6 UI; its sandbox needs Landlock (`lsm=landlock,...` kernel argument) |
+| `ladybird.scm` | `ladybird` (git master, Qt 6.10 calls guarded for Guix's Qt 6.9), plus private Skia 148, ANGLE, ffmpeg 9, curl+OpenSSL | Qt 6 UI; its sandbox needs Landlock (`lsm=landlock,...` kernel argument) |
 | `scrcpy.scm`, `scrcpy-gui.scm` | `scrcpy` 5.0.1, `scrcpy-gui` 4.1.0 | Android mirroring |
 | `faforever.scm` | `faforever-client` 0.9.2 | Rust/Tauri FAF client |
 | `pandora-launcher.scm` | `pandora-launcher` 6.0.0 | Minecraft launcher on Guix JDKs |
 | `r2modman.scm` | `r2modman` 3.2.20 | built from source, runs on nonguix's Electron 38 |
 | `radmin-vpn.scm` | `radmin-vpn-linux`, `wine64-wow64`, `wine64-wow64/prefix-update` | Radmin VPN under Wine; the Wine variants are also used by `bfme.scm` |
 | `bfme.scm` | `bfme-aio-launcher` | BFME All In One Launcher under Wine (nonfree; upstream's own builds) |
-| `gamescope.scm` | `gamescope` 3.16.31, `heroic-nvidia-new-feature-gamescope` | Heroic with gamescope inside its FHS container |
+| `gamescope.scm` | `gamescope` 3.17.0, `heroic-nvidia-new-feature-gamescope` | Heroic with gamescope inside its FHS container |
 | `claude-desktop.scm` | `claude-desktop` | Anthropic's official Linux beta, repackaged (nonfree) |
 | `chrome-remote-desktop.scm` | `chrome-remote-desktop`, `chrome-remote-desktop-service-type` | Google's host, virtual Xfce desktop (nonfree; currently disabled in the config) |
 | `openrazer.scm` | `openrazer-kernel-modules`, `%openrazer-keyboard-services` | `razerkbd` only, patched to put the BlackWidow (1532:011a) in driver mode so M1–M5 send F13–F17 |
-| `llama-cpp.scm` | `llama-cpp/latest` (Vulkan, OpenBLAS), `llama-cpp-cuda` (also CUDA, compute capability 8.6) | llama.cpp 0.7.0 with its bundled ggml; Guix has 0.5.0 |
+| `gpu-unlock.scm` | `gpu-unlock`, `gpu-unlock-firmware`, `%gpu-unlock-services` | full-rate FP16/BF16/TF32 tensor cores on GeForce RTX 20/30/40 (kernel module; firmware from NVIDIA 610.43.03 is nonfree); see *Others* |
+| `llama-cpp.scm` | `llama-cpp/latest` (Vulkan, OpenBLAS), `llama-cpp-cuda` (also CUDA, compute capability 8.6) | llama.cpp 0.8.0 with its bundled ggml; Guix has 0.5.0 |
 | `cuda.scm` | `cuda-toolkit` | NVIDIA CUDA 13.4: nvcc, cudart, cuBLAS (from NVIDIA's redist archives; nonfree); `libcuda` comes from the driver |
 | `reboot-to-bios.scm` | `reboot-to-bios` | |
 
@@ -49,6 +50,8 @@ Support modules:
   `r2modman-deps.scm`.
 - `cargo-git.scm` with `aux-files/vendor-git-crates.py` vendors crates that
   lockfiles take from git, as `cargo vendor` would, so cargo builds offline.
+  It drops `[dev-dependencies]` and the feature entries that name them, and
+  `contrib/cargo-lock-to-guix.py` also vendors `[[patch.unused]]` git crates.
 - `js-offline.scm` serves pinned npm tarballs from a throw-away 127.0.0.1
   registry during a build, so `npm ci` / `pnpm install --frozen-lockfile` run
   unmodified.
@@ -182,6 +185,9 @@ provides, so bumping it updates (and may rebuild) everything at once.
   primary output (Xwayland primary);
   fullscreen X11 windows (Wine games) on the output they placed themselves
   on, which ended black screens and mouse offsets on the other monitor.
+  (That position is smithay's `last_configure()`: `geometry()` is
+  window-relative, always at 0,0, which put every such window on the
+  left monitor until round 20.)
 - Dock: clicking the focused window's icon minimizes it from either
   monitor's dock; clicking the panel or dock doesn't take the keyboard
   focus.
@@ -212,8 +218,10 @@ provides, so bumping it updates (and may rebuild) everything at once.
   go to drive `D:` (`$XDG_DATA_HOME/bfme-aio-launcher/games`).
 - A named virtual desktop's window is named (WM_CLASS) after the desktop,
   lowercased (`faf`, `bfme`), not `explorer.exe`, so docks show each game
-  with its own name and icon, and is created on the primary monitor.  Radmin's prefix is `RADMIN_WINEPREFIX`, so a
-  global `WINEPREFIX` doesn't move it.
+  with its own name and icon.  It is created at the X11 primary monitor's
+  position (COSMIC's Xwayland primary, DP-1 here), and cosmic-comp shows a
+  fullscreen X11 window on the output it is on.  Radmin's prefix is
+  `RADMIN_WINEPREFIX`, so a global `WINEPREFIX` doesn't move it.
 
 ### Others
 
@@ -243,6 +251,22 @@ provides, so bumping it updates (and may rebuild) everything at once.
 - **pandora-launcher**: uses Guix JDKs through upstream's
   `FORCE_EXTERNAL_JAVA`; Mojang's runtimes don't run on Guix.
 - **gamescope**: in Heroic, enable it per game under Settings > Other.
+- **gpu-unlock**: `%gpu-unlock-services` installs the `gpu_unlock` module,
+  its firmware and a udev rule (`60-gpu-unlock.rules`) that loads it for
+  NVIDIA display controllers before `80-drivers.rules` loads `nvidia` from
+  the same device event; its init unlocks the cards synchronously.  (Upstream
+  uses the initramfs, which on Guix can only hold the kernel package's own
+  modules.)  It acts only on the cards named by the kernel argument
+  `gpu_unlock.targets=` (`0000:05:00.0` in the config).  Check with
+  `sudo dmesg | grep gpu_unlock`; remove the argument, or delete it in GRUB's
+  edit screen for one boot, to turn it off.
+- **ladybird**: Skia, ANGLE, FFmpeg and pdf.js take their vcpkg overlay
+  patches from a separately pinned Ladybird tree (`%ladybird-ports-commit`),
+  so moving `%ladybird-commit` doesn't rebuild them; move it too when
+  `git diff OLD NEW -- Meta/CMake/vcpkg` isn't empty.
+  libpng-apng (1.6.50) is forced on executables *and* shared libraries
+  (`-L`, `-rpath-link`, `--no-as-needed`); otherwise ld finds Qt's plain
+  1.6.39, which lacks `png_set_cICP`.
 - **openrazer-kernel-modules**: in driver mode the keyboard's own backlight
   and macro-recording keys stop working; turn it off with the kernel
   argument `razerkbd.driver_mode=0`.

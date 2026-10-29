@@ -3,21 +3,27 @@ of at the root window's origin, which is the left (or top) monitor.  The
 window manager shows a fullscreen window on the monitor it is on, so the
 FAF and BFME games' desktops opened on the second monitor.
 
+The primary monitor's root position is taken from the host monitor list:
+virtual_screen_to_root() can't be used here, since in a virtual desktop the
+virtual screen is the desktop's own, at 0,0.
+
 --- a/dlls/winex11.drv/desktop.c
 +++ b/dlls/winex11.drv/desktop.c
-@@ -68,6 +68,11 @@
+@@ -68,8 +68,12 @@
      XSetWindowAttributes win_attr;
      Window win;
      Display *display = thread_init_display();
 +    /* On the host's primary monitor rather than at the root window's
-+     * origin (the left or top monitor): the window manager puts a
++     * origin (the left or top monitor): the window manager shows a
 +     * fullscreen window on the monitor it is on. */
-+    RECT primary = get_host_primary_monitor_rect();
-+    POINT pos = virtual_screen_to_root( primary.left, primary.top );
++    POINT pos = get_host_primary_monitor_root_origin();
  
-     TRACE( "%s %ux%u\n", debugstr_w(name), width, height );
+-    TRACE( "%s %ux%u\n", debugstr_w(name), width, height );
++    TRACE( "%s %ux%u at %d,%d\n", debugstr_w(name), width, height, (int)pos.x, (int)pos.y );
  
-@@ -84,7 +89,7 @@
+     /* Create window */
+     win_attr.event_mask = ExposureMask | KeyPressMask | KeyReleaseMask | EnterWindowMask |
+@@ -84,7 +88,7 @@
          win_attr.colormap = None;
  
      win = XCreateWindow( display, DefaultRootWindow(display),
@@ -26,3 +32,57 @@ FAF and BFME games' desktops opened on the second monitor.
                           default_visual.visual, CWEventMask | CWCursor | CWColormap, &win_attr );
      if (!win) return FALSE;
  
+--- a/dlls/winex11.drv/display.c
++++ b/dlls/winex11.drv/display.c
+@@ -306,6 +306,41 @@
+     return rect;
+ }
+ 
++/* The primary monitor's top left corner in X root window coordinates.
++ * Host monitor rectangles are relative to the primary monitor, and the root
++ * window's origin is the top left corner of the area they cover.  Unlike
++ * virtual_screen_to_root(), this does not depend on the virtual screen, which
++ * in a virtual desktop is the desktop's own. */
++POINT get_host_primary_monitor_root_origin(void)
++{
++    INT gpu_count = 0, adapter_count, monitor_count, i, j, k;
++    struct x11drv_gpu *gpus = NULL;
++    struct x11drv_adapter *adapters;
++    struct gdi_monitor *monitors;
++    POINT origin = {0, 0};
++
++    if (!host_handler.get_gpus( &gpus, &gpu_count, FALSE )) return origin;
++    for (i = 0; i < gpu_count; i++)
++    {
++        if (!host_handler.get_adapters( gpus[i].id, &adapters, &adapter_count )) continue;
++        for (j = 0; j < adapter_count; j++)
++        {
++            if (!host_handler.get_monitors( adapters[j].id, &monitors, &monitor_count )) continue;
++            for (k = 0; k < monitor_count; k++)
++            {
++                origin.x = min( origin.x, monitors[k].rc_monitor.left );
++                origin.y = min( origin.y, monitors[k].rc_monitor.top );
++            }
++            host_handler.free_monitors( monitors, monitor_count );
++        }
++        host_handler.free_adapters( adapters );
++    }
++    host_handler.free_gpus( gpus, gpu_count );
++    origin.x = -origin.x;
++    origin.y = -origin.y;
++    return origin;
++}
++
+ RECT get_work_area(const RECT *monitor_rect)
+ {
+     Atom type;
+--- a/dlls/winex11.drv/x11drv.h
++++ b/dlls/winex11.drv/x11drv.h
+@@ -762,6 +762,7 @@
+ extern POINT virtual_screen_to_root( INT x, INT y );
+ extern POINT root_to_virtual_screen( INT x, INT y );
+ extern RECT get_host_primary_monitor_rect(void);
++extern POINT get_host_primary_monitor_root_origin(void);
+ extern RECT get_work_area( const RECT *monitor_rect );
+ extern BOOL xinerama_get_fullscreen_monitors( const RECT *rect, unsigned int *generation, long *indices );
+ extern void xinerama_init( unsigned int width, unsigned int height );

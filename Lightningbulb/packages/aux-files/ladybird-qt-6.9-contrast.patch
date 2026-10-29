@@ -1,0 +1,59 @@
+Qt 6.9 (Guix) has no QAccessibilityHints, which is new in Qt 6.10: without
+it the chrome never switches to its high-contrast colors.
+
+--- a/UI/Qt/Theme.cpp
++++ b/UI/Qt/Theme.cpp
+@@ -7,7 +7,10 @@
+ #include <AK/Array.h>
+ #include <UI/Qt/Theme.h>
+ 
+-#include <QAccessibilityHints>
++#include <QtGlobal>
++#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
++#    include <QAccessibilityHints>
++#endif
+ #include <QGuiApplication>
+ #include <QPalette>
+ #include <QStyleHints>
+@@ -25,7 +28,11 @@
+ 
+ bool has_increased_contrast()
+ {
++#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+     return QGuiApplication::styleHints()->accessibility()->contrastPreference() == Qt::ContrastPreference::HighContrast;
++#else
++    return false;
++#endif
+ }
+ 
+ static QColor rgb(QRgb value)
+--- a/UI/Qt/SystemAppearance.cpp
++++ b/UI/Qt/SystemAppearance.cpp
+@@ -7,7 +7,10 @@
+ #include <AK/Platform.h>
+ #include <UI/Qt/SystemAppearance.h>
+ 
+-#include <QAccessibilityHints>
++#include <QtGlobal>
++#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
++#    include <QAccessibilityHints>
++#endif
+ #include <QApplication>
+ #include <QStyleHints>
+ #include <QWidget>
+@@ -27,6 +30,7 @@
+     QObject::connect(QGuiApplication::styleHints(), &QStyleHints::colorSchemeChanged, this, [this] {
+         update();
+     });
++#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+     // The chrome's colors depend on the contrast preference, but changing it does not change the application palette.
+     // Widgets restyle themselves on palette changes, so tell them about one.
+     QObject::connect(QGuiApplication::styleHints()->accessibility(), &QAccessibilityHints::contrastPreferenceChanged, this, [] {
+@@ -37,6 +41,7 @@
+             QCoreApplication::sendEvent(widget, &event);
+         }
+     });
++#endif
+     observe_platform_changes();
+ }
+ 

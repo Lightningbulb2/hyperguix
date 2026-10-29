@@ -117,7 +117,14 @@ def main():
     checkouts = {}      # (url, commit) -> (var, url, commit, hash, recursive)
     for proj, lock in projects:
         with open(lock, "rb") as f:
-            packages = tomllib.load(f)["package"]
+            data = tomllib.load(f)
+        # [[patch.unused]]: git crates [patch]ed in but not in the graph.
+        # Cargo still looks each one up in its (replaced) source and fails
+        # when the vendored copy lacks it, so vendor them too, as `cargo
+        # vendor' does.
+        packages = data["package"] + [
+            p for p in data.get("patch", {}).get("unused", [])
+            if p.get("source", "").startswith("git+")]
         reg, git = [], []
         for p in packages:
             src = p.get("source", "")

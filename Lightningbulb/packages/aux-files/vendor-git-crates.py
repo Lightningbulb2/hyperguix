@@ -173,6 +173,25 @@ def normalize(manifest, crate_dir, ws_root, ws, vendored, crate_names):
         doc["target"] = {cfg: dict(t) for cfg, t in doc["target"].items()}
         for t in doc["target"].values():
             fix_tables(t)
+
+    # Features may name dev-dependencies ("egui_kittest/wgpu"); with those
+    # gone cargo rejects the manifest, so drop such entries too.
+    deps = set()
+    for tbl in [doc] + list(doc.get("target", {}).values()):
+        for t in DEP_TABLES:
+            deps.update(tbl.get(t, {}))
+    features = doc.get("features")
+
+    def feature_ok(entry):
+        if entry.startswith("dep:"):
+            return entry[4:] in deps
+        if "/" in entry:
+            return entry.split("/", 1)[0].rstrip("?") in deps
+        return True
+
+    if features:
+        doc["features"] = {f: [e for e in es if feature_ok(e)]
+                           for f, es in features.items()}
     return doc
 
 

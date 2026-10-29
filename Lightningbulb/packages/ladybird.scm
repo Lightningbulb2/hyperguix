@@ -61,7 +61,7 @@
   #:export (skia-for-ladybird
             angle-for-ladybird))
 
-(define %ladybird-commit "b60be2e29b721f4748998e598cda2361d05462f6")
+(define %ladybird-commit "bf3e277c50a73b5200522d3531e11f401b121870")
 
 (define %ladybird-source
   (origin
@@ -71,11 +71,27 @@
           (commit %ladybird-commit)))
     (file-name (git-file-name "ladybird" (string-take %ladybird-commit 7)))
     (sha256
+     (base32 "0w49gyf278bjmcxq57lq07j42shdz4n4ad0sbfgj91v35sag28k9"))))
+
+;; The tree the dependencies below take their vcpkg overlay port patches
+;; from.  It has its own pin so that moving %ladybird-commit doesn't rebuild
+;; Skia, ANGLE, FFmpeg and pdf.js when those patches haven't changed; move it
+;; when `git diff OLD NEW -- Meta/CMake/vcpkg' shows they have.
+(define %ladybird-ports-commit "b60be2e29b721f4748998e598cda2361d05462f6")
+
+(define %ladybird-ports-source
+  (origin
+    (method git-fetch)
+    (uri (git-reference
+          (url "https://github.com/LadybirdBrowser/ladybird")
+          (commit %ladybird-ports-commit)))
+    (file-name (git-file-name "ladybird" (string-take %ladybird-ports-commit 7)))
+    (sha256
      (base32 "1aqh7cwjvm5m1zv91gdpf9158x47kp3zy7526wvqk9mci94sv88v"))))
 
 (define (ladybird-file file)
   "FILE from Ladybird's source tree (a vcpkg overlay port patch, say)."
-  (file-append %ladybird-source "/" file))
+  (file-append %ladybird-ports-source "/" file))
 
 
 ;;;
@@ -609,7 +625,12 @@ holds the viewer files Ladybird embeds.")
   (package
     (name "ladybird")
     (version (git-version "0.0.0" "0" %ladybird-commit))
-    (source %ladybird-source)
+    ;; Patched here, not in %ladybird-source: Skia and ANGLE take patches
+    ;; from that tree and would be rebuilt.
+    (source (origin
+              (inherit %ladybird-source)
+              (patches
+               (list (local-file "aux-files/ladybird-qt-6.9-contrast.patch")))))
     (build-system cmake-build-system)
     (arguments
      (list
@@ -635,9 +656,18 @@ holds the viewer files Ladybird embeds.")
               (string-append "-DICU_ROOT=" #$(this-package-input "icu4c"))
               ;; Load the APNG-enabled libpng before Qt's plain one: both
               ;; have the same soname, and only the first loaded is used.
-              (string-append "-DCMAKE_EXE_LINKER_FLAGS=-Wl,--no-as-needed -L"
-                             #$(this-package-input "libpng-apng")
-                             "/lib -lpng16 -Wl,--as-needed"))
+              ;; Shared libraries need it too: otherwise ld resolves
+              ;; liblagom-gfx's libpng16.so.16 through another library's
+              ;; RUNPATH to the plain 1.6.39, which lacks png_set_cICP.
+              #$@(let ((flags #~(string-append
+                                 "-Wl,--no-as-needed -L"
+                                 #$(this-package-input "libpng-apng")
+                                 "/lib -Wl,-rpath-link,"
+                                 #$(this-package-input "libpng-apng")
+                                 "/lib -lpng16 -Wl,--as-needed")))
+                   (list #~(string-append "-DCMAKE_EXE_LINKER_FLAGS=" #$flags)
+                         #~(string-append "-DCMAKE_SHARED_LINKER_FLAGS="
+                                          #$flags))))
       #:phases
       #~(modify-phases %standard-phases
           (add-after 'unpack 'patch-sources
@@ -656,10 +686,6 @@ holds the viewer files Ladybird embeds.")
               ;; Guix has Qt 6.9; nothing used needs 6.10.
               (substitute* "UI/Qt/CMakeLists.txt"
                 (("Qt6 6\\.10") "Qt6 6.9"))
-              ;; QPainterPath::setCachingEnabled is new in Qt 6.10; it only
-              ;; speeds up drawing an animated border.
-              (substitute* "UI/Qt/ChromeStyle.cpp"
-                (("^ *path\\.setCachingEnabled\\(true\\);") ""))
               ;; The Landlock sandbox of the Compositor and the video decoder
               ;; allows the FHS library and data directories, plus the
               ;; directories of the libraries loaded so far and the files
@@ -679,9 +705,7 @@ holds the viewer files Ladybird embeds.")
               (substitute* "Meta/Generators/generate-build-information.py"
                 (("revision, state = git_revision\\(source\\)")
                  (string-append "revision, state = \""
-                                #$%ladybird-commit "\", \"clean\""))
-                (("tracked_files = subprocess\\.check_output.*")
-                 "tracked_files = []\n"))
+                                #$%ladybird-commit "\", \"clean\"")))
               ;; Use the pdf.js viewer from its own package (vcpkg only).
               (substitute* "UI/cmake/ResourceFiles.cmake"
                 (("if \\(NOT \"\\$\\{VCPKG_INSTALLED_DIR\\}\" STREQUAL \"\" .*")

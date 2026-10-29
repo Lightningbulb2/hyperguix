@@ -30,7 +30,7 @@
 (define-public claude-desktop
   (package
     (name "claude-desktop")
-    (version "3.1623.1")
+    (version "4.29.0")
     (source
      (origin
        (method url-fetch)
@@ -38,7 +38,7 @@
              "https://downloads.claude.ai/claude-desktop/apt/stable/pool/main/"
              "c/claude-desktop/claude-desktop_" version "_amd64.deb"))
        (sha256
-        (base32 "1nzah2g2w0jakqgwpkrjv30qxlkd779wa7iqxr1p6alvyg97f5kk"))))
+        (base32 "129a6kcaqm0mvxdmsh0a5xdlap3zbl7xab9r0aawfnn0srizg82a"))))
     (supported-systems '("x86_64-linux"))
     (build-system chromium-binary-build-system)
     (arguments

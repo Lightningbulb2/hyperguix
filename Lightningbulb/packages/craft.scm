@@ -191,16 +191,16 @@ fonts it lists (CJK, Arabic, Thai, ...) through CRAFT_FONTS_DIR."
     (license (list license:expat license:asl2.0 license:silofl1.1))))
 
 (define-public photocraft
-  (craft-app "photocraft" "0.14.0" "ff4738810134d7f7e68b49f2e4f231b686282ff3"
-             "0hfic84cv9frzq7vdprdpgbwmyy5x3hbaqil23vqs1qwj008jikn"
+  (craft-app "photocraft" "0.17.0" "b8c3f3aa8e2918032cadc0e042664414a03be333"
+             "1fzpqyvc1m05si6dj7z4wdakbfsfx2bylhgqrra5ppwsbcpqrpm0"
              #:cargo-inputs photocraft-cargo-inputs
              #:git-crates photocraft-git-crates
              ;; As in upstream's release builds: open HEIC/HEIF photos.
              #:features '("heif")
              ;; aws-lc-sys (TLS for winprint's signature checks) wants cmake.
              #:extra-native-inputs (list cmake-minimal)
-             #:fonts (craft-fonts "abb83316d96aa59c1cf64784289e378fe9fa5695"
-                                  "081q9bkxgvr64wz6zw846w3yfy6sf081hpv3xbhm8018wsj8gvkv")
+             #:fonts (craft-fonts "b076417b5880bd4154bd22f00695b1d28c6bea83"
+                                  "0ix1yqh09iwmrzlqi14j33ix6lp6jmhyq4pv8rxg18a3082db7cd")
              #:synopsis "Layer-based image editor with PSD support"
              #:description
              "PhotoCraft is an image editor modelled on Adobe Photoshop:
@@ -210,8 +210,8 @@ including HEIC/HEIF.  It also ships @command{photocraft-cli} for batch
 processing."))
 
 (define-public effectcraft
-  (craft-app "effectcraft" "0.16.0" "9581b53c3f8945683252af0eb5fac79e0e43aed4"
-             "08x5q62rsgkyj8w1knxn1v3gx4iywk0l4akv63ykwd69sqk87kj1"
+  (craft-app "effectcraft" "0.18.0" "c3600f9b59b109da97871a43a6898683a0163cb1"
+             "17w75nbjry0rgfzf6d29yy2yfk2d1sipl19zjmdkznl4qbvwnc75"
              #:cargo-inputs effectcraft-cargo-inputs
              #:git-crates effectcraft-git-crates
              ;; cpal (audio preview).
@@ -225,12 +225,12 @@ and a render queue.  @command{effectcraft-cli} renders projects from the
 command line."))
 
 (define-public filmcraft
-  (craft-app "filmcraft" "0.12.0" "abf44fda9015f4b7a96dc338f6042499bf8e9d9f"
-             "0h9z6171x22cka6m3z9s1a41ml4dns38l0dw833dw1kf2qyny93r"
+  (craft-app "filmcraft" "0.14.0" "a2d8e9ce269aba9c399e36262522e11456df6fbf"
+             "1b47d5hxjamgwm17i8sl8lpyxch2hxb5yskn67bkwid15k2cyjyr"
              #:cargo-inputs filmcraft-cargo-inputs
              #:git-crates filmcraft-git-crates
-             #:fonts (craft-fonts "abb83316d96aa59c1cf64784289e378fe9fa5695"
-                                  "081q9bkxgvr64wz6zw846w3yfy6sf081hpv3xbhm8018wsj8gvkv")
+             #:fonts (craft-fonts "b076417b5880bd4154bd22f00695b1d28c6bea83"
+                                  "0ix1yqh09iwmrzlqi14j33ix6lp6jmhyq4pv8rxg18a3082db7cd")
              ;; cpal (audio playback).
              #:extra-inputs (list alsa-lib)
              #:synopsis "Non-linear video editor with color and audio tools"
@@ -242,14 +242,14 @@ and containers.  @command{filmcraft-cli} renders and converts projects from
 the command line."))
 
 (define-public lightcraft
-  (craft-app "lightcraft" "0.13.0" "23e181283cb448205d865e8cd288b56afe987986"
-             "0j45f3aify4a42mya2mi2q9wvna4fsjm6qd4im51d46nfiw7vb9m"
+  (craft-app "lightcraft" "0.15.0" "e381c1ae6b2006ce627b243fe41697ce0d9608e0"
+             "0c4215gfphrnd0ywd8m6hr9d6pm4k47z262wbznwjr2rj51fwyx1"
              #:cargo-inputs lightcraft-cargo-inputs
              #:git-crates lightcraft-git-crates
              ;; As in upstream's release builds: open HEIC/HEIF photos.
              #:features '("lightcraft/heif" "lightcraft-cli/heif")
-             #:fonts (craft-fonts "a71c20e30af613287c504f7e685ca8fad77752bc"
-                                  "0nbnmfpfgb1gvv7ddzx3pwp3g8nnv3mjzbdzv140d6j6pa6rcg19")
+             #:fonts (craft-fonts "b076417b5880bd4154bd22f00695b1d28c6bea83"
+                                  "0ix1yqh09iwmrzlqi14j33ix6lp6jmhyq4pv8rxg18a3082db7cd")
              #:synopsis "Photo library and raw developer"
              #:description
              "LightCraft is a photo library and raw developer modelled on
@@ -260,12 +260,14 @@ vignette and grain.  It opens camera raw files, JPEG, PNG, TIFF, WebP and
 HEIC/HEIF.  @command{lightcraft-cli} renders photos without a window."))
 
 (define-public vectorcraft
-  (craft-app "vectorcraft" "0.16.0" "4a7cba0dd32e4ac249e4dc50af486b89531481aa"
-             "0695kyk88n773qkx8nh87alfacaxxcjxl8yj4rasdk2ydl2fi8if"
+  (craft-app "vectorcraft" "0.18.0" "68b68a30acad9b3d8a72802b35f43b82e2bd7d3a"
+             "1pbdzd4kpysmjxv9xcni38cpy8nx0kh5936kbsq061njx7smv25y"
              #:cargo-inputs vectorcraft-cargo-inputs
              #:git-crates vectorcraft-git-crates
-             #:fonts (craft-fonts "a71c20e30af613287c504f7e685ca8fad77752bc"
-                                  "0nbnmfpfgb1gvv7ddzx3pwp3g8nnv3mjzbdzv140d6j6pa6rcg19")
+             #:fonts (craft-fonts "b076417b5880bd4154bd22f00695b1d28c6bea83"
+                                  "0ix1yqh09iwmrzlqi14j33ix6lp6jmhyq4pv8rxg18a3082db7cd")
+             ;; aws-lc-sys (TLS for winprint's signature checks) wants cmake.
+             #:extra-native-inputs (list cmake-minimal)
              #:synopsis "Vector illustration program"
              #:description
              "VectorCraft is a vector illustration program modelled on Adobe
@@ -275,12 +277,14 @@ Illustrator files, and exports PNG, JPEG and WebP.  @command{vectorcraft-cli}
 runs batch jobs without a window."))
 
 (define-public designcraft
-  (craft-app "designcraft" "0.12.0" "e74208dd7e0c801d15dfdf926d64cfe5e3b346d3"
-             "09z6iwyh0f7m4pz7xvdczmp5dbr66zxb5b5sr8d77fpifird26fw"
+  (craft-app "designcraft" "0.14.0" "7da69c16ce221f46e8f27cb41e0c88167c8be416"
+             "04vw60q9na9aw14v8k3lcls8p7rma36h3p89bkblh380vrjc62kr"
              #:cargo-inputs designcraft-cargo-inputs
              #:git-crates designcraft-git-crates
-             #:fonts (craft-fonts "abb83316d96aa59c1cf64784289e378fe9fa5695"
-                                  "081q9bkxgvr64wz6zw846w3yfy6sf081hpv3xbhm8018wsj8gvkv")
+             #:fonts (craft-fonts "b076417b5880bd4154bd22f00695b1d28c6bea83"
+                                  "0ix1yqh09iwmrzlqi14j33ix6lp6jmhyq4pv8rxg18a3082db7cd")
+             ;; aws-lc-sys (TLS for winprint's signature checks) wants cmake.
+             #:extra-native-inputs (list cmake-minimal)
              #:synopsis "Desktop publishing and page layout program"
              #:description
              "DesignCraft is a desktop publishing program modelled on Adobe
@@ -291,12 +295,12 @@ and PDF/A-2b), EPUB, PPTX and PNG.  @command{designcraft-cli} converts and
 exports documents from the command line."))
 
 (define-public pdfcraft
-  (craft-app "pdfcraft" "0.13.0" "0dc77fe4ed8810b9e9f25b9dd050afae662c062a"
-             "1gkcds4zac0cp2ib08dd7734kvvgf8m9phkg8fxl43jkp5pg00fw"
+  (craft-app "pdfcraft" "0.15.0" "75360d1d7db06fed974f48c914d4c04132757187"
+             "0gbvj2wza56kl8vkb1nm53ylhlqvkgaqp356ffvczccmyzhi4y7m"
              #:cargo-inputs pdfcraft-cargo-inputs
              #:git-crates pdfcraft-git-crates
-             #:fonts (craft-fonts "3d9ab3a132ed0eff457e424226a435a901da30d3"
-                                  "0c89azfbjmn9w8737fr3hkpin28449nqkrnws7smb9qf2z6c7ncq")
+             #:fonts (craft-fonts "b076417b5880bd4154bd22f00695b1d28c6bea83"
+                                  "0ix1yqh09iwmrzlqi14j33ix6lp6jmhyq4pv8rxg18a3082db7cd")
              ;; aws-lc-sys (TLS for signature checks) wants cmake.
              #:extra-native-inputs (list cmake-minimal)
              #:synopsis "PDF reader and editor"
@@ -309,12 +313,14 @@ are kept.  @command{pdfcraft-cli} inspects and renders PDF files from the
 command line."))
 
 (define-public wordcraft
-  (craft-app "wordcraft" "0.10.0" "3a4770ef8ce037d2650c93e2d5764536549357c7"
-             "0514sqg0r3ziz1fbrfrb4gpl410yx79n57dzr7zix0w7gr23lb2w"
+  (craft-app "wordcraft" "0.12.0" "3de6ff95af86c19d67030cd96dba15cd6a45a25e"
+             "0963x8a9x9zchwp5j7mf8ihn2hwsmrpz48z0hnixangpq6c4l6if"
              #:cargo-inputs wordcraft-cargo-inputs
              #:git-crates wordcraft-git-crates
-             #:fonts (craft-fonts "8dcdacd5153e64560d109541a47d806f26f048c0"
-                                  "1qjgv7l6bndaww2nnpzhgm2glng04yfbxsamqkykvrs4v2p4wkz0")
+             #:fonts (craft-fonts "b076417b5880bd4154bd22f00695b1d28c6bea83"
+                                  "0ix1yqh09iwmrzlqi14j33ix6lp6jmhyq4pv8rxg18a3082db7cd")
+             ;; aws-lc-sys (TLS for winprint's signature checks) wants cmake.
+             #:extra-native-inputs (list cmake-minimal)
              #:synopsis "Word processor with DOCX support"
              #:description
              "WordCraft is a word processor modelled on Microsoft Word: the
@@ -325,12 +331,14 @@ PDF.  @command{wordcraft-cli} converts, inspects and renders documents from
 the command line."))
 
 (define-public gridcraft
-  (craft-app "gridcraft" "0.11.1" "ac8da7d49cbeb4be6aa1ad5869f3d29fe2da8cd9"
-             "1jyi01gcih2bdcs74zczg4j5l0g7xyrm7q2lgkibkyfp0d6925k6"
+  (craft-app "gridcraft" "0.13.0" "43284377d2466037628e57d8ad0c891778fdb45c"
+             "16cj8gz635785dl0bgdvzx7v43fqn8xabhsglpxpyndp9ci1nn9g"
              #:cargo-inputs gridcraft-cargo-inputs
              #:git-crates gridcraft-git-crates
-             #:fonts (craft-fonts "abb83316d96aa59c1cf64784289e378fe9fa5695"
-                                  "081q9bkxgvr64wz6zw846w3yfy6sf081hpv3xbhm8018wsj8gvkv")
+             #:fonts (craft-fonts "b076417b5880bd4154bd22f00695b1d28c6bea83"
+                                  "0ix1yqh09iwmrzlqi14j33ix6lp6jmhyq4pv8rxg18a3082db7cd")
+             ;; aws-lc-sys (TLS for winprint's signature checks) wants cmake.
+             #:extra-native-inputs (list cmake-minimal)
              #:synopsis "Spreadsheet program with XLSX support"
              #:description
              "GridCraft is a spreadsheet program modelled on Microsoft Excel: a
@@ -341,9 +349,8 @@ and TSV, and imports XLS, XLSB and ODS data.  @command{gridcraft-cli}
 inspects, converts and evaluates workbooks from the command line."))
 
 (define-public soundcraft
-  (craft-app "soundcraft" "0.12.1" "fe4bb3fe0cb3cf8363f243e3e4a6c607cdbd83e0"
-             "00awsngd0bhss0bhmrfsazjkjd7jvz8lhbhxvbxl6n0vxlznl2s7"
-             #:revision "1"
+  (craft-app "soundcraft" "0.14.0" "c6befe57afd0dc35fc4b86a01b2a19011ae1df1e"
+             "0w6bliw2s06acmzy9z7pq3r7agdpvxh5spvlx353qmi7zaar39mv"
              #:cargo-inputs soundcraft-cargo-inputs
              #:git-crates soundcraft-git-crates
              ;; cpal (audio input and output).
@@ -357,13 +364,12 @@ instruments, and CLAP plug-ins.  @command{soundcraft-cli} edits, converts and
 bounces sessions from the command line."))
 
 (define-public cadcraft
-  (craft-app "cadcraft" "0.12.0" "37150774c6d614776e049ade4c474fec8c0ef32e"
-             "15faajz9qc3p8ljgfgj44fg0d8r1cka474ywgpa49fwn0mxifazl"
-             #:revision "1"
+  (craft-app "cadcraft" "0.14.0" "fbd97d432cdf36a566c0c53739481bd6f0c32b0d"
+             "1fmyaxxk9668vcir1yjn0qgx66w0g0r44gq5p74j4q21242a2xp7"
              #:cargo-inputs cadcraft-cargo-inputs
              #:git-crates cadcraft-git-crates
-             #:fonts (craft-fonts "3d9ab3a132ed0eff457e424226a435a901da30d3"
-                                  "0c89azfbjmn9w8737fr3hkpin28449nqkrnws7smb9qf2z6c7ncq")
+             #:fonts (craft-fonts "b076417b5880bd4154bd22f00695b1d28c6bea83"
+                                  "0ix1yqh09iwmrzlqi14j33ix6lp6jmhyq4pv8rxg18a3082db7cd")
              #:synopsis "2D and 3D computer-aided design program"
              #:description
              "CADCraft is a computer-aided design and drafting program
@@ -373,12 +379,12 @@ hatches and blocks, and reading and writing DXF and DWG drawings.
 the command line."))
 
 (define-public figcraft
-  (craft-app "figcraft" "0.10.0" "80f916326fb94f3a88cb24e64f396f564a0ebc06"
-             "1clv4ama3yambdihj5knadkzrkk4dqfscmq8vh0afll1rri08dqr"
+  (craft-app "figcraft" "0.12.1" "ef9721c5b9d0f1cc19a74449cbe175fc06bf8efa"
+             "06ibayfbsh001dppvacdw9f2r78a127q2lgsf6ny2qdvd1jcbndd"
              #:cargo-inputs figcraft-cargo-inputs
              #:git-crates figcraft-git-crates
-             #:fonts (craft-fonts "43913056ce82a3fdad0ef69f6b88d1dc922a8104"
-                                  "0in06alnrhzjgmw12s2f4bcsp50iiblfmjksbv7jr4jyrbkc4mxv")
+             #:fonts (craft-fonts "37827adc41fd165f9a9234ac40f94dbad353aa69"
+                                  "1vqsvwd3ix67gbj0q6kzmr2rah78ysc1m84fvf9b4blbzln4rw85")
              #:synopsis "Interface design and prototyping tool"
              #:description
              "FigCraft is an interface design and prototyping tool modelled on
@@ -388,12 +394,12 @@ WebP and PDF, and opens Figma files.  @command{figcraft-cli} exports,
 converts and renders files from the command line."))
 
 (define-public deckcraft
-  (craft-app "deckcraft" "0.10.0" "b47195feec0f0fe4220d8943ad1c8add5dad8072"
-             "08jhnikqciqa5chk4yp1jkncbpv3dzpcc3r35nagd476f50ihpxb"
+  (craft-app "deckcraft" "0.12.0" "29f0f7772c47aa2bfb74fcbb0c4d3b1503300849"
+             "0q3i56jvq1x3p1hqd39snid5r5qvnkjxvnc618l8y1k8b4slhr05"
              #:cargo-inputs deckcraft-cargo-inputs
              #:git-crates deckcraft-git-crates
-             #:fonts (craft-fonts "43913056ce82a3fdad0ef69f6b88d1dc922a8104"
-                                  "0in06alnrhzjgmw12s2f4bcsp50iiblfmjksbv7jr4jyrbkc4mxv")
+             #:fonts (craft-fonts "37827adc41fd165f9a9234ac40f94dbad353aa69"
+                                  "1vqsvwd3ix67gbj0q6kzmr2rah78ysc1m84fvf9b4blbzln4rw85")
              ;; cpal (sound in slide shows).
              #:extra-inputs (list alsa-lib)
              #:synopsis "Presentation program with PPTX support"
@@ -405,8 +411,8 @@ and saves PPTX presentations.  @command{deckcraft-cli} converts and renders
 decks from the command line."))
 
 (define-public craft-launcher
-  (craft-app "craft-launcher" "0.7.0" "9419d8977bc70f80373da8558356e4ba7387c7b2"
-             "0qvcs71k44nijnm46p9lcp5fxiql31xx9icahbddbvc2w5y5d1qq"
+  (craft-app "craft-launcher" "0.9.0" "9613c285dd40095c47772ee4e47494c06618d57a"
+             "0kqm07j04a5vsih06y6jgabfw6z07ibhydqc6d1j0n2pir7j94ay"
              #:cargo-inputs craft-launcher-cargo-inputs
              #:git-crates craft-launcher-git-crates
              #:binaries '("artcraft-launcher")

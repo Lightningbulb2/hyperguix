@@ -441,19 +441,21 @@ Window placement across outputs.
              .unwrap_or_else(|| seat.focused_or_active_output());
  
          match shell.fullscreen_request(
-@@ -1352,3 +1372,25 @@
+@@ -1352,3 +1372,27 @@
          xwayland_state.xwm = None;
      }
  }
 +
 +/// The output an X11 window placed itself on: the one holding the centre of
 +/// the geometry it asked for (unmapped windows get what they ask for, see
-+/// `configure_request`).
++/// `configure_request`).  That is `last_configure()`, which starts out as
++/// the window's position at creation; `geometry()` is relative to the
++/// window itself (always at 0,0), so it would always pick the output there.
 +fn x11_requested_output(
 +    shell: &Shell,
 +    window: &X11Surface,
 +) -> Option<smithay::output::Output> {
-+    let geometry = window.geometry();
++    let geometry = window.last_configure();
 +    let (x, y) = (
 +        geometry.loc.x + geometry.size.w / 2,
 +        geometry.loc.y + geometry.size.h / 2,
