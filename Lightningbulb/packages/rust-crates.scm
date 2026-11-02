@@ -222,8 +222,8 @@
   (crate "ctor-proc-macro" "0.0.7" "1havwah6iryn0ang09y12xxr45jsp7ff27zflz4mhgk017ghlmjj"))
 (define rust-ctutils-0.4.2
   (crate "ctutils" "0.4.2" "17m2s9jv7i780k26cq2fcyslg0pakv9plwdrmygdwha1hfiiambx"))
-(define rust-ctutils-0.4.3
-  (crate "ctutils" "0.4.3" "0x25mzy56kl9lx2ddcvhfjh6k6qnk54p98fr478q5m3hr4f0xfq3"))
+(define rust-ctutils-0.4.5
+  (crate "ctutils" "0.4.5" "182gbkq9y4j8rpwyf2iwlvdpn5sw257fd8yizyrq1mkxmav8zliq"))
 (define rust-darling-0.23.0
   (crate "darling" "0.23.0" "179fj6p6ajw4dnkrik51wjhifxwy02x5zhligyymcb905zd17bi5"))
 (define rust-darling_core-0.23.0
@@ -1144,8 +1144,8 @@
   (crate "tinyvec_macros" "0.1.1" "081gag86208sc3y6sdkshgw3vysm5d34p431dzw0bshz66ncng0z"))
 (define rust-tokio-1.52.1
   (crate "tokio" "1.52.1" "1imw1dkkv38p66i33m5hsyk3d6prsbyrayjvqhndjvz89ybywzdn"))
-(define rust-tokio-1.52.3
-  (crate "tokio" "1.52.3" "1zpzazypkg61sw91na1m85x5s4rsjym335fwwhwm1hcs70dz1iwg"))
+(define rust-tokio-1.54.1
+  (crate "tokio" "1.54.1" "18wn0c3yvy6ld8yis0fw6rqkc4rwnmv5mav4fan6zljqa8jx6bxm"))
 (define rust-tokio-macros-2.7.0
   (crate "tokio-macros" "2.7.0" "15m4f37mdafs0gg36sh0rskm1i768lb7zmp8bw67kaxr3avnqniq"))
 (define rust-tokio-native-tls-0.3.1
@@ -2210,7 +2210,7 @@
         rust-cssparser-macros-0.6.1
         rust-ctor-0.8.0
         rust-ctor-proc-macro-0.0.7
-        rust-ctutils-0.4.3
+        rust-ctutils-0.4.5
         rust-darling-0.23.0
         rust-darling_core-0.23.0
         rust-darling_macro-0.23.0
@@ -2575,7 +2575,7 @@
         rust-tinystr-0.8.3
         rust-tinyvec-1.11.0
         rust-tinyvec_macros-0.1.1
-        rust-tokio-1.52.3
+        rust-tokio-1.54.1
         rust-tokio-macros-2.7.0
         rust-tokio-native-tls-0.3.1
         rust-tokio-rustls-0.26.4
@@ -2751,9 +2751,7 @@
         rust-zlib-rs-0.6.8
         rust-zmij-1.0.21
         rust-zopfli-0.8.3
-        rust-zstd-0.13.3
         rust-zstd-0.14.3
-        rust-zstd-safe-7.2.4
         rust-zstd-safe-8.2.0
         rust-zstd-sys-2.1.2-zstd.1.5.7
         rust-zvariant-4.2.0

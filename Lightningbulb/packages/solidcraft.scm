@@ -14,7 +14,6 @@
   #:use-module (gnu packages elf)
   #:use-module (gnu packages freedesktop)
   #:use-module (gnu packages gl)
-  #:use-module (gnu packages glib)
   #:use-module (gnu packages pkg-config)
   #:use-module (gnu packages rust)
   #:use-module (gnu packages vulkan)
@@ -28,12 +27,12 @@
         vulkan-loader wayland))
 
 (define-public solidcraft
-  (let ((commit "9454afe13a87ea31330b7cb413fb3d440bd46f5c")
+  (let ((commit "afd81380ab06b0e77e03fdf68185d4b484d0e84e")
         (revision "0")
         (binaries '("solidcraft" "solidcraft-cli")))
     (package
       (name "solidcraft")
-      (version (git-version "0.26.1" revision commit))
+      (version (git-version "0.30.0" revision commit))
       (source
        (origin
          (method git-fetch)
@@ -42,7 +41,7 @@
                (commit commit)))
          (file-name (git-file-name name version))
          (sha256
-          (base32 "0xs0n7q6kmalij8j06ikjzny9injv4jf0pj6i9rpnqxgl9ark7f5"))))
+          (base32 "1cn0l6w0sgp482zpg0qz2q0cg1jh9hs97d1bnln7dl2dszakrkcq"))))
       (build-system cargo-build-system)
       (arguments
        (list
@@ -83,7 +82,7 @@
                                             ".metainfo.xml.in")
                              metainfo)
                   (substitute* metainfo
-                    (("@VERSION@") "0.26.1")
+                    (("@VERSION@") "0.30.0")
                     ;; No meaningful release date for a git snapshot.
                     ((" date=\"@DATE@\"") ""))
                   (for-each
@@ -110,12 +109,7 @@
                              (string-append #$output "/bin/" program)))
                    '#$binaries)))))))
       (native-inputs (list patchelf pkg-config))
-      (inputs
-       ;; dbus: libdbus-sys (the Secret Service keychain for the agent
-       ;; chat's API keys).
-       (append (list dbus)
-               %solidcraft-runtime-libraries
-               solidcraft-cargo-inputs))
+      (inputs (append %solidcraft-runtime-libraries solidcraft-cargo-inputs))
       (supported-systems '("x86_64-linux" "aarch64-linux"))
       (home-page "https://solidcraft.io")
       (synopsis "Parametric 3D CAD application")

@@ -26,13 +26,13 @@ The channel depends on nonguix (`.guix-channel`): several packages use its
 | `cosmic.scm` | `cosmic` (meta) and all its components, `cosmic-greeter`, `pop-launcher`, `cosmic-icons`, `pop-icon-theme`, `cosmic-sound-theme`, `cosmic-wallpapers` (COSMIC epoch 1.11.0) | see *COSMIC* below |
 | `xwayland.scm` | `xwayland-with-idle-time`, `xwayland-activity-relay` | Xwayland used by cosmic-comp, and the helper that keeps Steam from going Away; see *COSMIC* |
 | `timedated.scm` | `timedated` | systemd's timedated built alone (org.freedesktop.timedate1), for COSMIC Settings |
-| `craft.scm` | `photocraft`, `effectcraft`, `filmcraft`, `pdfcraft`, `lightcraft`, `vectorcraft`, `gridcraft`, `wordcraft`, `soundcraft`, `cadcraft`, `figcraft`, `designcraft`, `deckcraft`, `craft-launcher` | the storytold "Craft" suite, each with its `*-cli` |
-| `solidcraft.scm` | `solidcraft` 0.26.1 (with `solidcraft-cli`) | Tangency Labs' parametric 3D CAD; crates in `solidcraft-crates.scm` |
+| `craft.scm` | `photocraft`, `effectcraft`, `filmcraft`, `pdfcraft`, `lightcraft`, `vectorcraft`, `gridcraft`, `wordcraft`, `soundcraft`, `cadcraft`, `figcraft`, `designcraft`, `deckcraft`, `texturecraft`, `craft-anything`, `craft-launcher` | the storytold "Craft" suite, each with its `*-cli`; craft-anything needs Rust 1.97 (`rust-next.scm`) |
+| `solidcraft.scm` | `solidcraft` 0.30.0 (with `solidcraft-cli`) | Tangency Labs' parametric 3D CAD; crates in `solidcraft-crates.scm` |
 | `ladybird.scm` | `ladybird` (git master, Qt 6.10 calls guarded for Guix's Qt 6.9), plus private Skia 148, ANGLE, ffmpeg 9, curl+OpenSSL | Qt 6 UI; its sandbox needs Landlock (`lsm=landlock,...` kernel argument) |
 | `scrcpy.scm`, `scrcpy-gui.scm` | `scrcpy` 5.0.1, `scrcpy-gui` 4.1.0 | Android mirroring |
-| `faforever.scm` | `faforever-client` 0.9.2 | Rust/Tauri FAF client |
+| `faforever.scm` | `faforever-client` 0.9.5 | Rust/Tauri FAF client |
 | `pandora-launcher.scm` | `pandora-launcher` 6.0.0 | Minecraft launcher on Guix JDKs |
-| `r2modman.scm` | `r2modman` 3.2.20 | built from source, runs on nonguix's Electron 38 |
+| `r2modman.scm` | `r2modman` 3.2.21 | built from source, runs on nonguix's Electron 38 |
 | `radmin-vpn.scm` | `radmin-vpn-linux`, `wine64-wow64`, `wine64-wow64/prefix-update` | Radmin VPN under Wine; the Wine variants are also used by `bfme.scm` |
 | `bfme.scm` | `bfme-aio-launcher` | BFME All In One Launcher under Wine (nonfree; upstream's own builds) |
 | `gamescope.scm` | `gamescope` 3.17.0, `heroic-nvidia-new-feature-gamescope` | Heroic with gamescope inside its FHS container |
@@ -48,7 +48,9 @@ Support modules:
 
 - **Generated** (never edit by hand): `cosmic-crates.scm`, `craft-crates.scm`,
   `ladybird-crates.scm`, `rust-crates.scm`, `node-deps.scm`,
-  `r2modman-deps.scm`.
+  `r2modman-deps.scm`, `solidcraft-crates.scm`.
+- `rust-next.scm`: `rust-1.97` (Guix master's definition, bootstrapped from
+  the pinned Guix's rust-1.96), until the Guix pin has it.
 - `cargo-git.scm` with `aux-files/vendor-git-crates.py` vendors crates that
   lockfiles take from git, as `cargo vendor` would, so cargo builds offline.
   It drops `[dev-dependencies]` and the feature entries that name them, and
@@ -246,7 +248,10 @@ provides, so bumping it updates (and may rebuild) everything at once.
   nonguix's containerized Steam from the host, so `faf-steam-presence`
   (`FAF_STEAM_PRESENCE_COMMAND`) runs a small helper inside the running
   Steam container (`nsenter` into its user, mount, PID and IPC namespaces)
-  for as long as the game runs. The self-updater is disabled.
+  for as long as the game runs. The self-updater is disabled, and so is
+  0.9.5's own Linux runtime (GE-Proton in Valve's Steam Linux Runtime,
+  downloaded on first start): it needs an FHS host and would bypass
+  wine64-wow64's fixes, so the default launch command counts as your own.
 - **r2modman**: also finds that sandboxed Steam library and launches games
   with `steam -applaunch`; mods need its profile directory shared into the
   Steam container (`GUIX_SANDBOX_EXTRA_SHARES`, set by the config).

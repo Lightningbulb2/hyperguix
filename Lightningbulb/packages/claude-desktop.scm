@@ -30,7 +30,7 @@
 (define-public claude-desktop
   (package
     (name "claude-desktop")
-    (version "4.29.0")
+    (version "4.4212.0")
     (source
      (origin
        (method url-fetch)
@@ -38,7 +38,7 @@
              "https://downloads.claude.ai/claude-desktop/apt/stable/pool/main/"
              "c/claude-desktop/claude-desktop_" version "_amd64.deb"))
        (sha256
-        (base32 "129a6kcaqm0mvxdmsh0a5xdlap3zbl7xab9r0aawfnn0srizg82a"))))
+        (base32 "113szpxqnbg8c00ajgpcn1hy5g6zh5r2i4r5p053k5f81y76bksg"))))
     (supported-systems '("x86_64-linux"))
     (build-system chromium-binary-build-system)
     (arguments
@@ -56,6 +56,9 @@
             ,(string-append lib "libvulkan.so.1")
             ;; Native-messaging host for the "Claude in Chrome" extension.
             ,(string-append lib "resources/chrome-native-host")
+            ;; The one other dynamically linked helper (libc only); the
+            ;; others in resources/ are static.
+            ,(string-append lib "resources/disclaimer")
             ;; Shares folders with the Cowork VM.
             ,(string-append lib "resources/virtiofsd")
             ,(string-append lib "resources/app.asar.unpacked/node_modules/"

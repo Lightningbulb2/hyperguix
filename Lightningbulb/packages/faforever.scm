@@ -24,6 +24,8 @@
 ;;; here) and runs that ForgedAlliance.exe through Settings -> Game ->
 ;;; "Launch command".  Left empty, that is our faf-wine: Wine (new WoW64)
 ;;; with DXVK, in the prefix $XDG_DATA_HOME/faforever/wine ($FAF_WINEPREFIX).
+;;; Upstream's own Linux runtime (0.9.5: GE-Proton in Valve's Steam Linux
+;;; Runtime, downloaded on first start) is kept off; see 'no-linux-runtime.
 
 (define-module (Lightningbulb packages faforever)
   #:use-module (guix packages)
@@ -88,10 +90,10 @@
                         "0yzxnd053bhm4jxqn92dy4xil9gpn9fm1zby7w8gvjzkh5s8wm7d"))
 
 (define-public faforever-client
-  (let ((commit "f86737ac3d3d332a15e214b64bd63165ded1afb5")) ;tag v0.9.2
+  (let ((commit "f42bfc52d182ac17db68e1a3351408f15ccfaf31")) ;tag v0.9.5
     (package
       (name "faforever-client")
-      (version "0.9.2")
+      (version "0.9.5")
       (source
        (origin
          (method git-fetch)
@@ -100,7 +102,7 @@
                (commit commit)))
          (file-name (git-file-name name version))
          (sha256
-          (base32 "1sa03ajh5q6v4yl6xsk6wqhdh4l363szbgkzhhnamynszr8mvavv"))))
+          (base32 "0bw60c8ssii7kr1g3glpc2mdd8acqkqaqrx09skz7zkkskz8r73x"))))
       (build-system cargo-build-system)
       (arguments
        (list
@@ -215,6 +217,22 @@ fn guix_sandbox_home() -> Option<PathBuf> {
                     indent "} else {\n"
                     indent "    wrapper\n"
                     indent "};")))))
+            (add-after 'unpack 'no-linux-runtime
+              ;; Since 0.9.5 the client, when no launch command is set,
+              ;; downloads faf-linux's runtime on its first start (GE-Proton
+              ;; in Valve's Steam Linux Runtime container, about 1.5 GB) and
+              ;; runs the game in it.  That container expects an FHS host
+              ;; (bwrap, Vulkan loaders in the ldconfig cache, the GPU driver
+              ;; under /usr) and would bypass our patched Wine, so our
+              ;; default launch command counts as the player's own: the
+              ;; runtime is "not needed" and never installed.
+              (lambda _
+                (substitute* "crates/faf-app/src/services/linux_runtime.rs"
+                  (("let own_command = out\\.with_state\\(" all)
+                   (string-append
+                    "let own_command = std::env::var_os(\"FAF_DEFAULT_LAUNCH_WRAPPER\")
+        .is_some_and(|wrapper| !wrapper.is_empty())
+        || " (substring all (string-length "let own_command = ")))))))
             (add-after 'unpack 'steam-presence-command
               ;; Steam status: the client's helper calls SteamAPI_Init on the
               ;; host, where nonguix's containerized Steam can't be found.
@@ -495,6 +513,10 @@ if [ ! -e \"$stamp\" ] && [ -f \"${exe%/*}/../fa_path.lua\" ]; then
       'fa_path = \"'*) retail=${line#'fa_path = \"'}; retail=${retail%\\\"*} ;;
     esac
   done < \"${exe%/*}/../fa_path.lua\"
+  # Since 0.9.5 a path on Wine's Z: drive (Z:/home/...).
+  case $retail in
+    [Zz]:/*) retail=${retail#?:} ;;
+  esac
   if [ -f \"$retail/DirectX/DXSETUP.exe\" ]; then
     \"$wine\" \"$retail/DirectX/DXSETUP.exe\" /silent && : > \"$stamp\"
   fi

@@ -173,11 +173,11 @@ exec ~a/bin/wine \"$@\"
     (propagated-inputs '())))
 
 (define-public radmin-vpn-linux
-  (let ((commit "754389524327ad8e9ec0eb7de8348a74cacfd1f6")
+  (let ((commit "e30eeb8b7240db03804b8006645e9dfcdedb979d") ;tag v1.1.1
         (revision "0"))
     (package
       (name "radmin-vpn-linux")
-      (version (git-version "1.1.0" revision commit))
+      (version (git-version "1.1.1" revision commit))
       (source
        (origin
          (method git-fetch)
@@ -186,7 +186,7 @@ exec ~a/bin/wine \"$@\"
                (commit commit)))
          (file-name (git-file-name name version))
          (sha256
-          (base32 "1m1mb9vhh25fsrglaiv0fh39mqc4dkplp12bzm371n99sbbh7spa"))))
+          (base32 "13y6r40n3i49nkwnwzns9bps27w604k6cg8kv9zlyyj8yln7ypys"))))
       (build-system gnu-build-system)
       (arguments
        (list

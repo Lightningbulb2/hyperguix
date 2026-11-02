@@ -31,13 +31,10 @@
   #:use-module (Lightningbulb packages r2modman-deps))
 
 (define-public r2modman
-  ;; The v3.2.20 tag points at the commit *before* "Release 3.2.20", whose
-  ;; package.json still says 3.2.19; the release binaries were built from
-  ;; the release commit, so use that.
-  (let ((commit "4be4fec0b0cff2fe5d302c879a04e4d5c7c1415a"))
+  (let ((commit "b09ec5a9deaef85ebae3e9b3040c23cd91fda4e3")) ;tag v3.2.21
     (package
       (name "r2modman")
-      (version "3.2.20")
+      (version "3.2.21")
       (source
        (origin
          (method git-fetch)
@@ -46,7 +43,7 @@
                (commit commit)))
          (file-name (git-file-name name version))
          (sha256
-          (base32 "0alydfd9ig24qdwmqx8i6z7m1sh1r6x5vlpgx6q1kvmj0hirg8dv"))))
+          (base32 "1ksan5rbwdmrwngknkiakgbcp3lr9zk53m064g64g8w5ryvzysmr"))))
       (build-system gnu-build-system)
       (arguments
        (list

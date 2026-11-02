@@ -127,19 +127,6 @@ ip_allowed() {
     done
     [ -n "$device" ]
 }
-relay_allowed() {
-    # The netsh relay's commands: "ip ... radminvpn0 [2>/dev/null]; ...".
-    local part
-    local -a parts words
-    IFS=';' read -r -a parts <<< "$1"
-    for part in "${parts[@]}"; do
-        read -r -a words <<< "$part"
-        [ ${#words[@]} -eq 0 ] && continue
-        [ "${words[-1]}" = "2>/dev/null" ] && unset 'words[-1]'
-        case "${words[*]}" in *">"*) return 1 ;; esac
-        [ "${words[0]:-}" = ip ] && ip_allowed "${words[@]:1}" || return 1
-    done
-}
 sudo_allowed() {
     while [ $# -gt 0 ]; do
         case "$1" in
@@ -152,14 +139,10 @@ sudo_allowed() {
     done
     [ $# -eq 0 ] && return 0            # sudo -v: refresh the time stamp
     local arg
-    # Plain words only; the relay's shell commands also have ";" and ">".
+    # Plain words only.  (Since 1.1.1 the netsh relay runs `ip' itself, with
+    # separate arguments, instead of "sh -c" lines.)
     for arg in "$@"; do
-        case "$arg" in "") return 1 ;; esac
-        if [ "$1 ${2:-}" = "sh -c" ] && [ "$arg" = "${3:-}" ]; then
-            case "$arg" in *[!A-Za-z0-9._:/\ \;\>-]*) return 1 ;; esac
-        else
-            case "$arg" in *[!A-Za-z0-9._:/=-]*) return 1 ;; esac
-        fi
+        case "$arg" in ""|*[!A-Za-z0-9._:/=-]*) return 1 ;; esac
     done
     case "$1" in
         true|dmesg) [ $# -eq 1 ] ;;
@@ -168,7 +151,6 @@ sudo_allowed() {
         sysctl) [ $# -eq 3 ] && [ "$2" = -w ] &&
                     case "$3" in net.ipv4.conf.radminvpn0.*=*) true ;; *) false ;; esac ;;
         nmcli) [ "$*" = "nmcli device set radminvpn0 managed no" ] ;;
-        sh) [ $# -eq 3 ] && [ "$2" = -c ] && relay_allowed "$3" ;;
         *) false ;;
     esac
 }

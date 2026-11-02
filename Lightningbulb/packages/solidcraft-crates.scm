@@ -14,8 +14,6 @@
   (crate "accesskit_consumer" "0.36.0" "0q5sbl4v11c1x38x9jqnj9wdd04ydqa6fkbps4hxrx06bpidgq15"))
 (define rust-accesskit_consumer-0.38.0
   (crate "accesskit_consumer" "0.38.0" "0ic2z39avgqp2c26pkav3pq1whw5cw220ig4683xg1vgz4va442x"))
-(define rust-accesskit_macos-0.26.3
-  (crate "accesskit_macos" "0.26.3" "0xk0bg2xlw89c0nlv9np4x283j1d58qldjcsmyb9431zniixq0nf"))
 (define rust-accesskit_unix-0.21.1
   (crate "accesskit_unix" "0.21.1" "0z0rrg48q3n0cwclgahn0yb2sjci0cjdda99zz7a43pan26wl5mh"))
 (define rust-accesskit_windows-0.32.1
@@ -832,6 +830,8 @@
   (crate "syn" "3.0.6" "1vmw7s58rzrs926nv5m06x7qbgswm1aa9iw3s1bj5var47kyi4w5"))
 (define rust-synstructure-0.13.2
   (crate "synstructure" "0.13.2" "1lh9lx3r3jb18f8sbj29am5hm9jymvbwh6jb1izsnnxgvgrp12kj"))
+(define rust-sys-locale-0.3.2
+  (crate "sys-locale" "0.3.2" "1i16hq9mkwpzqvixjfy1ph4i2q5klgagjg4hibz6k894l2crmawf"))
 (define rust-tempfile-3.27.0
   (crate "tempfile" "3.27.0" "1gblhnyfjsbg9wjg194n89wrzah7jy3yzgnyzhp56f3v9jd7wj9j"))
 (define rust-termcolor-1.4.1
@@ -1166,7 +1166,6 @@
         rust-accesskit_consumer-0.35.0
         rust-accesskit_consumer-0.36.0
         rust-accesskit_consumer-0.38.0
-        rust-accesskit_macos-0.26.3
         rust-accesskit_unix-0.21.1
         rust-accesskit_windows-0.32.1
         rust-accesskit_winit-0.32.2
@@ -1575,6 +1574,7 @@
         rust-syn-2.0.119
         rust-syn-3.0.6
         rust-synstructure-0.13.2
+        rust-sys-locale-0.3.2
         rust-tempfile-3.27.0
         rust-termcolor-1.4.1
         rust-thiserror-1.0.69
