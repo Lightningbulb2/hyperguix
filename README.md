@@ -27,7 +27,7 @@ The channel depends on nonguix (`.guix-channel`): several packages use its
 | `xwayland.scm` | `xwayland-with-idle-time`, `xwayland-activity-relay` | Xwayland used by cosmic-comp, and the helper that keeps Steam from going Away; see *COSMIC* |
 | `timedated.scm` | `timedated` | systemd's timedated built alone (org.freedesktop.timedate1), for COSMIC Settings |
 | `craft.scm` | `photocraft`, `effectcraft`, `filmcraft`, `pdfcraft`, `lightcraft`, `vectorcraft`, `gridcraft`, `wordcraft`, `soundcraft`, `cadcraft`, `figcraft`, `designcraft`, `deckcraft`, `texturecraft`, `craft-anything`, `craft-launcher` | the storytold "Craft" suite, each with its `*-cli`; craft-anything needs Rust 1.97 (`rust-next.scm`) |
-| `solidcraft.scm` | `solidcraft` 0.30.0 (with `solidcraft-cli`) | Tangency Labs' parametric 3D CAD; crates in `solidcraft-crates.scm` |
+| `solidcraft.scm` | `solidcraft` 0.30.1 (with `solidcraft-cli`) | Tangency Labs' parametric 3D CAD; crates in `solidcraft-crates.scm` |
 | `ladybird.scm` | `ladybird` (git master, Qt 6.10 calls guarded for Guix's Qt 6.9), plus private Skia 148, ANGLE, ffmpeg 9, curl+OpenSSL | Qt 6 UI; its sandbox needs Landlock (`lsm=landlock,...` kernel argument) |
 | `scrcpy.scm`, `scrcpy-gui.scm` | `scrcpy` 5.0.1, `scrcpy-gui` 4.1.0 | Android mirroring |
 | `faforever.scm` | `faforever-client` 0.9.5 | Rust/Tauri FAF client |
@@ -40,7 +40,9 @@ The channel depends on nonguix (`.guix-channel`): several packages use its
 | `chrome-remote-desktop.scm` | `chrome-remote-desktop`, `chrome-remote-desktop-service-type` | Google's host, virtual Xfce desktop (nonfree; currently disabled in the config) |
 | `openrazer.scm` | `openrazer-kernel-modules`, `%openrazer-keyboard-services` | `razerkbd` only, patched to put the BlackWidow (1532:011a) in driver mode so M1–M5 send F13–F17 |
 | `gpu-unlock.scm` | `gpu-unlock`, `gpu-unlock-firmware`, `%gpu-unlock-services` | full-rate FP16/BF16/TF32 tensor cores on GeForce RTX 20/30/40 (kernel module; firmware from NVIDIA 610.43.03 is nonfree); see *Others* |
-| `llama-cpp.scm` | `llama-cpp/latest` (Vulkan, OpenBLAS), `llama-cpp-cuda` (also CUDA, compute capability 8.6) | llama.cpp 0.8.0 with its bundled ggml; Guix has 0.5.0 |
+| `strata.scm` | `strata` 0.2.12 | the `strata` command and its CUDA engine (compute capability 8.6, built with CUDA 13.4); no desktop app or picture reader, and `strata update` can't replace the engine |
+| `codecanvas.scm` | `codecanvas`, `codecanvas-vscode`, `codecanvas-zed-bridge` | infinite code canvas; sources are pinned commits of the local `~/CodeCanvas*` checkouts until they are on GitHub (`%codecanvas-base-url`) |
+| `llama-cpp.scm` | `llama-cpp/latest` (Vulkan, OpenBLAS), `llama-cpp-cuda` (also CUDA, compute capability 8.6) | llama.cpp 0.9.0 with its bundled ggml; Guix has 0.5.0 |
 | `cuda.scm` | `cuda-toolkit` | NVIDIA CUDA 13.4: nvcc, cudart, cuBLAS (from NVIDIA's redist archives; nonfree); `libcuda` comes from the driver |
 | `reboot-to-bios.scm` | `reboot-to-bios` | |
 
@@ -48,7 +50,7 @@ Support modules:
 
 - **Generated** (never edit by hand): `cosmic-crates.scm`, `craft-crates.scm`,
   `ladybird-crates.scm`, `rust-crates.scm`, `node-deps.scm`,
-  `r2modman-deps.scm`, `solidcraft-crates.scm`.
+  `r2modman-deps.scm`, `solidcraft-crates.scm`, `codecanvas-crates.scm`.
 - `rust-next.scm`: `rust-1.97` (Guix master's definition, bootstrapped from
   the pinned Guix's rust-1.96), until the Guix pin has it.
 - `cargo-git.scm` with `aux-files/vendor-git-crates.py` vendors crates that

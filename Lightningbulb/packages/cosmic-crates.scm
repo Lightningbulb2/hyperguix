@@ -8,8 +8,6 @@
   (crate "ab_glyph" "0.2.32" "1hkc7y8yjd261d5cm9771dawnwc26rgdlniv3jysb3n3f9s4bh01"))
 (define rust-ab_glyph_rasterizer-0.1.10
   (crate "ab_glyph_rasterizer" "0.1.10" "065n6bj7kqk6f12336lm87fqmvf4lxg7rkg2j56nix228jmgnvrn"))
-(define rust-addr2line-0.24.2
-  (crate "addr2line" "0.24.2" "1hd1i57zxgz08j6h5qrhsnm2fi0bcqvsh389fw400xm3arz2ggnz"))
 (define rust-addr2line-0.25.1
   (crate "addr2line" "0.25.1" "0jwb96gv17vdr29hbzi0ha5q6jkpgjyn7rjlg5nis65k41rk0p8v"))
 (define rust-addr2line-0.27.1
@@ -20,12 +18,12 @@
   (crate "aes" "0.8.4" "1853796anlwp4kqim0s6wm1srl4ib621nm0cl2h3c8klsjkgfsdi"))
 (define rust-aes-0.9.3
   (crate "aes" "0.9.3" "0cpascsyy7mzjmx3q3q0fjz8aqyhcf0slj49dpfc6f4fwxngkw1m"))
+(define rust-aes-0.9.4
+  (crate "aes" "0.9.4" "1labw01pbfwqc8f62k01ppmmdq403si0ifk8ajs1bl20finw63zw"))
 (define rust-ahash-0.7.8
   (crate "ahash" "0.7.8" "1y9014qsy6gs9xld4ch7a6xi9bpki8vaciawxq4p75d8qvh7f549"))
 (define rust-ahash-0.8.12
   (crate "ahash" "0.8.12" "0xbsp9rlm5ki017c0w6ay8kjwinwm8knjncci95mii30rmwz25as"))
-(define rust-aho-corasick-1.1.3
-  (crate "aho-corasick" "1.1.3" "05mrpkvdgp5d20y2p989f187ry9diliijgwrs254fs9s1m1x6q4f"))
 (define rust-aho-corasick-1.1.4
   (crate "aho-corasick" "1.1.4" "00a32wb2h07im3skkikc495jvncf62jl6s96vwc7bhi70h9imlyx"))
 (define rust-aho-corasick-1.1.5
@@ -58,28 +56,16 @@
   (crate "android_system_properties" "0.1.6" "1g3z4ga15a9022vbgi31qqyb7pgk23saq7xfarn6yslpr54ic8mf"))
 (define rust-annotate-snippets-0.11.5
   (crate "annotate-snippets" "0.11.5" "1i1bmr5vy957l8fvivj9x1xs24np0k56rdgwj0bxqk45b2p8w3ki"))
-(define rust-anstream-0.6.20
-  (crate "anstream" "0.6.20" "14k1iqdf3dx7hdjllmql0j9sjxkwr1lfdddi3adzff0r7mjn7r9s"))
 (define rust-anstream-1.0.0
   (crate "anstream" "1.0.0" "13d2bj0xfg012s4rmq44zc8zgy1q8k9yp7yhvfnarscnmwpj2jl2"))
-(define rust-anstyle-1.0.11
-  (crate "anstyle" "1.0.11" "1gbbzi0zbgff405q14v8hhpi1kz2drzl9a75r3qhks47lindjbl6"))
 (define rust-anstyle-1.0.14
   (crate "anstyle" "1.0.14" "0030szmgj51fxkic1hpakxxgappxzwm6m154a3gfml83lq63l2wl"))
-(define rust-anstyle-parse-0.2.7
-  (crate "anstyle-parse" "0.2.7" "1hhmkkfr95d462b3zf6yl2vfzdqfy5726ya572wwg8ha9y148xjf"))
 (define rust-anstyle-parse-1.0.0
   (crate "anstyle-parse" "1.0.0" "03hkv2690s0crssbnmfkr76kw1k7ah2i6s5amdy9yca2n8w7zkjj"))
-(define rust-anstyle-query-1.1.4
-  (crate "anstyle-query" "1.1.4" "1qir6d6fl5a4y2gmmw9a5w93ckwx6xn51aryd83p26zn6ihiy8wy"))
 (define rust-anstyle-query-1.1.5
   (crate "anstyle-query" "1.1.5" "1p6shfpnbghs6jsa0vnqd8bb8gd7pjd0jr7w0j8jikakzmr8zi20"))
-(define rust-anstyle-wincon-3.0.10
-  (crate "anstyle-wincon" "3.0.10" "0ajz9wsf46a2l3pds7v62xbhq2cffj7wrilamkx2z8r28m0k61iy"))
 (define rust-anstyle-wincon-3.0.11
   (crate "anstyle-wincon" "3.0.11" "0zblannm70sk3xny337mz7c6d8q8i24vhbqi42ld8v7q1wjnl7i9"))
-(define rust-anyhow-1.0.100
-  (crate "anyhow" "1.0.100" "0qbfmw4hhv2ampza1csyvf1jqjs2dgrj29cv3h3sh623c6qvcgm2"))
 (define rust-anyhow-1.0.102
   (crate "anyhow" "1.0.102" "0b447dra1v12z474c6z4jmicdmc5yxz5bakympdnij44ckw2s83z"))
 (define rust-anyhow-1.0.103
@@ -128,20 +114,18 @@
   (crate "async-broadcast" "0.7.2" "0ckmqcwyqwbl2cijk1y4r0vy60i89gqc86ijrxzz5f2m4yjqfnj3"))
 (define rust-async-channel-2.5.0
   (crate "async-channel" "2.5.0" "1ljq24ig8lgs2555myrrjighycpx2mbjgrm3q7lpa6rdsmnxjklj"))
-(define rust-async-executor-1.13.3
-  (crate "async-executor" "1.13.3" "1f3za9v8wkqzv6rz69g0qzvdcmghwbixijwzldwjm9w3zph00z29"))
 (define rust-async-executor-1.14.0
   (crate "async-executor" "1.14.0" "0al1rmxjy7p7r6h50z698q5lwssqs5a2vzmqbazm1z2sv1rgjsy9"))
+(define rust-async-executor-1.14.1
+  (crate "async-executor" "1.14.1" "0dsg3ijjbrky4qas8g7nyjpryg1646jsfpmwjxi14df74q8s69pl"))
 (define rust-async-fn-stream-0.3.2
   (crate "async-fn-stream" "0.3.2" "1snh74p4clq72dv2zn6hlrqbkvlww8xgm3v166mxi841mx5hrfnl"))
-(define rust-async-fs-2.2.0
-  (crate "async-fs" "2.2.0" "1iclw9970mh4ndb0bd68a6901kqy81rf9yypvf78pvaavy0scd40"))
 (define rust-async-io-2.6.0
   (crate "async-io" "2.6.0" "1z16s18bm4jxlmp6rif38mvn55442yd3wjvdfhvx4hkgxf7qlss5"))
-(define rust-async-lock-3.4.1
-  (crate "async-lock" "3.4.1" "1p6i1sw3mwv1msdx9jqkr0h0a2jlrp3717yyx5n9pvkw0h23dl2z"))
 (define rust-async-lock-3.4.2
   (crate "async-lock" "3.4.2" "04c3xrrdrfrvh9v0ajxrangpy38qi76qq268zslphnxxjqjpy3r9"))
+(define rust-async-lock-3.5.0
+  (crate "async-lock" "3.5.0" "0vwz6v1hnvaq1lx6dgwnsbv9mby3b515m1h8amfx4yh01l5p0xh8"))
 (define rust-async-oneshot-0.5.9
   (crate "async-oneshot" "0.5.9" "0qslzzfz3j0fb4lvsmq5nx6lkjfbdq5sjmsl7xgj0hym08mdwixf"))
 (define rust-async-pidfd-0.1.5
@@ -152,8 +136,6 @@
   (crate "async-recursion" "1.1.1" "04ac4zh8qz2xjc79lmfi4jlqj5f92xjvfaqvbzwkizyqd4pl4hrv"))
 (define rust-async-recursion-1.2.0
   (crate "async-recursion" "1.2.0" "0lg4v61ax9wnfb5b5m11895qddcmq5a6h57cihf6n9mdp89br2jg"))
-(define rust-async-signal-0.2.13
-  (crate "async-signal" "0.2.13" "0k66mpb3xp86hj4vxs7w40v7qz2jfbblrm9ddc5mglwwynxp1h23"))
 (define rust-async-signal-0.2.14
   (crate "async-signal" "0.2.14" "11dlpb15la279r5cazppy18gbk2xzzl60ahzl19m1kr0l2psmdaj"))
 (define rust-async-task-4.7.1
@@ -176,8 +158,6 @@
   (crate "atspi-proxies" "0.13.0" "1z690hglzw3rzv6xckxxgfvc086a69mbdslni44b8gpdhy3y8c12"))
 (define rust-auto_enums-0.8.10
   (crate "auto_enums" "0.8.10" "1yxg8dr6cdpp6mh72rqqmd7l8vh4f5pww7dr2qaj2krmcj1dd49h"))
-(define rust-auto_enums-0.8.8
-  (crate "auto_enums" "0.8.8" "00rvc66g91zkniawggf16w3f9fizy2jf3xjrj9fcw6zljcl8lfb5"))
 (define rust-auto_enums-0.8.9
   (crate "auto_enums" "0.8.9" "0rprvz83qilsclgqc9jyv1xvnifxzgrvvzxpingsij9i15h8fi1f"))
 (define rust-autocfg-1.5.0
@@ -194,14 +174,16 @@
   (crate "avif-serialize" "0.8.9" "0f3z55fma6xmdj0a0x15vz91cqisiardrfgbjlwb2q6lyzjqy5z7"))
 (define rust-aws-lc-rs-1.18.2
   (crate "aws-lc-rs" "1.18.2" "04xbvwv3v8g2n4c132plnmhl4s7vrhc7hzkl63w2hk5pq8lmib7s"))
+(define rust-aws-lc-rs-1.19.0
+  (crate "aws-lc-rs" "1.19.0" "0lzbsbhak63niy7a1pdaj89af0p7wyricmkcir43q4040iwhd004"))
 (define rust-aws-lc-sys-0.46.0
   (crate "aws-lc-sys" "0.46.0" "1g52m25nafh7v0nmrvnm5287g69sshywgvvy1k7b5m528s22sqpi"))
+(define rust-aws-lc-sys-0.47.0
+  (crate "aws-lc-sys" "0.47.0" "0lig4i9c4n2f58zqxmczd2fh5i0v31j58cffjs344g3bqcmf7ywb"))
 (define rust-axum-0.8.9
   (crate "axum" "0.8.9" "146df5x8dhczm1sp939gr3839220wl6rxc1k65bzc450z72ridii"))
 (define rust-axum-core-0.5.6
   (crate "axum-core" "0.5.6" "1lcjhxysnbc64rh21ag9m9fpiryd1iwcdh9mwxz1yadiswqqziq8"))
-(define rust-backtrace-0.3.75
-  (crate "backtrace" "0.3.75" "00hhizz29mvd7cdqyz5wrj98vqkihgcxmv2vl7z0d0f53qrac1k8"))
 (define rust-backtrace-0.3.76
   (crate "backtrace" "0.3.76" "1mibx75x4jf6wz7qjifynld3hpw3vq6sy3d3c9y5s88sg59ihlxv"))
 (define rust-backtrace-0.3.77
@@ -238,8 +220,6 @@
   (crate "bitflags" "2.13.0" "1y239gpvl061rfvav7jds8mjs42kmwi39is7yx5d1qw3hvp8nf5l"))
 (define rust-bitflags-2.13.2
   (crate "bitflags" "2.13.2" "01hbgjwvid66850fzi76mvn5f2bqycx6sf165ng1kfjqq9bl1v9x"))
-(define rust-bitflags-2.9.4
-  (crate "bitflags" "2.9.4" "157kkcv8s7vk6d17dar1pa5cqcz4c8pdrn16wm1ld7jnr86d2q92"))
 (define rust-bitreader-0.3.11
   (crate "bitreader" "0.3.11" "0rn010p46g7fv08la915yq4q1vjfpgz8baf3bdv6rmb3w6qmjrc8"))
 (define rust-bitstream-io-4.10.0
@@ -278,8 +258,6 @@
   (crate "brotli-decompressor" "5.0.3" "10rm4pyqnznh192nzsjl4dh6bjgzglsadcl676y6f6gy2nnaqcis"))
 (define rust-bs58-0.5.1
   (crate "bs58" "0.5.1" "1x3v51n5n2s3l0rgrsn142akdf331n2qsa75pscw71fi848vm25z"))
-(define rust-bstr-1.12.0
-  (crate "bstr" "1.12.0" "195i0gd7r7jg7a8spkmw08492n7rmiabcvz880xn2z8dkp8i6h93"))
 (define rust-bstr-1.12.1
   (crate "bstr" "1.12.1" "1arc1v7h5l86vd6z76z3xykjzldqd5icldn7j9d3p7z6x0d4w133"))
 (define rust-bstr-1.12.3
@@ -290,8 +268,6 @@
   (crate "btoi" "0.5.0" "0xmrfrjvlvp7p5l13zx7gdpss95cdsgx63yzhj15dnmwagdvjniv"))
 (define rust-built-0.8.1
   (crate "built" "0.8.1" "1saq332pd6g3svvc9ah8myjpfvgqlzl2ksb1ypp3976kjcfm63jw"))
-(define rust-bumpalo-3.19.0
-  (crate "bumpalo" "3.19.0" "0hsdndvcpqbjb85ghrhska2qxvp9i75q2vb70hma9fxqawdy9ia6"))
 (define rust-bumpalo-3.20.2
   (crate "bumpalo" "3.20.2" "1jrgxlff76k9glam0akhwpil2fr1w32gbjdf5hpipc7ld2c7h82x"))
 (define rust-bumpalo-3.20.3
@@ -302,14 +278,10 @@
   (crate "byte-slice-cast" "1.2.3" "178c6ghnqwq472xypxabk27kjid01qxifw3bff8nj63jf8pihxbm"))
 (define rust-bytecount-0.6.9
   (crate "bytecount" "0.6.9" "0pinq0n8zza8qr2lyc3yf17k963129kdbf0bwnmvdk1bpvh14n0p"))
-(define rust-bytemuck-1.23.2
-  (crate "bytemuck" "1.23.2" "0xs637lsr9p73ackjkmbjw80dp1dfdw0ydhdk0gzjcnzpkpfm59r"))
 (define rust-bytemuck-1.25.0
   (crate "bytemuck" "1.25.0" "1v1z32igg9zq49phb3fra0ax5r2inf3aw473vldnm886sx5vdvy8"))
 (define rust-bytemuck-1.25.2
   (crate "bytemuck" "1.25.2" "15rp2m7j7kq22s76cbjwmrkd5r8lvacnm0mnrj013cnzka22x0wm"))
-(define rust-bytemuck_derive-1.10.1
-  (crate "bytemuck_derive" "1.10.1" "0a9dczfzn2c1lgg7afhqrh2drmg34w49hxhipni6pjri49blw5ag"))
 (define rust-bytemuck_derive-1.10.2
   (crate "bytemuck_derive" "1.10.2" "1zvmjmw1sdmx9znzm4dpbb2yvz9vyim8w6gp4z256l46qqdvvazr"))
 (define rust-bytemuck_derive-1.12.1
@@ -318,18 +290,18 @@
   (crate "byteorder" "1.5.0" "0jzncxyf404mwqdbspihyzpkndfgda450l0893pz5xj685cg5l0z"))
 (define rust-byteorder-lite-0.1.0
   (crate "byteorder-lite" "0.1.0" "15alafmz4b9az56z6x7glcbcb6a8bfgyd109qc3bvx07zx4fj7wg"))
-(define rust-bytes-1.10.1
-  (crate "bytes" "1.10.1" "0smd4wi2yrhp5pmq571yiaqx84bjqlm1ixqhnvfwzzc6pqkn26yp"))
 (define rust-bytes-1.11.1
   (crate "bytes" "1.11.1" "0czwlhbq8z29wq0ia87yass2mzy1y0jcasjb8ghriiybnwrqfx0y"))
 (define rust-bytes-1.12.1
   (crate "bytes" "1.12.1" "017z19dpg4f942h051m7bpnzcgng042hhcpd7bmg7bjjqd42lrgw"))
+(define rust-bzip2-0.5.2
+  (crate "bzip2" "0.5.2" "0iya6nbj0p2y8jss0z05yncc5hadry164fw3zva01y06v4igpv29"))
 (define rust-bzip2-0.6.1
   (crate "bzip2" "0.6.1" "0v1lgjxy944fdvsl97wmqs7f288crv7xddalk6y82jpk4jn3z9gk"))
+(define rust-bzip2-sys-0.1.13-1.0.8
+  (crate "bzip2-sys" "0.1.13+1.0.8" "056c39pgjh4272bdslv445f5ry64xvb0f7nph3z7860ln8rzynr2"))
 (define rust-calendrical_calculations-0.2.4
   (crate "calendrical_calculations" "0.2.4" "09lwfy6j9ggmzwkg64fxwdl04vpairs6dp3y6n6h91b8vbpddfss"))
-(define rust-calloop-0.14.3
-  (crate "calloop" "0.14.3" "17ih3c840cqksv9ms7i2ynnkiabpvqvpxakbr3922imxd09nx7yb"))
 (define rust-calloop-0.14.4
   (crate "calloop" "0.14.4" "1xsd8xk53v9zbvhjy7ynf4gya9s4rvvh8jqx9psi1b2v6rw9kgsd"))
 (define rust-calloop-0.14.5
@@ -338,10 +310,10 @@
   (crate "calloop-wayland-source" "0.4.1" "1yi1c23naqhd8m94q3v366s4cak8l50zy7ldrkqfn0hajkqgr3hk"))
 (define rust-cbc-0.2.1
   (crate "cbc" "0.2.1" "15l8zvdhfazl994ijjww6b8z0p4a7jrqhb44xc5ixlc8bzpcjbff"))
-(define rust-cc-1.10.0
-  (crate "cc" "1.10.0" "185yfn6np0m5x7hz1q7qf595sqzbbs2vc9dshxhssh1ydvx5bq46"))
-(define rust-cc-1.2.38
-  (crate "cc" "1.2.38" "1sg7gd94611qhryvb0iip0zibjnhf1yha2wnp0pw2mgrd3himx40"))
+(define rust-cc-1.11.0
+  (crate "cc" "1.11.0" "0ssz5frnjb3x873yhp2790xf9v8jz8hdbgj28i1gm861rvg8jn9p"))
+(define rust-cc-1.11.1
+  (crate "cc" "1.11.1" "0mgicvynjmz4xan2nbdi1dr62pjqb9kikml0j21qq3zzdw9aiwjg"))
 (define rust-cc-1.2.56
   (crate "cc" "1.2.56" "1chvh9g2izhqad7vzy4cc7xpdljdvqpsr6x6hv1hmyqv3mlkbgxf"))
 (define rust-cc-1.2.66
@@ -358,8 +330,6 @@
   (crate "cfg-expr" "0.20.10" "17vc10w7wlw3qhr77g80zn59m3p142vrgy5ihmv04iy42vnfkacv"))
 (define rust-cfg-expr-0.20.6
   (crate "cfg-expr" "0.20.6" "0smbxbd39s2kpmz6r9yg4xmh0wx5d1in6amf49rpr0m6l6szbkkq"))
-(define rust-cfg-if-1.0.3
-  (crate "cfg-if" "1.0.3" "1afg7146gbxjvkbjx7i5sdrpqp9q5akmk9004fr8rsm90jf2il9g"))
 (define rust-cfg-if-1.0.4
   (crate "cfg-if" "1.0.4" "008q28ajc546z5p2hcwdnckmg0hia7rnx52fni04bwqkzyrghc4k"))
 (define rust-cfg-if-1.0.5
@@ -374,8 +344,6 @@
   (crate "chacha20" "0.10.0" "00bn2rn8l68qvlq93mhq7b4ns4zy9qbjsyjbb9kljgl4hqr9i3bg"))
 (define rust-chacha20-0.10.2
   (crate "chacha20" "0.10.2" "01hvvbgdmqkcgs2s4f12s9wa5h2gbq05rqvypv61azlwd55mxhv5"))
-(define rust-chrono-0.4.42
-  (crate "chrono" "0.4.42" "1lp8iz9js9jwxw0sj8yi59v54lgvwdvm49b9wch77f25sfym4l0l"))
 (define rust-chrono-0.4.44
   (crate "chrono" "0.4.44" "1c64mk9a235271j5g3v4zrzqqmd43vp9vki7vqfllpqf5rd0fwy6"))
 (define rust-chrono-0.4.45
@@ -388,26 +356,18 @@
   (crate "cipher" "0.5.2" "0v7sic43nmz4rgql62wmxq0z63s80gnmd0w5q1vlhw6djcn2mkz8"))
 (define rust-clang-sys-1.9.1
   (crate "clang-sys" "1.9.1" "12kqa3wywpxw3jk7n2dqz9fjm8p0qczx37y0yib3nwc0njkqnyhm"))
-(define rust-clap-4.5.48
-  (crate "clap" "4.5.48" "1bjz3d7bavy13ph2a6rm3c9y02ak70b195xakii7h6q2xarln4z2"))
 (define rust-clap-4.6.1
   (crate "clap" "4.6.1" "0lcf88l7vlg796rrqr7wipbbmfa5sgsgx4211b7xmxxv8dz13nqx"))
 (define rust-clap-4.6.7
   (crate "clap" "4.6.7" "0il98y2rfw75984ck59znd4n592p07bxz8yy3a9blddb02rpd25a"))
-(define rust-clap_builder-4.5.48
-  (crate "clap_builder" "4.5.48" "1jaxnr7ik25r4yxgz657vm8kz62f64qmwxhplmzxz9n0lfpn9fn2"))
 (define rust-clap_builder-4.6.0
   (crate "clap_builder" "4.6.0" "17q6np22yxhh5y5v53y4l31ps3hlaz45mvz2n2nicr7n3c056jki"))
 (define rust-clap_builder-4.6.7
   (crate "clap_builder" "4.6.7" "0kbhai5rv1vj9r4np52g2b9fmhvy3y82digs9v40c57bgbxrf1zc"))
-(define rust-clap_derive-4.5.47
-  (crate "clap_derive" "4.5.47" "174z9g13s85la2nmi8gv8ssjwz77im3rqg5isiinw6hg1fp7xzdv"))
 (define rust-clap_derive-4.6.1
   (crate "clap_derive" "4.6.1" "1acpz49hi00iv9jkapixjzcv7s51x8qkfaqscjm36rqgf428dkpj"))
 (define rust-clap_derive-4.6.7
   (crate "clap_derive" "4.6.7" "1q36bgbkfb9rdz7jcvd0ffv0wwlyw0lg3z6iwdcybm0mjjvm3izr"))
-(define rust-clap_lex-0.7.5
-  (crate "clap_lex" "0.7.5" "0xb6pjza43irrl99axbhs12pxq4sr8x7xd36p703j57f5i3n2kxr"))
 (define rust-clap_lex-0.7.7
   (crate "clap_lex" "0.7.7" "0cibsbziyzw2ywar2yh6zllsamhwkblfly565zgi56s3q064prn3"))
 (define rust-clap_lex-1.0.0
@@ -438,8 +398,6 @@
   (crate "color-spantrace" "0.3.0" "09xl077fs44yvqajmr52mjbghvkfwg6fnd3jpialnd8kvylqxf5q"))
 (define rust-color_quant-1.1.0
   (crate "color_quant" "1.1.0" "12q1n427h2bbmmm1mnglr57jaz2dj9apk0plcxw7nwqiai7qjyrx"))
-(define rust-colorchoice-1.0.4
-  (crate "colorchoice" "1.0.4" "0x8ymkz1xr77rcj1cfanhf416pc4v681gmkc9dzb3jqja7f62nxh"))
 (define rust-colorchoice-1.0.5
   (crate "colorchoice" "1.0.5" "0w75k89hw39p0mnnhlrwr23q50rza1yjki44qvh2mgrnj065a1qx"))
 (define rust-colorgrad-0.8.0
@@ -450,24 +408,40 @@
   (crate "combine" "4.6.9" "14izj50knw6rgl6ky3903k43pnl6qjgyw4d30n6ljdb4jykfnmj3"))
 (define rust-compio-0.18.0
   (crate "compio" "0.18.0" "1zipzcr3dr9pazbc12jjnd06n2lzdg1vi87ki11x0j39m2bfx14v"))
+(define rust-compio-0.19.2
+  (crate "compio" "0.19.2" "1ml91shvwwcz418q0ykj34rrla6qv415plj102jpmx5h6v3837f1"))
 (define rust-compio-buf-0.8.3
   (crate "compio-buf" "0.8.3" "1irlkga6my6qggfps0azh5lzav1bc3mwzdndsip3fr9qhwsjq6mm"))
 (define rust-compio-driver-0.11.4
   (crate "compio-driver" "0.11.4" "05f7ywq2idqnsy05h237dnmilwci6dr8mrn103dy83l9vjc2vm3l"))
+(define rust-compio-driver-0.12.5
+  (crate "compio-driver" "0.12.5" "1czpdszcx8kvbsfc44g52x4l2plvwvs7r4q24h0baljzlf380gi9"))
+(define rust-compio-executor-0.1.4
+  (crate "compio-executor" "0.1.4" "0avwr2amq2qbdwvn3hm58mc9j61xxsw6hs845q4bnaxh11cir5ll"))
 (define rust-compio-fs-0.11.0
   (crate "compio-fs" "0.11.0" "1cz3v2ixbrjax170wn2kxz2n491b05n9i6pybs1w9kpjmkhkdvk5"))
+(define rust-compio-fs-0.12.1
+  (crate "compio-fs" "0.12.1" "1iqrha6jblsx3b19rhvxilzp8by280x9r94l52sfrxxx0dd4qdwa"))
+(define rust-compio-io-0.10.1
+  (crate "compio-io" "0.10.1" "16vy8lh992gpvd0myv6zibmibihmik7i9mfrsbc6s164hph598y3"))
 (define rust-compio-io-0.9.1
   (crate "compio-io" "0.9.1" "03jq6mw277h6g8zrk32y08h813gs2gpxv97ariymzzb4ibr24xb3"))
 (define rust-compio-log-0.1.0
   (crate "compio-log" "0.1.0" "0bqk9vpc8ra4afp04f03z4db8r4m234vfsd3imhnp6f12c15ckpw"))
+(define rust-compio-log-0.2.1
+  (crate "compio-log" "0.2.1" "0qiw7jdfg2syjh8szypk9512c2nb8hvyxzkxazzlx7p5kpr6gn4x"))
 (define rust-compio-macros-0.1.2
   (crate "compio-macros" "0.1.2" "0svnjy6hrvljakks5ghwr3kaiai95fhgga3pvrqdqrs9900x4pph"))
+(define rust-compio-macros-0.2.2
+  (crate "compio-macros" "0.2.2" "1wvmxidrajx56r6j5dvv43dnfjzndch1v2fah7ybq3z8x06w468q"))
 (define rust-compio-runtime-0.11.0
   (crate "compio-runtime" "0.11.0" "1kfrrdmgcwnimv7q4xqw4inyw1b5c1xqfzg9627rrp8v04gwghfn"))
+(define rust-compio-runtime-0.12.6
+  (crate "compio-runtime" "0.12.6" "1v8x5573aw7967ljznmm7xa5m5nc3gspqjlclp0d1kb99q56yh10"))
+(define rust-compio-send-wrapper-0.7.2
+  (crate "compio-send-wrapper" "0.7.2" "017midadknfnn8c3i0z696r4ylhlvmki4hdmgrn9cclh12p66jps"))
 (define rust-concurrent-queue-2.5.0
   (crate "concurrent-queue" "2.5.0" "0wrr3mzq2ijdkxwndhf79k952cp4zkz35ray8hvsxl96xrx1k82c"))
-(define rust-configparser-3.1.0
-  (crate "configparser" "3.1.0" "16v47b7lknb35ragwhj9gzgwfpxs34vn2b97hhaky30ry1r34zp5"))
 (define rust-configparser-3.2.0
   (crate "configparser" "3.2.0" "1966j15yqgmvlsv1xwfg3qxvqlz4p863l0q5vvmrj8fj9xrfqvdl"))
 (define rust-configparser-3.3.0
@@ -478,12 +452,10 @@
   (crate "console-subscriber" "0.5.0" "14kmygqvdrks4jmr8ln6wwlgfi199h8q1hxnl5bh95nxv2viajgv"))
 (define rust-const-oid-0.10.2
   (crate "const-oid" "0.10.2" "0p7m286mp8aai4sa72g7ji6qm0d4ns8wg4i4b2hj9p9615zm3vx6"))
-(define rust-const_format-0.2.34
-  (crate "const_format" "0.2.34" "1pb3vx4k0bl3cy45fmba36hzds1jhkr8y9k3j5nnvm4abjb9fvqj"))
-(define rust-const_format-0.2.36
-  (crate "const_format" "0.2.36" "07ncczs8yndga2f8p4386c827l4fxwzl0pbwp7ijnhcsmlbsd0a4"))
-(define rust-const_format_proc_macros-0.2.34
-  (crate "const_format_proc_macros" "0.2.34" "0i3pxxcl4xvwq4mlfg3csb4j0n6v0mhj07p6yk0vlvdirznc4mqx"))
+(define rust-const_format-0.2.37
+  (crate "const_format" "0.2.37" "0m04hhk72casbbqixqg4xm6a86spl0saci1mj9cqci35d56wppm3"))
+(define rust-const_format_proc_macros-0.2.37
+  (crate "const_format_proc_macros" "0.2.37" "0ndn186d13yv97fbry163bacz9mz0j66hnyb11pm0hm6d415f6wl"))
 (define rust-constant_time_eq-0.1.5
   (crate "constant_time_eq" "0.1.5" "1g3vp04qzmk6cpzrd19yci6a95m7ap6wy7wkwgiy2pjklklrfl14"))
 (define rust-constant_time_eq-0.3.1
@@ -540,6 +512,8 @@
   (crate "crc32fast" "1.5.2" "0y0f955n2hr5a8rd9nw9sr23nhjc42ddx3bjc47dnlmqssgpk9q1"))
 (define rust-crc32fast-1.5.3
   (crate "crc32fast" "1.5.3" "0m907hccpnpmr4x87ggcq8n5zd3w1d5sqs07q81dqp848kl0d88b"))
+(define rust-crc32fast-1.5.4
+  (crate "crc32fast" "1.5.4" "017g8wq37261s7i21v2p7wacl8pr3p4why0d9dfd2dskdm0x75sz"))
 (define rust-crossbeam-channel-0.5.17
   (crate "crossbeam-channel" "0.5.17" "1wcy7y77hw7z5m140114iqxb90gsq062djd9zpkndisvgcrcrc4q"))
 (define rust-crossbeam-deque-0.8.8
@@ -556,6 +530,8 @@
   (crate "crossbeam-utils" "0.8.23" "1ilan2nw7fvka8hki80fr57a5dgd4mvcsvwq60437j6yvlwyw7m3"))
 (define rust-crunchy-0.2.4
   (crate "crunchy" "0.2.4" "1mbp5navim2qr3x48lyvadqblcxc1dm0lqr0swrkkwy2qblvw3s6"))
+(define rust-crypto-common-0.1.6
+  (crate "crypto-common" "0.1.6" "1cvby95a6xg7kxdz5ln3rl9xh66nz66w46mm3g56ri1z5x815yqv"))
 (define rust-crypto-common-0.1.7
   (crate "crypto-common" "0.1.7" "02nn2rhfy7kvdkdjl457q2z0mklcvj9h662xrq6dzhfialh2kj3q"))
 (define rust-crypto-common-0.2.2
@@ -576,8 +552,8 @@
   (crate "ctor-lite" "0.1.2" "007342zvk2i8d9xz7n9wjxmlx55ry3prfm8ynwvbg3h6wb1d0qp1"))
 (define rust-ctutils-0.4.3
   (crate "ctutils" "0.4.3" "0x25mzy56kl9lx2ddcvhfjh6k6qnk54p98fr478q5m3hr4f0xfq3"))
-(define rust-ctutils-0.4.7
-  (crate "ctutils" "0.4.7" "12l2ck796m702jbjfr5gbc5r1mip09mlnnw7b7dskn4ndzynydx2"))
+(define rust-ctutils-0.4.8
+  (crate "ctutils" "0.4.8" "0ks7pq37idp67pdiwkm1dq6m65rlpb5xh5w7g998msh6gbfg86i6"))
 (define rust-cursor-icon-1.2.0
   (crate "cursor-icon" "1.2.0" "0bvkw7ak1mqwcpkgd9lh7n00hcvlh87jfl7188f231nz6zfy2ypj"))
 (define rust-custom_debug-0.6.2
@@ -648,8 +624,6 @@
   (crate "defmt-parser" "1.1.0" "1849z1vp502s77sip4wzj6jimjl6x5vr7b2ivp2mds1dzdlqz5bi"))
 (define rust-delegate-0.13.5
   (crate "delegate" "0.13.5" "0w2karbb16rrz3f5yj1fhsnpss4vl1ag1i8gn2prgw2bcm0v43kq"))
-(define rust-deranged-0.5.4
-  (crate "deranged" "0.5.4" "0wch36gpg2crz2f72p7c0i5l4bzxjkwxw96sdj57c1cadzw566d4"))
 (define rust-deranged-0.5.8
   (crate "deranged" "0.5.8" "0711df3w16vx80k55ivkwzwswziinj4dz05xci3rvmn15g615n3w"))
 (define rust-deranged-0.5.9
@@ -668,8 +642,6 @@
   (crate "derive_pod" "0.1.3" "06jc4dgsarm6hm20lva0ls7a18lyyrkdy6apk7nbh0fz3jkrwmzn"))
 (define rust-derive_setters-0.1.9
   (crate "derive_setters" "0.1.9" "1fgqkpaazyfsqgbz4k4jimcbimzvqyrq82qjhbh4mh833zxgdrmp"))
-(define rust-derive_utils-0.15.0
-  (crate "derive_utils" "0.15.0" "1q1fkmcvr7gcpwb6cby77s62z8389jgbdk5jg1a6raxmpa0y3ync"))
 (define rust-derive_utils-0.15.1
   (crate "derive_utils" "0.15.1" "1mkxsllfj6yksf5d9xpbjfw1c0whwjanazjjbxryg7xi1n9lfbrn"))
 (define rust-derive_utils-0.16.0
@@ -686,6 +658,8 @@
   (crate "dirs" "5.0.1" "0992xk5vx75b2x91nw9ssb51mpl8x73j9rxmpi96cryn0ffmmi24"))
 (define rust-dirs-6.0.0
   (crate "dirs" "6.0.0" "0knfikii29761g22pwfrb8d0nqpbgw77sni9h2224haisyaams63"))
+(define rust-dirs-7.0.0
+  (crate "dirs" "7.0.0" "13yd3nyg81jrqqk8vlnvdsi5dx31xqghk8sclawqjbn8ncix8mwd"))
 (define rust-dirs-next-2.0.0
   (crate "dirs-next" "2.0.0" "1q9kr151h9681wwp6is18750ssghz6j9j7qm7qi1ngcwy7mzi35r"))
 (define rust-dirs-sys-0.4.1
@@ -756,10 +730,10 @@
   (crate "encoding_rs" "0.8.35" "1wv64xdrr9v37rqqdjsyb8l8wzlcbab80ryxhrszvnj59wy0y0vm"))
 (define rust-encoding_rs-0.8.42
   (crate "encoding_rs" "0.8.42" "0ycnbndly2jw5j69jl1r1lm512h2w9vb1dnjp0px46l7a425x64f"))
+(define rust-encoding_rs-0.8.44
+  (crate "encoding_rs" "0.8.44" "1xb9w64hibnyh68sfh9qll8h43k3716j5nzr0jdqdaq4wxsk29c9"))
 (define rust-encoding_rs_io-0.1.8
   (crate "encoding_rs_io" "0.1.8" "08hbw2v9wshcpwzxcfj5iiki9f8dm29q44ww9dwzzv25f22gx8zv"))
-(define rust-endi-1.1.0
-  (crate "endi" "1.1.0" "1gxp388g2zzbncp3rdn60wxkr49xbhhx94nl9p4a6c41w4ma7n53"))
 (define rust-endi-1.1.1
   (crate "endi" "1.1.1" "16a0076dx41vgrzzimm9clcym77h732czqjiajanmzvd1i1y5dv6"))
 (define rust-enquote-1.1.0
@@ -844,8 +818,6 @@
   (crate "find-crate" "0.6.3" "1ljpkh11gj7940xwz47xjhsvfbl93c2q0ql7l2v0w77amjx8paar"))
 (define rust-find-msvc-tools-0.1.15
   (crate "find-msvc-tools" "0.1.15" "0j5sh4lb7g8xh6kd67s0vz037ah5hlp9f2rbgbg9f41rqmf92rhw"))
-(define rust-find-msvc-tools-0.1.2
-  (crate "find-msvc-tools" "0.1.2" "0nbrhvk4m04hviiwbqp2jwcv9j2k70x0q2kcvfk51iygvaqp7v8w"))
 (define rust-find-msvc-tools-0.1.9
   (crate "find-msvc-tools" "0.1.9" "10nmi0qdskq6l7zwxw5g56xny7hb624iki1c39d907qmfh3vrbjv"))
 (define rust-fixed_decimal-0.7.2
@@ -854,6 +826,8 @@
   (crate "fixed_decimal" "0.7.3" "1bjmpk4h7ylsqzpifs22pjr5iq5bvnqxyadvwnz9dvk9yq0gn512"))
 (define rust-flate2-1.1.10
   (crate "flate2" "1.1.10" "1jvd2cl8j5hyf8imi62y1x7gwzz1hajirni0801yxhds1qp4wqvf"))
+(define rust-flate2-1.1.11
+  (crate "flate2" "1.1.11" "1i44w2j9sw5lqvkrw0d0d3dnn84zrz3nzlsyyrq6wr3b68l4jvb2"))
 (define rust-flate2-1.1.9
   (crate "flate2" "1.1.9" "0g2pb7cxnzcbzrj8bw4v6gpqqp21aycmf6d84rzb6j748qkvlgw4"))
 (define rust-float-cmp-0.10.0
@@ -876,8 +850,6 @@
   (crate "fluent-syntax" "0.11.1" "0gd3cdvsx9ymbb8hijcsc9wyf8h1pbcbpsafg4ldba56ji30qlra"))
 (define rust-fluent-syntax-0.12.0
   (crate "fluent-syntax" "0.12.0" "1661sp6kl268n445x7jjhnbkgiaa1xcpyryq0i6iiz9zqn3x5w2l"))
-(define rust-flume-0.11.1
-  (crate "flume" "0.11.1" "15ch0slxa8sqsi6c73a0ky6vdnh48q8cxjf7rksa3243m394s3ns"))
 (define rust-flume-0.12.0
   (crate "flume" "0.12.0" "1gnk7gji9r12ig35czj2cq441zf5ijmz0bgnz9gfnxx7dk29n4sy"))
 (define rust-fnv-1.0.7
@@ -900,18 +872,16 @@
   (crate "fontconfig-parser" "0.5.8" "0ijnbzg31sl6v49g7q2l7sl76hjj8z0hvlsz77cdvm029vi77ixv"))
 (define rust-fontdb-0.23.0
   (crate "fontdb" "0.23.0" "0199vry9x8zn9ix4x4rqvv53dy2ryhy68l53jwr580hj7ndphzj5"))
-(define rust-foreign-types-0.3.2
-  (crate "foreign-types" "0.3.2" "1cgk0vyd7r45cj769jym4a6s7vwshvd0z4bqrb92q1fwibmkkwzn"))
 (define rust-foreign-types-0.5.0
   (crate "foreign-types" "0.5.0" "0rfr2zfxnx9rz3292z5nyk8qs2iirznn5ff3rd4vgdwza6mdjdyp"))
 (define rust-foreign-types-macros-0.2.3
   (crate "foreign-types-macros" "0.2.3" "0hjpii8ny6l7h7jpns2cp9589016l8mlrpaigcnayjn9bdc6qp0s"))
 (define rust-foreign-types-macros-0.2.4
   (crate "foreign-types-macros" "0.2.4" "09aj8wl64pqvm6ix1800khgypdhinwinxhfv7n3yn5b95qc90lga"))
-(define rust-foreign-types-shared-0.1.1
-  (crate "foreign-types-shared" "0.1.1" "0jxgzd04ra4imjv8jgkmdq59kj8fsz6w4zxsbmlai34h26225c00"))
 (define rust-foreign-types-shared-0.3.1
   (crate "foreign-types-shared" "0.3.1" "0nykdvv41a3d4py61bylmlwjhhvdm0b3bcj9vxhqgxaxnp5ik6ma"))
+(define rust-fork-0.11.0
+  (crate "fork" "0.11.0" "0m35r4628xv440qipfzf5qdm16yw18y0wdgsbyz6h5if670rv2wv"))
 (define rust-fork-0.2.0
   (crate "fork" "0.2.0" "0vb5557b03ghb1xmn86w9v57k5zjy2g475769xzw58845qq8pp05"))
 (define rust-fork-0.4.0
@@ -922,8 +892,6 @@
   (crate "form_urlencoded" "1.2.2" "1kqzb2qn608rxl3dws04zahcklpplkd5r1vpabwga5l50d2v4k6b"))
 (define rust-four-cc-0.4.0
   (crate "four-cc" "0.4.0" "0acnincbs26yjzkmdhw3q22c9dx5v56m1dybgkj7r6j1dp2vyp3r"))
-(define rust-freedesktop-desktop-entry-0.7.19
-  (crate "freedesktop-desktop-entry" "0.7.19" "0cb3p2agzc6x51vd3sm97c9jmglm36x19281qxlxbgyhirfg13aj"))
 (define rust-freedesktop-desktop-entry-0.8.1
   (crate "freedesktop-desktop-entry" "0.8.1" "0id29snw8fxwhffc1rx5k9zn6zqc9h32yrgn4ivz19cpddf3q9r8"))
 (define rust-freedesktop-desktop-entry-0.8.4
@@ -938,62 +906,44 @@
   (crate "fs_extra" "1.3.0" "075i25z70j2mz9r7i9p9r521y8xdj81q7skslyb7zhqnnw33fw22"))
 (define rust-fsevent-sys-4.1.0
   (crate "fsevent-sys" "4.1.0" "1liz67v8b0gcs8r31vxkvm2jzgl9p14i78yfqx81c8sdv817mvkn"))
-(define rust-futures-0.3.31
-  (crate "futures" "0.3.31" "0xh8ddbkm9jy8kc5gbvjp9a4b6rqqxvc8471yb2qaz5wm2qhgg35"))
 (define rust-futures-0.3.32
   (crate "futures" "0.3.32" "0b9q86r5ar18v5xjiyqn7sb8sa32xv98qqnfz779gl7ns7lpw54b"))
 (define rust-futures-0.3.34
   (crate "futures" "0.3.34" "18yhwmbdalhz2z9i1vm10hy2v0cfm82dkgcb6vr2msxazfix4ccs"))
-(define rust-futures-channel-0.3.31
-  (crate "futures-channel" "0.3.31" "040vpqpqlbk099razq8lyn74m0f161zd0rp36hciqrwcg2zibzrd"))
 (define rust-futures-channel-0.3.32
   (crate "futures-channel" "0.3.32" "07fcyzrmbmh7fh4ainilf1s7gnwvnk07phdq77jkb9fpa2ffifq7"))
 (define rust-futures-channel-0.3.34
   (crate "futures-channel" "0.3.34" "1i4kwcanpaphn1ax62ci3nx176kglxqx0gnhzqpqdr1rkpbf7ydi"))
-(define rust-futures-core-0.3.31
-  (crate "futures-core" "0.3.31" "0gk6yrxgi5ihfanm2y431jadrll00n5ifhnpx090c2f2q1cr1wh5"))
 (define rust-futures-core-0.3.32
   (crate "futures-core" "0.3.32" "07bbvwjbm5g2i330nyr1kcvjapkmdqzl4r6mqv75ivvjaa0m0d3y"))
 (define rust-futures-core-0.3.34
   (crate "futures-core" "0.3.34" "0pjgv4fx0np6hrs5sz5a2phabwv0z70yr51v03injbi44bjrkmlj"))
-(define rust-futures-executor-0.3.31
-  (crate "futures-executor" "0.3.31" "17vcci6mdfzx4gbk0wx64chr2f13wwwpvyf3xd5fb1gmjzcx2a0y"))
 (define rust-futures-executor-0.3.32
   (crate "futures-executor" "0.3.32" "17aplz3ns74qn7a04qg7qlgsdx5iwwwkd4jvdfra6hl3h4w9rwms"))
 (define rust-futures-executor-0.3.34
   (crate "futures-executor" "0.3.34" "0cjl3y7jgg60wwb96ikxj23r6q91ylvx8v675yychv1w3b7lf6q3"))
-(define rust-futures-io-0.3.31
-  (crate "futures-io" "0.3.31" "1ikmw1yfbgvsychmsihdkwa8a1knank2d9a8dk01mbjar9w1np4y"))
 (define rust-futures-io-0.3.32
   (crate "futures-io" "0.3.32" "063pf5m6vfmyxj74447x8kx9q8zj6m9daamj4hvf49yrg9fs7jyf"))
 (define rust-futures-io-0.3.34
   (crate "futures-io" "0.3.34" "1v9z6wj92ra18kpv0xig21hgpzrvcwmcr8fszyzh64yyay0zmh2k"))
 (define rust-futures-lite-2.6.1
   (crate "futures-lite" "2.6.1" "1ba4dg26sc168vf60b1a23dv1d8rcf3v3ykz2psb7q70kxh113pp"))
-(define rust-futures-macro-0.3.31
-  (crate "futures-macro" "0.3.31" "0l1n7kqzwwmgiznn0ywdc5i24z72zvh9q1dwps54mimppi7f6bhn"))
 (define rust-futures-macro-0.3.32
   (crate "futures-macro" "0.3.32" "0ys4b1lk7s0bsj29pv42bxsaavalch35rprp64s964p40c1bfdg8"))
 (define rust-futures-macro-0.3.34
   (crate "futures-macro" "0.3.34" "0i0czvcvsqq4hrccibq2f23004si5z34zjwdxfmqhlrmm15nbfcz"))
 (define rust-futures-micro-0.5.0
   (crate "futures-micro" "0.5.0" "09n8d1qnpk6mjpnv338wkbgyppvd4aygfddwlwb8pmlk6m5jcq5l"))
-(define rust-futures-sink-0.3.31
-  (crate "futures-sink" "0.3.31" "1xyly6naq6aqm52d5rh236snm08kw8zadydwqz8bip70s6vzlxg5"))
 (define rust-futures-sink-0.3.32
   (crate "futures-sink" "0.3.32" "14q8ml7hn5a6gyy9ri236j28kh0svqmrk4gcg0wh26rkazhm95y3"))
 (define rust-futures-sink-0.3.34
   (crate "futures-sink" "0.3.34" "07cfvrgc3vxk6sw5g8a8dnrm1mzg6d5mwy08ywa1sgyhyxml4i0r"))
-(define rust-futures-task-0.3.31
-  (crate "futures-task" "0.3.31" "124rv4n90f5xwfsm9qw6y99755y021cmi5dhzh253s920z77s3zr"))
 (define rust-futures-task-0.3.32
   (crate "futures-task" "0.3.32" "14s3vqf8llz3kjza33vn4ixg6kwxp61xrysn716h0cwwsnri2xq3"))
 (define rust-futures-task-0.3.34
   (crate "futures-task" "0.3.34" "1zfilqs8nwlfqz4prk7ihvpp5avvzins87ibzlxzq5fhs7ipshfd"))
 (define rust-futures-timer-3.0.4
   (crate "futures-timer" "3.0.4" "0s39in8ivw7g4d37pf31q02y44zd1hpfkd1pgra2slcqibdzlhxg"))
-(define rust-futures-util-0.3.31
-  (crate "futures-util" "0.3.31" "10aa1ar8bgkgbr4wzxlidkqkcxf77gffyj8j7768h831pcaq784z"))
 (define rust-futures-util-0.3.32
   (crate "futures-util" "0.3.32" "1mn60lw5kh32hz9isinjlpw34zx708fk5q1x0m40n6g6jq9a971q"))
 (define rust-futures-util-0.3.34
@@ -1008,6 +958,8 @@
   (crate "gen-z" "0.1.0" "0594mm832kc3s4w0zxxvp895gmjacpbchm3zspybg37kcj7071qf"))
 (define rust-generator-0.8.11
   (crate "generator" "0.8.11" "0dwwy7gil853mnywcginmp9n865vc83bkvkq65zsyk6fr4qips0v"))
+(define rust-generator-0.8.12
+  (crate "generator" "0.8.12" "0lqc7gi6xvblgcbm6kzwqbnddafkapx0kc821kqg990srmrnlv7a"))
 (define rust-generator-0.8.8
   (crate "generator" "0.8.8" "1ybcxxz9vdh7nyh9q5654zv5q790b63a83w0zrv0r8id2pj4mw2j"))
 (define rust-generic-array-0.14.7
@@ -1020,26 +972,18 @@
   (crate "getopts" "0.2.24" "1pylvsmq7fillnxmd6g58r7igdrlby412q37ws41z39va2ngpr6g"))
 (define rust-getrandom-0.1.16
   (crate "getrandom" "0.1.16" "1kjzmz60qx9mn615ks1akjbf36n3lkv27zfwbcam0fzmj56wphwg"))
-(define rust-getrandom-0.2.16
-  (crate "getrandom" "0.2.16" "14l5aaia20cc6cc08xdlhrzmfcylmrnprwnna20lqf746pqzjprk"))
 (define rust-getrandom-0.2.17
   (crate "getrandom" "0.2.17" "1l2ac6jfj9xhpjjgmcx6s1x89bbnw9x6j9258yy6xjkzpq0bqapz"))
-(define rust-getrandom-0.3.3
-  (crate "getrandom" "0.3.3" "1x6jl875zp6b2b6qp9ghc84b0l76bvng2lvm8zfcmwjl7rb5w516"))
 (define rust-getrandom-0.3.4
   (crate "getrandom" "0.3.4" "1zbpvpicry9lrbjmkd4msgj3ihff1q92i334chk7pzf46xffz7c9"))
 (define rust-getrandom-0.4.1
   (crate "getrandom" "0.4.1" "1v7fm84f2jh6x7w3bd2ncl3sw29wnb0rhg7xya1pd30i02cg77hk"))
 (define rust-getrandom-0.4.3
   (crate "getrandom" "0.4.3" "16b0202fkdwz3p2cyll82dv24ljbn0wiyy829v4lwbkbflyqh3ih"))
-(define rust-gettext-rs-0.7.2
-  (crate "gettext-rs" "0.7.2" "12ikrzvx35aybip55ib9zmnjf8is4mhy2pfmgv50lhq8vkvr4km4"))
 (define rust-gettext-rs-0.7.7
   (crate "gettext-rs" "0.7.7" "1prb49j0d33kam9ww0pi5bbr95726ks37s0xjs3fw3vz3gf5fn2x"))
 (define rust-gettext-rs-0.8.0
   (crate "gettext-rs" "0.8.0" "100x1fc5k1hv89qipmd6maw67mkkpki31qcczbyiayq7ikxf7xcx"))
-(define rust-gettext-sys-0.22.5
-  (crate "gettext-sys" "0.22.5" "0qgnkr3gaf6pndai26ysmhyr8kwn8psmhifhxhmg2ic9bczpfidv"))
 (define rust-gettext-sys-0.26.0
   (crate "gettext-sys" "0.26.0" "1scfknchxmmdfl3w3ik8bnb9rlq3gl3kwaq34gw0zryp1nmmka2f"))
 (define rust-gettext-sys-0.27.0
@@ -1052,14 +996,14 @@
   (crate "gilrs" "0.11.2" "1n7xmbvki8dv8wdc2ynabj1h3i83ncvwir92pqsyd6337w6v0bwh"))
 (define rust-gilrs-core-0.6.8
   (crate "gilrs-core" "0.6.8" "1a8y618rbr3g2r7c2yp4mbd04n7ywfqh4m9a7x9c1g3s4gk0qzyw"))
-(define rust-gimli-0.31.1
-  (crate "gimli" "0.31.1" "0gvqc0ramx8szv76jhfd4dms0zyamvlg4whhiz11j34hh3dqxqh7"))
 (define rust-gimli-0.32.3
   (crate "gimli" "0.32.3" "1iqk5xznimn5bfa8jy4h7pa1dv3c624hzgd2dkz8mpgkiswvjag6"))
 (define rust-gimli-0.34.0
   (crate "gimli" "0.34.0" "047xmabk4x75a2i47m860d7z9p8bryrbz5jk7di1iia9ngqclcqh"))
 (define rust-gio-0.21.5
   (crate "gio" "0.21.5" "06l1nlq5r0dvm0xmhrpgvs8ypx7jcb3vgihxwrvb8s0cc2zlizy5"))
+(define rust-gio-0.22.10
+  (crate "gio" "0.22.10" "16dnnb9zyaj0y0ssxxk2hqrv6319fn7g269y8waainqrvypzn826"))
 (define rust-gio-sys-0.21.5
   (crate "gio-sys" "0.21.5" "08hgv0lqm94hyhdisjrl52bg9699c9ibp6zzr2301r58vf4gww80"))
 (define rust-gio-sys-0.22.9
@@ -1074,6 +1018,8 @@
   (crate "glam" "0.33.2" "0djllzkn0y5d9kgrjs3xdhmgr8vzdiqf69471nz0icv5y0ign8kz"))
 (define rust-glam-0.34.1
   (crate "glam" "0.34.1" "1fjs1akcwj037q47nzj1zzlhfvswh24rprsskqpwac1rvm6qs57w"))
+(define rust-glam-0.34.2
+  (crate "glam" "0.34.2" "0c88yc3sp5gzffd0nlfvh3zxj5avl4va0vmj9r02sv2dhdk51bsl"))
 (define rust-glib-0.21.5
   (crate "glib" "0.21.5" "12xxy5js4bfpjz9k6831xj090r5y37g30wrvawxwx43c5qy15phn"))
 (define rust-glib-0.22.10
@@ -1090,6 +1036,8 @@
   (crate "glob" "0.3.4" "02zby4rsidb2ksrnysyrsaap7rk6wpp7vl5chflndafhl5gaisz4"))
 (define rust-globset-0.4.20
   (crate "globset" "0.4.20" "1249r63326pzaz6z1c04mmdp6dqg6z3kni47jyylans622a4mhq7"))
+(define rust-globset-0.4.21
+  (crate "globset" "0.4.21" "0bfxrhhdzywx65q07slbasf2i6sazya9bg7brwjaih1daa2hv2zr"))
 (define rust-glow-0.16.0
   (crate "glow" "0.16.0" "022z12nlyfpy36fvp2szq792xix1xbgkznpmicf1c404sxhfmrf5"))
 (define rust-glutin_wgl_sys-0.6.1
@@ -1118,8 +1066,6 @@
   (crate "grep-regex" "0.1.14" "1vqjf7dk8lk9jr7i45cf5q99ily1bsj1ab41gg0br0mdqdbc5q0c"))
 (define rust-grep-searcher-0.1.17
   (crate "grep-searcher" "0.1.17" "1inbxw8xf63rsqskl6sp1c8cqhjvigr68405x714pz7al0iqhd3j"))
-(define rust-grid-1.0.0
-  (crate "grid" "1.0.0" "0842jhglqh7vndcvanmv21xb31jxl0643610h3c7hq99m30d9qpr"))
 (define rust-grid-1.0.1
   (crate "grid" "1.0.1" "1xaz6mkb9pklakjmax7pk19vrqg4j4p01cfh6apndi324wjsj35l"))
 (define rust-gstreamer-0.25.4
@@ -1168,8 +1114,6 @@
   (crate "hashbrown" "0.13.2" "03ji3n19j4b6mf2wlla81vsixcmlivglp6hgk79d1pcxfcrw38s3"))
 (define rust-hashbrown-0.15.5
   (crate "hashbrown" "0.15.5" "189qaczmjxnikm9db748xyhiw04kpmhm9xj9k9hg0sgx7pjwyacj"))
-(define rust-hashbrown-0.16.0
-  (crate "hashbrown" "0.16.0" "13blh9j2yv77a6ni236ixiwdzbc1sh2bc4bdpaz7y859yv2bs6al"))
 (define rust-hashbrown-0.16.1
   (crate "hashbrown" "0.16.1" "004i3njw38ji3bzdp9z178ba9x3k0c1pgy8x69pj7yfppv4iq7c4"))
 (define rust-hashbrown-0.17.1
@@ -1206,16 +1150,10 @@
   (crate "hostname-validator" "1.1.1" "1qh5sxkckalibc28029ndnfd7w0s8mwvb68d82xbb25gr55acn7m"))
 (define rust-html-escape-0.2.15
   (crate "html-escape" "0.2.15" "1i8k6hkpvrz2d0px2rcgc7d2qyc22l760wr1lfxrf4dlnjan0df9"))
-(define rust-http-1.3.1
-  (crate "http" "1.3.1" "0r95i5h7dr1xadp1ac9453w0s62s27hzkam356nyx2d9mqqmva7l"))
 (define rust-http-1.5.0
   (crate "http" "1.5.0" "1q4wpz5hb4cf37g3jrdyffrpa6ngidmd9wrfph92fddzprl3b3ci"))
-(define rust-http-body-1.0.1
-  (crate "http-body" "1.0.1" "111ir5k2b9ihz5nr9cz7cwm7fnydca7dx4hc7vr16scfzghxrzhy"))
 (define rust-http-body-1.1.0
   (crate "http-body" "1.1.0" "0b5wj0rdj8p03k20q8x0jy249amg2db919fnmh7zcrgf2clqyana"))
-(define rust-http-body-util-0.1.3
-  (crate "http-body-util" "0.1.3" "0jm6jv4gxsnlsi1kzdyffjrj8cfr3zninnxpw73mvkxy4qzdj8dh"))
 (define rust-http-body-util-0.1.5
   (crate "http-body-util" "0.1.5" "07773iilap808wjp6vywlq15zkgwnswqzrv270zxvg2z9biry5i3"))
 (define rust-httparse-1.10.1
@@ -1224,30 +1162,24 @@
   (crate "httpdate" "1.0.3" "1aa9rd2sac0zhjqh24c9xvir96g188zldkx0hr6dnnlx5904cfyz"))
 (define rust-human-sort-0.2.2
   (crate "human-sort" "0.2.2" "06b2rj4hd4h4rf3mp5qk89ymlxh5iv3cpmrfgramwvay634hj2hl"))
-(define rust-human_format-1.1.0
-  (crate "human_format" "1.1.0" "1f45y1vib7z96ij5xv623rxpdm3ap4bj11j84jqjg7a5iir1yfsw"))
+(define rust-human_format-1.2.1
+  (crate "human_format" "1.2.1" "0jv24az0hb269iar8gk9sbdpfmbyn5csjfnblfwgdg752qzrbv7a"))
 (define rust-humansize-2.1.3
   (crate "humansize" "2.1.3" "1msxd1akb3dydsa8qs461sds9krwnn31szvqgaq93p4x0ad1rdbc"))
 (define rust-humantime-2.4.0
   (crate "humantime" "2.4.0" "059w9i1g0gmfg30axhqh10fvqpym4frsz9iggqlm673h0xkx5k8m"))
+(define rust-hybrid-array-0.4.10
+  (crate "hybrid-array" "0.4.10" "055jvmp7rsb44z5aimj9zbam9y33nplyagik38m0xd36yy6cyi1r"))
 (define rust-hybrid-array-0.4.13
   (crate "hybrid-array" "0.4.13" "133c3dg885v2i2xllzq42cjg93z7zdmajz431zjys7rc2g2md0w1"))
 (define rust-hybrid-array-0.4.15
   (crate "hybrid-array" "0.4.15" "05wsyp2n5gyf49qk51mblj9qyb15aay74m6fwmf74mpv1pqn9y17"))
 (define rust-hyper-1.12.0
   (crate "hyper" "1.12.0" "173wg6msakx4lha6hxm9z0i1h3bw34q8fk0x57b7flf9li6k4gic"))
-(define rust-hyper-1.7.0
-  (crate "hyper" "1.7.0" "07n59pxzlq621z611cbpvh7p4h9h15v0r7m5wgxygpx02d5aafpb"))
 (define rust-hyper-rustls-0.27.10
   (crate "hyper-rustls" "0.27.10" "0lvz2bxpphyxmkws5ysfnydvsd0q4smbwgy254g92irjf1afda6z"))
-(define rust-hyper-rustls-0.27.7
-  (crate "hyper-rustls" "0.27.7" "0n6g8998szbzhnvcs1b7ibn745grxiqmlpg53xz206v826v3xjg3"))
 (define rust-hyper-timeout-0.5.2
   (crate "hyper-timeout" "0.5.2" "1c431l5ckr698248yd6bnsmizjy2m1da02cbpmsnmkpvpxkdb41b"))
-(define rust-hyper-tls-0.6.0
-  (crate "hyper-tls" "0.6.0" "1q36x2yps6hhvxq5r7mc8ph9zz6xlb573gx0x3yskb0fi736y83h"))
-(define rust-hyper-util-0.1.17
-  (crate "hyper-util" "0.1.17" "1a5fcnz0alrg4lx9xf6ja66ihaab58jnm5msnky804wg39cras9w"))
 (define rust-hyper-util-0.1.21
   (crate "hyper-util" "0.1.21" "1zwbrhqr9js6r7db3zd8bsmm6ys1i0abgkc7lyw2d4jgd2b3vh6x"))
 (define rust-i18n-config-0.4.8
@@ -1270,8 +1202,6 @@
   (crate "i2c-linux" "0.1.2" "196jgnw9hpmgiy6cd1qdkgji0iznvjz5x1y2sqhi41xa3a3ql9n0"))
 (define rust-i2c-linux-sys-0.2.1
   (crate "i2c-linux-sys" "0.2.1" "1y5w7g6sm4fkydcqwfhz1plls22q04xs5lsfvb9j2rh1s070dkam"))
-(define rust-iana-time-zone-0.1.64
-  (crate "iana-time-zone" "0.1.64" "1yz980fmhaq9bdkasz35z63az37ci6kzzfhya83kgdqba61pzr9k"))
 (define rust-iana-time-zone-0.1.65
   (crate "iana-time-zone" "0.1.65" "0w64khw5p8s4nzwcf36bwnsmqzf61vpwk9ca1920x82bk6nwj6z3"))
 (define rust-iana-time-zone-haiku-0.1.2
@@ -1310,8 +1240,6 @@
   (crate "icu_collator_data" "2.4.0" "0d16ihmhwvi2pzdwla6j20001hmnsmhjy5dy3qf6c9x347l4fgqq"))
 (define rust-icu_collections-1.5.0
   (crate "icu_collections" "1.5.0" "09j5kskirl59mvqc8kabhy7005yyy7dp88jw9f6f3gkf419a8byv"))
-(define rust-icu_collections-2.0.0
-  (crate "icu_collections" "2.0.0" "0izfgypv1hsxlz1h8fc2aak641iyvkak16aaz5b4aqg3s3sp4010"))
 (define rust-icu_collections-2.1.1
   (crate "icu_collections" "2.1.1" "0hsblchsdl64q21qwrs4hvc2672jrf466zivbj1bwyv606bn8ssc"))
 (define rust-icu_collections-2.2.0
@@ -1356,8 +1284,6 @@
   (crate "icu_locale" "2.3.1" "1x0v4n1sjvg8dslidcfbrbv6cslknssdgvky8sd1cmzgc5f5jpvq"))
 (define rust-icu_locale-2.4.0
   (crate "icu_locale" "2.4.0" "0dhj4kcj9b9z46jqq63gjjgs6zdpqmcm5vl22n9cn5fwrmxsb3zy"))
-(define rust-icu_locale_core-2.0.0
-  (crate "icu_locale_core" "2.0.0" "02phv7vwhyx6vmaqgwkh2p4kc2kciykv2px6g4h8glxfrh02gphc"))
 (define rust-icu_locale_core-2.1.1
   (crate "icu_locale_core" "2.1.1" "1djvdc2f5ylmp1ymzv4gcnmq1s4hqfim9nxlcm173lsd01hpifpd"))
 (define rust-icu_locale_core-2.2.0
@@ -1386,8 +1312,6 @@
   (crate "icu_locid_transform_data" "1.5.1" "07gignya9gzynnyds88bmra4blq9jxzgrcss43vzk2q9h7byc5bm"))
 (define rust-icu_normalizer-1.5.0
   (crate "icu_normalizer" "1.5.0" "0kx8qryp8ma8fw1vijbgbnf7zz9f2j4d14rw36fmjs7cl86kxkhr"))
-(define rust-icu_normalizer-2.0.0
-  (crate "icu_normalizer" "2.0.0" "0ybrnfnxx4sf09gsrxri8p48qifn54il6n3dq2xxgx4dw7l80s23"))
 (define rust-icu_normalizer-2.1.1
   (crate "icu_normalizer" "2.1.1" "16dmn5596la2qm0r3vih0bzjfi0vx9a20yqjha6r1y3vnql8hv2z"))
 (define rust-icu_normalizer-2.2.0
@@ -1398,8 +1322,6 @@
   (crate "icu_normalizer" "2.4.0" "16f5hzppvfl136p72ikfdpblljnqjilan8vzzs3mq83g9263njj0"))
 (define rust-icu_normalizer_data-1.5.1
   (crate "icu_normalizer_data" "1.5.1" "1dqcm86spcqcs4jnra81yqq3g5bpw6bvf5iz621spj5x52137s65"))
-(define rust-icu_normalizer_data-2.0.0
-  (crate "icu_normalizer_data" "2.0.0" "1lvjpzxndyhhjyzd1f6vi961gvzhj244nribfpdqxjdgjdl0s880"))
 (define rust-icu_normalizer_data-2.1.1
   (crate "icu_normalizer_data" "2.1.1" "02jnzizg6q75m41l6c13xc7nkc5q8yr1b728dcgfhpzw076wrvbs"))
 (define rust-icu_normalizer_data-2.2.0
@@ -1422,8 +1344,6 @@
   (crate "icu_plurals_data" "2.4.0" "1sj8m093rlanzq32rhpf20z4lgai9lsvmp3di9c4278s5kgzfgyl"))
 (define rust-icu_properties-1.5.1
   (crate "icu_properties" "1.5.1" "1xgf584rx10xc1p7zjr78k0n4zn3g23rrg6v2ln31ingcq3h5mlk"))
-(define rust-icu_properties-2.0.1
-  (crate "icu_properties" "2.0.1" "0az349pjg8f18lrjbdmxcpg676a7iz2ibc09d2wfz57b3sf62v01"))
 (define rust-icu_properties-2.1.2
   (crate "icu_properties" "2.1.2" "1v3lbmhhi7i6jgw51ikjb1p50qh5rb67grlkdnkc63l7zq1gq2q2"))
 (define rust-icu_properties-2.2.0
@@ -1434,8 +1354,6 @@
   (crate "icu_properties" "2.4.0" "17rpgbrwk5963yaqizl2xq3przhxdi1qdgwqz1y8y5an3jckva1f"))
 (define rust-icu_properties_data-1.5.1
   (crate "icu_properties_data" "1.5.1" "1qm5vf17nyiwb87s3g9x9fsj32gkv4a7q7d2sblawx9vfncqgyw5"))
-(define rust-icu_properties_data-2.0.1
-  (crate "icu_properties_data" "2.0.1" "0cnn3fkq6k88w7p86w7hsd1254s4sl783rpz4p6hlccq74a5k119"))
 (define rust-icu_properties_data-2.1.2
   (crate "icu_properties_data" "2.1.2" "1bvpkh939rgzrjfdb7hz47v4wijngk0snmcgrnpwc9fpz162jv31"))
 (define rust-icu_properties_data-2.2.0
@@ -1446,8 +1364,6 @@
   (crate "icu_properties_data" "2.4.0" "1kyzmmgm1jqlfcpqr3nc0wqvnhz7a21khq81wlzicayhhapjk3xr"))
 (define rust-icu_provider-1.5.0
   (crate "icu_provider" "1.5.0" "1nb8vvgw8dv2inqklvk05fs0qxzkw8xrg2n9vgid6y7gm3423m3f"))
-(define rust-icu_provider-2.0.0
-  (crate "icu_provider" "2.0.0" "1bz5v02gxv1i06yhdhs2kbwxkw3ny9r2vvj9j288fhazgfi0vj03"))
 (define rust-icu_provider-2.1.1
   (crate "icu_provider" "2.1.1" "0576b7dizgyhpfa74kacv86y4g1p7v5ffd6c56kf1q82rvq2r5l5"))
 (define rust-icu_provider-2.2.0
@@ -1486,6 +1402,8 @@
   (crate "idna_adapter" "1.2.2" "0557p76l8hj35r9zn1yv7c6x1c0qbrsffmg80n0yy8361ly3fs6b"))
 (define rust-ignore-0.4.33
   (crate "ignore" "0.4.33" "0bs0d0qy8n6n2r4s01s234vr33ngssb1sm0rgnmcb7bjxlrridh0"))
+(define rust-ignore-0.4.34
+  (crate "ignore" "0.4.34" "1irw1gd8y55aba2wqqd7cv9fkjsgzdkzjzaqcy6qdmsifmjyajs8"))
 (define rust-image-0.25.10
   (crate "image" "0.25.10" "0131b9fsd5grxf3lchfs2ci0rg8ga2mh1ygai7k2zh1k8cwq1aw5"))
 (define rust-image-extras-0.1.1
@@ -1528,8 +1446,6 @@
   (crate "inotify-sys" "0.1.8" "0zgkxmqa7wlsc348166rr9np4560rflzlcvsmf8xyg0i5h5zhcy0"))
 (define rust-inout-0.1.4
   (crate "inout" "0.1.4" "008xfl1jn9rxsq19phnhbimccf4p64880jmnpg59wqi07kk117w7"))
-(define rust-inout-0.2.4
-  (crate "inout" "0.2.4" "0gwwh52wdf7yzsg6gg5256gpxq3l87kwkgqz21yhd6dkdyxq7s9w"))
 (define rust-inout-0.2.5
   (crate "inout" "0.2.5" "13wp41m9p1wwwk2swnqcrirsbxv5b2zzxf4399kr48025lvz8p1v"))
 (define rust-input-0.10.0
@@ -1550,26 +1466,16 @@
   (crate "io-kit-sys" "0.4.1" "0ysy5k3wf54yangy25hkj10xx332cj2hb937xasg6riziv7yczk1"))
 (define rust-io-lifetimes-1.0.11
   (crate "io-lifetimes" "1.0.11" "1hph5lz4wd3drnn6saakwxr497liznpfnv70via6s0v8x6pbkrza"))
-(define rust-io-uring-0.7.10
-  (crate "io-uring" "0.7.10" "0yvjyygwdcqjcgw8zp254hvjbm7as1c075dl50spdshas3aa4vq4"))
 (define rust-io-uring-0.7.15
   (crate "io-uring" "0.7.15" "1fzjd6aadjqfhr4y68y6j0w7d84w4gjk4yxv73shay5qzgnd0fzd"))
-(define rust-io_uring_buf_ring-0.2.3
-  (crate "io_uring_buf_ring" "0.2.3" "03m841rjmqcmf93kibgq8fpscjjw2j1rshimbbq4rwn2p2dpaf0q"))
-(define rust-ipnet-2.11.0
-  (crate "ipnet" "2.11.0" "0c5i9sfi2asai28m8xp48k5gvwkqrg5ffpi767py6mzsrswv17s6"))
 (define rust-ipnet-2.12.2
   (crate "ipnet" "2.12.2" "1h65hw16sqv8nrrmqp0g8drv5wh98n4z7a4h1lb76n8d7js306br"))
-(define rust-iri-string-0.7.8
-  (crate "iri-string" "0.7.8" "1cl0wfq97wq4s1p4dl0ix5cfgsc5fn7l22ljgw9ab9x1qglypifv"))
 (define rust-is-docker-0.2.0
   (crate "is-docker" "0.2.0" "1cyibrv6817cqcpf391m327ss40xlbik8wxcv5h9pj9byhksx2wj"))
 (define rust-is-terminal-0.4.17
   (crate "is-terminal" "0.4.17" "0ilfr9n31m0k6fsm3gvfrqaa62kbzkjqpwcd9mc46klfig1w2h1n"))
 (define rust-is-wsl-0.4.0
   (crate "is-wsl" "0.4.0" "19bs5pq221d4bknnwiqqkqrnsx2in0fsk8fylxm1747iim4hjdhp"))
-(define rust-is_terminal_polyfill-1.70.1
-  (crate "is_terminal_polyfill" "1.70.1" "1kwfgglh91z33kl0w5i338mfpa3zs0hidq5j4ny4rmjwrikchhvr"))
 (define rust-is_terminal_polyfill-1.70.2
   (crate "is_terminal_polyfill" "1.70.2" "15anlc47sbz0jfs9q8fhwf0h3vs2w4imc030shdnq54sny5i7jx6"))
 (define rust-itertools-0.12.1
@@ -1580,8 +1486,6 @@
   (crate "itertools" "0.14.0" "118j6l1vs2mx65dqhwyssbrxpawa90886m3mzafdvyip41w2q69b"))
 (define rust-itertools-0.15.0
   (crate "itertools" "0.15.0" "1p412hriqm4kxn7x1539vz2p5c5s1v2m36m4kis2ai4dyn9syjwb"))
-(define rust-itoa-1.0.15
-  (crate "itoa" "1.0.15" "0b4fj9kz54dr3wam0vprjwgygvycyw8r0qwg7vp19ly8b2w16psa"))
 (define rust-itoa-1.0.17
   (crate "itoa" "1.0.17" "1lh93xydrdn1g9x547bd05g0d3hra7pd1k4jfd2z1pl1h5hwdv4j"))
 (define rust-itoa-1.0.18
@@ -1596,16 +1500,24 @@
   (crate "jiff" "0.2.32" "03lhbin1rcqx84ag8wn6fpaf14wcdar27ck8dy6dvgsj4qw1c7cn"))
 (define rust-jiff-0.2.38
   (crate "jiff" "0.2.38" "10x38b9qb1b47mq54d9j4ljkpk7i5ygvknn0lf4h1sybbmqhbc5j"))
+(define rust-jiff-0.2.39
+  (crate "jiff" "0.2.39" "0g7ghdl0minhwgkwf036ld5lmcdnwbf7kf5h75f9xj5si82h7irs"))
 (define rust-jiff-core-0.1.1
   (crate "jiff-core" "0.1.1" "130jqxlbrmll1ahvm9lwr06grmzpmnx5wc6j0n8crkiw0ivgwljy"))
+(define rust-jiff-core-0.1.2
+  (crate "jiff-core" "0.1.2" "14qf99yrvnzm8rsvz7va43kgij398x26wpfk6s6gpfjkxc4k7r5f"))
 (define rust-jiff-icu-0.2.2
   (crate "jiff-icu" "0.2.2" "0inn8kdwlpjx0gfbq5rbyf1achwad6xsmfa9v210mcg8mazc4rqf"))
+(define rust-jiff-icu-0.2.3
+  (crate "jiff-icu" "0.2.3" "0gsim8n5b96015anc6lm9rpyy7idcfpsa2qjqvxyhs7w8ikw4d86"))
 (define rust-jiff-static-0.2.22
   (crate "jiff-static" "0.2.22" "18fljj75vxqvq1v55s074pbbrjy67qg1p2f0cvbmzhzc33dm40j7"))
 (define rust-jiff-static-0.2.32
   (crate "jiff-static" "0.2.32" "1k02m2afp1k07rbjqlqhvqyl46ir4v0cq5b65ig4r77rkp9rp1yh"))
 (define rust-jiff-static-0.2.38
   (crate "jiff-static" "0.2.38" "0p39a035j9c634llmr8lh1jz7ml8gqrbsla4d3j7wz6gadr83j9c"))
+(define rust-jiff-static-0.2.39
+  (crate "jiff-static" "0.2.39" "0gd96qg3jvxapr4a06nbrq2dq4skjbx06hxprklx1dvyqrq29hvd"))
 (define rust-jiff-tzdb-0.1.5
   (crate "jiff-tzdb" "0.1.5" "1hm5xn3q092zac6apjy4492ddid473mwa0d64z5f5f95yyzix5v8"))
 (define rust-jiff-tzdb-0.1.8
@@ -1640,8 +1552,6 @@
   (crate "js-sys" "0.3.106" "1icwmpjw54lb7vg5926k5y4y5jbiih0zxhwgjwnzn475v90xk0vq"))
 (define rust-js-sys-0.3.107
   (crate "js-sys" "0.3.107" "0fjdb084avbdxqb6n14lzszwn91wg88npasfym7bz2q9ahhrvh4d"))
-(define rust-js-sys-0.3.81
-  (crate "js-sys" "0.3.81" "01ckbf16iwh7qj92fax9zh8vf2y9sk60cli6999cn7a1jxx96j7c"))
 (define rust-js-sys-0.3.89
   (crate "js-sys" "0.3.89" "01jm61x86psd4n3qi8y6d7i556g14dg2lgsi9id48453843cpspl"))
 (define rust-jxl-0.8.0
@@ -1682,8 +1592,12 @@
   (crate "jxl_transforms" "0.8.0" "1b8wiymqs7m6bmv2dzym7a5dbnlppkmxb372n9waanvzjpwbgi11"))
 (define rust-kamadak-exif-0.6.1
   (crate "kamadak-exif" "0.6.1" "0ds8k36qi88mzhx5fm1cgbxg0s4kmyiibmqpl5asvvvlfc6dhc0i"))
+(define rust-kamadak-exif-0.6.2
+  (crate "kamadak-exif" "0.6.2" "0s5z9dl6b5apfv3cdday3k68zbp5af175rnyrdradi211wncjwl7"))
 (define rust-kdl-6.5.0
   (crate "kdl" "6.5.0" "07knskrxlrkrlwnrbsm4w9npygf7n7n0p37n952z97q7a1xrx8l1"))
+(define rust-kdl-6.7.1
+  (crate "kdl" "6.7.1" "0w6nbv951063fj72yxyv6wcgzpzypqbmsr8j8kh6zmxcna0xyb88"))
 (define rust-keyboard-types-0.8.3
   (crate "keyboard-types" "0.8.3" "13dj6jsk4rr4kqghlxyr3ql7ajfrg65awc1h4c21mris80xqbghg"))
 (define rust-keyframe-1.1.1
@@ -1710,6 +1624,8 @@
   (crate "kqueue-sys" "1.1.2" "11xhzsgwc82g85072c6m8nimxxqkax4n40sikcsk9hks5573la87"))
 (define rust-kstring-2.0.2
   (crate "kstring" "2.0.2" "1lfvqlqkg2x23nglznb7ah6fk3vv3y5i759h5l2151ami98gk2sm"))
+(define rust-kstring-2.0.5
+  (crate "kstring" "2.0.5" "17mxj7jy9rf12rqh5lsyl6glk98g189jg6yxq0nx07kpgwmbh2bs"))
 (define rust-kurbo-0.10.4
   (crate "kurbo" "0.10.4" "0h1lqqdxv2xd5lyvpfsw01hyjpzkms03sdndwxkpvs93v7mx860n"))
 (define rust-kurbo-0.11.3
@@ -1730,10 +1646,8 @@
   (crate "lebe" "0.5.3" "1f459clndzzm35nyd15vj5dlasyagfasp7hcgl6lh2b658rs6ybs"))
 (define rust-libbz2-rs-sys-0.2.5
   (crate "libbz2-rs-sys" "0.2.5" "0k6vyakpz7h1m00mywbqkk3fq0lcjbmr8n5s6l3jds1k6wrmgcrl"))
-(define rust-libc-0.2.176
-  (crate "libc" "0.2.176" "0x7ivn80h7nz2l46vra7bxx36s6r8d0lkax14dx97skjsss2kyaq"))
-(define rust-libc-0.2.182
-  (crate "libc" "0.2.182" "04k1w1mq9f4cxv520dbr5xw1i7xkbc9fcrvaggyjy25jdkdvl038"))
+(define rust-libbz2-rs-sys-0.2.6
+  (crate "libbz2-rs-sys" "0.2.6" "0zmix8j1216i1y7idx2ppl0y4nx1lay7bl3yh879r8iid3ym9x1j"))
 (define rust-libc-0.2.186
   (crate "libc" "0.2.186" "0rnyhzjyqq9x56skkllbjzzzwym3r61lq3l4hqj64v71gw0r3av8"))
 (define rust-libc-0.2.191
@@ -1760,10 +1674,8 @@
   (crate "libloading" "0.8.9" "0mfwxwjwi2cf0plxcd685yxzavlslz7xirss3b9cbrzyk4hv1i6p"))
 (define rust-libm-0.2.16
   (crate "libm" "0.2.16" "10brh0a3qjmbzkr5mf5xqi887nhs5y9layvnki89ykz9xb1wxlmn"))
-(define rust-libmimalloc-sys-0.1.44
-  (crate "libmimalloc-sys" "0.1.44" "0w4q14nfpvwa8q4ygz72syd1cv3rj4nmhz1mqxmzr7gj43n4yzv6"))
-(define rust-libredox-0.1.10
-  (crate "libredox" "0.1.10" "1jswil4ai90s4rh91fg8580x8nikni1zl3wnch4h01nvidqpwvs1"))
+(define rust-libmimalloc-sys-0.1.49
+  (crate "libmimalloc-sys" "0.1.49" "1sdqq31sbf8dbdng8fsyzl2c5xxphn6dvr6ggik6zhg18cpsaiba"))
 (define rust-libredox-0.1.18
   (crate "libredox" "0.1.18" "0lj6dqz0pzwm32zqss320bhjryg7vymkxa575pzhc7ig6jg2ahy9"))
 (define rust-libredox-0.1.25
@@ -1788,8 +1700,6 @@
   (crate "linebender_resource_handle" "0.1.1" "1x34mrmqan0m3m9xf2iy6vpkcx6vwiiyzm2g3ixqdi56rimzz9fl"))
 (define rust-linked-hash-map-0.5.6
   (crate "linked-hash-map" "0.5.6" "03vpgw7x507g524nx5i1jf5dl8k3kv0fzg8v3ip6qqwbpkqww5q7"))
-(define rust-linux-raw-sys-0.11.0
-  (crate "linux-raw-sys" "0.11.0" "0fghx0nn8nvbz5yzgizfcwd6ap2pislp68j8c1bwyr6sacxkq7fz"))
 (define rust-linux-raw-sys-0.12.1
   (crate "linux-raw-sys" "0.12.1" "0lwasljrqxjjfk9l2j8lyib1babh2qjlnhylqzl01nihw14nk9ij"))
 (define rust-linux-raw-sys-0.4.15
@@ -1800,8 +1710,6 @@
   (crate "linux-raw-sys" "0.9.4" "04kyjdrq79lz9ibrf7czk6cv9d3jl597pb9738vzbsbzy1j5i56d"))
 (define rust-litemap-0.7.5
   (crate "litemap" "0.7.5" "0mi8ykav0s974ps79p438x04snh0cdb7lc864b42jws5375i9yr3"))
-(define rust-litemap-0.8.0
-  (crate "litemap" "0.8.0" "0mlrlskwwhirxk3wsz9psh6nxcy491n0dh8zl02qgj0jzpssw7i4"))
 (define rust-litemap-0.8.1
   (crate "litemap" "0.8.1" "0xsy8pfp9s802rsj1bq2ys2kbk1g36w5dr3gkfip7gphb5x60wv3"))
 (define rust-litemap-0.8.2
@@ -1812,20 +1720,20 @@
   (crate "litrs" "1.0.0" "14p0kzzkavnngvybl88nvfwv031cc2qx4vaxpfwsiifm8grdglqi"))
 (define rust-litrs-1.0.1
   (crate "litrs" "1.0.1" "0w0d0gkx9ixccx9c00rq164ih9ak3jdq0jsivrpbh3czjn1y6i27"))
+(define rust-local-event-0.1.3
+  (crate "local-event" "0.1.3" "1ly63vj0l4mmjk0iwva09h7r7qnh738c7ki5dvdb5zwn3salpar3"))
 (define rust-locale_config-0.3.0
   (crate "locale_config" "0.3.0" "0d399alr1i7h7yji4vydbdbzd8hp0xaykr7h4rn3yj7l2rdw7lh8"))
-(define rust-lock_api-0.4.13
-  (crate "lock_api" "0.4.13" "0rd73p4299mjwl4hhlfj9qr88v3r0kc8s1nszkfmnq2ky43nb4wn"))
 (define rust-lock_api-0.4.14
   (crate "lock_api" "0.4.14" "0rg9mhx7vdpajfxvdjmgmlyrn20ligzqvn8ifmaz7dc79gkrjhr2"))
-(define rust-log-0.4.28
-  (crate "log" "0.4.28" "0cklpzrpxafbaq1nyxarhnmcw9z3xcjrad3ch55mmr58xw2ha21l"))
 (define rust-log-0.4.29
   (crate "log" "0.4.29" "15q8j9c8g5zpkcw0hnd6cf2z7fxqnvsjh3rw5mv5q10r83i34l2y"))
 (define rust-log-0.4.33
   (crate "log" "0.4.33" "1bd9dmk22pxgnf0h0slba6rz99zb0a0b2mdhpk8p92bp26ycbvhc"))
 (define rust-log-0.4.34
   (crate "log" "0.4.34" "1ihkzn0m33ab79fcl4mkb04n5iwqzbxzyw7l7hazqkffaqzbvy7r"))
+(define rust-log-0.4.35
+  (crate "log" "0.4.35" "0p002750b2hab9bnlxxrvk5g9dvyaf23kiy39s6wsi6s29nzh5ax"))
 (define rust-log-panics-2.1.0
   (crate "log-panics" "2.1.0" "0pxcq9f4jmcs2l9lgs6hj2w3ba80zzsj4zgnxi81h70r8s2xvyb8"))
 (define rust-logind-zbus-5.3.2
@@ -1840,8 +1748,6 @@
   (crate "lru" "0.16.4" "0fgg35wrpfdrkv9hcabkg92g3sv4867g1rir7ay9lq1zs3ayhrkz"))
 (define rust-lru-0.7.8
   (crate "lru" "0.7.8" "0yp4ai5rpr2czxklzxxx98p6l2aqv4g1906j3dr4b0vfgfxbx6g9"))
-(define rust-lru-slab-0.1.2
-  (crate "lru-slab" "0.1.2" "0m2139k466qj3bnpk66bwivgcx3z88qkxvlzk70vd65jq373jaqi"))
 (define rust-lru-slab-0.1.3
   (crate "lru-slab" "0.1.3" "07y5xcnggc4f2ki68kzj93aycjc5z0j8y7scs4f31zx66yc4cl20"))
 (define rust-lyon-1.0.16
@@ -1874,12 +1780,16 @@
   (crate "lyon_tessellation" "1.0.22" "01b0pqawwyf51jncymqjnfp7rwp7lk3l01rw3gvcwzk30vwxrf23"))
 (define rust-lyon_tessellation-1.0.23
   (crate "lyon_tessellation" "1.0.23" "0nzppc5qfw29f8p3nhlfcp9a0mynsx4w9szpsiyr1p3h1rjp4j7x"))
-(define rust-lzma-rust2-0.13.0
-  (crate "lzma-rust2" "0.13.0" "0jlaq6b1c1vrv1nlg16bf7qggqj68yqlc4ig34ipwlhdp7zj62n6"))
+(define rust-lzma-rs-0.3.0
+  (crate "lzma-rs" "0.3.0" "0phif4pnjrn28zcxgz3a7z86hhx5gdajmkrndfw4vrkahd682zi9"))
 (define rust-lzma-rust2-0.16.5
   (crate "lzma-rust2" "0.16.5" "0nv91gm2axsp0hlq00mk83xmv2jh0bimzlm6rh6isb8ls4sfb4ya"))
-(define rust-lzma-rust2-0.22.0
-  (crate "lzma-rust2" "0.22.0" "1fx3qa3jxv358fhgdihj8maqqy8s8yv7im9n68j2bp1949scjxvj"))
+(define rust-lzma-rust2-0.24.0
+  (crate "lzma-rust2" "0.24.0" "1vhjg1c407hybgcaxn0y6vnm14zha23imaykynxiz1d71xb501s9"))
+(define rust-lzma-rust2-0.25.0
+  (crate "lzma-rust2" "0.25.0" "1428xkz5s473g44iqads2qn62b092mbfl8ibf51i6xsnkb2p67gg"))
+(define rust-lzma-sys-0.1.20
+  (crate "lzma-sys" "0.1.20" "09sxp20waxyglgn3cjz8qjkspb3ryz2fwx4rigkwvrk46ymh9njz"))
 (define rust-mac-notification-sys-0.6.15
   (crate "mac-notification-sys" "0.6.15" "1jmyr75x4py3wzr1w8rgxw36a55sjvxw14qiaqdw3p4djmrljq7x"))
 (define rust-macaddr-1.0.1
@@ -1902,12 +1812,12 @@
   (crate "mccs-db" "0.1.3" "0f4xyilm4szclvh4vzqx85qvqn0hvjxwpf61xj5r38d137zainiw"))
 (define rust-md-5-0.10.6
   (crate "md-5" "0.10.6" "1kvq5rnpm4fzwmyv5nmnxygdhhb2369888a06gdc9pxyrzh7x7nq"))
+(define rust-md-5-0.11.0
+  (crate "md-5" "0.11.0" "166yqj8b11pawpys7knnn77cr618cby2iywpp0dq4dh3b4gl9dk9"))
 (define rust-md-5-0.9.1
   (crate "md-5" "0.9.1" "059ajjacz1q3cms7vl6cvhdqs4qdw2nnwj9dq99ryzv0p6djfnkv"))
 (define rust-memchr-1.0.2
   (crate "memchr" "1.0.2" "0yjyja34pzhipdl855q3m21w1lyih4lw79x2dp3czwdla4pap3ql"))
-(define rust-memchr-2.7.5
-  (crate "memchr" "2.7.5" "1h2bh2jajkizz04fh047lpid5wgw2cr9igpkdhl3ibzscpd858ij"))
 (define rust-memchr-2.8.0
   (crate "memchr" "2.8.0" "0y9zzxcqxvdqg6wyag7vc3h0blhdn7hkq164bxyx2vph8zs5ijpq"))
 (define rust-memchr-2.8.3
@@ -1920,22 +1830,22 @@
   (crate "memmap2" "0.9.11" "1h4qnzgarnn488ljjpg9ns5y4bw0sq0xv0fj0iqywagjnz8rw8fi"))
 (define rust-memmap2-0.9.12
   (crate "memmap2" "0.9.12" "0my158ms3h2akj1l8bzabwjz1v9jkw8klcg82am2bk4yb8as233b"))
-(define rust-memmap2-0.9.8
-  (crate "memmap2" "0.9.8" "1dqxjs89krh8cin0k7ksqc9myw9yni9kn8d8cllwq4fn1isrhfl4"))
 (define rust-memoffset-0.9.1
   (crate "memoffset" "0.9.1" "12i17wh9a9plx869g7j4whf62xw68k5zd4k0k5nh6ys5mszid028"))
-(define rust-memoize-0.5.1
-  (crate "memoize" "0.5.1" "0xk2aak80j5qlr2lv34s0gpxf2mmgix1p3fqnpwb7flr49wxblgq"))
+(define rust-memoize-0.6.0
+  (crate "memoize" "0.6.0" "01214gylc6a93a1y1dszdaf5x3r0fa68xmxfb4v93v7fwrxkprvi"))
 (define rust-memoize-inner-0.5.1
   (crate "memoize-inner" "0.5.1" "1xvnz0ka04ai3w0gv7b7av03r6gh7v4a7ndyz8x33zyqan9gin3d"))
 (define rust-metal-0.33.0
   (crate "metal" "0.33.0" "05dwbjpdrhbnfq2jgdx0m5j9ip3ibwsln0b3v663p45wnn8pf167"))
 (define rust-miette-7.6.0
   (crate "miette" "7.6.0" "1dwjnnpcff4jzpf5ns1m19di2p0n5j31zmjv5dskrih7i3nfz62z"))
-(define rust-mimalloc-0.1.48
-  (crate "mimalloc" "0.1.48" "1n2gi51zb6jhr2d154sisymgxhyr58cvkjwb53pz8x2cnsj6dvp1"))
+(define rust-mimalloc-0.1.52
+  (crate "mimalloc" "0.1.52" "0qkqr4yga7fkyqwnn89d2xp346q54n4fpm91rzxd2jni52xkjh9d"))
 (define rust-mime-0.3.17
   (crate "mime" "0.3.17" "16hkibgvb9klh0w0jk5crr5xv90l3wlf77ggymzjmvl1818vnxv8"))
+(define rust-mime-0.3.18
+  (crate "mime" "0.3.18" "18dzfqp5gaza7lg8qqpq1xh83zw79b1al3zryaacy5w1krd8z16m"))
 (define rust-mime_guess-2.0.5
   (crate "mime_guess" "2.0.5" "03jmg3yx6j39mg0kayf7w4a886dl3j15y8zs119zw01ccy74zi7p"))
 (define rust-mime_guess2-2.3.1
@@ -1948,16 +1858,14 @@
   (crate "miniz_oxide" "0.9.1" "0k2bgjzk2sbsynpsv4wizwxbqp6vs7g08y5anbkrh3l6a15bqgxn"))
 (define rust-mint-0.5.9
   (crate "mint" "0.5.9" "1zw5glv8z2d99c82jy2za97hh9p6377xmf4rbwz7jynsdfxfngg5"))
-(define rust-mio-1.0.4
-  (crate "mio" "1.0.4" "073n3kam3nz8j8had35fd2nn7j6a33pi3y5w3kq608cari2d9gkq"))
-(define rust-mio-1.1.1
-  (crate "mio" "1.1.1" "1z2phpalqbdgihrcjp8y09l3kgq6309jnhnr6h11l9s7mnqcm6x6"))
 (define rust-mio-1.2.1
   (crate "mio" "1.2.1" "1nkggmrlnjs93w8rja4lvjj4aml1xqahgimv1h0p7d373kvhmg82"))
 (define rust-mio-1.2.4
   (crate "mio" "1.2.4" "1vl6px9zy0pwhlwnw3cknsqyzkg8bcpiwiq4cgicf2fwgywfv20p"))
 (define rust-miow-0.6.1
   (crate "miow" "0.6.1" "023g6jamln6hmspcllgrm99ri38ypbm8w945jh36579hgb9zlssk"))
+(define rust-mod_use-0.2.3
+  (crate "mod_use" "0.2.3" "0yh90q27x7baxb4dfwn33n8104h8dm653b0wv62c5xaqm8j97411"))
 (define rust-modit-0.1.5
   (crate "modit" "0.1.5" "0ngkbrl2y2s6ax4v7yyk3q7wp1kk6ifph1g9nam1hd5wxahikykx"))
 (define rust-moxcms-0.8.1
@@ -1974,10 +1882,6 @@
   (crate "mutate_once" "0.1.2" "1byj4yz6h0mdx3mmj0mq23ma59kw41pckspr2gz8rl22k0y27lhk"))
 (define rust-naga-28.0.0
   (crate "naga" "28.0.0" "0d8idx407r0lnqbcjl097wyfr6lavf3i09b1zkfijch64mr6d3v1"))
-(define rust-nanorand-0.7.0
-  (crate "nanorand" "0.7.0" "1hr60b8zlfy7mxjcwx2wfmhpkx7vfr3v9x12shmv1c10b0y32lba"))
-(define rust-native-tls-0.2.18
-  (crate "native-tls" "0.2.18" "1wmv0g5p6jwyyslyw88w5fv9kc9qvjd1hi2d4sfl4qm19vhh0ma6"))
 (define rust-ndk-0.9.0
   (crate "ndk" "0.9.0" "1m32zpmi5w1pf3j47k6k5fw395dc7aj8d0mdpsv53lqkprxjxx63"))
 (define rust-ndk-context-0.1.1
@@ -1990,8 +1894,6 @@
   (crate "new_mime_guess" "4.0.4" "1x7gk46ymrkkxdyig84563xzfqll6wfayxlkf05yjlwxanrxz8h2"))
 (define rust-nix-0.29.0
   (crate "nix" "0.29.0" "0ikvn7s9r2lrfdm3mx1h7nbfjvcc6s9vxdzw7j5xfkd2qdnp9qki"))
-(define rust-nix-0.30.1
-  (crate "nix" "0.30.1" "1dixahq9hk191g0c2ydc0h1ppxj0xw536y6rl63vlnp06lx3ylkl"))
 (define rust-nix-0.31.3
   (crate "nix" "0.31.3" "0gbwnjfny9rq9hl5bz4ry520n9rnfknna4bg88n66f7zx3yx486g"))
 (define rust-nmrs-3.5.7
@@ -2036,14 +1938,14 @@
   (crate "num-bigint" "0.4.8" "0ry3xjal8f5xhdinani268ci13h14mf7j4w0y1gflfzhw3knk7n8"))
 (define rust-num-complex-0.4.6
   (crate "num-complex" "0.4.6" "15cla16mnw12xzf5g041nxbjjm9m85hdgadd5dl5d0b30w9qmy3k"))
-(define rust-num-conv-0.1.0
-  (crate "num-conv" "0.1.0" "1ndiyg82q73783jq18isi71a7mjh56wxrk52rlvyx0mi5z9ibmai"))
 (define rust-num-conv-0.2.0
   (crate "num-conv" "0.2.0" "0l4hj7lp8zbb9am4j3p7vlcv47y9bbazinvnxx9zjhiwkibyr5yg"))
 (define rust-num-conv-0.2.2
   (crate "num-conv" "0.2.2" "0hg4f9bwmy7cwpxdkm165dmkfc8jhkkayci234jsmi5ssb33j5sj"))
 (define rust-num-derive-0.4.2
   (crate "num-derive" "0.4.2" "00p2am9ma8jgd2v6xpsz621wc7wbn1yqi71g15gc3h67m7qmafgd"))
+(define rust-num-derive-0.5.1
+  (crate "num-derive" "0.5.1" "1a0j869gl9fj7nhh4qv5zahdxl1350d4jgcx1wxc5xlhp31qvsg4"))
 (define rust-num-integer-0.1.46
   (crate "num-integer" "0.1.46" "13w5g54a9184cqlbsq80rnxw4jj4s0d8wv75jsq5r2lms8gncsbr"))
 (define rust-num-integer-0.1.47
@@ -2126,8 +2028,6 @@
   (crate "objc2-ui-kit" "0.3.2" "08mbgqg8pffclyxpz2lr8r1fv8wn2i4m1k6bk1s5fvy06f766zfq"))
 (define rust-objc_id-0.1.1
   (crate "objc_id" "0.1.1" "0fq71hnp2sdblaighjc82yrac3adfmqzhpr11irhvdfp9gdlsbf9"))
-(define rust-object-0.36.7
-  (crate "object" "0.36.7" "11vv97djn9nc5n6w1gc6bd96d2qk2c8cg1kw5km9bsi3v4a8x532"))
 (define rust-object-0.37.3
   (crate "object" "0.37.3" "1zikiy9xhk6lfx1dn2gn2pxbnfpmlkn0byd7ib1n720x0cgj0xpz"))
 (define rust-object-0.40.0
@@ -2136,8 +2036,6 @@
   (crate "once_cell" "1.21.3" "0b9x77lb9f1j6nqgf5aka4s2qj0nly176bpbrv6f9iakk5ff3xa2"))
 (define rust-once_cell-1.21.4
   (crate "once_cell" "1.21.4" "0l1v676wf71kjg2khch4dphwh1jp3291ffiymr2mvy1kxd5kwz4z"))
-(define rust-once_cell_polyfill-1.70.1
-  (crate "once_cell_polyfill" "1.70.1" "1bg0w99srq8h4mkl68l1mza2n2f2hvrg0n8vfa3izjr5nism32d4"))
 (define rust-once_cell_polyfill-1.70.2
   (crate "once_cell_polyfill" "1.70.2" "1zmla628f0sk3fhjdjqzgxhalr2xrfna958s632z65bjsfv8ljrq"))
 (define rust-onig-6.5.3
@@ -2148,14 +2046,12 @@
   (crate "opaque-debug" "0.3.1" "10b3w0kydz5jf1ydyli5nv10gdfp97xh79bgz327d273bs46b3f0"))
 (define rust-open-5.4.4
   (crate "open" "5.4.4" "1g7ffnbgl46s9nkwl8lxxwrpii1nfgk63066xj780yrb61v6qmxa"))
-(define rust-openssl-0.10.81
-  (crate "openssl" "0.10.81" "0ibsv2ppsjrp62jqyzprhay9vczk1bw9xvdr3h4h7fxsy0kkm0kp"))
-(define rust-openssl-macros-0.1.1
-  (crate "openssl-macros" "0.1.1" "173xxvfc63rr5ybwqwylsir0vq6xsj4kxiv4hmg4c3vscdmncj59"))
+(define rust-open-5.4.5
+  (crate "open" "5.4.5" "15faqj24cm451lhj148x9xxhlji9ckqb4vl9sq269ljsfa78p34d"))
 (define rust-openssl-probe-0.2.1
   (crate "openssl-probe" "0.2.1" "1gpwpb7smfhkscwvbri8xzbab39wcnby1jgz1s49vf1aqgsdx1vw"))
-(define rust-openssl-sys-0.9.117
-  (crate "openssl-sys" "0.9.117" "159nf6jsqnmsynkh6gjzx088q1ifll7v88sss8qdk363n9mpwzml"))
+(define rust-openssl-probe-0.2.2
+  (crate "openssl-probe" "0.2.2" "1c90103d6q2qqf2ihgd9dxhczi8kk97bg52fnzb2y4sl2x0nn0vy"))
 (define rust-option-ext-0.2.0
   (crate "option-ext" "0.2.0" "0zbf7cx8ib99frnlanpyikm1bx8qn8x602sw1n7bg6p9x94lyx04"))
 (define rust-option-operations-0.6.1
@@ -2240,18 +2136,26 @@
   (crate "phf" "0.11.3" "0y6hxp1d48rx2434wgi5g8j1pr8s5jja29ha2b65435fh057imhz"))
 (define rust-phf-0.13.1
   (crate "phf" "0.13.1" "1pzswx5gdglgjgp4azyzwyr4gh031r0kcnpqq6jblga72z3jsmn1"))
+(define rust-phf-0.14.0
+  (crate "phf" "0.14.0" "1xm2nbg5c59b5wvvv4v3sd3sknrlg2z17bkzk440p2090dw7h0q1"))
 (define rust-phf_generator-0.11.3
   (crate "phf_generator" "0.11.3" "0gc4np7s91ynrgw73s2i7iakhb4lzdv1gcyx7yhlc0n214a2701w"))
 (define rust-phf_generator-0.13.1
   (crate "phf_generator" "0.13.1" "0dwpp11l41dy9mag4phkyyvhpf66lwbp79q3ik44wmhyfqxcwnhk"))
+(define rust-phf_generator-0.14.0
+  (crate "phf_generator" "0.14.0" "003i8qw6ghkcvs6bmxdhnq1a1kmpwbciakazjsybx8fmb44jxdmf"))
 (define rust-phf_macros-0.11.3
   (crate "phf_macros" "0.11.3" "05kjfbyb439344rhmlzzw0f9bwk9fp95mmw56zs7yfn1552c0jpq"))
 (define rust-phf_macros-0.13.1
   (crate "phf_macros" "0.13.1" "1vv9h8pr7xh18sigpvq1hxc8q9nmjmv6gdpqsp65krxiahmh6bw1"))
+(define rust-phf_macros-0.14.0
+  (crate "phf_macros" "0.14.0" "11g0wm4xric3nf9b9czpign7svk94ik0qq6s61vd496l4v5d1a2z"))
 (define rust-phf_shared-0.11.3
   (crate "phf_shared" "0.11.3" "1rallyvh28jqd9i916gk5gk2igdmzlgvv5q0l3xbf3m6y8pbrsk7"))
 (define rust-phf_shared-0.13.1
   (crate "phf_shared" "0.13.1" "0rpjchnswm0x5l4mz9xqfpw0j4w68sjvyqrdrv13h7lqqmmyyzz5"))
+(define rust-phf_shared-0.14.0
+  (crate "phf_shared" "0.14.0" "12dalcsaq83pfydhq81195aal0ld9vdx3swz6kk9ncfrw8kr1zf6"))
 (define rust-pico-args-0.5.0
   (crate "pico-args" "0.5.0" "05d30pvxd6zlnkg2i3ilr5a70v3f3z2in18m67z25vinmykngqav"))
 (define rust-pin-project-1.1.10
@@ -2270,8 +2174,6 @@
   (crate "pin-utils" "0.1.0" "117ir7vslsl2z1a7qzhws4pd01cg2d3338c47swjyvqv2n60v1wb"))
 (define rust-pin-utils-0.1.1
   (crate "pin-utils" "0.1.1" "04x1i74a3dsihlfxigzlv4ywyqq31fv34a18573laqx27p3ydghk"))
-(define rust-piper-0.2.4
-  (crate "piper" "0.2.4" "0rn0mjjm0cwagdkay77wgmz3sqf8fqmv9d9czm79mvr2yj8c9j4n"))
 (define rust-piper-0.2.5
   (crate "piper" "0.2.5" "1hd3j94mw5dwc457gs9ssb2r5b9iipywndf5srqx7pj38jd4fdf8"))
 (define rust-pipewire-0.10.1
@@ -2312,8 +2214,6 @@
   (crate "portable-atomic-util" "0.2.7" "0616j0fhy6y71hyxg3n86f6hng0fmsc269s3wp4gl8ww4p8hd8f2"))
 (define rust-portable-atomic-util-0.2.8
   (crate "portable-atomic-util" "0.2.8" "059729m166s1ccvqfyj6lv0wz5kr4qh6yb2gphf3mk5yyfvkxaqh"))
-(define rust-potential_utf-0.1.3
-  (crate "potential_utf" "0.1.3" "12mhwvhpvvim6xqp6ifgkh1sniv9j2cmid6axn10fnjvpsnikpw4"))
 (define rust-potential_utf-0.1.4
   (crate "potential_utf" "0.1.4" "0xxg0pkfpq299wvwln409z4fk80rbv55phh3f1jhjajy5x1ljfdp"))
 (define rust-potential_utf-0.1.5
@@ -2326,6 +2226,8 @@
   (crate "powerfmt" "0.2.1" "0n293rvnpisjmxdqhq6zmrvcdql7j1c4zrcy5053vrv5x6wr8qsa"))
 (define rust-ppmd-rust-1.5.1
   (crate "ppmd-rust" "1.5.1" "0mmgfw1kpp1560rwi7l8c4dd1cbm4d9km7kxrhbj5jag91wl6js9"))
+(define rust-ppmd-rust-1.5.2
+  (crate "ppmd-rust" "1.5.2" "049n1g4gwfwzslinfrkm17d9xvh9b7ywvzfcckdqb8sf4s6wqjnd"))
 (define rust-ppv-lite86-0.2.21
   (crate "ppv-lite86" "0.2.21" "1abxx6qz5qnd43br1dd9b2savpihzjza8gb4fbzdql1gxp2f7sl5"))
 (define rust-presser-0.3.1
@@ -2346,8 +2248,6 @@
   (crate "proc-macro-error2" "2.0.1" "00lq21vgh7mvyx51nwxwf822w2fpww1x0z8z0q47p8705g2hbv0i"))
 (define rust-proc-macro-error3-3.1.1
   (crate "proc-macro-error3" "3.1.1" "0cr2am1lpa4asmayrdz9ia8mh5akv8fkp491dc824v23ndql83cg"))
-(define rust-proc-macro2-1.0.101
-  (crate "proc-macro2" "1.0.101" "1pijhychkpl7rcyf1h7mfk6gjfii1ywf5n0snmnqs5g4hvyl7bl9"))
 (define rust-proc-macro2-1.0.106
   (crate "proc-macro2" "1.0.106" "0d09nczyaj67x4ihqr5p7gxbkz38gxhk4asc0k8q23g9n85hzl4g"))
 (define rust-proc-macro2-1.0.107
@@ -2398,8 +2298,6 @@
   (crate "quick-error" "2.0.1" "18z6r2rcjvvf8cn92xjhm2qc3jpd1ljvcbf12zv0k9p565gmb4x9"))
 (define rust-quick-xml-0.36.2
   (crate "quick-xml" "0.36.2" "1zj3sjcjk6sn544wb2wvhr1km5f9cy664vzclygfsnph9mxrlr7p"))
-(define rust-quick-xml-0.37.5
-  (crate "quick-xml" "0.37.5" "1yxpd7rc2qn6f4agfj47ps2z89vv7lvzxpzawqirix8bmyhrf7ik"))
 (define rust-quick-xml-0.38.4
   (crate "quick-xml" "0.38.4" "0772siy4d9vlq77842012c8cycs3y0szxkv62rh9sh2sqmc20v5n"))
 (define rust-quick-xml-0.39.2
@@ -2412,18 +2310,10 @@
   (crate "quick-xml" "0.42.0" "16syc42bb82hijgqg936mnwiz74x2m3zyipvschj77crvxzigca1"))
 (define rust-quinn-0.11.12
   (crate "quinn" "0.11.12" "04cxgnriz43bzhicvvjjj0sjv8l7rbdrrx9ywfkmbhl5j4zf4la0"))
-(define rust-quinn-0.11.9
-  (crate "quinn" "0.11.9" "086gzj666dr3slmlynkvxlndy28hahgl361d6bf93hk3i6ahmqmr"))
-(define rust-quinn-proto-0.11.13
-  (crate "quinn-proto" "0.11.13" "0cca3mgja9p4w66f6sl1kfhj8rdf4mwsg1jxzssh9g63n14np47i"))
 (define rust-quinn-proto-0.11.19
   (crate "quinn-proto" "0.11.19" "1gpg5d36v8wrm1hjrrz8jfcyflcnv8lva2sxl4wh8kzyap50qx8f"))
-(define rust-quinn-udp-0.5.14
-  (crate "quinn-udp" "0.5.14" "1gacawr17a2zkyri0r3m0lc9spzmxbq1by3ilyb8v2mdvjhcdpmd"))
 (define rust-quinn-udp-0.5.16
   (crate "quinn-udp" "0.5.16" "05phk0ragk1655pxkbfvjxxb5i5b1i4nbjjnvgsdqfc6y5yr0rmg"))
-(define rust-quote-1.0.40
-  (crate "quote" "1.0.40" "1394cxjg6nwld82pzp2d4fp6pmaz32gai1zh9z5hvh0dawww118q"))
 (define rust-quote-1.0.44
   (crate "quote" "1.0.44" "1r7c7hxl66vz3q9qizgjhy77pdrrypqgk4ghc7260xvvfb7ypci1"))
 (define rust-quote-1.0.46
@@ -2444,8 +2334,6 @@
   (crate "rand" "0.8.6" "12kd4rljn86m00rcaz4c1rcya4mb4gk5ig6i8xq00a8wjgxfr82w"))
 (define rust-rand-0.8.8
   (crate "rand" "0.8.8" "0k3d9psya5icpiylff1w1wjbnc3q4pb1953n1iw7gbr61ggcfn70"))
-(define rust-rand-0.9.2
-  (crate "rand" "0.9.2" "1lah73ainvrgl7brcxx0pwhpnqa3sm3qaj672034jz8i0q7pgckd"))
 (define rust-rand-0.9.4
   (crate "rand" "0.9.4" "1sknbxgs6nfg0nxdd7689lwbyr2i4vaswchrv4b34z8vpc3azia4"))
 (define rust-rand-0.9.5
@@ -2460,8 +2348,6 @@
   (crate "rand_core" "0.10.1" "0s9wiacxrr100icl7i41308gcj85nlcclrc5jx1jd6p10dhigf33"))
 (define rust-rand_core-0.6.4
   (crate "rand_core" "0.6.4" "0b4j2v4cb5krak1pv6kakv4sz6xcwbrmy2zckc32hsigbrwy82zc"))
-(define rust-rand_core-0.9.3
-  (crate "rand_core" "0.9.3" "0f3xhf16yks5ic6kmgxcpv1ngdhp48mmfy4ag82i1wnwh8ws3ncr"))
 (define rust-rand_core-0.9.5
   (crate "rand_core" "0.9.5" "0g6qc5r3f0hdmz9b11nripyp9qqrzb0xqk9piip8w8qlvqkcibvn"))
 (define rust-rand_pcg-0.10.2
@@ -2496,8 +2382,6 @@
   (crate "read-fonts" "0.41.0" "02c7q458gz6cfsyryiss5w6xp0k8dl2n4l1gncjrhidg9mkpssh4"))
 (define rust-reborrow-0.5.5
   (crate "reborrow" "0.5.5" "0c14ccj3fdf47a1ya21bkxqv7s2hxrcfhaw98aqd6jqg029i2983"))
-(define rust-recently-used-xbel-1.1.0
-  (crate "recently-used-xbel" "1.1.0" "16wcw8dpzhps5s31kmkzmpgwvrkb1nrmvicyzlbwzra17qc836h7"))
 (define rust-recently-used-xbel-1.2.0
   (crate "recently-used-xbel" "1.2.0" "1dcrafj2a1klcng0h2i1gf5141sjsdy4zd6hmpxla0jgrpmjzav3"))
 (define rust-redox_event-0.4.8
@@ -2520,28 +2404,20 @@
   (crate "redox_users" "0.5.2" "1b17q7gf7w8b1vvl53bxna24xl983yn7bd00gfbii74bcg30irm4"))
 (define rust-redox_users-0.5.3
   (crate "redox_users" "0.5.3" "1h4g0g0zlyvqf40kf420812bcw5g9gqvjrqc9cly2yhszz06bp30"))
-(define rust-ref-cast-1.0.24
-  (crate "ref-cast" "1.0.24" "1kx57g118vs9sqi6d2dcxy6vp8jbx8n5hilmv1sacip9vc8y82ja"))
 (define rust-ref-cast-1.0.25
   (crate "ref-cast" "1.0.25" "0zdzc34qjva9xxgs889z5iz787g81hznk12zbk4g2xkgwq530m7k"))
 (define rust-ref-cast-1.0.27
   (crate "ref-cast" "1.0.27" "1hv5sf0j7b65gz2g57c3wp0fzr5r3807dywf6fap455lwjs0yi3y"))
-(define rust-ref-cast-impl-1.0.24
-  (crate "ref-cast-impl" "1.0.24" "1ir7dm7hpqqdgg60hlspsc1ck6wli7wa3xcqrsxz7wdz45f24r8i"))
 (define rust-ref-cast-impl-1.0.25
   (crate "ref-cast-impl" "1.0.25" "1nkhn1fklmn342z5c4mzfzlxddv3x8yhxwwk02cj06djvh36065p"))
 (define rust-ref-cast-impl-1.0.27
   (crate "ref-cast-impl" "1.0.27" "0fnzgkvddgl9xs3884x5ypi9rd0dgc1p5vd1k4b74lw49ybdiv4j"))
-(define rust-regex-1.11.2
-  (crate "regex" "1.11.2" "04k9rzxd11hcahpyihlswy6f1zqw7lspirv4imm4h0lcdl8gvmr3"))
 (define rust-regex-1.12.3
   (crate "regex" "1.12.3" "0xp2q0x7ybmpa5zlgaz00p8zswcirj9h8nry3rxxsdwi9fhm81z1"))
 (define rust-regex-1.13.0
   (crate "regex" "1.13.0" "18p8vqy4yp4z4rnx78sh4qqz257jhil7il4c0v5mmp0l7q8pa3ia"))
 (define rust-regex-1.13.1
   (crate "regex" "1.13.1" "1391a0a4100ik8cp7l577p3ip3haqq03rd9c5vdr7vcfdixj687h"))
-(define rust-regex-automata-0.4.10
-  (crate "regex-automata" "0.4.10" "1mllcfmgjcl6d52d5k09lwwq9wj5mwxccix4bhmw5spy1gx5i53b"))
 (define rust-regex-automata-0.4.14
   (crate "regex-automata" "0.4.14" "13xf7hhn4qmgfh784llcp2kzrvljd13lb2b1ca0mwnf15w9d87bf"))
 (define rust-regex-automata-0.4.15
@@ -2552,16 +2428,10 @@
   (crate "regex-syntax" "0.8.10" "02jx311ka0daxxc7v45ikzhcl3iydjbbb0mdrpc1xgg8v7c7v2fw"))
 (define rust-regex-syntax-0.8.11
   (crate "regex-syntax" "0.8.11" "1m25h5q2wp976fb9gc3dsc9l99svcvd5cri8lncb51c46ydgzxnn"))
-(define rust-regex-syntax-0.8.6
-  (crate "regex-syntax" "0.8.6" "00chjpglclfskmc919fj5aq308ffbrmcn7kzbkz92k231xdsmx6a"))
 (define rust-reis-0.7.1
   (crate "reis" "0.7.1" "0pzqwqzbjpyjmzhwnwv8g7m7hqdrgfc12kvj41x0chls9337x5jb"))
 (define rust-renderdoc-sys-1.1.0
   (crate "renderdoc-sys" "1.1.0" "0cj8zjs7k0gvchcx3jhpg8r9bbqy8b1hsgbz0flcq2ydn12hmcqr"))
-(define rust-reqwest-0.12.23
-  (crate "reqwest" "0.12.23" "1svw1k0jx17cmlwhixwqfv3bgpjapciw7klkghnd9cljh16g6afl"))
-(define rust-reqwest-0.12.28
-  (crate "reqwest" "0.12.28" "0iqidijghgqbzl3bjg5hb4zmigwa4r612bgi0yiq0c90b6jkrpgd"))
 (define rust-reqwest-0.13.5
   (crate "reqwest" "0.13.5" "0ac0n0g7xaffc6q3dhn9rixr4h1f0h7533l1smrxv1n1bjkwz88n"))
 (define rust-resize-slice-0.1.3
@@ -2574,8 +2444,6 @@
   (crate "resvg" "0.47.0" "10cfzm1ldb2vmwcrsdfjdzmb7f4814xh7j746dpsjsi1danq7qcv"))
 (define rust-rfd-0.16.0
   (crate "rfd" "0.16.0" "0wi62lvcs2zrk4z8667hil992ijfkgckak7pv0vj9abhkryxfnm1"))
-(define rust-rfd-0.16.1
-  (crate "rfd" "0.16.1" "0z2cccjvx1nngngw0kjf1w4icqr2l3ix3r32k3ark5mqdn5m3zpl"))
 (define rust-rgb-0.8.52
   (crate "rgb" "0.8.52" "1km115a9lblf9pldvx51dmmg30y8ms4ka67hvas2ndcq556qhshc"))
 (define rust-rgb-0.8.53
@@ -2590,38 +2458,34 @@
   (crate "ron" "0.12.2" "1czbkmp4wz87ngrqrf9k6b5bqd94dd5qw8pb3b2an7nn66ann4c1"))
 (define rust-ron-0.12.3
   (crate "ron" "0.12.3" "1byflg4fn78h9rzk3j0bzdk45cryd72h5y2nxacl5wlgq6bzxcwp"))
+(define rust-ron-0.8.1
+  (crate "ron" "0.8.1" "154w53s895yxdfg7rn87c6f6x4yncc535x1x31zpcj7p0pzpw7xr"))
 (define rust-roxmltree-0.19.0
   (crate "roxmltree" "0.19.0" "0zs0q8hg5nnh91s1ib6r0fky7xm8ay63ayfa5i1afxxpwgalzl9w"))
 (define rust-roxmltree-0.20.0
   (crate "roxmltree" "0.20.0" "15vw91ps91wkmmgy62khf9zb63bdinvm80957dascbsw7dwvc83c"))
 (define rust-roxmltree-0.21.1
   (crate "roxmltree" "0.21.1" "1fxc3jgvl2rk05bw0hj86azqg6mzlijh06gyi9pw69b1qw84p5pi"))
+(define rust-roxmltree-0.21.2
+  (crate "roxmltree" "0.21.2" "01srvmbc48n5yp0c0hzvg8ahzmgs4n4h3qgyh6qhb55h529zb9wx"))
 (define rust-rpassword-6.0.1
   (crate "rpassword" "6.0.1" "0mnrpxvai78mn9wqkqx8wp1gd280jjhn29ixd1dm84l6i2hrkw1b"))
 (define rust-rust-argon2-0.8.3
   (crate "rust-argon2" "0.8.3" "1yvqkv04fqk3cbvyasibr4bqbxa6mij8jdvibakwlcsbjh6q462b"))
-(define rust-rust-embed-8.11.0
-  (crate "rust-embed" "8.11.0" "09wdk33zavfn2w3id20jidywvf4abfjg1wbfy21psdss6nwkq484"))
 (define rust-rust-embed-8.12.0
   (crate "rust-embed" "8.12.0" "1jabmc2gbkalr4m5alwansyqbxbc8wv0xq2bkyqagara4l77drz9"))
 (define rust-rust-embed-8.13.0
   (crate "rust-embed" "8.13.0" "08yc6prrqinqa8zrqrzhk69lq21rdypfdnhvpl0dw4d6nssabbqr"))
-(define rust-rust-embed-impl-8.11.0
-  (crate "rust-embed-impl" "8.11.0" "1ancyg87vx07w5m39538bwvj3hlizk8fd15kk8argsf8qzj042fs"))
 (define rust-rust-embed-impl-8.12.0
   (crate "rust-embed-impl" "8.12.0" "15rh6kswbb8xdj6dsy51abhcqkvrp2vf88x7yxakgx1sypbc9krv"))
 (define rust-rust-embed-impl-8.13.0
   (crate "rust-embed-impl" "8.13.0" "0ls0wdb877l7w9wghv00yfxfnisj4rny1gka0sgcbsklcgdazn70"))
-(define rust-rust-embed-utils-8.11.0
-  (crate "rust-embed-utils" "8.11.0" "1cf3wmwdivxqzizav813y42ln9r9jya3q1xi6finyzzywq5yzkav"))
 (define rust-rust-embed-utils-8.12.0
   (crate "rust-embed-utils" "8.12.0" "1w4545lpqk3sji8jqbbkg8nd2kkwhldd049hbf5bb0dayr4s3zs2"))
 (define rust-rust-embed-utils-8.13.0
   (crate "rust-embed-utils" "8.13.0" "12lnp9wvi5xhiyfdbbb9gqxiq20vpr60hbwjwmil4f5xg2xfi10d"))
 (define rust-rust-ini-0.12.2
   (crate "rust-ini" "0.12.2" "05f760k9hwx3hfmsqfjs2p4ii99pf91vihba5dlll4jfc4bfhrmc"))
-(define rust-rustc-demangle-0.1.26
-  (crate "rustc-demangle" "0.1.26" "1kja3nb0yhlm4j2p1hl8d7sjmn2g9fa1s4pj0qma5kj2lcndkxsn"))
 (define rust-rustc-demangle-0.1.27
   (crate "rustc-demangle" "0.1.27" "17f0jl6lgsy8kwxdzxp3s2wmipvlpna03kkc4vkqr1gwv5lqh2xm"))
 (define rust-rustc-demangle-0.1.28
@@ -2638,8 +2502,6 @@
   (crate "rustc_version" "0.4.1" "14lvdsmr5si5qbqzrajgb6vfn69k0sfygrvfvr2mps26xwi3mjyg"))
 (define rust-rustix-0.38.44
   (crate "rustix" "0.38.44" "0m61v0h15lf5rrnbjhcb9306bgqrhskrqv7i1n0939dsw8dbrdgx"))
-(define rust-rustix-1.1.2
-  (crate "rustix" "1.1.2" "0gpz343xfzx16x82s1x336n0kr49j02cvhgxdvaq86jmqnigh5fd"))
 (define rust-rustix-1.1.4
   (crate "rustix" "1.1.4" "14511f9yjqh0ix07xjrjpllah3325774gfwi9zpq72sip5jlbzmn"))
 (define rust-rustix-1.1.5
@@ -2648,14 +2510,10 @@
   (crate "rustix" "1.1.6" "1ajqv2zxmfms30hhvp5bdzpixn5xqnz7s871vpa56h99wm16grz5"))
 (define rust-rustix-openpty-0.2.0
   (crate "rustix-openpty" "0.2.0" "14r3bvc2rcvvpdmhjivl6bqifdcl23f8bw9ncc58faw9b5y6rq8x"))
-(define rust-rustls-0.23.32
-  (crate "rustls" "0.23.32" "0h2ddlnbjhs47hcmf3rbvr32sxj5kpf0m56rgk739l192rijag6d"))
 (define rust-rustls-0.23.46
   (crate "rustls" "0.23.46" "1pwg7i8drr70374amj96952cils9mpwyijd5rx1mqdp9q3c3pqa8"))
 (define rust-rustls-native-certs-0.8.5
   (crate "rustls-native-certs" "0.8.5" "1i5f916arhb4gc5qipmn6d8p81q87fv549xda969i7s6qxfky1sa"))
-(define rust-rustls-pki-types-1.12.0
-  (crate "rustls-pki-types" "1.12.0" "0yawbdpix8jif6s8zj1p2hbyb7y3bj66fhx0y7hyf4qh4964m6i2"))
 (define rust-rustls-pki-types-1.15.1
   (crate "rustls-pki-types" "1.15.1" "15hakk4pcvr5278cazgw9qf2r7gdg09rg5pivbyd3dbyih12aj9g"))
 (define rust-rustls-platform-verifier-0.7.1
@@ -2664,16 +2522,14 @@
   (crate "rustls-platform-verifier-android" "0.2.0" "0pqsbv8656sr3h9jmq0q9848g03irccncywplmc29zs0pk08kipf"))
 (define rust-rustls-webpki-0.103.15
   (crate "rustls-webpki" "0.103.15" "1hhanq3lz384v4nccacnjfwsyy99n3yc6m6iw8kljz8yicfwzhzk"))
-(define rust-rustls-webpki-0.103.6
-  (crate "rustls-webpki" "0.103.6" "1szqh1g2cwx89f21mf6zkxc8rxg187y9jm5law8j6d4rrg1g6wl5"))
+(define rust-rustls-webpki-0.103.16
+  (crate "rustls-webpki" "0.103.16" "10djm2f00xzi5qlbcfqjhhn2smk2h9aw8b4l74qncz4xsfvb2hs4"))
 (define rust-rustversion-1.0.22
   (crate "rustversion" "1.0.22" "0vfl70jhv72scd9rfqgr2n11m5i9l1acnk684m2w83w0zbqdx75k"))
 (define rust-rustversion-1.0.23
   (crate "rustversion" "1.0.23" "07z2a843fs80fawwflj9jwn49k9b0bd0dhhbvy0ar69vaxd72m6g"))
 (define rust-rustybuzz-0.20.1
   (crate "rustybuzz" "0.20.1" "00hp1gwykjfli258zs7lqg8p2zdh94dv2mw8zx7f73m0z2b7qg7x"))
-(define rust-ryu-1.0.20
-  (crate "ryu" "1.0.20" "07s855l8sb333h6bpn24pka5sp7hjk2w667xy6a0khkf6sqv5lr8"))
 (define rust-ryu-1.0.23
   (crate "ryu" "1.0.23" "0zs70sg00l2fb9jwrf6cbkdyscjs53anrvai2hf7npyyfi5blx4p"))
 (define rust-same-file-1.0.6
@@ -2684,8 +2540,6 @@
   (crate "schannel" "0.1.30" "1das969n0zgq630zx56mcw062aky4g57fdl19nxl3s4f9m13rclw"))
 (define rust-schemars-0.9.0
   (crate "schemars" "0.9.0" "0pqncln5hqbzbl2r3yayyr4a82jjf93h2cfxrn0xamvx77wr3lac"))
-(define rust-schemars-1.0.4
-  (crate "schemars" "1.0.4" "1l7w773jfk6mz0v8wpahp60aslksjijlbm65ysi4y5mwj520rll2"))
 (define rust-schemars-1.2.1
   (crate "schemars" "1.2.1" "1k16qzpdpy6p9hrh18q2l6cwawxzyqi25f8masa13l0wm8v2zd52"))
 (define rust-schemars-1.2.3
@@ -2722,30 +2576,20 @@
   (crate "semver" "1.0.28" "1kaimrpy876bcgi8bfj0qqfxk77zm9iz2zhn1hp9hj685z854y4a"))
 (define rust-semver-parser-0.7.0
   (crate "semver-parser" "0.7.0" "18vhypw6zgccnrlm5ps1pwa0khz7ry927iznpr88b87cagr1v2iq"))
-(define rust-serde-1.0.226
-  (crate "serde" "1.0.226" "1zcm2asp9fiphbp0k96whabw02kiiqgzxhbyz85vc92v088n9jhd"))
 (define rust-serde-1.0.228
   (crate "serde" "1.0.228" "17mf4hhjxv5m90g42wmlbc61hdhlm6j9hwfkpcnd72rpgzm993ls"))
 (define rust-serde-1.0.229
   (crate "serde" "1.0.229" "1fp04fq4a79bpm61xz1zy0pbz4kpc7d771zii1k3inmszq55jj21"))
 (define rust-serde-xml-rs-0.6.0
   (crate "serde-xml-rs" "0.6.0" "10i7dvd0c1clj4jbljd08qs8466nlymx7ma7k3ncksx1rn7affpv"))
-(define rust-serde_core-1.0.226
-  (crate "serde_core" "1.0.226" "1936x6cpqgyq57nm7qi416dsc4fiq3jv6d7vh74xmfgdk4wscaxs"))
 (define rust-serde_core-1.0.228
   (crate "serde_core" "1.0.228" "1bb7id2xwx8izq50098s5j2sqrrvk31jbbrjqygyan6ask3qbls1"))
 (define rust-serde_core-1.0.229
   (crate "serde_core" "1.0.229" "0j1ajiha76h3nmd976il9li6975k121xa7jb39ws8n0yqp4s5p37"))
-(define rust-serde_derive-1.0.226
-  (crate "serde_derive" "1.0.226" "0cyvkilp34an3f90b0idw0jjsyq20h7v47gsp8qkfmrl5zi3mdcd"))
 (define rust-serde_derive-1.0.228
   (crate "serde_derive" "1.0.228" "0y8xm7fvmr2kjcd029g9fijpndh8csv5m20g4bd76w8qschg4h6m"))
 (define rust-serde_derive-1.0.229
   (crate "serde_derive" "1.0.229" "0j4k63i7h1bikxwz2c89ig0hrwbnl9mz1czn85xx99x5cc9dg9g7"))
-(define rust-serde_json-1.0.145
-  (crate "serde_json" "1.0.145" "1767y6kxjf7gwpbv8bkhgwc50nhg46mqwm9gy9n122f7v1k6yaj0"))
-(define rust-serde_json-1.0.149
-  (crate "serde_json" "1.0.149" "11jdx4vilzrjjd1dpgy67x5lgzr0laplz30dhv75lnf5ffa07z43"))
 (define rust-serde_json-1.0.150
   (crate "serde_json" "1.0.150" "1ffgfhy9kndjnrz8lmy95pr758p2zk8dxv6yi99x0vkkni24w0g8"))
 (define rust-serde_json-1.0.154
@@ -2760,18 +2604,14 @@
   (crate "serde_spanned" "1.0.4" "0xkp0qdzams5sqwndbw3xrhf4c0bb5r46w2ywkp1aqsdb8ggkfzq"))
 (define rust-serde_spanned-1.1.2
   (crate "serde_spanned" "1.1.2" "0b0crd16vvp0n81pgh0ldi3apld0ph5ywsrml80y5v2ynnz26xaf"))
-(define rust-serde_urlencoded-0.7.1
-  (crate "serde_urlencoded" "0.7.1" "1zgklbdaysj3230xivihs30qi5vkhigg323a9m62k8jwf4a1qjfk"))
-(define rust-serde_with-3.14.1
-  (crate "serde_with" "3.14.1" "0vip5g1106h5zvhwiw0dngax8l53s1ip4l61xa7gf325j03i08n5"))
+(define rust-serde_spanned-1.1.3
+  (crate "serde_spanned" "1.1.3" "10mpm2i41lx4jnp530fjk942myplsibbm302mx8cawcl6q57w64w"))
 (define rust-serde_with-3.16.1
   (crate "serde_with" "3.16.1" "1rz2824yhfn5n5vxmnnk01x7d3xrf2122jinw0wd4h3lh3r3g8jg"))
 (define rust-serde_with-3.21.0
   (crate "serde_with" "3.21.0" "134ydsww9awaga8yvcqj7rn8gpcx75z6sa3waywvirqhfd6cb9bn"))
 (define rust-serde_with-3.24.0
   (crate "serde_with" "3.24.0" "0vr90v2hwls5zr3hksz6anjsl0aq5lgbds5fb7qzh3kq7hcxr6nz"))
-(define rust-serde_with_macros-3.14.1
-  (crate "serde_with_macros" "3.14.1" "0phk6d37y5bc033n39dra6h5lrngj0g939jm3snbljnnyw0dlyij"))
 (define rust-serde_with_macros-3.16.1
   (crate "serde_with_macros" "3.16.1" "0v3hfn474ny4as1gwvqgrhjzk9p5959gjl5bf0gi4ad61k5f7a2j"))
 (define rust-serde_with_macros-3.21.0
@@ -2808,8 +2648,6 @@
   (crate "shlex" "2.0.1" "1fjsll1cd7d2bcpdij9kd6w62rpbc7qqzvydvs021vsmr1cxvypq"))
 (define rust-signal-hook-0.3.18
   (crate "signal-hook" "0.3.18" "1qnnbq4g2vixfmlv28i1whkr0hikrf1bsc4xjy2aasj2yina30fq"))
-(define rust-signal-hook-registry-1.4.6
-  (crate "signal-hook-registry" "1.4.6" "12y2v1ms5z111fymaw1v8k93m5chnkp21h0jknrydkj8zydp395j"))
 (define rust-signal-hook-registry-1.4.8
   (crate "signal-hook-registry" "1.4.8" "06vc7pmnki6lmxar3z31gkyg9cw7py5x9g7px70gy2hil75nkny4"))
 (define rust-simd-adler32-0.3.10
@@ -2842,20 +2680,18 @@
   (crate "skrifa" "0.42.1" "0r25dss2bnz3i55y46dfk9jq943xa7mjpfv1f7xqx5mff1rn2d0c"))
 (define rust-skrifa-0.44.0
   (crate "skrifa" "0.44.0" "0s5a3fnyrxfv514vjjrn268lyhihmh5nb9fyv7cp4ghx5gbbg6l1"))
-(define rust-slab-0.4.11
-  (crate "slab" "0.4.11" "12bm4s88rblq02jjbi1dw31984w61y2ldn13ifk5gsqgy97f8aks"))
 (define rust-slab-0.4.12
   (crate "slab" "0.4.12" "1xcwik6s6zbd3lf51kkrcicdq2j4c1fw0yjdai2apy9467i0sy8c"))
 (define rust-slotmap-1.1.1
   (crate "slotmap" "1.1.1" "0f20xf53zaysx9ydzkwwqm6hsjyb8lj2j6amhg57iln3jcy8rmdx"))
-(define rust-smallvec-1.15.1
-  (crate "smallvec" "1.15.1" "00xxdxxpgyq5vjnpljvkmy99xij5rxgh913ii1v16kzynnivgcb7"))
 (define rust-smallvec-1.15.2
   (crate "smallvec" "1.15.2" "143wzbqf6vgapdp2z4qpl0yvlqcn17s8cnk8m28rqly808zsdmlf"))
 (define rust-smallvec-1.16.3
   (crate "smallvec" "1.16.3" "06z0akmcq2zc9qg22dxda298p50gg3di5ggl3y2nllag8ypwhgav"))
 (define rust-smallvec-1.16.4
   (crate "smallvec" "1.16.4" "1j772prjisi2872lxry7d9fkss3dfbjwl16jmsvvp2qvk2qx9mfh"))
+(define rust-smallvec-1.16.5
+  (crate "smallvec" "1.16.5" "0ipfizwpq0byhrl50xcizs2yf758mgccmq6s5nqk8wszi94hk4ql"))
 (define rust-smithay-client-toolkit-0.20.0
   (crate "smithay-client-toolkit" "0.20.0" "1h2cacmsh9zpw6sgmap49zx7cqhksfwas91mm40i5cz2ylwdl4h5"))
 (define rust-smithay-client-toolkit-0.21.1
@@ -2868,20 +2704,14 @@
   (crate "smol_str" "0.3.7" "041gpvv9qi81h6jp89yv14d7p2rwc5j59pn09jfn26gk4ffi1dzf"))
 (define rust-snowflake-1.3.0
   (crate "snowflake" "1.3.0" "1wadr7bxdxbmkbqkqsvzan6q1h3mxqpxningi3ss3v9jaav7n817"))
-(define rust-socket2-0.6.0
-  (crate "socket2" "0.6.0" "01qqdzfnr0bvdwq6wl56c9c4m2cvbxn43dfpcv8gjx208sph8d93"))
 (define rust-socket2-0.6.4
   (crate "socket2" "0.6.4" "0ldyp5rhba15spwxj1n94xh7sjks1398c3vwpwkxkd1087nwzlaj"))
 (define rust-socket2-0.6.5
   (crate "socket2" "0.6.5" "1m7diygswpvlpvrxd6ap169nxgax014jr8220nqlr3bzyb3y5lf3"))
-(define rust-spin-0.9.8
-  (crate "spin" "0.9.8" "0rvam5r0p3a6qhc18scqpvpgb3ckzyqxpgdfyjnghh8ja7byi039"))
 (define rust-spin-0.9.9
   (crate "spin" "0.9.9" "03psal0vh1xdxp7agphw09p7kf50v3bj1zshijq1s5bkdd7jcqrp"))
 (define rust-spirv-0.3.0-sdk-1.3.268.0
   (crate "spirv" "0.3.0+sdk-1.3.268.0" "0i3qj7yvvprai1s03dvll2gkfy8398nl64wvllkhaaa4vh1i197d"))
-(define rust-stable_deref_trait-1.2.0
-  (crate "stable_deref_trait" "1.2.0" "1lxjr8q2n534b2lhkxd6l6wcddzjvnksi58zv11f9y0jjmr15wd8"))
 (define rust-stable_deref_trait-1.2.1
   (crate "stable_deref_trait" "1.2.1" "15h5h73ppqyhdhx6ywxfj88azmrpml9gl6zp3pwy2malqa6vxqkc"))
 (define rust-stacker-0.1.25
@@ -2928,8 +2758,6 @@
   (crate "swash" "0.2.9" "0z1gcbxnqr7c2nh301g5ji7w4xa6mzz12fbic23p3s64l8fb0488"))
 (define rust-syn-1.0.109
   (crate "syn" "1.0.109" "0ds2if4600bd59wsv7jjgfkayfzy3hnazs394kz6zdkmna8l3dkj"))
-(define rust-syn-2.0.106
-  (crate "syn" "2.0.106" "19mddxp1ia00hfdzimygqmr1jqdvyl86k48427bkci4d08wc9rzd"))
 (define rust-syn-2.0.117
   (crate "syn" "2.0.117" "16cv7c0wbn8amxc54n4w15kxlx5ypdmla8s0gxr2l7bv7s0bhrg6"))
 (define rust-syn-2.0.118
@@ -2964,6 +2792,10 @@
   (crate "system-deps" "8.0.0" "18s8ascsq4ppjwnqkq1pfmyv8pb2sylz1v544yk6pjvbjmf9lxw3"))
 (define rust-system-deps-9.0.0
   (crate "system-deps" "9.0.0" "17s2zw45h1649smy52hb7h77cby0lkhcy4spg69zzw51phnaw3ca"))
+(define rust-system-deps-9.0.1
+  (crate "system-deps" "9.0.1" "0zf60c6fww4mjljs1di39rf13qrv2sqfw3iy6khdaqdcib9ilmfv"))
+(define rust-taffy-0.15.1
+  (crate "taffy" "0.15.1" "0zgabz7ybmydg69by8iwic7g8ib860y3lfprhr8z138rjwnvvxri"))
 (define rust-taffy-0.9.2
   (crate "taffy" "0.9.2" "0ys3793na36pd3fv0cvi5gd9kgnf8vyl0wyn0lfx6m19mzmq7fj1"))
 (define rust-tar-0.4.46
@@ -2976,8 +2808,6 @@
   (crate "tauri-winrt-notification" "0.8.1" "0dnbghfcx348ryhqxmf952nnsmsr75zd96zd4biwk3yj9wsnqypk"))
 (define rust-temp-dir-0.1.16
   (crate "temp-dir" "0.1.16" "0r09qwiiqm8pk6inaqmmp0h6zjg9py6m1dkcwqgghv21x5cnf5w3"))
-(define rust-tempfile-3.23.0
-  (crate "tempfile" "3.23.0" "05igl2gml6z6i2va1bv49f9f1wb3f752c2i63lvlb9s2vxxwfc9d"))
 (define rust-tempfile-3.26.0
   (crate "tempfile" "3.26.0" "182lfcv9d5w9349i0rjlgn4431k2m3yqfn9ls84p9d3ifxv2r9w2"))
 (define rust-tempfile-3.27.0
@@ -2992,18 +2822,16 @@
   (crate "test-log-macros" "0.2.21" "13dcgnvrgcjwvq7jmp1y9cmshk4y0zmwwsy5hakflwdvvj5d6jll"))
 (define rust-thin-cell-0.1.2
   (crate "thin-cell" "0.1.2" "0nrl84fqxr0v1y12b75lj6ws9267aac7y7h2mfq375xs2v1wcr21"))
+(define rust-thin-cell-0.2.1
+  (crate "thin-cell" "0.2.1" "1167wn6qgw4pr2935704x05c6pll4xn2dgh1mkqlwd3fx9zw9lx9"))
 (define rust-thiserror-1.0.69
   (crate "thiserror" "1.0.69" "0lizjay08agcr5hs9yfzzj6axs53a2rgx070a1dsi3jpkcrzbamn"))
-(define rust-thiserror-2.0.16
-  (crate "thiserror" "2.0.16" "1h30bqyjn5s9ypm668yd9849371rzwk185klwgjg503k2hadcrrl"))
 (define rust-thiserror-2.0.18
   (crate "thiserror" "2.0.18" "1i7vcmw9900bvsmay7mww04ahahab7wmr8s925xc083rpjybb222"))
 (define rust-thiserror-2.0.21
   (crate "thiserror" "2.0.21" "17hq1lh5dyr3bkc7zzjrbrp4qgkvhc48kgq1n5fdxkindaw2rr89"))
 (define rust-thiserror-impl-1.0.69
   (crate "thiserror-impl" "1.0.69" "1h84fmn2nai41cxbhk6pqf46bxqq1b344v8yz089w1chzi76rvjg"))
-(define rust-thiserror-impl-2.0.16
-  (crate "thiserror-impl" "2.0.16" "0q3r1ipr1rhff6cgrcvc0njffw17rpcqz9hdc7p754cbqkhinpkc"))
 (define rust-thiserror-impl-2.0.18
   (crate "thiserror-impl" "2.0.18" "1mf1vrbbimj1g6dvhdgzjmn6q09yflz2b92zs1j9n3k7cxzyxi7b"))
 (define rust-thiserror-impl-2.0.21
@@ -3014,26 +2842,20 @@
   (crate "thread_local" "1.1.9" "1191jvl8d63agnq06pcnarivf63qzgpws5xa33hgc92gjjj4c0pn"))
 (define rust-tiff-0.11.3
   (crate "tiff" "0.11.3" "0lmw68ic77sixk17r4rl2vsv00rqhja3yj2h9p5bcd9x6krylgxn"))
-(define rust-tikv-jemalloc-sys-0.6.1-5.3.0-1-ge13ca993e8ccb9ba9847cc330696e02839f328f7
-  (crate "tikv-jemalloc-sys" "0.6.1+5.3.0-1-ge13ca993e8ccb9ba9847cc330696e02839f328f7" "0frahmfl05hppiy1sz9g14qb5jv2q4wr323d83xcx8l6mfrab2nd"))
-(define rust-tikv-jemallocator-0.6.1
-  (crate "tikv-jemallocator" "0.6.1" "0fh55m13396lii5wj69qh547fq9n2k7r3cczwrkhaklmgwrb8n83"))
-(define rust-time-0.3.44
-  (crate "time" "0.3.44" "179awlwb36zly3nmz5h9awai1h4pbf1d83g2pmvlw4v1pgixkrwi"))
+(define rust-tikv-jemalloc-sys-0.7.1-5.3.1-0-g81034ce1f1373e37dc865038e1bc8eeecf559ce8
+  (crate "tikv-jemalloc-sys" "0.7.1+5.3.1-0-g81034ce1f1373e37dc865038e1bc8eeecf559ce8" "1w17qfz5r09q5jchapwlvrsphmx91f36fj072h1sxd46hg3jaa0s"))
+(define rust-tikv-jemallocator-0.7.0
+  (crate "tikv-jemallocator" "0.7.0" "1gb1fn21vp4vjfgi2pwmda6x3shv4f26wxscycv98q5ikbj0k7r4"))
 (define rust-time-0.3.47
   (crate "time" "0.3.47" "0b7g9ly2iabrlgizliz6v5x23yq5d6bpp0mqz6407z1s526d8fvl"))
 (define rust-time-0.3.53
   (crate "time" "0.3.53" "0l4aans0kv47y53736cjs0pnvdz91iyywrkqbrxk6cmrvknsmpqq"))
 (define rust-time-0.3.55
   (crate "time" "0.3.55" "0d6iyws47z50zlksf5m3cflxvjrcgfhjglhn112gmpahxjappf6d"))
-(define rust-time-core-0.1.6
-  (crate "time-core" "0.1.6" "0sqwhg7n47gbffyr0zhipqcnskxgcgzz1ix8wirqs2rg3my8x1j0"))
 (define rust-time-core-0.1.8
   (crate "time-core" "0.1.8" "1jidl426mw48i7hjj4hs9vxgd9lwqq4vyalm4q8d7y4iwz7y353n"))
 (define rust-time-core-0.1.9
   (crate "time-core" "0.1.9" "028ix0ax7ixp1h1k5zsqwgw85w6y1q32irslma7ci6ddd5kr074y"))
-(define rust-time-macros-0.2.24
-  (crate "time-macros" "0.2.24" "1wzb6hnl35856f58cx259q7ijc4c7yis0qsnydvw5n8jbw9b1krh"))
 (define rust-time-macros-0.2.27
   (crate "time-macros" "0.2.27" "058ja265waq275wxvnfwavbz9r1hd4dgwpfn7a1a9a70l32y8w1f"))
 (define rust-time-macros-0.2.31
@@ -3054,8 +2876,6 @@
   (crate "tiny-xlib" "0.2.5" "1d5gzd7hq9nzch5m1gk6ydqv60rz9hd644gx52nz4sbaxsihq2m9"))
 (define rust-tinystr-0.7.6
   (crate "tinystr" "0.7.6" "0bxqaw7z8r2kzngxlzlgvld1r6jbnwyylyvyjbv1q71rvgaga5wi"))
-(define rust-tinystr-0.8.1
-  (crate "tinystr" "0.8.1" "12sc6h3hnn6x78iycm5v6wrs2xhxph0ydm43yyn7gdfw8l8nsksx"))
 (define rust-tinystr-0.8.2
   (crate "tinystr" "0.8.2" "0sa8z88axdsf088hgw5p4xcyi6g3w3sgbb6qdp81bph9bk2fkls2"))
 (define rust-tinystr-0.8.3
@@ -3074,8 +2894,6 @@
   (crate "tinyvec_macros" "0.1.1" "081gag86208sc3y6sdkshgw3vysm5d34p431dzw0bshz66ncng0z"))
 (define rust-tl-0.7.8
   (crate "tl" "0.7.8" "1xz3ar8d2qf53zm2zk7n5gc2gfd7khiv85z28i5j4qy1b25bsc5i"))
-(define rust-tokio-1.47.1
-  (crate "tokio" "1.47.1" "0f2hp5v3payg6x04ijj67si1wsdhksskhmjs2k9p5f7bmpyrmr49"))
 (define rust-tokio-1.52.3
   (crate "tokio" "1.52.3" "1zpzazypkg61sw91na1m85x5s4rsjym335fwwhwm1hcs70dz1iwg"))
 (define rust-tokio-1.53.3
@@ -3084,20 +2902,12 @@
   (crate "tokio" "1.54.0" "1g70adfv7bw6q84lr9s9nr232lpwvx5mv9h8x77zwnxrfjj6ihd0"))
 (define rust-tokio-1.54.1
   (crate "tokio" "1.54.1" "18wn0c3yvy6ld8yis0fw6rqkc4rwnmv5mav4fan6zljqa8jx6bxm"))
-(define rust-tokio-macros-2.5.0
-  (crate "tokio-macros" "2.5.0" "1f6az2xbvqp7am417b78d1za8axbvjvxnmkakz9vr8s52czx81kf"))
 (define rust-tokio-macros-2.7.0
   (crate "tokio-macros" "2.7.0" "15m4f37mdafs0gg36sh0rskm1i768lb7zmp8bw67kaxr3avnqniq"))
 (define rust-tokio-macros-2.7.2
   (crate "tokio-macros" "2.7.2" "03kvy2r5gr4zccm4vdx8vvv3q69kbjc1b006rs11aibz74m3lxvq"))
-(define rust-tokio-native-tls-0.3.1
-  (crate "tokio-native-tls" "0.3.1" "1wkfg6zn85zckmv4im7mv20ca6b1vmlib5xwz9p7g19wjfmpdbmv"))
-(define rust-tokio-rustls-0.26.3
-  (crate "tokio-rustls" "0.26.3" "1gc6fxpd185xclg5y8z1kana0axv4g6vnypmpvqj78ccj8skixh5"))
 (define rust-tokio-rustls-0.26.6
   (crate "tokio-rustls" "0.26.6" "1nq5s413p6hkwrgjrpag1gi2mnjajpbszqhmhbpnkmfdq9w2dk69"))
-(define rust-tokio-stream-0.1.17
-  (crate "tokio-stream" "0.1.17" "0ix0770hfp4x5rh5bl7vsnr3d4iz4ms43i522xw70xaap9xqv9gc"))
 (define rust-tokio-stream-0.1.18
   (crate "tokio-stream" "0.1.18" "0w3cj33605ab58wqd382gnla5pnd9hnr00xgg333np5bka04knij"))
 (define rust-tokio-stream-0.1.19
@@ -3116,30 +2926,32 @@
   (crate "toml" "1.1.0+spec-1.1.0" "1k4z4fmq5bnzrdwkgr6477vhlck12qly7wwlpbs2idsfbsh5q6gq"))
 (define rust-toml-1.1.8-spec-1.1.0
   (crate "toml" "1.1.8+spec-1.1.0" "13b7kqvw7aa4x08i03d2fpima1i75v0lqxl0wrmisx6qwh09wj10"))
+(define rust-toml-1.2.1-spec-1.1.0
+  (crate "toml" "1.2.1+spec-1.1.0" "1mrcyghs23p7g74w9lzpal3hd3jqp67ayswmy48wgniwhr8mqxfm"))
 (define rust-toml_datetime-0.6.11
   (crate "toml_datetime" "0.6.11" "077ix2hb1dcya49hmi1avalwbixmrs75zgzb3b2i7g2gizwdmk92"))
-(define rust-toml_datetime-0.7.2
-  (crate "toml_datetime" "0.7.2" "1hgff8gdk9yx7dljkqfijmj0sc5ln4xhpj045divdhi7xifhiw9j"))
 (define rust-toml_datetime-0.7.5-spec-1.1.0
   (crate "toml_datetime" "0.7.5+spec-1.1.0" "0iqkgvgsxmszpai53dbip7sf2igic39s4dby29dbqf1h9bnwzqcj"))
 (define rust-toml_datetime-1.1.1-spec-1.1.0
   (crate "toml_datetime" "1.1.1+spec-1.1.0" "1mws2mkkf46l7inn77azhm0vdwxngv9vsbhbl0ah33p2c9gzcr9i"))
 (define rust-toml_datetime-1.1.2-spec-1.1.0
   (crate "toml_datetime" "1.1.2+spec-1.1.0" "0lrhcmqvhjr259w4f2kijya7fgi0kpmhg9fb3m144v3cj1kxg1ib"))
+(define rust-toml_datetime-1.1.3-spec-1.1.0
+  (crate "toml_datetime" "1.1.3+spec-1.1.0" "0jbfdgsl0vw6f394cifqm62d8q0aiiima891v2i7c8fdhg42agqp"))
 (define rust-toml_edit-0.22.27
   (crate "toml_edit" "0.22.27" "16l15xm40404asih8vyjvnka9g0xs9i4hfb6ry3ph9g419k8rzj1"))
 (define rust-toml_edit-0.23.10-spec-1.0.0
   (crate "toml_edit" "0.23.10+spec-1.0.0" "0saj5c676j8a3sqaj9akkp09wambg8aflji4zblwwa70azvvkj44"))
-(define rust-toml_edit-0.23.6
-  (crate "toml_edit" "0.23.6" "0jqq4wz6is0497a42m0wh4j3x4vgp70wrlndd57zzzc61rygxvzk"))
 (define rust-toml_edit-0.25.12-spec-1.1.0
   (crate "toml_edit" "0.25.12+spec-1.1.0" "1mx5paq837rjw7w51zprrjynk1vaig9yzxfqz9ac79jmd7f3w5fj"))
 (define rust-toml_edit-0.25.17-spec-1.1.0
   (crate "toml_edit" "0.25.17+spec-1.1.0" "174w1b2fjg1jb0wi7384v1m59g7ga79458i022gafjakpddisr73"))
+(define rust-toml_edit-0.25.18-spec-1.1.0
+  (crate "toml_edit" "0.25.18+spec-1.1.0" "15hkw83x94drmc7d1xgg3j5485pijzfajbr1il6l5f8dsy5ygihy"))
+(define rust-toml_edit-0.25.19-spec-1.1.0
+  (crate "toml_edit" "0.25.19+spec-1.1.0" "063j62l4wsmxpvbiqfw89avzxhv79a3rz6ngw552dmsq9266hhyx"))
 (define rust-toml_edit-0.25.6-spec-1.1.0
   (crate "toml_edit" "0.25.6+spec-1.1.0" "19y4lchrm0ara7m5m7b5rzfs51kk3pp7ssb1sf32yln90zhvmcqd"))
-(define rust-toml_parser-1.0.3
-  (crate "toml_parser" "1.0.3" "09x6i0b57lwc7yn6w1kbd2ypm4vpcrgd2vdax7h745g77g1r7y2c"))
 (define rust-toml_parser-1.0.9-spec-1.1.0
   (crate "toml_parser" "1.0.9+spec-1.1.0" "1i54qpvvcppy8ybdn9gssas81vfzq0kmgkcnxzhyf8w9w0al8bbh"))
 (define rust-toml_parser-1.1.2-spec-1.1.0
@@ -3152,44 +2964,32 @@
   (crate "toml_writer" "1.0.6+spec-1.1.0" "01r6x42d1p8p5kzfsi1fm4dakm3w53vi69f2ivyqpvi1xm5g25mb"))
 (define rust-toml_writer-1.1.3-spec-1.1.0
   (crate "toml_writer" "1.1.3+spec-1.1.0" "0w17cps8mfg7wcwyp0gggi9cpgmxldb9pwl55qp8ssq5zj6bvg86"))
-(define rust-tonic-0.14.6
-  (crate "tonic" "0.14.6" "1vs5ci6z6b9xhfsnx4s8qx6bqi1zzcrxncjp71147a0gqwc5aamc"))
-(define rust-tonic-prost-0.14.6
-  (crate "tonic-prost" "0.14.6" "184y40nf0iyzc5rg32ivgd88snv68sqy1kchynn55r1vhml9z12h"))
-(define rust-tower-0.5.2
-  (crate "tower" "0.5.2" "1ybmd59nm4abl9bsvy6rx31m4zvzp5rja2slzpn712y9b68ssffh"))
+(define rust-toml_writer-1.2.0-spec-1.1.0
+  (crate "toml_writer" "1.2.0+spec-1.1.0" "0fp14qh313y31pqddn2bhk01l7ygx70f9fxfhgpma77i01vvp780"))
+(define rust-tonic-0.14.9
+  (crate "tonic" "0.14.9" "06sys4vi43sydnp9f3vzsk2kfk34gf1nabp9zvl0zlxb79kzrkg2"))
+(define rust-tonic-prost-0.14.9
+  (crate "tonic-prost" "0.14.9" "1154jam28kq21v1pzzdmg8z6wk5zg6qbi2a4lf1g29i29q2n997b"))
 (define rust-tower-0.5.3
   (crate "tower" "0.5.3" "1m5i3a2z1sgs8nnz1hgfq2nr4clpdmizlp1d9qsg358ma5iyzrgb"))
 (define rust-tower-http-0.6.11
   (crate "tower-http" "0.6.11" "0h08wjgs3hwnq11iwwzlmnabn1h4cl0fzd48svaccvqffkiggz2c"))
-(define rust-tower-http-0.6.6
-  (crate "tower-http" "0.6.6" "1wh51y4rf03f91c6rvli6nwzsarx7097yx6sqlm75ag27pbjzj5d"))
 (define rust-tower-layer-0.3.3
   (crate "tower-layer" "0.3.3" "03kq92fdzxin51w8iqix06dcfgydyvx7yr6izjq0p626v9n2l70j"))
 (define rust-tower-service-0.3.3
   (crate "tower-service" "0.3.3" "1hzfkvkci33ra94xjx64vv3pp0sq346w06fpkcdwjcid7zhvdycd"))
-(define rust-tracing-0.1.41
-  (crate "tracing" "0.1.41" "1l5xrzyjfyayrwhvhldfnwdyligi1mpqm8mzbi2m1d6y6p2hlkkq"))
 (define rust-tracing-0.1.44
   (crate "tracing" "0.1.44" "006ilqkg1lmfdh3xhg3z762izfwmxcvz0w7m4qx2qajbz9i1drv3"))
-(define rust-tracing-attributes-0.1.30
-  (crate "tracing-attributes" "0.1.30" "00v9bhfgfg3v101nmmy7s3vdwadb7ngc8c1iw6wai9vj9sv3lf41"))
 (define rust-tracing-attributes-0.1.31
   (crate "tracing-attributes" "0.1.31" "1np8d77shfvz0n7camx2bsf1qw0zg331lra0hxb4cdwnxjjwz43l"))
-(define rust-tracing-core-0.1.34
-  (crate "tracing-core" "0.1.34" "0y3nc4mpnr79rzkrcylv5f5bnjjp19lsxwis9l4kzs97ya0jbldr"))
 (define rust-tracing-core-0.1.36
   (crate "tracing-core" "0.1.36" "16mpbz6p8vd6j7sf925k9k8wzvm9vdfsjbynbmaxxyq6v7wwm5yv"))
 (define rust-tracing-error-0.2.1
   (crate "tracing-error" "0.2.1" "1nzk6qcvhmxxy3lw1nj71anmfmvxlnk78l5lym1389vs1l1825cb"))
-(define rust-tracing-journald-0.3.1
-  (crate "tracing-journald" "0.3.1" "0mx6pf71imah2wqv711cyy8pdcp86qg553c6mhnh5w9c611l22zw"))
 (define rust-tracing-journald-0.3.2
   (crate "tracing-journald" "0.3.2" "1l1q4jpwq4jsls1pcjd0wr7djmknwx9w2aqy5dcn5ysv4knq2fid"))
 (define rust-tracing-log-0.2.0
   (crate "tracing-log" "0.2.0" "1hs77z026k730ij1a9dhahzrl0s073gfa2hm5p0fbl0b80gmz1gf"))
-(define rust-tracing-subscriber-0.3.20
-  (crate "tracing-subscriber" "0.3.20" "1m9447bxq7236avgl6n5yb2aqwplrghm61dgipw03mh7ad7s2m10"))
 (define rust-tracing-subscriber-0.3.22
   (crate "tracing-subscriber" "0.3.22" "07hz575a0p1c2i4xw3gs3hkrykhndnkbfhyqdwjhvayx4ww18c1g"))
 (define rust-tracing-subscriber-0.3.23
@@ -3214,10 +3014,10 @@
   (crate "two-face" "0.4.5" "1ckn3xvb1d4jx2ixka0i48vm53w14gs9yqx4wpdcyig5c1p1pr9r"))
 (define rust-type-map-0.5.1
   (crate "type-map" "0.5.1" "143v32wwgpymxfy4y8s694vyq0wdi7li4s5dmms5w59nj2yxnc6b"))
-(define rust-typed-path-0.12.3
-  (crate "typed-path" "0.12.3" "03k051dafrnyg3lbm4c85zg0mpfhbn6l9aq4ryq8yyy8h2dzha4f"))
 (define rust-typed-path-0.12.4
   (crate "typed-path" "0.12.4" "0v1ksz96nwwafw72fwgjrb0hqlcfkm4vajsymx5zawb4a1ajgv2l"))
+(define rust-typed-path-0.13.0
+  (crate "typed-path" "0.13.0" "07jy8i3k23d02g9g30xyr5f0mbxijjb38brdcqlg1l4c7n19is4w"))
 (define rust-typeid-1.0.3
   (crate "typeid" "1.0.3" "0727ypay2p6mlw72gz3yxkqayzdmjckw46sxqpaj08v0b0r64zdw"))
 (define rust-typenum-1.19.0
@@ -3242,8 +3042,6 @@
   (crate "unic-langid-impl" "0.9.6" "0n66kdan4cz99n8ra18i27f7w136hmppi4wc0aa7ljsd0h4bzqfw"))
 (define rust-unicase-2.10.0
   (crate "unicase" "2.10.0" "13x2h9s4jhch7rknqkqb1pb35irpj00fswy9ssgh0dm0qsnc6z1m"))
-(define rust-unicase-2.8.1
-  (crate "unicase" "2.8.1" "0fd5ddbhpva7wrln2iah054ar2pc1drqjcll0f493vj3fv8l9f3m"))
 (define rust-unicase-2.9.0
   (crate "unicase" "2.9.0" "0hh1wrfd7807mfph2q67jsxqgw8hm82xg2fb8ln8cvblkwxbri6v"))
 (define rust-unicode-bidi-0.3.18
@@ -3252,8 +3050,6 @@
   (crate "unicode-bidi-mirroring" "0.4.0" "1zirs1z3ahlwy7swg7apnm3pc6vix1g15q0kn6fx8rmvc266xyjx"))
 (define rust-unicode-ccc-0.4.0
   (crate "unicode-ccc" "0.4.0" "0gjhxwx27ywm3rcbb0m5q20w8zxi51440b3ps6swi6ywpj4d8qff"))
-(define rust-unicode-ident-1.0.19
-  (crate "unicode-ident" "1.0.19" "17bx1j1zf6b9j3kpyf74mraary7ava3984km0n8kh499h5a58fpn"))
 (define rust-unicode-ident-1.0.24
   (crate "unicode-ident" "1.0.24" "0xfs8y1g7syl2iykji8zk5hgfi5jw819f5zsrbaxmlzwsly33r76"))
 (define rust-unicode-ident-1.0.27
@@ -3262,8 +3058,12 @@
   (crate "unicode-linebreak" "0.1.5" "07spj2hh3daajg335m4wdav6nfkl0f6c0q72lc37blr97hych29v"))
 (define rust-unicode-properties-0.1.4
   (crate "unicode-properties" "0.1.4" "07fpm3sqq7lm9gmgpxa93z31q933h3c3ypfwy4cdh6l42g3miw3x"))
+(define rust-unicode-properties-0.1.5
+  (crate "unicode-properties" "0.1.5" "0cqq9jq11jnxr8x8cxa0c1fz5q0k2kz1r00jadsvms10xf3x4flr"))
 (define rust-unicode-script-0.5.8
   (crate "unicode-script" "0.5.8" "1vmifpgd0map3frmvhszhl96k82crcry083prv05wii7p45x8fiq"))
+(define rust-unicode-script-0.5.9
+  (crate "unicode-script" "0.5.9" "1gyaarvyy34wgxsc7943wxk1hzk7xv0rbm3l9i39shh5vdawj15a"))
 (define rust-unicode-segmentation-1.13.3
   (crate "unicode-segmentation" "1.13.3" "1a47zaq83p386r3baq4m018xd5q4q0grdg56i1x042dzn71x7xf6"))
 (define rust-unicode-vo-0.1.0
@@ -3282,8 +3082,6 @@
   (crate "unsafe-libyaml" "0.2.11" "0qdq69ffl3v5pzx9kzxbghzn0fzn266i1xn70y88maybz9csqfk7"))
 (define rust-untrusted-0.9.0
   (crate "untrusted" "0.9.0" "1ha7ib98vkc538x0z60gfn0fc5whqdd85mb87dvisdcaifi6vjwf"))
-(define rust-url-2.5.7
-  (crate "url" "2.5.7" "0nzghdv0kcksyvri0npxbjzyx2ihprks5k590y77bld355m17g08"))
 (define rust-url-2.5.8
   (crate "url" "2.5.8" "1v8f7nx3hpr1qh76if0a04sj08k86amsq4h8cvpw6wvk76jahrzz"))
 (define rust-urlencoding-2.1.3
@@ -3310,8 +3108,6 @@
   (crate "utf8parse" "0.2.2" "088807qwjq46azicqwbhlmzwrbkz7l4hpw43sdkdyyk524vdxaq6"))
 (define rust-utf_types-1.0.0
   (crate "utf_types" "1.0.0" "1dhbsnxfxxbg9a13anjfax5i7jyd51nkngs5g1r3c2lqhr944frs"))
-(define rust-uuid-1.18.1
-  (crate "uuid" "1.18.1" "18kh01qmfayn4psap52x8xdjkzw2q8bcbpnhhxjs05dr22mbi1rg"))
 (define rust-uuid-1.21.0
   (crate "uuid" "1.21.0" "1nsxfd17gfkvl1jmwcy5lnq6z32b8kf19is04byl6b95an2k6wmn"))
 (define rust-uuid-1.23.4
@@ -3344,26 +3140,18 @@
   (crate "walkdir" "2.5.0" "0jsy7a710qv8gld5957ybrnc07gavppp963gs32xk4ag8130jy99"))
 (define rust-wallpaper-3.2.0
   (crate "wallpaper" "3.2.0" "0ijd9kj737m1zg9narj2zhjq4zyjdjw3d5z41jr9c44vyi5whiq5"))
-(define rust-want-0.3.1
-  (crate "want" "0.3.1" "03hbfrnvqqdchb5kgxyavb9jabwza0dmh2vw5kg0dq8rxl57d9xz"))
 (define rust-want-0.3.2
   (crate "want" "0.3.2" "02zdlaqarwm9x3z1l0vm61mv8f6mv0kp4izgnxlfibqhv46xsk7c"))
 (define rust-wasi-0.11.1-wasi-snapshot-preview1
   (crate "wasi" "0.11.1+wasi-snapshot-preview1" "0jx49r7nbkbhyfrfyhz0bm4817yrnxgd3jiwwwfv0zl439jyrwyc"))
-(define rust-wasi-0.14.7-wasi-0.2.4
-  (crate "wasi" "0.14.7+wasi-0.2.4" "133fq3mq7h65mzrsphcm7bbbx1gsz7srrbwh01624zin43g7hd48"))
 (define rust-wasi-0.9.0-wasi-snapshot-preview1
   (crate "wasi" "0.9.0+wasi-snapshot-preview1" "06g5v3vrdapfzvfq662cij7v8a1flwr2my45nnncdv2galrdzkfc"))
-(define rust-wasip2-1.0.1-wasi-0.2.4
-  (crate "wasip2" "1.0.1+wasi-0.2.4" "1rsqmpspwy0zja82xx7kbkbg9fv34a4a2if3sbd76dy64a244qh5"))
 (define rust-wasip2-1.0.2-wasi-0.2.9
   (crate "wasip2" "1.0.2+wasi-0.2.9" "1xdw7v08jpfjdg94sp4lbdgzwa587m5ifpz6fpdnkh02kwizj5wm"))
 (define rust-wasip2-1.0.4-wasi-0.2.12
   (crate "wasip2" "1.0.4+wasi-0.2.12" "11wl7lqwq4pbmlmzr6n7bwz0hzy1z6sxc4554bkmrr86w4vznzmn"))
 (define rust-wasip3-0.4.0-wasi-0.3.0-rc-2026-01-06
   (crate "wasip3" "0.4.0+wasi-0.3.0-rc-2026-01-06" "19dc8p0y2mfrvgk3qw3c3240nfbylv22mvyxz84dqpgai2zzha2l"))
-(define rust-wasm-bindgen-0.2.104
-  (crate "wasm-bindgen" "0.2.104" "0b8f4l6pqm0bz0lj5xgwmchb6977n71vmh7srd0axwg93b011nn1"))
 (define rust-wasm-bindgen-0.2.112
   (crate "wasm-bindgen" "0.2.112" "1vjp6mhzfrfi3dbyyz3k68y75kvz7q5l1i5fh9wqpj2lwgyd1mq5"))
 (define rust-wasm-bindgen-0.2.126
@@ -3372,10 +3160,6 @@
   (crate "wasm-bindgen" "0.2.129" "02flhqld01jqb6vbfyx1gb8s78g1pnq2164daxad93y6mhrlzdcv"))
 (define rust-wasm-bindgen-0.2.130
   (crate "wasm-bindgen" "0.2.130" "071xi9mqha1vdrxsjgndjgcf0azkl8g5yahkn2qbiiynvla1q650"))
-(define rust-wasm-bindgen-backend-0.2.104
-  (crate "wasm-bindgen-backend" "0.2.104" "069vnhhn2j4w2gwd8rch6g8d3iwkrgi45fas6i3qm7glcrd9l737"))
-(define rust-wasm-bindgen-futures-0.4.54
-  (crate "wasm-bindgen-futures" "0.4.54" "0p5c10vfd7p7c607x3cgyfw9h77z1k33d6zzw2x77k3qwi0qs0vy"))
 (define rust-wasm-bindgen-futures-0.4.62
   (crate "wasm-bindgen-futures" "0.4.62" "12ipz5k131p0mbmhl7a7wmpdn9d2gvki4jsqbfxapi0a875az1gf"))
 (define rust-wasm-bindgen-futures-0.4.76
@@ -3384,8 +3168,6 @@
   (crate "wasm-bindgen-futures" "0.4.79" "03k1wcg5j3wqk6vgy6gzcq868vsa9k81dlhqissfk0nrw96v7fiw"))
 (define rust-wasm-bindgen-futures-0.4.80
   (crate "wasm-bindgen-futures" "0.4.80" "00f5mq5rx8wzbq98svcjbb4r79i7k15d08nb1kb8ldmmghrf052y"))
-(define rust-wasm-bindgen-macro-0.2.104
-  (crate "wasm-bindgen-macro" "0.2.104" "06d1m5bg272h6jabq0snm7c50fifjz6r20f5hqlmz7y5wivh99kw"))
 (define rust-wasm-bindgen-macro-0.2.112
   (crate "wasm-bindgen-macro" "0.2.112" "03zc4705rxhwvra39jyzdnrg7cgl8gw1djvlnrsly7ljp9qrp0sm"))
 (define rust-wasm-bindgen-macro-0.2.126
@@ -3394,8 +3176,6 @@
   (crate "wasm-bindgen-macro" "0.2.129" "0dc5xq09sy1v9ns1fhb0cnyqz5p1wcjjvkdmxskj9qhnbg1x0a9f"))
 (define rust-wasm-bindgen-macro-0.2.130
   (crate "wasm-bindgen-macro" "0.2.130" "1ncfybmdiczbsjz8a257a13k8n7dnl15khvgjrkbzgcslc11m4vf"))
-(define rust-wasm-bindgen-macro-support-0.2.104
-  (crate "wasm-bindgen-macro-support" "0.2.104" "1mr18kx7ima1pmsqlkk982q4a0vf3r8s1x6901jb59sd1prd41wz"))
 (define rust-wasm-bindgen-macro-support-0.2.112
   (crate "wasm-bindgen-macro-support" "0.2.112" "0w8mc8yzs8kjlbmnjiyd3kfzz2sqy4pkkdwqgqpga3ynq9lykwna"))
 (define rust-wasm-bindgen-macro-support-0.2.126
@@ -3404,8 +3184,6 @@
   (crate "wasm-bindgen-macro-support" "0.2.129" "1dx6w90f14avmhri7ss9lyz03060g6475r4axy3bm7biqf5ill3g"))
 (define rust-wasm-bindgen-macro-support-0.2.130
   (crate "wasm-bindgen-macro-support" "0.2.130" "0fm58fh6gkhlmi15rhzvcgz35x5s6kkvi9ik3s1vsmg4h11bb91c"))
-(define rust-wasm-bindgen-shared-0.2.104
-  (crate "wasm-bindgen-shared" "0.2.104" "1la1xj9v3gmawnlyi7lc3mb3xi447r6frb98hi2fb9m1nb47vmms"))
 (define rust-wasm-bindgen-shared-0.2.112
   (crate "wasm-bindgen-shared" "0.2.112" "0c3v3kknndnflykrkdss473sij6w7jak8mj90ya83sj6vzfg0q88"))
 (define rust-wasm-bindgen-shared-0.2.126
@@ -3422,78 +3200,62 @@
   (crate "wasmparser" "0.244.0" "1zi821hrlsxfhn39nqpmgzc0wk7ax3dv6vrs5cw6kb0v5v3hgf27"))
 (define rust-wasmtimer-0.4.3
   (crate "wasmtimer" "0.4.3" "0jv45z8yvgn6jgqqhmd1rpakk0yhf13gr5s6hhskw0gak5mqsn8w"))
-(define rust-wayland-backend-0.3.11
-  (crate "wayland-backend" "0.3.11" "0dcvwkhz45gsm7f9dwr31pxijkhpza09a4vb3blsv9a8631k6fk7"))
+(define rust-wasmtimer-0.4.4
+  (crate "wasmtimer" "0.4.4" "1jmg22hd3myap6g3gp4ys7g2f8fw7blr6xirlggiblgra5wk0xif"))
+(define rust-wasmtimer-0.4.5
+  (crate "wasmtimer" "0.4.5" "1kkhbrxx8idhsyki3gm7vp67rmckdars45ac0mfs95s3iqrpyay6"))
 (define rust-wayland-backend-0.3.15
   (crate "wayland-backend" "0.3.15" "0pbm8j3vv6baqz312biwqfi4qzadbi6nng9v4p3nx4afnlhdsmr8"))
 (define rust-wayland-backend-0.3.17
   (crate "wayland-backend" "0.3.17" "0y50cw56f09cdcsinbbl94naz91xf7iqaj87s4f7py6zmm71pa9q"))
-(define rust-wayland-client-0.31.11
-  (crate "wayland-client" "0.31.11" "17a4vl5qw4jnnh2azm0d3kcpajyb9qz4psv448zpj86w83l4fsn6"))
 (define rust-wayland-client-0.31.14
   (crate "wayland-client" "0.31.14" "0i014rcfjgccknnlyfk94fxn4w32l56cpjdmi4qhqsblpfb7qp34"))
 (define rust-wayland-client-0.31.15
   (crate "wayland-client" "0.31.15" "0ww0d0r6rn2h0sn8ma1f7zvxj40l6930p07j044nvmqshq7nmhz3"))
 (define rust-wayland-csd-frame-0.3.0
   (crate "wayland-csd-frame" "0.3.0" "0zjcmcqprfzx57hlm741n89ssp4sha5yh5cnmbk2agflvclm0p32"))
-(define rust-wayland-cursor-0.31.11
-  (crate "wayland-cursor" "0.31.11" "0agb7ryc8p7bnylh00jvp44sl3yn4rbzg2crksqp24l8192cqz24"))
 (define rust-wayland-cursor-0.31.14
   (crate "wayland-cursor" "0.31.14" "0kdk7xwj465idk54jf1f24024gdp63wyagca68a176xyh23x2lja"))
 (define rust-wayland-egl-0.32.11
   (crate "wayland-egl" "0.32.11" "0lalq3dzd1x7j7v2dsf9zmwp1m6sy22gyf1gasvxjnwyqjvvv5wv"))
 (define rust-wayland-protocols-0.32.13
   (crate "wayland-protocols" "0.32.13" "1dn4injzx1lnmacnhl3q60m743lvshxmmy0aabb2xaixvq9wil13"))
-(define rust-wayland-protocols-0.32.9
-  (crate "wayland-protocols" "0.32.9" "00cripl4m7hzhl0gzp4bqayal8n0zlf1llnj7cl73zgvfpnr19zg"))
 (define rust-wayland-protocols-experimental-20250721.0.1
   (crate "wayland-protocols-experimental" "20250721.0.1" "1cfbimd2qbbcgv21i3l7kq3pm6lvrjbb7d6pj33sxjld29izi8a0"))
 (define rust-wayland-protocols-experimental-20251230.0.3
   (crate "wayland-protocols-experimental" "20251230.0.3" "04yg4ny7pkla5iqdswfxvslzxakrphr916a67l4ksmcf2zkw7ili"))
 (define rust-wayland-protocols-misc-0.3.12
   (crate "wayland-protocols-misc" "0.3.12" "1j19dg8h98s153rj2fvbqkghjicdfgjjkr6nvaw0jgpjkrcng5bf"))
-(define rust-wayland-protocols-misc-0.3.9
-  (crate "wayland-protocols-misc" "0.3.9" "176i0xirlaaif6arj6l4ay8r2qxr9fsahrzh7z8gz2zba7ak7zid"))
 (define rust-wayland-protocols-plasma-0.3.10
   (crate "wayland-protocols-plasma" "0.3.10" "0srh0xhf4jpz8s1kx531lh0ixzx5v6p3iwwpk9d562ih3536765a"))
 (define rust-wayland-protocols-plasma-0.3.12
   (crate "wayland-protocols-plasma" "0.3.12" "14adi3xgkldbih60705gshlq2lskds5chhsn3znk271cxgqqqv9b"))
 (define rust-wayland-protocols-wlr-0.3.12
   (crate "wayland-protocols-wlr" "0.3.12" "0d424vn2hj27r4gjlshm6hy8fcqysr805jkqdjbwgmrng0pya17b"))
-(define rust-wayland-protocols-wlr-0.3.9
-  (crate "wayland-protocols-wlr" "0.3.9" "1v3qbg18vsb3i62c6042xhjm7dcflmylzjlhl0w9kks3xmilkngg"))
 (define rust-wayland-scanner-0.31.10
   (crate "wayland-scanner" "0.31.10" "0jjbsb04pzz8kqiw0wy2ssqx6dqpy70ixrm3ck1vsvnq1y8llclw"))
 (define rust-wayland-scanner-0.31.11
   (crate "wayland-scanner" "0.31.11" "1h0al3271l2w124sxlh77s1kmjg0z24ns2mk1vbnfars3d3313ik"))
-(define rust-wayland-scanner-0.31.7
-  (crate "wayland-scanner" "0.31.7" "1qqalp551blcxjzx80zvs7ckc19k966892zxpm81kacxqjfixjsl"))
-(define rust-wayland-server-0.31.10
-  (crate "wayland-server" "0.31.10" "08k23abw3vav8f71x6s5m70mc0zgq22a9ljs8iqbm7vcp8x4zggw"))
 (define rust-wayland-server-0.31.13
   (crate "wayland-server" "0.31.13" "1800f2fg41p28q9ddhdv21b78aqahcm9w2aa9zh854f40kmlc66c"))
 (define rust-wayland-server-0.31.14
   (crate "wayland-server" "0.31.14" "0xad6xz36fyxz5s0lwsj6shdzwsv8pp53pkp75bklwhgpqlrrphd"))
 (define rust-wayland-sys-0.31.11
   (crate "wayland-sys" "0.31.11" "1gp3hlkxx13i55lyyi794vnw9a780z3skx0xhj71zr69xwzv5snq"))
-(define rust-wayland-sys-0.31.7
-  (crate "wayland-sys" "0.31.7" "0hk157yawv9y7aj7fxbldhlvv8p33c65v3nv85mq4m91h919p51l"))
 (define rust-web-sys-0.3.103
   (crate "web-sys" "0.3.103" "0hb1zdnrp99p5r5q66jagsddmwha460yv2wklvzrzk0b3jvdq8l6"))
 (define rust-web-sys-0.3.106
   (crate "web-sys" "0.3.106" "195bd1m14w3hsw5fg3sr938mh7y4cb260d0sq6a6brffxjfin9l8"))
 (define rust-web-sys-0.3.107
   (crate "web-sys" "0.3.107" "125b0y934gyfwjkd60wnqjf2irmx250dar6vwinhzv7mdxcpklfp"))
-(define rust-web-sys-0.3.81
-  (crate "web-sys" "0.3.81" "0871ifd79ni9813sp5amk7wb3avznkijlsly2ap4r9r4m4bw8rwk"))
 (define rust-web-sys-0.3.89
   (crate "web-sys" "0.3.89" "0ql9br03idml1nc0586rxhrbz9l73qacxfqm944p8h9pkazky18h"))
 (define rust-web-time-1.1.0
   (crate "web-time" "1.1.0" "1fx05yqx83dhx628wb70fyy10yjfq1jpl20qfqhdkymi13rq0ras"))
+(define rust-webpki-root-certs-1.0.11
+  (crate "webpki-root-certs" "1.0.11" "0apn96djpc8yj1cp9scvqd8a5wd93ncxla4liwp18360mdjhx7g4"))
 (define rust-webpki-root-certs-1.0.9
   (crate "webpki-root-certs" "1.0.9" "16qw59hxn1lln1615kb9rjy16pfxd1x8m9f9w6vwv36c5am58rdr"))
-(define rust-webpki-roots-1.0.2
-  (crate "webpki-roots" "1.0.2" "1ck1wa1prinrvz3q34c3xp4cpa2f3i4x5npwgj0gpmikmg1q72by"))
 (define rust-weezl-0.1.12
   (crate "weezl" "0.1.12" "122a1dhha6cib5az4ihcqlh60ns2bi6rskdv875p94lbvj6wk2m2"))
 (define rust-wgpu-28.0.0
@@ -3532,28 +3294,28 @@
   (crate "windows-collections" "0.2.0" "1s65anr609qvsjga7w971p6iq964h87670dkfqfypnfgwnswxviv"))
 (define rust-windows-collections-0.3.2
   (crate "windows-collections" "0.3.2" "0436rjbkqn3j9m2v2lcmwwk0l3n2r57yvqb7fcy4m8d8y5ddkci3"))
+(define rust-windows-core-0.100.0
+  (crate "windows-core" "0.100.0" "1xcj4569vh2a3dsg4bpp6y3jq4h38x7vxyp9l9gx2lbghp390dc0"))
 (define rust-windows-core-0.61.2
   (crate "windows-core" "0.61.2" "1qsa3iw14wk4ngfl7ipcvdf9xyq456ms7cx2i9iwf406p7fx7zf0"))
-(define rust-windows-core-0.62.0
-  (crate "windows-core" "0.62.0" "0z294cblga0dl2dg9s9080xyglkh33b7zc05i8nqsmyyyxl73zjp"))
 (define rust-windows-core-0.62.2
   (crate "windows-core" "0.62.2" "1swxpv1a8qvn3bkxv8cn663238h2jccq35ff3nsj61jdsca3ms5q"))
 (define rust-windows-future-0.2.1
   (crate "windows-future" "0.2.1" "13mdzcdn51ckpzp3frb8glnmkyjr1c30ym9wnzj9zc97hkll2spw"))
 (define rust-windows-future-0.3.2
   (crate "windows-future" "0.3.2" "1jq5qs2dwzf6rl60f8gr49z2mifxsrdh4y4yfdws467ya41gkmp1"))
-(define rust-windows-implement-0.60.0
-  (crate "windows-implement" "0.60.0" "0dm88k3hlaax85xkls4gf597ar4z8m5vzjjagzk910ph7b8xszx4"))
+(define rust-windows-implement-0.100.0
+  (crate "windows-implement" "0.100.0" "1s7njvx7cwhc7iadi92h5xapnh50h5wb0qaq4pbs9cd1wn1brh8v"))
 (define rust-windows-implement-0.60.2
   (crate "windows-implement" "0.60.2" "1psxhmklzcf3wjs4b8qb42qb6znvc142cb5pa74rsyxm1822wgh5"))
-(define rust-windows-interface-0.59.1
-  (crate "windows-interface" "0.59.1" "1a4zr8740gyzzhq02xgl6vx8l669jwfby57xgf0zmkcdkyv134mx"))
+(define rust-windows-interface-0.100.0
+  (crate "windows-interface" "0.100.0" "15l7qk9lbdcrrsvfiwysvl50iwag15qhw37lqa19nyvm7df01xxk"))
 (define rust-windows-interface-0.59.3
   (crate "windows-interface" "0.59.3" "0n73cwrn4247d0axrk7gjp08p34x1723483jxjxjdfkh4m56qc9z"))
 (define rust-windows-link-0.1.3
   (crate "windows-link" "0.1.3" "12kr1p46dbhpijr4zbwr2spfgq8i8c5x55mvvfmyl96m01cx4sjy"))
-(define rust-windows-link-0.2.0
-  (crate "windows-link" "0.2.0" "0r9w2z96d5phmm185aq92z54jp9h2nqisa4wgc71idxbc436rr25"))
+(define rust-windows-link-0.100.0
+  (crate "windows-link" "0.100.0" "05blgwy6jw9q0nqqb6sygphkpaqb03yc6l2c2jq5i277gxydwfcv"))
 (define rust-windows-link-0.2.1
   (crate "windows-link" "0.2.1" "1rag186yfr3xx7piv5rg8b6im2dwcf8zldiflvb22xbzwli5507h"))
 (define rust-windows-numerics-0.2.0
@@ -3562,16 +3324,16 @@
   (crate "windows-numerics" "0.3.1" "09hgbg8pf89r4090yyhh9q29ppi7yyxkgmga9ascshy19a240bkf"))
 (define rust-windows-registry-0.6.1
   (crate "windows-registry" "0.6.1" "082p7l615qk8a4g8g15yipc5lghga6cgfhm74wm7zknwzgvjnx82"))
+(define rust-windows-result-0.100.0
+  (crate "windows-result" "0.100.0" "182jnyriq3w6mkqxy03y14qhgkygavk1zf8xk7idb18wyqg3m1s4"))
 (define rust-windows-result-0.3.4
   (crate "windows-result" "0.3.4" "1il60l6idrc6hqsij0cal0mgva6n3w6gq4ziban8wv6c6b9jpx2n"))
-(define rust-windows-result-0.4.0
-  (crate "windows-result" "0.4.0" "0zqn8kmmf7y9yw9g7q6pbcg9dbry9m03fqi0b92q767q0v1xr13h"))
 (define rust-windows-result-0.4.1
   (crate "windows-result" "0.4.1" "1d9yhmrmmfqh56zlj751s5wfm9a2aa7az9rd7nn5027nxa4zm0bp"))
+(define rust-windows-strings-0.100.0
+  (crate "windows-strings" "0.100.0" "0q1g3pm217jri285jbz6vldqymf0yyb9i6bl9y2x5wc4qs8baw3a"))
 (define rust-windows-strings-0.4.2
   (crate "windows-strings" "0.4.2" "0mrv3plibkla4v5kaakc2rfksdd0b14plcmidhbkcfqc78zwkrjn"))
-(define rust-windows-strings-0.5.0
-  (crate "windows-strings" "0.5.0" "1nld65azvms87rdm2bdm8gskwdmsswh4pxbc8babxc2klmawc63j"))
 (define rust-windows-strings-0.5.1
   (crate "windows-strings" "0.5.1" "14bhng9jqv4fyl7lqjz3az7vzh8pw0w4am49fsqgcz67d67x0dvq"))
 (define rust-windows-sys-0.45.0
@@ -3584,8 +3346,6 @@
   (crate "windows-sys" "0.59.0" "0fw5672ziw8b3zpmnbp9pdv1famk74f1l9fcbc3zsrzdg56vqf0y"))
 (define rust-windows-sys-0.60.2
   (crate "windows-sys" "0.60.2" "1jrbc615ihqnhjhxplr2kw7rasrskv9wj3lr80hgfd42sbj01xgj"))
-(define rust-windows-sys-0.61.0
-  (crate "windows-sys" "0.61.0" "1ajpwsmzfcsa1r7i0dxzvfn24dp3525rcd7aq95ydvdj8171h0g2"))
 (define rust-windows-sys-0.61.2
   (crate "windows-sys" "0.61.2" "1z7k3y9b6b5h52kid57lvmvm05362zv1v8w0gc7xyv5xphlp44xf"))
 (define rust-windows-targets-0.42.2
@@ -3594,8 +3354,6 @@
   (crate "windows-targets" "0.48.5" "034ljxqshifs1lan89xwpcy1hp0lhdh4b5n0d2z4fwjx2piacbws"))
 (define rust-windows-targets-0.52.6
   (crate "windows-targets" "0.52.6" "0wwrx625nwlfp7k93r2rra568gad1mwd888h1jwnl0vfg5r4ywlv"))
-(define rust-windows-targets-0.53.3
-  (crate "windows-targets" "0.53.3" "14fwwm136dhs3i1impqrrip7nvkra3bdxa4nqkblj604qhqn1znm"))
 (define rust-windows-targets-0.53.5
   (crate "windows-targets" "0.53.5" "1wv9j2gv3l6wj3gkw5j1kr6ymb5q6dfc42yvydjhv3mqa7szjia9"))
 (define rust-windows-threading-0.1.0
@@ -3610,8 +3368,6 @@
   (crate "windows_aarch64_gnullvm" "0.48.5" "1n05v7qblg1ci3i567inc7xrkmywczxrs1z3lj3rkkxw18py6f1b"))
 (define rust-windows_aarch64_gnullvm-0.52.6
   (crate "windows_aarch64_gnullvm" "0.52.6" "1lrcq38cr2arvmz19v32qaggvj8bh1640mdm9c2fr877h0hn591j"))
-(define rust-windows_aarch64_gnullvm-0.53.0
-  (crate "windows_aarch64_gnullvm" "0.53.0" "0r77pbpbcf8bq4yfwpz2hpq3vns8m0yacpvs2i5cn6fx1pwxbf46"))
 (define rust-windows_aarch64_gnullvm-0.53.1
   (crate "windows_aarch64_gnullvm" "0.53.1" "0lqvdm510mka9w26vmga7hbkmrw9glzc90l4gya5qbxlm1pl3n59"))
 (define rust-windows_aarch64_msvc-0.42.2
@@ -3620,8 +3376,6 @@
   (crate "windows_aarch64_msvc" "0.48.5" "1g5l4ry968p73g6bg6jgyvy9lb8fyhcs54067yzxpcpkf44k2dfw"))
 (define rust-windows_aarch64_msvc-0.52.6
   (crate "windows_aarch64_msvc" "0.52.6" "0sfl0nysnz32yyfh773hpi49b1q700ah6y7sacmjbqjjn5xjmv09"))
-(define rust-windows_aarch64_msvc-0.53.0
-  (crate "windows_aarch64_msvc" "0.53.0" "0v766yqw51pzxxwp203yqy39ijgjamp54hhdbsyqq6x1c8gilrf7"))
 (define rust-windows_aarch64_msvc-0.53.1
   (crate "windows_aarch64_msvc" "0.53.1" "01jh2adlwx043rji888b22whx4bm8alrk3khjpik5xn20kl85mxr"))
 (define rust-windows_i686_gnu-0.42.2
@@ -3630,14 +3384,10 @@
   (crate "windows_i686_gnu" "0.48.5" "0gklnglwd9ilqx7ac3cn8hbhkraqisd0n83jxzf9837nvvkiand7"))
 (define rust-windows_i686_gnu-0.52.6
   (crate "windows_i686_gnu" "0.52.6" "02zspglbykh1jh9pi7gn8g1f97jh1rrccni9ivmrfbl0mgamm6wf"))
-(define rust-windows_i686_gnu-0.53.0
-  (crate "windows_i686_gnu" "0.53.0" "1hvjc8nv95sx5vdd79fivn8bpm7i517dqyf4yvsqgwrmkmjngp61"))
 (define rust-windows_i686_gnu-0.53.1
   (crate "windows_i686_gnu" "0.53.1" "18wkcm82ldyg4figcsidzwbg1pqd49jpm98crfz0j7nqd6h6s3ln"))
 (define rust-windows_i686_gnullvm-0.52.6
   (crate "windows_i686_gnullvm" "0.52.6" "0rpdx1537mw6slcpqa0rm3qixmsb79nbhqy5fsm3q2q9ik9m5vhf"))
-(define rust-windows_i686_gnullvm-0.53.0
-  (crate "windows_i686_gnullvm" "0.53.0" "04df1in2k91qyf1wzizvh560bvyzq20yf68k8xa66vdzxnywrrlw"))
 (define rust-windows_i686_gnullvm-0.53.1
   (crate "windows_i686_gnullvm" "0.53.1" "030qaxqc4salz6l4immfb6sykc6gmhyir9wzn2w8mxj8038mjwzs"))
 (define rust-windows_i686_msvc-0.42.2
@@ -3646,8 +3396,6 @@
   (crate "windows_i686_msvc" "0.48.5" "01m4rik437dl9rdf0ndnm2syh10hizvq0dajdkv2fjqcywrw4mcg"))
 (define rust-windows_i686_msvc-0.52.6
   (crate "windows_i686_msvc" "0.52.6" "0rkcqmp4zzmfvrrrx01260q3xkpzi6fzi2x2pgdcdry50ny4h294"))
-(define rust-windows_i686_msvc-0.53.0
-  (crate "windows_i686_msvc" "0.53.0" "0pcvb25fkvqnp91z25qr5x61wyya12lx8p7nsa137cbb82ayw7sq"))
 (define rust-windows_i686_msvc-0.53.1
   (crate "windows_i686_msvc" "0.53.1" "1hi6scw3mn2pbdl30ji5i4y8vvspb9b66l98kkz350pig58wfyhy"))
 (define rust-windows_x86_64_gnu-0.42.2
@@ -3656,8 +3404,6 @@
   (crate "windows_x86_64_gnu" "0.48.5" "13kiqqcvz2vnyxzydjh73hwgigsdr2z1xpzx313kxll34nyhmm2k"))
 (define rust-windows_x86_64_gnu-0.52.6
   (crate "windows_x86_64_gnu" "0.52.6" "0y0sifqcb56a56mvn7xjgs8g43p33mfqkd8wj1yhrgxzma05qyhl"))
-(define rust-windows_x86_64_gnu-0.53.0
-  (crate "windows_x86_64_gnu" "0.53.0" "1flh84xkssn1n6m1riddipydcksp2pdl45vdf70jygx3ksnbam9f"))
 (define rust-windows_x86_64_gnu-0.53.1
   (crate "windows_x86_64_gnu" "0.53.1" "16d4yiysmfdlsrghndr97y57gh3kljkwhfdbcs05m1jasz6l4f4w"))
 (define rust-windows_x86_64_gnullvm-0.42.2
@@ -3666,8 +3412,6 @@
   (crate "windows_x86_64_gnullvm" "0.48.5" "1k24810wfbgz8k48c2yknqjmiigmql6kk3knmddkv8k8g1v54yqb"))
 (define rust-windows_x86_64_gnullvm-0.52.6
   (crate "windows_x86_64_gnullvm" "0.52.6" "03gda7zjx1qh8k9nnlgb7m3w3s1xkysg55hkd1wjch8pqhyv5m94"))
-(define rust-windows_x86_64_gnullvm-0.53.0
-  (crate "windows_x86_64_gnullvm" "0.53.0" "0mvc8119xpbi3q2m6mrjcdzl6afx4wffacp13v76g4jrs1fh6vha"))
 (define rust-windows_x86_64_gnullvm-0.53.1
   (crate "windows_x86_64_gnullvm" "0.53.1" "1qbspgv4g3q0vygkg8rnql5c6z3caqv38japiynyivh75ng1gyhg"))
 (define rust-windows_x86_64_msvc-0.42.2
@@ -3676,8 +3420,6 @@
   (crate "windows_x86_64_msvc" "0.48.5" "0f4mdp895kkjh9zv8dxvn4pc10xr7839lf5pa9l0193i2pkgr57d"))
 (define rust-windows_x86_64_msvc-0.52.6
   (crate "windows_x86_64_msvc" "0.52.6" "1v7rb5cibyzx8vak29pdrk8nx9hycsjs4w0jgms08qk49jl6v7sq"))
-(define rust-windows_x86_64_msvc-0.53.0
-  (crate "windows_x86_64_msvc" "0.53.0" "11h4i28hq0zlnjcaqi2xdxr7ibnpa8djfggch9rki1zzb8qi8517"))
 (define rust-windows_x86_64_msvc-0.53.1
   (crate "windows_x86_64_msvc" "0.53.1" "0l6npq76vlq4ksn4bwsncpr8508mk0gmznm6wnhjg95d19gzzfyn"))
 (define rust-winit-0.31.0-beta.3
@@ -3704,8 +3446,6 @@
   (crate "winit-x11" "0.31.0-beta.3" "1alnzmzrhvxffk6jhsg1z5vh1dqcgmpiq6j9jmw4nlbyj36lcmxv"))
 (define rust-winnow-0.6.24
   (crate "winnow" "0.6.24" "0fm0z1gk9wb47s1jhh889isz657kavd1yb3fhzbjmi657icimmy8"))
-(define rust-winnow-0.7.13
-  (crate "winnow" "0.7.13" "1krrjc1wj2vx0r57m9nwnlc1zrhga3fq41d8w9hysvvqb5mj7811"))
 (define rust-winnow-0.7.14
   (crate "winnow" "0.7.14" "0a88ahjqhyn2ln1yplq2xsigm09kxqkdkkk2c2mfxkbzszln8lss"))
 (define rust-winnow-0.7.15
@@ -3714,10 +3454,10 @@
   (crate "winnow" "1.0.3" "1wajycd3krn6h699vydjv7hm0ll5l31p899qzpk59y2is74y34h5"))
 (define rust-winnow-1.0.4
   (crate "winnow" "1.0.4" "10fzxipa7lx16172p3aca9j60hzbqgjki2f95kqksd5qywcp7f93"))
+(define rust-winnow-1.0.5
+  (crate "winnow" "1.0.5" "1vvs4zmisyxxp1igpjpi87z26d6wl3q98shcvx68gazhklcr6fwc"))
 (define rust-winreg-0.9.0
   (crate "winreg" "0.9.0" "15rmb4rnddxgs19yrmbpanyfxypakdk4hj999ii7zkwphf4v7k8n"))
-(define rust-wit-bindgen-0.46.0
-  (crate "wit-bindgen" "0.46.0" "0ngysw50gp2wrrfxbwgp6dhw1g6sckknsn3wm7l00vaf7n48aypi"))
 (define rust-wit-bindgen-0.51.0
   (crate "wit-bindgen" "0.51.0" "19fazgch8sq5cvjv3ynhhfh5d5x08jq2pkw8jfb05vbcyqcr496p"))
 (define rust-wit-bindgen-0.57.1
@@ -3738,8 +3478,6 @@
   (crate "write16" "1.0.0" "0dnryvrrbrnl7vvf5vb1zkmwldhjkf2n5znliviam7bm4900z2fi"))
 (define rust-writeable-0.5.5
   (crate "writeable" "0.5.5" "0lawr6y0bwqfyayf3z8zmqlhpnzhdx0ahs54isacbhyjwa7g778y"))
-(define rust-writeable-0.6.1
-  (crate "writeable" "0.6.1" "1fx29zncvbrqzgz7li88vzdm8zvgwgwy2r9bnjqxya09pfwi0bza"))
 (define rust-writeable-0.6.2
   (crate "writeable" "0.6.2" "1fg08y97n6vk7l0rnjggw3xyrii6dcqg54wqaxldrlk98zdy1pcy"))
 (define rust-writeable-0.6.3
@@ -3754,14 +3492,14 @@
   (crate "x11rb-protocol" "0.13.2" "1g81cznbyn522b0fbis0i44wh3adad2vhsz5pzf99waf3sbc4vza"))
 (define rust-xattr-1.6.1
   (crate "xattr" "1.6.1" "0ml1mb43gqasawillql6b344m0zgq8mz0isi11wj8vbg43a5mr1j"))
+(define rust-xattr-1.7.0
+  (crate "xattr" "1.7.0" "025fcy35jwf5bgm7305wj3jpa99wfk591gf83nblnl6mjamnygcn"))
 (define rust-xcursor-0.3.10
   (crate "xcursor" "0.3.10" "0awgy98awg4ydcfmynqfcwvl4bnnfcm4i2vvnk2n926a02jy9jdy"))
 (define rust-xcursor-0.3.11
   (crate "xcursor" "0.3.11" "08wfv0wrij9rrmbgfd2l8a132gyfax05abypllpmwic6hznk6fqn"))
 (define rust-xdg-3.0.0
   (crate "xdg" "3.0.0" "1dc5jpkkylp7z54c4xwxzwxx1jb5cklwfjs5493k9y9d7wik7d1g"))
-(define rust-xdg-home-1.3.0
-  (crate "xdg-home" "1.3.0" "1xm122zz0wjc8p8cmchij0j9nw34hwncb39jc7dc0mgvb2rdl77c"))
 (define rust-xdg-user-0.2.1
   (crate "xdg-user" "0.2.1" "03lzkwgyvyki3ffizj5ydfhc161949c9h4lbii45mki87y0cvmd1"))
 (define rust-xdgen-0.1.0
@@ -3790,6 +3528,8 @@
   (crate "xmltree" "0.12.0" "0w7zwk9680c6qpnx17jv83fbc1q8f8wyf90pmfcf895ir89l7h6b"))
 (define rust-xmlwriter-0.1.0
   (crate "xmlwriter" "0.1.0" "1fg0ldmkgiis6hnxpi1c9gy7v23y0lpi824bp8yp12fi3r82lypc"))
+(define rust-xz2-0.1.7
+  (crate "xz2" "0.1.7" "1qk7nzpblizvayyq4xzi4b0zacmmbqr6vb9fc0v1avyp17f4931q"))
 (define rust-y4m-0.8.0
   (crate "y4m" "0.8.0" "0j24y2zf60lpxwd7kyg737hqfyqx16y32s0fjyi6fax6w4hlnnks"))
 (define rust-yaml-rust-0.4.5
@@ -3798,10 +3538,10 @@
   (crate "yansi" "1.0.1" "0jdh55jyv0dpd38ij4qh60zglbw9aa8wafqai6m0wa7xaxk3mrfg"))
 (define rust-yazi-0.2.1
   (crate "yazi" "0.2.1" "1dgv0dd0329dcbs57z2wj03daz8y1axgprw3pf5yf5jsbcjkh5z0"))
+(define rust-yazi-0.2.2
+  (crate "yazi" "0.2.2" "11pch7fbmgjzmg13cbvhd572ip5i4njxxjffjalyd3ps6ajnwdmc"))
 (define rust-yoke-0.7.5
   (crate "yoke" "0.7.5" "0h3znzrdmll0a7sglzf9ji0p5iqml11wrj1dypaf6ad6kbpnl3hj"))
-(define rust-yoke-0.8.0
-  (crate "yoke" "0.8.0" "1k4mfr48vgi7wh066y11b7v1ilakghlnlhw9snzz8vi2p00vnhaz"))
 (define rust-yoke-0.8.1
   (crate "yoke" "0.8.1" "0m29dm0bf5iakxgma0bj6dbmc3b8qi9b1vaw9sa76kdqmz3fbmkj"))
 (define rust-yoke-0.8.3
@@ -3810,52 +3550,38 @@
   (crate "yoke" "0.8.4" "1cs06ci8h7pdhr3wzwrnslmc0cb9fhd571awsbdvf063yvyg6zj1"))
 (define rust-yoke-derive-0.7.5
   (crate "yoke-derive" "0.7.5" "0m4i4a7gy826bfvnqa9wy6sp90qf0as3wps3wb0smjaamn68g013"))
-(define rust-yoke-derive-0.8.0
-  (crate "yoke-derive" "0.8.0" "1dha5jrjz9jaq8kmxq1aag86b98zbnm9lyjrihy5sv716sbkrniq"))
 (define rust-yoke-derive-0.8.1
   (crate "yoke-derive" "0.8.1" "0pbyja133jnng4mrhimzdq4a0y26421g734ybgz8wsgbfhl0andn"))
 (define rust-yoke-derive-0.8.2
   (crate "yoke-derive" "0.8.2" "13l5y5sz4lqm7rmyakjbh6vwgikxiql51xfff9hq2j485hk4r16y"))
 (define rust-yoke-derive-0.8.4
   (crate "yoke-derive" "0.8.4" "0wbdvvdv9birwxrr9ynxj0k7as0f0ci7ihhck34yi09nvgibv3pc"))
-(define rust-zbus-4.4.0
-  (crate "zbus" "4.4.0" "09f7916lp7haxv1y5zgcg99ny15whi6dn3waf1afcafxx8mh35xv"))
-(define rust-zbus-5.11.0
-  (crate "zbus" "5.11.0" "1xxdxb95h4cyn8w03yrgrxrpy2pr9x7blqyfn9sy7f2z0dny81rd"))
-(define rust-zbus-5.16.0
-  (crate "zbus" "5.16.0" "11a28qwmwgn9k1pzdp9lik0gb2mjlx4dyarc7fgllzm70b985rpf"))
 (define rust-zbus-5.17.0
   (crate "zbus" "5.17.0" "03j8ljwr9l5l52mm8pbpkb8p6rxv0675lazxmvklnsl9cvw9g2x2"))
 (define rust-zbus-5.19.0
   (crate "zbus" "5.19.0" "01sram5sgwsg3x8mghx77cjbsfa2c10mar7fnzj23d2w0xybxd2x"))
+(define rust-zbus-6.2.1
+  (crate "zbus" "6.2.1" "1fbfi2cbvmgxryl34najy74yvif47cfdwk6i9brgjzjqv5hjknqd"))
 (define rust-zbus-lockstep-0.5.2
   (crate "zbus-lockstep" "0.5.2" "0qsqsk67c2vpg26rp0x0ya0cv92fs11r92kjg1sln23s442xx639"))
 (define rust-zbus-lockstep-macros-0.5.2
   (crate "zbus-lockstep-macros" "0.5.2" "1853gk2fymvr2yaird9jpvz4mdp6ms8zmy6dr19payrsgwv0bnhh"))
-(define rust-zbus_macros-4.4.0
-  (crate "zbus_macros" "4.4.0" "0glqn6ddgv4ra734p343a41rrxb0phy1v13dljzhpsc1f10bjz96"))
-(define rust-zbus_macros-5.11.0
-  (crate "zbus_macros" "5.11.0" "1jpsvssaxh6fxpbb64dmfnrr8r05rsyfhm32bg63rva7r2lrgrsp"))
-(define rust-zbus_macros-5.16.0
-  (crate "zbus_macros" "5.16.0" "1mnih15n4cf4irn4sbjkwh0wvs1659v58xvmn52kf40sm12vvwdd"))
 (define rust-zbus_macros-5.17.0
   (crate "zbus_macros" "5.17.0" "0s84zss2wdparp0jywb86jvkwcd9lh329p44hdgczvi5fj4as1ay"))
 (define rust-zbus_macros-5.19.0
   (crate "zbus_macros" "5.19.0" "0h4gr26kyhdyn503rgg8h44sjxm8d6n8qbzpd0cdzrmd15fn7419"))
-(define rust-zbus_names-3.0.0
-  (crate "zbus_names" "3.0.0" "0v1f0ajwafj47bf11yp0xdgp26r93lslr9nb2v6624h2gppiz6sb"))
-(define rust-zbus_names-4.2.0
-  (crate "zbus_names" "4.2.0" "15ybdd6zic7simi9wjg0ywrxfq4sxg3z0wiyysadps3cpxj8xrkv"))
-(define rust-zbus_names-4.3.2
-  (crate "zbus_names" "4.3.2" "0bg5c1bq4xdq9xqdkgvxwvl9pa6h61nh2hh1fn8sqkl91gjz6x3h"))
+(define rust-zbus_macros-6.2.1
+  (crate "zbus_macros" "6.2.1" "0m1wl23nbv45kw4j2w2gb35kmhnrn57i4q655v0hyd3wsjnkhfq8"))
 (define rust-zbus_names-4.3.3
   (crate "zbus_names" "4.3.3" "1li1jxa1xwy1v3kw3xpl3bjzwq87bsshb7rs1xl5k5gfkwjclf8h"))
 (define rust-zbus_names-4.3.5
   (crate "zbus_names" "4.3.5" "1pc8w0m4g8k6f13c2by67fvnc06xib84gw58ivhmjymd9sz14al1"))
-(define rust-zbus_polkit-5.1.0
-  (crate "zbus_polkit" "5.1.0" "1bhr62m3g1ik5ls51lx9cgwc29ik4mqrqsrfkh6ywzvaqgd50g98"))
-(define rust-zbus_systemd-0.26000.0
-  (crate "zbus_systemd" "0.26000.0" "1dkch5fk7nkd8mz4yjsakc2kh2gl63phpa845m4pfjpzhc233j20"))
+(define rust-zbus_polkit-6.0.0
+  (crate "zbus_polkit" "6.0.0" "0kp7z7szljpky3npcf2nnjaqq2nvnylbvalxvbf2mlbvmrs28g29"))
+(define rust-zbus_systemd-0.26201.0
+  (crate "zbus_systemd" "0.26201.0" "1zd50dy970qwbw6w996wmqq9skagwfn9q40yv2gg5jg8agj562k7"))
+(define rust-zbus_utils-6.1.0
+  (crate "zbus_utils" "6.1.0" "1ivfwwc94f6ff00kc814gbljh3h23wiaxg25ihv1nccml8nyamdg"))
 (define rust-zbus_xml-5.2.0
   (crate "zbus_xml" "5.2.0" "0krbll2fkn1b3v4c3dcm1ni4aj09ll9dfnldf6l60sm6q09hbasr"))
 (define rust-zbus_xml-5.2.1
@@ -3866,16 +3592,12 @@
   (crate "zcheapstr" "1.2.0" "084rpjymhbqcb96rbp1a2lhvr2sng1pnvjx52m1h9gnfkrnii7wk"))
 (define rust-zeno-0.3.3
   (crate "zeno" "0.3.3" "0915lg3b1qiixizic9kwj2bw42x35baxqvl9dn0m2plkj91drwvd"))
-(define rust-zerocopy-0.8.27
-  (crate "zerocopy" "0.8.27" "0b1870gf2zzlckca69v2k4mqwmf8yh2li37qldnzvvd3by58g508"))
 (define rust-zerocopy-0.8.39
   (crate "zerocopy" "0.8.39" "0jmf1iqns5sq07k3dscsgyc706pycar67rrq4j9nrnzacgb3avfv"))
 (define rust-zerocopy-0.8.54
   (crate "zerocopy" "0.8.54" "06cxymy8i9q9a93xdins9ayakx9b1nc2arb7qdfd03ssf05brjxp"))
 (define rust-zerocopy-0.8.63
   (crate "zerocopy" "0.8.63" "1n1fm40mq4adw83hvn56j6rhnph0lldccx11jq01l6863f7izzp5"))
-(define rust-zerocopy-derive-0.8.27
-  (crate "zerocopy-derive" "0.8.27" "0c9qrylm2p55dvaplxsl24ma48add9qk4y0d6kjbkllaqvcvill8"))
 (define rust-zerocopy-derive-0.8.39
   (crate "zerocopy-derive" "0.8.39" "05z5yfq0mx3xdqadrgq5sd4d03nl82d9r0vp1qchaip9d4qws8j1"))
 (define rust-zerocopy-derive-0.8.54
@@ -3892,14 +3614,10 @@
   (crate "zerofrom-derive" "0.1.7" "18c4wsnznhdxx6m80piil1lbyszdiwsshgjrybqcm4b6qic22lqi"))
 (define rust-zerofrom-derive-0.1.8
   (crate "zerofrom-derive" "0.1.8" "0jhdy4p9c6ja3dynsdck14g2iilq8ai5ch6nsi455x67ys1lcnzp"))
-(define rust-zeroize-1.8.1
-  (crate "zeroize" "1.8.1" "1pjdrmjwmszpxfd7r860jx54cyk94qk59x13sc307cvr5256glyf"))
 (define rust-zeroize-1.9.1
   (crate "zeroize" "1.9.1" "0yb8iykihpl3hfw5c4silw2lklpfxajkaa9yj1qw6jsy5hwq8c71"))
 (define rust-zeroize_derive-1.5.0
   (crate "zeroize_derive" "1.5.0" "0a7kq8srk81pn23xqn7c9jw1jpnfy41ffn802x1zrqqgpdf6al1w"))
-(define rust-zerotrie-0.2.2
-  (crate "zerotrie" "0.2.2" "15gmka7vw5k0d24s0vxgymr2j6zn2iwl12wpmpnpjgsqg3abpw1n"))
 (define rust-zerotrie-0.2.3
   (crate "zerotrie" "0.2.3" "0lbqznlqazmrwwzslw0ci7p3pqxykrbfhq29npj0gmb2amxc2n9a"))
 (define rust-zerotrie-0.2.4
@@ -3908,8 +3626,6 @@
   (crate "zerotrie" "0.2.5" "0gss16krjzk22m57dz5hkdjg99ibj6pa41qr68na7w1jpp1nk8jf"))
 (define rust-zerovec-0.10.4
   (crate "zerovec" "0.10.4" "0yghix7n3fjfdppwghknzvx9v8cf826h2qal5nqvy8yzg4yqjaxa"))
-(define rust-zerovec-0.11.4
-  (crate "zerovec" "0.11.4" "0fz7j1ns8d86m2fqg2a4bzi5gnh5892bxv4kcr9apwc6a3ajpap7"))
 (define rust-zerovec-0.11.5
   (crate "zerovec" "0.11.5" "00m0p47k2g9mkv505hky5xh3r6ps7v8qc0dy4pspg542jj972a3c"))
 (define rust-zerovec-0.11.6
@@ -3920,8 +3636,6 @@
   (crate "zerovec" "0.11.9" "0h3amsfmvqx93grkpy576z5r7nwfxx9bvvd8gq66g8g9rycjg2pm"))
 (define rust-zerovec-derive-0.10.4
   (crate "zerovec-derive" "0.10.4" "0bbb93fqdxq70h7s1iwm35s0yyq9sxasb27njc1m2widhxvn6g1y"))
-(define rust-zerovec-derive-0.11.1
-  (crate "zerovec-derive" "0.11.1" "13zms8hj7vzpfswypwggyfr4ckmyc7v3di49pmj8r1qcz9z275jv"))
 (define rust-zerovec-derive-0.11.2
   (crate "zerovec-derive" "0.11.2" "1wsig4h5j7a1scd5hrlnragnazjny9qjc44hancb6p6a76ay7p7a"))
 (define rust-zerovec-derive-0.11.3
@@ -3930,36 +3644,58 @@
   (crate "zerovec-derive" "0.11.6" "1ni5j8v99x3fcf3l8kp64b7aq4vf8y22jshfq74xs9mxkp1nzprl"))
 (define rust-zerovec-derive-0.11.7
   (crate "zerovec-derive" "0.11.7" "0ypr1gq2nvb4mvwawcgyknbn408dsjcy3qhsrllxjf3pykdksx63"))
-(define rust-zip-5.1.1
-  (crate "zip" "5.1.1" "0cp5harkdd171wmlwvaclwq9gh31lqh6b9nwdz8d9j0s2l2jk19g"))
+(define rust-zip-2.6.1
+  (crate "zip" "2.6.1" "0i276d0kracqv27f5r42p3ha2345f77isv5rp54sw9i52p829jqx"))
 (define rust-zip-8.6.0
   (crate "zip" "8.6.0" "16w0aiqiymyy6kjri0aykkmh45pbk6a6ck69hxhal0hm72ssc11d"))
-(define rust-zip-9.0.5
-  (crate "zip" "9.0.5" "07m1h3sqmaxkpxwjqfsqsa5az4x1jsrhb0ds0i1b1lr9lrnrf13f"))
+(define rust-zip-9.4.0
+  (crate "zip" "9.4.0" "0cy0nxcjkc2q37fz7jxil2h9niwv130c6xb35xcpld10k0y77v1w"))
+(define rust-zip-9.4.1
+  (crate "zip" "9.4.1" "0pnf05x6mq976wqw85bhpwk2wdfzwvbdgbi8ca6c5yhbhyy7zw93"))
 (define rust-zlib-rs-0.6.8
   (crate "zlib-rs" "0.6.8" "04j158293bx73kv5pj1i89ai411q7fxc9zwk3wkpqgb9gj7fas5j"))
 (define rust-zlink-0.5.0
   (crate "zlink" "0.5.0" "0j31gir26wjw8y6nk0yf91yskndsx8iq76rl9lzvgkldb2cmp2cv"))
+(define rust-zlink-0.8.0
+  (crate "zlink" "0.8.0" "0q9dj4j2ck4x3hs8fmbn9agr0831jzgslk817iz9iqkg20lf92qr"))
 (define rust-zlink-core-0.5.0
   (crate "zlink-core" "0.5.0" "0b9l015ys0pwglvsha3q1vci7gsla37mj08zjcmrhanls4dp04mx"))
+(define rust-zlink-core-0.8.0
+  (crate "zlink-core" "0.8.0" "0krfcayjikzp1sqhkmvdl0vliwq8kg0ap1n2kh5xn1g2wazi98r4"))
+(define rust-zlink-idl-0.8.0
+  (crate "zlink-idl" "0.8.0" "1krw2n8f41w856nhqsh4ainialii2v2cla68mnif2wh6mf8zmslv"))
 (define rust-zlink-macros-0.5.0
   (crate "zlink-macros" "0.5.0" "0l6xsjbd8pwsismdvd327x533qxgmcqrzr7y0izgskahbxm43wp6"))
+(define rust-zlink-macros-0.8.0
+  (crate "zlink-macros" "0.8.0" "147w76zc6yjvy6gb20hfy7jqzlm9yrhqjh0ynaqfgbxqrsxbfs5d"))
+(define rust-zlink-names-0.8.0
+  (crate "zlink-names" "0.8.0" "0fkl9r1m8apjjvpd2yk31mzyqng6k4pvm2cnw6p62rqqq7rij81y"))
 (define rust-zlink-smol-0.5.0
   (crate "zlink-smol" "0.5.0" "1c9pmr027adx3v8pk8iq75f9hvj53yxhmawsflzpbb9nsv83riab"))
+(define rust-zlink-smol-0.8.0
+  (crate "zlink-smol" "0.8.0" "1ai618rzk79ygf3rpkxigs4pyh04h1l92flqad673knaf19v3y23"))
 (define rust-zlink-tokio-0.5.0
   (crate "zlink-tokio" "0.5.0" "0kyc2q602gax6l1kx0apg4phf2k27mfm6hwdkazl3avpmikg7jr8"))
+(define rust-zlink-tokio-0.8.0
+  (crate "zlink-tokio" "0.8.0" "0f0mpjb7vagibx4a271xba4c58l5673wa7dja2gc5jjyfsglyv54"))
 (define rust-zmij-1.0.21
   (crate "zmij" "1.0.21" "1amb5i6gz7yjb0dnmz5y669674pqmwbj44p4yfxfv2ncgvk8x15q"))
 (define rust-zmij-1.0.23
   (crate "zmij" "1.0.23" "06zwri21nnrl34rwinmvbciap8yk1mrl8qfg9pff7lgspc56sri9"))
 (define rust-zopfli-0.8.4
   (crate "zopfli" "0.8.4" "04gv076p88smppwcarzs0wjbbfq55ghsbi0573cq716261fzrxxa"))
+(define rust-zruntime-0.2.2
+  (crate "zruntime" "0.2.2" "1r8bd0k27dvf7lfjlhpp7cw3g3ha6c1zwggrhapz1k98svbmxvr3"))
 (define rust-zstd-0.13.3
   (crate "zstd" "0.13.3" "12n0h4w9l526li7jl972rxpyf012jw3nwmji2qbjghv9ll8y67p9"))
+(define rust-zstd-0.13.4
+  (crate "zstd" "0.13.4" "0myijz21sbh8vxgg2g96rh4fvim6glx93z790qbanlfj68qjrc6d"))
 (define rust-zstd-0.14.3
   (crate "zstd" "0.14.3" "0w1wzfxmypnq1f1p7s0g8abn7ba6zkp7wxpggccl0vmgj2zyjfnv"))
 (define rust-zstd-safe-7.3.0
   (crate "zstd-safe" "7.3.0" "10kq3hik4yhm9n6ar9d02i3xm3llrnz402n8z7vdkfbdmd4hdn34"))
+(define rust-zstd-safe-7.4.0
+  (crate "zstd-safe" "7.4.0" "00wv2nny4kxskf1bikddki8kd58casx185q5a66qvppmd13a13hw"))
 (define rust-zstd-safe-8.2.0
   (crate "zstd-safe" "8.2.0" "0js3swa592j55g2b76vd6719h0qa5cdj48n7f6vskq99dgqj1mfy"))
 (define rust-zstd-sys-2.1.2-zstd.1.5.7
@@ -3996,32 +3732,14 @@
   (crate "zune-psd" "0.5.1" "0b4hii1vkw8p6x4f9qp09hcdjk10arf7jgbqdim28xpfgdx8nlca"))
 (define rust-zune-qoi-0.5.2
   (crate "zune-qoi" "0.5.2" "0nix0jnrgxp8z0m5g8w8669i88hnvwfmqqnfpq71khav8wzp1yyd"))
-(define rust-zvariant-4.2.0
-  (crate "zvariant" "4.2.0" "1zl1ika7zd9bxkd0bqc78h9bykvk6xc98965iz1p3i51p452k110"))
-(define rust-zvariant-5.12.0
-  (crate "zvariant" "5.12.0" "1q3vwaiv2h65wi335ig24ylp0q6fnka37j13fmxdfq1kwsys14m1"))
 (define rust-zvariant-5.13.0
   (crate "zvariant" "5.13.0" "19zg5wrdch4fk2fnwhaq31m26628raq4fqdvgbbrlp5z02xmgw3w"))
 (define rust-zvariant-5.15.1
   (crate "zvariant" "5.15.1" "1dzvl7la92pc8qyaw9pgfpxgqhy6rn285yscnsn03dm4srn6vgw0"))
-(define rust-zvariant-5.7.0
-  (crate "zvariant" "5.7.0" "1nwqji0y214dnchq372rsfqzl86d9wgai909s761yay5ffzd77cr"))
-(define rust-zvariant_derive-4.2.0
-  (crate "zvariant_derive" "4.2.0" "0jf408h0s83krxwm7wl62fnssin1kcklmb1bcn83ls6sddabmqkk"))
-(define rust-zvariant_derive-5.12.0
-  (crate "zvariant_derive" "5.12.0" "0dw7cgacz7cr5s0jwrpqwf4xml0rdk5pqzz99c3i3i81kkg6rg4h"))
 (define rust-zvariant_derive-5.13.0
   (crate "zvariant_derive" "5.13.0" "0c9vjcbbdk2v8d4s9jalz3p0a9azjl6dnq6na6mw1gvpv9mwl641"))
 (define rust-zvariant_derive-5.15.1
   (crate "zvariant_derive" "5.15.1" "0va8dm4k7rk2iar573lkzfap8g2v2dinw4zcxasm9jx1dd2p49pg"))
-(define rust-zvariant_derive-5.7.0
-  (crate "zvariant_derive" "5.7.0" "13mnhlw8imn6garkqrq4gyxyj7rjnp0hfgqdv5mj4vd44q5zshv6"))
-(define rust-zvariant_utils-2.1.0
-  (crate "zvariant_utils" "2.1.0" "0h43h3jcw8rmjr390rdqnhkb9nn3913pgkvb75am1frxrkvwy6y5"))
-(define rust-zvariant_utils-3.2.1
-  (crate "zvariant_utils" "3.2.1" "16g5id3h9q85c5vcwdfwkwmwzyladbr2q8x2xinr3xl95wa9v566"))
-(define rust-zvariant_utils-3.4.0
-  (crate "zvariant_utils" "3.4.0" "1mn4fa0rvibzxzj32s07xspa82cr2gl6i34xamz58xgsbj8kb18y"))
 (define rust-zvariant_utils-3.5.0
   (crate "zvariant_utils" "3.5.0" "1iy79yppaqsw0pjb8q7b36vivw7qsc1b4n0jg9090lmlz61r7jwh"))
 (define rust-zvariant_utils-4.2.0
@@ -4038,6 +3756,10 @@
                 "f0599eed5f18111228266fe3f28991cc48b5964f"
                 "0jbgllgwklngs6cpdb4gcixabn1j4j9rgnxv8f6q7k3m4p545zx4"))
 (define appstream-c14084d-checkout
+  (git-checkout "appstream" "https://github.com/jackpot51/appstream"
+                "c14084db5c0dce7b56830b705c9f3cf6f9603469"
+                "1swxjnshaysnpjx1ijw0i07mg5s3fqvyqf03vf41v5qrkb3vafkd"))
+(define appstream-c14084d-checkout
   (git-checkout "appstream" "https://github.com/jackpot51/appstream.git"
                 "c14084db5c0dce7b56830b705c9f3cf6f9603469"
                 "1swxjnshaysnpjx1ijw0i07mg5s3fqvyqf03vf41v5qrkb3vafkd"))
@@ -4045,46 +3767,54 @@
   (git-checkout "atspi" "https://github.com/wash2/atspi"
                 "e1e6e8bcd781a3155a9ff7e0b1e5193e5587f94c"
                 "078hv9dinmy1smc74r6d2l5i0jx52biq07l72n339y4s61yz6q49"))
-(define cosmic-applets-406d1b7-checkout
+(define cosmic-applets-2ad004a-checkout
   (git-checkout "cosmic-applets" "https://github.com/pop-os/cosmic-applets"
-                "406d1b7d627138fdf4078f654268d3d8774e50f1"
-                "13pfbppzsg2fxf6jqz11zv203in6wm11lmm0m9lq56vk4zjh27pg"))
-(define cosmic-bg-91d525b-checkout
+                "2ad004a9b88c68fcaf55080623956178a01e5d7e"
+                "1dpahf8sqbvs47g542b94xp0j1fq0nn982lh894ihmv42qpz2p7a"))
+(define cosmic-bg-09e93d3-checkout
   (git-checkout "cosmic-bg" "https://github.com/pop-os/cosmic-bg"
-                "91d525b7310f5a497c9fd09a25d2710eb9f8a6f7"
-                "03qf54xfpnhrcin9s962a6a8k6pac3g7xip7d7q5a7xr0d504xlx"))
-(define cosmic-bg-9520e16-checkout
+                "09e93d38798d2fc2ac53d03e4988800c179c8dea"
+                "0fbvpvxyfzv0hsv250a9rdhy81xv3sx6s11nhqlmrr7r3hpsrjhg"))
+(define cosmic-bg-afce690-checkout
   (git-checkout "cosmic-bg" "https://github.com/pop-os/cosmic-bg"
-                "9520e16758693bc2f6845d52680f236d548edda2"
-                "1vx7aamb3kl91ygxqxzs1mq6hddnzrbkxp5mdnp41q5n4ajvfknv"))
+                "afce6904b201754fcad3f3d3bd9acd6ba21536ab"
+                "00489iz6lirz6if1vd08wlylrifii44r3gldivd4n0nn1s7s478i"))
 (define cosmic-bg-ed65f7d-checkout
   (git-checkout "cosmic-bg" "https://github.com/pop-os/cosmic-bg"
                 "ed65f7d3dc9e3d4af3cd65244a966e01bff0f730"
                 "1p130glrgz3h32vkbfg31s1j0vqxqybxwqja5af66916qj8ipxf8"))
+(define cosmic-comp-46b26e6-checkout
+  (git-checkout "cosmic-comp" "https://github.com/pop-os/cosmic-comp"
+                "46b26e63ca22a7acb27adf0c4708ba62a48d356d"
+                "075nndi9yr562mc5azcrs9xlf284g670g85n8a8nkqny5i5fxglh"))
 (define cosmic-comp-5eb5af4-checkout
   (git-checkout "cosmic-comp" "https://github.com/pop-os/cosmic-comp.git"
                 "5eb5af46756f2f2bc5e812cf68fe4c4b79efd924"
                 "1z8g0w40s5jamxkrbccdvjzwv92di6ls8rcdxn1krnfiqrvm2jmr"))
+(define cosmic-comp-63dacd1-checkout
+  (git-checkout "cosmic-comp" "https://github.com/pop-os/cosmic-comp"
+                "63dacd148f634023f904d27e94ce0da93eef6710"
+                "1ak5mqwn5c5b20vzzj65lryfpndv8b5h78b3cdbcc5ykr139jf2w"))
 (define cosmic-comp-693d1ad-checkout
   (git-checkout "cosmic-comp" "https://github.com/pop-os/cosmic-comp"
                 "693d1ad775193deb95a33810b5eac59684ca2ac0"
                 "1lvdhm58w08i8jskd1fcxp74iz4r428c180p5csjyd2jv3vgnsh0"))
-(define cosmic-comp-742b800-checkout
+(define cosmic-comp-cb86b9e-checkout
   (git-checkout "cosmic-comp" "https://github.com/pop-os/cosmic-comp"
-                "742b800b518f0dafd89d0c1ace4de4935334ed18"
-                "0a2726sygjan3vb47p9jyh73dgd8yr7fx5wva4hvpk96inwd6fjk"))
-(define cosmic-comp-9b4296b-checkout
-  (git-checkout "cosmic-comp" "https://github.com/pop-os/cosmic-comp"
-                "9b4296b4c6277606e0441d33345ee5a4860b609a"
-                "0i5qrkin3z1rq1mcnlx7avb1gwq7m3zxnq110aig7xnbmrx0j5fb"))
-(define cosmic-files-3cc4b80-checkout
-  (git-checkout "cosmic-files" "https://github.com/pop-os/cosmic-files"
-                "3cc4b8003e8d08349c7ced8a9cdd10cdfa45d38c"
-                "109sh2nnzrfpxcw3x48nnhl6vj7xsdyrddrpv1r9ra8fb5l8xy4h"))
+                "cb86b9ec6f18ca2d2ad3b39426a57ab850867070"
+                "0prn9hi6qb3czln6kmj8gsh4ilcmplcw5wr9hbawpizi512ivj6a"))
 (define cosmic-files-3cc4b80-checkout
   (git-checkout "cosmic-files" "https://github.com/pop-os/cosmic-files.git"
                 "3cc4b8003e8d08349c7ced8a9cdd10cdfa45d38c"
                 "109sh2nnzrfpxcw3x48nnhl6vj7xsdyrddrpv1r9ra8fb5l8xy4h"))
+(define cosmic-files-47878af-checkout
+  (git-checkout "cosmic-files" "https://github.com/pop-os/cosmic-files"
+                "47878af1e3362cc808c2c695b2fdcff178be6008"
+                "0s97bi8hly571hv58rba0pzql8qnf154k10yvqnzff769v9cmdk2"))
+(define cosmic-files-47878af-checkout
+  (git-checkout "cosmic-files" "https://github.com/pop-os/cosmic-files.git"
+                "47878af1e3362cc808c2c695b2fdcff178be6008"
+                "0s97bi8hly571hv58rba0pzql8qnf154k10yvqnzff769v9cmdk2"))
 (define cosmic-idle-6d6f07a-checkout
   (git-checkout "cosmic-idle" "https://github.com/pop-os/cosmic-idle"
                 "6d6f07af60bb307882cdcbd0bda0a6fc76bd0df3"
@@ -4097,14 +3827,10 @@
   (git-checkout "cosmic-mime-apps" "https://github.com/pop-os/cosmic-mime-apps.git"
                 "8fc81e8857e46c018ea21ab985aaf30ac853c007"
                 "0ndnhk2s93lj8hrx0v1l3k0p1wds7c576jjrsl68vprpi9ld9hsk"))
-(define cosmic-notifications-c1a0695-checkout
+(define cosmic-notifications-4fac3f9-checkout
   (git-checkout "cosmic-notifications" "https://github.com/pop-os/cosmic-notifications"
-                "c1a0695c3629ae3524b5c9b654ac7431ad1bc558"
-                "0hjhns3vjclbns50clsnf4jykrvb6xmxz8qdscpn798ri4dg38jm"))
-(define cosmic-osk-3a4800a-checkout
-  (git-checkout "cosmic-osk" "https://github.com/pop-os/cosmic-osk"
-                "3a4800a10b03efac1684817238922db5d6746403"
-                "0r13bx46ai5yk5ll6ga5zvq4rwlxx2z0gvlsjvwy6mg9rzsivzsx"))
+                "4fac3f9a8fc50fb93941e031383ec98312d62280"
+                "0vlfc8zcl8iarfhxfk3qq64c6p56mal2kg9drk0hmh6nk9zpl2xm"))
 (define cosmic-osk-6b146a2-checkout
   (git-checkout "cosmic-osk" "https://github.com/pop-os/cosmic-osk"
                 "6b146a2b0a23d88ae84223ad06c6813bda5a9386"
@@ -4125,10 +3851,6 @@
   (git-checkout "cosmic-protocols" "https://github.com/pop-os/cosmic-protocols"
                 "32283d76a8d0342da74c4cc022a533c52dcf378f"
                 "1jh0l74dph31l6gj4p6bbywr0xi2i0b53mcn71cq8xpyxl3jch1d"))
-(define cosmic-protocols-af1997b-checkout
-  (git-checkout "cosmic-protocols" "https://github.com/pop-os/cosmic-protocols"
-                "af1997b1827ad64aab46fa31c0b77fb20d7a537a"
-                "0ifwp24v4jja0v44bsg41lk7hzcxxb1bblq42xi8srkaq69w51w0"))
 (define cosmic-protocols-c0cff4d-checkout
   (git-checkout "cosmic-protocols" "https://github.com/pop-os/cosmic-protocols"
                 "c0cff4db14c37ed954983158e4055aa94c7741d9"
@@ -4141,18 +3863,26 @@
   (git-checkout "cosmic-randr" "https://github.com/pop-os/cosmic-randr"
                 "6e8e795970fa06d434af22775e415b517f7552d3"
                 "00xdxlg2vmzn5gzs68815jbr3q1qg6fhcjrr2jyy38lih3lv0a96"))
-(define cosmic-randr-85efc7f-checkout
-  (git-checkout "cosmic-randr" "https://github.com/pop-os/cosmic-randr"
-                "85efc7febb99876094cf90af6dbce0927ad8cca7"
-                "117fnwghcpavsi0pnx8qaf9z1q1g9a5qmwp8ydav33dvm86af0hy"))
 (define cosmic-randr-f1a9765-checkout
   (git-checkout "cosmic-randr" "https://github.com/pop-os/cosmic-randr"
                 "f1a97655c97e8799bf4a37a8f5103a8ab5e5068d"
                 "02sk9s270hypszdsq9icwvyhk2mhx9j140fp1imc3y2s9aidzvzx"))
-(define cosmic-settings-c4ff548-checkout
+(define cosmic-settings-4cf24f6-checkout
   (git-checkout "cosmic-settings" "https://github.com/pop-os/cosmic-settings"
-                "c4ff5486d00fb0ede7a95784f6fb634bf79e6113"
-                "0gg65dgx8rphps5fvhz24dr8cimh218i0797m4giq2yr72lng0lm"))
+                "4cf24f610b8e178e0691986c28b3fe86b3edbe80"
+                "0x97bfnxyvjps35lak7fqb8bikpvcp8si99cvhbg1p71hphh1hss"))
+(define cosmic-settings-5f43cfc-checkout
+  (git-checkout "cosmic-settings" "https://github.com/pop-os/cosmic-settings"
+                "5f43cfc867163f3d9e8d83d79efa959e29d53418"
+                "0dc70ms6b9fb1clsrzymmqkirn3xmkmxq204kcqxrx3ifyarl2xj"))
+(define cosmic-settings-daemon-108e095-checkout
+  (git-checkout "cosmic-settings-daemon" "https://github.com/pop-os/cosmic-settings-daemon"
+                "108e095779549931e7ce109429255a1341c70b7c"
+                "0cdqiq34n146jcls090d4yjjpiwhibxlbhn5ik5kwfs129wm28kz"))
+(define cosmic-settings-daemon-2df041e-checkout
+  (git-checkout "cosmic-settings-daemon" "https://github.com/pop-os/cosmic-settings-daemon"
+                "2df041e6e90757782a7884729ae3723e86cee122"
+                "0i8wjnjk9j70jhr5z027qf868gqghjfrw5c3wr5y2py05ai4br0a"))
 (define cosmic-settings-daemon-655b14f-checkout
   (git-checkout "cosmic-settings-daemon" "https://github.com/pop-os/cosmic-settings-daemon"
                 "655b14fb9572dd7f7231ec6c343c63984e99741a"
@@ -4169,6 +3899,10 @@
   (git-checkout "cosmic-settings-daemon" "https://github.com/pop-os/cosmic-settings-daemon"
                 "e37160f14d1e7ee428f973cd2848b4e95f83dfe1"
                 "1zxw993fjyc991sixm87bs6bir4hcw3kaqx2bdig2vq3y8alg3xc"))
+(define cosmic-settings-fede96f-checkout
+  (git-checkout "cosmic-settings" "https://github.com/pop-os/cosmic-settings"
+                "fede96f61107a86438d3eedd694425188ee959e4"
+                "0n1bqmnq2dvci3rk2f18il2c31rqc9bw3962wx4sqk0r5myq9hlr"))
 (define cosmic-syntax-theme-b1e1eb0-checkout
   (git-checkout "cosmic-syntax-theme" "https://github.com/pop-os/cosmic-syntax-theme.git"
                 "b1e1eb0234568911e59888f092dfc779c609b499"
@@ -4177,14 +3911,18 @@
   (git-checkout "cryoglyph" "https://github.com/iced-rs/cryoglyph.git"
                 "e429a025df36ab8145708acb309080ae3deec17a"
                 "0xbv41d08xw14srbr8pcmgc2pbixqx6qkbhpd65vmdb4blg58hnp"))
-(define dbus-settings-bindings-0a2f682-checkout
+(define dbus-settings-bindings-4c6c886-checkout
   (git-checkout "dbus-settings-bindings" "https://github.com/pop-os/dbus-settings-bindings"
-                "0a2f682cb505ca2fba4a08de3a9dcdf865284638"
-                "12dcs9zzlnj5axv7kim9yrrsralwgkk25cxsxnp27b5l82rfvnrh"))
-(define dbus-settings-bindings-0fa672f-checkout
+                "4c6c886a758adcbb0bda876c53135ca738549edc"
+                "1b1w3wmvk4vk3x4z132gamwfslysxfh7681gmyp0wnlvciz7gb3z"))
+(define dbus-settings-bindings-6ccc9fb-checkout
   (git-checkout "dbus-settings-bindings" "https://github.com/pop-os/dbus-settings-bindings"
-                "0fa672f8dadb884001ef9a251b149ed432879629"
-                "0s2sr2bghxpi1zv5ay5bx9yw2sngllfb0mi2sywspng6xp6sk2s0"))
+                "6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                "0g7rhcssjaw8agna7wnp7xsp49fjrl73ksz2lc3d2yzadidbrsxj"))
+(define dbus-settings-bindings-8d5d616-checkout
+  (git-checkout "dbus-settings-bindings" "https://github.com/pop-os/dbus-settings-bindings"
+                "8d5d6163b22e364a4ce3aea5baf9871391a1dc34"
+                "1b1w3wmvk4vk3x4z132gamwfslysxfh7681gmyp0wnlvciz7gb3z"))
 (define dbus-settings-bindings-eed01dd-checkout
   (git-checkout "dbus-settings-bindings" "https://github.com/pop-os/dbus-settings-bindings"
                 "eed01dd3609e90e3c8cd043656734c500956c793"
@@ -4209,10 +3947,10 @@
   (git-checkout "launch-pad" "https://github.com/pop-os/launch-pad.git"
                 "5b516ee6a012b5ad4a5acc0cf51b4472fc6733af"
                 "053zq856gmlh3080n76z2pdsxy70zvlzf3idy651rr9j4r6h0d55"))
-(define launcher-3f35b7f-checkout
+(define launcher-4111617-checkout
   (git-checkout "launcher" "https://github.com/pop-os/launcher"
-                "3f35b7f02f93d262be51da62fee7a0f71c1fd54b"
-                "01i1qqypb7361yhr2sj7p6v4dqggx67ja90rqh6ai51f2jpnjqpd"))
+                "4111617b7345134abe67332a7baa5ef12538f412"
+                "1w4xhmbcrrzd3b3p1hvrfmqr911x5d6rdmc29cz61g2mb4qj2m67"))
 (define libcosmic-430f3d4-checkout
   (git-checkout "libcosmic" "https://github.com/pop-os/libcosmic"
                 "430f3d48a97d8779f9c1985473912e594ccca1ae"
@@ -4221,22 +3959,38 @@
   (git-checkout "libcosmic" "https://github.com/pop-os/libcosmic.git"
                 "430f3d48a97d8779f9c1985473912e594ccca1ae"
                 "0bw6b392ygzw2vmbi930w7r5mdcn72fbqjbzcgb706p70mqikp8v" #t))
+(define libcosmic-7cd76ae-checkout
+  (git-checkout "libcosmic" "https://github.com/pop-os/libcosmic"
+                "7cd76ae3160cbd26ae89a4c01e64eda21f648c7f"
+                "1dkillqva8w7rgkh2mw8lxjy506jsk5dpzn0lpvzifyjiamk8sxb" #t))
+(define libcosmic-7cd76ae-checkout
+  (git-checkout "libcosmic" "https://github.com/pop-os/libcosmic.git"
+                "7cd76ae3160cbd26ae89a4c01e64eda21f648c7f"
+                "1dkillqva8w7rgkh2mw8lxjy506jsk5dpzn0lpvzifyjiamk8sxb" #t))
+(define libcosmic-896b252-checkout
+  (git-checkout "libcosmic" "https://github.com/pop-os/libcosmic"
+                "896b252dfc3c6cb0c678b844432016415dc104b1"
+                "17mjpglp726x7jm89d17b9f9b30nrpklh0ywi94xvjn4d0yqkl3x" #t))
 (define libcosmic-8cb10bf-checkout
   (git-checkout "libcosmic" "https://github.com/pop-os/libcosmic"
                 "8cb10bf6e24b86a7d2a9cf8c662d3e0154db1b21"
                 "01p2vqv967bfiz1lih7xk1mw5cpxb09aja90qkc1hcnzydlxa3fc" #t))
 (define libcosmic-95236a9-checkout
-  (git-checkout "libcosmic" "https://github.com/pop-os/libcosmic"
+  (git-checkout "libcosmic" "https://github.com/pop-os/libcosmic.git"
                 "95236a944bfd51c63a2fc65fe50a592c47168d40"
                 "16dd617ncr93c50j7diyg45m4j8cdkvzgdbadc2rppjjshqcc8iv" #t))
+(define libcosmic-dd108aa-checkout
+  (git-checkout "libcosmic" "https://github.com/pop-os/libcosmic"
+                "dd108aa99d7306110eef06da43eafc109e1ab151"
+                "1zcznhz9l6yf1fk12i6hsci2yyzh34fh6s6h6n61z39w6z1lmpn1" #t))
+(define libcosmic-dd108aa-checkout
+  (git-checkout "libcosmic" "https://github.com/pop-os/libcosmic.git"
+                "dd108aa99d7306110eef06da43eafc109e1ab151"
+                "1zcznhz9l6yf1fk12i6hsci2yyzh34fh6s6h6n61z39w6z1lmpn1" #t))
 (define locales-rs-947cc56-checkout
   (git-checkout "locales-rs" "https://github.com/AerynOS/locales-rs"
                 "947cc560257ebe68fda3f854ee45773072a915d4"
                 "05wbg8q57sla16rhjfqqrxya0ygdacyzd9ph53ph33wlws8vz9fl"))
-(define locales-rs-c53fb77-checkout
-  (git-checkout "locales-rs" "https://github.com/AerynOS/locales-rs"
-                "c53fb77280fea544752373ab0e99209b4e90b8ff"
-                "0bdsm3a7hdl2f8yy04bdzbiswvx1px3vng0w4hzhiic9gnmapw3z"))
 (define pipewire-rs-7102242-checkout
   (git-checkout "pipewire-rs" "https://gitlab.freedesktop.org/pipewire/pipewire-rs"
                 "71022422eebd1bb2cb5a3259362819639fd29b58"
@@ -4277,6 +4031,10 @@
   (git-checkout "sysinfo" "https://github.com/jackpot51/sysinfo.git"
                 "f9c9267402f026a1c1be2062745cc281cee6e094"
                 "04r9k6dnqx1261ydw8i72zrf6svqpy3vbzqazkndk041lp4bbmfg"))
+(define system-updater-546d8a3-checkout
+  (git-checkout "system-updater" "https://github.com/pop-os/system-updater"
+                "546d8a3f11e052f88d7ecfaa4a9b844beb4f8a6d"
+                "0ncm6yh413zxfv3kna2a4cn54cxvkk2gpp9cmxvac4gr5wx61b0h"))
 (define window_clipboard-f68595e-checkout
   (git-checkout "window_clipboard" "https://github.com/pop-os/window_clipboard.git"
                 "f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
@@ -4289,6 +4047,10 @@
   (git-checkout "winit" "https://github.com/pop-os/winit.git"
                 "f737f1f5900b3399b56951305b0f155afc9c9ee5"
                 "1prkp1av5fv1nzhy8js88paj3yl0jgri95mbmak04a3hjff2cxzp"))
+(define xdg-mime-rs-69f67f5-checkout
+  (git-checkout "xdg-mime-rs" "https://github.com/ebassi/xdg-mime-rs"
+                "69f67f59cd309355b72559f70aab64e2ac6312bc"
+                "0ix3q437qxscv9zn3nlyv0bgbvppb36v2h32clx7bc6xi20q4rx7"))
 (define xdg-mime-rs-f8efb3f-checkout
   (git-checkout "xdg-mime-rs" "https://github.com/ebassi/xdg-mime-rs"
                 "f8efb3fb1fad582539e2af7d1e9fbc9613dcc7d9"
@@ -4315,18 +4077,10 @@
         rust-arrayvec-0.7.6
         rust-as-raw-xcb-connection-1.0.1
         rust-ash-0.38.0-1.3.281
-        rust-async-broadcast-0.7.2
-        rust-async-channel-2.5.0
-        rust-async-executor-1.14.0
-        rust-async-io-2.6.0
-        rust-async-lock-3.4.2
-        rust-async-process-2.5.0
-        rust-async-recursion-1.1.1
-        rust-async-signal-0.2.13
         rust-async-task-4.7.1
         rust-async-trait-0.1.89
         rust-atomic-waker-1.1.2
-        rust-auto_enums-0.8.8
+        rust-auto_enums-0.8.10
         rust-autocfg-1.5.0
         rust-backtrace-0.3.76
         rust-base64-0.21.7
@@ -4338,8 +4092,8 @@
         rust-bitflags-2.13.2
         rust-block-0.1.6
         rust-block-buffer-0.10.4
+        rust-block-buffer-0.12.1
         rust-block2-0.6.2
-        rust-blocking-1.6.2
         rust-borsh-1.6.0
         rust-bstr-1.12.1
         rust-btoi-0.5.0
@@ -4366,7 +4120,8 @@
         rust-color_quant-1.1.0
         rust-combine-4.6.7
         rust-concurrent-queue-2.5.0
-        rust-configparser-3.1.0
+        rust-configparser-3.3.0
+        rust-const-oid-0.10.2
         rust-core-foundation-0.9.4
         rust-core-foundation-sys-0.8.7
         rust-core-graphics-0.23.2
@@ -4379,8 +4134,8 @@
         rust-crossbeam-utils-0.8.21
         rust-crunchy-0.2.4
         rust-crypto-common-0.1.7
+        rust-crypto-common-0.2.2
         rust-css-color-0.2.8
-        rust-csscolorparser-0.8.3
         rust-ctor-lite-0.1.2
         rust-cursor-icon-1.2.0
         rust-darling-0.21.3
@@ -4389,9 +4144,10 @@
         rust-data-url-0.3.2
         rust-deranged-0.5.8
         rust-derive_setters-0.1.9
-        rust-derive_utils-0.15.0
+        rust-derive_utils-0.16.0
         rust-digest-0.10.7
-        rust-dirs-6.0.0
+        rust-digest-0.11.3
+        rust-dirs-7.0.0
         rust-dirs-sys-0.5.0
         rust-dispatch2-0.3.1
         rust-displaydoc-0.2.5
@@ -4426,8 +4182,6 @@
         rust-error-code-3.3.2
         rust-etagere-0.2.15
         rust-euclid-0.22.13
-        rust-event-listener-5.4.1
-        rust-event-listener-strategy-0.5.4
         rust-fast-srgb8-1.0.0
         rust-fastrand-2.3.0
         rust-fdeflate-0.3.7
@@ -4452,13 +4206,11 @@
         rust-foreign-types-macros-0.2.3
         rust-foreign-types-shared-0.3.1
         rust-form_urlencoded-1.2.2
-        rust-fsevent-sys-4.1.0
         rust-futures-0.3.32
         rust-futures-channel-0.3.32
-        rust-futures-core-0.3.32
+        rust-futures-core-0.3.34
         rust-futures-executor-0.3.32
-        rust-futures-io-0.3.32
-        rust-futures-lite-2.6.1
+        rust-futures-io-0.3.34
         rust-futures-macro-0.3.32
         rust-futures-sink-0.3.32
         rust-futures-task-0.3.32
@@ -4477,7 +4229,6 @@
         rust-glam-0.25.0
         rust-glam-0.33.2
         rust-glow-0.16.0
-        rust-grid-1.0.0
         rust-guillotiere-0.6.2
         rust-half-2.7.1
         rust-harfrust-0.5.0
@@ -4493,6 +4244,7 @@
         rust-hexf-parse-0.2.1
         rust-hmac-0.12.1
         rust-home-0.5.12
+        rust-hybrid-array-0.4.10
         rust-i18n-config-0.4.8
         rust-i18n-embed-0.16.0
         rust-i18n-embed-fl-0.10.0
@@ -4545,7 +4297,7 @@
         rust-kurbo-0.11.3
         rust-lazy_static-1.5.0
         rust-leb128fmt-0.1.0
-        rust-libc-0.2.182
+        rust-libc-0.2.191
         rust-libdisplay-info-0.3.0
         rust-libdisplay-info-derive-0.1.1
         rust-libdisplay-info-sys-0.3.0
@@ -4567,7 +4319,6 @@
         rust-lock_api-0.4.14
         rust-log-0.4.29
         rust-log-panics-2.1.0
-        rust-logind-zbus-5.3.2
         rust-loom-0.7.2
         rust-lru-0.16.3
         rust-lyon-1.0.16
@@ -4582,10 +4333,11 @@
         rust-memoffset-0.9.1
         rust-miette-7.6.0
         rust-mime-0.3.17
+        rust-mime_guess-2.0.5
         rust-mime_guess2-2.3.1
         rust-miniz_oxide-0.8.9
         rust-mint-0.5.9
-        rust-mio-1.1.1
+        rust-mio-1.2.4
         rust-moxcms-0.8.1
         rust-mutate_once-0.1.2
         rust-naga-28.0.0
@@ -4595,7 +4347,7 @@
         rust-nix-0.29.0
         rust-nohash-hasher-0.2.0
         rust-nom-8.0.0
-        rust-notify-8.2.0
+        rust-notify-8.2.1
         rust-notify-types-2.1.0
         rust-nu-ansi-term-0.50.3
         rust-num-0.4.3
@@ -4614,6 +4366,7 @@
         rust-objc2-app-kit-0.3.2
         rust-objc2-core-foundation-0.3.2
         rust-objc2-core-graphics-0.3.2
+        rust-objc2-core-services-0.3.2
         rust-objc2-core-video-0.3.2
         rust-objc2-encode-4.1.0
         rust-objc2-foundation-0.3.2
@@ -4630,25 +4383,23 @@
         rust-owned_ttf_parser-0.25.1
         rust-palette-0.7.6
         rust-palette_derive-0.7.6
-        rust-parking-2.2.1
         rust-parking_lot-0.12.5
         rust-parking_lot_core-0.9.12
         rust-paste-1.0.15
         rust-percent-encoding-2.3.2
         rust-phf-0.11.3
-        rust-phf-0.13.1
+        rust-phf-0.14.0
         rust-phf_generator-0.11.3
-        rust-phf_generator-0.13.1
+        rust-phf_generator-0.14.0
         rust-phf_macros-0.11.3
-        rust-phf_macros-0.13.1
+        rust-phf_macros-0.14.0
         rust-phf_shared-0.11.3
-        rust-phf_shared-0.13.1
+        rust-phf_shared-0.14.0
         rust-pico-args-0.5.0
         rust-pin-project-1.1.10
         rust-pin-project-internal-1.1.10
         rust-pin-project-lite-0.2.16
         rust-pin-utils-0.1.0
-        rust-piper-0.2.4
         rust-pixman-0.2.1
         rust-pixman-sys-0.1.0
         rust-pkg-config-0.3.32
@@ -4702,14 +4453,15 @@
         rust-ron-0.12.0
         rust-roxmltree-0.19.0
         rust-roxmltree-0.20.0
-        rust-rust-embed-8.11.0
-        rust-rust-embed-impl-8.11.0
-        rust-rust-embed-utils-8.11.0
+        rust-roxmltree-0.21.2
+        rust-rust-embed-8.13.0
+        rust-rust-embed-impl-8.13.0
+        rust-rust-embed-utils-8.13.0
         rust-rustc-demangle-0.1.27
         rust-rustc-hash-1.1.0
         rust-rustc-hash-2.1.1
         rust-rustix-0.38.44
-        rust-rustix-1.1.4
+        rust-rustix-1.1.6
         rust-rustversion-1.0.22
         rust-rustybuzz-0.20.1
         rust-same-file-1.0.6
@@ -4723,12 +4475,13 @@
         rust-serde-1.0.228
         rust-serde_core-1.0.228
         rust-serde_derive-1.0.228
-        rust-serde_json-1.0.149
+        rust-serde_json-1.0.154
         rust-serde_repr-0.1.20
         rust-serde_spanned-1.0.4
         rust-serde_with-3.16.1
         rust-serde_with_macros-3.16.1
         rust-sha2-0.10.9
+        rust-sha2-0.11.1
         rust-sharded-slab-0.1.7
         rust-shlex-1.3.0
         rust-signal-hook-registry-1.4.8
@@ -4745,6 +4498,7 @@
         rust-smithay-client-toolkit-0.21.1
         rust-smol_str-0.3.5
         rust-snowflake-1.3.0
+        rust-socket2-0.6.5
         rust-stable_deref_trait-1.2.1
         rust-static_assertions-1.1.0
         rust-strict-num-0.1.1
@@ -4755,10 +4509,11 @@
         rust-svgtypes-0.15.3
         rust-swash-0.2.6
         rust-syn-2.0.117
+        rust-syn-3.0.9
         rust-synstructure-0.13.2
         rust-sys-locale-0.3.2
         rust-system-deps-7.0.7
-        rust-taffy-0.9.2
+        rust-taffy-0.15.1
         rust-target-lexicon-0.13.3
         rust-tempfile-3.26.0
         rust-thiserror-1.0.69
@@ -4775,6 +4530,7 @@
         rust-tinystr-0.8.2
         rust-tinyvec-1.10.0
         rust-tinyvec_macros-0.1.1
+        rust-tokio-1.54.1
         rust-toml-0.5.11
         rust-toml-0.9.12-spec-1.1.0
         rust-toml_datetime-0.7.5-spec-1.1.0
@@ -4795,7 +4551,6 @@
         rust-typenum-1.19.0
         rust-udev-0.9.3
         rust-uds_windows-1.1.0
-        rust-uncased-0.9.10
         rust-unic-langid-0.9.6
         rust-unic-langid-impl-0.9.6
         rust-unicase-2.9.0
@@ -4869,42 +4624,32 @@
         rust-windows-sys-0.48.0
         rust-windows-sys-0.52.0
         rust-windows-sys-0.59.0
-        rust-windows-sys-0.60.2
         rust-windows-sys-0.61.2
         rust-windows-targets-0.42.2
         rust-windows-targets-0.48.5
         rust-windows-targets-0.52.6
-        rust-windows-targets-0.53.5
         rust-windows_aarch64_gnullvm-0.42.2
         rust-windows_aarch64_gnullvm-0.48.5
         rust-windows_aarch64_gnullvm-0.52.6
-        rust-windows_aarch64_gnullvm-0.53.1
         rust-windows_aarch64_msvc-0.42.2
         rust-windows_aarch64_msvc-0.48.5
         rust-windows_aarch64_msvc-0.52.6
-        rust-windows_aarch64_msvc-0.53.1
         rust-windows_i686_gnu-0.42.2
         rust-windows_i686_gnu-0.48.5
         rust-windows_i686_gnu-0.52.6
-        rust-windows_i686_gnu-0.53.1
         rust-windows_i686_gnullvm-0.52.6
-        rust-windows_i686_gnullvm-0.53.1
         rust-windows_i686_msvc-0.42.2
         rust-windows_i686_msvc-0.48.5
         rust-windows_i686_msvc-0.52.6
-        rust-windows_i686_msvc-0.53.1
         rust-windows_x86_64_gnu-0.42.2
         rust-windows_x86_64_gnu-0.48.5
         rust-windows_x86_64_gnu-0.52.6
-        rust-windows_x86_64_gnu-0.53.1
         rust-windows_x86_64_gnullvm-0.42.2
         rust-windows_x86_64_gnullvm-0.48.5
         rust-windows_x86_64_gnullvm-0.52.6
-        rust-windows_x86_64_gnullvm-0.53.1
         rust-windows_x86_64_msvc-0.42.2
         rust-windows_x86_64_msvc-0.48.5
         rust-windows_x86_64_msvc-0.52.6
-        rust-windows_x86_64_msvc-0.53.1
         rust-winit-0.31.0-beta.3
         rust-winit-android-0.31.0-beta.3
         rust-winit-appkit-0.31.0-beta.3
@@ -4942,9 +4687,10 @@
         rust-yazi-0.2.1
         rust-yoke-0.8.1
         rust-yoke-derive-0.8.1
-        rust-zbus-5.16.0
-        rust-zbus_macros-5.16.0
-        rust-zbus_names-4.3.2
+        rust-zbus-6.2.1
+        rust-zbus_macros-6.2.1
+        rust-zbus_utils-6.1.0
+        rust-zcheapstr-1.2.0
         rust-zeno-0.3.3
         rust-zerocopy-0.8.39
         rust-zerocopy-derive-0.8.39
@@ -4954,21 +4700,19 @@
         rust-zerovec-0.11.5
         rust-zerovec-derive-0.11.2
         rust-zmij-1.0.21
+        rust-zruntime-0.2.2
         rust-zune-core-0.4.12
         rust-zune-core-0.5.1
         rust-zune-jpeg-0.4.21
-        rust-zune-jpeg-0.5.12
-        rust-zvariant-5.12.0
-        rust-zvariant_derive-5.12.0
-        rust-zvariant_utils-3.4.0))
+        rust-zune-jpeg-0.5.12))
 
 (define cosmic-comp-git-crates
   (list (git-crate "atomicwrites" "0.4.2"
                    "git+https://github.com/jackpot51/rust-atomicwrites#043ab4859d53ffd3d55334685303d8df39c9f768"
                    rust-atomicwrites-043ab48-checkout ".")
         (git-crate "build_helpers" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/build_helpers")
+                   "git+https://github.com/pop-os/libcosmic#7cd76ae3160cbd26ae89a4c01e64eda21f648c7f"
+                   libcosmic-7cd76ae-checkout "iced/build_helpers")
         (git-crate "clipboard_macos" "0.1.0"
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout "macos")
@@ -4979,14 +4723,17 @@
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout "x11")
         (git-crate "cosmic-config" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "cosmic-config")
+                   "git+https://github.com/pop-os/libcosmic#7cd76ae3160cbd26ae89a4c01e64eda21f648c7f"
+                   libcosmic-7cd76ae-checkout "cosmic-config")
         (git-crate "cosmic-config-derive" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "cosmic-config-derive")
+                   "git+https://github.com/pop-os/libcosmic#7cd76ae3160cbd26ae89a4c01e64eda21f648c7f"
+                   libcosmic-7cd76ae-checkout "cosmic-config-derive")
         (git-crate "cosmic-freedesktop-icons" "0.4.0"
                    "git+https://github.com/pop-os/freedesktop-icons#ab4c57b8e416c6af9297cb04d101889896fd9a92"
                    freedesktop-icons-ab4c57b-checkout ".")
+        (git-crate "cosmic-login1-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "login1")
         (git-crate "cosmic-protocols" "0.2.0"
                    "git+https://github.com/pop-os/cosmic-protocols#c0cff4db14c37ed954983158e4055aa94c7741d9"
                    cosmic-protocols-c0cff4d-checkout ".")
@@ -4996,15 +4743,15 @@
         (git-crate "cosmic-settings-config" "0.1.0"
                    "git+https://github.com/pop-os/cosmic-settings-daemon#e37160f14d1e7ee428f973cd2848b4e95f83dfe1"
                    cosmic-settings-daemon-e37160f-checkout "config")
-        (git-crate "cosmic-settings-daemon" "0.1.0"
-                   "git+https://github.com/pop-os/dbus-settings-bindings#eed01dd3609e90e3c8cd043656734c500956c793"
-                   dbus-settings-bindings-eed01dd-checkout "cosmic-settings-daemon")
         (git-crate "cosmic-settings-daemon-config" "0.1.0"
                    "git+https://github.com/pop-os/cosmic-settings-daemon#e37160f14d1e7ee428f973cd2848b4e95f83dfe1"
                    cosmic-settings-daemon-e37160f-checkout "cosmic-settings-daemon-config")
+        (git-crate "cosmic-settings-daemon-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "cosmic-settings-daemon")
         (git-crate "cosmic-theme" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "cosmic-theme")
+                   "git+https://github.com/pop-os/libcosmic#7cd76ae3160cbd26ae89a4c01e64eda21f648c7f"
+                   libcosmic-7cd76ae-checkout "cosmic-theme")
         (git-crate "cryoglyph" "0.1.0"
                    "git+https://github.com/iced-rs/cryoglyph.git?rev=e429a025df36ab8145708acb309080ae3deec17a#e429a025df36ab8145708acb309080ae3deec17a"
                    cryoglyph-e429a02-checkout ".")
@@ -5012,44 +4759,44 @@
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout "dnd")
         (git-crate "iced" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced")
+                   "git+https://github.com/pop-os/libcosmic#7cd76ae3160cbd26ae89a4c01e64eda21f648c7f"
+                   libcosmic-7cd76ae-checkout "iced")
         (git-crate "iced_core" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/core")
+                   "git+https://github.com/pop-os/libcosmic#7cd76ae3160cbd26ae89a4c01e64eda21f648c7f"
+                   libcosmic-7cd76ae-checkout "iced/core")
         (git-crate "iced_debug" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/debug")
+                   "git+https://github.com/pop-os/libcosmic#7cd76ae3160cbd26ae89a4c01e64eda21f648c7f"
+                   libcosmic-7cd76ae-checkout "iced/debug")
         (git-crate "iced_futures" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/futures")
+                   "git+https://github.com/pop-os/libcosmic#7cd76ae3160cbd26ae89a4c01e64eda21f648c7f"
+                   libcosmic-7cd76ae-checkout "iced/futures")
         (git-crate "iced_graphics" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/graphics")
+                   "git+https://github.com/pop-os/libcosmic#7cd76ae3160cbd26ae89a4c01e64eda21f648c7f"
+                   libcosmic-7cd76ae-checkout "iced/graphics")
         (git-crate "iced_program" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/program")
+                   "git+https://github.com/pop-os/libcosmic#7cd76ae3160cbd26ae89a4c01e64eda21f648c7f"
+                   libcosmic-7cd76ae-checkout "iced/program")
         (git-crate "iced_renderer" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/renderer")
+                   "git+https://github.com/pop-os/libcosmic#7cd76ae3160cbd26ae89a4c01e64eda21f648c7f"
+                   libcosmic-7cd76ae-checkout "iced/renderer")
         (git-crate "iced_runtime" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/runtime")
+                   "git+https://github.com/pop-os/libcosmic#7cd76ae3160cbd26ae89a4c01e64eda21f648c7f"
+                   libcosmic-7cd76ae-checkout "iced/runtime")
         (git-crate "iced_tiny_skia" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/tiny_skia")
+                   "git+https://github.com/pop-os/libcosmic#7cd76ae3160cbd26ae89a4c01e64eda21f648c7f"
+                   libcosmic-7cd76ae-checkout "iced/tiny_skia")
         (git-crate "iced_wgpu" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/wgpu")
+                   "git+https://github.com/pop-os/libcosmic#7cd76ae3160cbd26ae89a4c01e64eda21f648c7f"
+                   libcosmic-7cd76ae-checkout "iced/wgpu")
         (git-crate "iced_widget" "0.14.2"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/widget")
+                   "git+https://github.com/pop-os/libcosmic#7cd76ae3160cbd26ae89a4c01e64eda21f648c7f"
+                   libcosmic-7cd76ae-checkout "iced/widget")
         (git-crate "id_tree" "1.8.0"
                    "git+https://github.com/Drakulix/id-tree.git?branch=feature%2Fcopy_clone#632a57d6d49160e18d7300fa7edae52281ec5482"
                    id-tree-632a57d-checkout ".")
         (git-crate "libcosmic" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout ".")
+                   "git+https://github.com/pop-os/libcosmic#7cd76ae3160cbd26ae89a4c01e64eda21f648c7f"
+                   libcosmic-7cd76ae-checkout ".")
         (git-crate "mime" "0.1.0"
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout "mime")
@@ -5070,50 +4817,31 @@
                    window_clipboard-f68595e-checkout ".")))
 
 (define cosmic-session-cargo-inputs
-  (list rust-addr2line-0.25.1
+  (list rust-addr2line-0.27.1
         rust-adler2-2.0.1
         rust-aho-corasick-1.1.5
-        rust-async-broadcast-0.7.2
-        rust-async-channel-2.5.0
-        rust-async-executor-1.14.0
-        rust-async-io-2.6.0
-        rust-async-lock-3.4.2
-        rust-async-process-2.5.0
-        rust-async-recursion-1.2.0
-        rust-async-signal-0.2.14
-        rust-async-task-4.7.1
         rust-async-trait-0.1.92
-        rust-atomic-waker-1.1.2
         rust-autocfg-1.5.1
-        rust-backtrace-0.3.76
+        rust-backtrace-0.3.77
         rust-bitflags-2.13.2
         rust-block-0.1.6
-        rust-blocking-1.7.0
         rust-bstr-1.13.1
         rust-bumpalo-3.20.3
         rust-bytes-1.12.1
-        rust-cc-1.9.0
+        rust-cc-1.11.1
         rust-cfg-if-1.0.5
         rust-color-eyre-0.6.5
         rust-color-spantrace-0.3.0
-        rust-concurrent-queue-2.5.0
-        rust-crossbeam-utils-0.8.23
-        rust-dirs-6.0.0
+        rust-dirs-7.0.0
         rust-dirs-sys-0.5.0
         rust-endi-1.1.1
-        rust-enumflags2-0.7.12
-        rust-enumflags2_derive-0.7.12
-        rust-equivalent-1.0.3
         rust-errno-0.3.14
-        rust-event-listener-5.4.2
-        rust-event-listener-strategy-0.5.4
         rust-eyre-0.6.14
         rust-fastrand-2.5.0
         rust-find-msvc-tools-0.1.15
         rust-freedesktop-desktop-entry-0.8.4
         rust-futures-core-0.3.34
         rust-futures-io-0.3.34
-        rust-futures-lite-2.6.1
         rust-futures-macro-0.3.34
         rust-futures-sink-0.3.34
         rust-futures-task-0.3.34
@@ -5122,46 +4850,38 @@
         rust-getrandom-0.4.3
         rust-gettext-rs-0.8.0
         rust-gettext-sys-0.27.0
-        rust-gimli-0.32.3
-        rust-hashbrown-0.17.1
-        rust-hermit-abi-0.5.3
+        rust-gimli-0.34.0
         rust-hex-0.4.3
         rust-indenter-0.3.4
-        rust-indexmap-2.14.2
         rust-itoa-1.0.18
-        rust-js-sys-0.3.106
+        rust-js-sys-0.3.107
         rust-lazy_static-1.5.1
         rust-libc-0.2.191
         rust-libredox-0.1.25
         rust-linux-raw-sys-0.12.1
         rust-locale_config-0.3.0
         rust-lock_api-0.4.14
-        rust-log-0.4.34
+        rust-log-0.4.35
         rust-log-panics-2.1.0
-        rust-logind-zbus-5.3.2
         rust-malloc_buf-0.0.6
         rust-matchers-0.2.0
         rust-memchr-2.8.3
         rust-memoffset-0.9.1
-        rust-miniz_oxide-0.8.9
+        rust-miniz_oxide-0.9.1
         rust-mio-1.2.4
         rust-nu-ansi-term-0.50.3
         rust-objc-0.2.7
         rust-objc-foundation-0.1.1
         rust-objc_id-0.1.1
-        rust-object-0.37.3
+        rust-object-0.40.0
         rust-once_cell-1.21.4
         rust-option-ext-0.2.0
         rust-ordered-stream-0.2.0
         rust-owo-colors-4.4.0
-        rust-parking-2.2.1
         rust-parking_lot-0.12.5
         rust-parking_lot_core-0.9.12
         rust-pin-project-lite-0.2.17
-        rust-piper-0.2.5
-        rust-polling-3.11.0
         rust-ppv-lite86-0.2.21
-        rust-proc-macro-crate-3.5.0
         rust-proc-macro2-1.0.107
         rust-quote-1.0.47
         rust-r-efi-5.3.0
@@ -5175,7 +4895,7 @@
         rust-regex-automata-0.4.18
         rust-regex-syntax-0.8.11
         rust-rustc-demangle-0.1.28
-        rust-rustix-1.1.5
+        rust-rustix-1.1.6
         rust-rustversion-1.0.23
         rust-scopeguard-1.2.0
         rust-serde-1.0.229
@@ -5189,7 +4909,7 @@
         rust-signal-hook-registry-1.4.8
         rust-slab-0.4.12
         rust-slotmap-1.1.1
-        rust-smallvec-1.16.3
+        rust-smallvec-1.16.4
         rust-socket2-0.6.5
         rust-syn-2.0.119
         rust-syn-3.0.9
@@ -5199,12 +4919,9 @@
         rust-thiserror-2.0.21
         rust-thiserror-impl-2.0.21
         rust-thread_local-1.1.10
-        rust-tokio-1.53.3
+        rust-tokio-1.54.1
         rust-tokio-macros-2.7.2
         rust-tokio-util-0.7.20
-        rust-toml_datetime-1.1.2-spec-1.1.0
-        rust-toml_edit-0.25.17-spec-1.1.0
-        rust-toml_parser-1.1.5-spec-1.1.0
         rust-tracing-0.1.44
         rust-tracing-attributes-0.1.31
         rust-tracing-core-0.1.36
@@ -5215,46 +4932,47 @@
         rust-uds_windows-1.2.1
         rust-unicase-2.10.0
         rust-unicode-ident-1.0.27
-        rust-uuid-1.28.0
+        rust-uuid-1.29.0
         rust-valuable-0.1.1
         rust-version_check-0.9.5
         rust-wasi-0.11.1-wasi-snapshot-preview1
         rust-wasip2-1.0.4-wasi-0.2.12
-        rust-wasm-bindgen-0.2.129
-        rust-wasm-bindgen-macro-0.2.129
-        rust-wasm-bindgen-macro-support-0.2.129
-        rust-wasm-bindgen-shared-0.2.129
+        rust-wasm-bindgen-0.2.130
+        rust-wasm-bindgen-macro-0.2.130
+        rust-wasm-bindgen-macro-support-0.2.130
+        rust-wasm-bindgen-shared-0.2.130
         rust-winapi-0.3.9
         rust-winapi-i686-pc-windows-gnu-0.4.0
         rust-winapi-x86_64-pc-windows-gnu-0.4.0
         rust-windows-link-0.2.1
         rust-windows-sys-0.61.2
-        rust-winnow-1.0.4
+        rust-winnow-1.0.5
         rust-wit-bindgen-0.57.1
         rust-xdg-3.0.0
-        rust-zbus-5.19.0
-        rust-zbus_macros-5.19.0
-        rust-zbus_names-4.3.5
-        rust-zbus_systemd-0.26000.0
-        rust-zcheapstr-1.1.0
+        rust-zbus-6.2.1
+        rust-zbus_macros-6.2.1
+        rust-zbus_systemd-0.26201.0
+        rust-zbus_utils-6.1.0
+        rust-zcheapstr-1.2.0
         rust-zerocopy-0.8.63
         rust-zerocopy-derive-0.8.63
         rust-zmij-1.0.23
-        rust-zvariant-5.15.1
-        rust-zvariant_derive-5.15.1
-        rust-zvariant_utils-4.2.0))
+        rust-zruntime-0.2.2))
 
 (define cosmic-session-git-crates
-  (list (git-crate "cosmic-dbus-a11y" "0.1.0"
-                   "git+https://github.com/pop-os/dbus-settings-bindings#eed01dd3609e90e3c8cd043656734c500956c793"
-                   dbus-settings-bindings-eed01dd-checkout "a11y")
+  (list (git-crate "a11y-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "a11y")
+        (git-crate "cosmic-login1-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "login1")
         (git-crate "launch-pad" "1.0.1"
                    "git+https://github.com/pop-os/launch-pad#5b516ee6a012b5ad4a5acc0cf51b4472fc6733af"
                    launch-pad-5b516ee-checkout ".")))
 
 (define cosmic-settings-daemon-cargo-inputs
   (list rust-adler2-2.0.1
-        rust-aes-0.8.4
+        rust-aes-0.9.4
         rust-ahash-0.7.8
         rust-aho-corasick-1.1.5
         rust-aliasable-0.1.3
@@ -5265,16 +4983,15 @@
         rust-anyhow-1.0.104
         rust-apply-0.3.0
         rust-approx-0.5.1
-        rust-arbitrary-1.5.0
         rust-arc-swap-1.9.3
         rust-arrayref-0.3.9
         rust-arrayvec-0.7.8
         rust-as-raw-xcb-connection-1.0.1
         rust-async-broadcast-0.7.2
         rust-async-channel-2.5.0
-        rust-async-executor-1.14.0
+        rust-async-executor-1.14.1
         rust-async-io-2.6.0
-        rust-async-lock-3.4.2
+        rust-async-lock-3.5.0
         rust-async-process-2.5.0
         rust-async-recursion-1.2.0
         rust-async-signal-0.2.14
@@ -5283,6 +5000,8 @@
         rust-atomic-waker-1.1.2
         rust-auto_enums-0.8.10
         rust-autocfg-1.5.1
+        rust-aws-lc-rs-1.19.0
+        rust-aws-lc-sys-0.47.0
         rust-base64-0.22.1
         rust-base64-0.23.1
         rust-basic-toml-0.1.10
@@ -5294,7 +5013,6 @@
         rust-bitflags-1.3.2
         rust-bitflags-2.13.2
         rust-block-0.1.6
-        rust-block-buffer-0.10.4
         rust-block-buffer-0.12.1
         rust-block2-0.6.2
         rust-blocking-1.7.0
@@ -5312,23 +5030,27 @@
         rust-bzip2-0.6.1
         rust-calloop-0.14.5
         rust-calloop-wayland-source-0.4.1
-        rust-cc-1.9.0
+        rust-cc-1.11.1
         rust-cexpr-0.6.0
         rust-cfg-expr-0.20.10
         rust-cfg-if-1.0.5
         rust-cfg_aliases-0.2.2
+        rust-chacha20-0.10.2
         rust-chrono-0.4.45
-        rust-cipher-0.4.4
+        rust-cipher-0.5.2
         rust-clang-sys-1.9.1
-        rust-clipboard-win-5.4.1
+        rust-clipboard-win-5.4.3
+        rust-cmake-0.1.58
+        rust-cmov-0.5.4
         rust-cocoa-0.25.0
         rust-cocoa-foundation-0.1.2
         rust-codespan-reporting-0.12.0
         rust-color_quant-1.1.0
+        rust-combine-4.6.9
         rust-concurrent-queue-2.5.0
         rust-configparser-3.3.0
         rust-const-oid-0.10.2
-        rust-constant_time_eq-0.3.1
+        rust-constant_time_eq-0.6.1
         rust-cookie-factory-0.3.3
         rust-core-foundation-0.9.4
         rust-core-foundation-0.10.1
@@ -5340,18 +5062,15 @@
         rust-core_detect-1.0.0
         rust-core_maths-0.1.1
         rust-cosmic-text-0.19.0
-        rust-cpufeatures-0.2.17
+        rust-cpubits-0.1.1
         rust-cpufeatures-0.3.1
-        rust-crc-3.4.0
-        rust-crc-catalog-2.5.0
-        rust-crc32fast-1.5.2
+        rust-crc32fast-1.5.4
         rust-crossbeam-utils-0.8.23
         rust-crunchy-0.2.4
-        rust-crypto-common-0.1.7
         rust-crypto-common-0.2.2
         rust-css-color-0.2.8
-        rust-csscolorparser-0.8.4
         rust-ctor-0.10.1
+        rust-ctutils-0.4.8
         rust-cursor-icon-1.2.0
         rust-darling-0.21.3
         rust-darling-0.24.1
@@ -5370,12 +5089,10 @@
         rust-defmt-macros-1.2.0
         rust-defmt-parser-1.1.0
         rust-deranged-0.5.9
-        rust-derive_arbitrary-1.5.0
         rust-derive_setters-0.1.9
         rust-derive_utils-0.16.0
-        rust-digest-0.10.7
         rust-digest-0.11.3
-        rust-dirs-6.0.0
+        rust-dirs-7.0.0
         rust-dirs-sys-0.5.0
         rust-dispatch2-0.3.1
         rust-displaydoc-0.2.7
@@ -5388,10 +5105,11 @@
         rust-drm-sys-0.6.1
         rust-dtoa-0.4.8
         rust-dtor-0.8.1
+        rust-dunce-1.0.5
         rust-dyn-clone-1.0.20
         rust-edid-0.3.0
         rust-either-1.19.0
-        rust-encoding_rs-0.8.42
+        rust-encoding_rs-0.8.44
         rust-endi-1.1.1
         rust-enumflags2-0.7.12
         rust-enumflags2_derive-0.7.12
@@ -5406,7 +5124,7 @@
         rust-fdeflate-0.3.7
         rust-find-crate-0.6.3
         rust-find-msvc-tools-0.1.15
-        rust-flate2-1.1.10
+        rust-flate2-1.1.11
         rust-float-cmp-0.9.0
         rust-float-cmp-0.10.0
         rust-float_next_after-1.0.0
@@ -5420,13 +5138,11 @@
         rust-font-types-0.12.7
         rust-fontconfig-parser-0.5.8
         rust-fontdb-0.23.0
-        rust-foreign-types-0.3.2
         rust-foreign-types-0.5.0
         rust-foreign-types-macros-0.2.4
-        rust-foreign-types-shared-0.1.1
         rust-foreign-types-shared-0.3.1
         rust-form_urlencoded-1.2.2
-        rust-fsevent-sys-4.1.0
+        rust-fs_extra-1.3.0
         rust-futures-0.3.34
         rust-futures-channel-0.3.34
         rust-futures-core-0.3.34
@@ -5437,16 +5153,13 @@
         rust-futures-sink-0.3.34
         rust-futures-task-0.3.34
         rust-futures-util-0.3.34
-        rust-generic-array-0.14.7
         rust-gethostname-1.1.0
         rust-getrandom-0.2.17
-        rust-getrandom-0.3.4
         rust-getrandom-0.4.3
         rust-gif-0.13.3
         rust-glam-0.25.0
-        rust-glam-0.34.1
+        rust-glam-0.34.2
         rust-glob-0.3.4
-        rust-grid-1.0.1
         rust-guillotiere-0.6.2
         rust-h2-0.4.20
         rust-half-2.7.1
@@ -5461,7 +5174,7 @@
         rust-hex-0.4.3
         rust-hex_color-3.0.0
         rust-hexf-parse-0.2.1
-        rust-hmac-0.12.1
+        rust-hmac-0.13.0
         rust-http-1.5.0
         rust-http-body-1.1.0
         rust-http-body-util-0.1.5
@@ -5469,7 +5182,6 @@
         rust-hybrid-array-0.4.15
         rust-hyper-1.12.0
         rust-hyper-rustls-0.27.10
-        rust-hyper-tls-0.6.0
         rust-hyper-util-0.1.21
         rust-i18n-config-0.4.8
         rust-i18n-embed-0.16.0
@@ -5480,13 +5192,13 @@
         rust-i2c-linux-sys-0.2.1
         rust-iana-time-zone-0.1.65
         rust-iana-time-zone-haiku-0.1.2
-        rust-icu_collections-2.3.0
-        rust-icu_locale_core-2.3.0
-        rust-icu_normalizer-2.3.0
-        rust-icu_normalizer_data-2.3.0
-        rust-icu_properties-2.3.0
-        rust-icu_properties_data-2.3.0
-        rust-icu_provider-2.3.1
+        rust-icu_collections-2.4.0
+        rust-icu_locale_core-2.4.0
+        rust-icu_normalizer-2.4.0
+        rust-icu_normalizer_data-2.4.0
+        rust-icu_properties-2.4.0
+        rust-icu_properties_data-2.4.0
+        rust-icu_provider-2.4.0
         rust-ident_case-1.0.1
         rust-idna-1.1.0
         rust-idna_adapter-1.2.2
@@ -5497,7 +5209,7 @@
         rust-indexmap-2.14.2
         rust-inotify-0.11.5
         rust-inotify-sys-0.1.8
-        rust-inout-0.1.4
+        rust-inout-0.2.5
         rust-input-0.10.0
         rust-input-sys-1.19.0
         rust-intl-memoizer-0.5.3
@@ -5508,21 +5220,25 @@
         rust-ipnet-2.12.2
         rust-itertools-0.13.0
         rust-itoa-1.0.18
-        rust-jiff-0.2.38
-        rust-jiff-core-0.1.1
-        rust-jiff-static-0.2.38
+        rust-jiff-0.2.39
+        rust-jiff-core-0.1.2
+        rust-jiff-static-0.2.39
         rust-jiff-tzdb-0.1.9
         rust-jiff-tzdb-platform-0.1.3
+        rust-jni-0.22.4
+        rust-jni-macros-0.22.4
+        rust-jni-sys-0.4.1
+        rust-jni-sys-macros-0.4.1
         rust-jobserver-0.1.35
-        rust-js-sys-0.3.106
-        rust-kamadak-exif-0.6.1
+        rust-js-sys-0.3.107
+        rust-kamadak-exif-0.6.2
         rust-known-folders-1.4.2
         rust-kqueue-1.2.1
         rust-kqueue-sys-1.1.2
         rust-kurbo-0.10.4
         rust-kurbo-0.11.3
         rust-lazy_static-1.5.1
-        rust-libbz2-rs-sys-0.2.5
+        rust-libbz2-rs-sys-0.2.6
         rust-libc-0.2.191
         rust-libloading-0.8.9
         rust-libm-0.2.16
@@ -5539,15 +5255,16 @@
         rust-litemap-0.8.3
         rust-litrs-1.0.1
         rust-lock_api-0.4.14
-        rust-log-0.4.34
+        rust-log-0.4.35
         rust-lru-0.7.8
         rust-lru-0.16.4
+        rust-lru-slab-0.1.3
         rust-lyon-1.0.19
-        rust-lyon_algorithms-1.0.21
-        rust-lyon_geom-1.0.19
+        rust-lyon_algorithms-1.0.22
+        rust-lyon_geom-1.0.20
         rust-lyon_path-1.0.19
-        rust-lyon_tessellation-1.0.22
-        rust-lzma-rust2-0.13.0
+        rust-lyon_tessellation-1.0.23
+        rust-lzma-rust2-0.25.0
         rust-mac-notification-sys-0.6.15
         rust-mach2-0.4.3
         rust-malloc_buf-0.0.6
@@ -5557,11 +5274,11 @@
         rust-mccs-db-0.1.3
         rust-memchr-1.0.2
         rust-memchr-2.8.3
-        rust-memmap2-0.9.11
+        rust-memmap2-0.9.12
         rust-memoffset-0.9.1
-        rust-memoize-0.5.1
+        rust-memoize-0.6.0
         rust-memoize-inner-0.5.1
-        rust-mime-0.3.17
+        rust-mime-0.3.18
         rust-mime_guess-2.0.5
         rust-minimal-lexical-0.2.1
         rust-miniz_oxide-0.8.9
@@ -5571,13 +5288,13 @@
         rust-multiversion_no_op-1.0.0
         rust-mutate_once-0.1.2
         rust-naga-28.0.0
-        rust-native-tls-0.2.18
+        rust-nix-0.31.3
         rust-nom-3.2.1
         rust-nom-7.1.3
         rust-nom-8.0.0
-        rust-notify-8.2.0
+        rust-notify-8.2.1
         rust-notify-rust-4.18.2
-        rust-notify-types-2.1.0
+        rust-notify-types-2.2.0
         rust-nu-ansi-term-0.50.3
         rust-num-conv-0.2.2
         rust-num-traits-0.2.19
@@ -5588,14 +5305,12 @@
         rust-objc-foundation-0.1.1
         rust-objc2-0.6.5
         rust-objc2-core-foundation-0.3.2
+        rust-objc2-core-services-0.3.2
         rust-objc2-encode-4.1.0
         rust-objc2-foundation-0.3.2
         rust-objc_id-0.1.1
         rust-once_cell-1.21.4
-        rust-openssl-0.10.81
-        rust-openssl-macros-0.1.1
-        rust-openssl-probe-0.2.1
-        rust-openssl-sys-0.9.117
+        rust-openssl-probe-0.2.2
         rust-option-ext-0.2.0
         rust-ordered-stream-0.2.0
         rust-ouroboros-0.18.5
@@ -5606,15 +5321,16 @@
         rust-parking-2.2.1
         rust-parking_lot-0.12.5
         rust-parking_lot_core-0.9.12
-        rust-pbkdf2-0.12.2
+        rust-pbkdf2-0.13.0
         rust-percent-encoding-2.3.2
         rust-phf-0.13.1
-        rust-phf_generator-0.13.1
-        rust-phf_macros-0.13.1
+        rust-phf-0.14.0
+        rust-phf_generator-0.14.0
+        rust-phf_macros-0.14.0
         rust-phf_shared-0.13.1
+        rust-phf_shared-0.14.0
         rust-pico-args-0.5.0
         rust-pin-project-lite-0.2.17
-        rust-pin-utils-0.1.1
         rust-piper-0.2.5
         rust-pipewire-0.10.1
         rust-pipewire-sys-0.10.1
@@ -5626,7 +5342,7 @@
         rust-portable-atomic-util-0.2.8
         rust-potential_utf-0.1.6
         rust-powerfmt-0.2.1
-        rust-ppmd-rust-1.5.1
+        rust-ppmd-rust-1.5.2
         rust-ppv-lite86-0.2.21
         rust-proc-macro-crate-3.5.0
         rust-proc-macro-error-attr3-3.1.1
@@ -5637,12 +5353,17 @@
         rust-pxfm-0.1.30
         rust-quick-error-2.0.1
         rust-quick-xml-0.41.0
+        rust-quinn-0.11.12
+        rust-quinn-proto-0.11.19
+        rust-quinn-udp-0.5.16
         rust-quote-1.0.47
-        rust-r-efi-5.3.0
         rust-r-efi-6.0.0
         rust-rand-0.8.8
+        rust-rand-0.10.3
         rust-rand_chacha-0.3.1
         rust-rand_core-0.6.4
+        rust-rand_core-0.10.1
+        rust-rand_pcg-0.10.2
         rust-rangemap-1.8.0
         rust-raw-window-handle-0.6.2
         rust-read-fonts-0.37.0
@@ -5655,24 +5376,28 @@
         rust-regex-automata-0.4.18
         rust-regex-syntax-0.8.11
         rust-renderdoc-sys-1.1.0
-        rust-reqwest-0.12.28
+        rust-reqwest-0.13.5
         rust-resize-slice-0.1.3
         rust-resvg-0.45.1
         rust-rgb-0.8.53
         rust-ring-0.17.14
-        rust-ron-0.11.0
-        rust-ron-0.12.2
+        rust-ron-0.12.3
         rust-roxmltree-0.20.0
+        rust-roxmltree-0.21.2
         rust-rust-embed-8.13.0
         rust-rust-embed-impl-8.13.0
         rust-rust-embed-utils-8.13.0
         rust-rustc-hash-1.1.0
         rust-rustc-hash-2.1.3
+        rust-rustc_version-0.4.1
         rust-rustix-0.38.44
-        rust-rustix-1.1.5
+        rust-rustix-1.1.6
         rust-rustls-0.23.46
+        rust-rustls-native-certs-0.8.5
         rust-rustls-pki-types-1.15.1
-        rust-rustls-webpki-0.103.15
+        rust-rustls-platform-verifier-0.7.1
+        rust-rustls-platform-verifier-android-0.2.0
+        rust-rustls-webpki-0.103.16
         rust-rustversion-1.0.23
         rust-rustybuzz-0.20.1
         rust-ryu-1.0.23
@@ -5685,24 +5410,24 @@
         rust-security-framework-3.7.0
         rust-security-framework-sys-2.17.0
         rust-self_cell-1.3.0
+        rust-semver-1.0.28
         rust-serde-1.0.229
         rust-serde_core-1.0.229
         rust-serde_derive-1.0.229
         rust-serde_json-1.0.154
         rust-serde_repr-0.1.21
-        rust-serde_spanned-1.1.2
-        rust-serde_urlencoded-0.7.1
+        rust-serde_spanned-1.1.3
         rust-serde_with-3.24.0
         rust-serde_with_macros-3.24.0
         rust-serde_yaml-0.7.5
-        rust-sha1-0.10.7
-        rust-sha2-0.10.9
+        rust-sha1-0.11.0
         rust-sha2-0.11.1
         rust-sharded-slab-0.1.7
         rust-shlex-1.3.0
         rust-shlex-2.0.1
         rust-signal-hook-registry-1.4.8
         rust-simd-adler32-0.3.10
+        rust-simd_cesu8-1.2.0
         rust-simdutf8-0.1.5
         rust-simplecss-0.2.2
         rust-siphasher-1.0.4
@@ -5710,9 +5435,9 @@
         rust-skrifa-0.44.0
         rust-slab-0.4.12
         rust-slotmap-1.1.1
-        rust-smallvec-1.16.3
+        rust-smallvec-1.16.4
         rust-smithay-client-toolkit-0.20.0
-        rust-smol_str-0.3.6
+        rust-smol_str-0.3.7
         rust-socket2-0.6.5
         rust-stable_deref_trait-1.2.1
         rust-static_assertions-1.1.0
@@ -5732,7 +5457,7 @@
         rust-system-configuration-0.7.0
         rust-system-configuration-sys-0.6.0
         rust-system-deps-7.0.8
-        rust-taffy-0.9.2
+        rust-taffy-0.15.1
         rust-target-lexicon-0.13.5
         rust-tauri-winrt-notification-0.8.1
         rust-tempfile-3.27.0
@@ -5747,20 +5472,19 @@
         rust-tiny-skia-0.11.4
         rust-tiny-skia-path-0.11.4
         rust-tiny-xlib-0.2.5
-        rust-tinystr-0.8.4
+        rust-tinystr-0.8.5
         rust-tinyvec-1.13.3
-        rust-tokio-1.53.3
+        rust-tokio-1.54.1
         rust-tokio-macros-2.7.2
-        rust-tokio-native-tls-0.3.1
         rust-tokio-rustls-0.26.6
         rust-tokio-stream-0.1.19
         rust-tokio-util-0.7.20
         rust-toml-0.5.11
-        rust-toml-1.1.8-spec-1.1.0
-        rust-toml_datetime-1.1.2-spec-1.1.0
-        rust-toml_edit-0.25.17-spec-1.1.0
+        rust-toml-1.2.1-spec-1.1.0
+        rust-toml_datetime-1.1.3-spec-1.1.0
+        rust-toml_edit-0.25.19-spec-1.1.0
         rust-toml_parser-1.1.5-spec-1.1.0
-        rust-toml_writer-1.1.3-spec-1.1.0
+        rust-toml_writer-1.2.0-spec-1.1.0
         rust-tower-0.5.3
         rust-tower-http-0.6.11
         rust-tower-layer-0.3.3
@@ -5773,12 +5497,12 @@
         rust-try-lock-0.2.5
         rust-ttf-parser-0.25.1
         rust-type-map-0.5.1
+        rust-typed-path-0.13.0
         rust-typeid-1.0.3
         rust-typenum-1.20.1
         rust-udev-0.2.0
         rust-udev-0.9.3
         rust-uds_windows-1.2.1
-        rust-uncased-0.9.10
         rust-unic-langid-0.9.6
         rust-unic-langid-impl-0.9.6
         rust-unicase-2.10.0
@@ -5787,32 +5511,31 @@
         rust-unicode-ccc-0.4.0
         rust-unicode-ident-1.0.27
         rust-unicode-linebreak-0.1.5
-        rust-unicode-properties-0.1.4
-        rust-unicode-script-0.5.8
+        rust-unicode-properties-0.1.5
+        rust-unicode-script-0.5.9
         rust-unicode-segmentation-1.13.3
         rust-unicode-vo-0.1.0
-        rust-unicode-width-0.2.2
+        rust-unicode-width-0.2.3
         rust-uninitialized-0.0.2
         rust-untrusted-0.9.0
         rust-url-2.5.8
         rust-usvg-0.45.1
-        rust-utf8_iter-1.0.4
-        rust-uuid-1.28.0
+        rust-utf8_iter-1.1.0
+        rust-utf_types-1.0.0
+        rust-uuid-1.29.0
         rust-valuable-0.1.1
-        rust-vcpkg-0.2.15
         rust-version-compare-0.2.1
         rust-version_check-0.9.5
         rust-void-1.0.2
         rust-walkdir-2.5.0
         rust-want-0.3.2
         rust-wasi-0.11.1-wasi-snapshot-preview1
-        rust-wasip2-1.0.4-wasi-0.2.12
-        rust-wasm-bindgen-0.2.129
-        rust-wasm-bindgen-futures-0.4.79
-        rust-wasm-bindgen-macro-0.2.129
-        rust-wasm-bindgen-macro-support-0.2.129
-        rust-wasm-bindgen-shared-0.2.129
-        rust-wasmtimer-0.4.3
+        rust-wasm-bindgen-0.2.130
+        rust-wasm-bindgen-futures-0.4.80
+        rust-wasm-bindgen-macro-0.2.130
+        rust-wasm-bindgen-macro-support-0.2.130
+        rust-wasm-bindgen-shared-0.2.130
+        rust-wasmtimer-0.4.4
         rust-wayland-backend-0.3.17
         rust-wayland-client-0.31.15
         rust-wayland-csd-frame-0.3.0
@@ -5824,8 +5547,9 @@
         rust-wayland-scanner-0.31.11
         rust-wayland-server-0.31.14
         rust-wayland-sys-0.31.11
-        rust-web-sys-0.3.106
+        rust-web-sys-0.3.107
         rust-web-time-1.1.0
+        rust-webpki-root-certs-1.0.11
         rust-weezl-0.1.12
         rust-wgpu-28.0.0
         rust-wgpu-core-28.0.1
@@ -5851,38 +5575,28 @@
         rust-windows-sys-0.48.0
         rust-windows-sys-0.52.0
         rust-windows-sys-0.59.0
-        rust-windows-sys-0.60.2
         rust-windows-sys-0.61.2
         rust-windows-targets-0.48.5
         rust-windows-targets-0.52.6
-        rust-windows-targets-0.53.5
         rust-windows-threading-0.2.1
         rust-windows-version-0.1.7
         rust-windows_aarch64_gnullvm-0.48.5
         rust-windows_aarch64_gnullvm-0.52.6
-        rust-windows_aarch64_gnullvm-0.53.1
         rust-windows_aarch64_msvc-0.48.5
         rust-windows_aarch64_msvc-0.52.6
-        rust-windows_aarch64_msvc-0.53.1
         rust-windows_i686_gnu-0.48.5
         rust-windows_i686_gnu-0.52.6
-        rust-windows_i686_gnu-0.53.1
         rust-windows_i686_gnullvm-0.52.6
-        rust-windows_i686_gnullvm-0.53.1
         rust-windows_i686_msvc-0.48.5
         rust-windows_i686_msvc-0.52.6
-        rust-windows_i686_msvc-0.53.1
         rust-windows_x86_64_gnu-0.48.5
         rust-windows_x86_64_gnu-0.52.6
-        rust-windows_x86_64_gnu-0.53.1
         rust-windows_x86_64_gnullvm-0.48.5
         rust-windows_x86_64_gnullvm-0.52.6
-        rust-windows_x86_64_gnullvm-0.53.1
         rust-windows_x86_64_msvc-0.48.5
         rust-windows_x86_64_msvc-0.52.6
-        rust-windows_x86_64_msvc-0.53.1
-        rust-winnow-1.0.4
-        rust-wit-bindgen-0.57.1
+        rust-winnow-0.7.15
+        rust-winnow-1.0.5
         rust-writeable-0.6.4
         rust-x11rb-0.13.2
         rust-x11rb-protocol-0.13.2
@@ -5894,34 +5608,39 @@
         rust-xmlwriter-0.1.0
         rust-yaml-rust-0.4.5
         rust-yansi-1.0.1
-        rust-yazi-0.2.1
-        rust-yoke-0.8.3
+        rust-yazi-0.2.2
+        rust-yoke-0.8.4
         rust-yoke-derive-0.8.4
         rust-zbus-5.19.0
+        rust-zbus-6.2.1
         rust-zbus_macros-5.19.0
+        rust-zbus_macros-6.2.1
         rust-zbus_names-4.3.5
-        rust-zcheapstr-1.1.0
+        rust-zbus_utils-6.1.0
+        rust-zcheapstr-1.2.0
         rust-zeno-0.3.3
         rust-zerocopy-0.8.63
         rust-zerocopy-derive-0.8.63
         rust-zerofrom-0.1.8
         rust-zerofrom-derive-0.1.8
         rust-zeroize-1.9.1
-        rust-zeroize_derive-1.5.0
         rust-zerotrie-0.2.5
-        rust-zerovec-0.11.8
-        rust-zerovec-derive-0.11.6
-        rust-zip-5.1.1
+        rust-zerovec-0.11.9
+        rust-zerovec-derive-0.11.7
+        rust-zip-9.4.1
         rust-zlib-rs-0.6.8
-        rust-zlink-0.5.0
-        rust-zlink-core-0.5.0
-        rust-zlink-macros-0.5.0
-        rust-zlink-smol-0.5.0
-        rust-zlink-tokio-0.5.0
+        rust-zlink-0.8.0
+        rust-zlink-core-0.8.0
+        rust-zlink-idl-0.8.0
+        rust-zlink-macros-0.8.0
+        rust-zlink-names-0.8.0
+        rust-zlink-smol-0.8.0
+        rust-zlink-tokio-0.8.0
         rust-zmij-1.0.23
         rust-zopfli-0.8.4
-        rust-zstd-0.13.3
-        rust-zstd-safe-7.3.0
+        rust-zruntime-0.2.2
+        rust-zstd-0.14.3
+        rust-zstd-safe-8.2.0
         rust-zstd-sys-2.1.2-zstd.1.5.7
         rust-zune-core-0.4.12
         rust-zune-core-0.5.3
@@ -5932,12 +5651,15 @@
         rust-zvariant_utils-4.2.0))
 
 (define cosmic-settings-daemon-git-crates
-  (list (git-crate "atomicwrites" "0.4.2"
+  (list (git-crate "a11y-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "a11y")
+        (git-crate "atomicwrites" "0.4.2"
                    "git+https://github.com/jackpot51/rust-atomicwrites#043ab4859d53ffd3d55334685303d8df39c9f768"
                    rust-atomicwrites-043ab48-checkout ".")
         (git-crate "build_helpers" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/build_helpers")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "iced/build_helpers")
         (git-crate "clipboard_macos" "0.1.0"
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout "macos")
@@ -5951,29 +5673,26 @@
                    "git+https://github.com/pop-os/cosmic-protocols#c0cff4db14c37ed954983158e4055aa94c7741d9"
                    cosmic-protocols-c0cff4d-checkout "client-toolkit")
         (git-crate "cosmic-comp-config" "1.0.0"
-                   "git+https://github.com/pop-os/cosmic-comp#742b800b518f0dafd89d0c1ace4de4935334ed18"
-                   cosmic-comp-742b800-checkout "cosmic-comp-config")
+                   "git+https://github.com/pop-os/cosmic-comp#63dacd148f634023f904d27e94ce0da93eef6710"
+                   cosmic-comp-63dacd1-checkout "cosmic-comp-config")
         (git-crate "cosmic-config" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "cosmic-config")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "cosmic-config")
         (git-crate "cosmic-config-derive" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "cosmic-config-derive")
-        (git-crate "cosmic-dbus-a11y" "0.1.0"
-                   "git+https://github.com/pop-os/dbus-settings-bindings#eed01dd3609e90e3c8cd043656734c500956c793"
-                   dbus-settings-bindings-eed01dd-checkout "a11y")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "cosmic-config-derive")
         (git-crate "cosmic-freedesktop-icons" "0.4.0"
                    "git+https://github.com/pop-os/freedesktop-icons#ab4c57b8e416c6af9297cb04d101889896fd9a92"
                    freedesktop-icons-ab4c57b-checkout ".")
         (git-crate "cosmic-protocols" "0.2.0"
                    "git+https://github.com/pop-os/cosmic-protocols#c0cff4db14c37ed954983158e4055aa94c7741d9"
                    cosmic-protocols-c0cff4d-checkout ".")
-        (git-crate "cosmic-settings-daemon" "0.1.0"
-                   "git+https://github.com/pop-os/dbus-settings-bindings#eed01dd3609e90e3c8cd043656734c500956c793"
-                   dbus-settings-bindings-eed01dd-checkout "cosmic-settings-daemon")
+        (git-crate "cosmic-settings-daemon-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "cosmic-settings-daemon")
         (git-crate "cosmic-theme" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "cosmic-theme")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "cosmic-theme")
         (git-crate "cryoglyph" "0.1.0"
                    "git+https://github.com/iced-rs/cryoglyph.git?rev=e429a025df36ab8145708acb309080ae3deec17a#e429a025df36ab8145708acb309080ae3deec17a"
                    cryoglyph-e429a02-checkout ".")
@@ -5981,44 +5700,44 @@
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout "dnd")
         (git-crate "iced" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "iced")
         (git-crate "iced_core" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/core")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "iced/core")
         (git-crate "iced_debug" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/debug")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "iced/debug")
         (git-crate "iced_futures" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/futures")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "iced/futures")
         (git-crate "iced_graphics" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/graphics")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "iced/graphics")
         (git-crate "iced_program" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/program")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "iced/program")
         (git-crate "iced_renderer" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/renderer")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "iced/renderer")
         (git-crate "iced_runtime" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/runtime")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "iced/runtime")
         (git-crate "iced_tiny_skia" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/tiny_skia")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "iced/tiny_skia")
         (git-crate "iced_wgpu" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/wgpu")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "iced/wgpu")
         (git-crate "iced_widget" "0.14.2"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/widget")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "iced/widget")
         (git-crate "libcosmic" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout ".")
-        (git-crate "locale1" "0.1.0"
-                   "git+https://github.com/pop-os/dbus-settings-bindings#eed01dd3609e90e3c8cd043656734c500956c793"
-                   dbus-settings-bindings-eed01dd-checkout "locale1")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout ".")
+        (git-crate "locale1-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "locale1")
         (git-crate "mime" "0.1.0"
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout "mime")
@@ -6028,15 +5747,15 @@
         (git-crate "softbuffer" "0.4.1"
                    "git+https://github.com/pop-os/softbuffer?tag=cosmic-4.0#c2b2c19ddb38ff17495643699f97cb1f2064a1be"
                    softbuffer-c2b2c19-checkout ".")
-        (git-crate "upower_dbus" "0.3.2"
-                   "git+https://github.com/pop-os/dbus-settings-bindings#eed01dd3609e90e3c8cd043656734c500956c793"
-                   dbus-settings-bindings-eed01dd-checkout "upower")
+        (git-crate "upower-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "upower")
         (git-crate "window_clipboard" "0.4.1"
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout ".")))
 
 (define cosmic-panel-cargo-inputs
-  (list rust-addr2line-0.25.1
+  (list rust-addr2line-0.27.1
         rust-adler2-2.0.1
         rust-aho-corasick-1.1.5
         rust-aliasable-0.1.3
@@ -6049,20 +5768,11 @@
         rust-arrayref-0.3.9
         rust-arrayvec-0.7.8
         rust-as-raw-xcb-connection-1.0.1
-        rust-async-broadcast-0.7.2
-        rust-async-channel-2.5.0
-        rust-async-executor-1.14.0
-        rust-async-io-2.6.0
-        rust-async-lock-3.4.2
-        rust-async-process-2.5.0
-        rust-async-recursion-1.2.0
-        rust-async-signal-0.2.14
         rust-async-task-4.7.1
         rust-async-trait-0.1.92
-        rust-atomic-waker-1.1.2
         rust-auto_enums-0.8.10
         rust-autocfg-1.5.1
-        rust-backtrace-0.3.76
+        rust-backtrace-0.3.77
         rust-base64-0.22.1
         rust-basic-toml-0.1.10
         rust-bit-set-0.8.0
@@ -6072,7 +5782,6 @@
         rust-block-0.1.6
         rust-block-buffer-0.10.4
         rust-block-buffer-0.12.1
-        rust-blocking-1.7.0
         rust-borsh-1.8.1
         rust-bstr-1.13.1
         rust-btoi-0.5.0
@@ -6084,11 +5793,11 @@
         rust-bytes-1.12.1
         rust-calloop-0.14.5
         rust-calloop-wayland-source-0.4.1
-        rust-cc-1.9.0
+        rust-cc-1.11.1
         rust-cfg-if-1.0.5
         rust-cfg_aliases-0.2.2
         rust-chacha20-0.10.2
-        rust-clipboard-win-5.4.1
+        rust-clipboard-win-5.4.3
         rust-cocoa-0.25.0
         rust-cocoa-foundation-0.1.2
         rust-codespan-reporting-0.12.0
@@ -6104,13 +5813,12 @@
         rust-cosmic-text-0.19.0
         rust-cpufeatures-0.2.17
         rust-cpufeatures-0.3.1
-        rust-crc32fast-1.5.2
+        rust-crc32fast-1.5.4
         rust-crossbeam-utils-0.8.23
         rust-crunchy-0.2.4
         rust-crypto-common-0.1.7
         rust-crypto-common-0.2.2
         rust-css-color-0.2.8
-        rust-csscolorparser-0.8.4
         rust-ctor-0.10.1
         rust-cursor-icon-1.2.0
         rust-darling-0.21.3
@@ -6124,7 +5832,7 @@
         rust-derive_utils-0.16.0
         rust-digest-0.10.7
         rust-digest-0.11.3
-        rust-dirs-6.0.0
+        rust-dirs-7.0.0
         rust-dirs-sys-0.5.0
         rust-displaydoc-0.2.7
         rust-dlib-0.5.3
@@ -6147,13 +5855,11 @@
         rust-error-code-3.4.0
         rust-etagere-0.2.15
         rust-euclid-0.22.14
-        rust-event-listener-5.4.2
-        rust-event-listener-strategy-0.5.4
         rust-fastrand-2.5.0
         rust-fdeflate-0.3.7
         rust-find-crate-0.6.3
         rust-find-msvc-tools-0.1.15
-        rust-flate2-1.1.10
+        rust-flate2-1.1.11
         rust-float-cmp-0.9.0
         rust-float-cmp-0.10.0
         rust-float_next_after-1.0.0
@@ -6172,13 +5878,11 @@
         rust-foreign-types-shared-0.3.1
         rust-form_urlencoded-1.2.2
         rust-freedesktop-desktop-entry-0.8.4
-        rust-fsevent-sys-4.1.0
         rust-futures-0.3.34
         rust-futures-channel-0.3.34
         rust-futures-core-0.3.34
         rust-futures-executor-0.3.34
         rust-futures-io-0.3.34
-        rust-futures-lite-2.6.1
         rust-futures-macro-0.3.34
         rust-futures-sink-0.3.34
         rust-futures-task-0.3.34
@@ -6193,11 +5897,10 @@
         rust-gettext-rs-0.8.0
         rust-gettext-sys-0.27.0
         rust-gif-0.13.3
-        rust-gimli-0.32.3
+        rust-gimli-0.34.0
         rust-gl_generator-0.14.0
         rust-glam-0.25.0
         rust-glam-0.33.12
-        rust-grid-1.0.1
         rust-guillotiere-0.6.2
         rust-half-2.7.1
         rust-harfrust-0.5.2
@@ -6213,13 +5916,13 @@
         rust-i18n-embed-0.16.0
         rust-i18n-embed-fl-0.10.1
         rust-i18n-embed-impl-0.8.4
-        rust-icu_collections-2.3.0
-        rust-icu_locale_core-2.3.0
-        rust-icu_normalizer-2.3.0
-        rust-icu_normalizer_data-2.3.0
-        rust-icu_properties-2.3.0
-        rust-icu_properties_data-2.3.0
-        rust-icu_provider-2.3.1
+        rust-icu_collections-2.4.0
+        rust-icu_locale_core-2.4.0
+        rust-icu_normalizer-2.4.0
+        rust-icu_normalizer_data-2.4.0
+        rust-icu_properties-2.4.0
+        rust-icu_properties_data-2.4.0
+        rust-icu_provider-2.4.0
         rust-ident_case-1.0.1
         rust-idna-1.1.0
         rust-idna_adapter-1.2.2
@@ -6233,13 +5936,13 @@
         rust-intl_pluralrules-7.0.2
         rust-itertools-0.14.0
         rust-itoa-1.0.18
-        rust-jiff-0.2.38
-        rust-jiff-core-0.1.1
-        rust-jiff-static-0.2.38
+        rust-jiff-0.2.39
+        rust-jiff-core-0.1.2
+        rust-jiff-static-0.2.39
         rust-jiff-tzdb-0.1.9
         rust-jiff-tzdb-platform-0.1.3
-        rust-js-sys-0.3.106
-        rust-kamadak-exif-0.6.1
+        rust-js-sys-0.3.107
+        rust-kamadak-exif-0.6.2
         rust-khronos_api-3.1.0
         rust-known-folders-1.4.2
         rust-kqueue-1.2.1
@@ -6261,20 +5964,20 @@
         rust-litrs-1.0.1
         rust-locale_config-0.3.0
         rust-lock_api-0.4.14
-        rust-log-0.4.34
+        rust-log-0.4.35
         rust-log-panics-2.1.0
         rust-lru-0.16.4
         rust-lyon-1.0.19
-        rust-lyon_algorithms-1.0.21
-        rust-lyon_geom-1.0.19
+        rust-lyon_algorithms-1.0.22
+        rust-lyon_geom-1.0.20
         rust-lyon_path-1.0.19
-        rust-lyon_tessellation-1.0.22
+        rust-lyon_tessellation-1.0.23
         rust-malloc_buf-0.0.6
         rust-matchers-0.2.0
         rust-memchr-2.8.3
-        rust-memmap2-0.9.11
+        rust-memmap2-0.9.12
         rust-memoffset-0.9.1
-        rust-mime-0.3.17
+        rust-mime-0.3.18
         rust-mime_guess-2.0.5
         rust-miniz_oxide-0.8.9
         rust-miniz_oxide-0.9.1
@@ -6282,35 +5985,36 @@
         rust-moxcms-0.8.1
         rust-mutate_once-0.1.2
         rust-naga-28.0.0
-        rust-notify-8.2.0
-        rust-notify-types-2.1.0
+        rust-notify-8.2.1
+        rust-notify-types-2.2.0
         rust-nu-ansi-term-0.50.3
         rust-num-traits-0.2.19
         rust-objc-0.2.7
         rust-objc-foundation-0.1.1
+        rust-objc2-core-foundation-0.3.2
+        rust-objc2-core-services-0.3.2
         rust-objc_id-0.1.1
-        rust-object-0.37.3
+        rust-object-0.40.0
         rust-once_cell-1.21.4
         rust-option-ext-0.2.0
-        rust-ordered-float-5.5.0
+        rust-ordered-float-5.5.1
         rust-ordered-stream-0.2.0
         rust-ouroboros-0.18.5
         rust-ouroboros_macro-0.18.5
         rust-palette-0.7.7
         rust-palette_derive-0.7.7
         rust-palette_math-0.7.7
-        rust-parking-2.2.1
         rust-parking_lot-0.12.5
         rust-parking_lot_core-0.9.12
         rust-percent-encoding-2.3.2
         rust-phf-0.13.1
-        rust-phf_generator-0.13.1
-        rust-phf_macros-0.13.1
+        rust-phf-0.14.0
+        rust-phf_generator-0.14.0
+        rust-phf_macros-0.14.0
         rust-phf_shared-0.13.1
+        rust-phf_shared-0.14.0
         rust-pico-args-0.5.0
         rust-pin-project-lite-0.2.17
-        rust-pin-utils-0.1.1
-        rust-piper-0.2.5
         rust-pkg-config-0.3.34
         rust-png-0.17.16
         rust-png-0.18.1
@@ -6319,7 +6023,6 @@
         rust-portable-atomic-util-0.2.8
         rust-potential_utf-0.1.6
         rust-ppv-lite86-0.2.21
-        rust-proc-macro-crate-3.5.0
         rust-proc-macro-error-attr3-3.1.1
         rust-proc-macro-error3-3.1.1
         rust-proc-macro2-1.0.107
@@ -6353,8 +6056,9 @@
         rust-renderdoc-sys-1.1.0
         rust-resvg-0.45.1
         rust-rgb-0.8.53
-        rust-ron-0.12.2
+        rust-ron-0.12.3
         rust-roxmltree-0.20.0
+        rust-roxmltree-0.21.2
         rust-rust-embed-8.13.0
         rust-rust-embed-impl-8.13.0
         rust-rust-embed-utils-8.13.0
@@ -6362,7 +6066,7 @@
         rust-rustc-hash-1.1.0
         rust-rustc-hash-2.1.3
         rust-rustix-0.38.44
-        rust-rustix-1.1.5
+        rust-rustix-1.1.6
         rust-rustversion-1.0.23
         rust-rustybuzz-0.20.1
         rust-same-file-1.0.6
@@ -6387,9 +6091,9 @@
         rust-skrifa-0.44.0
         rust-slab-0.4.12
         rust-slotmap-1.1.1
-        rust-smallvec-1.16.3
+        rust-smallvec-1.16.5
         rust-smithay-client-toolkit-0.20.0
-        rust-smol_str-0.3.6
+        rust-smol_str-0.3.7
         rust-socket2-0.6.5
         rust-stable_deref_trait-1.2.1
         rust-static_assertions-1.1.0
@@ -6403,7 +6107,7 @@
         rust-sync_wrapper-1.0.2
         rust-synstructure-0.14.0
         rust-sys-locale-0.3.2
-        rust-taffy-0.9.2
+        rust-taffy-0.15.1
         rust-temp-dir-0.1.16
         rust-tempfile-3.27.0
         rust-thiserror-1.0.69
@@ -6414,15 +6118,12 @@
         rust-tiny-skia-0.11.4
         rust-tiny-skia-path-0.11.4
         rust-tiny-xlib-0.2.5
-        rust-tinystr-0.8.4
+        rust-tinystr-0.8.5
         rust-tinyvec-1.13.3
-        rust-tokio-1.53.3
+        rust-tokio-1.54.1
         rust-tokio-macros-2.7.2
         rust-tokio-util-0.7.20
         rust-toml-0.5.11
-        rust-toml_datetime-1.1.2-spec-1.1.0
-        rust-toml_edit-0.25.17-spec-1.1.0
-        rust-toml_parser-1.1.5-spec-1.1.0
         rust-tracing-0.1.44
         rust-tracing-attributes-0.1.31
         rust-tracing-core-0.1.36
@@ -6433,7 +6134,6 @@
         rust-typeid-1.0.3
         rust-typenum-1.20.1
         rust-uds_windows-1.2.1
-        rust-uncased-0.9.10
         rust-unic-langid-0.9.6
         rust-unic-langid-impl-0.9.6
         rust-unicase-2.10.0
@@ -6442,26 +6142,27 @@
         rust-unicode-ccc-0.4.0
         rust-unicode-ident-1.0.27
         rust-unicode-linebreak-0.1.5
-        rust-unicode-properties-0.1.4
-        rust-unicode-script-0.5.8
+        rust-unicode-properties-0.1.5
+        rust-unicode-script-0.5.9
         rust-unicode-segmentation-1.13.3
         rust-unicode-vo-0.1.0
-        rust-unicode-width-0.2.2
+        rust-unicode-width-0.2.3
         rust-url-2.5.8
         rust-usvg-0.45.1
-        rust-utf8_iter-1.0.4
-        rust-uuid-1.28.0
+        rust-utf8_iter-1.1.0
+        rust-utf_types-1.0.0
+        rust-uuid-1.29.0
         rust-valuable-0.1.1
         rust-version_check-0.9.5
         rust-walkdir-2.5.0
         rust-wasi-0.11.1-wasi-snapshot-preview1
         rust-wasip2-1.0.4-wasi-0.2.12
-        rust-wasm-bindgen-0.2.129
-        rust-wasm-bindgen-futures-0.4.79
-        rust-wasm-bindgen-macro-0.2.129
-        rust-wasm-bindgen-macro-support-0.2.129
-        rust-wasm-bindgen-shared-0.2.129
-        rust-wasmtimer-0.4.3
+        rust-wasm-bindgen-0.2.130
+        rust-wasm-bindgen-futures-0.4.80
+        rust-wasm-bindgen-macro-0.2.130
+        rust-wasm-bindgen-macro-support-0.2.130
+        rust-wasm-bindgen-shared-0.2.130
+        rust-wasmtimer-0.4.5
         rust-wayland-backend-0.3.17
         rust-wayland-client-0.31.15
         rust-wayland-csd-frame-0.3.0
@@ -6474,7 +6175,7 @@
         rust-wayland-scanner-0.31.11
         rust-wayland-server-0.31.14
         rust-wayland-sys-0.31.11
-        rust-web-sys-0.3.106
+        rust-web-sys-0.3.107
         rust-web-time-1.1.0
         rust-weezl-0.1.12
         rust-wgpu-28.0.0
@@ -6490,35 +6191,25 @@
         rust-windows-sys-0.48.0
         rust-windows-sys-0.52.0
         rust-windows-sys-0.59.0
-        rust-windows-sys-0.60.2
         rust-windows-sys-0.61.2
         rust-windows-targets-0.48.5
         rust-windows-targets-0.52.6
-        rust-windows-targets-0.53.5
         rust-windows_aarch64_gnullvm-0.48.5
         rust-windows_aarch64_gnullvm-0.52.6
-        rust-windows_aarch64_gnullvm-0.53.1
         rust-windows_aarch64_msvc-0.48.5
         rust-windows_aarch64_msvc-0.52.6
-        rust-windows_aarch64_msvc-0.53.1
         rust-windows_i686_gnu-0.48.5
         rust-windows_i686_gnu-0.52.6
-        rust-windows_i686_gnu-0.53.1
         rust-windows_i686_gnullvm-0.52.6
-        rust-windows_i686_gnullvm-0.53.1
         rust-windows_i686_msvc-0.48.5
         rust-windows_i686_msvc-0.52.6
-        rust-windows_i686_msvc-0.53.1
         rust-windows_x86_64_gnu-0.48.5
         rust-windows_x86_64_gnu-0.52.6
-        rust-windows_x86_64_gnu-0.53.1
         rust-windows_x86_64_gnullvm-0.48.5
         rust-windows_x86_64_gnullvm-0.52.6
-        rust-windows_x86_64_gnullvm-0.53.1
         rust-windows_x86_64_msvc-0.48.5
         rust-windows_x86_64_msvc-0.52.6
-        rust-windows_x86_64_msvc-0.53.1
-        rust-winnow-1.0.4
+        rust-winnow-1.0.5
         rust-wit-bindgen-0.57.1
         rust-writeable-0.6.4
         rust-x11rb-0.13.2
@@ -6531,38 +6222,36 @@
         rust-xml-rs-0.8.29
         rust-xmlwriter-0.1.0
         rust-yansi-1.0.1
-        rust-yazi-0.2.1
-        rust-yoke-0.8.3
+        rust-yazi-0.2.2
+        rust-yoke-0.8.4
         rust-yoke-derive-0.8.4
-        rust-zbus-5.19.0
-        rust-zbus_macros-5.19.0
-        rust-zbus_names-4.3.5
-        rust-zcheapstr-1.1.0
+        rust-zbus-6.2.1
+        rust-zbus_macros-6.2.1
+        rust-zbus_utils-6.1.0
+        rust-zcheapstr-1.2.0
         rust-zeno-0.3.3
         rust-zerocopy-0.8.63
         rust-zerocopy-derive-0.8.63
         rust-zerofrom-0.1.8
         rust-zerofrom-derive-0.1.8
         rust-zerotrie-0.2.5
-        rust-zerovec-0.11.8
-        rust-zerovec-derive-0.11.6
+        rust-zerovec-0.11.9
+        rust-zerovec-derive-0.11.7
         rust-zlib-rs-0.6.8
         rust-zmij-1.0.23
+        rust-zruntime-0.2.2
         rust-zune-core-0.4.12
         rust-zune-core-0.5.3
         rust-zune-jpeg-0.4.21
-        rust-zune-jpeg-0.5.15
-        rust-zvariant-5.15.1
-        rust-zvariant_derive-5.15.1
-        rust-zvariant_utils-4.2.0))
+        rust-zune-jpeg-0.5.15))
 
 (define cosmic-panel-git-crates
   (list (git-crate "atomicwrites" "0.4.2"
                    "git+https://github.com/jackpot51/rust-atomicwrites#043ab4859d53ffd3d55334685303d8df39c9f768"
                    rust-atomicwrites-043ab48-checkout ".")
         (git-crate "build_helpers" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/build_helpers")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/build_helpers")
         (git-crate "clipboard_macos" "0.1.0"
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout "macos")
@@ -6576,26 +6265,26 @@
                    "git+https://github.com/pop-os//cosmic-protocols?rev=32283d7#32283d76a8d0342da74c4cc022a533c52dcf378f"
                    cosmic-protocols-32283d7-checkout "client-toolkit")
         (git-crate "cosmic-config" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "cosmic-config")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "cosmic-config")
         (git-crate "cosmic-config-derive" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "cosmic-config-derive")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "cosmic-config-derive")
         (git-crate "cosmic-freedesktop-icons" "0.4.0"
                    "git+https://github.com/pop-os/freedesktop-icons#ab4c57b8e416c6af9297cb04d101889896fd9a92"
                    freedesktop-icons-ab4c57b-checkout ".")
-        (git-crate "cosmic-notifications-config" "1.10.0"
-                   "git+https://github.com/pop-os/cosmic-notifications#c1a0695c3629ae3524b5c9b654ac7431ad1bc558"
-                   cosmic-notifications-c1a0695-checkout "cosmic-notifications-config")
+        (git-crate "cosmic-notifications-config" "1.11.0"
+                   "git+https://github.com/pop-os/cosmic-notifications#4fac3f9a8fc50fb93941e031383ec98312d62280"
+                   cosmic-notifications-4fac3f9-checkout "cosmic-notifications-config")
         (git-crate "cosmic-protocols" "0.2.0"
                    "git+https://github.com/pop-os//cosmic-protocols?rev=32283d7#32283d76a8d0342da74c4cc022a533c52dcf378f"
                    cosmic-protocols-32283d7-checkout ".")
-        (git-crate "cosmic-settings-daemon" "0.1.0"
-                   "git+https://github.com/pop-os/dbus-settings-bindings#eed01dd3609e90e3c8cd043656734c500956c793"
-                   dbus-settings-bindings-eed01dd-checkout "cosmic-settings-daemon")
+        (git-crate "cosmic-settings-daemon-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "cosmic-settings-daemon")
         (git-crate "cosmic-theme" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "cosmic-theme")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "cosmic-theme")
         (git-crate "cryoglyph" "0.1.0"
                    "git+https://github.com/iced-rs/cryoglyph.git?rev=e429a025df36ab8145708acb309080ae3deec17a#e429a025df36ab8145708acb309080ae3deec17a"
                    cryoglyph-e429a02-checkout ".")
@@ -6603,44 +6292,44 @@
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout "dnd")
         (git-crate "iced" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced")
         (git-crate "iced_core" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/core")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/core")
         (git-crate "iced_debug" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/debug")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/debug")
         (git-crate "iced_futures" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/futures")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/futures")
         (git-crate "iced_graphics" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/graphics")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/graphics")
         (git-crate "iced_program" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/program")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/program")
         (git-crate "iced_renderer" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/renderer")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/renderer")
         (git-crate "iced_runtime" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/runtime")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/runtime")
         (git-crate "iced_tiny_skia" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/tiny_skia")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/tiny_skia")
         (git-crate "iced_wgpu" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/wgpu")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/wgpu")
         (git-crate "iced_widget" "0.14.2"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/widget")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/widget")
         (git-crate "launch-pad" "1.0.1"
                    "git+https://github.com/pop-os/launch-pad.git#5b516ee6a012b5ad4a5acc0cf51b4472fc6733af"
                    launch-pad-5b516ee-checkout ".")
         (git-crate "libcosmic" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout ".")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout ".")
         (git-crate "mime" "0.1.0"
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout "mime")
@@ -6677,14 +6366,13 @@
         rust-arrayvec-0.7.8
         rust-as-raw-xcb-connection-1.0.1
         rust-ash-0.38.0-1.3.281
-        rust-ashpd-0.11.1
-        rust-ashpd-0.12.3
+        rust-ashpd-0.13.13
         rust-async-broadcast-0.7.2
         rust-async-channel-2.5.0
-        rust-async-executor-1.14.0
+        rust-async-executor-1.14.1
         rust-async-fn-stream-0.3.2
         rust-async-io-2.6.0
-        rust-async-lock-3.4.2
+        rust-async-lock-3.5.0
         rust-async-process-2.5.0
         rust-async-recursion-1.2.0
         rust-async-signal-0.2.14
@@ -6722,12 +6410,12 @@
         rust-calendrical_calculations-0.2.4
         rust-calloop-0.14.5
         rust-calloop-wayland-source-0.4.1
-        rust-cc-1.9.0
+        rust-cc-1.11.1
         rust-cfg-if-1.0.5
         rust-cfg_aliases-0.2.2
         rust-chacha20-0.10.2
         rust-chrono-0.4.45
-        rust-clipboard-win-5.4.1
+        rust-clipboard-win-5.4.3
         rust-cocoa-0.25.0
         rust-cocoa-foundation-0.1.2
         rust-codespan-reporting-0.12.0
@@ -6745,12 +6433,11 @@
         rust-core_maths-0.1.1
         rust-cosmic-text-0.19.0
         rust-cpufeatures-0.3.1
-        rust-crc32fast-1.5.2
+        rust-crc32fast-1.5.4
         rust-crossbeam-utils-0.8.23
         rust-crunchy-0.2.4
         rust-crypto-common-0.2.2
         rust-css-color-0.2.8
-        rust-csscolorparser-0.8.4
         rust-ctor-0.10.1
         rust-cursor-icon-1.2.0
         rust-custom_debug-0.6.2
@@ -6775,7 +6462,7 @@
         rust-derive_setters-0.1.9
         rust-derive_utils-0.16.0
         rust-digest-0.11.3
-        rust-dirs-6.0.0
+        rust-dirs-7.0.0
         rust-dirs-sys-0.5.0
         rust-dispatch2-0.3.1
         rust-displaydoc-0.2.7
@@ -6809,8 +6496,8 @@
         rust-fdeflate-0.3.7
         rust-find-crate-0.6.3
         rust-find-msvc-tools-0.1.15
-        rust-fixed_decimal-0.7.2
-        rust-flate2-1.1.10
+        rust-fixed_decimal-0.7.3
+        rust-flate2-1.1.11
         rust-float-cmp-0.9.0
         rust-float-cmp-0.10.0
         rust-float_next_after-1.0.0
@@ -6831,7 +6518,6 @@
         rust-form_urlencoded-1.2.2
         rust-freedesktop-desktop-entry-0.8.4
         rust-freedesktop_entry_parser-2.0.0
-        rust-fsevent-sys-4.1.0
         rust-futures-0.3.34
         rust-futures-channel-0.3.34
         rust-futures-core-0.3.34
@@ -6857,7 +6543,6 @@
         rust-gpu-allocator-0.28.0
         rust-gpu-descriptor-0.3.2
         rust-gpu-descriptor-types-0.2.0
-        rust-grid-1.0.1
         rust-guillotiere-0.6.2
         rust-half-2.7.1
         rust-harfrust-0.5.2
@@ -6879,39 +6564,39 @@
         rust-i18n-embed-impl-0.8.4
         rust-iana-time-zone-0.1.65
         rust-iana-time-zone-haiku-0.1.2
-        rust-icu-2.3.1
-        rust-icu_calendar-2.3.0
-        rust-icu_calendar_data-2.3.0
-        rust-icu_casemap-2.3.0
-        rust-icu_casemap_data-2.3.0
-        rust-icu_collator-2.3.1
-        rust-icu_collator_data-2.3.0
-        rust-icu_collections-2.3.0
-        rust-icu_datetime-2.3.0
-        rust-icu_datetime_data-2.3.0
-        rust-icu_decimal-2.3.0
-        rust-icu_decimal_data-2.3.0
-        rust-icu_experimental-0.6.0
-        rust-icu_experimental_data-0.6.0
-        rust-icu_list-2.3.0
-        rust-icu_list_data-2.3.0
-        rust-icu_locale-2.3.1
-        rust-icu_locale_core-2.3.0
-        rust-icu_locale_data-2.3.0
-        rust-icu_locale_fallback-2.3.0
-        rust-icu_locale_fallback_data-2.3.0
-        rust-icu_normalizer-2.3.0
-        rust-icu_normalizer_data-2.3.0
-        rust-icu_pattern-0.5.0
-        rust-icu_plurals-2.3.0
-        rust-icu_plurals_data-2.3.0
-        rust-icu_properties-2.3.0
-        rust-icu_properties_data-2.3.0
-        rust-icu_provider-2.3.1
-        rust-icu_segmenter-2.3.0
-        rust-icu_segmenter_data-2.3.0
-        rust-icu_time-2.3.0
-        rust-icu_time_data-2.3.1
+        rust-icu-2.4.0
+        rust-icu_calendar-2.4.0
+        rust-icu_calendar_data-2.4.0
+        rust-icu_casemap-2.4.0
+        rust-icu_casemap_data-2.4.0
+        rust-icu_collator-2.4.0
+        rust-icu_collator_data-2.4.0
+        rust-icu_collections-2.4.0
+        rust-icu_datetime-2.4.0
+        rust-icu_datetime_data-2.4.0
+        rust-icu_decimal-2.4.0
+        rust-icu_decimal_data-2.4.0
+        rust-icu_experimental-0.7.0
+        rust-icu_experimental_data-0.7.0
+        rust-icu_list-2.4.0
+        rust-icu_list_data-2.4.0
+        rust-icu_locale-2.4.0
+        rust-icu_locale_core-2.4.0
+        rust-icu_locale_data-2.4.0
+        rust-icu_locale_fallback-2.4.0
+        rust-icu_locale_fallback_data-2.4.0
+        rust-icu_normalizer-2.4.0
+        rust-icu_normalizer_data-2.4.0
+        rust-icu_pattern-0.5.1
+        rust-icu_plurals-2.4.0
+        rust-icu_plurals_data-2.4.0
+        rust-icu_properties-2.4.0
+        rust-icu_properties_data-2.4.0
+        rust-icu_provider-2.4.0
+        rust-icu_segmenter-2.4.0
+        rust-icu_segmenter_data-2.4.0
+        rust-icu_time-2.4.0
+        rust-icu_time_data-2.4.0
         rust-ident_case-1.0.1
         rust-idna-1.1.0
         rust-idna_adapter-1.2.2
@@ -6930,10 +6615,10 @@
         rust-intmap-3.1.3
         rust-io-lifetimes-1.0.11
         rust-itoa-1.0.18
-        rust-ixdtf-0.6.6
-        rust-jiff-0.2.38
-        rust-jiff-core-0.1.1
-        rust-jiff-static-0.2.38
+        rust-ixdtf-0.6.7
+        rust-jiff-0.2.39
+        rust-jiff-core-0.1.2
+        rust-jiff-static-0.2.39
         rust-jiff-tzdb-0.1.9
         rust-jiff-tzdb-platform-0.1.3
         rust-jni-0.22.4
@@ -6942,8 +6627,8 @@
         rust-jni-sys-0.4.1
         rust-jni-sys-macros-0.4.1
         rust-jobserver-0.1.35
-        rust-js-sys-0.3.106
-        rust-kamadak-exif-0.6.1
+        rust-js-sys-0.3.107
+        rust-kamadak-exif-0.6.2
         rust-keyboard-types-0.8.3
         rust-khronos-egl-6.0.0
         rust-khronos_api-3.1.0
@@ -6969,23 +6654,22 @@
         rust-litrs-1.0.1
         rust-locale_config-0.3.0
         rust-lock_api-0.4.14
-        rust-log-0.4.34
-        rust-logind-zbus-5.3.2
+        rust-log-0.4.35
         rust-lru-0.16.4
         rust-lyon-1.0.19
-        rust-lyon_algorithms-1.0.21
-        rust-lyon_geom-1.0.19
+        rust-lyon_algorithms-1.0.22
+        rust-lyon_geom-1.0.20
         rust-lyon_path-1.0.19
-        rust-lyon_tessellation-1.0.22
+        rust-lyon_tessellation-1.0.23
         rust-macaddr-1.0.1
         rust-malloc_buf-0.0.6
         rust-matchers-0.2.0
         rust-memchr-2.8.3
         rust-memmap2-0.8.0
-        rust-memmap2-0.9.11
+        rust-memmap2-0.9.12
         rust-memoffset-0.9.1
         rust-metal-0.33.0
-        rust-mime-0.3.17
+        rust-mime-0.3.18
         rust-mime_guess-2.0.5
         rust-miniz_oxide-0.8.9
         rust-miniz_oxide-0.9.1
@@ -6999,8 +6683,8 @@
         rust-nix-0.29.0
         rust-nmrs-3.5.7
         rust-nom-8.0.0
-        rust-notify-8.2.0
-        rust-notify-types-2.1.0
+        rust-notify-8.2.1
+        rust-notify-types-2.2.0
         rust-nu-ansi-term-0.50.3
         rust-num-bigint-0.4.8
         rust-num-conv-0.2.2
@@ -7021,6 +6705,7 @@
         rust-objc2-core-foundation-0.3.2
         rust-objc2-core-graphics-0.3.2
         rust-objc2-core-image-0.2.2
+        rust-objc2-core-services-0.3.2
         rust-objc2-core-video-0.3.2
         rust-objc2-encode-4.1.0
         rust-objc2-foundation-0.2.2
@@ -7032,7 +6717,7 @@
         rust-once_cell-1.21.4
         rust-option-ext-0.2.0
         rust-orbclient-0.3.55
-        rust-ordered-float-5.5.0
+        rust-ordered-float-5.5.1
         rust-ordered-stream-0.2.0
         rust-ouroboros-0.18.5
         rust-ouroboros_macro-0.18.5
@@ -7046,21 +6731,21 @@
         rust-paste-1.0.15
         rust-percent-encoding-2.3.2
         rust-phf-0.13.1
-        rust-phf_generator-0.13.1
-        rust-phf_macros-0.13.1
+        rust-phf-0.14.0
+        rust-phf_generator-0.14.0
+        rust-phf_macros-0.14.0
         rust-phf_shared-0.13.1
+        rust-phf_shared-0.14.0
         rust-pico-args-0.5.0
         rust-pin-project-1.1.13
         rust-pin-project-internal-1.1.13
         rust-pin-project-lite-0.2.17
-        rust-pin-utils-0.1.1
         rust-piper-0.2.5
         rust-pkg-config-0.3.34
         rust-plain-0.2.3
         rust-png-0.17.16
         rust-png-0.18.1
         rust-polling-3.11.0
-        rust-pollster-0.4.0
         rust-portable-atomic-1.15.0
         rust-portable-atomic-util-0.2.8
         rust-potential_utf-0.1.6
@@ -7080,12 +6765,9 @@
         rust-r-efi-5.3.0
         rust-r-efi-6.0.0
         rust-rand-0.8.8
-        rust-rand-0.9.5
         rust-rand-0.10.3
         rust-rand_chacha-0.3.1
-        rust-rand_chacha-0.9.0
         rust-rand_core-0.6.4
-        rust-rand_core-0.9.5
         rust-rand_core-0.10.1
         rust-range-alloc-0.1.5
         rust-rangemap-1.8.0
@@ -7103,11 +6785,10 @@
         rust-regex-syntax-0.8.11
         rust-renderdoc-sys-1.1.0
         rust-resvg-0.45.1
-        rust-rfd-0.16.0
         rust-rgb-0.8.53
-        rust-ron-0.11.0
-        rust-ron-0.12.2
+        rust-ron-0.12.3
         rust-roxmltree-0.20.0
+        rust-roxmltree-0.21.2
         rust-rust-embed-8.13.0
         rust-rust-embed-impl-8.13.0
         rust-rust-embed-utils-8.13.0
@@ -7115,7 +6796,7 @@
         rust-rustc-hash-2.1.3
         rust-rustc_version-0.4.1
         rust-rustix-0.38.44
-        rust-rustix-1.1.5
+        rust-rustix-1.1.6
         rust-rustversion-1.0.23
         rust-rustybuzz-0.20.1
         rust-ryu-1.0.23
@@ -7139,7 +6820,6 @@
         rust-sha1_smol-1.0.1
         rust-sha2-0.11.1
         rust-sharded-slab-0.1.7
-        rust-shlex-1.3.0
         rust-shlex-2.0.1
         rust-signal-hook-registry-1.4.8
         rust-simd-adler32-0.3.10
@@ -7151,9 +6831,9 @@
         rust-skrifa-0.44.0
         rust-slab-0.4.12
         rust-slotmap-1.1.1
-        rust-smallvec-1.16.3
+        rust-smallvec-1.16.5
         rust-smithay-client-toolkit-0.20.0
-        rust-smol_str-0.3.6
+        rust-smol_str-0.3.7
         rust-socket2-0.6.5
         rust-spirv-0.3.0-sdk-1.3.268.0
         rust-stable_deref_trait-1.2.1
@@ -7170,7 +6850,7 @@
         rust-synstructure-0.13.2
         rust-synstructure-0.14.0
         rust-sys-locale-0.3.2
-        rust-taffy-0.9.2
+        rust-taffy-0.15.1
         rust-temp-dir-0.1.16
         rust-tempfile-3.27.0
         rust-termcolor-1.4.1
@@ -7187,16 +6867,16 @@
         rust-tiny-skia-path-0.11.4
         rust-tiny-skia-path-0.12.0
         rust-tiny-xlib-0.2.5
-        rust-tinystr-0.8.4
+        rust-tinystr-0.8.5
         rust-tinyvec-1.13.3
         rust-tl-0.7.8
-        rust-tokio-1.53.3
+        rust-tokio-1.54.1
         rust-tokio-macros-2.7.2
         rust-tokio-stream-0.1.19
         rust-tokio-util-0.7.20
         rust-toml-0.5.11
-        rust-toml_datetime-1.1.2-spec-1.1.0
-        rust-toml_edit-0.25.17-spec-1.1.0
+        rust-toml_datetime-1.1.3-spec-1.1.0
+        rust-toml_edit-0.25.19-spec-1.1.0
         rust-toml_parser-1.1.5-spec-1.1.0
         rust-tracing-0.1.44
         rust-tracing-attributes-0.1.31
@@ -7209,7 +6889,6 @@
         rust-typenum-1.20.1
         rust-udev-0.9.3
         rust-uds_windows-1.2.1
-        rust-uncased-0.9.10
         rust-unic-langid-0.9.6
         rust-unic-langid-impl-0.9.6
         rust-unicase-2.10.0
@@ -7218,28 +6897,29 @@
         rust-unicode-ccc-0.4.0
         rust-unicode-ident-1.0.27
         rust-unicode-linebreak-0.1.5
-        rust-unicode-properties-0.1.4
-        rust-unicode-script-0.5.8
+        rust-unicode-properties-0.1.5
+        rust-unicode-script-0.5.9
         rust-unicode-segmentation-1.13.3
         rust-unicode-vo-0.1.0
-        rust-unicode-width-0.2.2
+        rust-unicode-width-0.2.3
         rust-url-2.5.8
         rust-urlencoding-2.1.3
         rust-usvg-0.45.1
-        rust-utf16_iter-1.0.5
-        rust-utf8_iter-1.0.4
-        rust-uuid-1.28.0
+        rust-utf16_iter-1.1.0
+        rust-utf8_iter-1.1.0
+        rust-utf_types-1.0.0
+        rust-uuid-1.29.0
         rust-valuable-0.1.1
         rust-version_check-0.9.5
         rust-walkdir-2.5.0
         rust-wasi-0.11.1-wasi-snapshot-preview1
         rust-wasip2-1.0.4-wasi-0.2.12
-        rust-wasm-bindgen-0.2.129
-        rust-wasm-bindgen-futures-0.4.79
-        rust-wasm-bindgen-macro-0.2.129
-        rust-wasm-bindgen-macro-support-0.2.129
-        rust-wasm-bindgen-shared-0.2.129
-        rust-wasmtimer-0.4.3
+        rust-wasm-bindgen-0.2.130
+        rust-wasm-bindgen-futures-0.4.80
+        rust-wasm-bindgen-macro-0.2.130
+        rust-wasm-bindgen-macro-support-0.2.130
+        rust-wasm-bindgen-shared-0.2.130
+        rust-wasmtimer-0.4.5
         rust-wayland-backend-0.3.17
         rust-wayland-client-0.31.15
         rust-wayland-csd-frame-0.3.0
@@ -7252,7 +6932,7 @@
         rust-wayland-scanner-0.31.11
         rust-wayland-server-0.31.14
         rust-wayland-sys-0.31.11
-        rust-web-sys-0.3.106
+        rust-web-sys-0.3.107
         rust-web-time-1.1.0
         rust-weezl-0.1.12
         rust-wgpu-28.0.0
@@ -7288,37 +6968,28 @@
         rust-windows-sys-0.48.0
         rust-windows-sys-0.52.0
         rust-windows-sys-0.59.0
-        rust-windows-sys-0.60.2
         rust-windows-sys-0.61.2
         rust-windows-targets-0.48.5
         rust-windows-targets-0.52.6
-        rust-windows-targets-0.53.5
         rust-windows-threading-0.1.0
         rust-windows-threading-0.2.1
         rust-windows_aarch64_gnullvm-0.48.5
         rust-windows_aarch64_gnullvm-0.52.6
-        rust-windows_aarch64_gnullvm-0.53.1
         rust-windows_aarch64_msvc-0.48.5
         rust-windows_aarch64_msvc-0.52.6
-        rust-windows_aarch64_msvc-0.53.1
         rust-windows_i686_gnu-0.48.5
         rust-windows_i686_gnu-0.52.6
-        rust-windows_i686_gnu-0.53.1
         rust-windows_i686_gnullvm-0.52.6
-        rust-windows_i686_gnullvm-0.53.1
         rust-windows_i686_msvc-0.48.5
         rust-windows_i686_msvc-0.52.6
-        rust-windows_i686_msvc-0.53.1
         rust-windows_x86_64_gnu-0.48.5
         rust-windows_x86_64_gnu-0.52.6
-        rust-windows_x86_64_gnu-0.53.1
         rust-windows_x86_64_gnullvm-0.48.5
         rust-windows_x86_64_gnullvm-0.52.6
-        rust-windows_x86_64_gnullvm-0.53.1
         rust-windows_x86_64_msvc-0.48.5
         rust-windows_x86_64_msvc-0.52.6
-        rust-windows_x86_64_msvc-0.53.1
-        rust-winnow-1.0.4
+        rust-winnow-0.7.15
+        rust-winnow-1.0.5
         rust-wit-bindgen-0.57.1
         rust-write16-1.0.0
         rust-writeable-0.6.4
@@ -7339,16 +7010,19 @@
         rust-xmltree-0.12.0
         rust-xmlwriter-0.1.0
         rust-yansi-1.0.1
-        rust-yazi-0.2.1
-        rust-yoke-0.8.3
+        rust-yazi-0.2.2
+        rust-yoke-0.8.4
         rust-yoke-derive-0.8.4
         rust-zbus-5.19.0
+        rust-zbus-6.2.1
         rust-zbus-lockstep-0.5.2
         rust-zbus-lockstep-macros-0.5.2
         rust-zbus_macros-5.19.0
+        rust-zbus_macros-6.2.1
         rust-zbus_names-4.3.5
+        rust-zbus_utils-6.1.0
         rust-zbus_xml-5.2.1
-        rust-zcheapstr-1.1.0
+        rust-zcheapstr-1.2.0
         rust-zeno-0.3.3
         rust-zerocopy-0.8.63
         rust-zerocopy-derive-0.8.63
@@ -7356,15 +7030,18 @@
         rust-zerofrom-derive-0.1.8
         rust-zeroize-1.9.1
         rust-zerotrie-0.2.5
-        rust-zerovec-0.11.8
-        rust-zerovec-derive-0.11.6
+        rust-zerovec-0.11.9
+        rust-zerovec-derive-0.11.7
         rust-zlib-rs-0.6.8
-        rust-zlink-0.5.0
-        rust-zlink-core-0.5.0
-        rust-zlink-macros-0.5.0
-        rust-zlink-smol-0.5.0
-        rust-zlink-tokio-0.5.0
+        rust-zlink-0.8.0
+        rust-zlink-core-0.8.0
+        rust-zlink-idl-0.8.0
+        rust-zlink-macros-0.8.0
+        rust-zlink-names-0.8.0
+        rust-zlink-smol-0.8.0
+        rust-zlink-tokio-0.8.0
         rust-zmij-1.0.23
+        rust-zruntime-0.2.2
         rust-zune-core-0.4.12
         rust-zune-core-0.5.3
         rust-zune-jpeg-0.4.21
@@ -7374,7 +7051,10 @@
         rust-zvariant_utils-4.2.0))
 
 (define cosmic-applets-git-crates
-  (list (git-crate "accesskit" "0.22.0"
+  (list (git-crate "a11y-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "a11y")
+        (git-crate "accesskit" "0.22.0"
                    "git+https://github.com/wash2/accesskit?rev=6c20249#6c20249d3b9fd45e7002efad9f6b6171a9257912"
                    accesskit-6c20249-checkout "common")
         (git-crate "accesskit_atspi_common" "0.15.0"
@@ -7399,8 +7079,8 @@
                    "git+https://github.com/jackpot51/rust-atomicwrites#043ab4859d53ffd3d55334685303d8df39c9f768"
                    rust-atomicwrites-043ab48-checkout ".")
         (git-crate "build_helpers" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/build_helpers")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/build_helpers")
         (git-crate "clipboard_macos" "0.1.0"
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout "macos")
@@ -7417,62 +7097,62 @@
                    "git+https://github.com/pop-os/cosmic-comp.git?rev=5eb5af4#5eb5af46756f2f2bc5e812cf68fe4c4b79efd924"
                    cosmic-comp-5eb5af4-checkout "cosmic-comp-config")
         (git-crate "cosmic-config" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "cosmic-config")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "cosmic-config")
         (git-crate "cosmic-config-derive" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "cosmic-config-derive")
-        (git-crate "cosmic-dbus-a11y" "0.1.0"
-                   "git+https://github.com/pop-os/dbus-settings-bindings#eed01dd3609e90e3c8cd043656734c500956c793"
-                   dbus-settings-bindings-eed01dd-checkout "a11y")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "cosmic-config-derive")
         (git-crate "cosmic-freedesktop-icons" "0.4.0"
                    "git+https://github.com/pop-os/freedesktop-icons#ab4c57b8e416c6af9297cb04d101889896fd9a92"
                    freedesktop-icons-ab4c57b-checkout ".")
         (git-crate "cosmic-launch" "0.1.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "cosmic-launch")
-        (git-crate "cosmic-notifications-config" "1.10.0"
-                   "git+https://github.com/pop-os/cosmic-notifications#c1a0695c3629ae3524b5c9b654ac7431ad1bc558"
-                   cosmic-notifications-c1a0695-checkout "cosmic-notifications-config")
-        (git-crate "cosmic-notifications-util" "1.10.0"
-                   "git+https://github.com/pop-os/cosmic-notifications#c1a0695c3629ae3524b5c9b654ac7431ad1bc558"
-                   cosmic-notifications-c1a0695-checkout "cosmic-notifications-util")
-        (git-crate "cosmic-osk-config" "1.10.0"
-                   "git+https://github.com/pop-os/cosmic-osk#3a4800a10b03efac1684817238922db5d6746403"
-                   cosmic-osk-3a4800a-checkout "config")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "cosmic-launch")
+        (git-crate "cosmic-login1-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "login1")
+        (git-crate "cosmic-notifications-config" "1.11.0"
+                   "git+https://github.com/pop-os/cosmic-notifications#4fac3f9a8fc50fb93941e031383ec98312d62280"
+                   cosmic-notifications-4fac3f9-checkout "cosmic-notifications-config")
+        (git-crate "cosmic-notifications-util" "1.11.0"
+                   "git+https://github.com/pop-os/cosmic-notifications#4fac3f9a8fc50fb93941e031383ec98312d62280"
+                   cosmic-notifications-4fac3f9-checkout "cosmic-notifications-util")
+        (git-crate "cosmic-osk-config" "1.11.0"
+                   "git+https://github.com/pop-os/cosmic-osk#6b146a2b0a23d88ae84223ad06c6813bda5a9386"
+                   cosmic-osk-6b146a2-checkout "config")
         (git-crate "cosmic-panel-config" "1.11.0"
                    "git+https://github.com/pop-os/cosmic-panel#ca20ce3185b3b4404f429d59d429c40b58a2ddef"
                    cosmic-panel-ca20ce3-checkout "cosmic-panel-config")
         (git-crate "cosmic-protocols" "0.2.0"
                    "git+https://github.com/pop-os/cosmic-protocols//?rev=c0cff4d#c0cff4db14c37ed954983158e4055aa94c7741d9"
                    cosmic-protocols-c0cff4d-checkout ".")
-        (git-crate "cosmic-settings-a11y-manager-subscription" "1.10.0"
-                   "git+https://github.com/pop-os/cosmic-settings#c4ff5486d00fb0ede7a95784f6fb634bf79e6113"
-                   cosmic-settings-c4ff548-checkout "subscriptions/a11y-manager")
-        (git-crate "cosmic-settings-accessibility-subscription" "1.10.0"
-                   "git+https://github.com/pop-os/cosmic-settings#c4ff5486d00fb0ede7a95784f6fb634bf79e6113"
-                   cosmic-settings-c4ff548-checkout "subscriptions/accessibility")
+        (git-crate "cosmic-settings-a11y-manager-subscription" "1.11.0"
+                   "git+https://github.com/pop-os/cosmic-settings#5f43cfc867163f3d9e8d83d79efa959e29d53418"
+                   cosmic-settings-5f43cfc-checkout "subscriptions/a11y-manager")
+        (git-crate "cosmic-settings-accessibility-subscription" "1.11.0"
+                   "git+https://github.com/pop-os/cosmic-settings#5f43cfc867163f3d9e8d83d79efa959e29d53418"
+                   cosmic-settings-5f43cfc-checkout "subscriptions/accessibility")
         (git-crate "cosmic-settings-audio-client" "1.11.0"
-                   "git+https://github.com/pop-os/cosmic-settings-daemon#655b14fb9572dd7f7231ec6c343c63984e99741a"
-                   cosmic-settings-daemon-655b14f-checkout "audio-client")
+                   "git+https://github.com/pop-os/cosmic-settings-daemon#2df041e6e90757782a7884729ae3723e86cee122"
+                   cosmic-settings-daemon-2df041e-checkout "audio-client")
         (git-crate "cosmic-settings-audio-core" "1.11.0"
-                   "git+https://github.com/pop-os/cosmic-settings-daemon#655b14fb9572dd7f7231ec6c343c63984e99741a"
-                   cosmic-settings-daemon-655b14f-checkout "audio-core")
+                   "git+https://github.com/pop-os/cosmic-settings-daemon#2df041e6e90757782a7884729ae3723e86cee122"
+                   cosmic-settings-daemon-2df041e-checkout "audio-core")
         (git-crate "cosmic-settings-config" "1.11.0"
-                   "git+https://github.com/pop-os/cosmic-settings-daemon#655b14fb9572dd7f7231ec6c343c63984e99741a"
-                   cosmic-settings-daemon-655b14f-checkout "config")
-        (git-crate "cosmic-settings-daemon" "0.1.0"
-                   "git+https://github.com/pop-os/dbus-settings-bindings#eed01dd3609e90e3c8cd043656734c500956c793"
-                   dbus-settings-bindings-eed01dd-checkout "cosmic-settings-daemon")
-        (git-crate "cosmic-settings-daemon-subscription" "1.10.0"
-                   "git+https://github.com/pop-os/cosmic-settings#c4ff5486d00fb0ede7a95784f6fb634bf79e6113"
-                   cosmic-settings-c4ff548-checkout "subscriptions/settings-daemon")
-        (git-crate "cosmic-settings-upower-subscription" "1.10.0"
-                   "git+https://github.com/pop-os/cosmic-settings#c4ff5486d00fb0ede7a95784f6fb634bf79e6113"
-                   cosmic-settings-c4ff548-checkout "subscriptions/upower")
+                   "git+https://github.com/pop-os/cosmic-settings-daemon#2df041e6e90757782a7884729ae3723e86cee122"
+                   cosmic-settings-daemon-2df041e-checkout "config")
+        (git-crate "cosmic-settings-daemon-subscription" "1.11.0"
+                   "git+https://github.com/pop-os/cosmic-settings#5f43cfc867163f3d9e8d83d79efa959e29d53418"
+                   cosmic-settings-5f43cfc-checkout "subscriptions/settings-daemon")
+        (git-crate "cosmic-settings-daemon-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "cosmic-settings-daemon")
+        (git-crate "cosmic-settings-upower-subscription" "1.11.0"
+                   "git+https://github.com/pop-os/cosmic-settings#5f43cfc867163f3d9e8d83d79efa959e29d53418"
+                   cosmic-settings-5f43cfc-checkout "subscriptions/upower")
         (git-crate "cosmic-theme" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "cosmic-theme")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "cosmic-theme")
         (git-crate "cryoglyph" "0.1.0"
                    "git+https://github.com/iced-rs/cryoglyph.git?rev=e429a025df36ab8145708acb309080ae3deec17a#e429a025df36ab8145708acb309080ae3deec17a"
                    cryoglyph-e429a02-checkout ".")
@@ -7483,68 +7163,68 @@
                    "git+https://github.com/pop-os/winit.git?rev=9567503#9567503d34130113e36b0167a2b8829c3756e429"
                    winit-9567503-checkout "dpi")
         (git-crate "iced" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced")
         (git-crate "iced_accessibility" "0.1.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/accessibility")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/accessibility")
         (git-crate "iced_core" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/core")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/core")
         (git-crate "iced_debug" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/debug")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/debug")
         (git-crate "iced_futures" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/futures")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/futures")
         (git-crate "iced_graphics" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/graphics")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/graphics")
         (git-crate "iced_program" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/program")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/program")
         (git-crate "iced_renderer" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/renderer")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/renderer")
         (git-crate "iced_runtime" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/runtime")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/runtime")
         (git-crate "iced_tiny_skia" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/tiny_skia")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/tiny_skia")
         (git-crate "iced_wgpu" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/wgpu")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/wgpu")
         (git-crate "iced_widget" "0.14.2"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/widget")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/widget")
         (git-crate "iced_winit" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/winit")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/winit")
         (git-crate "libcosmic" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout ".")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout ".")
         (git-crate "mime" "0.1.0"
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout "mime")
-        (git-crate "mpris2-zbus" "0.1.0"
-                   "git+https://github.com/pop-os/dbus-settings-bindings#eed01dd3609e90e3c8cd043656734c500956c793"
-                   dbus-settings-bindings-eed01dd-checkout "mpris2")
+        (git-crate "mpris2-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "mpris2")
         (git-crate "smithay-clipboard" "0.8.0"
                    "git+https://github.com/pop-os/smithay-clipboard?tag=sctk-0.20#859b02c88f45c554049a67c6ddeec1692ce0e20b"
                    smithay-clipboard-859b02c-checkout ".")
         (git-crate "softbuffer" "0.4.1"
                    "git+https://github.com/pop-os/softbuffer?tag=cosmic-4.0#c2b2c19ddb38ff17495643699f97cb1f2064a1be"
                    softbuffer-c2b2c19-checkout ".")
-        (git-crate "switcheroo-control" "0.1.0"
-                   "git+https://github.com/pop-os/dbus-settings-bindings#eed01dd3609e90e3c8cd043656734c500956c793"
-                   dbus-settings-bindings-eed01dd-checkout "switcheroo-control")
-        (git-crate "timedate-zbus" "0.1.0"
-                   "git+https://github.com/pop-os/dbus-settings-bindings#eed01dd3609e90e3c8cd043656734c500956c793"
-                   dbus-settings-bindings-eed01dd-checkout "timedate")
-        (git-crate "upower_dbus" "0.3.2"
-                   "git+https://github.com/pop-os/dbus-settings-bindings#eed01dd3609e90e3c8cd043656734c500956c793"
-                   dbus-settings-bindings-eed01dd-checkout "upower")
+        (git-crate "switcheroo-control-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "switcheroo-control")
+        (git-crate "timedate1-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "timedate1")
+        (git-crate "upower-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "upower")
         (git-crate "window_clipboard" "0.4.1"
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout ".")
@@ -7586,7 +7266,7 @@
                    cosmic-panel-ca20ce3-checkout "xdg-shell-wrapper-config")))
 
 (define cosmic-bg-cargo-inputs
-  (list rust-addr2line-0.25.1
+  (list rust-addr2line-0.27.1
         rust-adler2-2.0.1
         rust-ahash-0.8.12
         rust-aligned-0.4.3
@@ -7603,7 +7283,7 @@
         rust-av-scenechange-0.14.1
         rust-av1-grain-0.2.5
         rust-avif-serialize-0.8.9
-        rust-backtrace-0.3.76
+        rust-backtrace-0.3.77
         rust-bit_field-0.10.3
         rust-bitflags-2.13.2
         rust-bitreader-0.3.11
@@ -7621,18 +7301,18 @@
         rust-bytes-1.12.1
         rust-calloop-0.14.5
         rust-calloop-wayland-source-0.4.1
-        rust-cc-1.9.0
+        rust-cc-1.11.1
         rust-cfg-expr-0.20.10
         rust-cfg-if-1.0.5
         rust-cfg_aliases-0.2.2
         rust-chacha20-0.10.2
-        rust-clipboard-win-5.4.1
+        rust-clipboard-win-5.4.3
         rust-color-eyre-0.6.5
         rust-color-spantrace-0.3.0
         rust-colorgrad-0.8.0
         rust-concurrent-queue-2.5.0
         rust-cpufeatures-0.3.1
-        rust-crc32fast-1.5.2
+        rust-crc32fast-1.5.4
         rust-crossbeam-deque-0.8.8
         rust-crossbeam-epoch-0.9.21
         rust-crossbeam-utils-0.8.23
@@ -7645,7 +7325,7 @@
         rust-dav1d-0.11.1
         rust-dav1d-sys-0.8.3
         rust-derive_setters-0.1.9
-        rust-dirs-6.0.0
+        rust-dirs-7.0.0
         rust-dirs-sys-0.5.0
         rust-dlib-0.5.3
         rust-document-features-0.2.12
@@ -7663,9 +7343,8 @@
         rust-fastrand-2.5.0
         rust-fdeflate-0.3.7
         rust-find-msvc-tools-0.1.15
-        rust-flate2-1.1.10
+        rust-flate2-1.1.11
         rust-fnv-1.0.7
-        rust-fsevent-sys-4.1.0
         rust-futures-0.3.34
         rust-futures-channel-0.3.34
         rust-futures-core-0.3.34
@@ -7678,7 +7357,7 @@
         rust-gethostname-1.1.0
         rust-getrandom-0.3.4
         rust-getrandom-0.4.3
-        rust-gimli-0.32.3
+        rust-gimli-0.34.0
         rust-glam-0.25.0
         rust-half-2.7.1
         rust-hashbrown-0.13.2
@@ -7696,7 +7375,7 @@
         rust-interpolate_name-0.2.4
         rust-itertools-0.14.0
         rust-jobserver-0.1.35
-        rust-js-sys-0.3.106
+        rust-js-sys-0.3.107
         rust-jxl-0.8.0
         rust-jxl-image-rs-integration-0.8.0
         rust-jxl_macros-0.8.0
@@ -7717,12 +7396,12 @@
         rust-linux-raw-sys-0.12.1
         rust-litrs-1.0.1
         rust-lock_api-0.4.14
-        rust-log-0.4.34
+        rust-log-0.4.35
         rust-loop9-0.1.5
         rust-malloc_buf-0.0.6
         rust-maybe-rayon-0.1.1
         rust-memchr-2.8.3
-        rust-memmap2-0.9.11
+        rust-memmap2-0.9.12
         rust-miniz_oxide-0.8.9
         rust-miniz_oxide-0.9.1
         rust-mio-1.2.4
@@ -7732,8 +7411,8 @@
         rust-no_std_io2-0.9.4
         rust-nom-8.0.0
         rust-noop_proc_macro-0.3.0
-        rust-notify-8.2.0
-        rust-notify-types-2.1.0
+        rust-notify-8.2.1
+        rust-notify-types-2.2.0
         rust-nu-ansi-term-0.50.3
         rust-num-bigint-0.4.8
         rust-num-complex-0.4.6
@@ -7743,8 +7422,10 @@
         rust-num-traits-0.2.19
         rust-objc-0.2.7
         rust-objc-foundation-0.1.1
+        rust-objc2-core-foundation-0.3.2
+        rust-objc2-core-services-0.3.2
         rust-objc_id-0.1.1
-        rust-object-0.37.3
+        rust-object-0.40.0
         rust-once_cell-1.21.4
         rust-option-ext-0.2.0
         rust-owo-colors-4.4.0
@@ -7760,7 +7441,6 @@
         rust-phf_macros-0.13.1
         rust-phf_shared-0.13.1
         rust-pin-project-lite-0.2.17
-        rust-pin-utils-0.1.1
         rust-pkg-config-0.3.34
         rust-png-0.18.1
         rust-polling-3.11.0
@@ -7791,11 +7471,11 @@
         rust-redox_syscall-0.5.18
         rust-redox_users-0.5.3
         rust-rgb-0.8.53
-        rust-ron-0.12.2
+        rust-ron-0.12.3
         rust-rustc-demangle-0.1.28
         rust-rustc-hash-2.1.3
         rust-rustix-0.38.44
-        rust-rustix-1.1.5
+        rust-rustix-1.1.6
         rust-rustversion-1.0.23
         rust-same-file-1.0.6
         rust-scoped-tls-1.0.1
@@ -7803,16 +7483,16 @@
         rust-serde-1.0.229
         rust-serde_core-1.0.229
         rust-serde_derive-1.0.229
-        rust-serde_spanned-1.1.2
+        rust-serde_spanned-1.1.3
         rust-sharded-slab-0.1.7
         rust-shlex-2.0.1
         rust-simd-adler32-0.3.10
         rust-simd_helpers-0.1.0
         rust-siphasher-1.0.4
         rust-slab-0.4.12
-        rust-smallvec-1.16.3
+        rust-smallvec-1.16.4
         rust-smithay-client-toolkit-0.20.0
-        rust-smol_str-0.3.6
+        rust-smol_str-0.3.7
         rust-stable_deref_trait-1.2.1
         rust-static_assertions-1.1.0
         rust-strsim-0.11.1
@@ -7826,11 +7506,11 @@
         rust-thiserror-impl-1.0.69
         rust-thiserror-impl-2.0.21
         rust-thread_local-1.1.10
-        rust-tokio-1.53.3
-        rust-toml-1.1.8-spec-1.1.0
-        rust-toml_datetime-1.1.2-spec-1.1.0
+        rust-tokio-1.54.1
+        rust-toml-1.2.1-spec-1.1.0
+        rust-toml_datetime-1.1.3-spec-1.1.0
         rust-toml_parser-1.1.5-spec-1.1.0
-        rust-toml_writer-1.1.3-spec-1.1.0
+        rust-toml_writer-1.2.0-spec-1.1.0
         rust-tracing-0.1.44
         rust-tracing-attributes-0.1.31
         rust-tracing-core-0.1.36
@@ -7848,12 +7528,12 @@
         rust-walkdir-2.5.0
         rust-wasi-0.11.1-wasi-snapshot-preview1
         rust-wasip2-1.0.4-wasi-0.2.12
-        rust-wasm-bindgen-0.2.129
-        rust-wasm-bindgen-futures-0.4.79
-        rust-wasm-bindgen-macro-0.2.129
-        rust-wasm-bindgen-macro-support-0.2.129
-        rust-wasm-bindgen-shared-0.2.129
-        rust-wasmtimer-0.4.3
+        rust-wasm-bindgen-0.2.130
+        rust-wasm-bindgen-futures-0.4.80
+        rust-wasm-bindgen-macro-0.2.130
+        rust-wasm-bindgen-macro-support-0.2.130
+        rust-wasm-bindgen-shared-0.2.130
+        rust-wasmtimer-0.4.5
         rust-wayland-backend-0.3.17
         rust-wayland-client-0.31.15
         rust-wayland-csd-frame-0.3.0
@@ -7870,35 +7550,25 @@
         rust-windows-link-0.2.1
         rust-windows-sys-0.48.0
         rust-windows-sys-0.59.0
-        rust-windows-sys-0.60.2
         rust-windows-sys-0.61.2
         rust-windows-targets-0.48.5
         rust-windows-targets-0.52.6
-        rust-windows-targets-0.53.5
         rust-windows_aarch64_gnullvm-0.48.5
         rust-windows_aarch64_gnullvm-0.52.6
-        rust-windows_aarch64_gnullvm-0.53.1
         rust-windows_aarch64_msvc-0.48.5
         rust-windows_aarch64_msvc-0.52.6
-        rust-windows_aarch64_msvc-0.53.1
         rust-windows_i686_gnu-0.48.5
         rust-windows_i686_gnu-0.52.6
-        rust-windows_i686_gnu-0.53.1
         rust-windows_i686_gnullvm-0.52.6
-        rust-windows_i686_gnullvm-0.53.1
         rust-windows_i686_msvc-0.48.5
         rust-windows_i686_msvc-0.52.6
-        rust-windows_i686_msvc-0.53.1
         rust-windows_x86_64_gnu-0.48.5
         rust-windows_x86_64_gnu-0.52.6
-        rust-windows_x86_64_gnu-0.53.1
         rust-windows_x86_64_gnullvm-0.48.5
         rust-windows_x86_64_gnullvm-0.52.6
-        rust-windows_x86_64_gnullvm-0.53.1
         rust-windows_x86_64_msvc-0.48.5
         rust-windows_x86_64_msvc-0.52.6
-        rust-windows_x86_64_msvc-0.53.1
-        rust-winnow-1.0.4
+        rust-winnow-1.0.5
         rust-wit-bindgen-0.57.1
         rust-x11rb-0.13.2
         rust-x11rb-protocol-0.13.2
@@ -7919,8 +7589,8 @@
                    "git+https://github.com/jackpot51/rust-atomicwrites#043ab4859d53ffd3d55334685303d8df39c9f768"
                    rust-atomicwrites-043ab48-checkout ".")
         (git-crate "build_helpers" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/build_helpers")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "iced/build_helpers")
         (git-crate "clipboard_macos" "0.1.0"
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout "macos")
@@ -7931,11 +7601,11 @@
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout "x11")
         (git-crate "cosmic-config" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "cosmic-config")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "cosmic-config")
         (git-crate "cosmic-config-derive" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "cosmic-config-derive")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "cosmic-config-derive")
         (git-crate "cosmic-protocols" "0.2.0"
                    "git+https://github.com/pop-os/cosmic-protocols#c0cff4db14c37ed954983158e4055aa94c7741d9"
                    cosmic-protocols-c0cff4d-checkout ".")
@@ -7943,11 +7613,11 @@
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout "dnd")
         (git-crate "iced_core" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/core")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "iced/core")
         (git-crate "iced_futures" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/futures")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "iced/futures")
         (git-crate "mime" "0.1.0"
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout "mime")
@@ -8311,13 +7981,12 @@
         rust-arrayvec-0.7.8
         rust-as-raw-xcb-connection-1.0.1
         rust-ash-0.38.0-1.3.281
-        rust-ashpd-0.11.1
-        rust-ashpd-0.12.3
+        rust-ashpd-0.13.13
         rust-async-broadcast-0.7.2
         rust-async-channel-2.5.0
-        rust-async-executor-1.14.0
+        rust-async-executor-1.14.1
         rust-async-io-2.6.0
-        rust-async-lock-3.4.2
+        rust-async-lock-3.5.0
         rust-async-process-2.5.0
         rust-async-recursion-1.2.0
         rust-async-signal-0.2.14
@@ -8353,15 +8022,16 @@
         rust-bytes-1.12.1
         rust-calloop-0.14.5
         rust-calloop-wayland-source-0.4.1
-        rust-cc-1.9.0
+        rust-cc-1.11.1
         rust-cfg-if-1.0.5
         rust-cfg_aliases-0.2.2
+        rust-chacha20-0.10.2
         rust-chrono-0.4.45
         rust-clap-4.6.7
         rust-clap_builder-4.6.7
         rust-clap_derive-4.6.7
         rust-clap_lex-1.1.1
-        rust-clipboard-win-5.4.1
+        rust-clipboard-win-5.4.3
         rust-cocoa-0.25.0
         rust-cocoa-foundation-0.1.2
         rust-codespan-reporting-0.12.0
@@ -8380,12 +8050,11 @@
         rust-core_maths-0.1.1
         rust-cosmic-text-0.19.0
         rust-cpufeatures-0.3.1
-        rust-crc32fast-1.5.2
+        rust-crc32fast-1.5.4
         rust-crossbeam-utils-0.8.23
         rust-crunchy-0.2.4
         rust-crypto-common-0.2.2
         rust-css-color-0.2.8
-        rust-csscolorparser-0.8.4
         rust-ctor-0.10.1
         rust-cursor-icon-1.2.0
         rust-darling-0.21.3
@@ -8402,7 +8071,7 @@
         rust-derive_setters-0.1.9
         rust-derive_utils-0.16.0
         rust-digest-0.11.3
-        rust-dirs-6.0.0
+        rust-dirs-7.0.0
         rust-dirs-sys-0.5.0
         rust-dispatch2-0.3.1
         rust-displaydoc-0.2.7
@@ -8423,6 +8092,8 @@
         rust-equivalent-1.0.3
         rust-errno-0.3.14
         rust-error-code-3.4.0
+        rust-error_set-0.9.2
+        rust-error_set_impl-0.9.2
         rust-etagere-0.2.15
         rust-euclid-0.22.14
         rust-event-listener-5.4.2
@@ -8431,7 +8102,7 @@
         rust-fdeflate-0.3.7
         rust-find-crate-0.6.3
         rust-find-msvc-tools-0.1.15
-        rust-flate2-1.1.10
+        rust-flate2-1.1.11
         rust-float-cmp-0.9.0
         rust-float-cmp-0.10.0
         rust-float_next_after-1.0.0
@@ -8451,7 +8122,6 @@
         rust-foreign-types-shared-0.3.1
         rust-form_urlencoded-1.2.2
         rust-freedesktop-desktop-entry-0.8.4
-        rust-fsevent-sys-4.1.0
         rust-futures-0.3.34
         rust-futures-channel-0.3.34
         rust-futures-core-0.3.34
@@ -8476,7 +8146,6 @@
         rust-gpu-allocator-0.28.0
         rust-gpu-descriptor-0.3.2
         rust-gpu-descriptor-types-0.2.0
-        rust-grid-1.0.1
         rust-guillotiere-0.6.2
         rust-half-2.7.1
         rust-harfrust-0.5.2
@@ -8498,18 +8167,17 @@
         rust-i18n-embed-impl-0.8.4
         rust-iana-time-zone-0.1.65
         rust-iana-time-zone-haiku-0.1.2
-        rust-icu_collections-2.3.0
-        rust-icu_locale_core-2.3.0
-        rust-icu_normalizer-2.3.0
-        rust-icu_normalizer_data-2.3.0
-        rust-icu_properties-2.3.0
-        rust-icu_properties_data-2.3.0
-        rust-icu_provider-2.3.1
+        rust-icu_collections-2.4.0
+        rust-icu_locale_core-2.4.0
+        rust-icu_normalizer-2.4.0
+        rust-icu_normalizer_data-2.4.0
+        rust-icu_properties-2.4.0
+        rust-icu_properties_data-2.4.0
+        rust-icu_provider-2.4.0
         rust-ident_case-1.0.1
         rust-idna-1.1.0
         rust-idna_adapter-1.2.2
         rust-image-0.25.10
-        rust-image-extras-0.1.1
         rust-image-webp-0.2.4
         rust-imagesize-0.13.0
         rust-indexmap-1.9.3
@@ -8523,9 +8191,9 @@
         rust-io-lifetimes-1.0.11
         rust-is_terminal_polyfill-1.70.2
         rust-itoa-1.0.18
-        rust-jiff-0.2.38
-        rust-jiff-core-0.1.1
-        rust-jiff-static-0.2.38
+        rust-jiff-0.2.39
+        rust-jiff-core-0.1.2
+        rust-jiff-static-0.2.39
         rust-jiff-tzdb-0.1.9
         rust-jiff-tzdb-platform-0.1.3
         rust-jni-0.22.4
@@ -8534,8 +8202,8 @@
         rust-jni-sys-0.4.1
         rust-jni-sys-macros-0.4.1
         rust-jobserver-0.1.35
-        rust-js-sys-0.3.106
-        rust-kamadak-exif-0.6.1
+        rust-js-sys-0.3.107
+        rust-kamadak-exif-0.6.2
         rust-kdl-6.5.0
         rust-keyboard-types-0.8.3
         rust-khronos-egl-6.0.0
@@ -8560,22 +8228,21 @@
         rust-litrs-1.0.1
         rust-locale_config-0.3.0
         rust-lock_api-0.4.14
-        rust-log-0.4.34
-        rust-logind-zbus-5.3.2
+        rust-log-0.4.35
         rust-lru-0.16.4
         rust-lyon-1.0.19
-        rust-lyon_algorithms-1.0.21
-        rust-lyon_geom-1.0.19
+        rust-lyon_algorithms-1.0.22
+        rust-lyon_geom-1.0.20
         rust-lyon_path-1.0.19
-        rust-lyon_tessellation-1.0.22
+        rust-lyon_tessellation-1.0.23
         rust-malloc_buf-0.0.6
         rust-memchr-2.8.3
         rust-memmap2-0.8.0
-        rust-memmap2-0.9.11
+        rust-memmap2-0.9.12
         rust-memoffset-0.9.1
         rust-metal-0.33.0
         rust-miette-7.6.0
-        rust-mime-0.3.17
+        rust-mime-0.3.18
         rust-mime_guess-2.0.5
         rust-miniz_oxide-0.8.9
         rust-miniz_oxide-0.9.1
@@ -8586,8 +8253,8 @@
         rust-ndk-0.9.0
         rust-ndk-context-0.1.1
         rust-ndk-sys-0.6.0-11769913
-        rust-notify-8.2.0
-        rust-notify-types-2.1.0
+        rust-notify-8.2.1
+        rust-notify-types-2.2.0
         rust-num-0.4.3
         rust-num-bigint-0.4.8
         rust-num-complex-0.4.6
@@ -8609,6 +8276,7 @@
         rust-objc2-core-foundation-0.3.2
         rust-objc2-core-graphics-0.3.2
         rust-objc2-core-image-0.2.2
+        rust-objc2-core-services-0.3.2
         rust-objc2-core-video-0.3.2
         rust-objc2-encode-4.1.0
         rust-objc2-foundation-0.2.2
@@ -8621,7 +8289,7 @@
         rust-once_cell_polyfill-1.70.2
         rust-option-ext-0.2.0
         rust-orbclient-0.3.55
-        rust-ordered-float-5.5.0
+        rust-ordered-float-5.5.1
         rust-ordered-stream-0.2.0
         rust-ouroboros-0.18.5
         rust-ouroboros_macro-0.18.5
@@ -8635,21 +8303,21 @@
         rust-paste-1.0.15
         rust-percent-encoding-2.3.2
         rust-phf-0.13.1
-        rust-phf_generator-0.13.1
-        rust-phf_macros-0.13.1
+        rust-phf-0.14.0
+        rust-phf_generator-0.14.0
+        rust-phf_macros-0.14.0
         rust-phf_shared-0.13.1
+        rust-phf_shared-0.14.0
         rust-pico-args-0.5.0
         rust-pin-project-1.1.13
         rust-pin-project-internal-1.1.13
         rust-pin-project-lite-0.2.17
-        rust-pin-utils-0.1.1
         rust-piper-0.2.5
         rust-pkg-config-0.3.34
         rust-plain-0.2.3
         rust-png-0.17.16
         rust-png-0.18.1
         rust-polling-3.11.0
-        rust-pollster-0.4.0
         rust-portable-atomic-1.15.0
         rust-portable-atomic-util-0.2.8
         rust-potential_utf-0.1.6
@@ -8669,11 +8337,10 @@
         rust-r-efi-5.3.0
         rust-r-efi-6.0.0
         rust-rand-0.8.8
-        rust-rand-0.9.5
+        rust-rand-0.10.3
         rust-rand_chacha-0.3.1
-        rust-rand_chacha-0.9.0
         rust-rand_core-0.6.4
-        rust-rand_core-0.9.5
+        rust-rand_core-0.10.1
         rust-range-alloc-0.1.5
         rust-rangemap-1.8.0
         rust-raw-window-handle-0.6.2
@@ -8690,11 +8357,10 @@
         rust-regex-syntax-0.8.11
         rust-renderdoc-sys-1.1.0
         rust-resvg-0.45.1
-        rust-rfd-0.16.0
         rust-rgb-0.8.53
-        rust-ron-0.11.0
-        rust-ron-0.12.2
+        rust-ron-0.12.3
         rust-roxmltree-0.20.0
+        rust-roxmltree-0.21.2
         rust-rust-embed-8.13.0
         rust-rust-embed-impl-8.13.0
         rust-rust-embed-utils-8.13.0
@@ -8702,7 +8368,7 @@
         rust-rustc-hash-2.1.3
         rust-rustc_version-0.4.1
         rust-rustix-0.38.44
-        rust-rustix-1.1.5
+        rust-rustix-1.1.6
         rust-rustversion-1.0.23
         rust-rustybuzz-0.20.1
         rust-ryu-1.0.23
@@ -8723,7 +8389,6 @@
         rust-serde_with-3.24.0
         rust-serde_with_macros-3.24.0
         rust-sha2-0.11.1
-        rust-shlex-1.3.0
         rust-shlex-2.0.1
         rust-signal-hook-registry-1.4.8
         rust-simd-adler32-0.3.10
@@ -8735,9 +8400,9 @@
         rust-skrifa-0.44.0
         rust-slab-0.4.12
         rust-slotmap-1.1.1
-        rust-smallvec-1.16.3
+        rust-smallvec-1.16.5
         rust-smithay-client-toolkit-0.20.0
-        rust-smol_str-0.3.6
+        rust-smol_str-0.3.7
         rust-socket2-0.6.5
         rust-spirv-0.3.0-sdk-1.3.268.0
         rust-stable_deref_trait-1.2.1
@@ -8751,7 +8416,7 @@
         rust-syn-3.0.9
         rust-synstructure-0.14.0
         rust-sys-locale-0.3.2
-        rust-taffy-0.9.2
+        rust-taffy-0.15.1
         rust-temp-dir-0.1.16
         rust-tempfile-3.27.0
         rust-termcolor-1.4.1
@@ -8767,15 +8432,15 @@
         rust-tiny-skia-path-0.11.4
         rust-tiny-skia-path-0.12.0
         rust-tiny-xlib-0.2.5
-        rust-tinystr-0.8.4
+        rust-tinystr-0.8.5
         rust-tinyvec-1.13.3
-        rust-tokio-1.53.3
+        rust-tokio-1.54.1
         rust-tokio-macros-2.7.2
         rust-tokio-stream-0.1.19
         rust-tokio-util-0.7.20
         rust-toml-0.5.11
-        rust-toml_datetime-1.1.2-spec-1.1.0
-        rust-toml_edit-0.25.17-spec-1.1.0
+        rust-toml_datetime-1.1.3-spec-1.1.0
+        rust-toml_edit-0.25.19-spec-1.1.0
         rust-toml_parser-1.1.5-spec-1.1.0
         rust-tracing-0.1.44
         rust-tracing-attributes-0.1.31
@@ -8786,7 +8451,6 @@
         rust-typenum-1.20.1
         rust-udev-0.9.3
         rust-uds_windows-1.2.1
-        rust-uncased-0.9.10
         rust-unic-langid-0.9.6
         rust-unic-langid-impl-0.9.6
         rust-unicase-2.10.0
@@ -8795,29 +8459,29 @@
         rust-unicode-ccc-0.4.0
         rust-unicode-ident-1.0.27
         rust-unicode-linebreak-0.1.5
-        rust-unicode-properties-0.1.4
-        rust-unicode-script-0.5.8
+        rust-unicode-properties-0.1.5
+        rust-unicode-script-0.5.9
         rust-unicode-segmentation-1.13.3
         rust-unicode-vo-0.1.0
         rust-unicode-width-0.1.14
-        rust-unicode-width-0.2.2
+        rust-unicode-width-0.2.3
         rust-url-2.5.8
-        rust-urlencoding-2.1.3
         rust-usvg-0.45.1
-        rust-utf8_iter-1.0.4
+        rust-utf8_iter-1.1.0
         rust-utf8parse-0.2.2
-        rust-uuid-1.28.0
+        rust-utf_types-1.0.0
+        rust-uuid-1.29.0
         rust-uzers-0.12.2
         rust-version_check-0.9.5
         rust-walkdir-2.5.0
         rust-wasi-0.11.1-wasi-snapshot-preview1
         rust-wasip2-1.0.4-wasi-0.2.12
-        rust-wasm-bindgen-0.2.129
-        rust-wasm-bindgen-futures-0.4.79
-        rust-wasm-bindgen-macro-0.2.129
-        rust-wasm-bindgen-macro-support-0.2.129
-        rust-wasm-bindgen-shared-0.2.129
-        rust-wasmtimer-0.4.3
+        rust-wasm-bindgen-0.2.130
+        rust-wasm-bindgen-futures-0.4.80
+        rust-wasm-bindgen-macro-0.2.130
+        rust-wasm-bindgen-macro-support-0.2.130
+        rust-wasm-bindgen-shared-0.2.130
+        rust-wasmtimer-0.4.5
         rust-wayland-backend-0.3.17
         rust-wayland-client-0.31.15
         rust-wayland-csd-frame-0.3.0
@@ -8830,7 +8494,7 @@
         rust-wayland-scanner-0.31.11
         rust-wayland-server-0.31.14
         rust-wayland-sys-0.31.11
-        rust-web-sys-0.3.106
+        rust-web-sys-0.3.107
         rust-web-time-1.1.0
         rust-weezl-0.1.12
         rust-wgpu-28.0.0
@@ -8840,6 +8504,7 @@
         rust-wgpu-core-deps-windows-linux-android-28.0.0
         rust-wgpu-hal-28.0.1
         rust-wgpu-types-28.0.0
+        rust-which-8.0.6
         rust-winapi-0.3.9
         rust-winapi-i686-pc-windows-gnu-0.4.0
         rust-winapi-util-0.1.11
@@ -8865,38 +8530,29 @@
         rust-windows-sys-0.48.0
         rust-windows-sys-0.52.0
         rust-windows-sys-0.59.0
-        rust-windows-sys-0.60.2
         rust-windows-sys-0.61.2
         rust-windows-targets-0.48.5
         rust-windows-targets-0.52.6
-        rust-windows-targets-0.53.5
         rust-windows-threading-0.1.0
         rust-windows-threading-0.2.1
         rust-windows_aarch64_gnullvm-0.48.5
         rust-windows_aarch64_gnullvm-0.52.6
-        rust-windows_aarch64_gnullvm-0.53.1
         rust-windows_aarch64_msvc-0.48.5
         rust-windows_aarch64_msvc-0.52.6
-        rust-windows_aarch64_msvc-0.53.1
         rust-windows_i686_gnu-0.48.5
         rust-windows_i686_gnu-0.52.6
-        rust-windows_i686_gnu-0.53.1
         rust-windows_i686_gnullvm-0.52.6
-        rust-windows_i686_gnullvm-0.53.1
         rust-windows_i686_msvc-0.48.5
         rust-windows_i686_msvc-0.52.6
-        rust-windows_i686_msvc-0.53.1
         rust-windows_x86_64_gnu-0.48.5
         rust-windows_x86_64_gnu-0.52.6
-        rust-windows_x86_64_gnu-0.53.1
         rust-windows_x86_64_gnullvm-0.48.5
         rust-windows_x86_64_gnullvm-0.52.6
-        rust-windows_x86_64_gnullvm-0.53.1
         rust-windows_x86_64_msvc-0.48.5
         rust-windows_x86_64_msvc-0.52.6
-        rust-windows_x86_64_msvc-0.53.1
         rust-winnow-0.6.24
-        rust-winnow-1.0.4
+        rust-winnow-0.7.15
+        rust-winnow-1.0.5
         rust-wit-bindgen-0.57.1
         rust-writeable-0.6.4
         rust-x11-dl-2.21.0
@@ -8913,31 +8569,37 @@
         rust-xml-rs-0.8.29
         rust-xmlwriter-0.1.0
         rust-yansi-1.0.1
-        rust-yazi-0.2.1
-        rust-yoke-0.8.3
+        rust-yazi-0.2.2
+        rust-yoke-0.8.4
         rust-yoke-derive-0.8.4
         rust-zbus-5.19.0
+        rust-zbus-6.2.1
         rust-zbus-lockstep-0.5.2
         rust-zbus-lockstep-macros-0.5.2
         rust-zbus_macros-5.19.0
+        rust-zbus_macros-6.2.1
         rust-zbus_names-4.3.5
+        rust-zbus_utils-6.1.0
         rust-zbus_xml-5.2.1
-        rust-zcheapstr-1.1.0
+        rust-zcheapstr-1.2.0
         rust-zeno-0.3.3
         rust-zerocopy-0.8.63
         rust-zerocopy-derive-0.8.63
         rust-zerofrom-0.1.8
         rust-zerofrom-derive-0.1.8
         rust-zerotrie-0.2.5
-        rust-zerovec-0.11.8
-        rust-zerovec-derive-0.11.6
+        rust-zerovec-0.11.9
+        rust-zerovec-derive-0.11.7
         rust-zlib-rs-0.6.8
-        rust-zlink-0.5.0
-        rust-zlink-core-0.5.0
-        rust-zlink-macros-0.5.0
-        rust-zlink-smol-0.5.0
-        rust-zlink-tokio-0.5.0
+        rust-zlink-0.8.0
+        rust-zlink-core-0.8.0
+        rust-zlink-idl-0.8.0
+        rust-zlink-macros-0.8.0
+        rust-zlink-names-0.8.0
+        rust-zlink-smol-0.8.0
+        rust-zlink-tokio-0.8.0
         rust-zmij-1.0.23
+        rust-zruntime-0.2.2
         rust-zune-core-0.4.12
         rust-zune-core-0.5.3
         rust-zune-jpeg-0.4.21
@@ -8972,8 +8634,8 @@
                    "git+https://github.com/jackpot51/rust-atomicwrites#043ab4859d53ffd3d55334685303d8df39c9f768"
                    rust-atomicwrites-043ab48-checkout ".")
         (git-crate "build_helpers" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/build_helpers")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/build_helpers")
         (git-crate "clipboard_macos" "0.1.0"
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout "macos")
@@ -8987,47 +8649,53 @@
                    "git+https://github.com/pop-os/cosmic-protocols?rev=c0cff4d#c0cff4db14c37ed954983158e4055aa94c7741d9"
                    cosmic-protocols-c0cff4d-checkout "client-toolkit")
         (git-crate "cosmic-comp-config" "1.0.0"
-                   "git+https://github.com/pop-os/cosmic-comp#742b800b518f0dafd89d0c1ace4de4935334ed18"
-                   cosmic-comp-742b800-checkout "cosmic-comp-config")
+                   "git+https://github.com/pop-os/cosmic-comp#46b26e63ca22a7acb27adf0c4708ba62a48d356d"
+                   cosmic-comp-46b26e6-checkout "cosmic-comp-config")
         (git-crate "cosmic-config" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "cosmic-config")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "cosmic-config")
         (git-crate "cosmic-config-derive" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "cosmic-config-derive")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "cosmic-config-derive")
         (git-crate "cosmic-freedesktop-icons" "0.4.0"
                    "git+https://github.com/pop-os/freedesktop-icons#ab4c57b8e416c6af9297cb04d101889896fd9a92"
                    freedesktop-icons-ab4c57b-checkout ".")
+        (git-crate "cosmic-launch" "0.1.0"
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "cosmic-launch")
+        (git-crate "cosmic-login1-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "login1")
         (git-crate "cosmic-protocols" "0.2.0"
                    "git+https://github.com/pop-os/cosmic-protocols?rev=c0cff4d#c0cff4db14c37ed954983158e4055aa94c7741d9"
                    cosmic-protocols-c0cff4d-checkout ".")
-        (git-crate "cosmic-randr-shell" "1.10.0"
-                   "git+https://github.com/pop-os/cosmic-randr#85efc7febb99876094cf90af6dbce0927ad8cca7"
-                   cosmic-randr-85efc7f-checkout "shell")
-        (git-crate "cosmic-settings-airplane-mode-subscription" "1.10.0"
-                   "git+https://github.com/pop-os/cosmic-settings#c4ff5486d00fb0ede7a95784f6fb634bf79e6113"
-                   cosmic-settings-c4ff548-checkout "subscriptions/airplane-mode")
-        (git-crate "cosmic-settings-audio-client" "1.10.0"
-                   "git+https://github.com/pop-os/cosmic-settings-daemon#8844464b01d38bee68ed7da6083bf6dbaad71941"
-                   cosmic-settings-daemon-8844464-checkout "audio-client")
-        (git-crate "cosmic-settings-audio-core" "1.10.0"
-                   "git+https://github.com/pop-os/cosmic-settings-daemon#8844464b01d38bee68ed7da6083bf6dbaad71941"
-                   cosmic-settings-daemon-8844464-checkout "audio-core")
-        (git-crate "cosmic-settings-config" "1.10.0"
-                   "git+https://github.com/pop-os/cosmic-settings-daemon#8844464b01d38bee68ed7da6083bf6dbaad71941"
-                   cosmic-settings-daemon-8844464-checkout "config")
-        (git-crate "cosmic-settings-daemon" "0.1.0"
-                   "git+https://github.com/pop-os/dbus-settings-bindings#eed01dd3609e90e3c8cd043656734c500956c793"
-                   dbus-settings-bindings-eed01dd-checkout "cosmic-settings-daemon")
-        (git-crate "cosmic-settings-daemon-subscription" "1.10.0"
-                   "git+https://github.com/pop-os/cosmic-settings#c4ff5486d00fb0ede7a95784f6fb634bf79e6113"
-                   cosmic-settings-c4ff548-checkout "subscriptions/settings-daemon")
-        (git-crate "cosmic-settings-upower-subscription" "1.10.0"
-                   "git+https://github.com/pop-os/cosmic-settings#c4ff5486d00fb0ede7a95784f6fb634bf79e6113"
-                   cosmic-settings-c4ff548-checkout "subscriptions/upower")
+        (git-crate "cosmic-randr-shell" "1.11.0"
+                   "git+https://github.com/pop-os/cosmic-randr#f1a97655c97e8799bf4a37a8f5103a8ab5e5068d"
+                   cosmic-randr-f1a9765-checkout "shell")
+        (git-crate "cosmic-settings-airplane-mode-subscription" "1.11.0"
+                   "git+https://github.com/pop-os/cosmic-settings#fede96f61107a86438d3eedd694425188ee959e4"
+                   cosmic-settings-fede96f-checkout "subscriptions/airplane-mode")
+        (git-crate "cosmic-settings-audio-client" "1.11.0"
+                   "git+https://github.com/pop-os/cosmic-settings-daemon#2df041e6e90757782a7884729ae3723e86cee122"
+                   cosmic-settings-daemon-2df041e-checkout "audio-client")
+        (git-crate "cosmic-settings-audio-core" "1.11.0"
+                   "git+https://github.com/pop-os/cosmic-settings-daemon#2df041e6e90757782a7884729ae3723e86cee122"
+                   cosmic-settings-daemon-2df041e-checkout "audio-core")
+        (git-crate "cosmic-settings-config" "1.11.0"
+                   "git+https://github.com/pop-os/cosmic-settings-daemon#2df041e6e90757782a7884729ae3723e86cee122"
+                   cosmic-settings-daemon-2df041e-checkout "config")
+        (git-crate "cosmic-settings-daemon-subscription" "1.11.0"
+                   "git+https://github.com/pop-os/cosmic-settings#fede96f61107a86438d3eedd694425188ee959e4"
+                   cosmic-settings-fede96f-checkout "subscriptions/settings-daemon")
+        (git-crate "cosmic-settings-daemon-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "cosmic-settings-daemon")
+        (git-crate "cosmic-settings-upower-subscription" "1.11.0"
+                   "git+https://github.com/pop-os/cosmic-settings#fede96f61107a86438d3eedd694425188ee959e4"
+                   cosmic-settings-fede96f-checkout "subscriptions/upower")
         (git-crate "cosmic-theme" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "cosmic-theme")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "cosmic-theme")
         (git-crate "cryoglyph" "0.1.0"
                    "git+https://github.com/iced-rs/cryoglyph.git?rev=e429a025df36ab8145708acb309080ae3deec17a#e429a025df36ab8145708acb309080ae3deec17a"
                    cryoglyph-e429a02-checkout ".")
@@ -9038,47 +8706,47 @@
                    "git+https://github.com/pop-os/winit.git?rev=9567503#9567503d34130113e36b0167a2b8829c3756e429"
                    winit-9567503-checkout "dpi")
         (git-crate "iced" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced")
         (git-crate "iced_accessibility" "0.1.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/accessibility")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/accessibility")
         (git-crate "iced_core" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/core")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/core")
         (git-crate "iced_debug" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/debug")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/debug")
         (git-crate "iced_futures" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/futures")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/futures")
         (git-crate "iced_graphics" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/graphics")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/graphics")
         (git-crate "iced_program" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/program")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/program")
         (git-crate "iced_renderer" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/renderer")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/renderer")
         (git-crate "iced_runtime" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/runtime")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/runtime")
         (git-crate "iced_tiny_skia" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/tiny_skia")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/tiny_skia")
         (git-crate "iced_wgpu" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/wgpu")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/wgpu")
         (git-crate "iced_widget" "0.14.2"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/widget")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/widget")
         (git-crate "iced_winit" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/winit")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/winit")
         (git-crate "libcosmic" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout ".")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout ".")
         (git-crate "mime" "0.1.0"
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout "mime")
@@ -9088,9 +8756,12 @@
         (git-crate "softbuffer" "0.4.1"
                    "git+https://github.com/pop-os/softbuffer?tag=cosmic-4.0#c2b2c19ddb38ff17495643699f97cb1f2064a1be"
                    softbuffer-c2b2c19-checkout ".")
-        (git-crate "upower_dbus" "0.3.2"
-                   "git+https://github.com/pop-os/dbus-settings-bindings#eed01dd3609e90e3c8cd043656734c500956c793"
-                   dbus-settings-bindings-eed01dd-checkout "upower")
+        (git-crate "switcheroo-control-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "switcheroo-control")
+        (git-crate "upower-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "upower")
         (git-crate "window_clipboard" "0.4.1"
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout ".")
@@ -9131,7 +8802,7 @@
 (define cosmic-notifications-cargo-inputs
   (list rust-ab_glyph-0.2.32
         rust-ab_glyph_rasterizer-0.1.10
-        rust-addr2line-0.25.1
+        rust-addr2line-0.27.1
         rust-adler2-2.0.1
         rust-ahash-0.8.12
         rust-aho-corasick-1.1.5
@@ -9149,13 +8820,12 @@
         rust-arrayvec-0.7.8
         rust-as-raw-xcb-connection-1.0.1
         rust-ash-0.38.0-1.3.281
-        rust-ashpd-0.11.1
-        rust-ashpd-0.12.3
+        rust-ashpd-0.13.13
         rust-async-broadcast-0.7.2
         rust-async-channel-2.5.0
-        rust-async-executor-1.14.0
+        rust-async-executor-1.14.1
         rust-async-io-2.6.0
-        rust-async-lock-3.4.2
+        rust-async-lock-3.5.0
         rust-async-process-2.5.0
         rust-async-recursion-1.2.0
         rust-async-signal-0.2.14
@@ -9167,8 +8837,9 @@
         rust-atspi-proxies-0.13.0
         rust-auto_enums-0.8.10
         rust-autocfg-1.5.1
-        rust-backtrace-0.3.76
+        rust-backtrace-0.3.77
         rust-base64-0.22.1
+        rust-base64-0.23.1
         rust-basic-toml-0.1.10
         rust-bit-set-0.8.0
         rust-bit-vec-0.8.0
@@ -9180,6 +8851,7 @@
         rust-block2-0.6.2
         rust-blocking-1.7.0
         rust-borsh-1.8.1
+        rust-bs58-0.5.1
         rust-bstr-1.13.1
         rust-btoi-0.5.0
         rust-bumpalo-3.20.3
@@ -9190,10 +8862,12 @@
         rust-bytes-1.12.1
         rust-calloop-0.14.5
         rust-calloop-wayland-source-0.4.1
-        rust-cc-1.9.0
+        rust-cc-1.11.1
         rust-cfg-if-1.0.5
         rust-cfg_aliases-0.2.2
-        rust-clipboard-win-5.4.1
+        rust-chacha20-0.10.2
+        rust-chrono-0.4.45
+        rust-clipboard-win-5.4.3
         rust-cocoa-0.25.0
         rust-cocoa-foundation-0.1.2
         rust-codespan-reporting-0.12.0
@@ -9212,25 +8886,28 @@
         rust-core_maths-0.1.1
         rust-cosmic-text-0.19.0
         rust-cpufeatures-0.3.1
-        rust-crc32fast-1.5.2
+        rust-crc32fast-1.5.4
         rust-crossbeam-utils-0.8.23
         rust-crunchy-0.2.4
         rust-crypto-common-0.2.2
         rust-css-color-0.2.8
-        rust-csscolorparser-0.8.4
         rust-ctor-0.10.1
         rust-cursor-icon-1.2.0
         rust-darling-0.21.3
+        rust-darling-0.24.1
         rust-darling_core-0.21.3
+        rust-darling_core-0.24.1
         rust-darling_macro-0.21.3
+        rust-darling_macro-0.24.1
         rust-data-url-0.3.2
         rust-defmt-1.2.0
         rust-defmt-macros-1.2.0
         rust-defmt-parser-1.1.0
+        rust-deranged-0.5.9
         rust-derive_setters-0.1.9
         rust-derive_utils-0.16.0
         rust-digest-0.11.3
-        rust-dirs-6.0.0
+        rust-dirs-7.0.0
         rust-dirs-sys-0.5.0
         rust-dispatch2-0.3.1
         rust-displaydoc-0.2.7
@@ -9242,12 +8919,15 @@
         rust-drm-fourcc-2.2.0
         rust-drm-sys-0.6.1
         rust-dtor-0.8.1
+        rust-dyn-clone-1.0.20
         rust-endi-1.1.1
         rust-enumflags2-0.7.12
         rust-enumflags2_derive-0.7.12
         rust-equivalent-1.0.3
         rust-errno-0.3.14
         rust-error-code-3.4.0
+        rust-error_set-0.9.2
+        rust-error_set_impl-0.9.2
         rust-etagere-0.2.15
         rust-euclid-0.22.14
         rust-event-listener-5.4.2
@@ -9257,7 +8937,7 @@
         rust-fdeflate-0.3.7
         rust-find-crate-0.6.3
         rust-find-msvc-tools-0.1.15
-        rust-flate2-1.1.10
+        rust-flate2-1.1.11
         rust-float-cmp-0.9.0
         rust-float-cmp-0.10.0
         rust-float_next_after-1.0.0
@@ -9276,7 +8956,7 @@
         rust-foreign-types-macros-0.2.4
         rust-foreign-types-shared-0.3.1
         rust-form_urlencoded-1.2.2
-        rust-fsevent-sys-4.1.0
+        rust-freedesktop-desktop-entry-0.8.4
         rust-futures-0.3.34
         rust-futures-channel-0.3.34
         rust-futures-core-0.3.34
@@ -9291,8 +8971,10 @@
         rust-getrandom-0.2.17
         rust-getrandom-0.3.4
         rust-getrandom-0.4.3
+        rust-gettext-rs-0.8.0
+        rust-gettext-sys-0.27.0
         rust-gif-0.13.3
-        rust-gimli-0.32.3
+        rust-gimli-0.34.0
         rust-gl_generator-0.14.0
         rust-glam-0.25.0
         rust-glow-0.16.0
@@ -9300,10 +8982,10 @@
         rust-gpu-allocator-0.28.0
         rust-gpu-descriptor-0.3.2
         rust-gpu-descriptor-types-0.2.0
-        rust-grid-1.0.1
         rust-guillotiere-0.6.2
         rust-half-2.7.1
         rust-harfrust-0.5.2
+        rust-hashbrown-0.12.3
         rust-hashbrown-0.15.5
         rust-hashbrown-0.16.1
         rust-hashbrown-0.17.1
@@ -9317,28 +8999,31 @@
         rust-i18n-embed-0.16.0
         rust-i18n-embed-fl-0.10.1
         rust-i18n-embed-impl-0.8.4
-        rust-icu_collections-2.3.0
-        rust-icu_locale_core-2.3.0
-        rust-icu_normalizer-2.3.0
-        rust-icu_normalizer_data-2.3.0
-        rust-icu_properties-2.3.0
-        rust-icu_properties_data-2.3.0
-        rust-icu_provider-2.3.1
+        rust-iana-time-zone-0.1.65
+        rust-iana-time-zone-haiku-0.1.2
+        rust-icu_collections-2.4.0
+        rust-icu_locale_core-2.4.0
+        rust-icu_normalizer-2.4.0
+        rust-icu_normalizer_data-2.4.0
+        rust-icu_properties-2.4.0
+        rust-icu_properties_data-2.4.0
+        rust-icu_provider-2.4.0
         rust-ident_case-1.0.1
         rust-idna-1.1.0
         rust-idna_adapter-1.2.2
         rust-image-0.25.10
         rust-image-webp-0.2.4
         rust-imagesize-0.13.0
+        rust-indexmap-1.9.3
         rust-indexmap-2.14.2
         rust-inotify-0.11.5
         rust-inotify-sys-0.1.8
         rust-intl-memoizer-0.5.3
         rust-intl_pluralrules-7.0.2
         rust-itoa-1.0.18
-        rust-jiff-0.2.38
-        rust-jiff-core-0.1.1
-        rust-jiff-static-0.2.38
+        rust-jiff-0.2.39
+        rust-jiff-core-0.1.2
+        rust-jiff-static-0.2.39
         rust-jiff-tzdb-0.1.9
         rust-jiff-tzdb-platform-0.1.3
         rust-jni-0.22.4
@@ -9347,8 +9032,8 @@
         rust-jni-sys-0.4.1
         rust-jni-sys-macros-0.4.1
         rust-jobserver-0.1.35
-        rust-js-sys-0.3.106
-        rust-kamadak-exif-0.6.1
+        rust-js-sys-0.3.107
+        rust-kamadak-exif-0.6.2
         rust-keyboard-types-0.8.3
         rust-khronos-egl-6.0.0
         rust-khronos_api-3.1.0
@@ -9369,22 +9054,23 @@
         rust-linux-raw-sys-0.12.1
         rust-litemap-0.8.3
         rust-litrs-1.0.1
+        rust-locale_config-0.3.0
         rust-lock_api-0.4.14
-        rust-log-0.4.34
+        rust-log-0.4.35
         rust-lru-0.16.4
         rust-lyon-1.0.19
-        rust-lyon_algorithms-1.0.21
-        rust-lyon_geom-1.0.19
+        rust-lyon_algorithms-1.0.22
+        rust-lyon_geom-1.0.20
         rust-lyon_path-1.0.19
-        rust-lyon_tessellation-1.0.22
+        rust-lyon_tessellation-1.0.23
         rust-malloc_buf-0.0.6
         rust-matchers-0.2.0
         rust-memchr-2.8.3
         rust-memmap2-0.8.0
-        rust-memmap2-0.9.11
+        rust-memmap2-0.9.12
         rust-memoffset-0.9.1
         rust-metal-0.33.0
-        rust-mime-0.3.17
+        rust-mime-0.3.18
         rust-mime_guess-2.0.5
         rust-miniz_oxide-0.8.9
         rust-miniz_oxide-0.9.1
@@ -9395,9 +9081,10 @@
         rust-ndk-0.9.0
         rust-ndk-context-0.1.1
         rust-ndk-sys-0.6.0-11769913
-        rust-notify-8.2.0
-        rust-notify-types-2.1.0
+        rust-notify-8.2.1
+        rust-notify-types-2.2.0
         rust-nu-ansi-term-0.50.3
+        rust-num-conv-0.2.2
         rust-num-traits-0.2.19
         rust-num_enum-0.7.6
         rust-num_enum_derive-0.7.6
@@ -9412,6 +9099,7 @@
         rust-objc2-core-foundation-0.3.2
         rust-objc2-core-graphics-0.3.2
         rust-objc2-core-image-0.2.2
+        rust-objc2-core-services-0.3.2
         rust-objc2-core-video-0.3.2
         rust-objc2-encode-4.1.0
         rust-objc2-foundation-0.2.2
@@ -9420,11 +9108,11 @@
         rust-objc2-quartz-core-0.2.2
         rust-objc2-ui-kit-0.3.2
         rust-objc_id-0.1.1
-        rust-object-0.37.3
+        rust-object-0.40.0
         rust-once_cell-1.21.4
         rust-option-ext-0.2.0
         rust-orbclient-0.3.55
-        rust-ordered-float-5.5.0
+        rust-ordered-float-5.5.1
         rust-ordered-stream-0.2.0
         rust-ouroboros-0.18.5
         rust-ouroboros_macro-0.18.5
@@ -9438,24 +9126,25 @@
         rust-paste-1.0.15
         rust-percent-encoding-2.3.2
         rust-phf-0.13.1
-        rust-phf_generator-0.13.1
-        rust-phf_macros-0.13.1
+        rust-phf-0.14.0
+        rust-phf_generator-0.14.0
+        rust-phf_macros-0.14.0
         rust-phf_shared-0.13.1
+        rust-phf_shared-0.14.0
         rust-pico-args-0.5.0
         rust-pin-project-1.1.13
         rust-pin-project-internal-1.1.13
         rust-pin-project-lite-0.2.17
-        rust-pin-utils-0.1.1
         rust-piper-0.2.5
         rust-pkg-config-0.3.34
         rust-plain-0.2.3
         rust-png-0.17.16
         rust-png-0.18.1
         rust-polling-3.11.0
-        rust-pollster-0.4.0
         rust-portable-atomic-1.15.0
         rust-portable-atomic-util-0.2.8
         rust-potential_utf-0.1.6
+        rust-powerfmt-0.2.1
         rust-ppv-lite86-0.2.21
         rust-presser-0.3.1
         rust-proc-macro-crate-3.5.0
@@ -9471,11 +9160,10 @@
         rust-r-efi-5.3.0
         rust-r-efi-6.0.0
         rust-rand-0.8.8
-        rust-rand-0.9.5
+        rust-rand-0.10.3
         rust-rand_chacha-0.3.1
-        rust-rand_chacha-0.9.0
         rust-rand_core-0.6.4
-        rust-rand_core-0.9.5
+        rust-rand_core-0.10.1
         rust-range-alloc-0.1.5
         rust-rangemap-1.8.0
         rust-raw-window-handle-0.6.2
@@ -9485,14 +9173,18 @@
         rust-redox_syscall-0.5.18
         rust-redox_syscall-0.9.5
         rust-redox_users-0.5.3
+        rust-ref-cast-1.0.27
+        rust-ref-cast-impl-1.0.27
+        rust-regex-1.13.1
         rust-regex-automata-0.4.18
         rust-regex-syntax-0.8.11
         rust-renderdoc-sys-1.1.0
         rust-resvg-0.45.1
-        rust-rfd-0.16.0
         rust-rgb-0.8.53
-        rust-ron-0.12.2
+        rust-ron-0.11.0
+        rust-ron-0.12.3
         rust-roxmltree-0.20.0
+        rust-roxmltree-0.21.2
         rust-rust-embed-8.13.0
         rust-rust-embed-impl-8.13.0
         rust-rust-embed-utils-8.13.0
@@ -9501,10 +9193,12 @@
         rust-rustc-hash-2.1.3
         rust-rustc_version-0.4.1
         rust-rustix-0.38.44
-        rust-rustix-1.1.5
+        rust-rustix-1.1.6
         rust-rustversion-1.0.23
         rust-rustybuzz-0.20.1
         rust-same-file-1.0.6
+        rust-schemars-0.9.0
+        rust-schemars-1.2.3
         rust-scoped-tls-1.0.1
         rust-scopeguard-1.2.0
         rust-sctk-adwaita-0.11.1
@@ -9515,6 +9209,8 @@
         rust-serde_derive-1.0.229
         rust-serde_json-1.0.154
         rust-serde_repr-0.1.21
+        rust-serde_with-3.24.0
+        rust-serde_with_macros-3.24.0
         rust-sha2-0.11.1
         rust-sharded-slab-0.1.7
         rust-shlex-2.0.1
@@ -9528,9 +9224,9 @@
         rust-skrifa-0.44.0
         rust-slab-0.4.12
         rust-slotmap-1.1.1
-        rust-smallvec-1.16.3
+        rust-smallvec-1.16.4
         rust-smithay-client-toolkit-0.20.0
-        rust-smol_str-0.3.6
+        rust-smol_str-0.3.7
         rust-socket2-0.6.5
         rust-spirv-0.3.0-sdk-1.3.268.0
         rust-stable_deref_trait-1.2.1
@@ -9544,7 +9240,8 @@
         rust-syn-3.0.9
         rust-synstructure-0.14.0
         rust-sys-locale-0.3.2
-        rust-taffy-0.9.2
+        rust-taffy-0.15.1
+        rust-temp-dir-0.1.16
         rust-tempfile-3.27.0
         rust-termcolor-1.4.1
         rust-thiserror-1.0.69
@@ -9552,20 +9249,23 @@
         rust-thiserror-impl-1.0.69
         rust-thiserror-impl-2.0.21
         rust-thread_local-1.1.10
+        rust-time-0.3.55
+        rust-time-core-0.1.9
+        rust-time-macros-0.2.32
         rust-tiny-skia-0.11.4
         rust-tiny-skia-0.12.0
         rust-tiny-skia-path-0.11.4
         rust-tiny-skia-path-0.12.0
         rust-tiny-xlib-0.2.5
-        rust-tinystr-0.8.4
+        rust-tinystr-0.8.5
         rust-tinyvec-1.13.3
         rust-tl-0.7.8
-        rust-tokio-1.53.3
+        rust-tokio-1.54.1
         rust-tokio-macros-2.7.2
         rust-tokio-stream-0.1.19
         rust-toml-0.5.11
-        rust-toml_datetime-1.1.2-spec-1.1.0
-        rust-toml_edit-0.25.17-spec-1.1.0
+        rust-toml_datetime-1.1.3-spec-1.1.0
+        rust-toml_edit-0.25.19-spec-1.1.0
         rust-toml_parser-1.1.5-spec-1.1.0
         rust-tracing-0.1.44
         rust-tracing-attributes-0.1.31
@@ -9578,7 +9278,6 @@
         rust-typeid-1.0.3
         rust-typenum-1.20.1
         rust-uds_windows-1.2.1
-        rust-uncased-0.9.10
         rust-unic-langid-0.9.6
         rust-unic-langid-impl-0.9.6
         rust-unicase-2.10.0
@@ -9587,27 +9286,27 @@
         rust-unicode-ccc-0.4.0
         rust-unicode-ident-1.0.27
         rust-unicode-linebreak-0.1.5
-        rust-unicode-properties-0.1.4
-        rust-unicode-script-0.5.8
+        rust-unicode-properties-0.1.5
+        rust-unicode-script-0.5.9
         rust-unicode-segmentation-1.13.3
         rust-unicode-vo-0.1.0
-        rust-unicode-width-0.2.2
+        rust-unicode-width-0.2.3
         rust-url-2.5.8
-        rust-urlencoding-2.1.3
         rust-usvg-0.45.1
-        rust-utf8_iter-1.0.4
-        rust-uuid-1.28.0
+        rust-utf8_iter-1.1.0
+        rust-utf_types-1.0.0
+        rust-uuid-1.29.0
         rust-valuable-0.1.1
         rust-version_check-0.9.5
         rust-walkdir-2.5.0
         rust-wasi-0.11.1-wasi-snapshot-preview1
         rust-wasip2-1.0.4-wasi-0.2.12
-        rust-wasm-bindgen-0.2.129
-        rust-wasm-bindgen-futures-0.4.79
-        rust-wasm-bindgen-macro-0.2.129
-        rust-wasm-bindgen-macro-support-0.2.129
-        rust-wasm-bindgen-shared-0.2.129
-        rust-wasmtimer-0.4.3
+        rust-wasm-bindgen-0.2.130
+        rust-wasm-bindgen-futures-0.4.80
+        rust-wasm-bindgen-macro-0.2.130
+        rust-wasm-bindgen-macro-support-0.2.130
+        rust-wasm-bindgen-shared-0.2.130
+        rust-wasmtimer-0.4.5
         rust-wayland-backend-0.3.17
         rust-wayland-client-0.31.15
         rust-wayland-csd-frame-0.3.0
@@ -9620,7 +9319,7 @@
         rust-wayland-scanner-0.31.11
         rust-wayland-server-0.31.14
         rust-wayland-sys-0.31.11
-        rust-web-sys-0.3.106
+        rust-web-sys-0.3.107
         rust-web-time-1.1.0
         rust-weezl-0.1.12
         rust-wgpu-28.0.0
@@ -9630,6 +9329,7 @@
         rust-wgpu-core-deps-windows-linux-android-28.0.0
         rust-wgpu-hal-28.0.1
         rust-wgpu-types-28.0.0
+        rust-which-8.0.6
         rust-winapi-0.3.9
         rust-winapi-i686-pc-windows-gnu-0.4.0
         rust-winapi-util-0.1.11
@@ -9655,37 +9355,27 @@
         rust-windows-sys-0.48.0
         rust-windows-sys-0.52.0
         rust-windows-sys-0.59.0
-        rust-windows-sys-0.60.2
         rust-windows-sys-0.61.2
         rust-windows-targets-0.48.5
         rust-windows-targets-0.52.6
-        rust-windows-targets-0.53.5
         rust-windows-threading-0.1.0
         rust-windows-threading-0.2.1
         rust-windows_aarch64_gnullvm-0.48.5
         rust-windows_aarch64_gnullvm-0.52.6
-        rust-windows_aarch64_gnullvm-0.53.1
         rust-windows_aarch64_msvc-0.48.5
         rust-windows_aarch64_msvc-0.52.6
-        rust-windows_aarch64_msvc-0.53.1
         rust-windows_i686_gnu-0.48.5
         rust-windows_i686_gnu-0.52.6
-        rust-windows_i686_gnu-0.53.1
         rust-windows_i686_gnullvm-0.52.6
-        rust-windows_i686_gnullvm-0.53.1
         rust-windows_i686_msvc-0.48.5
         rust-windows_i686_msvc-0.52.6
-        rust-windows_i686_msvc-0.53.1
         rust-windows_x86_64_gnu-0.48.5
         rust-windows_x86_64_gnu-0.52.6
-        rust-windows_x86_64_gnu-0.53.1
         rust-windows_x86_64_gnullvm-0.48.5
         rust-windows_x86_64_gnullvm-0.52.6
-        rust-windows_x86_64_gnullvm-0.53.1
         rust-windows_x86_64_msvc-0.48.5
         rust-windows_x86_64_msvc-0.52.6
-        rust-windows_x86_64_msvc-0.53.1
-        rust-winnow-1.0.4
+        rust-winnow-1.0.5
         rust-wit-bindgen-0.57.1
         rust-writeable-0.6.4
         rust-x11-dl-2.21.0
@@ -9695,31 +9385,36 @@
         rust-xdg-3.0.0
         rust-xkbcommon-0.7.0
         rust-xkbcommon-0.8.0
+        rust-xkbcommon-0.9.0
         rust-xkbcommon-dl-0.4.2
         rust-xkeysym-0.2.1
         rust-xml-rs-0.8.29
         rust-xmlwriter-0.1.0
         rust-yansi-1.0.1
-        rust-yazi-0.2.1
-        rust-yoke-0.8.3
+        rust-yazi-0.2.2
+        rust-yoke-0.8.4
         rust-yoke-derive-0.8.4
         rust-zbus-5.19.0
+        rust-zbus-6.2.1
         rust-zbus-lockstep-0.5.2
         rust-zbus-lockstep-macros-0.5.2
         rust-zbus_macros-5.19.0
+        rust-zbus_macros-6.2.1
         rust-zbus_names-4.3.5
+        rust-zbus_utils-6.1.0
         rust-zbus_xml-5.2.1
-        rust-zcheapstr-1.1.0
+        rust-zcheapstr-1.2.0
         rust-zeno-0.3.3
         rust-zerocopy-0.8.63
         rust-zerocopy-derive-0.8.63
         rust-zerofrom-0.1.8
         rust-zerofrom-derive-0.1.8
         rust-zerotrie-0.2.5
-        rust-zerovec-0.11.8
-        rust-zerovec-derive-0.11.6
+        rust-zerovec-0.11.9
+        rust-zerovec-derive-0.11.7
         rust-zlib-rs-0.6.8
         rust-zmij-1.0.23
+        rust-zruntime-0.2.2
         rust-zune-core-0.4.12
         rust-zune-core-0.5.3
         rust-zune-jpeg-0.4.21
@@ -9754,8 +9449,8 @@
                    "git+https://github.com/jackpot51/rust-atomicwrites#043ab4859d53ffd3d55334685303d8df39c9f768"
                    rust-atomicwrites-043ab48-checkout ".")
         (git-crate "build_helpers" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/build_helpers")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "iced/build_helpers")
         (git-crate "clipboard_macos" "0.1.0"
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout "macos")
@@ -9769,26 +9464,32 @@
                    "git+https://github.com/pop-os/cosmic-protocols?rev=c0cff4d#c0cff4db14c37ed954983158e4055aa94c7741d9"
                    cosmic-protocols-c0cff4d-checkout "client-toolkit")
         (git-crate "cosmic-config" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "cosmic-config")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "cosmic-config")
         (git-crate "cosmic-config-derive" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "cosmic-config-derive")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "cosmic-config-derive")
         (git-crate "cosmic-freedesktop-icons" "0.4.0"
                    "git+https://github.com/pop-os/freedesktop-icons#ab4c57b8e416c6af9297cb04d101889896fd9a92"
                    freedesktop-icons-ab4c57b-checkout ".")
-        (git-crate "cosmic-panel-config" "1.10.0"
-                   "git+https://github.com/pop-os/cosmic-panel#3ce6ce1cec97669f91e809962d9446aaefe8a06e"
-                   cosmic-panel-3ce6ce1-checkout "cosmic-panel-config")
+        (git-crate "cosmic-launch" "0.1.0"
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "cosmic-launch")
+        (git-crate "cosmic-panel-config" "1.11.0"
+                   "git+https://github.com/pop-os/cosmic-panel#ca20ce3185b3b4404f429d59d429c40b58a2ddef"
+                   cosmic-panel-ca20ce3-checkout "cosmic-panel-config")
         (git-crate "cosmic-protocols" "0.2.0"
                    "git+https://github.com/pop-os/cosmic-protocols?rev=c0cff4d#c0cff4db14c37ed954983158e4055aa94c7741d9"
                    cosmic-protocols-c0cff4d-checkout ".")
-        (git-crate "cosmic-settings-daemon" "0.1.0"
-                   "git+https://github.com/pop-os/dbus-settings-bindings#eed01dd3609e90e3c8cd043656734c500956c793"
-                   dbus-settings-bindings-eed01dd-checkout "cosmic-settings-daemon")
+        (git-crate "cosmic-settings-config" "1.11.0"
+                   "git+https://github.com/pop-os/cosmic-settings-daemon#108e095779549931e7ce109429255a1341c70b7c"
+                   cosmic-settings-daemon-108e095-checkout "config")
+        (git-crate "cosmic-settings-daemon-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "cosmic-settings-daemon")
         (git-crate "cosmic-theme" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "cosmic-theme")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "cosmic-theme")
         (git-crate "cryoglyph" "0.1.0"
                    "git+https://github.com/iced-rs/cryoglyph.git?rev=e429a025df36ab8145708acb309080ae3deec17a#e429a025df36ab8145708acb309080ae3deec17a"
                    cryoglyph-e429a02-checkout ".")
@@ -9799,47 +9500,47 @@
                    "git+https://github.com/pop-os/winit.git?rev=9567503#9567503d34130113e36b0167a2b8829c3756e429"
                    winit-9567503-checkout "dpi")
         (git-crate "iced" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "iced")
         (git-crate "iced_accessibility" "0.1.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/accessibility")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "iced/accessibility")
         (git-crate "iced_core" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/core")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "iced/core")
         (git-crate "iced_debug" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/debug")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "iced/debug")
         (git-crate "iced_futures" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/futures")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "iced/futures")
         (git-crate "iced_graphics" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/graphics")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "iced/graphics")
         (git-crate "iced_program" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/program")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "iced/program")
         (git-crate "iced_renderer" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/renderer")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "iced/renderer")
         (git-crate "iced_runtime" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/runtime")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "iced/runtime")
         (git-crate "iced_tiny_skia" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/tiny_skia")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "iced/tiny_skia")
         (git-crate "iced_wgpu" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/wgpu")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "iced/wgpu")
         (git-crate "iced_widget" "0.14.2"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/widget")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "iced/widget")
         (git-crate "iced_winit" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/winit")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "iced/winit")
         (git-crate "libcosmic" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout ".")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout ".")
         (git-crate "mime" "0.1.0"
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout "mime")
@@ -9849,6 +9550,9 @@
         (git-crate "softbuffer" "0.4.1"
                    "git+https://github.com/pop-os/softbuffer?tag=cosmic-4.0#c2b2c19ddb38ff17495643699f97cb1f2064a1be"
                    softbuffer-c2b2c19-checkout ".")
+        (git-crate "switcheroo-control-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "switcheroo-control")
         (git-crate "window_clipboard" "0.4.1"
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout ".")
@@ -9885,9 +9589,9 @@
         (git-crate "winit-x11" "0.31.0-beta.2"
                    "git+https://github.com/pop-os/winit.git?rev=9567503#9567503d34130113e36b0167a2b8829c3756e429"
                    winit-9567503-checkout "winit-x11")
-        (git-crate "xdg-shell-wrapper-config" "1.10.0"
-                   "git+https://github.com/pop-os/cosmic-panel#3ce6ce1cec97669f91e809962d9446aaefe8a06e"
-                   cosmic-panel-3ce6ce1-checkout "xdg-shell-wrapper-config")))
+        (git-crate "xdg-shell-wrapper-config" "1.11.0"
+                   "git+https://github.com/pop-os/cosmic-panel#ca20ce3185b3b4404f429d59d429c40b58a2ddef"
+                   cosmic-panel-ca20ce3-checkout "xdg-shell-wrapper-config")))
 
 (define cosmic-launcher-cargo-inputs
   (list rust-ab_glyph-0.2.32
@@ -9914,13 +9618,12 @@
         rust-arrayvec-0.7.8
         rust-as-raw-xcb-connection-1.0.1
         rust-ash-0.38.0-1.3.281
-        rust-ashpd-0.11.1
-        rust-ashpd-0.12.3
+        rust-ashpd-0.13.13
         rust-async-broadcast-0.7.2
         rust-async-channel-2.5.0
-        rust-async-executor-1.14.0
+        rust-async-executor-1.14.1
         rust-async-io-2.6.0
-        rust-async-lock-3.4.2
+        rust-async-lock-3.5.0
         rust-async-oneshot-0.5.9
         rust-async-process-2.5.0
         rust-async-recursion-1.2.0
@@ -9960,7 +9663,7 @@
         rust-bytes-1.12.1
         rust-calloop-0.14.5
         rust-calloop-wayland-source-0.4.1
-        rust-cc-1.9.0
+        rust-cc-1.11.1
         rust-cfg-if-1.0.5
         rust-cfg_aliases-0.2.2
         rust-chacha20-0.10.2
@@ -9969,7 +9672,7 @@
         rust-clap_builder-4.6.7
         rust-clap_derive-4.6.7
         rust-clap_lex-1.1.1
-        rust-clipboard-win-5.4.1
+        rust-clipboard-win-5.4.3
         rust-cocoa-0.25.0
         rust-cocoa-foundation-0.1.2
         rust-codespan-reporting-0.12.0
@@ -9981,8 +9684,8 @@
         rust-console-api-0.9.0
         rust-console-subscriber-0.5.0
         rust-const-oid-0.10.2
-        rust-const_format-0.2.36
-        rust-const_format_proc_macros-0.2.34
+        rust-const_format-0.2.37
+        rust-const_format_proc_macros-0.2.37
         rust-core-foundation-0.9.4
         rust-core-foundation-0.10.1
         rust-core-foundation-sys-0.8.7
@@ -9992,13 +9695,12 @@
         rust-core_maths-0.1.1
         rust-cosmic-text-0.19.0
         rust-cpufeatures-0.3.1
-        rust-crc32fast-1.5.2
+        rust-crc32fast-1.5.4
         rust-crossbeam-channel-0.5.17
         rust-crossbeam-utils-0.8.23
         rust-crunchy-0.2.4
         rust-crypto-common-0.2.2
         rust-css-color-0.2.8
-        rust-csscolorparser-0.8.4
         rust-ctor-0.10.1
         rust-cursor-icon-1.2.0
         rust-darling-0.21.3
@@ -10015,7 +9717,7 @@
         rust-derive_setters-0.1.9
         rust-derive_utils-0.16.0
         rust-digest-0.11.3
-        rust-dirs-6.0.0
+        rust-dirs-7.0.0
         rust-dirs-sys-0.5.0
         rust-dispatch2-0.3.1
         rust-displaydoc-0.2.7
@@ -10045,7 +9747,7 @@
         rust-fdeflate-0.3.7
         rust-find-crate-0.6.3
         rust-find-msvc-tools-0.1.15
-        rust-flate2-1.1.10
+        rust-flate2-1.1.11
         rust-float-cmp-0.9.0
         rust-float-cmp-0.10.0
         rust-float_next_after-1.0.0
@@ -10053,7 +9755,7 @@
         rust-fluent-bundle-0.16.0
         rust-fluent-langneg-0.13.1
         rust-fluent-syntax-0.12.0
-        rust-flume-0.11.1
+        rust-flume-0.12.0
         rust-fnv-1.0.7
         rust-foldhash-0.1.5
         rust-foldhash-0.2.0
@@ -10067,7 +9769,6 @@
         rust-form_urlencoded-1.2.2
         rust-freedesktop-desktop-entry-0.8.4
         rust-freedesktop_entry_parser-2.0.1
-        rust-fsevent-sys-4.1.0
         rust-futures-0.3.34
         rust-futures-channel-0.3.34
         rust-futures-core-0.3.34
@@ -10094,7 +9795,6 @@
         rust-gpu-allocator-0.28.0
         rust-gpu-descriptor-0.3.2
         rust-gpu-descriptor-types-0.2.0
-        rust-grid-1.0.1
         rust-guillotiere-0.6.2
         rust-h2-0.4.20
         rust-half-2.7.1
@@ -10125,13 +9825,13 @@
         rust-i18n-embed-impl-0.8.4
         rust-iana-time-zone-0.1.65
         rust-iana-time-zone-haiku-0.1.2
-        rust-icu_collections-2.3.0
-        rust-icu_locale_core-2.3.0
-        rust-icu_normalizer-2.3.0
-        rust-icu_normalizer_data-2.3.0
-        rust-icu_properties-2.3.0
-        rust-icu_properties_data-2.3.0
-        rust-icu_provider-2.3.1
+        rust-icu_collections-2.4.0
+        rust-icu_locale_core-2.4.0
+        rust-icu_normalizer-2.4.0
+        rust-icu_normalizer_data-2.4.0
+        rust-icu_properties-2.4.0
+        rust-icu_properties_data-2.4.0
+        rust-icu_provider-2.4.0
         rust-ident_case-1.0.1
         rust-idna-1.1.0
         rust-idna_adapter-1.2.2
@@ -10148,9 +9848,9 @@
         rust-is_terminal_polyfill-1.70.2
         rust-itertools-0.14.0
         rust-itoa-1.0.18
-        rust-jiff-0.2.38
-        rust-jiff-core-0.1.1
-        rust-jiff-static-0.2.38
+        rust-jiff-0.2.39
+        rust-jiff-core-0.1.2
+        rust-jiff-static-0.2.39
         rust-jiff-tzdb-0.1.9
         rust-jiff-tzdb-platform-0.1.3
         rust-jni-0.22.4
@@ -10159,8 +9859,8 @@
         rust-jni-sys-0.4.1
         rust-jni-sys-macros-0.4.1
         rust-jobserver-0.1.35
-        rust-js-sys-0.3.106
-        rust-kamadak-exif-0.6.1
+        rust-js-sys-0.3.107
+        rust-kamadak-exif-0.6.2
         rust-keyboard-types-0.8.3
         rust-khronos-egl-6.0.0
         rust-khronos_api-3.1.0
@@ -10185,22 +9885,22 @@
         rust-litrs-1.0.1
         rust-locale_config-0.3.0
         rust-lock_api-0.4.14
-        rust-log-0.4.34
+        rust-log-0.4.35
         rust-lru-0.16.4
         rust-lyon-1.0.19
-        rust-lyon_algorithms-1.0.21
-        rust-lyon_geom-1.0.19
+        rust-lyon_algorithms-1.0.22
+        rust-lyon_geom-1.0.20
         rust-lyon_path-1.0.19
-        rust-lyon_tessellation-1.0.22
+        rust-lyon_tessellation-1.0.23
         rust-malloc_buf-0.0.6
         rust-matchers-0.2.0
         rust-matchit-0.8.4
         rust-memchr-2.8.3
         rust-memmap2-0.8.0
-        rust-memmap2-0.9.11
+        rust-memmap2-0.9.12
         rust-memoffset-0.9.1
         rust-metal-0.33.0
-        rust-mime-0.3.17
+        rust-mime-0.3.18
         rust-mime_guess-2.0.5
         rust-miniz_oxide-0.8.9
         rust-miniz_oxide-0.9.1
@@ -10208,14 +9908,13 @@
         rust-moxcms-0.8.1
         rust-mutate_once-0.1.2
         rust-naga-28.0.0
-        rust-nanorand-0.7.0
         rust-ndk-0.9.0
         rust-ndk-context-0.1.1
         rust-ndk-sys-0.6.0-11769913
         rust-nix-0.31.3
         rust-nom-8.0.0
-        rust-notify-8.2.0
-        rust-notify-types-2.1.0
+        rust-notify-8.2.1
+        rust-notify-types-2.2.0
         rust-num-conv-0.2.2
         rust-num-traits-0.2.19
         rust-num_cpus-1.17.0
@@ -10232,6 +9931,7 @@
         rust-objc2-core-foundation-0.3.2
         rust-objc2-core-graphics-0.3.2
         rust-objc2-core-image-0.2.2
+        rust-objc2-core-services-0.3.2
         rust-objc2-core-video-0.3.2
         rust-objc2-encode-4.1.0
         rust-objc2-foundation-0.2.2
@@ -10244,7 +9944,7 @@
         rust-once_cell_polyfill-1.70.2
         rust-option-ext-0.2.0
         rust-orbclient-0.3.55
-        rust-ordered-float-5.5.0
+        rust-ordered-float-5.5.1
         rust-ordered-stream-0.2.0
         rust-ouroboros-0.18.5
         rust-ouroboros_macro-0.18.5
@@ -10258,21 +9958,21 @@
         rust-paste-1.0.15
         rust-percent-encoding-2.3.2
         rust-phf-0.13.1
-        rust-phf_generator-0.13.1
-        rust-phf_macros-0.13.1
+        rust-phf-0.14.0
+        rust-phf_generator-0.14.0
+        rust-phf_macros-0.14.0
         rust-phf_shared-0.13.1
+        rust-phf_shared-0.14.0
         rust-pico-args-0.5.0
         rust-pin-project-1.1.13
         rust-pin-project-internal-1.1.13
         rust-pin-project-lite-0.2.17
-        rust-pin-utils-0.1.1
         rust-piper-0.2.5
         rust-pkg-config-0.3.34
         rust-plain-0.2.3
         rust-png-0.17.16
         rust-png-0.18.1
         rust-polling-3.11.0
-        rust-pollster-0.4.0
         rust-portable-atomic-1.15.0
         rust-portable-atomic-util-0.2.8
         rust-potential_utf-0.1.6
@@ -10295,12 +9995,9 @@
         rust-r-efi-5.3.0
         rust-r-efi-6.0.0
         rust-rand-0.8.8
-        rust-rand-0.9.5
         rust-rand-0.10.3
         rust-rand_chacha-0.3.1
-        rust-rand_chacha-0.9.0
         rust-rand_core-0.6.4
-        rust-rand_core-0.9.5
         rust-rand_core-0.10.1
         rust-range-alloc-0.1.5
         rust-rangemap-1.8.0
@@ -10318,11 +10015,11 @@
         rust-regex-syntax-0.8.11
         rust-renderdoc-sys-1.1.0
         rust-resvg-0.45.1
-        rust-rfd-0.16.0
         rust-rgb-0.8.53
         rust-ron-0.11.0
-        rust-ron-0.12.2
+        rust-ron-0.12.3
         rust-roxmltree-0.20.0
+        rust-roxmltree-0.21.2
         rust-rust-embed-8.13.0
         rust-rust-embed-impl-8.13.0
         rust-rust-embed-utils-8.13.0
@@ -10330,7 +10027,7 @@
         rust-rustc-hash-2.1.3
         rust-rustc_version-0.4.1
         rust-rustix-0.38.44
-        rust-rustix-1.1.5
+        rust-rustix-1.1.6
         rust-rustversion-1.0.23
         rust-rustybuzz-0.20.1
         rust-same-file-1.0.6
@@ -10350,7 +10047,6 @@
         rust-serde_with_macros-3.24.0
         rust-sha2-0.11.1
         rust-sharded-slab-0.1.7
-        rust-shlex-1.3.0
         rust-shlex-2.0.1
         rust-signal-hook-registry-1.4.8
         rust-simd-adler32-0.3.10
@@ -10362,9 +10058,9 @@
         rust-skrifa-0.44.0
         rust-slab-0.4.12
         rust-slotmap-1.1.1
-        rust-smallvec-1.16.3
+        rust-smallvec-1.16.5
         rust-smithay-client-toolkit-0.20.0
-        rust-smol_str-0.3.6
+        rust-smol_str-0.3.7
         rust-socket2-0.6.5
         rust-spin-0.9.9
         rust-spirv-0.3.0-sdk-1.3.268.0
@@ -10380,7 +10076,7 @@
         rust-sync_wrapper-1.0.2
         rust-synstructure-0.14.0
         rust-sys-locale-0.3.2
-        rust-taffy-0.9.2
+        rust-taffy-0.15.1
         rust-temp-dir-0.1.16
         rust-tempfile-3.27.0
         rust-termcolor-1.4.1
@@ -10397,18 +10093,18 @@
         rust-tiny-skia-path-0.11.4
         rust-tiny-skia-path-0.12.0
         rust-tiny-xlib-0.2.5
-        rust-tinystr-0.8.4
+        rust-tinystr-0.8.5
         rust-tinyvec-1.13.3
-        rust-tokio-1.53.3
+        rust-tokio-1.54.1
         rust-tokio-macros-2.7.2
         rust-tokio-stream-0.1.19
         rust-tokio-util-0.7.20
         rust-toml-0.5.11
-        rust-toml_datetime-1.1.2-spec-1.1.0
+        rust-toml_datetime-1.1.3-spec-1.1.0
         rust-toml_edit-0.25.6-spec-1.1.0
         rust-toml_parser-1.1.5-spec-1.1.0
-        rust-tonic-0.14.6
-        rust-tonic-prost-0.14.6
+        rust-tonic-0.14.9
+        rust-tonic-prost-0.14.9
         rust-tower-0.5.3
         rust-tower-layer-0.3.3
         rust-tower-service-0.3.3
@@ -10423,7 +10119,6 @@
         rust-typeid-1.0.3
         rust-typenum-1.20.1
         rust-uds_windows-1.2.1
-        rust-uncased-0.9.10
         rust-unic-langid-0.9.6
         rust-unic-langid-impl-0.9.6
         rust-unicase-2.10.0
@@ -10432,30 +10127,30 @@
         rust-unicode-ccc-0.4.0
         rust-unicode-ident-1.0.27
         rust-unicode-linebreak-0.1.5
-        rust-unicode-properties-0.1.4
-        rust-unicode-script-0.5.8
+        rust-unicode-properties-0.1.5
+        rust-unicode-script-0.5.9
         rust-unicode-segmentation-1.13.3
         rust-unicode-vo-0.1.0
-        rust-unicode-width-0.2.2
+        rust-unicode-width-0.2.3
         rust-unicode-xid-0.2.6
         rust-url-2.5.8
-        rust-urlencoding-2.1.3
         rust-usvg-0.45.1
-        rust-utf8_iter-1.0.4
+        rust-utf8_iter-1.1.0
         rust-utf8parse-0.2.2
-        rust-uuid-1.28.0
+        rust-utf_types-1.0.0
+        rust-uuid-1.29.0
         rust-valuable-0.1.1
         rust-version_check-0.9.5
         rust-walkdir-2.5.0
         rust-want-0.3.2
         rust-wasi-0.11.1-wasi-snapshot-preview1
         rust-wasip2-1.0.4-wasi-0.2.12
-        rust-wasm-bindgen-0.2.129
-        rust-wasm-bindgen-futures-0.4.79
-        rust-wasm-bindgen-macro-0.2.129
-        rust-wasm-bindgen-macro-support-0.2.129
-        rust-wasm-bindgen-shared-0.2.129
-        rust-wasmtimer-0.4.3
+        rust-wasm-bindgen-0.2.130
+        rust-wasm-bindgen-futures-0.4.80
+        rust-wasm-bindgen-macro-0.2.130
+        rust-wasm-bindgen-macro-support-0.2.130
+        rust-wasm-bindgen-shared-0.2.130
+        rust-wasmtimer-0.4.5
         rust-wayland-backend-0.3.17
         rust-wayland-client-0.31.15
         rust-wayland-csd-frame-0.3.0
@@ -10468,7 +10163,7 @@
         rust-wayland-scanner-0.31.11
         rust-wayland-server-0.31.14
         rust-wayland-sys-0.31.11
-        rust-web-sys-0.3.106
+        rust-web-sys-0.3.107
         rust-web-time-1.1.0
         rust-weezl-0.1.12
         rust-wgpu-28.0.0
@@ -10504,37 +10199,27 @@
         rust-windows-sys-0.48.0
         rust-windows-sys-0.52.0
         rust-windows-sys-0.59.0
-        rust-windows-sys-0.60.2
         rust-windows-sys-0.61.2
         rust-windows-targets-0.48.5
         rust-windows-targets-0.52.6
-        rust-windows-targets-0.53.5
         rust-windows-threading-0.1.0
         rust-windows-threading-0.2.1
         rust-windows_aarch64_gnullvm-0.48.5
         rust-windows_aarch64_gnullvm-0.52.6
-        rust-windows_aarch64_gnullvm-0.53.1
         rust-windows_aarch64_msvc-0.48.5
         rust-windows_aarch64_msvc-0.52.6
-        rust-windows_aarch64_msvc-0.53.1
         rust-windows_i686_gnu-0.48.5
         rust-windows_i686_gnu-0.52.6
-        rust-windows_i686_gnu-0.53.1
         rust-windows_i686_gnullvm-0.52.6
-        rust-windows_i686_gnullvm-0.53.1
         rust-windows_i686_msvc-0.48.5
         rust-windows_i686_msvc-0.52.6
-        rust-windows_i686_msvc-0.53.1
         rust-windows_x86_64_gnu-0.48.5
         rust-windows_x86_64_gnu-0.52.6
-        rust-windows_x86_64_gnu-0.53.1
         rust-windows_x86_64_gnullvm-0.48.5
         rust-windows_x86_64_gnullvm-0.52.6
-        rust-windows_x86_64_gnullvm-0.53.1
         rust-windows_x86_64_msvc-0.48.5
         rust-windows_x86_64_msvc-0.52.6
-        rust-windows_x86_64_msvc-0.53.1
-        rust-winnow-1.0.4
+        rust-winnow-1.0.5
         rust-wit-bindgen-0.57.1
         rust-writeable-0.6.4
         rust-x11-dl-2.21.0
@@ -10553,26 +10238,30 @@
         rust-xmltree-0.12.0
         rust-xmlwriter-0.1.0
         rust-yansi-1.0.1
-        rust-yazi-0.2.1
-        rust-yoke-0.8.3
+        rust-yazi-0.2.2
+        rust-yoke-0.8.4
         rust-yoke-derive-0.8.4
         rust-zbus-5.19.0
+        rust-zbus-6.2.1
         rust-zbus-lockstep-0.5.2
         rust-zbus-lockstep-macros-0.5.2
         rust-zbus_macros-5.19.0
+        rust-zbus_macros-6.2.1
         rust-zbus_names-4.3.5
+        rust-zbus_utils-6.1.0
         rust-zbus_xml-5.2.1
-        rust-zcheapstr-1.1.0
+        rust-zcheapstr-1.2.0
         rust-zeno-0.3.3
         rust-zerocopy-0.8.63
         rust-zerocopy-derive-0.8.63
         rust-zerofrom-0.1.8
         rust-zerofrom-derive-0.1.8
         rust-zerotrie-0.2.5
-        rust-zerovec-0.11.8
-        rust-zerovec-derive-0.11.6
+        rust-zerovec-0.11.9
+        rust-zerovec-derive-0.11.7
         rust-zlib-rs-0.6.8
         rust-zmij-1.0.23
+        rust-zruntime-0.2.2
         rust-zune-core-0.4.12
         rust-zune-core-0.5.3
         rust-zune-jpeg-0.4.21
@@ -10607,8 +10296,8 @@
                    "git+https://github.com/jackpot51/rust-atomicwrites#043ab4859d53ffd3d55334685303d8df39c9f768"
                    rust-atomicwrites-043ab48-checkout ".")
         (git-crate "build_helpers" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic/#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/build_helpers")
+                   "git+https://github.com/pop-os/libcosmic/#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/build_helpers")
         (git-crate "clipboard_macos" "0.1.0"
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout "macos")
@@ -10622,29 +10311,29 @@
                    "git+https://github.com/pop-os/cosmic-protocols?rev=c0cff4d#c0cff4db14c37ed954983158e4055aa94c7741d9"
                    cosmic-protocols-c0cff4d-checkout "client-toolkit")
         (git-crate "cosmic-config" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic/#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "cosmic-config")
+                   "git+https://github.com/pop-os/libcosmic/#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "cosmic-config")
         (git-crate "cosmic-config-derive" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic/#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "cosmic-config-derive")
+                   "git+https://github.com/pop-os/libcosmic/#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "cosmic-config-derive")
         (git-crate "cosmic-freedesktop-icons" "0.4.0"
                    "git+https://github.com/pop-os/freedesktop-icons#ab4c57b8e416c6af9297cb04d101889896fd9a92"
                    freedesktop-icons-ab4c57b-checkout ".")
         (git-crate "cosmic-launch" "0.1.0"
-                   "git+https://github.com/pop-os/libcosmic/#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "cosmic-launch")
+                   "git+https://github.com/pop-os/libcosmic/#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "cosmic-launch")
         (git-crate "cosmic-protocols" "0.2.0"
                    "git+https://github.com/pop-os/cosmic-protocols?rev=c0cff4d#c0cff4db14c37ed954983158e4055aa94c7741d9"
                    cosmic-protocols-c0cff4d-checkout ".")
         (git-crate "cosmic-settings-config" "1.11.0"
-                   "git+https://github.com/pop-os/cosmic-settings-daemon#655b14fb9572dd7f7231ec6c343c63984e99741a"
-                   cosmic-settings-daemon-655b14f-checkout "config")
-        (git-crate "cosmic-settings-daemon" "0.1.0"
-                   "git+https://github.com/pop-os/dbus-settings-bindings#eed01dd3609e90e3c8cd043656734c500956c793"
-                   dbus-settings-bindings-eed01dd-checkout "cosmic-settings-daemon")
+                   "git+https://github.com/pop-os/cosmic-settings-daemon#108e095779549931e7ce109429255a1341c70b7c"
+                   cosmic-settings-daemon-108e095-checkout "config")
+        (git-crate "cosmic-settings-daemon-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "cosmic-settings-daemon")
         (git-crate "cosmic-theme" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic/#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "cosmic-theme")
+                   "git+https://github.com/pop-os/libcosmic/#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "cosmic-theme")
         (git-crate "cryoglyph" "0.1.0"
                    "git+https://github.com/iced-rs/cryoglyph.git?rev=e429a025df36ab8145708acb309080ae3deec17a#e429a025df36ab8145708acb309080ae3deec17a"
                    cryoglyph-e429a02-checkout ".")
@@ -10655,65 +10344,65 @@
                    "git+https://github.com/pop-os/winit.git?rev=9567503#9567503d34130113e36b0167a2b8829c3756e429"
                    winit-9567503-checkout "dpi")
         (git-crate "iced" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic/#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced")
+                   "git+https://github.com/pop-os/libcosmic/#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced")
         (git-crate "iced_accessibility" "0.1.0"
-                   "git+https://github.com/pop-os/libcosmic/#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/accessibility")
+                   "git+https://github.com/pop-os/libcosmic/#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/accessibility")
         (git-crate "iced_core" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic/#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/core")
+                   "git+https://github.com/pop-os/libcosmic/#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/core")
         (git-crate "iced_debug" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic/#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/debug")
+                   "git+https://github.com/pop-os/libcosmic/#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/debug")
         (git-crate "iced_futures" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic/#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/futures")
+                   "git+https://github.com/pop-os/libcosmic/#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/futures")
         (git-crate "iced_graphics" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic/#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/graphics")
+                   "git+https://github.com/pop-os/libcosmic/#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/graphics")
         (git-crate "iced_program" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic/#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/program")
+                   "git+https://github.com/pop-os/libcosmic/#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/program")
         (git-crate "iced_renderer" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic/#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/renderer")
+                   "git+https://github.com/pop-os/libcosmic/#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/renderer")
         (git-crate "iced_runtime" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic/#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/runtime")
+                   "git+https://github.com/pop-os/libcosmic/#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/runtime")
         (git-crate "iced_tiny_skia" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic/#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/tiny_skia")
+                   "git+https://github.com/pop-os/libcosmic/#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/tiny_skia")
         (git-crate "iced_wgpu" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic/#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/wgpu")
+                   "git+https://github.com/pop-os/libcosmic/#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/wgpu")
         (git-crate "iced_widget" "0.14.2"
-                   "git+https://github.com/pop-os/libcosmic/#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/widget")
+                   "git+https://github.com/pop-os/libcosmic/#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/widget")
         (git-crate "iced_winit" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic/#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/winit")
+                   "git+https://github.com/pop-os/libcosmic/#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/winit")
         (git-crate "libcosmic" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic/#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout ".")
+                   "git+https://github.com/pop-os/libcosmic/#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout ".")
         (git-crate "mime" "0.1.0"
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout "mime")
         (git-crate "pop-launcher" "1.2.7"
-                   "git+https://github.com/pop-os/launcher/#3f35b7f02f93d262be51da62fee7a0f71c1fd54b"
-                   launcher-3f35b7f-checkout ".")
+                   "git+https://github.com/pop-os/launcher/#4111617b7345134abe67332a7baa5ef12538f412"
+                   launcher-4111617-checkout ".")
         (git-crate "pop-launcher-service" "1.2.7"
-                   "git+https://github.com/pop-os/launcher/#3f35b7f02f93d262be51da62fee7a0f71c1fd54b"
-                   launcher-3f35b7f-checkout "service")
+                   "git+https://github.com/pop-os/launcher/#4111617b7345134abe67332a7baa5ef12538f412"
+                   launcher-4111617-checkout "service")
         (git-crate "smithay-clipboard" "0.8.0"
                    "git+https://github.com/pop-os/smithay-clipboard?tag=sctk-0.20#859b02c88f45c554049a67c6ddeec1692ce0e20b"
                    smithay-clipboard-859b02c-checkout ".")
         (git-crate "softbuffer" "0.4.1"
                    "git+https://github.com/pop-os/softbuffer?tag=cosmic-4.0#c2b2c19ddb38ff17495643699f97cb1f2064a1be"
                    softbuffer-c2b2c19-checkout ".")
-        (git-crate "switcheroo-control" "0.1.0"
-                   "git+https://github.com/pop-os/dbus-settings-bindings#eed01dd3609e90e3c8cd043656734c500956c793"
-                   dbus-settings-bindings-eed01dd-checkout "switcheroo-control")
+        (git-crate "switcheroo-control-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "switcheroo-control")
         (git-crate "window_clipboard" "0.4.1"
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout ".")
@@ -10776,13 +10465,12 @@
         rust-arrayvec-0.7.8
         rust-as-raw-xcb-connection-1.0.1
         rust-ash-0.38.0-1.3.281
-        rust-ashpd-0.11.1
-        rust-ashpd-0.12.3
+        rust-ashpd-0.13.13
         rust-async-broadcast-0.7.2
         rust-async-channel-2.5.0
-        rust-async-executor-1.14.0
+        rust-async-executor-1.14.1
         rust-async-io-2.6.0
-        rust-async-lock-3.4.2
+        rust-async-lock-3.5.0
         rust-async-process-2.5.0
         rust-async-recursion-1.2.0
         rust-async-signal-0.2.14
@@ -10818,7 +10506,7 @@
         rust-bytes-1.12.1
         rust-calloop-0.14.5
         rust-calloop-wayland-source-0.4.1
-        rust-cc-1.9.0
+        rust-cc-1.11.1
         rust-cfg-if-1.0.5
         rust-cfg_aliases-0.2.2
         rust-chacha20-0.10.2
@@ -10827,7 +10515,7 @@
         rust-clap_builder-4.6.7
         rust-clap_derive-4.6.7
         rust-clap_lex-1.1.1
-        rust-clipboard-win-5.4.1
+        rust-clipboard-win-5.4.3
         rust-cocoa-0.25.0
         rust-cocoa-foundation-0.1.2
         rust-codespan-reporting-0.12.0
@@ -10846,12 +10534,11 @@
         rust-core_maths-0.1.1
         rust-cosmic-text-0.19.0
         rust-cpufeatures-0.3.1
-        rust-crc32fast-1.5.2
+        rust-crc32fast-1.5.4
         rust-crossbeam-utils-0.8.23
         rust-crunchy-0.2.4
         rust-crypto-common-0.2.2
         rust-css-color-0.2.8
-        rust-csscolorparser-0.8.4
         rust-ctor-0.10.1
         rust-cursor-icon-1.2.0
         rust-darling-0.21.3
@@ -10868,7 +10555,7 @@
         rust-derive_setters-0.1.9
         rust-derive_utils-0.16.0
         rust-digest-0.11.3
-        rust-dirs-6.0.0
+        rust-dirs-7.0.0
         rust-dirs-sys-0.5.0
         rust-dispatch2-0.3.1
         rust-displaydoc-0.2.7
@@ -10899,7 +10586,7 @@
         rust-fdeflate-0.3.7
         rust-find-crate-0.6.3
         rust-find-msvc-tools-0.1.15
-        rust-flate2-1.1.10
+        rust-flate2-1.1.11
         rust-float-cmp-0.9.0
         rust-float-cmp-0.10.0
         rust-float_next_after-1.0.0
@@ -10920,7 +10607,6 @@
         rust-form_urlencoded-1.2.2
         rust-freedesktop-desktop-entry-0.8.4
         rust-freedesktop_entry_parser-2.0.1
-        rust-fsevent-sys-4.1.0
         rust-futures-0.3.34
         rust-futures-channel-0.3.34
         rust-futures-core-0.3.34
@@ -10945,7 +10631,6 @@
         rust-gpu-allocator-0.28.0
         rust-gpu-descriptor-0.3.2
         rust-gpu-descriptor-types-0.2.0
-        rust-grid-1.0.1
         rust-guillotiere-0.6.2
         rust-half-2.7.1
         rust-harfrust-0.5.2
@@ -10966,13 +10651,13 @@
         rust-i18n-embed-impl-0.8.4
         rust-iana-time-zone-0.1.65
         rust-iana-time-zone-haiku-0.1.2
-        rust-icu_collections-2.3.0
-        rust-icu_locale_core-2.3.0
-        rust-icu_normalizer-2.3.0
-        rust-icu_normalizer_data-2.3.0
-        rust-icu_properties-2.3.0
-        rust-icu_properties_data-2.3.0
-        rust-icu_provider-2.3.1
+        rust-icu_collections-2.4.0
+        rust-icu_locale_core-2.4.0
+        rust-icu_normalizer-2.4.0
+        rust-icu_normalizer_data-2.4.0
+        rust-icu_properties-2.4.0
+        rust-icu_properties_data-2.4.0
+        rust-icu_provider-2.4.0
         rust-ident_case-1.0.1
         rust-idna-1.1.0
         rust-idna_adapter-1.2.2
@@ -10988,11 +10673,11 @@
         rust-intl_pluralrules-7.0.2
         rust-is-terminal-0.4.17
         rust-is_terminal_polyfill-1.70.2
-        rust-itertools-0.14.0
+        rust-itertools-0.15.0
         rust-itoa-1.0.18
-        rust-jiff-0.2.38
-        rust-jiff-core-0.1.1
-        rust-jiff-static-0.2.38
+        rust-jiff-0.2.39
+        rust-jiff-core-0.1.2
+        rust-jiff-static-0.2.39
         rust-jiff-tzdb-0.1.9
         rust-jiff-tzdb-platform-0.1.3
         rust-jni-0.22.4
@@ -11001,8 +10686,8 @@
         rust-jni-sys-0.4.1
         rust-jni-sys-macros-0.4.1
         rust-jobserver-0.1.35
-        rust-js-sys-0.3.106
-        rust-kamadak-exif-0.6.1
+        rust-js-sys-0.3.107
+        rust-kamadak-exif-0.6.2
         rust-keyboard-types-0.8.3
         rust-khronos-egl-6.0.0
         rust-khronos_api-3.1.0
@@ -11025,20 +10710,20 @@
         rust-litrs-1.0.1
         rust-locale_config-0.3.0
         rust-lock_api-0.4.14
-        rust-log-0.4.34
+        rust-log-0.4.35
         rust-lru-0.16.4
         rust-lyon-1.0.19
-        rust-lyon_algorithms-1.0.21
-        rust-lyon_geom-1.0.19
+        rust-lyon_algorithms-1.0.22
+        rust-lyon_geom-1.0.20
         rust-lyon_path-1.0.19
-        rust-lyon_tessellation-1.0.22
+        rust-lyon_tessellation-1.0.23
         rust-malloc_buf-0.0.6
         rust-memchr-2.8.3
         rust-memmap2-0.8.0
-        rust-memmap2-0.9.11
+        rust-memmap2-0.9.12
         rust-memoffset-0.9.1
         rust-metal-0.33.0
-        rust-mime-0.3.17
+        rust-mime-0.3.18
         rust-mime_guess-2.0.5
         rust-miniz_oxide-0.8.9
         rust-miniz_oxide-0.9.1
@@ -11049,10 +10734,10 @@
         rust-ndk-0.9.0
         rust-ndk-context-0.1.1
         rust-ndk-sys-0.6.0-11769913
-        rust-nix-0.30.1
+        rust-nix-0.31.3
         rust-nom-8.0.0
-        rust-notify-8.2.0
-        rust-notify-types-2.1.0
+        rust-notify-8.2.1
+        rust-notify-types-2.2.0
         rust-num-conv-0.2.2
         rust-num-traits-0.2.19
         rust-num_enum-0.7.6
@@ -11068,6 +10753,7 @@
         rust-objc2-core-foundation-0.3.2
         rust-objc2-core-graphics-0.3.2
         rust-objc2-core-image-0.2.2
+        rust-objc2-core-services-0.3.2
         rust-objc2-core-video-0.3.2
         rust-objc2-encode-4.1.0
         rust-objc2-foundation-0.2.2
@@ -11080,7 +10766,7 @@
         rust-once_cell_polyfill-1.70.2
         rust-option-ext-0.2.0
         rust-orbclient-0.3.55
-        rust-ordered-float-5.5.0
+        rust-ordered-float-5.5.1
         rust-ordered-stream-0.2.0
         rust-ouroboros-0.18.5
         rust-ouroboros_macro-0.18.5
@@ -11094,21 +10780,21 @@
         rust-paste-1.0.15
         rust-percent-encoding-2.3.2
         rust-phf-0.13.1
-        rust-phf_generator-0.13.1
-        rust-phf_macros-0.13.1
+        rust-phf-0.14.0
+        rust-phf_generator-0.14.0
+        rust-phf_macros-0.14.0
         rust-phf_shared-0.13.1
+        rust-phf_shared-0.14.0
         rust-pico-args-0.5.0
         rust-pin-project-1.1.13
         rust-pin-project-internal-1.1.13
         rust-pin-project-lite-0.2.17
-        rust-pin-utils-0.1.1
         rust-piper-0.2.5
         rust-pkg-config-0.3.34
         rust-plain-0.2.3
         rust-png-0.17.16
         rust-png-0.18.1
         rust-polling-3.11.0
-        rust-pollster-0.4.0
         rust-portable-atomic-1.15.0
         rust-portable-atomic-util-0.2.8
         rust-potential_utf-0.1.6
@@ -11129,12 +10815,9 @@
         rust-r-efi-5.3.0
         rust-r-efi-6.0.0
         rust-rand-0.8.8
-        rust-rand-0.9.5
         rust-rand-0.10.3
         rust-rand_chacha-0.3.1
-        rust-rand_chacha-0.9.0
         rust-rand_core-0.6.4
-        rust-rand_core-0.9.5
         rust-rand_core-0.10.1
         rust-range-alloc-0.1.5
         rust-rangemap-1.8.0
@@ -11152,11 +10835,10 @@
         rust-regex-syntax-0.8.11
         rust-renderdoc-sys-1.1.0
         rust-resvg-0.45.1
-        rust-rfd-0.16.0
         rust-rgb-0.8.53
-        rust-ron-0.11.0
-        rust-ron-0.12.2
+        rust-ron-0.12.3
         rust-roxmltree-0.20.0
+        rust-roxmltree-0.21.2
         rust-rust-embed-8.13.0
         rust-rust-embed-impl-8.13.0
         rust-rust-embed-utils-8.13.0
@@ -11164,7 +10846,7 @@
         rust-rustc-hash-2.1.3
         rust-rustc_version-0.4.1
         rust-rustix-0.38.44
-        rust-rustix-1.1.5
+        rust-rustix-1.1.6
         rust-rustversion-1.0.23
         rust-rustybuzz-0.20.1
         rust-same-file-1.0.6
@@ -11183,7 +10865,6 @@
         rust-serde_with-3.24.0
         rust-serde_with_macros-3.24.0
         rust-sha2-0.11.1
-        rust-shlex-1.3.0
         rust-shlex-2.0.1
         rust-signal-hook-registry-1.4.8
         rust-simd-adler32-0.3.10
@@ -11195,9 +10876,9 @@
         rust-skrifa-0.44.0
         rust-slab-0.4.12
         rust-slotmap-1.1.1
-        rust-smallvec-1.16.3
+        rust-smallvec-1.16.4
         rust-smithay-client-toolkit-0.20.0
-        rust-smol_str-0.3.6
+        rust-smol_str-0.3.7
         rust-socket2-0.6.5
         rust-spirv-0.3.0-sdk-1.3.268.0
         rust-stable_deref_trait-1.2.1
@@ -11211,7 +10892,7 @@
         rust-syn-3.0.9
         rust-synstructure-0.14.0
         rust-sys-locale-0.3.2
-        rust-taffy-0.9.2
+        rust-taffy-0.15.1
         rust-temp-dir-0.1.16
         rust-tempfile-3.27.0
         rust-termcolor-1.4.1
@@ -11227,13 +10908,13 @@
         rust-tiny-skia-path-0.11.4
         rust-tiny-skia-path-0.12.0
         rust-tiny-xlib-0.2.5
-        rust-tinystr-0.8.4
+        rust-tinystr-0.8.5
         rust-tinyvec-1.13.3
-        rust-tokio-1.53.3
+        rust-tokio-1.54.1
         rust-tokio-macros-2.7.2
         rust-tokio-stream-0.1.19
         rust-toml-0.5.11
-        rust-toml_datetime-1.1.2-spec-1.1.0
+        rust-toml_datetime-1.1.3-spec-1.1.0
         rust-toml_edit-0.25.6-spec-1.1.0
         rust-toml_parser-1.1.5-spec-1.1.0
         rust-tracing-0.1.44
@@ -11244,7 +10925,6 @@
         rust-typeid-1.0.3
         rust-typenum-1.20.1
         rust-uds_windows-1.2.1
-        rust-uncased-0.9.10
         rust-unic-langid-0.9.6
         rust-unic-langid-impl-0.9.6
         rust-unicase-2.10.0
@@ -11253,27 +10933,27 @@
         rust-unicode-ccc-0.4.0
         rust-unicode-ident-1.0.27
         rust-unicode-linebreak-0.1.5
-        rust-unicode-properties-0.1.4
-        rust-unicode-script-0.5.8
+        rust-unicode-properties-0.1.5
+        rust-unicode-script-0.5.9
         rust-unicode-segmentation-1.13.3
         rust-unicode-vo-0.1.0
-        rust-unicode-width-0.2.2
+        rust-unicode-width-0.2.3
         rust-url-2.5.8
-        rust-urlencoding-2.1.3
         rust-usvg-0.45.1
-        rust-utf8_iter-1.0.4
+        rust-utf8_iter-1.1.0
         rust-utf8parse-0.2.2
-        rust-uuid-1.28.0
+        rust-utf_types-1.0.0
+        rust-uuid-1.29.0
         rust-version_check-0.9.5
         rust-walkdir-2.5.0
         rust-wasi-0.11.1-wasi-snapshot-preview1
         rust-wasip2-1.0.4-wasi-0.2.12
-        rust-wasm-bindgen-0.2.129
-        rust-wasm-bindgen-futures-0.4.79
-        rust-wasm-bindgen-macro-0.2.129
-        rust-wasm-bindgen-macro-support-0.2.129
-        rust-wasm-bindgen-shared-0.2.129
-        rust-wasmtimer-0.4.3
+        rust-wasm-bindgen-0.2.130
+        rust-wasm-bindgen-futures-0.4.80
+        rust-wasm-bindgen-macro-0.2.130
+        rust-wasm-bindgen-macro-support-0.2.130
+        rust-wasm-bindgen-shared-0.2.130
+        rust-wasmtimer-0.4.5
         rust-wayland-backend-0.3.17
         rust-wayland-client-0.31.15
         rust-wayland-csd-frame-0.3.0
@@ -11286,7 +10966,7 @@
         rust-wayland-scanner-0.31.11
         rust-wayland-server-0.31.14
         rust-wayland-sys-0.31.11
-        rust-web-sys-0.3.106
+        rust-web-sys-0.3.107
         rust-web-time-1.1.0
         rust-weezl-0.1.12
         rust-wgpu-28.0.0
@@ -11322,37 +11002,27 @@
         rust-windows-sys-0.48.0
         rust-windows-sys-0.52.0
         rust-windows-sys-0.59.0
-        rust-windows-sys-0.60.2
         rust-windows-sys-0.61.2
         rust-windows-targets-0.48.5
         rust-windows-targets-0.52.6
-        rust-windows-targets-0.53.5
         rust-windows-threading-0.1.0
         rust-windows-threading-0.2.1
         rust-windows_aarch64_gnullvm-0.48.5
         rust-windows_aarch64_gnullvm-0.52.6
-        rust-windows_aarch64_gnullvm-0.53.1
         rust-windows_aarch64_msvc-0.48.5
         rust-windows_aarch64_msvc-0.52.6
-        rust-windows_aarch64_msvc-0.53.1
         rust-windows_i686_gnu-0.48.5
         rust-windows_i686_gnu-0.52.6
-        rust-windows_i686_gnu-0.53.1
         rust-windows_i686_gnullvm-0.52.6
-        rust-windows_i686_gnullvm-0.53.1
         rust-windows_i686_msvc-0.48.5
         rust-windows_i686_msvc-0.52.6
-        rust-windows_i686_msvc-0.53.1
         rust-windows_x86_64_gnu-0.48.5
         rust-windows_x86_64_gnu-0.52.6
-        rust-windows_x86_64_gnu-0.53.1
         rust-windows_x86_64_gnullvm-0.48.5
         rust-windows_x86_64_gnullvm-0.52.6
-        rust-windows_x86_64_gnullvm-0.53.1
         rust-windows_x86_64_msvc-0.48.5
         rust-windows_x86_64_msvc-0.52.6
-        rust-windows_x86_64_msvc-0.53.1
-        rust-winnow-1.0.4
+        rust-winnow-1.0.5
         rust-wit-bindgen-0.57.1
         rust-writeable-0.6.4
         rust-x11-dl-2.21.0
@@ -11371,26 +11041,30 @@
         rust-xmltree-0.12.0
         rust-xmlwriter-0.1.0
         rust-yansi-1.0.1
-        rust-yazi-0.2.1
-        rust-yoke-0.8.3
+        rust-yazi-0.2.2
+        rust-yoke-0.8.4
         rust-yoke-derive-0.8.4
         rust-zbus-5.19.0
+        rust-zbus-6.2.1
         rust-zbus-lockstep-0.5.2
         rust-zbus-lockstep-macros-0.5.2
         rust-zbus_macros-5.19.0
+        rust-zbus_macros-6.2.1
         rust-zbus_names-4.3.5
+        rust-zbus_utils-6.1.0
         rust-zbus_xml-5.2.1
-        rust-zcheapstr-1.1.0
+        rust-zcheapstr-1.2.0
         rust-zeno-0.3.3
         rust-zerocopy-0.8.63
         rust-zerocopy-derive-0.8.63
         rust-zerofrom-0.1.8
         rust-zerofrom-derive-0.1.8
         rust-zerotrie-0.2.5
-        rust-zerovec-0.11.8
-        rust-zerovec-derive-0.11.6
+        rust-zerovec-0.11.9
+        rust-zerovec-derive-0.11.7
         rust-zlib-rs-0.6.8
         rust-zmij-1.0.23
+        rust-zruntime-0.2.2
         rust-zune-core-0.4.12
         rust-zune-core-0.5.3
         rust-zune-jpeg-0.4.21
@@ -11425,8 +11099,8 @@
                    "git+https://github.com/jackpot51/rust-atomicwrites#043ab4859d53ffd3d55334685303d8df39c9f768"
                    rust-atomicwrites-043ab48-checkout ".")
         (git-crate "build_helpers" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/build_helpers")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/build_helpers")
         (git-crate "clipboard_macos" "0.1.0"
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout "macos")
@@ -11436,39 +11110,36 @@
         (git-crate "clipboard_x11" "0.4.2"
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout "x11")
-        (git-crate "cosmic-app-list-config" "1.10.0"
-                   "git+https://github.com/pop-os/cosmic-applets#406d1b7d627138fdf4078f654268d3d8774e50f1"
-                   cosmic-applets-406d1b7-checkout "cosmic-app-list/cosmic-app-list-config")
+        (git-crate "cosmic-app-list-config" "1.11.0"
+                   "git+https://github.com/pop-os/cosmic-applets#2ad004a9b88c68fcaf55080623956178a01e5d7e"
+                   cosmic-applets-2ad004a-checkout "cosmic-app-list/cosmic-app-list-config")
         (git-crate "cosmic-client-toolkit" "0.2.0"
                    "git+https://github.com/pop-os/cosmic-protocols?rev=c0cff4d#c0cff4db14c37ed954983158e4055aa94c7741d9"
                    cosmic-protocols-c0cff4d-checkout "client-toolkit")
         (git-crate "cosmic-config" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "cosmic-config")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "cosmic-config")
         (git-crate "cosmic-config-derive" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "cosmic-config-derive")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "cosmic-config-derive")
         (git-crate "cosmic-freedesktop-icons" "0.4.0"
                    "git+https://github.com/pop-os/freedesktop-icons#ab4c57b8e416c6af9297cb04d101889896fd9a92"
                    freedesktop-icons-ab4c57b-checkout ".")
         (git-crate "cosmic-launch" "0.1.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "cosmic-launch")
-        (git-crate "cosmic-panel-config" "1.11.0"
-                   "git+https://github.com/pop-os/cosmic-panel#ca20ce3185b3b4404f429d59d429c40b58a2ddef"
-                   cosmic-panel-ca20ce3-checkout "cosmic-panel-config")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "cosmic-launch")
         (git-crate "cosmic-protocols" "0.2.0"
                    "git+https://github.com/pop-os/cosmic-protocols?rev=c0cff4d#c0cff4db14c37ed954983158e4055aa94c7741d9"
                    cosmic-protocols-c0cff4d-checkout ".")
         (git-crate "cosmic-settings-config" "1.11.0"
-                   "git+https://github.com/pop-os/cosmic-settings-daemon#655b14fb9572dd7f7231ec6c343c63984e99741a"
-                   cosmic-settings-daemon-655b14f-checkout "config")
-        (git-crate "cosmic-settings-daemon" "0.1.0"
-                   "git+https://github.com/pop-os/dbus-settings-bindings#eed01dd3609e90e3c8cd043656734c500956c793"
-                   dbus-settings-bindings-eed01dd-checkout "cosmic-settings-daemon")
+                   "git+https://github.com/pop-os/cosmic-settings-daemon#2df041e6e90757782a7884729ae3723e86cee122"
+                   cosmic-settings-daemon-2df041e-checkout "config")
+        (git-crate "cosmic-settings-daemon-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "cosmic-settings-daemon")
         (git-crate "cosmic-theme" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "cosmic-theme")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "cosmic-theme")
         (git-crate "cryoglyph" "0.1.0"
                    "git+https://github.com/iced-rs/cryoglyph.git?rev=e429a025df36ab8145708acb309080ae3deec17a#e429a025df36ab8145708acb309080ae3deec17a"
                    cryoglyph-e429a02-checkout ".")
@@ -11479,47 +11150,47 @@
                    "git+https://github.com/pop-os/winit.git?rev=9567503#9567503d34130113e36b0167a2b8829c3756e429"
                    winit-9567503-checkout "dpi")
         (git-crate "iced" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced")
         (git-crate "iced_accessibility" "0.1.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/accessibility")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/accessibility")
         (git-crate "iced_core" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/core")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/core")
         (git-crate "iced_debug" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/debug")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/debug")
         (git-crate "iced_futures" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/futures")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/futures")
         (git-crate "iced_graphics" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/graphics")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/graphics")
         (git-crate "iced_program" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/program")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/program")
         (git-crate "iced_renderer" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/renderer")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/renderer")
         (git-crate "iced_runtime" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/runtime")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/runtime")
         (git-crate "iced_tiny_skia" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/tiny_skia")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/tiny_skia")
         (git-crate "iced_wgpu" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/wgpu")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/wgpu")
         (git-crate "iced_widget" "0.14.2"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/widget")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/widget")
         (git-crate "iced_winit" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/winit")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/winit")
         (git-crate "libcosmic" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout ".")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout ".")
         (git-crate "mime" "0.1.0"
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout "mime")
@@ -11529,9 +11200,9 @@
         (git-crate "softbuffer" "0.4.1"
                    "git+https://github.com/pop-os/softbuffer?tag=cosmic-4.0#c2b2c19ddb38ff17495643699f97cb1f2064a1be"
                    softbuffer-c2b2c19-checkout ".")
-        (git-crate "switcheroo-control" "0.1.0"
-                   "git+https://github.com/pop-os/dbus-settings-bindings#eed01dd3609e90e3c8cd043656734c500956c793"
-                   dbus-settings-bindings-eed01dd-checkout "switcheroo-control")
+        (git-crate "switcheroo-control-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "switcheroo-control")
         (git-crate "window_clipboard" "0.4.1"
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout ".")
@@ -11567,10 +11238,7 @@
                    winit-9567503-checkout "winit-win32")
         (git-crate "winit-x11" "0.31.0-beta.2"
                    "git+https://github.com/pop-os/winit.git?rev=9567503#9567503d34130113e36b0167a2b8829c3756e429"
-                   winit-9567503-checkout "winit-x11")
-        (git-crate "xdg-shell-wrapper-config" "1.11.0"
-                   "git+https://github.com/pop-os/cosmic-panel#ca20ce3185b3b4404f429d59d429c40b58a2ddef"
-                   cosmic-panel-ca20ce3-checkout "xdg-shell-wrapper-config")))
+                   winit-9567503-checkout "winit-x11")))
 
 (define cosmic-workspaces-epoch-cargo-inputs
   (list rust-ab_glyph-0.2.32
@@ -13465,7 +13133,8 @@
         rust-ab_glyph_rasterizer-0.1.10
         rust-addr2line-0.27.1
         rust-adler2-2.0.1
-        rust-aes-0.9.3
+        rust-aes-0.8.4
+        rust-aes-0.9.4
         rust-ahash-0.8.12
         rust-aho-corasick-1.1.5
         rust-aliasable-0.1.3
@@ -13494,13 +13163,13 @@
         rust-as-raw-xcb-connection-1.0.1
         rust-as-slice-0.2.1
         rust-ash-0.38.0-1.3.281
-        rust-ashpd-0.11.1
         rust-ashpd-0.12.3
+        rust-ashpd-0.13.13
         rust-async-broadcast-0.7.2
         rust-async-channel-2.5.0
-        rust-async-executor-1.14.0
+        rust-async-executor-1.14.1
         rust-async-io-2.6.0
-        rust-async-lock-3.4.2
+        rust-async-lock-3.5.0
         rust-async-process-2.5.0
         rust-async-recursion-1.2.0
         rust-async-signal-0.2.14
@@ -13514,6 +13183,7 @@
         rust-av1-grain-0.2.5
         rust-avif-serialize-0.8.9
         rust-backtrace-0.3.77
+        rust-base64-0.21.7
         rust-base64-0.22.1
         rust-base64-0.23.1
         rust-basic-toml-0.1.10
@@ -13526,6 +13196,7 @@
         rust-bitstream-io-4.10.0
         rust-block-0.1.6
         rust-block-buffer-0.9.0
+        rust-block-buffer-0.10.4
         rust-block-buffer-0.12.1
         rust-block-padding-0.4.2
         rust-block2-0.5.1
@@ -13546,11 +13217,13 @@
         rust-byteorder-1.5.0
         rust-byteorder-lite-0.1.0
         rust-bytes-1.12.1
+        rust-bzip2-0.5.2
+        rust-bzip2-sys-0.1.13-1.0.8
         rust-calendrical_calculations-0.2.4
         rust-calloop-0.14.5
         rust-calloop-wayland-source-0.4.1
         rust-cbc-0.2.1
-        rust-cc-1.10.0
+        rust-cc-1.11.1
         rust-cfb-0.7.3
         rust-cfg-expr-0.20.10
         rust-cfg-if-1.0.5
@@ -13559,6 +13232,7 @@
         rust-chacha20-0.10.2
         rust-chrono-0.4.45
         rust-cipher-0.2.5
+        rust-cipher-0.4.4
         rust-cipher-0.5.2
         rust-clap-4.6.7
         rust-clap_builder-4.6.7
@@ -13577,6 +13251,7 @@
         rust-concurrent-queue-2.5.0
         rust-configparser-3.3.0
         rust-const-oid-0.10.2
+        rust-constant_time_eq-0.3.1
         rust-core-foundation-0.9.4
         rust-core-foundation-0.10.1
         rust-core-foundation-sys-0.8.7
@@ -13588,17 +13263,19 @@
         rust-cpubits-0.1.1
         rust-cpufeatures-0.2.17
         rust-cpufeatures-0.3.1
-        rust-crc32fast-1.5.3
+        rust-crc-3.4.0
+        rust-crc-catalog-2.5.0
+        rust-crc32fast-1.5.4
         rust-crossbeam-deque-0.8.8
         rust-crossbeam-epoch-0.9.21
         rust-crossbeam-utils-0.8.23
         rust-crunchy-0.2.4
+        rust-crypto-common-0.1.6
         rust-crypto-common-0.2.2
         rust-crypto-mac-0.10.1
         rust-css-color-0.2.8
-        rust-csscolorparser-0.8.4
         rust-ctor-0.10.1
-        rust-ctutils-0.4.7
+        rust-ctutils-0.4.8
         rust-cursor-icon-1.2.0
         rust-darling-0.21.3
         rust-darling-0.24.1
@@ -13609,15 +13286,19 @@
         rust-data-url-0.3.2
         rust-dav1d-0.11.1
         rust-dav1d-sys-0.8.3
+        rust-deflate64-0.1.12
         rust-defmt-1.2.0
         rust-defmt-macros-1.2.0
         rust-defmt-parser-1.1.0
         rust-deranged-0.5.9
+        rust-derive_arbitrary-1.5.0
         rust-derive_setters-0.1.9
         rust-derive_utils-0.16.0
         rust-digest-0.9.0
+        rust-digest-0.10.7
         rust-digest-0.11.3
         rust-dirs-6.0.0
+        rust-dirs-7.0.0
         rust-dirs-sys-0.5.0
         rust-dispatch2-0.3.1
         rust-displaydoc-0.2.7
@@ -13655,7 +13336,7 @@
         rust-find-crate-0.6.3
         rust-find-msvc-tools-0.1.15
         rust-fixed_decimal-0.7.3
-        rust-flate2-1.1.10
+        rust-flate2-1.1.11
         rust-float-cmp-0.9.0
         rust-float-cmp-0.10.0
         rust-float_next_after-1.0.0
@@ -13705,7 +13386,6 @@
         rust-gpu-allocator-0.28.0
         rust-gpu-descriptor-0.3.2
         rust-gpu-descriptor-types-0.2.0
-        rust-grid-1.0.1
         rust-guillotiere-0.6.2
         rust-half-2.7.1
         rust-harfrust-0.5.2
@@ -13723,6 +13403,7 @@
         rust-hexf-parse-0.2.1
         rust-hkdf-0.13.0
         rust-hmac-0.10.1
+        rust-hmac-0.12.1
         rust-hmac-0.13.0
         rust-hostname-validator-1.1.1
         rust-hybrid-array-0.4.15
@@ -13779,6 +13460,7 @@
         rust-infer-0.19.0
         rust-inotify-0.11.5
         rust-inotify-sys-0.1.8
+        rust-inout-0.1.4
         rust-inout-0.2.5
         rust-input-0.10.0
         rust-input-sys-1.19.0
@@ -13791,9 +13473,9 @@
         rust-itertools-0.14.0
         rust-itoa-1.0.18
         rust-ixdtf-0.6.7
-        rust-jiff-0.2.38
-        rust-jiff-core-0.1.1
-        rust-jiff-static-0.2.38
+        rust-jiff-0.2.39
+        rust-jiff-core-0.1.2
+        rust-jiff-static-0.2.39
         rust-jiff-tzdb-0.1.9
         rust-jiff-tzdb-platform-0.1.3
         rust-jni-0.22.4
@@ -13816,7 +13498,7 @@
         rust-jxl-render-0.12.4
         rust-jxl-threadpool-1.0.0
         rust-jxl-vardct-0.11.1
-        rust-kamadak-exif-0.6.1
+        rust-kamadak-exif-0.6.2
         rust-kdl-6.5.0
         rust-keyboard-types-0.8.3
         rust-khronos-egl-6.0.0
@@ -13843,7 +13525,7 @@
         rust-litrs-1.0.1
         rust-locale_config-0.3.0
         rust-lock_api-0.4.14
-        rust-log-0.4.34
+        rust-log-0.4.35
         rust-loop9-0.1.5
         rust-lru-0.16.4
         rust-lyon-1.0.19
@@ -13851,6 +13533,8 @@
         rust-lyon_geom-1.0.20
         rust-lyon_path-1.0.19
         rust-lyon_tessellation-1.0.23
+        rust-lzma-rs-0.3.0
+        rust-lzma-sys-0.1.20
         rust-malloc_buf-0.0.6
         rust-matchers-0.2.0
         rust-maybe-rayon-0.1.1
@@ -13861,7 +13545,7 @@
         rust-memoffset-0.9.1
         rust-metal-0.33.0
         rust-miette-7.6.0
-        rust-mime-0.3.17
+        rust-mime-0.3.18
         rust-mime_guess-2.0.5
         rust-miniz_oxide-0.8.9
         rust-miniz_oxide-0.9.1
@@ -13934,23 +13618,24 @@
         rust-parking_lot_core-0.9.12
         rust-paste-1.0.15
         rust-pastey-0.1.1
+        rust-pbkdf2-0.12.2
         rust-percent-encoding-2.3.2
         rust-phf-0.13.1
-        rust-phf_generator-0.13.1
-        rust-phf_macros-0.13.1
+        rust-phf-0.14.0
+        rust-phf_generator-0.14.0
+        rust-phf_macros-0.14.0
         rust-phf_shared-0.13.1
+        rust-phf_shared-0.14.0
         rust-pico-args-0.5.0
         rust-pin-project-1.1.13
         rust-pin-project-internal-1.1.13
         rust-pin-project-lite-0.2.17
-        rust-pin-utils-0.1.1
         rust-piper-0.2.5
         rust-pkg-config-0.3.34
         rust-plain-0.2.3
         rust-png-0.17.16
         rust-png-0.18.1
         rust-polling-3.11.0
-        rust-pollster-0.4.0
         rust-portable-atomic-1.15.0
         rust-portable-atomic-util-0.2.8
         rust-potential_utf-0.1.6
@@ -14005,11 +13690,11 @@
         rust-regex-syntax-0.8.11
         rust-renderdoc-sys-1.1.0
         rust-resvg-0.45.1
-        rust-rfd-0.16.1
         rust-rgb-0.8.53
-        rust-ron-0.11.0
+        rust-ron-0.8.1
         rust-ron-0.12.3
         rust-roxmltree-0.20.0
+        rust-roxmltree-0.21.2
         rust-rust-embed-8.13.0
         rust-rust-embed-impl-8.13.0
         rust-rust-embed-utils-8.13.0
@@ -14038,15 +13723,15 @@
         rust-serde_derive-1.0.229
         rust-serde_json-1.0.154
         rust-serde_repr-0.1.21
-        rust-serde_spanned-1.1.2
+        rust-serde_spanned-1.1.3
         rust-serde_with-3.24.0
         rust-serde_with_macros-3.24.0
         rust-sha-1-0.9.8
+        rust-sha1-0.10.7
         rust-sha1_smol-1.0.1
         rust-sha2-0.9.9
         rust-sha2-0.11.1
         rust-sharded-slab-0.1.7
-        rust-shlex-1.3.0
         rust-shlex-2.0.1
         rust-signal-hook-registry-1.4.8
         rust-simd-adler32-0.3.10
@@ -14059,7 +13744,7 @@
         rust-skrifa-0.44.0
         rust-slab-0.4.12
         rust-slotmap-1.1.1
-        rust-smallvec-1.16.4
+        rust-smallvec-1.16.5
         rust-smithay-client-toolkit-0.20.0
         rust-smol_str-0.3.7
         rust-socket2-0.6.5
@@ -14070,6 +13755,8 @@
         rust-static_init_macro-1.0.4
         rust-strict-num-0.1.1
         rust-strsim-0.11.1
+        rust-strum-0.24.1
+        rust-strum_macros-0.24.3
         rust-subtle-2.4.1
         rust-sunrise-3.0.0
         rust-svg_fmt-0.4.5
@@ -14082,7 +13769,7 @@
         rust-sys-locale-0.3.2
         rust-sysinfo-0.38.0
         rust-system-deps-7.0.8
-        rust-taffy-0.9.2
+        rust-taffy-0.15.1
         rust-target-lexicon-0.13.5
         rust-temp-dir-0.1.16
         rust-tempfile-3.27.0
@@ -14107,11 +13794,11 @@
         rust-tokio-stream-0.1.19
         rust-tokio-util-0.7.20
         rust-toml-0.5.11
-        rust-toml-1.1.8-spec-1.1.0
-        rust-toml_datetime-1.1.2-spec-1.1.0
-        rust-toml_edit-0.25.17-spec-1.1.0
+        rust-toml-1.2.1-spec-1.1.0
+        rust-toml_datetime-1.1.3-spec-1.1.0
+        rust-toml_edit-0.25.19-spec-1.1.0
         rust-toml_parser-1.1.5-spec-1.1.0
-        rust-toml_writer-1.1.3-spec-1.1.0
+        rust-toml_writer-1.2.0-spec-1.1.0
         rust-tracing-0.1.44
         rust-tracing-attributes-0.1.31
         rust-tracing-core-0.1.36
@@ -14124,7 +13811,6 @@
         rust-typenum-1.20.1
         rust-udev-0.9.3
         rust-uds_windows-1.2.1
-        rust-uncased-0.9.10
         rust-unic-langid-0.9.6
         rust-unic-langid-impl-0.9.6
         rust-unicase-2.10.0
@@ -14133,14 +13819,13 @@
         rust-unicode-ccc-0.4.0
         rust-unicode-ident-1.0.27
         rust-unicode-linebreak-0.1.5
-        rust-unicode-properties-0.1.4
-        rust-unicode-script-0.5.8
+        rust-unicode-properties-0.1.5
+        rust-unicode-script-0.5.9
         rust-unicode-segmentation-1.13.3
         rust-unicode-vo-0.1.0
         rust-unicode-width-0.1.14
         rust-unicode-width-0.2.3
         rust-url-2.5.8
-        rust-urlencoding-2.1.3
         rust-usvg-0.45.1
         rust-utf16_iter-1.1.0
         rust-utf8_iter-1.1.0
@@ -14159,7 +13844,7 @@
         rust-wasm-bindgen-macro-0.2.130
         rust-wasm-bindgen-macro-support-0.2.130
         rust-wasm-bindgen-shared-0.2.130
-        rust-wasmtimer-0.4.3
+        rust-wasmtimer-0.4.5
         rust-wayland-backend-0.3.17
         rust-wayland-client-0.31.15
         rust-wayland-csd-frame-0.3.0
@@ -14208,38 +13893,29 @@
         rust-windows-sys-0.48.0
         rust-windows-sys-0.52.0
         rust-windows-sys-0.59.0
-        rust-windows-sys-0.60.2
         rust-windows-sys-0.61.2
         rust-windows-targets-0.48.5
         rust-windows-targets-0.52.6
-        rust-windows-targets-0.53.5
         rust-windows-threading-0.1.0
         rust-windows-threading-0.2.1
         rust-windows_aarch64_gnullvm-0.48.5
         rust-windows_aarch64_gnullvm-0.52.6
-        rust-windows_aarch64_gnullvm-0.53.1
         rust-windows_aarch64_msvc-0.48.5
         rust-windows_aarch64_msvc-0.52.6
-        rust-windows_aarch64_msvc-0.53.1
         rust-windows_i686_gnu-0.48.5
         rust-windows_i686_gnu-0.52.6
-        rust-windows_i686_gnu-0.53.1
         rust-windows_i686_gnullvm-0.52.6
-        rust-windows_i686_gnullvm-0.53.1
         rust-windows_i686_msvc-0.48.5
         rust-windows_i686_msvc-0.52.6
-        rust-windows_i686_msvc-0.53.1
         rust-windows_x86_64_gnu-0.48.5
         rust-windows_x86_64_gnu-0.52.6
-        rust-windows_x86_64_gnu-0.53.1
         rust-windows_x86_64_gnullvm-0.48.5
         rust-windows_x86_64_gnullvm-0.52.6
-        rust-windows_x86_64_gnullvm-0.53.1
         rust-windows_x86_64_msvc-0.48.5
         rust-windows_x86_64_msvc-0.52.6
-        rust-windows_x86_64_msvc-0.53.1
         rust-winnow-0.6.24
-        rust-winnow-1.0.4
+        rust-winnow-0.7.15
+        rust-winnow-1.0.5
         rust-wit-bindgen-0.57.1
         rust-write16-1.0.0
         rust-writeable-0.6.4
@@ -14257,19 +13933,24 @@
         rust-xkeysym-0.2.1
         rust-xml-1.4.0
         rust-xml-rs-0.8.29
+        rust-xmltree-0.10.3
         rust-xmltree-0.12.0
         rust-xmlwriter-0.1.0
+        rust-xz2-0.1.7
         rust-y4m-0.8.0
         rust-yansi-1.0.1
-        rust-yazi-0.2.1
+        rust-yazi-0.2.2
         rust-yoke-0.8.4
         rust-yoke-derive-0.8.4
         rust-zbus-5.19.0
+        rust-zbus-6.2.1
         rust-zbus-lockstep-0.5.2
         rust-zbus-lockstep-macros-0.5.2
         rust-zbus_macros-5.19.0
+        rust-zbus_macros-6.2.1
         rust-zbus_names-4.3.5
-        rust-zbus_polkit-5.1.0
+        rust-zbus_polkit-6.0.0
+        rust-zbus_utils-6.1.0
         rust-zbus_xml-5.2.1
         rust-zcheapstr-1.2.0
         rust-zeno-0.3.3
@@ -14278,16 +13959,30 @@
         rust-zerofrom-0.1.8
         rust-zerofrom-derive-0.1.8
         rust-zeroize-1.9.1
+        rust-zeroize_derive-1.5.0
         rust-zerotrie-0.2.5
         rust-zerovec-0.11.9
         rust-zerovec-derive-0.11.7
+        rust-zip-2.6.1
         rust-zlib-rs-0.6.8
         rust-zlink-0.5.0
+        rust-zlink-0.8.0
         rust-zlink-core-0.5.0
+        rust-zlink-core-0.8.0
+        rust-zlink-idl-0.8.0
         rust-zlink-macros-0.5.0
+        rust-zlink-macros-0.8.0
+        rust-zlink-names-0.8.0
         rust-zlink-smol-0.5.0
+        rust-zlink-smol-0.8.0
         rust-zlink-tokio-0.5.0
+        rust-zlink-tokio-0.8.0
         rust-zmij-1.0.23
+        rust-zopfli-0.8.4
+        rust-zruntime-0.2.2
+        rust-zstd-0.13.4
+        rust-zstd-safe-7.4.0
+        rust-zstd-sys-2.1.2-zstd.1.5.7
         rust-zune-core-0.4.12
         rust-zune-core-0.5.3
         rust-zune-inflate-0.2.54
@@ -14298,7 +13993,10 @@
         rust-zvariant_utils-4.2.0))
 
 (define cosmic-settings-git-crates
-  (list (git-crate "accesskit" "0.22.0"
+  (list (git-crate "a11y-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "a11y")
+        (git-crate "accesskit" "0.22.0"
                    "git+https://github.com/wash2/accesskit?rev=6c20249#6c20249d3b9fd45e7002efad9f6b6171a9257912"
                    accesskit-6c20249-checkout "common")
         (git-crate "accesskit_atspi_common" "0.15.0"
@@ -14319,9 +14017,12 @@
         (git-crate "accesskit_winit" "0.30.0"
                    "git+https://github.com/wash2/accesskit?rev=6c20249#6c20249d3b9fd45e7002efad9f6b6171a9257912"
                    accesskit-6c20249-checkout "platforms/winit")
-        (git-crate "accounts-zbus" "0.1.0"
-                   "git+https://github.com/pop-os/dbus-settings-bindings#0a2f682cb505ca2fba4a08de3a9dcdf865284638"
-                   dbus-settings-bindings-0a2f682-checkout "accounts-zbus")
+        (git-crate "accounts-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "accounts")
+        (git-crate "appstream" "0.2.2"
+                   "git+https://github.com/jackpot51/appstream#c14084db5c0dce7b56830b705c9f3cf6f9603469"
+                   appstream-c14084d-checkout ".")
         (git-crate "atomicwrites" "0.4.2"
                    "git+https://github.com/jackpot51/rust-atomicwrites#043ab4859d53ffd3d55334685303d8df39c9f768"
                    rust-atomicwrites-043ab48-checkout ".")
@@ -14334,12 +14035,9 @@
         (git-crate "atspi-proxies" "0.13.0"
                    "git+https://github.com/wash2/atspi#e1e6e8bcd781a3155a9ff7e0b1e5193e5587f94c"
                    atspi-e1e6e8b-checkout "atspi-proxies")
-        (git-crate "bluez-zbus" "0.1.0"
-                   "git+https://github.com/pop-os/dbus-settings-bindings#0a2f682cb505ca2fba4a08de3a9dcdf865284638"
-                   dbus-settings-bindings-0a2f682-checkout "bluez")
         (git-crate "build_helpers" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/build_helpers")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/build_helpers")
         (git-crate "clipboard_macos" "0.1.0"
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout "macos")
@@ -14350,23 +14048,23 @@
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout "x11")
         (git-crate "cosmic-bg-config" "1.11.0"
-                   "git+https://github.com/pop-os/cosmic-bg#9520e16758693bc2f6845d52680f236d548edda2"
-                   cosmic-bg-9520e16-checkout "config")
+                   "git+https://github.com/pop-os/cosmic-bg#09e93d38798d2fc2ac53d03e4988800c179c8dea"
+                   cosmic-bg-09e93d3-checkout "config")
+        (git-crate "cosmic-bluez-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "bluez")
         (git-crate "cosmic-client-toolkit" "0.2.0"
                    "git+https://github.com/pop-os/cosmic-protocols//?rev=c0cff4d#c0cff4db14c37ed954983158e4055aa94c7741d9"
                    cosmic-protocols-c0cff4d-checkout "client-toolkit")
         (git-crate "cosmic-comp-config" "1.0.0"
-                   "git+https://github.com/pop-os/cosmic-comp#9b4296b4c6277606e0441d33345ee5a4860b609a"
-                   cosmic-comp-9b4296b-checkout "cosmic-comp-config")
+                   "git+https://github.com/pop-os/cosmic-comp#63dacd148f634023f904d27e94ce0da93eef6710"
+                   cosmic-comp-63dacd1-checkout "cosmic-comp-config")
         (git-crate "cosmic-config" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "cosmic-config")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "cosmic-config")
         (git-crate "cosmic-config-derive" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "cosmic-config-derive")
-        (git-crate "cosmic-dbus-a11y" "0.1.0"
-                   "git+https://github.com/pop-os/dbus-settings-bindings#0a2f682cb505ca2fba4a08de3a9dcdf865284638"
-                   dbus-settings-bindings-0a2f682-checkout "a11y")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "cosmic-config-derive")
         (git-crate "cosmic-freedesktop-icons" "0.4.0"
                    "git+https://github.com/pop-os/freedesktop-icons#ab4c57b8e416c6af9297cb04d101889896fd9a92"
                    freedesktop-icons-ab4c57b-checkout ".")
@@ -14374,8 +14072,8 @@
                    "git+https://github.com/pop-os/cosmic-idle#6d6f07af60bb307882cdcbd0bda0a6fc76bd0df3"
                    cosmic-idle-6d6f07a-checkout "cosmic-idle-config")
         (git-crate "cosmic-launch" "0.1.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "cosmic-launch")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "cosmic-launch")
         (git-crate "cosmic-mime-apps" "0.2.0"
                    "git+https://github.com/pop-os/cosmic-mime-apps#8fc81e8857e46c018ea21ab985aaf30ac853c007"
                    cosmic-mime-apps-8fc81e8-checkout ".")
@@ -14395,23 +14093,23 @@
                    "git+https://github.com/pop-os/cosmic-randr#f1a97655c97e8799bf4a37a8f5103a8ab5e5068d"
                    cosmic-randr-f1a9765-checkout "shell")
         (git-crate "cosmic-settings-audio-client" "1.11.0"
-                   "git+https://github.com/pop-os/cosmic-settings-daemon#655b14fb9572dd7f7231ec6c343c63984e99741a"
-                   cosmic-settings-daemon-655b14f-checkout "audio-client")
+                   "git+https://github.com/pop-os/cosmic-settings-daemon#2df041e6e90757782a7884729ae3723e86cee122"
+                   cosmic-settings-daemon-2df041e-checkout "audio-client")
         (git-crate "cosmic-settings-audio-core" "1.11.0"
-                   "git+https://github.com/pop-os/cosmic-settings-daemon#655b14fb9572dd7f7231ec6c343c63984e99741a"
-                   cosmic-settings-daemon-655b14f-checkout "audio-core")
+                   "git+https://github.com/pop-os/cosmic-settings-daemon#2df041e6e90757782a7884729ae3723e86cee122"
+                   cosmic-settings-daemon-2df041e-checkout "audio-core")
         (git-crate "cosmic-settings-config" "1.11.0"
-                   "git+https://github.com/pop-os/cosmic-settings-daemon#655b14fb9572dd7f7231ec6c343c63984e99741a"
-                   cosmic-settings-daemon-655b14f-checkout "config")
-        (git-crate "cosmic-settings-daemon" "0.1.0"
-                   "git+https://github.com/pop-os/dbus-settings-bindings#0a2f682cb505ca2fba4a08de3a9dcdf865284638"
-                   dbus-settings-bindings-0a2f682-checkout "cosmic-settings-daemon")
+                   "git+https://github.com/pop-os/cosmic-settings-daemon#2df041e6e90757782a7884729ae3723e86cee122"
+                   cosmic-settings-daemon-2df041e-checkout "config")
         (git-crate "cosmic-settings-daemon-config" "1.11.0"
-                   "git+https://github.com/pop-os/cosmic-settings-daemon#655b14fb9572dd7f7231ec6c343c63984e99741a"
-                   cosmic-settings-daemon-655b14f-checkout "cosmic-settings-daemon-config")
+                   "git+https://github.com/pop-os/cosmic-settings-daemon#2df041e6e90757782a7884729ae3723e86cee122"
+                   cosmic-settings-daemon-2df041e-checkout "cosmic-settings-daemon-config")
+        (git-crate "cosmic-settings-daemon-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "cosmic-settings-daemon")
         (git-crate "cosmic-theme" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "cosmic-theme")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "cosmic-theme")
         (git-crate "cryoglyph" "0.1.0"
                    "git+https://github.com/iced-rs/cryoglyph.git?rev=e429a025df36ab8145708acb309080ae3deec17a#e429a025df36ab8145708acb309080ae3deec17a"
                    cryoglyph-e429a02-checkout ".")
@@ -14421,75 +14119,78 @@
         (git-crate "dpi" "0.1.2"
                    "git+https://github.com/pop-os/winit.git?rev=9567503#9567503d34130113e36b0167a2b8829c3756e429"
                    winit-9567503-checkout "dpi")
-        (git-crate "hostname1-zbus" "0.1.0"
-                   "git+https://github.com/pop-os/dbus-settings-bindings#0a2f682cb505ca2fba4a08de3a9dcdf865284638"
-                   dbus-settings-bindings-0a2f682-checkout "hostname1")
+        (git-crate "hostname1-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "hostname1")
         (git-crate "iced" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced")
         (git-crate "iced_accessibility" "0.1.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/accessibility")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/accessibility")
         (git-crate "iced_core" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/core")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/core")
         (git-crate "iced_debug" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/debug")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/debug")
         (git-crate "iced_futures" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/futures")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/futures")
         (git-crate "iced_graphics" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/graphics")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/graphics")
         (git-crate "iced_program" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/program")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/program")
         (git-crate "iced_renderer" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/renderer")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/renderer")
         (git-crate "iced_runtime" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/runtime")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/runtime")
         (git-crate "iced_tiny_skia" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/tiny_skia")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/tiny_skia")
         (git-crate "iced_wgpu" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/wgpu")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/wgpu")
         (git-crate "iced_widget" "0.14.2"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/widget")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/widget")
         (git-crate "iced_winit" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout "iced/winit")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/winit")
         (git-crate "libcosmic" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic#95236a944bfd51c63a2fc65fe50a592c47168d40"
-                   libcosmic-95236a9-checkout ".")
-        (git-crate "locale1" "0.1.0"
-                   "git+https://github.com/pop-os/dbus-settings-bindings#0a2f682cb505ca2fba4a08de3a9dcdf865284638"
-                   dbus-settings-bindings-0a2f682-checkout "locale1")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout ".")
+        (git-crate "locale1-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "locale1")
         (git-crate "locales-rs" "0.1.0"
                    "git+https://github.com/AerynOS/locales-rs#947cc560257ebe68fda3f854ee45773072a915d4"
                    locales-rs-947cc56-checkout ".")
         (git-crate "mime" "0.1.0"
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout "mime")
+        (git-crate "pop-system-updater-zbus" "0.1.0"
+                   "git+https://github.com/pop-os/system-updater#546d8a3f11e052f88d7ecfaa4a9b844beb4f8a6d"
+                   system-updater-546d8a3-checkout "client")
         (git-crate "smithay-clipboard" "0.8.0"
                    "git+https://github.com/pop-os/smithay-clipboard?tag=sctk-0.20#859b02c88f45c554049a67c6ddeec1692ce0e20b"
                    smithay-clipboard-859b02c-checkout ".")
         (git-crate "softbuffer" "0.4.1"
                    "git+https://github.com/pop-os/softbuffer?tag=cosmic-4.0#c2b2c19ddb38ff17495643699f97cb1f2064a1be"
                    softbuffer-c2b2c19-checkout ".")
-        (git-crate "switcheroo-control" "0.1.0"
-                   "git+https://github.com/pop-os/dbus-settings-bindings#0a2f682cb505ca2fba4a08de3a9dcdf865284638"
-                   dbus-settings-bindings-0a2f682-checkout "switcheroo-control")
-        (git-crate "timedate-zbus" "0.1.0"
-                   "git+https://github.com/pop-os/dbus-settings-bindings#0a2f682cb505ca2fba4a08de3a9dcdf865284638"
-                   dbus-settings-bindings-0a2f682-checkout "timedate")
-        (git-crate "upower_dbus" "0.3.2"
-                   "git+https://github.com/pop-os/dbus-settings-bindings#0a2f682cb505ca2fba4a08de3a9dcdf865284638"
-                   dbus-settings-bindings-0a2f682-checkout "upower")
+        (git-crate "switcheroo-control-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "switcheroo-control")
+        (git-crate "timedate1-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "timedate1")
+        (git-crate "upower-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "upower")
         (git-crate "window_clipboard" "0.4.1"
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout ".")
@@ -14534,7 +14235,7 @@
   (list rust-ab_glyph-0.2.32
         rust-ab_glyph_rasterizer-0.1.10
         rust-adler2-2.0.1
-        rust-aes-0.9.3
+        rust-aes-0.9.4
         rust-ahash-0.8.12
         rust-aho-corasick-1.1.5
         rust-aliasable-0.1.3
@@ -14550,13 +14251,12 @@
         rust-arrayvec-0.7.8
         rust-as-raw-xcb-connection-1.0.1
         rust-ash-0.38.0-1.3.281
-        rust-ashpd-0.11.1
-        rust-ashpd-0.12.3
+        rust-ashpd-0.13.13
         rust-async-broadcast-0.7.2
         rust-async-channel-2.5.0
-        rust-async-executor-1.14.0
+        rust-async-executor-1.14.1
         rust-async-io-2.6.0
-        rust-async-lock-3.4.2
+        rust-async-lock-3.5.0
         rust-async-process-2.5.0
         rust-async-recursion-1.2.0
         rust-async-signal-0.2.14
@@ -14568,8 +14268,8 @@
         rust-atspi-proxies-0.13.0
         rust-auto_enums-0.8.10
         rust-autocfg-1.5.1
-        rust-aws-lc-rs-1.18.2
-        rust-aws-lc-sys-0.46.0
+        rust-aws-lc-rs-1.19.0
+        rust-aws-lc-sys-0.47.0
         rust-base64-0.22.1
         rust-base64-0.23.1
         rust-basic-toml-0.1.10
@@ -14588,6 +14288,7 @@
         rust-blocking-1.7.0
         rust-blowfish-0.7.0
         rust-borsh-1.8.1
+        rust-bs58-0.5.1
         rust-bstr-1.13.1
         rust-btoi-0.5.0
         rust-bumpalo-3.20.3
@@ -14601,13 +14302,14 @@
         rust-calloop-0.14.5
         rust-calloop-wayland-source-0.4.1
         rust-cbc-0.2.1
-        rust-cc-1.9.0
+        rust-cc-1.11.0
         rust-cfg-if-1.0.5
         rust-cfg_aliases-0.2.2
         rust-chacha20-0.10.2
+        rust-chrono-0.4.45
         rust-cipher-0.2.5
         rust-cipher-0.5.2
-        rust-clipboard-win-5.4.1
+        rust-clipboard-win-5.4.3
         rust-cmake-0.1.58
         rust-cmov-0.5.4
         rust-cocoa-0.25.0
@@ -14618,7 +14320,7 @@
         rust-concurrent-queue-2.5.0
         rust-configparser-3.3.0
         rust-const-oid-0.10.2
-        rust-constant_time_eq-0.4.2
+        rust-constant_time_eq-0.6.1
         rust-core-foundation-0.9.4
         rust-core-foundation-0.10.1
         rust-core-foundation-sys-0.8.7
@@ -14633,19 +14335,21 @@
         rust-cpufeatures-0.3.1
         rust-crabtime-1.1.4
         rust-crabtime-internal-1.1.4
-        rust-crc32fast-1.5.2
+        rust-crc32fast-1.5.4
         rust-crossbeam-utils-0.8.23
         rust-crunchy-0.2.4
         rust-crypto-common-0.2.2
         rust-crypto-mac-0.10.0
         rust-css-color-0.2.8
-        rust-csscolorparser-0.8.4
         rust-ctor-0.10.1
-        rust-ctutils-0.4.3
+        rust-ctutils-0.4.8
         rust-cursor-icon-1.2.0
         rust-darling-0.21.3
+        rust-darling-0.24.1
         rust-darling_core-0.21.3
+        rust-darling_core-0.24.1
         rust-darling_macro-0.21.3
+        rust-darling_macro-0.24.1
         rust-data-url-0.3.2
         rust-deflate64-0.1.12
         rust-defmt-1.2.0
@@ -14656,7 +14360,7 @@
         rust-derive_utils-0.16.0
         rust-digest-0.9.0
         rust-digest-0.11.3
-        rust-dirs-6.0.0
+        rust-dirs-7.0.0
         rust-dirs-sys-0.5.0
         rust-dispatch2-0.3.1
         rust-displaydoc-0.2.7
@@ -14669,13 +14373,16 @@
         rust-drm-sys-0.6.1
         rust-dtor-0.8.1
         rust-dunce-1.0.5
-        rust-encoding_rs-0.8.42
+        rust-dyn-clone-1.0.20
+        rust-encoding_rs-0.8.44
         rust-endi-1.1.1
         rust-enumflags2-0.7.12
         rust-enumflags2_derive-0.7.12
         rust-equivalent-1.0.3
         rust-errno-0.3.14
         rust-error-code-3.4.0
+        rust-error_set-0.9.2
+        rust-error_set_impl-0.9.2
         rust-etagere-0.2.15
         rust-euclid-0.22.14
         rust-event-listener-5.4.2
@@ -14704,9 +14411,9 @@
         rust-foreign-types-macros-0.2.4
         rust-foreign-types-shared-0.3.1
         rust-form_urlencoded-1.2.2
+        rust-freedesktop-desktop-entry-0.8.4
         rust-fs-err-3.3.2
         rust-fs_extra-1.3.0
-        rust-fsevent-sys-4.1.0
         rust-futures-0.3.34
         rust-futures-channel-0.3.34
         rust-futures-core-0.3.34
@@ -14724,22 +14431,22 @@
         rust-getrandom-0.2.17
         rust-getrandom-0.3.4
         rust-getrandom-0.4.3
-        rust-gettext-rs-0.7.7
-        rust-gettext-sys-0.26.0
+        rust-gettext-rs-0.8.0
+        rust-gettext-sys-0.27.0
         rust-gif-0.13.3
         rust-gl_generator-0.14.0
         rust-glam-0.25.0
-        rust-glam-0.34.1
+        rust-glam-0.34.2
         rust-glow-0.16.0
         rust-glutin_wgl_sys-0.6.1
         rust-gpu-allocator-0.28.0
         rust-gpu-descriptor-0.3.2
         rust-gpu-descriptor-types-0.2.0
-        rust-grid-1.0.1
         rust-guillotiere-0.6.2
         rust-h2-0.4.20
         rust-half-2.7.1
         rust-harfrust-0.5.2
+        rust-hashbrown-0.12.3
         rust-hashbrown-0.15.5
         rust-hashbrown-0.16.1
         rust-hashbrown-0.17.1
@@ -14765,13 +14472,15 @@
         rust-i18n-embed-0.16.0
         rust-i18n-embed-fl-0.10.1
         rust-i18n-embed-impl-0.8.4
-        rust-icu_collections-2.3.0
-        rust-icu_locale_core-2.3.0
-        rust-icu_normalizer-2.3.0
-        rust-icu_normalizer_data-2.3.0
-        rust-icu_properties-2.3.0
-        rust-icu_properties_data-2.3.0
-        rust-icu_provider-2.3.1
+        rust-iana-time-zone-0.1.65
+        rust-iana-time-zone-haiku-0.1.2
+        rust-icu_collections-2.4.0
+        rust-icu_locale_core-2.4.0
+        rust-icu_normalizer-2.4.0
+        rust-icu_normalizer_data-2.4.0
+        rust-icu_properties-2.4.0
+        rust-icu_properties_data-2.4.0
+        rust-icu_provider-2.4.0
         rust-ident_case-1.0.1
         rust-idna-1.1.0
         rust-idna_adapter-1.2.2
@@ -14779,6 +14488,7 @@
         rust-image-webp-0.2.4
         rust-imagesize-0.13.0
         rust-indenter-0.3.4
+        rust-indexmap-1.9.3
         rust-indexmap-2.14.2
         rust-inotify-0.11.5
         rust-inotify-sys-0.1.8
@@ -14790,9 +14500,9 @@
         rust-io-lifetimes-1.0.11
         rust-ipnet-2.12.2
         rust-itoa-1.0.18
-        rust-jiff-0.2.38
-        rust-jiff-core-0.1.1
-        rust-jiff-static-0.2.38
+        rust-jiff-0.2.39
+        rust-jiff-core-0.1.2
+        rust-jiff-static-0.2.39
         rust-jiff-tzdb-0.1.9
         rust-jiff-tzdb-platform-0.1.3
         rust-jni-0.22.4
@@ -14801,8 +14511,8 @@
         rust-jni-sys-0.4.1
         rust-jni-sys-macros-0.4.1
         rust-jobserver-0.1.35
-        rust-js-sys-0.3.106
-        rust-kamadak-exif-0.6.1
+        rust-js-sys-0.3.107
+        rust-kamadak-exif-0.6.2
         rust-kdl-6.5.0
         rust-keyboard-types-0.8.3
         rust-khronos-egl-6.0.0
@@ -14813,7 +14523,7 @@
         rust-kurbo-0.10.4
         rust-kurbo-0.11.3
         rust-lazy_static-1.5.1
-        rust-libbz2-rs-sys-0.2.5
+        rust-libbz2-rs-sys-0.2.6
         rust-libc-0.2.191
         rust-libloading-0.8.9
         rust-libm-0.2.16
@@ -14828,24 +14538,24 @@
         rust-litrs-1.0.1
         rust-locale_config-0.3.0
         rust-lock_api-0.4.14
-        rust-log-0.4.34
+        rust-log-0.4.35
         rust-lru-0.16.4
         rust-lru-slab-0.1.3
         rust-lyon-1.0.19
-        rust-lyon_algorithms-1.0.21
-        rust-lyon_geom-1.0.19
+        rust-lyon_algorithms-1.0.22
+        rust-lyon_geom-1.0.20
         rust-lyon_path-1.0.19
-        rust-lyon_tessellation-1.0.22
-        rust-lzma-rust2-0.16.5
+        rust-lyon_tessellation-1.0.23
+        rust-lzma-rust2-0.24.0
         rust-malloc_buf-0.0.6
         rust-md-5-0.9.1
         rust-memchr-2.8.3
         rust-memmap2-0.8.0
-        rust-memmap2-0.9.11
+        rust-memmap2-0.9.12
         rust-memoffset-0.9.1
         rust-metal-0.33.0
         rust-miette-7.6.0
-        rust-mime-0.3.17
+        rust-mime-0.3.18
         rust-mime_guess-2.0.5
         rust-miniz_oxide-0.8.9
         rust-miniz_oxide-0.9.1
@@ -14857,15 +14567,17 @@
         rust-ndk-0.9.0
         rust-ndk-context-0.1.1
         rust-ndk-sys-0.6.0-11769913
+        rust-nix-0.31.3
         rust-nmrs-3.5.7
-        rust-notify-8.2.0
-        rust-notify-types-2.1.0
+        rust-notify-8.2.1
+        rust-notify-types-2.2.0
         rust-nu-ansi-term-0.50.3
         rust-num-0.4.3
         rust-num-bigint-0.4.8
         rust-num-complex-0.4.6
         rust-num-conv-0.2.2
         rust-num-derive-0.4.2
+        rust-num-derive-0.5.1
         rust-num-integer-0.1.47
         rust-num-iter-0.1.46
         rust-num-rational-0.4.2
@@ -14883,6 +14595,7 @@
         rust-objc2-core-foundation-0.3.2
         rust-objc2-core-graphics-0.3.2
         rust-objc2-core-image-0.2.2
+        rust-objc2-core-services-0.3.2
         rust-objc2-core-video-0.3.2
         rust-objc2-encode-4.1.0
         rust-objc2-foundation-0.2.2
@@ -14893,10 +14606,10 @@
         rust-objc_id-0.1.1
         rust-once_cell-1.21.4
         rust-opaque-debug-0.3.1
-        rust-openssl-probe-0.2.1
+        rust-openssl-probe-0.2.2
         rust-option-ext-0.2.0
         rust-orbclient-0.3.55
-        rust-ordered-float-5.5.0
+        rust-ordered-float-5.5.1
         rust-ordered-stream-0.2.0
         rust-ouroboros-0.18.5
         rust-ouroboros_macro-0.18.5
@@ -14911,9 +14624,11 @@
         rust-pbkdf2-0.13.0
         rust-percent-encoding-2.3.2
         rust-phf-0.13.1
-        rust-phf_generator-0.13.1
-        rust-phf_macros-0.13.1
+        rust-phf-0.14.0
+        rust-phf_generator-0.14.0
+        rust-phf_macros-0.14.0
         rust-phf_shared-0.13.1
+        rust-phf_shared-0.14.0
         rust-pico-args-0.5.0
         rust-pin-project-1.1.13
         rust-pin-project-internal-1.1.13
@@ -14925,12 +14640,11 @@
         rust-png-0.17.16
         rust-png-0.18.1
         rust-polling-3.11.0
-        rust-pollster-0.4.0
         rust-portable-atomic-1.15.0
         rust-portable-atomic-util-0.2.8
         rust-potential_utf-0.1.6
         rust-powerfmt-0.2.1
-        rust-ppmd-rust-1.5.1
+        rust-ppmd-rust-1.5.2
         rust-ppv-lite86-0.2.21
         rust-presser-0.3.1
         rust-proc-macro-crate-3.5.0
@@ -14953,12 +14667,9 @@
         rust-r-efi-5.3.0
         rust-r-efi-6.0.0
         rust-rand-0.8.8
-        rust-rand-0.9.5
         rust-rand-0.10.3
         rust-rand_chacha-0.3.1
-        rust-rand_chacha-0.9.0
         rust-rand_core-0.6.4
-        rust-rand_core-0.9.5
         rust-rand_core-0.10.1
         rust-rand_pcg-0.10.2
         rust-range-alloc-0.1.5
@@ -14970,17 +14681,20 @@
         rust-redox_syscall-0.5.18
         rust-redox_syscall-0.9.5
         rust-redox_users-0.5.3
+        rust-ref-cast-1.0.27
+        rust-ref-cast-impl-1.0.27
         rust-regex-1.13.1
         rust-regex-automata-0.4.18
         rust-regex-syntax-0.8.11
         rust-renderdoc-sys-1.1.0
         rust-reqwest-0.13.5
         rust-resvg-0.45.1
-        rust-rfd-0.16.0
         rust-rgb-0.8.53
         rust-ring-0.17.14
-        rust-ron-0.12.2
+        rust-ron-0.11.0
+        rust-ron-0.12.3
         rust-roxmltree-0.20.0
+        rust-roxmltree-0.21.2
         rust-rust-embed-8.13.0
         rust-rust-embed-impl-8.13.0
         rust-rust-embed-utils-8.13.0
@@ -14988,17 +14702,19 @@
         rust-rustc-hash-2.1.3
         rust-rustc_version-0.4.1
         rust-rustix-0.38.44
-        rust-rustix-1.1.5
+        rust-rustix-1.1.6
         rust-rustls-0.23.46
         rust-rustls-native-certs-0.8.5
         rust-rustls-pki-types-1.15.1
         rust-rustls-platform-verifier-0.7.1
         rust-rustls-platform-verifier-android-0.2.0
-        rust-rustls-webpki-0.103.15
+        rust-rustls-webpki-0.103.16
         rust-rustversion-1.0.23
         rust-rustybuzz-0.20.1
         rust-same-file-1.0.6
         rust-schannel-0.1.30
+        rust-schemars-0.9.0
+        rust-schemars-1.2.3
         rust-scoped-tls-1.0.1
         rust-scopeguard-1.2.0
         rust-sctk-adwaita-0.11.1
@@ -15015,6 +14731,8 @@
         rust-serde_json-1.0.154
         rust-serde_repr-0.1.21
         rust-serde_spanned-0.6.9
+        rust-serde_with-3.24.0
+        rust-serde_with_macros-3.24.0
         rust-sha-1-0.9.8
         rust-sha1-0.11.0
         rust-sha1_smol-1.0.1
@@ -15032,9 +14750,9 @@
         rust-skrifa-0.44.0
         rust-slab-0.4.12
         rust-slotmap-1.1.1
-        rust-smallvec-1.16.3
+        rust-smallvec-1.16.4
         rust-smithay-client-toolkit-0.20.0
-        rust-smol_str-0.3.6
+        rust-smol_str-0.3.7
         rust-socket2-0.6.5
         rust-spirv-0.3.0-sdk-1.3.268.0
         rust-stable_deref_trait-1.2.1
@@ -15052,7 +14770,7 @@
         rust-sys-locale-0.3.2
         rust-system-configuration-0.7.0
         rust-system-configuration-sys-0.6.0
-        rust-taffy-0.9.2
+        rust-taffy-0.15.1
         rust-temp-dir-0.1.16
         rust-tempfile-3.27.0
         rust-termcolor-1.4.1
@@ -15063,14 +14781,15 @@
         rust-thread_local-1.1.10
         rust-time-0.3.55
         rust-time-core-0.1.9
+        rust-time-macros-0.2.32
         rust-tiny-skia-0.11.4
         rust-tiny-skia-0.12.0
         rust-tiny-skia-path-0.11.4
         rust-tiny-skia-path-0.12.0
         rust-tiny-xlib-0.2.5
-        rust-tinystr-0.8.4
+        rust-tinystr-0.8.5
         rust-tinyvec-1.13.3
-        rust-tokio-1.53.3
+        rust-tokio-1.54.1
         rust-tokio-macros-2.7.2
         rust-tokio-rustls-0.26.6
         rust-tokio-stream-0.1.19
@@ -15080,7 +14799,7 @@
         rust-toml_datetime-0.6.11
         rust-toml_datetime-1.1.2-spec-1.1.0
         rust-toml_edit-0.22.27
-        rust-toml_edit-0.25.17-spec-1.1.0
+        rust-toml_edit-0.25.18-spec-1.1.0
         rust-toml_parser-1.1.5-spec-1.1.0
         rust-toml_write-0.1.2
         rust-tower-0.5.3
@@ -15095,12 +14814,11 @@
         rust-try-lock-0.2.5
         rust-ttf-parser-0.25.1
         rust-type-map-0.5.1
-        rust-typed-path-0.12.3
+        rust-typed-path-0.13.0
         rust-typeid-1.0.3
         rust-typenum-1.20.1
         rust-udev-0.9.3
         rust-uds_windows-1.2.1
-        rust-uncased-0.9.10
         rust-unic-langid-0.9.6
         rust-unic-langid-impl-0.9.6
         rust-unicase-2.10.0
@@ -15109,29 +14827,29 @@
         rust-unicode-ccc-0.4.0
         rust-unicode-ident-1.0.27
         rust-unicode-linebreak-0.1.5
-        rust-unicode-properties-0.1.4
-        rust-unicode-script-0.5.8
+        rust-unicode-properties-0.1.5
+        rust-unicode-script-0.5.9
         rust-unicode-segmentation-1.13.3
         rust-unicode-vo-0.1.0
         rust-unicode-width-0.1.14
-        rust-unicode-width-0.2.2
+        rust-unicode-width-0.2.3
         rust-untrusted-0.9.0
         rust-url-2.5.8
-        rust-urlencoding-2.1.3
         rust-usvg-0.45.1
-        rust-utf8_iter-1.0.4
-        rust-uuid-1.28.0
+        rust-utf8_iter-1.1.0
+        rust-utf_types-1.0.0
+        rust-uuid-1.29.0
         rust-valuable-0.1.1
         rust-version_check-0.9.5
         rust-walkdir-2.5.0
         rust-want-0.3.2
         rust-wasi-0.11.1-wasi-snapshot-preview1
         rust-wasip2-1.0.4-wasi-0.2.12
-        rust-wasm-bindgen-0.2.129
-        rust-wasm-bindgen-futures-0.4.79
-        rust-wasm-bindgen-macro-0.2.129
-        rust-wasm-bindgen-macro-support-0.2.129
-        rust-wasm-bindgen-shared-0.2.129
+        rust-wasm-bindgen-0.2.130
+        rust-wasm-bindgen-futures-0.4.80
+        rust-wasm-bindgen-macro-0.2.130
+        rust-wasm-bindgen-macro-support-0.2.130
+        rust-wasm-bindgen-shared-0.2.130
         rust-wasmtimer-0.4.3
         rust-wayland-backend-0.3.17
         rust-wayland-client-0.31.15
@@ -15145,9 +14863,9 @@
         rust-wayland-scanner-0.31.11
         rust-wayland-server-0.31.14
         rust-wayland-sys-0.31.11
-        rust-web-sys-0.3.106
+        rust-web-sys-0.3.107
         rust-web-time-1.1.0
-        rust-webpki-root-certs-1.0.9
+        rust-webpki-root-certs-1.0.11
         rust-weezl-0.1.12
         rust-wgpu-28.0.0
         rust-wgpu-core-28.0.1
@@ -15156,6 +14874,7 @@
         rust-wgpu-core-deps-windows-linux-android-28.0.0
         rust-wgpu-hal-28.0.1
         rust-wgpu-types-28.0.0
+        rust-which-8.0.6
         rust-winapi-0.3.9
         rust-winapi-i686-pc-windows-gnu-0.4.0
         rust-winapi-util-0.1.11
@@ -15182,39 +14901,29 @@
         rust-windows-sys-0.48.0
         rust-windows-sys-0.52.0
         rust-windows-sys-0.59.0
-        rust-windows-sys-0.60.2
         rust-windows-sys-0.61.2
         rust-windows-targets-0.48.5
         rust-windows-targets-0.52.6
-        rust-windows-targets-0.53.5
         rust-windows-threading-0.1.0
         rust-windows-threading-0.2.1
         rust-windows_aarch64_gnullvm-0.48.5
         rust-windows_aarch64_gnullvm-0.52.6
-        rust-windows_aarch64_gnullvm-0.53.1
         rust-windows_aarch64_msvc-0.48.5
         rust-windows_aarch64_msvc-0.52.6
-        rust-windows_aarch64_msvc-0.53.1
         rust-windows_i686_gnu-0.48.5
         rust-windows_i686_gnu-0.52.6
-        rust-windows_i686_gnu-0.53.1
         rust-windows_i686_gnullvm-0.52.6
-        rust-windows_i686_gnullvm-0.53.1
         rust-windows_i686_msvc-0.48.5
         rust-windows_i686_msvc-0.52.6
-        rust-windows_i686_msvc-0.53.1
         rust-windows_x86_64_gnu-0.48.5
         rust-windows_x86_64_gnu-0.52.6
-        rust-windows_x86_64_gnu-0.53.1
         rust-windows_x86_64_gnullvm-0.48.5
         rust-windows_x86_64_gnullvm-0.52.6
-        rust-windows_x86_64_gnullvm-0.53.1
         rust-windows_x86_64_msvc-0.48.5
         rust-windows_x86_64_msvc-0.52.6
-        rust-windows_x86_64_msvc-0.53.1
         rust-winnow-0.6.24
         rust-winnow-0.7.15
-        rust-winnow-1.0.4
+        rust-winnow-1.0.5
         rust-wit-bindgen-0.57.1
         rust-writeable-0.6.4
         rust-x11-dl-2.21.0
@@ -15225,22 +14934,26 @@
         rust-xkb-data-0.2.2
         rust-xkbcommon-0.7.0
         rust-xkbcommon-0.8.0
+        rust-xkbcommon-0.9.0
         rust-xkbcommon-dl-0.4.2
         rust-xkeysym-0.2.1
         rust-xml-rs-0.8.29
         rust-xmlwriter-0.1.0
         rust-yansi-1.0.1
-        rust-yazi-0.2.1
-        rust-yoke-0.8.3
+        rust-yazi-0.2.2
+        rust-yoke-0.8.4
         rust-yoke-derive-0.8.4
         rust-zbus-5.19.0
+        rust-zbus-6.2.1
         rust-zbus-lockstep-0.5.2
         rust-zbus-lockstep-macros-0.5.2
         rust-zbus_macros-5.19.0
+        rust-zbus_macros-6.2.1
         rust-zbus_names-4.3.5
-        rust-zbus_polkit-5.1.0
+        rust-zbus_polkit-6.0.0
+        rust-zbus_utils-6.1.0
         rust-zbus_xml-5.2.1
-        rust-zcheapstr-1.1.0
+        rust-zcheapstr-1.2.0
         rust-zeno-0.3.3
         rust-zerocopy-0.8.63
         rust-zerocopy-derive-0.8.63
@@ -15248,14 +14961,15 @@
         rust-zerofrom-derive-0.1.8
         rust-zeroize-1.9.1
         rust-zerotrie-0.2.5
-        rust-zerovec-0.11.8
-        rust-zerovec-derive-0.11.6
-        rust-zip-8.6.0
+        rust-zerovec-0.11.9
+        rust-zerovec-derive-0.11.7
+        rust-zip-9.4.0
         rust-zlib-rs-0.6.8
         rust-zmij-1.0.23
         rust-zopfli-0.8.4
-        rust-zstd-0.13.3
-        rust-zstd-safe-7.3.0
+        rust-zruntime-0.2.2
+        rust-zstd-0.14.3
+        rust-zstd-safe-8.2.0
         rust-zstd-sys-2.1.2-zstd.1.5.7
         rust-zune-core-0.4.12
         rust-zune-core-0.5.3
@@ -15266,7 +14980,10 @@
         rust-zvariant_utils-4.2.0))
 
 (define cosmic-initial-setup-git-crates
-  (list (git-crate "accesskit" "0.22.0"
+  (list (git-crate "a11y-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#4c6c886a758adcbb0bda876c53135ca738549edc"
+                   dbus-settings-bindings-4c6c886-checkout "a11y")
+        (git-crate "accesskit" "0.22.0"
                    "git+https://github.com/wash2/accesskit?rev=6c20249#6c20249d3b9fd45e7002efad9f6b6171a9257912"
                    accesskit-6c20249-checkout "common")
         (git-crate "accesskit_atspi_common" "0.15.0"
@@ -15287,15 +15004,15 @@
         (git-crate "accesskit_winit" "0.30.0"
                    "git+https://github.com/wash2/accesskit?rev=6c20249#6c20249d3b9fd45e7002efad9f6b6171a9257912"
                    accesskit-6c20249-checkout "platforms/winit")
-        (git-crate "accounts-zbus" "0.1.0"
-                   "git+https://github.com/pop-os/dbus-settings-bindings#eed01dd3609e90e3c8cd043656734c500956c793"
-                   dbus-settings-bindings-eed01dd-checkout "accounts-zbus")
+        (git-crate "accounts-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings?branch=zbus6#8d5d6163b22e364a4ce3aea5baf9871391a1dc34"
+                   dbus-settings-bindings-8d5d616-checkout "accounts")
         (git-crate "atomicwrites" "0.4.2"
                    "git+https://github.com/jackpot51/rust-atomicwrites#043ab4859d53ffd3d55334685303d8df39c9f768"
                    rust-atomicwrites-043ab48-checkout ".")
         (git-crate "build_helpers" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/build_helpers")
+                   "git+https://github.com/pop-os/libcosmic.git#7cd76ae3160cbd26ae89a4c01e64eda21f648c7f"
+                   libcosmic-7cd76ae-checkout "iced/build_helpers")
         (git-crate "clipboard_macos" "0.1.0"
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout "macos")
@@ -15309,38 +15026,41 @@
                    "git+https://github.com/pop-os/cosmic-protocols//?rev=c0cff4d#c0cff4db14c37ed954983158e4055aa94c7741d9"
                    cosmic-protocols-c0cff4d-checkout "client-toolkit")
         (git-crate "cosmic-comp-config" "1.0.0"
-                   "git+https://github.com/pop-os/cosmic-comp#742b800b518f0dafd89d0c1ace4de4935334ed18"
-                   cosmic-comp-742b800-checkout "cosmic-comp-config")
+                   "git+https://github.com/pop-os/cosmic-comp#cb86b9ec6f18ca2d2ad3b39426a57ab850867070"
+                   cosmic-comp-cb86b9e-checkout "cosmic-comp-config")
         (git-crate "cosmic-config" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "cosmic-config")
+                   "git+https://github.com/pop-os/libcosmic.git#7cd76ae3160cbd26ae89a4c01e64eda21f648c7f"
+                   libcosmic-7cd76ae-checkout "cosmic-config")
         (git-crate "cosmic-config-derive" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "cosmic-config-derive")
-        (git-crate "cosmic-dbus-a11y" "0.1.0"
-                   "git+https://github.com/pop-os/dbus-settings-bindings#eed01dd3609e90e3c8cd043656734c500956c793"
-                   dbus-settings-bindings-eed01dd-checkout "a11y")
+                   "git+https://github.com/pop-os/libcosmic.git#7cd76ae3160cbd26ae89a4c01e64eda21f648c7f"
+                   libcosmic-7cd76ae-checkout "cosmic-config-derive")
         (git-crate "cosmic-freedesktop-icons" "0.4.0"
                    "git+https://github.com/pop-os/freedesktop-icons#ab4c57b8e416c6af9297cb04d101889896fd9a92"
                    freedesktop-icons-ab4c57b-checkout ".")
+        (git-crate "cosmic-launch" "0.1.0"
+                   "git+https://github.com/pop-os/libcosmic.git#7cd76ae3160cbd26ae89a4c01e64eda21f648c7f"
+                   libcosmic-7cd76ae-checkout "cosmic-launch")
         (git-crate "cosmic-protocols" "0.2.0"
                    "git+https://github.com/pop-os/cosmic-protocols//?rev=c0cff4d#c0cff4db14c37ed954983158e4055aa94c7741d9"
                    cosmic-protocols-c0cff4d-checkout ".")
-        (git-crate "cosmic-randr-shell" "1.10.0"
-                   "git+https://github.com/pop-os/cosmic-randr#85efc7febb99876094cf90af6dbce0927ad8cca7"
-                   cosmic-randr-85efc7f-checkout "shell")
-        (git-crate "cosmic-settings-a11y-manager-subscription" "1.10.0"
-                   "git+https://github.com/pop-os/cosmic-settings#c4ff5486d00fb0ede7a95784f6fb634bf79e6113"
-                   cosmic-settings-c4ff548-checkout "subscriptions/a11y-manager")
-        (git-crate "cosmic-settings-accessibility-subscription" "1.10.0"
-                   "git+https://github.com/pop-os/cosmic-settings#c4ff5486d00fb0ede7a95784f6fb634bf79e6113"
-                   cosmic-settings-c4ff548-checkout "subscriptions/accessibility")
-        (git-crate "cosmic-settings-daemon" "0.1.0"
-                   "git+https://github.com/pop-os/dbus-settings-bindings#eed01dd3609e90e3c8cd043656734c500956c793"
-                   dbus-settings-bindings-eed01dd-checkout "cosmic-settings-daemon")
+        (git-crate "cosmic-randr-shell" "1.11.0"
+                   "git+https://github.com/pop-os/cosmic-randr#f1a97655c97e8799bf4a37a8f5103a8ab5e5068d"
+                   cosmic-randr-f1a9765-checkout "shell")
+        (git-crate "cosmic-settings-a11y-manager-subscription" "1.11.0"
+                   "git+https://github.com/pop-os/cosmic-settings#4cf24f610b8e178e0691986c28b3fe86b3edbe80"
+                   cosmic-settings-4cf24f6-checkout "subscriptions/a11y-manager")
+        (git-crate "cosmic-settings-accessibility-subscription" "1.11.0"
+                   "git+https://github.com/pop-os/cosmic-settings#4cf24f610b8e178e0691986c28b3fe86b3edbe80"
+                   cosmic-settings-4cf24f6-checkout "subscriptions/accessibility")
+        (git-crate "cosmic-settings-config" "1.11.0"
+                   "git+https://github.com/pop-os/cosmic-settings-daemon#108e095779549931e7ce109429255a1341c70b7c"
+                   cosmic-settings-daemon-108e095-checkout "config")
+        (git-crate "cosmic-settings-daemon-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#4c6c886a758adcbb0bda876c53135ca738549edc"
+                   dbus-settings-bindings-4c6c886-checkout "cosmic-settings-daemon")
         (git-crate "cosmic-theme" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "cosmic-theme")
+                   "git+https://github.com/pop-os/libcosmic.git#7cd76ae3160cbd26ae89a4c01e64eda21f648c7f"
+                   libcosmic-7cd76ae-checkout "cosmic-theme")
         (git-crate "cryoglyph" "0.1.0"
                    "git+https://github.com/iced-rs/cryoglyph.git?rev=e429a025df36ab8145708acb309080ae3deec17a#e429a025df36ab8145708acb309080ae3deec17a"
                    cryoglyph-e429a02-checkout ".")
@@ -15351,62 +15071,68 @@
                    "git+https://github.com/pop-os/winit.git?rev=9567503#9567503d34130113e36b0167a2b8829c3756e429"
                    winit-9567503-checkout "dpi")
         (git-crate "iced" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced")
+                   "git+https://github.com/pop-os/libcosmic.git#7cd76ae3160cbd26ae89a4c01e64eda21f648c7f"
+                   libcosmic-7cd76ae-checkout "iced")
         (git-crate "iced_accessibility" "0.1.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/accessibility")
+                   "git+https://github.com/pop-os/libcosmic.git#7cd76ae3160cbd26ae89a4c01e64eda21f648c7f"
+                   libcosmic-7cd76ae-checkout "iced/accessibility")
         (git-crate "iced_core" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/core")
+                   "git+https://github.com/pop-os/libcosmic.git#7cd76ae3160cbd26ae89a4c01e64eda21f648c7f"
+                   libcosmic-7cd76ae-checkout "iced/core")
         (git-crate "iced_debug" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/debug")
+                   "git+https://github.com/pop-os/libcosmic.git#7cd76ae3160cbd26ae89a4c01e64eda21f648c7f"
+                   libcosmic-7cd76ae-checkout "iced/debug")
         (git-crate "iced_futures" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/futures")
+                   "git+https://github.com/pop-os/libcosmic.git#7cd76ae3160cbd26ae89a4c01e64eda21f648c7f"
+                   libcosmic-7cd76ae-checkout "iced/futures")
         (git-crate "iced_graphics" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/graphics")
+                   "git+https://github.com/pop-os/libcosmic.git#7cd76ae3160cbd26ae89a4c01e64eda21f648c7f"
+                   libcosmic-7cd76ae-checkout "iced/graphics")
         (git-crate "iced_program" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/program")
+                   "git+https://github.com/pop-os/libcosmic.git#7cd76ae3160cbd26ae89a4c01e64eda21f648c7f"
+                   libcosmic-7cd76ae-checkout "iced/program")
         (git-crate "iced_renderer" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/renderer")
+                   "git+https://github.com/pop-os/libcosmic.git#7cd76ae3160cbd26ae89a4c01e64eda21f648c7f"
+                   libcosmic-7cd76ae-checkout "iced/renderer")
         (git-crate "iced_runtime" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/runtime")
+                   "git+https://github.com/pop-os/libcosmic.git#7cd76ae3160cbd26ae89a4c01e64eda21f648c7f"
+                   libcosmic-7cd76ae-checkout "iced/runtime")
         (git-crate "iced_tiny_skia" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/tiny_skia")
+                   "git+https://github.com/pop-os/libcosmic.git#7cd76ae3160cbd26ae89a4c01e64eda21f648c7f"
+                   libcosmic-7cd76ae-checkout "iced/tiny_skia")
         (git-crate "iced_wgpu" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/wgpu")
+                   "git+https://github.com/pop-os/libcosmic.git#7cd76ae3160cbd26ae89a4c01e64eda21f648c7f"
+                   libcosmic-7cd76ae-checkout "iced/wgpu")
         (git-crate "iced_widget" "0.14.2"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/widget")
+                   "git+https://github.com/pop-os/libcosmic.git#7cd76ae3160cbd26ae89a4c01e64eda21f648c7f"
+                   libcosmic-7cd76ae-checkout "iced/widget")
         (git-crate "iced_winit" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/winit")
+                   "git+https://github.com/pop-os/libcosmic.git#7cd76ae3160cbd26ae89a4c01e64eda21f648c7f"
+                   libcosmic-7cd76ae-checkout "iced/winit")
         (git-crate "libcosmic" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout ".")
-        (git-crate "locale1" "0.1.0"
-                   "git+https://github.com/pop-os/dbus-settings-bindings#eed01dd3609e90e3c8cd043656734c500956c793"
-                   dbus-settings-bindings-eed01dd-checkout "locale1")
+                   "git+https://github.com/pop-os/libcosmic.git#7cd76ae3160cbd26ae89a4c01e64eda21f648c7f"
+                   libcosmic-7cd76ae-checkout ".")
+        (git-crate "locale1-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings?branch=zbus6#8d5d6163b22e364a4ce3aea5baf9871391a1dc34"
+                   dbus-settings-bindings-8d5d616-checkout "locale1")
         (git-crate "locales-rs" "0.1.0"
-                   "git+https://github.com/AerynOS/locales-rs#c53fb77280fea544752373ab0e99209b4e90b8ff"
-                   locales-rs-c53fb77-checkout ".")
+                   "git+https://github.com/AerynOS/locales-rs#947cc560257ebe68fda3f854ee45773072a915d4"
+                   locales-rs-947cc56-checkout ".")
         (git-crate "mime" "0.1.0"
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout "mime")
+        (git-crate "pop-system-updater-zbus" "0.1.0"
+                   "git+https://github.com/pop-os/system-updater#546d8a3f11e052f88d7ecfaa4a9b844beb4f8a6d"
+                   system-updater-546d8a3-checkout "client")
         (git-crate "smithay-clipboard" "0.8.0"
                    "git+https://github.com/pop-os/smithay-clipboard?tag=sctk-0.20#859b02c88f45c554049a67c6ddeec1692ce0e20b"
                    smithay-clipboard-859b02c-checkout ".")
         (git-crate "softbuffer" "0.4.1"
                    "git+https://github.com/pop-os/softbuffer?tag=cosmic-4.0#c2b2c19ddb38ff17495643699f97cb1f2064a1be"
                    softbuffer-c2b2c19-checkout ".")
+        (git-crate "switcheroo-control-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#4c6c886a758adcbb0bda876c53135ca738549edc"
+                   dbus-settings-bindings-4c6c886-checkout "switcheroo-control")
         (git-crate "window_clipboard" "0.4.1"
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout ".")
@@ -15447,9 +15173,9 @@
 (define xdg-desktop-portal-cosmic-cargo-inputs
   (list rust-ab_glyph-0.2.32
         rust-ab_glyph_rasterizer-0.1.10
-        rust-addr2line-0.25.1
+        rust-addr2line-0.27.1
         rust-adler2-2.0.1
-        rust-aes-0.9.3
+        rust-aes-0.9.4
         rust-ahash-0.8.12
         rust-aho-corasick-1.1.5
         rust-aliasable-0.1.3
@@ -15479,13 +15205,13 @@
         rust-as-raw-xcb-connection-1.0.1
         rust-as-slice-0.2.1
         rust-ash-0.38.0-1.3.281
-        rust-ashpd-0.11.1
         rust-ashpd-0.12.3
+        rust-ashpd-0.13.13
         rust-async-broadcast-0.7.2
         rust-async-channel-2.5.0
-        rust-async-executor-1.14.0
+        rust-async-executor-1.14.1
         rust-async-io-2.6.0
-        rust-async-lock-3.4.2
+        rust-async-lock-3.5.0
         rust-async-process-2.5.0
         rust-async-recursion-1.2.0
         rust-async-signal-0.2.14
@@ -15501,7 +15227,7 @@
         rust-av-scenechange-0.14.1
         rust-av1-grain-0.2.5
         rust-avif-serialize-0.8.9
-        rust-backtrace-0.3.76
+        rust-backtrace-0.3.77
         rust-base64-0.22.1
         rust-base64-0.23.1
         rust-basic-toml-0.1.10
@@ -15535,12 +15261,13 @@
         rust-calendrical_calculations-0.2.4
         rust-calloop-0.14.5
         rust-calloop-wayland-source-0.4.1
-        rust-cc-1.9.0
+        rust-cc-1.11.1
         rust-cexpr-0.6.0
         rust-cfb-0.7.3
         rust-cfg-expr-0.20.10
         rust-cfg-if-1.0.5
         rust-cfg_aliases-0.2.2
+        rust-chacha20-0.10.2
         rust-chrono-0.4.45
         rust-cipher-0.5.2
         rust-clang-sys-1.9.1
@@ -15548,7 +15275,7 @@
         rust-clap_builder-4.6.7
         rust-clap_derive-4.6.7
         rust-clap_lex-1.1.1
-        rust-clipboard-win-5.4.1
+        rust-clipboard-win-5.4.3
         rust-cmov-0.5.4
         rust-cocoa-0.25.0
         rust-cocoa-foundation-0.1.2
@@ -15567,7 +15294,7 @@
         rust-concurrent-queue-2.5.0
         rust-configparser-3.3.0
         rust-const-oid-0.10.2
-        rust-constant_time_eq-0.4.2
+        rust-constant_time_eq-0.6.1
         rust-cookie-factory-0.3.3
         rust-core-foundation-0.9.4
         rust-core-foundation-0.10.1
@@ -15581,7 +15308,7 @@
         rust-cpubits-0.1.1
         rust-cpufeatures-0.2.17
         rust-cpufeatures-0.3.1
-        rust-crc32fast-1.5.3
+        rust-crc32fast-1.5.4
         rust-crossbeam-deque-0.8.8
         rust-crossbeam-epoch-0.9.21
         rust-crossbeam-queue-0.3.14
@@ -15590,9 +15317,8 @@
         rust-crypto-common-0.1.7
         rust-crypto-common-0.2.2
         rust-css-color-0.2.8
-        rust-csscolorparser-0.8.4
         rust-ctor-0.10.1
-        rust-ctutils-0.4.3
+        rust-ctutils-0.4.8
         rust-cursor-icon-1.2.0
         rust-darling-0.21.3
         rust-darling-0.24.1
@@ -15612,10 +15338,9 @@
         rust-digest-0.11.3
         rust-dirs-5.0.1
         rust-dirs-6.0.0
-        rust-dirs-next-2.0.0
+        rust-dirs-7.0.0
         rust-dirs-sys-0.4.1
         rust-dirs-sys-0.5.0
-        rust-dirs-sys-next-0.1.2
         rust-dispatch2-0.3.1
         rust-displaydoc-0.2.7
         rust-dlib-0.5.3
@@ -15639,6 +15364,8 @@
         rust-equivalent-1.0.3
         rust-errno-0.3.14
         rust-error-code-3.4.0
+        rust-error_set-0.9.2
+        rust-error_set_impl-0.9.2
         rust-etagere-0.2.15
         rust-euclid-0.22.14
         rust-event-listener-5.4.2
@@ -15651,8 +15378,8 @@
         rust-filetime-0.2.29
         rust-find-crate-0.6.3
         rust-find-msvc-tools-0.1.15
-        rust-fixed_decimal-0.7.2
-        rust-flate2-1.1.10
+        rust-fixed_decimal-0.7.3
+        rust-flate2-1.1.11
         rust-float-cmp-0.9.0
         rust-float-cmp-0.10.0
         rust-float_next_after-1.0.0
@@ -15675,7 +15402,6 @@
         rust-form_urlencoded-1.2.2
         rust-freedesktop-desktop-entry-0.8.4
         rust-freedesktop_entry_parser-2.0.0
-        rust-fsevent-sys-4.1.0
         rust-futures-0.3.34
         rust-futures-channel-0.3.34
         rust-futures-core-0.3.34
@@ -15688,7 +15414,7 @@
         rust-futures-util-0.3.34
         rust-gbm-0.18.0
         rust-gbm-sys-0.4.0
-        rust-generator-0.8.11
+        rust-generator-0.8.12
         rust-generic-array-0.14.7
         rust-gethostname-1.1.0
         rust-getrandom-0.2.17
@@ -15698,7 +15424,7 @@
         rust-gettext-sys-0.27.0
         rust-gif-0.13.3
         rust-gif-0.14.2
-        rust-gimli-0.32.3
+        rust-gimli-0.34.0
         rust-gio-0.21.5
         rust-gio-sys-0.21.5
         rust-gio-sys-0.22.9
@@ -15711,7 +15437,7 @@
         rust-glib-sys-0.21.5
         rust-glib-sys-0.22.9
         rust-glob-0.3.4
-        rust-globset-0.4.20
+        rust-globset-0.4.21
         rust-glow-0.16.0
         rust-glutin_wgl_sys-0.6.1
         rust-gobject-sys-0.21.5
@@ -15719,7 +15445,6 @@
         rust-gpu-allocator-0.28.0
         rust-gpu-descriptor-0.3.2
         rust-gpu-descriptor-types-0.2.0
-        rust-grid-1.0.1
         rust-gstreamer-0.25.4
         rust-gstreamer-sys-0.25.4
         rust-guillotiere-0.6.2
@@ -15743,43 +15468,43 @@
         rust-i18n-embed-impl-0.8.4
         rust-iana-time-zone-0.1.65
         rust-iana-time-zone-haiku-0.1.2
-        rust-icu-2.3.1
-        rust-icu_calendar-2.3.0
-        rust-icu_calendar_data-2.3.0
-        rust-icu_casemap-2.3.0
-        rust-icu_casemap_data-2.3.0
-        rust-icu_collator-2.3.1
-        rust-icu_collator_data-2.3.0
-        rust-icu_collections-2.3.0
-        rust-icu_datetime-2.3.0
-        rust-icu_datetime_data-2.3.0
-        rust-icu_decimal-2.3.0
-        rust-icu_decimal_data-2.3.0
-        rust-icu_experimental-0.6.0
-        rust-icu_experimental_data-0.6.0
-        rust-icu_list-2.3.0
-        rust-icu_list_data-2.3.0
-        rust-icu_locale-2.3.1
-        rust-icu_locale_core-2.3.0
-        rust-icu_locale_data-2.3.0
-        rust-icu_locale_fallback-2.3.0
-        rust-icu_locale_fallback_data-2.3.0
-        rust-icu_normalizer-2.3.0
-        rust-icu_normalizer_data-2.3.0
-        rust-icu_pattern-0.5.0
-        rust-icu_plurals-2.3.0
-        rust-icu_plurals_data-2.3.0
-        rust-icu_properties-2.3.0
-        rust-icu_properties_data-2.3.0
-        rust-icu_provider-2.3.1
-        rust-icu_segmenter-2.3.0
-        rust-icu_segmenter_data-2.3.0
-        rust-icu_time-2.3.0
-        rust-icu_time_data-2.3.1
+        rust-icu-2.4.0
+        rust-icu_calendar-2.4.0
+        rust-icu_calendar_data-2.4.0
+        rust-icu_casemap-2.4.0
+        rust-icu_casemap_data-2.4.0
+        rust-icu_collator-2.4.0
+        rust-icu_collator_data-2.4.0
+        rust-icu_collections-2.4.0
+        rust-icu_datetime-2.4.0
+        rust-icu_datetime_data-2.4.0
+        rust-icu_decimal-2.4.0
+        rust-icu_decimal_data-2.4.0
+        rust-icu_experimental-0.7.0
+        rust-icu_experimental_data-0.7.0
+        rust-icu_list-2.4.0
+        rust-icu_list_data-2.4.0
+        rust-icu_locale-2.4.0
+        rust-icu_locale_core-2.4.0
+        rust-icu_locale_data-2.4.0
+        rust-icu_locale_fallback-2.4.0
+        rust-icu_locale_fallback_data-2.4.0
+        rust-icu_normalizer-2.4.0
+        rust-icu_normalizer_data-2.4.0
+        rust-icu_pattern-0.5.1
+        rust-icu_plurals-2.4.0
+        rust-icu_plurals_data-2.4.0
+        rust-icu_properties-2.4.0
+        rust-icu_properties_data-2.4.0
+        rust-icu_provider-2.4.0
+        rust-icu_segmenter-2.4.0
+        rust-icu_segmenter_data-2.4.0
+        rust-icu_time-2.4.0
+        rust-icu_time_data-2.4.0
         rust-ident_case-1.0.1
         rust-idna-1.1.0
         rust-idna_adapter-1.2.2
-        rust-ignore-0.4.33
+        rust-ignore-0.4.34
         rust-image-0.25.10
         rust-image-extras-0.1.1
         rust-image-webp-0.2.4
@@ -15801,11 +15526,11 @@
         rust-itertools-0.14.0
         rust-itertools-0.15.0
         rust-itoa-1.0.18
-        rust-ixdtf-0.6.6
-        rust-jiff-0.2.38
-        rust-jiff-core-0.1.1
-        rust-jiff-icu-0.2.2
-        rust-jiff-static-0.2.38
+        rust-ixdtf-0.6.7
+        rust-jiff-0.2.39
+        rust-jiff-core-0.1.2
+        rust-jiff-icu-0.2.3
+        rust-jiff-static-0.2.39
         rust-jiff-tzdb-0.1.9
         rust-jiff-tzdb-platform-0.1.3
         rust-jni-0.22.4
@@ -15814,7 +15539,7 @@
         rust-jni-sys-0.4.1
         rust-jni-sys-macros-0.4.1
         rust-jobserver-0.1.35
-        rust-js-sys-0.3.106
+        rust-js-sys-0.3.107
         rust-jxl-bitstream-1.1.0
         rust-jxl-coding-1.0.1
         rust-jxl-color-0.11.0
@@ -15828,19 +15553,19 @@
         rust-jxl-render-0.12.4
         rust-jxl-threadpool-1.0.0
         rust-jxl-vardct-0.11.1
-        rust-kamadak-exif-0.6.1
+        rust-kamadak-exif-0.6.2
         rust-keyboard-types-0.8.3
         rust-khronos-egl-6.0.0
         rust-khronos_api-3.1.0
         rust-known-folders-1.4.2
         rust-kqueue-1.2.1
         rust-kqueue-sys-1.1.2
-        rust-kstring-2.0.2
+        rust-kstring-2.0.5
         rust-kurbo-0.10.4
         rust-kurbo-0.11.3
         rust-lazy_static-1.5.1
         rust-lebe-0.5.3
-        rust-libbz2-rs-sys-0.2.5
+        rust-libbz2-rs-sys-0.2.6
         rust-libc-0.2.191
         rust-libfuzzer-sys-0.4.13
         rust-libloading-0.8.9
@@ -15856,7 +15581,7 @@
         rust-litrs-1.0.1
         rust-locale_config-0.3.0
         rust-lock_api-0.4.14
-        rust-log-0.4.34
+        rust-log-0.4.35
         rust-log-panics-2.1.0
         rust-loom-0.7.2
         rust-loop9-0.1.5
@@ -15866,17 +15591,17 @@
         rust-lyon_geom-1.0.20
         rust-lyon_path-1.0.19
         rust-lyon_tessellation-1.0.23
-        rust-lzma-rust2-0.16.5
+        rust-lzma-rust2-0.25.0
         rust-malloc_buf-0.0.6
         rust-matchers-0.2.0
         rust-maybe-rayon-0.1.1
         rust-md-5-0.10.6
         rust-memchr-2.8.3
         rust-memmap2-0.8.0
-        rust-memmap2-0.9.11
+        rust-memmap2-0.9.12
         rust-memoffset-0.9.1
         rust-metal-0.33.0
-        rust-mime-0.3.17
+        rust-mime-0.3.18
         rust-mime_guess-2.0.5
         rust-minimal-lexical-0.2.1
         rust-miniz_oxide-0.8.9
@@ -15890,13 +15615,14 @@
         rust-ndk-context-0.1.1
         rust-ndk-sys-0.6.0-11769913
         rust-new_debug_unreachable-1.0.6
+        rust-nix-0.31.3
         rust-no_std_io2-0.9.4
         rust-nom-7.1.3
         rust-nom-8.0.0
         rust-noop_proc_macro-0.3.0
-        rust-notify-8.2.0
+        rust-notify-8.2.1
         rust-notify-debouncer-full-0.7.0
-        rust-notify-types-2.1.0
+        rust-notify-types-2.2.0
         rust-nu-ansi-term-0.50.3
         rust-num-bigint-0.4.8
         rust-num-complex-0.4.6
@@ -15919,6 +15645,7 @@
         rust-objc2-core-foundation-0.3.2
         rust-objc2-core-graphics-0.3.2
         rust-objc2-core-image-0.2.2
+        rust-objc2-core-services-0.3.2
         rust-objc2-core-video-0.3.2
         rust-objc2-encode-4.1.0
         rust-objc2-foundation-0.2.2
@@ -15927,14 +15654,14 @@
         rust-objc2-quartz-core-0.2.2
         rust-objc2-ui-kit-0.3.2
         rust-objc_id-0.1.1
-        rust-object-0.37.3
+        rust-object-0.40.0
         rust-once_cell-1.21.4
         rust-once_cell_polyfill-1.70.2
-        rust-open-5.4.4
+        rust-open-5.4.5
         rust-option-ext-0.2.0
         rust-option-operations-0.6.1
         rust-orbclient-0.3.55
-        rust-ordered-float-5.5.0
+        rust-ordered-float-5.5.1
         rust-ordered-stream-0.2.0
         rust-ordermap-1.2.2
         rust-os_pipe-1.2.3
@@ -15953,9 +15680,11 @@
         rust-pbkdf2-0.13.0
         rust-percent-encoding-2.3.2
         rust-phf-0.13.1
-        rust-phf_generator-0.13.1
-        rust-phf_macros-0.13.1
+        rust-phf-0.14.0
+        rust-phf_generator-0.14.0
+        rust-phf_macros-0.14.0
         rust-phf_shared-0.13.1
+        rust-phf_shared-0.14.0
         rust-pico-args-0.5.0
         rust-pin-project-1.1.13
         rust-pin-project-internal-1.1.13
@@ -15967,12 +15696,11 @@
         rust-png-0.17.16
         rust-png-0.18.1
         rust-polling-3.11.0
-        rust-pollster-0.4.0
         rust-portable-atomic-1.15.0
         rust-portable-atomic-util-0.2.8
         rust-potential_utf-0.1.6
         rust-powerfmt-0.2.1
-        rust-ppmd-rust-1.5.1
+        rust-ppmd-rust-1.5.2
         rust-ppv-lite86-0.2.21
         rust-presser-0.3.1
         rust-proc-macro-crate-3.5.0
@@ -15996,10 +15724,12 @@
         rust-r-efi-6.0.0
         rust-rand-0.8.8
         rust-rand-0.9.5
+        rust-rand-0.10.3
         rust-rand_chacha-0.3.1
         rust-rand_chacha-0.9.0
         rust-rand_core-0.6.4
         rust-rand_core-0.9.5
+        rust-rand_core-0.10.1
         rust-range-alloc-0.1.5
         rust-rangemap-1.8.0
         rust-rav1e-0.8.1
@@ -16025,11 +15755,10 @@
         rust-reis-0.7.1
         rust-renderdoc-sys-1.1.0
         rust-resvg-0.45.1
-        rust-rfd-0.16.0
         rust-rgb-0.8.53
-        rust-ron-0.11.0
-        rust-ron-0.12.2
+        rust-ron-0.12.3
         rust-roxmltree-0.20.0
+        rust-roxmltree-0.21.2
         rust-rust-embed-8.13.0
         rust-rust-embed-impl-8.13.0
         rust-rust-embed-utils-8.13.0
@@ -16038,7 +15767,7 @@
         rust-rustc-hash-2.1.3
         rust-rustc_version-0.4.1
         rust-rustix-0.38.44
-        rust-rustix-1.1.5
+        rust-rustix-1.1.6
         rust-rustversion-1.0.23
         rust-rustybuzz-0.20.1
         rust-same-file-1.0.6
@@ -16054,7 +15783,7 @@
         rust-serde_derive-1.0.229
         rust-serde_json-1.0.154
         rust-serde_repr-0.1.21
-        rust-serde_spanned-1.1.2
+        rust-serde_spanned-1.1.3
         rust-serde_with-3.24.0
         rust-serde_with_macros-3.24.0
         rust-sha1-0.11.0
@@ -16074,7 +15803,7 @@
         rust-skrifa-0.44.0
         rust-slab-0.4.12
         rust-slotmap-1.1.1
-        rust-smallvec-1.16.3
+        rust-smallvec-1.16.5
         rust-smithay-client-toolkit-0.20.0
         rust-smol_str-0.3.7
         rust-socket2-0.6.5
@@ -16093,8 +15822,8 @@
         rust-synstructure-0.14.0
         rust-sys-locale-0.3.2
         rust-system-deps-7.0.8
-        rust-system-deps-9.0.0
-        rust-taffy-0.9.2
+        rust-system-deps-9.0.1
+        rust-taffy-0.15.1
         rust-tar-0.4.46
         rust-target-lexicon-0.13.5
         rust-temp-dir-0.1.16
@@ -16115,31 +15844,29 @@
         rust-tiny-skia-path-0.11.4
         rust-tiny-skia-path-0.12.0
         rust-tiny-xlib-0.2.5
-        rust-tinystr-0.8.4
+        rust-tinystr-0.8.5
         rust-tinyvec-1.13.3
-        rust-tokio-1.54.0
+        rust-tokio-1.54.1
         rust-tokio-macros-2.7.2
         rust-tokio-stream-0.1.19
         rust-toml-0.5.11
-        rust-toml-1.1.8-spec-1.1.0
-        rust-toml_datetime-1.1.2-spec-1.1.0
-        rust-toml_edit-0.25.17-spec-1.1.0
+        rust-toml-1.2.1-spec-1.1.0
+        rust-toml_datetime-1.1.3-spec-1.1.0
+        rust-toml_edit-0.25.19-spec-1.1.0
         rust-toml_parser-1.1.5-spec-1.1.0
-        rust-toml_writer-1.1.3-spec-1.1.0
+        rust-toml_writer-1.2.0-spec-1.1.0
         rust-tracing-0.1.44
         rust-tracing-attributes-0.1.31
         rust-tracing-core-0.1.36
         rust-tracing-journald-0.3.2
         rust-tracing-log-0.2.0
         rust-tracing-subscriber-0.3.23
-        rust-trash-5.2.9
         rust-ttf-parser-0.25.1
         rust-type-map-0.5.1
-        rust-typed-path-0.12.4
+        rust-typed-path-0.13.0
         rust-typeid-1.0.3
         rust-typenum-1.20.1
         rust-uds_windows-1.2.1
-        rust-uncased-0.9.10
         rust-unic-langid-0.9.6
         rust-unic-langid-impl-0.9.6
         rust-unicase-2.10.0
@@ -16148,18 +15875,18 @@
         rust-unicode-ccc-0.4.0
         rust-unicode-ident-1.0.27
         rust-unicode-linebreak-0.1.5
-        rust-unicode-properties-0.1.4
-        rust-unicode-script-0.5.8
+        rust-unicode-properties-0.1.5
+        rust-unicode-script-0.5.9
         rust-unicode-segmentation-1.13.3
         rust-unicode-vo-0.1.0
-        rust-unicode-width-0.2.2
+        rust-unicode-width-0.2.3
         rust-url-2.5.8
-        rust-urlencoding-2.1.3
         rust-usvg-0.45.1
-        rust-utf16_iter-1.0.5
-        rust-utf8_iter-1.0.4
+        rust-utf16_iter-1.1.0
+        rust-utf8_iter-1.1.0
         rust-utf8parse-0.2.2
-        rust-uuid-1.28.0
+        rust-utf_types-1.0.0
+        rust-uuid-1.29.0
         rust-uzers-0.12.2
         rust-v_frame-0.3.9
         rust-valuable-0.1.1
@@ -16168,12 +15895,12 @@
         rust-walkdir-2.5.0
         rust-wasi-0.11.1-wasi-snapshot-preview1
         rust-wasip2-1.0.4-wasi-0.2.12
-        rust-wasm-bindgen-0.2.129
-        rust-wasm-bindgen-futures-0.4.79
-        rust-wasm-bindgen-macro-0.2.129
-        rust-wasm-bindgen-macro-support-0.2.129
-        rust-wasm-bindgen-shared-0.2.129
-        rust-wasmtimer-0.4.3
+        rust-wasm-bindgen-0.2.130
+        rust-wasm-bindgen-futures-0.4.80
+        rust-wasm-bindgen-macro-0.2.130
+        rust-wasm-bindgen-macro-support-0.2.130
+        rust-wasm-bindgen-shared-0.2.130
+        rust-wasmtimer-0.4.5
         rust-wayland-backend-0.3.17
         rust-wayland-client-0.31.15
         rust-wayland-csd-frame-0.3.0
@@ -16186,7 +15913,7 @@
         rust-wayland-scanner-0.31.11
         rust-wayland-server-0.31.14
         rust-wayland-sys-0.31.11
-        rust-web-sys-0.3.106
+        rust-web-sys-0.3.107
         rust-web-time-1.1.0
         rust-weezl-0.1.12
         rust-wgpu-28.0.0
@@ -16196,6 +15923,7 @@
         rust-wgpu-core-deps-windows-linux-android-28.0.0
         rust-wgpu-hal-28.0.1
         rust-wgpu-types-28.0.0
+        rust-which-8.0.6
         rust-widestring-1.2.1
         rust-winapi-0.3.9
         rust-winapi-i686-pc-windows-gnu-0.4.0
@@ -16207,18 +15935,24 @@
         rust-windows-collections-0.3.2
         rust-windows-core-0.61.2
         rust-windows-core-0.62.2
+        rust-windows-core-0.100.0
         rust-windows-future-0.2.1
         rust-windows-future-0.3.2
         rust-windows-implement-0.60.2
+        rust-windows-implement-0.100.0
         rust-windows-interface-0.59.3
+        rust-windows-interface-0.100.0
         rust-windows-link-0.1.3
         rust-windows-link-0.2.1
+        rust-windows-link-0.100.0
         rust-windows-numerics-0.2.0
         rust-windows-numerics-0.3.1
         rust-windows-result-0.3.4
         rust-windows-result-0.4.1
+        rust-windows-result-0.100.0
         rust-windows-strings-0.4.2
         rust-windows-strings-0.5.1
+        rust-windows-strings-0.100.0
         rust-windows-sys-0.48.0
         rust-windows-sys-0.52.0
         rust-windows-sys-0.59.0
@@ -16252,14 +15986,14 @@
         rust-windows_x86_64_msvc-0.48.5
         rust-windows_x86_64_msvc-0.52.6
         rust-windows_x86_64_msvc-0.53.1
-        rust-winnow-1.0.4
+        rust-winnow-1.0.5
         rust-wit-bindgen-0.57.1
         rust-write16-1.0.0
         rust-writeable-0.6.4
         rust-x11-dl-2.21.0
         rust-x11rb-0.13.2
         rust-x11rb-protocol-0.13.2
-        rust-xattr-1.6.1
+        rust-xattr-1.7.0
         rust-xcursor-0.3.11
         rust-xdg-3.0.0
         rust-xdgen-0.1.0
@@ -16274,16 +16008,19 @@
         rust-xmlwriter-0.1.0
         rust-y4m-0.8.0
         rust-yansi-1.0.1
-        rust-yazi-0.2.1
-        rust-yoke-0.8.3
+        rust-yazi-0.2.2
+        rust-yoke-0.8.4
         rust-yoke-derive-0.8.4
         rust-zbus-5.19.0
+        rust-zbus-6.2.1
         rust-zbus-lockstep-0.5.2
         rust-zbus-lockstep-macros-0.5.2
         rust-zbus_macros-5.19.0
+        rust-zbus_macros-6.2.1
         rust-zbus_names-4.3.5
+        rust-zbus_utils-6.1.0
         rust-zbus_xml-5.2.1
-        rust-zcheapstr-1.1.0
+        rust-zcheapstr-1.2.0
         rust-zeno-0.3.3
         rust-zerocopy-0.8.63
         rust-zerocopy-derive-0.8.63
@@ -16291,14 +16028,15 @@
         rust-zerofrom-derive-0.1.8
         rust-zeroize-1.9.1
         rust-zerotrie-0.2.5
-        rust-zerovec-0.11.8
-        rust-zerovec-derive-0.11.6
-        rust-zip-8.6.0
+        rust-zerovec-0.11.9
+        rust-zerovec-derive-0.11.7
+        rust-zip-9.4.1
         rust-zlib-rs-0.6.8
         rust-zmij-1.0.23
         rust-zopfli-0.8.4
-        rust-zstd-0.13.3
-        rust-zstd-safe-7.3.0
+        rust-zruntime-0.2.2
+        rust-zstd-0.14.3
+        rust-zstd-safe-8.2.0
         rust-zstd-sys-2.1.2-zstd.1.5.7
         rust-zune-core-0.4.12
         rust-zune-core-0.5.3
@@ -16335,8 +16073,8 @@
                    "git+https://github.com/jackpot51/rust-atomicwrites#043ab4859d53ffd3d55334685303d8df39c9f768"
                    rust-atomicwrites-043ab48-checkout ".")
         (git-crate "build_helpers" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/build_helpers")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/build_helpers")
         (git-crate "clipboard_macos" "0.1.0"
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout "macos")
@@ -16346,36 +16084,39 @@
         (git-crate "clipboard_x11" "0.4.2"
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout "x11")
-        (git-crate "cosmic-bg-config" "1.10.0"
-                   "git+https://github.com/pop-os/cosmic-bg#91d525b7310f5a497c9fd09a25d2710eb9f8a6f7"
-                   cosmic-bg-91d525b-checkout "config")
+        (git-crate "cosmic-bg-config" "1.11.0"
+                   "git+https://github.com/pop-os/cosmic-bg#09e93d38798d2fc2ac53d03e4988800c179c8dea"
+                   cosmic-bg-09e93d3-checkout "config")
         (git-crate "cosmic-client-toolkit" "0.2.0"
                    "git+https://github.com/pop-os/cosmic-protocols?rev=c0cff4d#c0cff4db14c37ed954983158e4055aa94c7741d9"
                    cosmic-protocols-c0cff4d-checkout "client-toolkit")
         (git-crate "cosmic-config" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "cosmic-config")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "cosmic-config")
         (git-crate "cosmic-config-derive" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "cosmic-config-derive")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "cosmic-config-derive")
         (git-crate "cosmic-files" "1.11.0"
-                   "git+https://github.com/pop-os/cosmic-files#3cc4b8003e8d08349c7ced8a9cdd10cdfa45d38c"
-                   cosmic-files-3cc4b80-checkout ".")
+                   "git+https://github.com/pop-os/cosmic-files#47878af1e3362cc808c2c695b2fdcff178be6008"
+                   cosmic-files-47878af-checkout ".")
         (git-crate "cosmic-freedesktop-icons" "0.4.0"
                    "git+https://github.com/pop-os/freedesktop-icons#ab4c57b8e416c6af9297cb04d101889896fd9a92"
                    freedesktop-icons-ab4c57b-checkout ".")
+        (git-crate "cosmic-launch" "0.1.0"
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "cosmic-launch")
         (git-crate "cosmic-protocols" "0.2.0"
                    "git+https://github.com/pop-os/cosmic-protocols?rev=c0cff4d#c0cff4db14c37ed954983158e4055aa94c7741d9"
                    cosmic-protocols-c0cff4d-checkout ".")
-        (git-crate "cosmic-settings-config" "1.10.0"
-                   "git+https://github.com/pop-os/cosmic-settings-daemon#8844464b01d38bee68ed7da6083bf6dbaad71941"
-                   cosmic-settings-daemon-8844464-checkout "config")
-        (git-crate "cosmic-settings-daemon" "0.1.0"
-                   "git+https://github.com/pop-os/dbus-settings-bindings#eed01dd3609e90e3c8cd043656734c500956c793"
-                   dbus-settings-bindings-eed01dd-checkout "cosmic-settings-daemon")
+        (git-crate "cosmic-settings-config" "1.11.0"
+                   "git+https://github.com/pop-os/cosmic-settings-daemon#2df041e6e90757782a7884729ae3723e86cee122"
+                   cosmic-settings-daemon-2df041e-checkout "config")
+        (git-crate "cosmic-settings-daemon-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "cosmic-settings-daemon")
         (git-crate "cosmic-theme" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "cosmic-theme")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "cosmic-theme")
         (git-crate "cryoglyph" "0.1.0"
                    "git+https://github.com/iced-rs/cryoglyph.git?rev=e429a025df36ab8145708acb309080ae3deec17a#e429a025df36ab8145708acb309080ae3deec17a"
                    cryoglyph-e429a02-checkout ".")
@@ -16386,47 +16127,47 @@
                    "git+https://github.com/pop-os/winit.git?rev=9567503#9567503d34130113e36b0167a2b8829c3756e429"
                    winit-9567503-checkout "dpi")
         (git-crate "iced" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced")
         (git-crate "iced_accessibility" "0.1.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/accessibility")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/accessibility")
         (git-crate "iced_core" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/core")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/core")
         (git-crate "iced_debug" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/debug")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/debug")
         (git-crate "iced_futures" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/futures")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/futures")
         (git-crate "iced_graphics" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/graphics")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/graphics")
         (git-crate "iced_program" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/program")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/program")
         (git-crate "iced_renderer" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/renderer")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/renderer")
         (git-crate "iced_runtime" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/runtime")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/runtime")
         (git-crate "iced_tiny_skia" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/tiny_skia")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/tiny_skia")
         (git-crate "iced_wgpu" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/wgpu")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/wgpu")
         (git-crate "iced_widget" "0.14.2"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/widget")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/widget")
         (git-crate "iced_winit" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/winit")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/winit")
         (git-crate "libcosmic" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout ".")
+                   "git+https://github.com/pop-os/libcosmic#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout ".")
         (git-crate "libspa" "0.10.1"
                    "git+https://gitlab.freedesktop.org/pipewire/pipewire-rs#71022422eebd1bb2cb5a3259362819639fd29b58"
                    pipewire-rs-7102242-checkout "libspa")
@@ -16448,6 +16189,9 @@
         (git-crate "softbuffer" "0.4.1"
                    "git+https://github.com/pop-os/softbuffer?tag=cosmic-4.0#c2b2c19ddb38ff17495643699f97cb1f2064a1be"
                    softbuffer-c2b2c19-checkout ".")
+        (git-crate "switcheroo-control-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "switcheroo-control")
         (git-crate "window_clipboard" "0.4.1"
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout ".")
@@ -16485,21 +16229,19 @@
                    "git+https://github.com/pop-os/winit.git?rev=9567503#9567503d34130113e36b0167a2b8829c3756e429"
                    winit-9567503-checkout "winit-x11")
         (git-crate "xdg-mime" "0.4.0"
-                   "git+https://github.com/ebassi/xdg-mime-rs#f8efb3fb1fad582539e2af7d1e9fbc9613dcc7d9"
-                   xdg-mime-rs-f8efb3f-checkout ".")))
+                   "git+https://github.com/ebassi/xdg-mime-rs#69f67f59cd309355b72559f70aab64e2ac6312bc"
+                   xdg-mime-rs-69f67f5-checkout ".")))
 
 (define cosmic-files-cargo-inputs
   (list rust-ab_glyph-0.2.32
         rust-ab_glyph_rasterizer-0.1.10
         rust-adler2-2.0.1
-        rust-aes-0.9.3
+        rust-aes-0.9.4
         rust-ahash-0.8.12
         rust-aho-corasick-1.1.5
         rust-aliasable-0.1.3
         rust-aligned-0.4.3
         rust-aligned-vec-0.6.4
-        rust-alloc-no-stdlib-2.0.4
-        rust-alloc-stdlib-0.2.4
         rust-allocator-api2-0.2.21
         rust-almost-0.2.0
         rust-android-activity-0.6.1
@@ -16516,19 +16258,18 @@
         rust-arbitrary-1.5.0
         rust-arc-swap-1.9.3
         rust-arg_enum_proc_macro-0.3.4
+        rust-array-init-2.1.0
         rust-arrayref-0.3.9
         rust-arrayvec-0.7.8
         rust-as-raw-xcb-connection-1.0.1
         rust-as-slice-0.2.1
         rust-ash-0.38.0-1.3.281
-        rust-ashpd-0.11.1
-        rust-ashpd-0.12.3
+        rust-ashpd-0.13.13
         rust-async-broadcast-0.7.2
         rust-async-channel-2.5.0
-        rust-async-executor-1.14.0
-        rust-async-fs-2.2.0
+        rust-async-executor-1.14.1
         rust-async-io-2.6.0
-        rust-async-lock-3.4.2
+        rust-async-lock-3.5.0
         rust-async-process-2.5.0
         rust-async-recursion-1.2.0
         rust-async-signal-0.2.14
@@ -16554,13 +16295,11 @@
         rust-bitflags-2.13.2
         rust-bitstream-io-4.10.0
         rust-block-0.1.6
-        rust-block-buffer-0.10.4
         rust-block-buffer-0.12.1
         rust-block2-0.5.1
         rust-block2-0.6.2
         rust-blocking-1.7.0
         rust-borsh-1.8.1
-        rust-brotli-decompressor-5.0.3
         rust-bs58-0.5.1
         rust-bstr-1.13.1
         rust-btoi-0.5.0
@@ -16576,14 +16315,15 @@
         rust-calendrical_calculations-0.2.4
         rust-calloop-0.14.5
         rust-calloop-wayland-source-0.4.1
-        rust-cc-1.9.0
+        rust-cc-1.11.1
         rust-cfb-0.7.3
         rust-cfg-expr-0.20.10
         rust-cfg-if-1.0.5
         rust-cfg_aliases-0.2.2
+        rust-chacha20-0.10.2
         rust-chrono-0.4.45
         rust-cipher-0.5.2
-        rust-clipboard-win-5.4.1
+        rust-clipboard-win-5.4.3
         rust-cmov-0.5.4
         rust-cocoa-0.25.0
         rust-cocoa-foundation-0.1.2
@@ -16591,14 +16331,16 @@
         rust-color_quant-1.1.0
         rust-colorchoice-1.0.5
         rust-combine-4.6.9
-        rust-compio-0.18.0
+        rust-compio-0.19.2
         rust-compio-buf-0.8.3
-        rust-compio-driver-0.11.4
-        rust-compio-fs-0.11.0
-        rust-compio-io-0.9.1
-        rust-compio-log-0.1.0
-        rust-compio-macros-0.1.2
-        rust-compio-runtime-0.11.0
+        rust-compio-driver-0.12.5
+        rust-compio-executor-0.1.4
+        rust-compio-fs-0.12.1
+        rust-compio-io-0.10.1
+        rust-compio-log-0.2.1
+        rust-compio-macros-0.2.2
+        rust-compio-runtime-0.12.6
+        rust-compio-send-wrapper-0.7.2
         rust-concurrent-queue-2.5.0
         rust-configparser-3.3.0
         rust-const-oid-0.10.2
@@ -16609,24 +16351,20 @@
         rust-core-graphics-0.23.2
         rust-core-graphics-types-0.1.3
         rust-core-graphics-types-0.2.0
-        rust-core_affinity-0.8.3
         rust-core_maths-0.1.1
         rust-cosmic-text-0.19.0
         rust-cpubits-0.1.1
-        rust-cpufeatures-0.2.17
         rust-cpufeatures-0.3.1
-        rust-crc32fast-1.5.2
+        rust-crc32fast-1.5.4
         rust-crossbeam-deque-0.8.8
         rust-crossbeam-epoch-0.9.21
         rust-crossbeam-queue-0.3.14
         rust-crossbeam-utils-0.8.23
         rust-crunchy-0.2.4
-        rust-crypto-common-0.1.7
         rust-crypto-common-0.2.2
         rust-css-color-0.2.8
-        rust-csscolorparser-0.8.4
         rust-ctor-0.10.1
-        rust-ctutils-0.4.3
+        rust-ctutils-0.4.8
         rust-cursor-icon-1.2.0
         rust-darling-0.21.3
         rust-darling-0.24.1
@@ -16644,14 +16382,11 @@
         rust-derive_pod-0.1.3
         rust-derive_setters-0.1.9
         rust-derive_utils-0.16.0
-        rust-digest-0.10.7
         rust-digest-0.11.3
         rust-dirs-5.0.1
-        rust-dirs-6.0.0
-        rust-dirs-next-2.0.0
+        rust-dirs-7.0.0
         rust-dirs-sys-0.4.1
         rust-dirs-sys-0.5.0
-        rust-dirs-sys-next-0.1.2
         rust-dispatch2-0.3.1
         rust-displaydoc-0.2.7
         rust-dlib-0.5.3
@@ -16674,6 +16409,8 @@
         rust-equivalent-1.0.3
         rust-errno-0.3.14
         rust-error-code-3.4.0
+        rust-error_set-0.9.2
+        rust-error_set_impl-0.9.2
         rust-etagere-0.2.15
         rust-euclid-0.22.14
         rust-event-listener-5.4.2
@@ -16686,8 +16423,8 @@
         rust-filetime-0.2.29
         rust-find-crate-0.6.3
         rust-find-msvc-tools-0.1.15
-        rust-fixed_decimal-0.7.2
-        rust-flate2-1.1.10
+        rust-fixed_decimal-0.7.3
+        rust-flate2-1.1.11
         rust-float-cmp-0.9.0
         rust-float-cmp-0.10.0
         rust-float_next_after-1.0.0
@@ -16706,11 +16443,10 @@
         rust-foreign-types-0.5.0
         rust-foreign-types-macros-0.2.4
         rust-foreign-types-shared-0.3.1
-        rust-fork-0.7.0
+        rust-fork-0.11.0
         rust-form_urlencoded-1.2.2
         rust-freedesktop-desktop-entry-0.8.4
         rust-freedesktop_entry_parser-2.0.0
-        rust-fsevent-sys-4.1.0
         rust-futures-0.3.34
         rust-futures-channel-0.3.34
         rust-futures-core-0.3.34
@@ -16721,8 +16457,7 @@
         rust-futures-sink-0.3.34
         rust-futures-task-0.3.34
         rust-futures-util-0.3.34
-        rust-generator-0.8.11
-        rust-generic-array-0.14.7
+        rust-generator-0.8.12
         rust-gethostname-1.1.0
         rust-getrandom-0.2.17
         rust-getrandom-0.3.4
@@ -16731,22 +16466,21 @@
         rust-gettext-sys-0.27.0
         rust-gif-0.13.3
         rust-gif-0.14.2
-        rust-gio-0.21.5
-        rust-gio-sys-0.21.5
+        rust-gio-0.22.10
+        rust-gio-sys-0.22.9
         rust-gl_generator-0.14.0
         rust-glam-0.25.0
-        rust-glib-0.21.5
-        rust-glib-macros-0.21.5
-        rust-glib-sys-0.21.5
+        rust-glib-0.22.10
+        rust-glib-macros-0.22.9
+        rust-glib-sys-0.22.9
         rust-glob-0.3.4
-        rust-globset-0.4.20
+        rust-globset-0.4.21
         rust-glow-0.16.0
         rust-glutin_wgl_sys-0.6.1
-        rust-gobject-sys-0.21.5
+        rust-gobject-sys-0.22.9
         rust-gpu-allocator-0.28.0
         rust-gpu-descriptor-0.3.2
         rust-gpu-descriptor-types-0.2.0
-        rust-grid-1.0.1
         rust-guillotiere-0.6.2
         rust-half-2.7.1
         rust-harfrust-0.5.2
@@ -16768,43 +16502,43 @@
         rust-i18n-embed-impl-0.8.4
         rust-iana-time-zone-0.1.65
         rust-iana-time-zone-haiku-0.1.2
-        rust-icu-2.3.1
-        rust-icu_calendar-2.3.0
-        rust-icu_calendar_data-2.3.0
-        rust-icu_casemap-2.3.0
-        rust-icu_casemap_data-2.3.0
-        rust-icu_collator-2.3.1
-        rust-icu_collator_data-2.3.0
-        rust-icu_collections-2.3.0
-        rust-icu_datetime-2.3.0
-        rust-icu_datetime_data-2.3.0
-        rust-icu_decimal-2.3.0
-        rust-icu_decimal_data-2.3.0
-        rust-icu_experimental-0.6.0
-        rust-icu_experimental_data-0.6.0
-        rust-icu_list-2.3.0
-        rust-icu_list_data-2.3.0
-        rust-icu_locale-2.3.1
-        rust-icu_locale_core-2.3.0
-        rust-icu_locale_data-2.3.0
-        rust-icu_locale_fallback-2.3.0
-        rust-icu_locale_fallback_data-2.3.0
-        rust-icu_normalizer-2.3.0
-        rust-icu_normalizer_data-2.3.0
-        rust-icu_pattern-0.5.0
-        rust-icu_plurals-2.3.0
-        rust-icu_plurals_data-2.3.0
-        rust-icu_properties-2.3.0
-        rust-icu_properties_data-2.3.0
-        rust-icu_provider-2.3.1
-        rust-icu_segmenter-2.3.0
-        rust-icu_segmenter_data-2.3.0
-        rust-icu_time-2.3.0
-        rust-icu_time_data-2.3.1
+        rust-icu-2.4.0
+        rust-icu_calendar-2.4.0
+        rust-icu_calendar_data-2.4.0
+        rust-icu_casemap-2.4.0
+        rust-icu_casemap_data-2.4.0
+        rust-icu_collator-2.4.0
+        rust-icu_collator_data-2.4.0
+        rust-icu_collections-2.4.0
+        rust-icu_datetime-2.4.0
+        rust-icu_datetime_data-2.4.0
+        rust-icu_decimal-2.4.0
+        rust-icu_decimal_data-2.4.0
+        rust-icu_experimental-0.7.0
+        rust-icu_experimental_data-0.7.0
+        rust-icu_list-2.4.0
+        rust-icu_list_data-2.4.0
+        rust-icu_locale-2.4.0
+        rust-icu_locale_core-2.4.0
+        rust-icu_locale_data-2.4.0
+        rust-icu_locale_fallback-2.4.0
+        rust-icu_locale_fallback_data-2.4.0
+        rust-icu_normalizer-2.4.0
+        rust-icu_normalizer_data-2.4.0
+        rust-icu_pattern-0.5.1
+        rust-icu_plurals-2.4.0
+        rust-icu_plurals_data-2.4.0
+        rust-icu_properties-2.4.0
+        rust-icu_properties_data-2.4.0
+        rust-icu_provider-2.4.0
+        rust-icu_segmenter-2.4.0
+        rust-icu_segmenter_data-2.4.0
+        rust-icu_time-2.4.0
+        rust-icu_time_data-2.4.0
         rust-ident_case-1.0.1
         rust-idna-1.1.0
         rust-idna_adapter-1.2.2
-        rust-ignore-0.4.33
+        rust-ignore-0.4.34
         rust-image-0.25.10
         rust-image-extras-0.1.1
         rust-image-webp-0.2.4
@@ -16815,22 +16549,21 @@
         rust-infer-0.16.0
         rust-inotify-0.11.5
         rust-inotify-sys-0.1.8
-        rust-inout-0.2.4
+        rust-inout-0.2.5
         rust-interpolate_name-0.2.4
         rust-intl-memoizer-0.5.3
         rust-intl_pluralrules-7.0.2
         rust-io-uring-0.7.15
-        rust-io_uring_buf_ring-0.2.3
         rust-is-docker-0.2.0
         rust-is-wsl-0.4.0
         rust-is_terminal_polyfill-1.70.2
         rust-itertools-0.14.0
         rust-itoa-1.0.18
-        rust-ixdtf-0.6.6
-        rust-jiff-0.2.38
-        rust-jiff-core-0.1.1
-        rust-jiff-icu-0.2.2
-        rust-jiff-static-0.2.38
+        rust-ixdtf-0.6.7
+        rust-jiff-0.2.39
+        rust-jiff-core-0.1.2
+        rust-jiff-icu-0.2.3
+        rust-jiff-static-0.2.39
         rust-jiff-tzdb-0.1.9
         rust-jiff-tzdb-platform-0.1.3
         rust-jni-0.22.4
@@ -16839,21 +16572,13 @@
         rust-jni-sys-0.4.1
         rust-jni-sys-macros-0.4.1
         rust-jobserver-0.1.35
-        rust-js-sys-0.3.106
-        rust-jxl-bitstream-1.1.0
-        rust-jxl-coding-1.0.1
-        rust-jxl-color-0.11.0
-        rust-jxl-frame-0.13.3
-        rust-jxl-grid-0.6.2
-        rust-jxl-image-0.13.0
-        rust-jxl-jbr-0.2.1
-        rust-jxl-modular-0.11.3
-        rust-jxl-oxide-0.12.6
-        rust-jxl-oxide-common-1.0.0
-        rust-jxl-render-0.12.4
-        rust-jxl-threadpool-1.0.0
-        rust-jxl-vardct-0.11.1
-        rust-kamadak-exif-0.6.1
+        rust-js-sys-0.3.107
+        rust-jxl-0.8.0
+        rust-jxl-image-rs-integration-0.8.0
+        rust-jxl_macros-0.8.0
+        rust-jxl_simd-0.8.0
+        rust-jxl_transforms-0.8.0
+        rust-kamadak-exif-0.6.2
         rust-keyboard-types-0.8.3
         rust-khronos-egl-6.0.0
         rust-khronos_api-3.1.0
@@ -16864,7 +16589,7 @@
         rust-kurbo-0.11.3
         rust-lazy_static-1.5.1
         rust-lebe-0.5.3
-        rust-libbz2-rs-sys-0.2.5
+        rust-libbz2-rs-sys-0.2.6
         rust-libc-0.2.191
         rust-libfuzzer-sys-0.4.13
         rust-libloading-0.8.9
@@ -16877,35 +16602,36 @@
         rust-linux-raw-sys-0.12.1
         rust-litemap-0.8.3
         rust-litrs-1.0.1
+        rust-local-event-0.1.3
         rust-locale_config-0.3.0
         rust-lock_api-0.4.14
-        rust-log-0.4.34
+        rust-log-0.4.35
         rust-loom-0.7.2
         rust-loop9-0.1.5
         rust-lru-0.16.4
         rust-lyon-1.0.19
-        rust-lyon_algorithms-1.0.21
-        rust-lyon_geom-1.0.19
+        rust-lyon_algorithms-1.0.22
+        rust-lyon_geom-1.0.20
         rust-lyon_path-1.0.19
-        rust-lyon_tessellation-1.0.22
-        rust-lzma-rust2-0.16.5
-        rust-lzma-rust2-0.22.0
+        rust-lyon_tessellation-1.0.23
+        rust-lzma-rust2-0.25.0
         rust-mac-notification-sys-0.6.15
         rust-malloc_buf-0.0.6
         rust-matchers-0.2.0
         rust-maybe-rayon-0.1.1
-        rust-md-5-0.10.6
+        rust-md-5-0.11.0
         rust-memchr-2.8.3
         rust-memmap2-0.8.0
-        rust-memmap2-0.9.11
+        rust-memmap2-0.9.12
         rust-memoffset-0.9.1
         rust-metal-0.33.0
-        rust-mime-0.3.17
+        rust-mime-0.3.18
         rust-mime_guess-2.0.5
         rust-minimal-lexical-0.2.1
         rust-miniz_oxide-0.8.9
         rust-miniz_oxide-0.9.1
         rust-mio-1.2.4
+        rust-mod_use-0.2.3
         rust-moxcms-0.8.1
         rust-mutate_once-0.1.2
         rust-naga-28.0.0
@@ -16913,17 +16639,16 @@
         rust-ndk-context-0.1.1
         rust-ndk-sys-0.6.0-11769913
         rust-new_debug_unreachable-1.0.6
-        rust-nix-0.29.0
         rust-nix-0.31.3
         rust-no-std-compat-0.4.1
         rust-no_std_io2-0.9.4
         rust-nom-7.1.3
         rust-nom-8.0.0
         rust-noop_proc_macro-0.3.0
-        rust-notify-8.2.0
+        rust-notify-8.2.1
         rust-notify-debouncer-full-0.7.0
         rust-notify-rust-4.18.2
-        rust-notify-types-2.1.0
+        rust-notify-types-2.2.0
         rust-nu-ansi-term-0.50.3
         rust-num-bigint-0.4.8
         rust-num-complex-0.4.6
@@ -16946,6 +16671,7 @@
         rust-objc2-core-foundation-0.3.2
         rust-objc2-core-graphics-0.3.2
         rust-objc2-core-image-0.2.2
+        rust-objc2-core-services-0.3.2
         rust-objc2-core-video-0.3.2
         rust-objc2-encode-4.1.0
         rust-objc2-foundation-0.2.2
@@ -16956,13 +16682,12 @@
         rust-objc_id-0.1.1
         rust-once_cell-1.21.4
         rust-once_cell_polyfill-1.70.2
-        rust-open-5.4.4
+        rust-open-5.4.5
         rust-option-ext-0.2.0
         rust-orbclient-0.3.55
-        rust-ordered-float-5.5.0
+        rust-ordered-float-5.5.1
         rust-ordered-stream-0.2.0
         rust-ordermap-1.2.2
-        rust-os_pipe-1.2.3
         rust-ouroboros-0.18.5
         rust-ouroboros_macro-0.18.5
         rust-owned_ttf_parser-0.25.1
@@ -16974,14 +16699,17 @@
         rust-parking_lot_core-0.9.12
         rust-paste-1.0.15
         rust-pastey-0.1.1
+        rust-pastey-0.2.3
         rust-pbkdf2-0.13.0
         rust-pelite-0.10.0
         rust-pelite-macros-0.1.1
         rust-percent-encoding-2.3.2
         rust-phf-0.13.1
-        rust-phf_generator-0.13.1
-        rust-phf_macros-0.13.1
+        rust-phf-0.14.0
+        rust-phf_generator-0.14.0
+        rust-phf_macros-0.14.0
         rust-phf_shared-0.13.1
+        rust-phf_shared-0.14.0
         rust-pico-args-0.5.0
         rust-pin-project-1.1.13
         rust-pin-project-internal-1.1.13
@@ -16993,12 +16721,11 @@
         rust-png-0.17.16
         rust-png-0.18.1
         rust-polling-3.11.0
-        rust-pollster-0.4.0
         rust-portable-atomic-1.15.0
         rust-portable-atomic-util-0.2.8
         rust-potential_utf-0.1.6
         rust-powerfmt-0.2.1
-        rust-ppmd-rust-1.5.1
+        rust-ppmd-rust-1.5.2
         rust-ppv-lite86-0.2.21
         rust-presser-0.3.1
         rust-proc-macro-crate-3.5.0
@@ -17023,10 +16750,12 @@
         rust-r-efi-6.0.0
         rust-rand-0.8.8
         rust-rand-0.9.5
+        rust-rand-0.10.3
         rust-rand_chacha-0.3.1
         rust-rand_chacha-0.9.0
         rust-rand_core-0.6.4
         rust-rand_core-0.9.5
+        rust-rand_core-0.10.1
         rust-range-alloc-0.1.5
         rust-rangemap-1.8.0
         rust-rav1e-0.8.1
@@ -17051,11 +16780,10 @@
         rust-regex-syntax-0.8.11
         rust-renderdoc-sys-1.1.0
         rust-resvg-0.45.1
-        rust-rfd-0.16.0
         rust-rgb-0.8.53
-        rust-ron-0.11.0
-        rust-ron-0.12.2
+        rust-ron-0.12.3
         rust-roxmltree-0.20.0
+        rust-roxmltree-0.21.2
         rust-rust-embed-8.13.0
         rust-rust-embed-impl-8.13.0
         rust-rust-embed-utils-8.13.0
@@ -17063,7 +16791,7 @@
         rust-rustc-hash-2.1.3
         rust-rustc_version-0.4.1
         rust-rustix-0.38.44
-        rust-rustix-1.1.5
+        rust-rustix-1.1.6
         rust-rustversion-1.0.23
         rust-rustybuzz-0.20.1
         rust-same-file-1.0.6
@@ -17079,15 +16807,12 @@
         rust-serde_derive-1.0.229
         rust-serde_json-1.0.154
         rust-serde_repr-0.1.21
-        rust-serde_spanned-1.1.2
+        rust-serde_spanned-1.1.3
         rust-serde_with-3.24.0
         rust-serde_with_macros-3.24.0
-        rust-sha1-0.10.7
         rust-sha1-0.11.0
-        rust-sha2-0.10.9
         rust-sha2-0.11.1
         rust-sharded-slab-0.1.7
-        rust-shlex-1.3.0
         rust-shlex-2.0.1
         rust-signal-hook-registry-1.4.8
         rust-simd-adler32-0.3.10
@@ -17100,9 +16825,9 @@
         rust-skrifa-0.44.0
         rust-slab-0.4.12
         rust-slotmap-1.1.1
-        rust-smallvec-1.16.3
+        rust-smallvec-1.16.5
         rust-smithay-client-toolkit-0.20.0
-        rust-smol_str-0.3.6
+        rust-smol_str-0.3.7
         rust-socket2-0.6.5
         rust-spin-0.9.9
         rust-spirv-0.3.0-sdk-1.3.268.0
@@ -17118,8 +16843,8 @@
         rust-synchrony-0.1.9
         rust-synstructure-0.14.0
         rust-sys-locale-0.3.2
-        rust-system-deps-7.0.8
-        rust-taffy-0.9.2
+        rust-system-deps-9.0.1
+        rust-taffy-0.15.1
         rust-tar-0.4.46
         rust-target-lexicon-0.13.5
         rust-tauri-winrt-notification-0.8.1
@@ -17129,15 +16854,15 @@
         rust-test-log-0.2.21
         rust-test-log-core-0.2.21
         rust-test-log-macros-0.2.21
-        rust-thin-cell-0.1.2
+        rust-thin-cell-0.2.1
         rust-thiserror-1.0.69
         rust-thiserror-2.0.21
         rust-thiserror-impl-1.0.69
         rust-thiserror-impl-2.0.21
         rust-thread_local-1.1.10
         rust-tiff-0.11.3
-        rust-tikv-jemalloc-sys-0.6.1-5.3.0-1-ge13ca993e8ccb9ba9847cc330696e02839f328f7
-        rust-tikv-jemallocator-0.6.1
+        rust-tikv-jemalloc-sys-0.7.1-5.3.1-0-g81034ce1f1373e37dc865038e1bc8eeecf559ce8
+        rust-tikv-jemallocator-0.7.0
         rust-time-0.3.55
         rust-time-core-0.1.9
         rust-time-macros-0.2.32
@@ -17146,17 +16871,17 @@
         rust-tiny-skia-path-0.11.4
         rust-tiny-skia-path-0.12.0
         rust-tiny-xlib-0.2.5
-        rust-tinystr-0.8.4
+        rust-tinystr-0.8.5
         rust-tinyvec-1.13.3
-        rust-tokio-1.53.3
+        rust-tokio-1.54.1
         rust-tokio-macros-2.7.2
         rust-tokio-stream-0.1.19
         rust-toml-0.5.11
-        rust-toml-1.1.8-spec-1.1.0
-        rust-toml_datetime-1.1.2-spec-1.1.0
-        rust-toml_edit-0.25.17-spec-1.1.0
+        rust-toml-1.2.1-spec-1.1.0
+        rust-toml_datetime-1.1.3-spec-1.1.0
+        rust-toml_edit-0.25.19-spec-1.1.0
         rust-toml_parser-1.1.5-spec-1.1.0
-        rust-toml_writer-1.1.3-spec-1.1.0
+        rust-toml_writer-1.2.0-spec-1.1.0
         rust-tracing-0.1.44
         rust-tracing-attributes-0.1.31
         rust-tracing-core-0.1.36
@@ -17164,11 +16889,10 @@
         rust-tracing-subscriber-0.3.23
         rust-ttf-parser-0.25.1
         rust-type-map-0.5.1
-        rust-typed-path-0.12.3
+        rust-typed-path-0.13.0
         rust-typeid-1.0.3
         rust-typenum-1.20.1
         rust-uds_windows-1.2.1
-        rust-uncased-0.9.10
         rust-unic-langid-0.9.6
         rust-unic-langid-impl-0.9.6
         rust-unicase-2.10.0
@@ -17177,18 +16901,18 @@
         rust-unicode-ccc-0.4.0
         rust-unicode-ident-1.0.27
         rust-unicode-linebreak-0.1.5
-        rust-unicode-properties-0.1.4
-        rust-unicode-script-0.5.8
+        rust-unicode-properties-0.1.5
+        rust-unicode-script-0.5.9
         rust-unicode-segmentation-1.13.3
         rust-unicode-vo-0.1.0
-        rust-unicode-width-0.2.2
+        rust-unicode-width-0.2.3
         rust-url-2.5.8
-        rust-urlencoding-2.1.3
         rust-usvg-0.45.1
-        rust-utf16_iter-1.0.5
-        rust-utf8_iter-1.0.4
+        rust-utf16_iter-1.1.0
+        rust-utf8_iter-1.1.0
         rust-utf8parse-0.2.2
-        rust-uuid-1.28.0
+        rust-utf_types-1.0.0
+        rust-uuid-1.29.0
         rust-uzers-0.12.2
         rust-v_frame-0.3.9
         rust-valuable-0.1.1
@@ -17197,12 +16921,12 @@
         rust-walkdir-2.5.0
         rust-wasi-0.11.1-wasi-snapshot-preview1
         rust-wasip2-1.0.4-wasi-0.2.12
-        rust-wasm-bindgen-0.2.129
-        rust-wasm-bindgen-futures-0.4.79
-        rust-wasm-bindgen-macro-0.2.129
-        rust-wasm-bindgen-macro-support-0.2.129
-        rust-wasm-bindgen-shared-0.2.129
-        rust-wasmtimer-0.4.3
+        rust-wasm-bindgen-0.2.130
+        rust-wasm-bindgen-futures-0.4.80
+        rust-wasm-bindgen-macro-0.2.130
+        rust-wasm-bindgen-macro-support-0.2.130
+        rust-wasm-bindgen-shared-0.2.130
+        rust-wasmtimer-0.4.5
         rust-wayland-backend-0.3.17
         rust-wayland-client-0.31.15
         rust-wayland-csd-frame-0.3.0
@@ -17215,7 +16939,7 @@
         rust-wayland-scanner-0.31.11
         rust-wayland-server-0.31.14
         rust-wayland-sys-0.31.11
-        rust-web-sys-0.3.106
+        rust-web-sys-0.3.107
         rust-web-time-1.1.0
         rust-weezl-0.1.12
         rust-wgpu-28.0.0
@@ -17225,6 +16949,7 @@
         rust-wgpu-core-deps-windows-linux-android-28.0.0
         rust-wgpu-hal-28.0.1
         rust-wgpu-types-28.0.0
+        rust-which-8.0.6
         rust-widestring-1.2.1
         rust-winapi-0.3.9
         rust-winapi-i686-pc-windows-gnu-0.4.0
@@ -17236,18 +16961,24 @@
         rust-windows-collections-0.3.2
         rust-windows-core-0.61.2
         rust-windows-core-0.62.2
+        rust-windows-core-0.100.0
         rust-windows-future-0.2.1
         rust-windows-future-0.3.2
         rust-windows-implement-0.60.2
+        rust-windows-implement-0.100.0
         rust-windows-interface-0.59.3
+        rust-windows-interface-0.100.0
         rust-windows-link-0.1.3
         rust-windows-link-0.2.1
+        rust-windows-link-0.100.0
         rust-windows-numerics-0.2.0
         rust-windows-numerics-0.3.1
         rust-windows-result-0.3.4
         rust-windows-result-0.4.1
+        rust-windows-result-0.100.0
         rust-windows-strings-0.4.2
         rust-windows-strings-0.5.1
+        rust-windows-strings-0.100.0
         rust-windows-sys-0.48.0
         rust-windows-sys-0.52.0
         rust-windows-sys-0.59.0
@@ -17282,17 +17013,16 @@
         rust-windows_x86_64_msvc-0.48.5
         rust-windows_x86_64_msvc-0.52.6
         rust-windows_x86_64_msvc-0.53.1
-        rust-winnow-1.0.4
+        rust-winnow-1.0.5
         rust-wit-bindgen-0.57.1
         rust-write16-1.0.0
         rust-writeable-0.6.4
         rust-x11-dl-2.21.0
         rust-x11rb-0.13.2
         rust-x11rb-protocol-0.13.2
-        rust-xattr-1.6.1
+        rust-xattr-1.7.0
         rust-xcursor-0.3.11
         rust-xdg-3.0.0
-        rust-xdg-home-1.3.0
         rust-xdgen-0.1.0
         rust-xkbcommon-0.7.0
         rust-xkbcommon-0.8.0
@@ -17305,19 +17035,19 @@
         rust-xmlwriter-0.1.0
         rust-y4m-0.8.0
         rust-yansi-1.0.1
-        rust-yazi-0.2.1
-        rust-yoke-0.8.3
+        rust-yazi-0.2.2
+        rust-yoke-0.8.4
         rust-yoke-derive-0.8.4
-        rust-zbus-4.4.0
         rust-zbus-5.19.0
+        rust-zbus-6.2.1
         rust-zbus-lockstep-0.5.2
         rust-zbus-lockstep-macros-0.5.2
-        rust-zbus_macros-4.4.0
         rust-zbus_macros-5.19.0
-        rust-zbus_names-3.0.0
+        rust-zbus_macros-6.2.1
         rust-zbus_names-4.3.5
+        rust-zbus_utils-6.1.0
         rust-zbus_xml-5.2.1
-        rust-zcheapstr-1.1.0
+        rust-zcheapstr-1.2.0
         rust-zeno-0.3.3
         rust-zerocopy-0.8.63
         rust-zerocopy-derive-0.8.63
@@ -17325,12 +17055,13 @@
         rust-zerofrom-derive-0.1.8
         rust-zeroize-1.9.1
         rust-zerotrie-0.2.5
-        rust-zerovec-0.11.8
-        rust-zerovec-derive-0.11.6
-        rust-zip-9.0.5
+        rust-zerovec-0.11.9
+        rust-zerovec-derive-0.11.7
+        rust-zip-9.4.1
         rust-zlib-rs-0.6.8
         rust-zmij-1.0.23
         rust-zopfli-0.8.4
+        rust-zruntime-0.2.2
         rust-zstd-0.14.3
         rust-zstd-safe-8.2.0
         rust-zstd-sys-2.1.2-zstd.1.5.7
@@ -17339,11 +17070,8 @@
         rust-zune-inflate-0.2.54
         rust-zune-jpeg-0.4.21
         rust-zune-jpeg-0.5.15
-        rust-zvariant-4.2.0
         rust-zvariant-5.15.1
-        rust-zvariant_derive-4.2.0
         rust-zvariant_derive-5.15.1
-        rust-zvariant_utils-2.1.0
         rust-zvariant_utils-4.2.0))
 
 (define cosmic-files-git-crates
@@ -17372,8 +17100,8 @@
                    "git+https://github.com/jackpot51/rust-atomicwrites#043ab4859d53ffd3d55334685303d8df39c9f768"
                    rust-atomicwrites-043ab48-checkout ".")
         (git-crate "build_helpers" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/build_helpers")
+                   "git+https://github.com/pop-os/libcosmic.git#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/build_helpers")
         (git-crate "clipboard_macos" "0.1.0"
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout "macos")
@@ -17387,29 +17115,32 @@
                    "git+https://github.com/pop-os/cosmic-protocols?rev=c0cff4d#c0cff4db14c37ed954983158e4055aa94c7741d9"
                    cosmic-protocols-c0cff4d-checkout "client-toolkit")
         (git-crate "cosmic-config" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "cosmic-config")
+                   "git+https://github.com/pop-os/libcosmic.git#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "cosmic-config")
         (git-crate "cosmic-config-derive" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "cosmic-config-derive")
+                   "git+https://github.com/pop-os/libcosmic.git#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "cosmic-config-derive")
         (git-crate "cosmic-freedesktop-icons" "0.4.0"
                    "git+https://github.com/pop-os/freedesktop-icons#ab4c57b8e416c6af9297cb04d101889896fd9a92"
                    freedesktop-icons-ab4c57b-checkout ".")
+        (git-crate "cosmic-launch" "0.1.0"
+                   "git+https://github.com/pop-os/libcosmic.git#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "cosmic-launch")
         (git-crate "cosmic-mime-apps" "0.2.0"
                    "git+https://github.com/pop-os/cosmic-mime-apps.git#8fc81e8857e46c018ea21ab985aaf30ac853c007"
                    cosmic-mime-apps-8fc81e8-checkout ".")
         (git-crate "cosmic-protocols" "0.2.0"
                    "git+https://github.com/pop-os/cosmic-protocols?rev=c0cff4d#c0cff4db14c37ed954983158e4055aa94c7741d9"
                    cosmic-protocols-c0cff4d-checkout ".")
-        (git-crate "cosmic-settings-config" "1.10.0"
-                   "git+https://github.com/pop-os/cosmic-settings-daemon#8844464b01d38bee68ed7da6083bf6dbaad71941"
-                   cosmic-settings-daemon-8844464-checkout "config")
-        (git-crate "cosmic-settings-daemon" "0.1.0"
-                   "git+https://github.com/pop-os/dbus-settings-bindings#eed01dd3609e90e3c8cd043656734c500956c793"
-                   dbus-settings-bindings-eed01dd-checkout "cosmic-settings-daemon")
+        (git-crate "cosmic-settings-config" "1.11.0"
+                   "git+https://github.com/pop-os/cosmic-settings-daemon#2df041e6e90757782a7884729ae3723e86cee122"
+                   cosmic-settings-daemon-2df041e-checkout "config")
+        (git-crate "cosmic-settings-daemon-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "cosmic-settings-daemon")
         (git-crate "cosmic-theme" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "cosmic-theme")
+                   "git+https://github.com/pop-os/libcosmic.git#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "cosmic-theme")
         (git-crate "cryoglyph" "0.1.0"
                    "git+https://github.com/iced-rs/cryoglyph.git?rev=e429a025df36ab8145708acb309080ae3deec17a#e429a025df36ab8145708acb309080ae3deec17a"
                    cryoglyph-e429a02-checkout ".")
@@ -17420,47 +17151,47 @@
                    "git+https://github.com/pop-os/winit.git?rev=9567503#9567503d34130113e36b0167a2b8829c3756e429"
                    winit-9567503-checkout "dpi")
         (git-crate "iced" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced")
+                   "git+https://github.com/pop-os/libcosmic.git#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced")
         (git-crate "iced_accessibility" "0.1.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/accessibility")
+                   "git+https://github.com/pop-os/libcosmic.git#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/accessibility")
         (git-crate "iced_core" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/core")
+                   "git+https://github.com/pop-os/libcosmic.git#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/core")
         (git-crate "iced_debug" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/debug")
+                   "git+https://github.com/pop-os/libcosmic.git#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/debug")
         (git-crate "iced_futures" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/futures")
+                   "git+https://github.com/pop-os/libcosmic.git#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/futures")
         (git-crate "iced_graphics" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/graphics")
+                   "git+https://github.com/pop-os/libcosmic.git#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/graphics")
         (git-crate "iced_program" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/program")
+                   "git+https://github.com/pop-os/libcosmic.git#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/program")
         (git-crate "iced_renderer" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/renderer")
+                   "git+https://github.com/pop-os/libcosmic.git#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/renderer")
         (git-crate "iced_runtime" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/runtime")
+                   "git+https://github.com/pop-os/libcosmic.git#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/runtime")
         (git-crate "iced_tiny_skia" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/tiny_skia")
+                   "git+https://github.com/pop-os/libcosmic.git#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/tiny_skia")
         (git-crate "iced_wgpu" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/wgpu")
+                   "git+https://github.com/pop-os/libcosmic.git#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/wgpu")
         (git-crate "iced_widget" "0.14.2"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/widget")
+                   "git+https://github.com/pop-os/libcosmic.git#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/widget")
         (git-crate "iced_winit" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/winit")
+                   "git+https://github.com/pop-os/libcosmic.git#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/winit")
         (git-crate "libcosmic" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout ".")
+                   "git+https://github.com/pop-os/libcosmic.git#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout ".")
         (git-crate "mime" "0.1.0"
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout "mime")
@@ -17470,6 +17201,9 @@
         (git-crate "softbuffer" "0.4.1"
                    "git+https://github.com/pop-os/softbuffer?tag=cosmic-4.0#c2b2c19ddb38ff17495643699f97cb1f2064a1be"
                    softbuffer-c2b2c19-checkout ".")
+        (git-crate "switcheroo-control-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "switcheroo-control")
         (git-crate "window_clipboard" "0.4.1"
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout ".")
@@ -17507,8 +17241,8 @@
                    "git+https://github.com/pop-os/winit.git?rev=9567503#9567503d34130113e36b0167a2b8829c3756e429"
                    winit-9567503-checkout "winit-x11")
         (git-crate "xdg-mime" "0.4.0"
-                   "git+https://github.com/ebassi/xdg-mime-rs#f8efb3fb1fad582539e2af7d1e9fbc9613dcc7d9"
-                   xdg-mime-rs-f8efb3f-checkout ".")))
+                   "git+https://github.com/ebassi/xdg-mime-rs#69f67f59cd309355b72559f70aab64e2ac6312bc"
+                   xdg-mime-rs-69f67f5-checkout ".")))
 
 (define cosmic-edit-cargo-inputs
   (list rust-ab_glyph-0.2.32
@@ -18531,7 +18265,7 @@
   (list rust-ab_glyph-0.2.32
         rust-ab_glyph_rasterizer-0.1.10
         rust-adler2-2.0.1
-        rust-aes-0.9.3
+        rust-aes-0.9.4
         rust-ahash-0.8.12
         rust-aho-corasick-1.1.5
         rust-alacritty_terminal-0.25.1
@@ -18556,13 +18290,12 @@
         rust-as-raw-xcb-connection-1.0.1
         rust-as-slice-0.2.1
         rust-ash-0.38.0-1.3.281
-        rust-ashpd-0.11.1
-        rust-ashpd-0.12.3
+        rust-ashpd-0.13.13
         rust-async-broadcast-0.7.2
         rust-async-channel-2.5.0
-        rust-async-executor-1.14.0
+        rust-async-executor-1.14.1
         rust-async-io-2.6.0
-        rust-async-lock-3.4.2
+        rust-async-lock-3.5.0
         rust-async-process-2.5.0
         rust-async-recursion-1.2.0
         rust-async-signal-0.2.14
@@ -18579,6 +18312,7 @@
         rust-av1-grain-0.2.5
         rust-avif-serialize-0.8.9
         rust-base64-0.22.1
+        rust-base64-0.23.1
         rust-basic-toml-0.1.10
         rust-bit-set-0.8.0
         rust-bit-vec-0.8.0
@@ -18595,6 +18329,7 @@
         rust-blocking-1.7.0
         rust-borsh-1.8.1
         rust-brotli-decompressor-5.0.3
+        rust-bs58-0.5.1
         rust-bstr-1.13.1
         rust-btoi-0.5.0
         rust-built-0.8.1
@@ -18610,14 +18345,15 @@
         rust-calloop-0.14.5
         rust-calloop-wayland-source-0.4.1
         rust-cbc-0.2.1
-        rust-cc-1.9.0
+        rust-cc-1.11.1
         rust-cfb-0.7.3
         rust-cfg-if-1.0.5
         rust-cfg_aliases-0.2.2
+        rust-chacha20-0.10.2
         rust-chrono-0.4.45
         rust-cipher-0.5.2
         rust-clap_lex-0.7.7
-        rust-clipboard-win-5.4.1
+        rust-clipboard-win-5.4.3
         rust-cmov-0.5.4
         rust-cocoa-0.25.0
         rust-cocoa-foundation-0.1.2
@@ -18635,7 +18371,7 @@
         rust-concurrent-queue-2.5.0
         rust-configparser-3.3.0
         rust-const-oid-0.10.2
-        rust-constant_time_eq-0.4.2
+        rust-constant_time_eq-0.6.1
         rust-core-foundation-0.9.4
         rust-core-foundation-0.10.1
         rust-core-foundation-sys-0.8.7
@@ -18648,7 +18384,7 @@
         rust-cpubits-0.1.1
         rust-cpufeatures-0.2.17
         rust-cpufeatures-0.3.1
-        rust-crc32fast-1.5.3
+        rust-crc32fast-1.5.4
         rust-crossbeam-deque-0.8.8
         rust-crossbeam-epoch-0.9.21
         rust-crossbeam-queue-0.3.14
@@ -18657,13 +18393,15 @@
         rust-crypto-common-0.1.7
         rust-crypto-common-0.2.2
         rust-css-color-0.2.8
-        rust-csscolorparser-0.8.4
         rust-ctor-0.10.1
-        rust-ctutils-0.4.3
+        rust-ctutils-0.4.8
         rust-cursor-icon-1.2.0
         rust-darling-0.21.3
+        rust-darling-0.24.1
         rust-darling_core-0.21.3
+        rust-darling_core-0.24.1
         rust-darling_macro-0.21.3
+        rust-darling_macro-0.24.1
         rust-data-url-0.3.2
         rust-deflate64-0.1.12
         rust-defmt-1.2.0
@@ -18676,10 +18414,9 @@
         rust-digest-0.11.3
         rust-dirs-5.0.1
         rust-dirs-6.0.0
-        rust-dirs-next-2.0.0
+        rust-dirs-7.0.0
         rust-dirs-sys-0.4.1
         rust-dirs-sys-0.5.0
-        rust-dirs-sys-next-0.1.2
         rust-dispatch2-0.3.1
         rust-displaydoc-0.2.7
         rust-dlib-0.5.3
@@ -18690,6 +18427,7 @@
         rust-drm-fourcc-2.2.0
         rust-drm-sys-0.6.1
         rust-dtor-0.8.1
+        rust-dyn-clone-1.0.20
         rust-either-1.19.0
         rust-endi-1.1.1
         rust-enumflags2-0.7.12
@@ -18699,6 +18437,8 @@
         rust-equivalent-1.0.3
         rust-errno-0.3.14
         rust-error-code-3.4.0
+        rust-error_set-0.9.2
+        rust-error_set_impl-0.9.2
         rust-etagere-0.2.15
         rust-euclid-0.22.14
         rust-event-listener-5.4.2
@@ -18711,8 +18451,8 @@
         rust-filetime-0.2.29
         rust-find-crate-0.6.3
         rust-find-msvc-tools-0.1.15
-        rust-fixed_decimal-0.7.2
-        rust-flate2-1.1.10
+        rust-fixed_decimal-0.7.3
+        rust-flate2-1.1.11
         rust-float-cmp-0.9.0
         rust-float-cmp-0.10.0
         rust-float_next_after-1.0.0
@@ -18734,8 +18474,8 @@
         rust-fork-0.4.0
         rust-fork-0.7.0
         rust-form_urlencoded-1.2.2
+        rust-freedesktop-desktop-entry-0.8.4
         rust-freedesktop_entry_parser-2.0.0
-        rust-fsevent-sys-4.1.0
         rust-futures-0.3.34
         rust-futures-channel-0.3.34
         rust-futures-core-0.3.34
@@ -18752,21 +18492,23 @@
         rust-getrandom-0.2.17
         rust-getrandom-0.3.4
         rust-getrandom-0.4.3
+        rust-gettext-rs-0.8.0
+        rust-gettext-sys-0.27.0
         rust-gif-0.13.3
         rust-gif-0.14.2
         rust-gl_generator-0.14.0
         rust-glam-0.25.0
         rust-glob-0.3.4
-        rust-globset-0.4.20
+        rust-globset-0.4.21
         rust-glow-0.16.0
         rust-glutin_wgl_sys-0.6.1
         rust-gpu-allocator-0.28.0
         rust-gpu-descriptor-0.3.2
         rust-gpu-descriptor-types-0.2.0
-        rust-grid-1.0.1
         rust-guillotiere-0.6.2
         rust-half-2.7.1
         rust-harfrust-0.5.2
+        rust-hashbrown-0.12.3
         rust-hashbrown-0.15.5
         rust-hashbrown-0.16.1
         rust-hashbrown-0.17.1
@@ -18785,47 +18527,48 @@
         rust-i18n-embed-impl-0.8.4
         rust-iana-time-zone-0.1.65
         rust-iana-time-zone-haiku-0.1.2
-        rust-icu-2.3.1
-        rust-icu_calendar-2.3.0
-        rust-icu_calendar_data-2.3.0
-        rust-icu_casemap-2.3.0
-        rust-icu_casemap_data-2.3.0
-        rust-icu_collator-2.3.1
-        rust-icu_collator_data-2.3.0
-        rust-icu_collections-2.3.0
-        rust-icu_datetime-2.3.0
-        rust-icu_datetime_data-2.3.0
-        rust-icu_decimal-2.3.0
-        rust-icu_decimal_data-2.3.0
-        rust-icu_experimental-0.6.0
-        rust-icu_experimental_data-0.6.0
-        rust-icu_list-2.3.0
-        rust-icu_list_data-2.3.0
-        rust-icu_locale-2.3.1
-        rust-icu_locale_core-2.3.0
-        rust-icu_locale_data-2.3.0
-        rust-icu_locale_fallback-2.3.0
-        rust-icu_locale_fallback_data-2.3.0
-        rust-icu_normalizer-2.3.0
-        rust-icu_normalizer_data-2.3.0
-        rust-icu_pattern-0.5.0
-        rust-icu_plurals-2.3.0
-        rust-icu_plurals_data-2.3.0
-        rust-icu_properties-2.3.0
-        rust-icu_properties_data-2.3.0
-        rust-icu_provider-2.3.1
-        rust-icu_segmenter-2.3.0
-        rust-icu_segmenter_data-2.3.0
-        rust-icu_time-2.3.0
-        rust-icu_time_data-2.3.1
+        rust-icu-2.4.0
+        rust-icu_calendar-2.4.0
+        rust-icu_calendar_data-2.4.0
+        rust-icu_casemap-2.4.0
+        rust-icu_casemap_data-2.4.0
+        rust-icu_collator-2.4.0
+        rust-icu_collator_data-2.4.0
+        rust-icu_collections-2.4.0
+        rust-icu_datetime-2.4.0
+        rust-icu_datetime_data-2.4.0
+        rust-icu_decimal-2.4.0
+        rust-icu_decimal_data-2.4.0
+        rust-icu_experimental-0.7.0
+        rust-icu_experimental_data-0.7.0
+        rust-icu_list-2.4.0
+        rust-icu_list_data-2.4.0
+        rust-icu_locale-2.4.0
+        rust-icu_locale_core-2.4.0
+        rust-icu_locale_data-2.4.0
+        rust-icu_locale_fallback-2.4.0
+        rust-icu_locale_fallback_data-2.4.0
+        rust-icu_normalizer-2.4.0
+        rust-icu_normalizer_data-2.4.0
+        rust-icu_pattern-0.5.1
+        rust-icu_plurals-2.4.0
+        rust-icu_plurals_data-2.4.0
+        rust-icu_properties-2.4.0
+        rust-icu_properties_data-2.4.0
+        rust-icu_provider-2.4.0
+        rust-icu_segmenter-2.4.0
+        rust-icu_segmenter_data-2.4.0
+        rust-icu_time-2.4.0
+        rust-icu_time_data-2.4.0
         rust-ident_case-1.0.1
         rust-idna-1.1.0
         rust-idna_adapter-1.2.2
-        rust-ignore-0.4.33
+        rust-ignore-0.4.34
         rust-image-0.25.10
         rust-image-webp-0.2.4
         rust-imagesize-0.13.0
         rust-imgref-1.12.3
+        rust-indexmap-1.9.3
         rust-indexmap-2.14.2
         rust-infer-0.16.0
         rust-inotify-0.11.5
@@ -18838,11 +18581,11 @@
         rust-is-wsl-0.4.0
         rust-itertools-0.14.0
         rust-itoa-1.0.18
-        rust-ixdtf-0.6.6
-        rust-jiff-0.2.38
-        rust-jiff-core-0.1.1
-        rust-jiff-icu-0.2.2
-        rust-jiff-static-0.2.38
+        rust-ixdtf-0.6.7
+        rust-jiff-0.2.39
+        rust-jiff-core-0.1.2
+        rust-jiff-icu-0.2.3
+        rust-jiff-static-0.2.39
         rust-jiff-tzdb-0.1.9
         rust-jiff-tzdb-platform-0.1.3
         rust-jni-0.22.4
@@ -18851,7 +18594,7 @@
         rust-jni-sys-0.4.1
         rust-jni-sys-macros-0.4.1
         rust-jobserver-0.1.35
-        rust-js-sys-0.3.106
+        rust-js-sys-0.3.107
         rust-jxl-bitstream-1.1.0
         rust-jxl-coding-1.0.1
         rust-jxl-color-0.11.0
@@ -18865,7 +18608,7 @@
         rust-jxl-render-0.12.4
         rust-jxl-threadpool-1.0.0
         rust-jxl-vardct-0.11.1
-        rust-kamadak-exif-0.6.1
+        rust-kamadak-exif-0.6.2
         rust-keyboard-types-0.8.3
         rust-khronos-egl-6.0.0
         rust-khronos_api-3.1.0
@@ -18876,7 +18619,7 @@
         rust-kurbo-0.11.3
         rust-lazy_static-1.5.1
         rust-lebe-0.5.3
-        rust-libbz2-rs-sys-0.2.5
+        rust-libbz2-rs-sys-0.2.6
         rust-libc-0.2.191
         rust-libfuzzer-sys-0.4.13
         rust-libloading-0.8.9
@@ -18889,8 +18632,9 @@
         rust-linux-raw-sys-0.12.1
         rust-litemap-0.8.3
         rust-litrs-1.0.1
+        rust-locale_config-0.3.0
         rust-lock_api-0.4.14
-        rust-log-0.4.34
+        rust-log-0.4.35
         rust-loom-0.7.2
         rust-loop9-0.1.5
         rust-lru-0.16.4
@@ -18899,17 +18643,17 @@
         rust-lyon_geom-1.0.20
         rust-lyon_path-1.0.19
         rust-lyon_tessellation-1.0.23
-        rust-lzma-rust2-0.16.5
+        rust-lzma-rust2-0.25.0
         rust-malloc_buf-0.0.6
         rust-matchers-0.2.0
         rust-maybe-rayon-0.1.1
         rust-md-5-0.10.6
         rust-memchr-2.8.3
         rust-memmap2-0.8.0
-        rust-memmap2-0.9.11
+        rust-memmap2-0.9.12
         rust-memoffset-0.9.1
         rust-metal-0.33.0
-        rust-mime-0.3.17
+        rust-mime-0.3.18
         rust-mime_guess-2.0.5
         rust-minimal-lexical-0.2.1
         rust-miniz_oxide-0.8.9
@@ -18923,13 +18667,14 @@
         rust-ndk-context-0.1.1
         rust-ndk-sys-0.6.0-11769913
         rust-new_debug_unreachable-1.0.6
+        rust-nix-0.31.3
         rust-no_std_io2-0.9.4
         rust-nom-7.1.3
         rust-nom-8.0.0
         rust-noop_proc_macro-0.3.0
-        rust-notify-8.2.0
+        rust-notify-8.2.1
         rust-notify-debouncer-full-0.7.0
-        rust-notify-types-2.1.0
+        rust-notify-types-2.2.0
         rust-nu-ansi-term-0.50.3
         rust-num-0.4.3
         rust-num-bigint-0.4.8
@@ -18954,6 +18699,7 @@
         rust-objc2-core-foundation-0.3.2
         rust-objc2-core-graphics-0.3.2
         rust-objc2-core-image-0.2.2
+        rust-objc2-core-services-0.3.2
         rust-objc2-core-video-0.3.2
         rust-objc2-encode-4.1.0
         rust-objc2-foundation-0.2.2
@@ -18963,10 +18709,10 @@
         rust-objc2-ui-kit-0.3.2
         rust-objc_id-0.1.1
         rust-once_cell-1.21.4
-        rust-open-5.4.4
+        rust-open-5.4.5
         rust-option-ext-0.2.0
         rust-orbclient-0.3.55
-        rust-ordered-float-5.5.0
+        rust-ordered-float-5.5.1
         rust-ordered-stream-0.2.0
         rust-ordermap-1.2.2
         rust-os_pipe-1.2.3
@@ -18984,9 +18730,11 @@
         rust-pbkdf2-0.13.0
         rust-percent-encoding-2.3.2
         rust-phf-0.13.1
-        rust-phf_generator-0.13.1
-        rust-phf_macros-0.13.1
+        rust-phf-0.14.0
+        rust-phf_generator-0.14.0
+        rust-phf_macros-0.14.0
         rust-phf_shared-0.13.1
+        rust-phf_shared-0.14.0
         rust-pico-args-0.5.0
         rust-pin-project-1.1.13
         rust-pin-project-internal-1.1.13
@@ -18998,12 +18746,11 @@
         rust-png-0.17.16
         rust-png-0.18.1
         rust-polling-3.11.0
-        rust-pollster-0.4.0
         rust-portable-atomic-1.15.0
         rust-portable-atomic-util-0.2.8
         rust-potential_utf-0.1.6
         rust-powerfmt-0.2.1
-        rust-ppmd-rust-1.5.1
+        rust-ppmd-rust-1.5.2
         rust-ppv-lite86-0.2.21
         rust-presser-0.3.1
         rust-proc-macro-crate-3.5.0
@@ -19027,10 +18774,12 @@
         rust-r-efi-6.0.0
         rust-rand-0.8.8
         rust-rand-0.9.5
+        rust-rand-0.10.3
         rust-rand_chacha-0.3.1
         rust-rand_chacha-0.9.0
         rust-rand_core-0.6.4
         rust-rand_core-0.9.5
+        rust-rand_core-0.10.1
         rust-range-alloc-0.1.5
         rust-rangemap-1.8.0
         rust-rav1e-0.8.1
@@ -19048,16 +18797,18 @@
         rust-redox_syscall-0.9.5
         rust-redox_users-0.4.6
         rust-redox_users-0.5.3
+        rust-ref-cast-1.0.27
+        rust-ref-cast-impl-1.0.27
         rust-regex-1.13.1
         rust-regex-automata-0.4.18
         rust-regex-syntax-0.8.11
         rust-renderdoc-sys-1.1.0
         rust-resvg-0.45.1
-        rust-rfd-0.16.0
         rust-rgb-0.8.53
         rust-ron-0.11.0
-        rust-ron-0.12.2
+        rust-ron-0.12.3
         rust-roxmltree-0.20.0
+        rust-roxmltree-0.21.2
         rust-rust-embed-8.13.0
         rust-rust-embed-impl-8.13.0
         rust-rust-embed-utils-8.13.0
@@ -19065,11 +18816,13 @@
         rust-rustc-hash-2.1.3
         rust-rustc_version-0.4.1
         rust-rustix-0.38.44
-        rust-rustix-1.1.5
+        rust-rustix-1.1.6
         rust-rustix-openpty-0.2.0
         rust-rustversion-1.0.23
         rust-rustybuzz-0.20.1
         rust-same-file-1.0.6
+        rust-schemars-0.9.0
+        rust-schemars-1.2.3
         rust-scoped-tls-1.0.1
         rust-scopeguard-1.2.0
         rust-sctk-adwaita-0.11.1
@@ -19082,6 +18835,8 @@
         rust-serde_derive-1.0.229
         rust-serde_json-1.0.154
         rust-serde_repr-0.1.21
+        rust-serde_with-3.24.0
+        rust-serde_with_macros-3.24.0
         rust-sha1-0.11.0
         rust-sha2-0.10.9
         rust-sha2-0.11.1
@@ -19100,7 +18855,7 @@
         rust-skrifa-0.44.0
         rust-slab-0.4.12
         rust-slotmap-1.1.1
-        rust-smallvec-1.16.3
+        rust-smallvec-1.16.5
         rust-smithay-client-toolkit-0.20.0
         rust-smol_str-0.3.7
         rust-socket2-0.6.5
@@ -19118,8 +18873,9 @@
         rust-synchrony-0.1.9
         rust-synstructure-0.14.0
         rust-sys-locale-0.3.2
-        rust-taffy-0.9.2
+        rust-taffy-0.15.1
         rust-tar-0.4.46
+        rust-temp-dir-0.1.16
         rust-tempfile-3.27.0
         rust-termcolor-1.4.1
         rust-thin-cell-0.1.2
@@ -19131,33 +18887,32 @@
         rust-tiff-0.11.3
         rust-time-0.3.55
         rust-time-core-0.1.9
+        rust-time-macros-0.2.32
         rust-tiny-skia-0.11.4
         rust-tiny-skia-0.12.0
         rust-tiny-skia-path-0.11.4
         rust-tiny-skia-path-0.12.0
         rust-tiny-xlib-0.2.5
-        rust-tinystr-0.8.4
+        rust-tinystr-0.8.5
         rust-tinyvec-1.13.3
-        rust-tokio-1.54.0
+        rust-tokio-1.54.1
         rust-tokio-macros-2.7.2
         rust-tokio-stream-0.1.19
         rust-toml-0.5.11
-        rust-toml_datetime-1.1.2-spec-1.1.0
-        rust-toml_edit-0.25.17-spec-1.1.0
+        rust-toml_datetime-1.1.3-spec-1.1.0
+        rust-toml_edit-0.25.19-spec-1.1.0
         rust-toml_parser-1.1.5-spec-1.1.0
         rust-tracing-0.1.44
         rust-tracing-attributes-0.1.31
         rust-tracing-core-0.1.36
         rust-tracing-log-0.2.0
         rust-tracing-subscriber-0.3.23
-        rust-trash-5.2.9
         rust-ttf-parser-0.25.1
         rust-type-map-0.5.1
-        rust-typed-path-0.12.4
+        rust-typed-path-0.13.0
         rust-typeid-1.0.3
         rust-typenum-1.20.1
         rust-uds_windows-1.2.1
-        rust-uncased-0.9.10
         rust-unic-langid-0.9.6
         rust-unic-langid-impl-0.9.6
         rust-unicase-2.10.0
@@ -19166,17 +18921,17 @@
         rust-unicode-ccc-0.4.0
         rust-unicode-ident-1.0.27
         rust-unicode-linebreak-0.1.5
-        rust-unicode-properties-0.1.4
-        rust-unicode-script-0.5.8
+        rust-unicode-properties-0.1.5
+        rust-unicode-script-0.5.9
         rust-unicode-segmentation-1.13.3
         rust-unicode-vo-0.1.0
-        rust-unicode-width-0.2.2
+        rust-unicode-width-0.2.3
         rust-url-2.5.8
-        rust-urlencoding-2.1.3
         rust-usvg-0.45.1
-        rust-utf16_iter-1.0.5
-        rust-utf8_iter-1.0.4
-        rust-uuid-1.28.0
+        rust-utf16_iter-1.1.0
+        rust-utf8_iter-1.1.0
+        rust-utf_types-1.0.0
+        rust-uuid-1.29.0
         rust-uzers-0.12.2
         rust-v_frame-0.3.9
         rust-valuable-0.1.1
@@ -19185,12 +18940,12 @@
         rust-walkdir-2.5.0
         rust-wasi-0.11.1-wasi-snapshot-preview1
         rust-wasip2-1.0.4-wasi-0.2.12
-        rust-wasm-bindgen-0.2.129
-        rust-wasm-bindgen-futures-0.4.79
-        rust-wasm-bindgen-macro-0.2.129
-        rust-wasm-bindgen-macro-support-0.2.129
-        rust-wasm-bindgen-shared-0.2.129
-        rust-wasmtimer-0.4.3
+        rust-wasm-bindgen-0.2.130
+        rust-wasm-bindgen-futures-0.4.80
+        rust-wasm-bindgen-macro-0.2.130
+        rust-wasm-bindgen-macro-support-0.2.130
+        rust-wasm-bindgen-shared-0.2.130
+        rust-wasmtimer-0.4.5
         rust-wayland-backend-0.3.17
         rust-wayland-client-0.31.15
         rust-wayland-csd-frame-0.3.0
@@ -19203,7 +18958,7 @@
         rust-wayland-scanner-0.31.11
         rust-wayland-server-0.31.14
         rust-wayland-sys-0.31.11
-        rust-web-sys-0.3.106
+        rust-web-sys-0.3.107
         rust-web-time-1.1.0
         rust-weezl-0.1.12
         rust-wgpu-28.0.0
@@ -19213,6 +18968,7 @@
         rust-wgpu-core-deps-windows-linux-android-28.0.0
         rust-wgpu-hal-28.0.1
         rust-wgpu-types-28.0.0
+        rust-which-8.0.6
         rust-widestring-1.2.1
         rust-winapi-0.3.9
         rust-winapi-i686-pc-windows-gnu-0.4.0
@@ -19269,19 +19025,20 @@
         rust-windows_x86_64_msvc-0.48.5
         rust-windows_x86_64_msvc-0.52.6
         rust-windows_x86_64_msvc-0.53.1
-        rust-winnow-1.0.4
+        rust-winnow-1.0.5
         rust-wit-bindgen-0.57.1
         rust-write16-1.0.0
         rust-writeable-0.6.4
         rust-x11-dl-2.21.0
         rust-x11rb-0.13.2
         rust-x11rb-protocol-0.13.2
-        rust-xattr-1.6.1
+        rust-xattr-1.7.0
         rust-xcursor-0.3.11
         rust-xdg-3.0.0
         rust-xdgen-0.1.0
         rust-xkbcommon-0.7.0
         rust-xkbcommon-0.8.0
+        rust-xkbcommon-0.9.0
         rust-xkbcommon-dl-0.4.2
         rust-xkeysym-0.2.1
         rust-xml-1.4.0
@@ -19290,16 +19047,19 @@
         rust-xmlwriter-0.1.0
         rust-y4m-0.8.0
         rust-yansi-1.0.1
-        rust-yazi-0.2.1
-        rust-yoke-0.8.3
+        rust-yazi-0.2.2
+        rust-yoke-0.8.4
         rust-yoke-derive-0.8.4
         rust-zbus-5.19.0
+        rust-zbus-6.2.1
         rust-zbus-lockstep-0.5.2
         rust-zbus-lockstep-macros-0.5.2
         rust-zbus_macros-5.19.0
+        rust-zbus_macros-6.2.1
         rust-zbus_names-4.3.5
+        rust-zbus_utils-6.1.0
         rust-zbus_xml-5.2.1
-        rust-zcheapstr-1.1.0
+        rust-zcheapstr-1.2.0
         rust-zeno-0.3.3
         rust-zerocopy-0.8.63
         rust-zerocopy-derive-0.8.63
@@ -19307,14 +19067,15 @@
         rust-zerofrom-derive-0.1.8
         rust-zeroize-1.9.1
         rust-zerotrie-0.2.5
-        rust-zerovec-0.11.8
-        rust-zerovec-derive-0.11.6
-        rust-zip-8.6.0
+        rust-zerovec-0.11.9
+        rust-zerovec-derive-0.11.7
+        rust-zip-9.4.1
         rust-zlib-rs-0.6.8
         rust-zmij-1.0.23
         rust-zopfli-0.8.4
-        rust-zstd-0.13.3
-        rust-zstd-safe-7.3.0
+        rust-zruntime-0.2.2
+        rust-zstd-0.14.3
+        rust-zstd-safe-8.2.0
         rust-zstd-sys-2.1.2-zstd.1.5.7
         rust-zune-core-0.4.12
         rust-zune-core-0.5.3
@@ -19351,8 +19112,8 @@
                    "git+https://github.com/jackpot51/rust-atomicwrites#043ab4859d53ffd3d55334685303d8df39c9f768"
                    rust-atomicwrites-043ab48-checkout ".")
         (git-crate "build_helpers" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/build_helpers")
+                   "git+https://github.com/pop-os/libcosmic.git#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/build_helpers")
         (git-crate "clipboard_macos" "0.1.0"
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout "macos")
@@ -19366,26 +19127,32 @@
                    "git+https://github.com/pop-os/cosmic-protocols?rev=c0cff4d#c0cff4db14c37ed954983158e4055aa94c7741d9"
                    cosmic-protocols-c0cff4d-checkout "client-toolkit")
         (git-crate "cosmic-config" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "cosmic-config")
+                   "git+https://github.com/pop-os/libcosmic.git#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "cosmic-config")
         (git-crate "cosmic-config-derive" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "cosmic-config-derive")
+                   "git+https://github.com/pop-os/libcosmic.git#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "cosmic-config-derive")
         (git-crate "cosmic-files" "1.11.0"
-                   "git+https://github.com/pop-os/cosmic-files.git#3cc4b8003e8d08349c7ced8a9cdd10cdfa45d38c"
-                   cosmic-files-3cc4b80-checkout ".")
+                   "git+https://github.com/pop-os/cosmic-files.git#47878af1e3362cc808c2c695b2fdcff178be6008"
+                   cosmic-files-47878af-checkout ".")
         (git-crate "cosmic-freedesktop-icons" "0.4.0"
                    "git+https://github.com/pop-os/freedesktop-icons#ab4c57b8e416c6af9297cb04d101889896fd9a92"
                    freedesktop-icons-ab4c57b-checkout ".")
+        (git-crate "cosmic-launch" "0.1.0"
+                   "git+https://github.com/pop-os/libcosmic.git#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "cosmic-launch")
         (git-crate "cosmic-protocols" "0.2.0"
                    "git+https://github.com/pop-os/cosmic-protocols?rev=c0cff4d#c0cff4db14c37ed954983158e4055aa94c7741d9"
                    cosmic-protocols-c0cff4d-checkout ".")
-        (git-crate "cosmic-settings-daemon" "0.1.0"
-                   "git+https://github.com/pop-os/dbus-settings-bindings#eed01dd3609e90e3c8cd043656734c500956c793"
-                   dbus-settings-bindings-eed01dd-checkout "cosmic-settings-daemon")
+        (git-crate "cosmic-settings-config" "1.11.0"
+                   "git+https://github.com/pop-os/cosmic-settings-daemon#2df041e6e90757782a7884729ae3723e86cee122"
+                   cosmic-settings-daemon-2df041e-checkout "config")
+        (git-crate "cosmic-settings-daemon-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "cosmic-settings-daemon")
         (git-crate "cosmic-theme" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "cosmic-theme")
+                   "git+https://github.com/pop-os/libcosmic.git#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "cosmic-theme")
         (git-crate "cryoglyph" "0.1.0"
                    "git+https://github.com/iced-rs/cryoglyph.git?rev=e429a025df36ab8145708acb309080ae3deec17a#e429a025df36ab8145708acb309080ae3deec17a"
                    cryoglyph-e429a02-checkout ".")
@@ -19396,47 +19163,47 @@
                    "git+https://github.com/pop-os/winit.git?rev=9567503#9567503d34130113e36b0167a2b8829c3756e429"
                    winit-9567503-checkout "dpi")
         (git-crate "iced" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced")
+                   "git+https://github.com/pop-os/libcosmic.git#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced")
         (git-crate "iced_accessibility" "0.1.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/accessibility")
+                   "git+https://github.com/pop-os/libcosmic.git#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/accessibility")
         (git-crate "iced_core" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/core")
+                   "git+https://github.com/pop-os/libcosmic.git#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/core")
         (git-crate "iced_debug" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/debug")
+                   "git+https://github.com/pop-os/libcosmic.git#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/debug")
         (git-crate "iced_futures" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/futures")
+                   "git+https://github.com/pop-os/libcosmic.git#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/futures")
         (git-crate "iced_graphics" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/graphics")
+                   "git+https://github.com/pop-os/libcosmic.git#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/graphics")
         (git-crate "iced_program" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/program")
+                   "git+https://github.com/pop-os/libcosmic.git#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/program")
         (git-crate "iced_renderer" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/renderer")
+                   "git+https://github.com/pop-os/libcosmic.git#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/renderer")
         (git-crate "iced_runtime" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/runtime")
+                   "git+https://github.com/pop-os/libcosmic.git#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/runtime")
         (git-crate "iced_tiny_skia" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/tiny_skia")
+                   "git+https://github.com/pop-os/libcosmic.git#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/tiny_skia")
         (git-crate "iced_wgpu" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/wgpu")
+                   "git+https://github.com/pop-os/libcosmic.git#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/wgpu")
         (git-crate "iced_widget" "0.14.2"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/widget")
+                   "git+https://github.com/pop-os/libcosmic.git#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/widget")
         (git-crate "iced_winit" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/winit")
+                   "git+https://github.com/pop-os/libcosmic.git#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout "iced/winit")
         (git-crate "libcosmic" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout ".")
+                   "git+https://github.com/pop-os/libcosmic.git#dd108aa99d7306110eef06da43eafc109e1ab151"
+                   libcosmic-dd108aa-checkout ".")
         (git-crate "mime" "0.1.0"
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout "mime")
@@ -19446,6 +19213,9 @@
         (git-crate "softbuffer" "0.4.1"
                    "git+https://github.com/pop-os/softbuffer?tag=cosmic-4.0#c2b2c19ddb38ff17495643699f97cb1f2064a1be"
                    softbuffer-c2b2c19-checkout ".")
+        (git-crate "switcheroo-control-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "switcheroo-control")
         (git-crate "window_clipboard" "0.4.1"
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout ".")
@@ -19483,8 +19253,8 @@
                    "git+https://github.com/pop-os/winit.git?rev=9567503#9567503d34130113e36b0167a2b8829c3756e429"
                    winit-9567503-checkout "winit-x11")
         (git-crate "xdg-mime" "0.4.0"
-                   "git+https://github.com/ebassi/xdg-mime-rs#f8efb3fb1fad582539e2af7d1e9fbc9613dcc7d9"
-                   xdg-mime-rs-f8efb3f-checkout ".")))
+                   "git+https://github.com/ebassi/xdg-mime-rs#69f67f59cd309355b72559f70aab64e2ac6312bc"
+                   xdg-mime-rs-69f67f5-checkout ".")))
 
 (define cosmic-store-cargo-inputs
   (list rust-ab_glyph-0.2.32
@@ -19624,6 +19394,7 @@
         rust-derive_utils-0.16.0
         rust-digest-0.11.3
         rust-dirs-6.0.0
+        rust-dirs-7.0.0
         rust-dirs-sys-0.5.0
         rust-dispatch2-0.3.1
         rust-displaydoc-0.2.7
@@ -19649,6 +19420,8 @@
         rust-equivalent-1.0.3
         rust-errno-0.3.14
         rust-error-code-3.4.0
+        rust-error_set-0.9.2
+        rust-error_set_impl-0.9.2
         rust-etagere-0.2.15
         rust-euclid-0.22.14
         rust-event-listener-5.4.2
@@ -19759,7 +19532,6 @@
         rust-idna-1.1.0
         rust-idna_adapter-1.2.2
         rust-image-0.25.10
-        rust-image-extras-0.1.1
         rust-image-webp-0.2.4
         rust-imagesize-0.13.0
         rust-imgref-1.12.3
@@ -20018,7 +19790,6 @@
         rust-serde_with_macros-3.24.0
         rust-serde_yaml-0.9.34-deprecated
         rust-sha2-0.11.1
-        rust-shlex-1.3.0
         rust-shlex-2.0.1
         rust-signal-hook-registry-1.4.8
         rust-simd-adler32-0.3.10
@@ -20159,6 +19930,7 @@
         rust-wgpu-core-deps-windows-linux-android-28.0.0
         rust-wgpu-hal-28.0.1
         rust-wgpu-types-28.0.0
+        rust-which-8.0.6
         rust-winapi-0.3.9
         rust-winapi-i686-pc-windows-gnu-0.4.0
         rust-winapi-util-0.1.11
@@ -20259,8 +20031,8 @@
         rust-zerovec-derive-0.11.6
         rust-zlib-rs-0.6.8
         rust-zmij-1.0.23
-        rust-zstd-0.13.3
-        rust-zstd-safe-7.3.0
+        rust-zstd-0.14.3
+        rust-zstd-safe-8.2.0
         rust-zstd-sys-2.1.2-zstd.1.5.7
         rust-zune-core-0.4.12
         rust-zune-core-0.5.3
@@ -20300,8 +20072,8 @@
                    "git+https://github.com/jackpot51/rust-atomicwrites#043ab4859d53ffd3d55334685303d8df39c9f768"
                    rust-atomicwrites-043ab48-checkout ".")
         (git-crate "build_helpers" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/build_helpers")
+                   "git+https://github.com/pop-os/libcosmic.git#95236a944bfd51c63a2fc65fe50a592c47168d40"
+                   libcosmic-95236a9-checkout "iced/build_helpers")
         (git-crate "clipboard_macos" "0.1.0"
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout "macos")
@@ -20315,29 +20087,32 @@
                    "git+https://github.com/pop-os/cosmic-protocols?rev=c0cff4d#c0cff4db14c37ed954983158e4055aa94c7741d9"
                    cosmic-protocols-c0cff4d-checkout "client-toolkit")
         (git-crate "cosmic-config" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "cosmic-config")
+                   "git+https://github.com/pop-os/libcosmic.git#95236a944bfd51c63a2fc65fe50a592c47168d40"
+                   libcosmic-95236a9-checkout "cosmic-config")
         (git-crate "cosmic-config-derive" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "cosmic-config-derive")
+                   "git+https://github.com/pop-os/libcosmic.git#95236a944bfd51c63a2fc65fe50a592c47168d40"
+                   libcosmic-95236a9-checkout "cosmic-config-derive")
         (git-crate "cosmic-freedesktop-icons" "0.4.0"
                    "git+https://github.com/pop-os/freedesktop-icons#ab4c57b8e416c6af9297cb04d101889896fd9a92"
                    freedesktop-icons-ab4c57b-checkout ".")
+        (git-crate "cosmic-launch" "0.1.0"
+                   "git+https://github.com/pop-os/libcosmic.git#95236a944bfd51c63a2fc65fe50a592c47168d40"
+                   libcosmic-95236a9-checkout "cosmic-launch")
         (git-crate "cosmic-panel-config" "1.10.0"
                    "git+https://github.com/pop-os/cosmic-panel#3ce6ce1cec97669f91e809962d9446aaefe8a06e"
                    cosmic-panel-3ce6ce1-checkout "cosmic-panel-config")
         (git-crate "cosmic-protocols" "0.2.0"
                    "git+https://github.com/pop-os/cosmic-protocols?rev=c0cff4d#c0cff4db14c37ed954983158e4055aa94c7741d9"
                    cosmic-protocols-c0cff4d-checkout ".")
-        (git-crate "cosmic-settings-config" "1.10.0"
-                   "git+https://github.com/pop-os/cosmic-settings-daemon#8844464b01d38bee68ed7da6083bf6dbaad71941"
-                   cosmic-settings-daemon-8844464-checkout "config")
+        (git-crate "cosmic-settings-config" "1.11.0"
+                   "git+https://github.com/pop-os/cosmic-settings-daemon#655b14fb9572dd7f7231ec6c343c63984e99741a"
+                   cosmic-settings-daemon-655b14f-checkout "config")
         (git-crate "cosmic-settings-daemon" "0.1.0"
                    "git+https://github.com/pop-os/dbus-settings-bindings#eed01dd3609e90e3c8cd043656734c500956c793"
                    dbus-settings-bindings-eed01dd-checkout "cosmic-settings-daemon")
         (git-crate "cosmic-theme" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "cosmic-theme")
+                   "git+https://github.com/pop-os/libcosmic.git#95236a944bfd51c63a2fc65fe50a592c47168d40"
+                   libcosmic-95236a9-checkout "cosmic-theme")
         (git-crate "cryoglyph" "0.1.0"
                    "git+https://github.com/iced-rs/cryoglyph.git?rev=e429a025df36ab8145708acb309080ae3deec17a#e429a025df36ab8145708acb309080ae3deec17a"
                    cryoglyph-e429a02-checkout ".")
@@ -20348,47 +20123,47 @@
                    "git+https://github.com/pop-os/winit.git?rev=9567503#9567503d34130113e36b0167a2b8829c3756e429"
                    winit-9567503-checkout "dpi")
         (git-crate "iced" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced")
+                   "git+https://github.com/pop-os/libcosmic.git#95236a944bfd51c63a2fc65fe50a592c47168d40"
+                   libcosmic-95236a9-checkout "iced")
         (git-crate "iced_accessibility" "0.1.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/accessibility")
+                   "git+https://github.com/pop-os/libcosmic.git#95236a944bfd51c63a2fc65fe50a592c47168d40"
+                   libcosmic-95236a9-checkout "iced/accessibility")
         (git-crate "iced_core" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/core")
+                   "git+https://github.com/pop-os/libcosmic.git#95236a944bfd51c63a2fc65fe50a592c47168d40"
+                   libcosmic-95236a9-checkout "iced/core")
         (git-crate "iced_debug" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/debug")
+                   "git+https://github.com/pop-os/libcosmic.git#95236a944bfd51c63a2fc65fe50a592c47168d40"
+                   libcosmic-95236a9-checkout "iced/debug")
         (git-crate "iced_futures" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/futures")
+                   "git+https://github.com/pop-os/libcosmic.git#95236a944bfd51c63a2fc65fe50a592c47168d40"
+                   libcosmic-95236a9-checkout "iced/futures")
         (git-crate "iced_graphics" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/graphics")
+                   "git+https://github.com/pop-os/libcosmic.git#95236a944bfd51c63a2fc65fe50a592c47168d40"
+                   libcosmic-95236a9-checkout "iced/graphics")
         (git-crate "iced_program" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/program")
+                   "git+https://github.com/pop-os/libcosmic.git#95236a944bfd51c63a2fc65fe50a592c47168d40"
+                   libcosmic-95236a9-checkout "iced/program")
         (git-crate "iced_renderer" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/renderer")
+                   "git+https://github.com/pop-os/libcosmic.git#95236a944bfd51c63a2fc65fe50a592c47168d40"
+                   libcosmic-95236a9-checkout "iced/renderer")
         (git-crate "iced_runtime" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/runtime")
+                   "git+https://github.com/pop-os/libcosmic.git#95236a944bfd51c63a2fc65fe50a592c47168d40"
+                   libcosmic-95236a9-checkout "iced/runtime")
         (git-crate "iced_tiny_skia" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/tiny_skia")
+                   "git+https://github.com/pop-os/libcosmic.git#95236a944bfd51c63a2fc65fe50a592c47168d40"
+                   libcosmic-95236a9-checkout "iced/tiny_skia")
         (git-crate "iced_wgpu" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/wgpu")
+                   "git+https://github.com/pop-os/libcosmic.git#95236a944bfd51c63a2fc65fe50a592c47168d40"
+                   libcosmic-95236a9-checkout "iced/wgpu")
         (git-crate "iced_widget" "0.14.2"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/widget")
+                   "git+https://github.com/pop-os/libcosmic.git#95236a944bfd51c63a2fc65fe50a592c47168d40"
+                   libcosmic-95236a9-checkout "iced/widget")
         (git-crate "iced_winit" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/winit")
+                   "git+https://github.com/pop-os/libcosmic.git#95236a944bfd51c63a2fc65fe50a592c47168d40"
+                   libcosmic-95236a9-checkout "iced/winit")
         (git-crate "libcosmic" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic.git#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout ".")
+                   "git+https://github.com/pop-os/libcosmic.git#95236a944bfd51c63a2fc65fe50a592c47168d40"
+                   libcosmic-95236a9-checkout ".")
         (git-crate "mime" "0.1.0"
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout "mime")
@@ -22980,15 +22755,13 @@
 (define cosmic-greeter-cargo-inputs
   (list rust-ab_glyph-0.2.32
         rust-ab_glyph_rasterizer-0.1.10
-        rust-addr2line-0.25.1
+        rust-addr2line-0.27.1
         rust-adler2-2.0.1
         rust-ahash-0.8.12
         rust-aho-corasick-1.1.5
         rust-aliasable-0.1.3
         rust-aligned-0.4.3
         rust-aligned-vec-0.6.4
-        rust-alloc-no-stdlib-2.0.4
-        rust-alloc-stdlib-0.2.4
         rust-allocator-api2-0.2.21
         rust-almost-0.2.0
         rust-android-activity-0.6.1
@@ -23000,19 +22773,19 @@
         rust-arbitrary-1.5.0
         rust-arc-swap-1.9.3
         rust-arg_enum_proc_macro-0.3.4
+        rust-array-init-2.1.0
         rust-arrayref-0.3.9
         rust-arrayvec-0.7.8
         rust-as-raw-xcb-connection-1.0.1
         rust-as-slice-0.2.1
         rust-ash-0.38.0-1.3.281
-        rust-ashpd-0.11.1
-        rust-ashpd-0.12.3
+        rust-ashpd-0.13.13
         rust-async-broadcast-0.7.2
         rust-async-channel-2.5.0
-        rust-async-executor-1.14.0
+        rust-async-executor-1.14.1
         rust-async-fn-stream-0.3.2
         rust-async-io-2.6.0
-        rust-async-lock-3.4.2
+        rust-async-lock-3.5.0
         rust-async-process-2.5.0
         rust-async-recursion-1.2.0
         rust-async-signal-0.2.14
@@ -23028,7 +22801,7 @@
         rust-av-scenechange-0.14.1
         rust-av1-grain-0.2.5
         rust-avif-serialize-0.8.9
-        rust-backtrace-0.3.76
+        rust-backtrace-0.3.77
         rust-base64-0.22.1
         rust-base64-0.23.1
         rust-basic-toml-0.1.10
@@ -23046,7 +22819,6 @@
         rust-block2-0.6.2
         rust-blocking-1.7.0
         rust-borsh-1.8.1
-        rust-brotli-decompressor-5.0.3
         rust-bs58-0.5.1
         rust-bstr-1.13.1
         rust-btoi-0.5.0
@@ -23062,15 +22834,16 @@
         rust-calendrical_calculations-0.2.4
         rust-calloop-0.14.5
         rust-calloop-wayland-source-0.4.1
-        rust-cc-1.9.0
+        rust-cc-1.11.1
         rust-cexpr-0.6.0
         rust-cfg-expr-0.20.10
         rust-cfg-if-1.0.5
         rust-cfg_aliases-0.2.2
+        rust-chacha20-0.10.2
         rust-chrono-0.4.45
         rust-clang-sys-1.9.1
         rust-clap_lex-1.1.1
-        rust-clipboard-win-5.4.1
+        rust-clipboard-win-5.4.3
         rust-cocoa-0.25.0
         rust-cocoa-foundation-0.1.2
         rust-codespan-reporting-0.12.0
@@ -23090,14 +22863,13 @@
         rust-core_maths-0.1.1
         rust-cosmic-text-0.19.0
         rust-cpufeatures-0.3.1
-        rust-crc32fast-1.5.2
+        rust-crc32fast-1.5.4
         rust-crossbeam-deque-0.8.8
         rust-crossbeam-epoch-0.9.21
         rust-crossbeam-utils-0.8.23
         rust-crunchy-0.2.4
         rust-crypto-common-0.2.2
         rust-css-color-0.2.8
-        rust-csscolorparser-0.8.4
         rust-ctor-0.10.1
         rust-cursor-icon-1.2.0
         rust-darling-0.20.11
@@ -23122,7 +22894,7 @@
         rust-derive_setters-0.1.9
         rust-derive_utils-0.16.0
         rust-digest-0.11.3
-        rust-dirs-6.0.0
+        rust-dirs-7.0.0
         rust-dirs-sys-0.5.0
         rust-dispatch2-0.3.1
         rust-displaydoc-0.2.7
@@ -23145,6 +22917,8 @@
         rust-equivalent-1.0.3
         rust-errno-0.3.14
         rust-error-code-3.4.0
+        rust-error_set-0.9.2
+        rust-error_set_impl-0.9.2
         rust-etagere-0.2.15
         rust-euclid-0.22.14
         rust-event-listener-5.4.2
@@ -23156,8 +22930,8 @@
         rust-fdeflate-0.3.7
         rust-find-crate-0.6.3
         rust-find-msvc-tools-0.1.15
-        rust-fixed_decimal-0.7.2
-        rust-flate2-1.1.10
+        rust-fixed_decimal-0.7.3
+        rust-flate2-1.1.11
         rust-float-cmp-0.9.0
         rust-float-cmp-0.10.0
         rust-float_next_after-1.0.0
@@ -23177,7 +22951,6 @@
         rust-foreign-types-shared-0.3.1
         rust-form_urlencoded-1.2.2
         rust-freedesktop-desktop-entry-0.8.4
-        rust-fsevent-sys-4.1.0
         rust-futures-0.3.34
         rust-futures-channel-0.3.34
         rust-futures-core-0.3.34
@@ -23195,7 +22968,7 @@
         rust-gettext-rs-0.8.0
         rust-gettext-sys-0.27.0
         rust-gif-0.13.3
-        rust-gimli-0.32.3
+        rust-gimli-0.34.0
         rust-gl_generator-0.14.0
         rust-glam-0.25.0
         rust-glob-0.3.4
@@ -23205,7 +22978,6 @@
         rust-gpu-descriptor-0.3.2
         rust-gpu-descriptor-types-0.2.0
         rust-greetd_ipc-0.10.3
-        rust-grid-1.0.1
         rust-guillotiere-0.6.2
         rust-half-2.7.1
         rust-harfrust-0.5.2
@@ -23228,39 +23000,39 @@
         rust-i18n-embed-impl-0.8.4
         rust-iana-time-zone-0.1.65
         rust-iana-time-zone-haiku-0.1.2
-        rust-icu-2.3.1
-        rust-icu_calendar-2.3.0
-        rust-icu_calendar_data-2.3.0
-        rust-icu_casemap-2.3.0
-        rust-icu_casemap_data-2.3.0
-        rust-icu_collator-2.3.1
-        rust-icu_collator_data-2.3.0
-        rust-icu_collections-2.3.0
-        rust-icu_datetime-2.3.0
-        rust-icu_datetime_data-2.3.0
-        rust-icu_decimal-2.3.0
-        rust-icu_decimal_data-2.3.0
-        rust-icu_experimental-0.6.0
-        rust-icu_experimental_data-0.6.0
-        rust-icu_list-2.3.0
-        rust-icu_list_data-2.3.0
-        rust-icu_locale-2.3.1
-        rust-icu_locale_core-2.3.0
-        rust-icu_locale_data-2.3.0
-        rust-icu_locale_fallback-2.3.0
-        rust-icu_locale_fallback_data-2.3.0
-        rust-icu_normalizer-2.3.0
-        rust-icu_normalizer_data-2.3.0
-        rust-icu_pattern-0.5.0
-        rust-icu_plurals-2.3.0
-        rust-icu_plurals_data-2.3.0
-        rust-icu_properties-2.3.0
-        rust-icu_properties_data-2.3.0
-        rust-icu_provider-2.3.1
-        rust-icu_segmenter-2.3.0
-        rust-icu_segmenter_data-2.3.0
-        rust-icu_time-2.3.0
-        rust-icu_time_data-2.3.1
+        rust-icu-2.4.0
+        rust-icu_calendar-2.4.0
+        rust-icu_calendar_data-2.4.0
+        rust-icu_casemap-2.4.0
+        rust-icu_casemap_data-2.4.0
+        rust-icu_collator-2.4.0
+        rust-icu_collator_data-2.4.0
+        rust-icu_collections-2.4.0
+        rust-icu_datetime-2.4.0
+        rust-icu_datetime_data-2.4.0
+        rust-icu_decimal-2.4.0
+        rust-icu_decimal_data-2.4.0
+        rust-icu_experimental-0.7.0
+        rust-icu_experimental_data-0.7.0
+        rust-icu_list-2.4.0
+        rust-icu_list_data-2.4.0
+        rust-icu_locale-2.4.0
+        rust-icu_locale_core-2.4.0
+        rust-icu_locale_data-2.4.0
+        rust-icu_locale_fallback-2.4.0
+        rust-icu_locale_fallback_data-2.4.0
+        rust-icu_normalizer-2.4.0
+        rust-icu_normalizer_data-2.4.0
+        rust-icu_pattern-0.5.1
+        rust-icu_plurals-2.4.0
+        rust-icu_plurals_data-2.4.0
+        rust-icu_properties-2.4.0
+        rust-icu_properties_data-2.4.0
+        rust-icu_provider-2.4.0
+        rust-icu_segmenter-2.4.0
+        rust-icu_segmenter_data-2.4.0
+        rust-icu_time-2.4.0
+        rust-icu_time_data-2.4.0
         rust-ident_case-1.0.1
         rust-idna-1.1.0
         rust-idna_adapter-1.2.2
@@ -23283,11 +23055,11 @@
         rust-itertools-0.12.1
         rust-itertools-0.14.0
         rust-itoa-1.0.18
-        rust-ixdtf-0.6.6
-        rust-jiff-0.2.38
-        rust-jiff-core-0.1.1
-        rust-jiff-icu-0.2.2
-        rust-jiff-static-0.2.38
+        rust-ixdtf-0.6.7
+        rust-jiff-0.2.39
+        rust-jiff-core-0.1.2
+        rust-jiff-icu-0.2.3
+        rust-jiff-static-0.2.39
         rust-jiff-tzdb-0.1.9
         rust-jiff-tzdb-platform-0.1.3
         rust-jni-0.22.4
@@ -23296,22 +23068,14 @@
         rust-jni-sys-0.4.1
         rust-jni-sys-macros-0.4.1
         rust-jobserver-0.1.35
-        rust-js-sys-0.3.106
-        rust-jxl-bitstream-1.1.0
-        rust-jxl-coding-1.0.1
-        rust-jxl-color-0.11.0
-        rust-jxl-frame-0.13.3
-        rust-jxl-grid-0.6.2
-        rust-jxl-image-0.13.0
-        rust-jxl-jbr-0.2.1
-        rust-jxl-modular-0.11.3
-        rust-jxl-oxide-0.12.6
-        rust-jxl-oxide-common-1.0.0
-        rust-jxl-render-0.12.4
-        rust-jxl-threadpool-1.0.0
-        rust-jxl-vardct-0.11.1
-        rust-kamadak-exif-0.6.1
-        rust-kdl-6.5.0
+        rust-js-sys-0.3.107
+        rust-jxl-0.8.0
+        rust-jxl-image-rs-integration-0.8.0
+        rust-jxl_macros-0.8.0
+        rust-jxl_simd-0.8.0
+        rust-jxl_transforms-0.8.0
+        rust-kamadak-exif-0.6.2
+        rust-kdl-6.7.1
         rust-keyboard-types-0.8.3
         rust-khronos-egl-6.0.0
         rust-khronos_api-3.1.0
@@ -23338,25 +23102,24 @@
         rust-litrs-1.0.1
         rust-locale_config-0.3.0
         rust-lock_api-0.4.14
-        rust-log-0.4.34
-        rust-logind-zbus-5.3.2
+        rust-log-0.4.35
         rust-loop9-0.1.5
         rust-lru-0.16.4
         rust-lyon-1.0.19
-        rust-lyon_algorithms-1.0.21
-        rust-lyon_geom-1.0.19
+        rust-lyon_algorithms-1.0.22
+        rust-lyon_geom-1.0.20
         rust-lyon_path-1.0.19
-        rust-lyon_tessellation-1.0.22
+        rust-lyon_tessellation-1.0.23
         rust-malloc_buf-0.0.6
         rust-matchers-0.2.0
         rust-maybe-rayon-0.1.1
         rust-memchr-2.8.3
         rust-memmap2-0.8.0
-        rust-memmap2-0.9.11
+        rust-memmap2-0.9.12
         rust-memoffset-0.9.1
         rust-metal-0.33.0
         rust-miette-7.6.0
-        rust-mime-0.3.17
+        rust-mime-0.3.18
         rust-mime_guess-2.0.5
         rust-minimal-lexical-0.2.1
         rust-miniz_oxide-0.8.9
@@ -23375,16 +23138,14 @@
         rust-nom-7.1.3
         rust-nom-8.0.0
         rust-noop_proc_macro-0.3.0
-        rust-notify-8.2.0
-        rust-notify-types-2.1.0
+        rust-notify-8.2.1
+        rust-notify-types-2.2.0
         rust-nu-ansi-term-0.50.3
-        rust-num-0.4.3
         rust-num-bigint-0.4.8
         rust-num-complex-0.4.6
         rust-num-conv-0.2.2
         rust-num-derive-0.4.2
         rust-num-integer-0.1.47
-        rust-num-iter-0.1.46
         rust-num-rational-0.4.2
         rust-num-traits-0.2.19
         rust-num_enum-0.7.6
@@ -23401,6 +23162,7 @@
         rust-objc2-core-foundation-0.3.2
         rust-objc2-core-graphics-0.3.2
         rust-objc2-core-image-0.2.2
+        rust-objc2-core-services-0.3.2
         rust-objc2-core-video-0.3.2
         rust-objc2-encode-4.1.0
         rust-objc2-foundation-0.2.2
@@ -23409,11 +23171,11 @@
         rust-objc2-quartz-core-0.2.2
         rust-objc2-ui-kit-0.3.2
         rust-objc_id-0.1.1
-        rust-object-0.37.3
+        rust-object-0.40.0
         rust-once_cell-1.21.4
         rust-option-ext-0.2.0
         rust-orbclient-0.3.55
-        rust-ordered-float-5.5.0
+        rust-ordered-float-5.5.1
         rust-ordered-stream-0.2.0
         rust-ouroboros-0.18.5
         rust-ouroboros_macro-0.18.5
@@ -23431,21 +23193,21 @@
         rust-pastey-0.1.1
         rust-percent-encoding-2.3.2
         rust-phf-0.13.1
-        rust-phf_generator-0.13.1
-        rust-phf_macros-0.13.1
+        rust-phf-0.14.0
+        rust-phf_generator-0.14.0
+        rust-phf_macros-0.14.0
         rust-phf_shared-0.13.1
+        rust-phf_shared-0.14.0
         rust-pico-args-0.5.0
         rust-pin-project-1.1.13
         rust-pin-project-internal-1.1.13
         rust-pin-project-lite-0.2.17
-        rust-pin-utils-0.1.1
         rust-piper-0.2.5
         rust-pkg-config-0.3.34
         rust-plain-0.2.3
         rust-png-0.17.16
         rust-png-0.18.1
         rust-polling-3.11.0
-        rust-pollster-0.4.0
         rust-portable-atomic-1.15.0
         rust-portable-atomic-util-0.2.8
         rust-potential_utf-0.1.6
@@ -23472,10 +23234,12 @@
         rust-r-efi-6.0.0
         rust-rand-0.8.8
         rust-rand-0.9.5
+        rust-rand-0.10.3
         rust-rand_chacha-0.3.1
         rust-rand_chacha-0.9.0
         rust-rand_core-0.6.4
         rust-rand_core-0.9.5
+        rust-rand_core-0.10.1
         rust-range-alloc-0.1.5
         rust-rangemap-1.8.0
         rust-rav1e-0.8.1
@@ -23498,11 +23262,11 @@
         rust-regex-syntax-0.8.11
         rust-renderdoc-sys-1.1.0
         rust-resvg-0.45.1
-        rust-rfd-0.16.0
         rust-rgb-0.8.53
         rust-ron-0.11.0
-        rust-ron-0.12.2
+        rust-ron-0.12.3
         rust-roxmltree-0.20.0
+        rust-roxmltree-0.21.2
         rust-rpassword-6.0.1
         rust-rust-embed-8.13.0
         rust-rust-embed-impl-8.13.0
@@ -23512,7 +23276,7 @@
         rust-rustc-hash-2.1.3
         rust-rustc_version-0.4.1
         rust-rustix-0.38.44
-        rust-rustix-1.1.5
+        rust-rustix-1.1.6
         rust-rustversion-1.0.23
         rust-rustybuzz-0.20.1
         rust-same-file-1.0.6
@@ -23529,7 +23293,7 @@
         rust-serde_derive-1.0.229
         rust-serde_json-1.0.154
         rust-serde_repr-0.1.21
-        rust-serde_spanned-1.1.2
+        rust-serde_spanned-1.1.3
         rust-serde_with-3.24.0
         rust-serde_with_macros-3.24.0
         rust-sha2-0.11.1
@@ -23547,9 +23311,9 @@
         rust-skrifa-0.44.0
         rust-slab-0.4.12
         rust-slotmap-1.1.1
-        rust-smallvec-1.16.3
+        rust-smallvec-1.16.4
         rust-smithay-client-toolkit-0.20.0
-        rust-smol_str-0.3.6
+        rust-smol_str-0.3.7
         rust-socket2-0.6.5
         rust-spirv-0.3.0-sdk-1.3.268.0
         rust-stable_deref_trait-1.2.1
@@ -23565,7 +23329,7 @@
         rust-synstructure-0.14.0
         rust-sys-locale-0.3.2
         rust-system-deps-7.0.8
-        rust-taffy-0.9.2
+        rust-taffy-0.15.1
         rust-target-lexicon-0.13.5
         rust-temp-dir-0.1.16
         rust-tempfile-3.27.0
@@ -23583,17 +23347,17 @@
         rust-tiny-skia-path-0.11.4
         rust-tiny-skia-path-0.12.0
         rust-tiny-xlib-0.2.5
-        rust-tinystr-0.8.4
+        rust-tinystr-0.8.5
         rust-tinyvec-1.13.3
-        rust-tokio-1.53.3
+        rust-tokio-1.54.1
         rust-tokio-macros-2.7.2
         rust-tokio-stream-0.1.19
         rust-toml-0.5.11
-        rust-toml-1.1.8-spec-1.1.0
-        rust-toml_datetime-1.1.2-spec-1.1.0
-        rust-toml_edit-0.25.17-spec-1.1.0
+        rust-toml-1.2.1-spec-1.1.0
+        rust-toml_datetime-1.1.3-spec-1.1.0
+        rust-toml_edit-0.25.19-spec-1.1.0
         rust-toml_parser-1.1.5-spec-1.1.0
-        rust-toml_writer-1.1.3-spec-1.1.0
+        rust-toml_writer-1.2.0-spec-1.1.0
         rust-tracing-0.1.44
         rust-tracing-attributes-0.1.31
         rust-tracing-core-0.1.36
@@ -23607,7 +23371,6 @@
         rust-typenum-1.20.1
         rust-udev-0.9.3
         rust-uds_windows-1.2.1
-        rust-uncased-0.9.10
         rust-unic-langid-0.9.6
         rust-unic-langid-impl-0.9.6
         rust-unicase-2.10.0
@@ -23616,18 +23379,18 @@
         rust-unicode-ccc-0.4.0
         rust-unicode-ident-1.0.27
         rust-unicode-linebreak-0.1.5
-        rust-unicode-properties-0.1.4
-        rust-unicode-script-0.5.8
+        rust-unicode-properties-0.1.5
+        rust-unicode-script-0.5.9
         rust-unicode-segmentation-1.13.3
         rust-unicode-vo-0.1.0
         rust-unicode-width-0.1.14
-        rust-unicode-width-0.2.2
+        rust-unicode-width-0.2.3
         rust-url-2.5.8
-        rust-urlencoding-2.1.3
         rust-usvg-0.45.1
-        rust-utf16_iter-1.0.5
-        rust-utf8_iter-1.0.4
-        rust-uuid-1.28.0
+        rust-utf16_iter-1.1.0
+        rust-utf8_iter-1.1.0
+        rust-utf_types-1.0.0
+        rust-uuid-1.29.0
         rust-v_frame-0.3.9
         rust-valuable-0.1.1
         rust-vergen-8.3.2
@@ -23636,12 +23399,12 @@
         rust-walkdir-2.5.0
         rust-wasi-0.11.1-wasi-snapshot-preview1
         rust-wasip2-1.0.4-wasi-0.2.12
-        rust-wasm-bindgen-0.2.129
-        rust-wasm-bindgen-futures-0.4.79
-        rust-wasm-bindgen-macro-0.2.129
-        rust-wasm-bindgen-macro-support-0.2.129
-        rust-wasm-bindgen-shared-0.2.129
-        rust-wasmtimer-0.4.3
+        rust-wasm-bindgen-0.2.130
+        rust-wasm-bindgen-futures-0.4.80
+        rust-wasm-bindgen-macro-0.2.130
+        rust-wasm-bindgen-macro-support-0.2.130
+        rust-wasm-bindgen-shared-0.2.130
+        rust-wasmtimer-0.4.5
         rust-wayland-backend-0.3.17
         rust-wayland-client-0.31.15
         rust-wayland-csd-frame-0.3.0
@@ -23654,7 +23417,7 @@
         rust-wayland-scanner-0.31.11
         rust-wayland-server-0.31.14
         rust-wayland-sys-0.31.11
-        rust-web-sys-0.3.106
+        rust-web-sys-0.3.107
         rust-web-time-1.1.0
         rust-weezl-0.1.12
         rust-wgpu-28.0.0
@@ -23664,6 +23427,7 @@
         rust-wgpu-core-deps-windows-linux-android-28.0.0
         rust-wgpu-hal-28.0.1
         rust-wgpu-types-28.0.0
+        rust-which-8.0.6
         rust-whitespace-conf-1.0.0
         rust-winapi-0.3.9
         rust-winapi-i686-pc-windows-gnu-0.4.0
@@ -23690,38 +23454,28 @@
         rust-windows-sys-0.48.0
         rust-windows-sys-0.52.0
         rust-windows-sys-0.59.0
-        rust-windows-sys-0.60.2
         rust-windows-sys-0.61.2
         rust-windows-targets-0.48.5
         rust-windows-targets-0.52.6
-        rust-windows-targets-0.53.5
         rust-windows-threading-0.1.0
         rust-windows-threading-0.2.1
         rust-windows_aarch64_gnullvm-0.48.5
         rust-windows_aarch64_gnullvm-0.52.6
-        rust-windows_aarch64_gnullvm-0.53.1
         rust-windows_aarch64_msvc-0.48.5
         rust-windows_aarch64_msvc-0.52.6
-        rust-windows_aarch64_msvc-0.53.1
         rust-windows_i686_gnu-0.48.5
         rust-windows_i686_gnu-0.52.6
-        rust-windows_i686_gnu-0.53.1
         rust-windows_i686_gnullvm-0.52.6
-        rust-windows_i686_gnullvm-0.53.1
         rust-windows_i686_msvc-0.48.5
         rust-windows_i686_msvc-0.52.6
-        rust-windows_i686_msvc-0.53.1
         rust-windows_x86_64_gnu-0.48.5
         rust-windows_x86_64_gnu-0.52.6
-        rust-windows_x86_64_gnu-0.53.1
         rust-windows_x86_64_gnullvm-0.48.5
         rust-windows_x86_64_gnullvm-0.52.6
-        rust-windows_x86_64_gnullvm-0.53.1
         rust-windows_x86_64_msvc-0.48.5
         rust-windows_x86_64_msvc-0.52.6
-        rust-windows_x86_64_msvc-0.53.1
-        rust-winnow-0.6.24
-        rust-winnow-1.0.4
+        rust-winnow-0.7.15
+        rust-winnow-1.0.5
         rust-wit-bindgen-0.57.1
         rust-write16-1.0.0
         rust-writeable-0.6.4
@@ -23740,27 +23494,31 @@
         rust-xmlwriter-0.1.0
         rust-y4m-0.8.0
         rust-yansi-1.0.1
-        rust-yazi-0.2.1
-        rust-yoke-0.8.3
+        rust-yazi-0.2.2
+        rust-yoke-0.8.4
         rust-yoke-derive-0.8.4
         rust-zbus-5.19.0
+        rust-zbus-6.2.1
         rust-zbus-lockstep-0.5.2
         rust-zbus-lockstep-macros-0.5.2
         rust-zbus_macros-5.19.0
+        rust-zbus_macros-6.2.1
         rust-zbus_names-4.3.5
-        rust-zbus_systemd-0.26000.0
+        rust-zbus_systemd-0.26201.0
+        rust-zbus_utils-6.1.0
         rust-zbus_xml-5.2.1
-        rust-zcheapstr-1.1.0
+        rust-zcheapstr-1.2.0
         rust-zeno-0.3.3
         rust-zerocopy-0.8.63
         rust-zerocopy-derive-0.8.63
         rust-zerofrom-0.1.8
         rust-zerofrom-derive-0.1.8
         rust-zerotrie-0.2.5
-        rust-zerovec-0.11.8
-        rust-zerovec-derive-0.11.6
+        rust-zerovec-0.11.9
+        rust-zerovec-derive-0.11.7
         rust-zlib-rs-0.6.8
         rust-zmij-1.0.23
+        rust-zruntime-0.2.2
         rust-zune-core-0.4.12
         rust-zune-core-0.5.3
         rust-zune-inflate-0.2.54
@@ -23771,7 +23529,10 @@
         rust-zvariant_utils-4.2.0))
 
 (define cosmic-greeter-git-crates
-  (list (git-crate "accesskit" "0.22.0"
+  (list (git-crate "a11y-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "a11y")
+        (git-crate "accesskit" "0.22.0"
                    "git+https://github.com/wash2/accesskit?rev=6c20249#6c20249d3b9fd45e7002efad9f6b6171a9257912"
                    accesskit-6c20249-checkout "common")
         (git-crate "accesskit_atspi_common" "0.15.0"
@@ -23796,8 +23557,8 @@
                    "git+https://github.com/jackpot51/rust-atomicwrites#043ab4859d53ffd3d55334685303d8df39c9f768"
                    rust-atomicwrites-043ab48-checkout ".")
         (git-crate "build_helpers" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/build_helpers")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "iced/build_helpers")
         (git-crate "clipboard_macos" "0.1.0"
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout "macos")
@@ -23807,60 +23568,63 @@
         (git-crate "clipboard_x11" "0.4.2"
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout "x11")
-        (git-crate "cosmic-applets-config" "1.10.0"
-                   "git+https://github.com/pop-os/cosmic-applets#406d1b7d627138fdf4078f654268d3d8774e50f1"
-                   cosmic-applets-406d1b7-checkout "cosmic-applets-config")
-        (git-crate "cosmic-bg-config" "1.10.0"
-                   "git+https://github.com/pop-os/cosmic-bg#91d525b7310f5a497c9fd09a25d2710eb9f8a6f7"
-                   cosmic-bg-91d525b-checkout "config")
+        (git-crate "cosmic-applets-config" "1.11.0"
+                   "git+https://github.com/pop-os/cosmic-applets#2ad004a9b88c68fcaf55080623956178a01e5d7e"
+                   cosmic-applets-2ad004a-checkout "cosmic-applets-config")
+        (git-crate "cosmic-bg-config" "1.11.0"
+                   "git+https://github.com/pop-os/cosmic-bg#afce6904b201754fcad3f3d3bd9acd6ba21536ab"
+                   cosmic-bg-afce690-checkout "config")
         (git-crate "cosmic-client-toolkit" "0.2.0"
                    "git+https://github.com/pop-os/cosmic-protocols//?rev=c0cff4d#c0cff4db14c37ed954983158e4055aa94c7741d9"
                    cosmic-protocols-c0cff4d-checkout "client-toolkit")
         (git-crate "cosmic-comp-config" "1.0.0"
-                   "git+https://github.com/pop-os/cosmic-comp#742b800b518f0dafd89d0c1ace4de4935334ed18"
-                   cosmic-comp-742b800-checkout "cosmic-comp-config")
+                   "git+https://github.com/pop-os/cosmic-comp#63dacd148f634023f904d27e94ce0da93eef6710"
+                   cosmic-comp-63dacd1-checkout "cosmic-comp-config")
         (git-crate "cosmic-config" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "cosmic-config")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "cosmic-config")
         (git-crate "cosmic-config-derive" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "cosmic-config-derive")
-        (git-crate "cosmic-dbus-a11y" "0.1.0"
-                   "git+https://github.com/pop-os/dbus-settings-bindings#eed01dd3609e90e3c8cd043656734c500956c793"
-                   dbus-settings-bindings-eed01dd-checkout "a11y")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "cosmic-config-derive")
         (git-crate "cosmic-dbus-networkmanager" "0.1.0"
-                   "git+https://github.com/pop-os/dbus-settings-bindings#eed01dd3609e90e3c8cd043656734c500956c793"
-                   dbus-settings-bindings-eed01dd-checkout "networkmanager")
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "networkmanager")
         (git-crate "cosmic-freedesktop-icons" "0.4.0"
                    "git+https://github.com/pop-os/freedesktop-icons#ab4c57b8e416c6af9297cb04d101889896fd9a92"
                    freedesktop-icons-ab4c57b-checkout ".")
-        (git-crate "cosmic-osk-config" "1.10.0"
-                   "git+https://github.com/pop-os/cosmic-osk#3a4800a10b03efac1684817238922db5d6746403"
-                   cosmic-osk-3a4800a-checkout "config")
+        (git-crate "cosmic-launch" "0.1.0"
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "cosmic-launch")
+        (git-crate "cosmic-login1-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "login1")
+        (git-crate "cosmic-osk-config" "1.11.0"
+                   "git+https://github.com/pop-os/cosmic-osk#6b146a2b0a23d88ae84223ad06c6813bda5a9386"
+                   cosmic-osk-6b146a2-checkout "config")
         (git-crate "cosmic-protocols" "0.2.0"
                    "git+https://github.com/pop-os/cosmic-protocols//?rev=c0cff4d#c0cff4db14c37ed954983158e4055aa94c7741d9"
                    cosmic-protocols-c0cff4d-checkout ".")
-        (git-crate "cosmic-randr-shell" "1.10.0"
-                   "git+https://github.com/pop-os/cosmic-randr#85efc7febb99876094cf90af6dbce0927ad8cca7"
-                   cosmic-randr-85efc7f-checkout "shell")
-        (git-crate "cosmic-settings-a11y-manager-subscription" "1.10.0"
-                   "git+https://github.com/pop-os/cosmic-settings#c4ff5486d00fb0ede7a95784f6fb634bf79e6113"
-                   cosmic-settings-c4ff548-checkout "subscriptions/a11y-manager")
-        (git-crate "cosmic-settings-accessibility-subscription" "1.10.0"
-                   "git+https://github.com/pop-os/cosmic-settings#c4ff5486d00fb0ede7a95784f6fb634bf79e6113"
-                   cosmic-settings-c4ff548-checkout "subscriptions/accessibility")
-        (git-crate "cosmic-settings-config" "1.10.0"
-                   "git+https://github.com/pop-os/cosmic-settings-daemon#8844464b01d38bee68ed7da6083bf6dbaad71941"
-                   cosmic-settings-daemon-8844464-checkout "config")
-        (git-crate "cosmic-settings-daemon" "0.1.0"
-                   "git+https://github.com/pop-os/dbus-settings-bindings#eed01dd3609e90e3c8cd043656734c500956c793"
-                   dbus-settings-bindings-eed01dd-checkout "cosmic-settings-daemon")
-        (git-crate "cosmic-settings-daemon-config" "1.10.0"
-                   "git+https://github.com/pop-os/cosmic-settings-daemon#8844464b01d38bee68ed7da6083bf6dbaad71941"
-                   cosmic-settings-daemon-8844464-checkout "cosmic-settings-daemon-config")
+        (git-crate "cosmic-randr-shell" "1.11.0"
+                   "git+https://github.com/pop-os/cosmic-randr#f1a97655c97e8799bf4a37a8f5103a8ab5e5068d"
+                   cosmic-randr-f1a9765-checkout "shell")
+        (git-crate "cosmic-settings-a11y-manager-subscription" "1.11.0"
+                   "git+https://github.com/pop-os/cosmic-settings#5f43cfc867163f3d9e8d83d79efa959e29d53418"
+                   cosmic-settings-5f43cfc-checkout "subscriptions/a11y-manager")
+        (git-crate "cosmic-settings-accessibility-subscription" "1.11.0"
+                   "git+https://github.com/pop-os/cosmic-settings#5f43cfc867163f3d9e8d83d79efa959e29d53418"
+                   cosmic-settings-5f43cfc-checkout "subscriptions/accessibility")
+        (git-crate "cosmic-settings-config" "1.11.0"
+                   "git+https://github.com/pop-os/cosmic-settings-daemon#108e095779549931e7ce109429255a1341c70b7c"
+                   cosmic-settings-daemon-108e095-checkout "config")
+        (git-crate "cosmic-settings-daemon-config" "1.11.0"
+                   "git+https://github.com/pop-os/cosmic-settings-daemon#108e095779549931e7ce109429255a1341c70b7c"
+                   cosmic-settings-daemon-108e095-checkout "cosmic-settings-daemon-config")
+        (git-crate "cosmic-settings-daemon-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "cosmic-settings-daemon")
         (git-crate "cosmic-theme" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "cosmic-theme")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "cosmic-theme")
         (git-crate "cryoglyph" "0.1.0"
                    "git+https://github.com/iced-rs/cryoglyph.git?rev=e429a025df36ab8145708acb309080ae3deec17a#e429a025df36ab8145708acb309080ae3deec17a"
                    cryoglyph-e429a02-checkout ".")
@@ -23871,47 +23635,47 @@
                    "git+https://github.com/pop-os/winit.git?rev=9567503#9567503d34130113e36b0167a2b8829c3756e429"
                    winit-9567503-checkout "dpi")
         (git-crate "iced" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "iced")
         (git-crate "iced_accessibility" "0.1.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/accessibility")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "iced/accessibility")
         (git-crate "iced_core" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/core")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "iced/core")
         (git-crate "iced_debug" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/debug")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "iced/debug")
         (git-crate "iced_futures" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/futures")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "iced/futures")
         (git-crate "iced_graphics" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/graphics")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "iced/graphics")
         (git-crate "iced_program" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/program")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "iced/program")
         (git-crate "iced_renderer" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/renderer")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "iced/renderer")
         (git-crate "iced_runtime" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/runtime")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "iced/runtime")
         (git-crate "iced_tiny_skia" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/tiny_skia")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "iced/tiny_skia")
         (git-crate "iced_wgpu" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/wgpu")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "iced/wgpu")
         (git-crate "iced_widget" "0.14.2"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/widget")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "iced/widget")
         (git-crate "iced_winit" "0.14.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout "iced/winit")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout "iced/winit")
         (git-crate "libcosmic" "1.0.0"
-                   "git+https://github.com/pop-os/libcosmic#430f3d48a97d8779f9c1985473912e594ccca1ae"
-                   libcosmic-430f3d4-checkout ".")
+                   "git+https://github.com/pop-os/libcosmic#896b252dfc3c6cb0c678b844432016415dc104b1"
+                   libcosmic-896b252-checkout ".")
         (git-crate "mime" "0.1.0"
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout "mime")
@@ -23921,12 +23685,15 @@
         (git-crate "softbuffer" "0.4.1"
                    "git+https://github.com/pop-os/softbuffer?tag=cosmic-4.0#c2b2c19ddb38ff17495643699f97cb1f2064a1be"
                    softbuffer-c2b2c19-checkout ".")
-        (git-crate "timedate-zbus" "0.1.0"
-                   "git+https://github.com/pop-os/dbus-settings-bindings#eed01dd3609e90e3c8cd043656734c500956c793"
-                   dbus-settings-bindings-eed01dd-checkout "timedate")
-        (git-crate "upower_dbus" "0.3.2"
-                   "git+https://github.com/pop-os/dbus-settings-bindings#eed01dd3609e90e3c8cd043656734c500956c793"
-                   dbus-settings-bindings-eed01dd-checkout "upower")
+        (git-crate "switcheroo-control-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "switcheroo-control")
+        (git-crate "timedate1-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "timedate1")
+        (git-crate "upower-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "upower")
         (git-crate "window_clipboard" "0.4.1"
                    "git+https://github.com/pop-os/window_clipboard.git?tag=sctk-0.20#f68595ee0e62fbd6589f4709b5aaa5c3c7ea5f6c"
                    window_clipboard-f68595e-checkout ".")
@@ -23965,374 +23732,366 @@
                    winit-9567503-checkout "winit-x11")))
 
 (define pop-launcher-cargo-inputs
-  (list rust-addr2line-0.24.2
-        rust-adler2-2.0.1
-        rust-aho-corasick-1.1.3
-        rust-android_system_properties-0.1.5
-        rust-anstream-0.6.20
-        rust-anstyle-1.0.11
-        rust-anstyle-parse-0.2.7
-        rust-anstyle-query-1.1.4
-        rust-anstyle-wincon-3.0.10
-        rust-anyhow-1.0.100
-        rust-async-broadcast-0.7.2
-        rust-async-channel-2.5.0
-        rust-async-executor-1.13.3
+  (list rust-aho-corasick-1.1.5
+        rust-android_system_properties-0.1.6
+        rust-anstream-1.0.0
+        rust-anstyle-1.0.14
+        rust-anstyle-parse-1.0.0
+        rust-anstyle-query-1.1.5
+        rust-anstyle-wincon-3.0.11
+        rust-anyhow-1.0.104
         rust-async-io-2.6.0
-        rust-async-lock-3.4.1
         rust-async-oneshot-0.5.9
         rust-async-pidfd-0.1.5
-        rust-async-process-2.5.0
-        rust-async-recursion-1.1.1
-        rust-async-signal-0.2.13
-        rust-async-task-4.7.1
-        rust-async-trait-0.1.89
+        rust-async-trait-0.1.92
         rust-atomic-waker-1.1.2
-        rust-autocfg-1.5.0
-        rust-backtrace-0.3.75
-        rust-base64-0.22.1
-        rust-bitflags-2.9.4
+        rust-autocfg-1.5.1
+        rust-aws-lc-rs-1.19.0
+        rust-aws-lc-sys-0.47.0
+        rust-base64-0.23.1
+        rust-bitflags-1.3.2
+        rust-bitflags-2.13.2
         rust-block-0.1.6
-        rust-blocking-1.6.2
-        rust-bstr-1.12.0
-        rust-bumpalo-3.19.0
-        rust-bytemuck-1.23.2
-        rust-bytemuck_derive-1.10.1
+        rust-bs58-0.5.1
+        rust-bstr-1.13.1
+        rust-bumpalo-3.20.3
+        rust-bytemuck-1.25.2
+        rust-bytemuck_derive-1.12.1
         rust-byteorder-1.5.0
-        rust-bytes-1.10.1
-        rust-calloop-0.14.3
+        rust-bytes-1.12.1
+        rust-calloop-0.14.5
         rust-calloop-wayland-source-0.4.1
-        rust-cc-1.2.38
+        rust-cc-1.11.1
         rust-cfb-0.7.3
-        rust-cfg-if-1.0.3
-        rust-cfg_aliases-0.2.1
-        rust-chrono-0.4.42
-        rust-clap-4.5.48
-        rust-clap_builder-4.5.48
-        rust-clap_derive-4.5.47
-        rust-clap_lex-0.7.5
-        rust-colorchoice-1.0.4
+        rust-cfg-if-1.0.5
+        rust-cfg_aliases-0.2.2
+        rust-chacha20-0.10.2
+        rust-chrono-0.4.45
+        rust-clap-4.6.7
+        rust-clap_builder-4.6.7
+        rust-clap_derive-4.6.7
+        rust-clap_lex-1.1.1
+        rust-cmake-0.1.58
+        rust-colorchoice-1.0.5
+        rust-combine-4.6.9
         rust-concurrent-queue-2.5.0
-        rust-const_format-0.2.34
-        rust-const_format_proc_macros-0.2.34
+        rust-const_format-0.2.37
+        rust-const_format_proc_macros-0.2.37
+        rust-core-foundation-0.10.1
         rust-core-foundation-sys-0.8.7
-        rust-crossbeam-utils-0.8.21
+        rust-cpufeatures-0.3.1
+        rust-crossbeam-utils-0.8.23
         rust-cursor-icon-1.2.0
-        rust-darling-0.21.3
-        rust-darling_core-0.21.3
-        rust-darling_macro-0.21.3
-        rust-deranged-0.5.4
+        rust-darling-0.24.1
+        rust-darling_core-0.24.1
+        rust-darling_macro-0.24.1
+        rust-defmt-1.2.0
+        rust-defmt-macros-1.2.0
+        rust-defmt-parser-1.1.0
+        rust-deranged-0.5.9
         rust-dirs-5.0.1
-        rust-dirs-6.0.0
+        rust-dirs-7.0.0
         rust-dirs-sys-0.4.1
         rust-dirs-sys-0.5.0
-        rust-displaydoc-0.2.5
+        rust-displaydoc-0.2.7
         rust-downcast-rs-1.2.1
+        rust-dunce-1.0.5
         rust-dyn-clone-1.0.20
-        rust-endi-1.1.0
-        rust-enumflags2-0.7.12
-        rust-enumflags2_derive-0.7.12
-        rust-equivalent-1.0.2
+        rust-endi-1.1.1
+        rust-equivalent-1.0.3
         rust-errno-0.3.14
-        rust-event-listener-5.4.1
-        rust-event-listener-strategy-0.5.4
-        rust-fastrand-2.3.0
-        rust-find-msvc-tools-0.1.2
-        rust-flume-0.11.1
+        rust-fastrand-2.5.0
+        rust-find-msvc-tools-0.1.15
+        rust-flume-0.12.0
         rust-fnv-1.0.7
-        rust-fork-0.2.0
+        rust-fork-0.11.0
         rust-form_urlencoded-1.2.2
-        rust-freedesktop-desktop-entry-0.7.19
-        rust-futures-0.3.31
-        rust-futures-channel-0.3.31
-        rust-futures-core-0.3.31
-        rust-futures-executor-0.3.31
-        rust-futures-io-0.3.31
+        rust-freedesktop-desktop-entry-0.8.4
+        rust-fs_extra-1.3.0
+        rust-futures-0.3.34
+        rust-futures-channel-0.3.34
+        rust-futures-core-0.3.34
+        rust-futures-executor-0.3.34
+        rust-futures-io-0.3.34
         rust-futures-lite-2.6.1
-        rust-futures-macro-0.3.31
+        rust-futures-macro-0.3.34
         rust-futures-micro-0.5.0
-        rust-futures-sink-0.3.31
-        rust-futures-task-0.3.31
-        rust-futures-util-0.3.31
+        rust-futures-sink-0.3.34
+        rust-futures-task-0.3.34
+        rust-futures-util-0.3.34
         rust-gen-z-0.1.0
-        rust-getrandom-0.2.16
-        rust-getrandom-0.3.3
-        rust-gettext-rs-0.7.2
-        rust-gettext-sys-0.22.5
-        rust-gimli-0.31.1
+        rust-getrandom-0.2.17
+        rust-getrandom-0.4.3
+        rust-gettext-rs-0.8.0
+        rust-gettext-sys-0.27.0
         rust-hashbrown-0.12.3
-        rust-hashbrown-0.16.0
+        rust-hashbrown-0.17.1
         rust-heck-0.5.0
-        rust-hermit-abi-0.5.2
+        rust-hermit-abi-0.5.3
         rust-hex-0.4.3
-        rust-http-1.3.1
-        rust-http-body-1.0.1
-        rust-http-body-util-0.1.3
+        rust-http-1.5.0
+        rust-http-body-1.1.0
+        rust-http-body-util-0.1.5
         rust-httparse-1.10.1
         rust-human-sort-0.2.2
-        rust-human_format-1.1.0
-        rust-hyper-1.7.0
-        rust-hyper-rustls-0.27.7
-        rust-hyper-util-0.1.17
-        rust-iana-time-zone-0.1.64
+        rust-human_format-1.2.1
+        rust-hyper-1.12.0
+        rust-hyper-rustls-0.27.10
+        rust-hyper-util-0.1.21
+        rust-iana-time-zone-0.1.65
         rust-iana-time-zone-haiku-0.1.2
-        rust-icu_collections-2.0.0
-        rust-icu_locale_core-2.0.0
-        rust-icu_normalizer-2.0.0
-        rust-icu_normalizer_data-2.0.0
-        rust-icu_properties-2.0.1
-        rust-icu_properties_data-2.0.1
-        rust-icu_provider-2.0.0
+        rust-icu_collections-2.4.0
+        rust-icu_locale_core-2.4.0
+        rust-icu_normalizer-2.4.0
+        rust-icu_normalizer_data-2.4.0
+        rust-icu_properties-2.4.0
+        rust-icu_properties_data-2.4.0
+        rust-icu_provider-2.4.0
         rust-ident_case-1.0.1
         rust-idna-1.1.0
-        rust-idna_adapter-1.2.1
+        rust-idna_adapter-1.2.2
         rust-indexmap-1.9.3
-        rust-indexmap-2.11.4
+        rust-indexmap-2.14.2
         rust-infer-0.16.0
-        rust-io-uring-0.7.10
-        rust-ipnet-2.11.0
-        rust-iri-string-0.7.8
-        rust-is_terminal_polyfill-1.70.1
-        rust-itoa-1.0.15
-        rust-js-sys-0.3.81
-        rust-lazy_static-1.5.0
-        rust-libc-0.2.176
-        rust-libmimalloc-sys-0.1.44
-        rust-libredox-0.1.10
-        rust-linux-raw-sys-0.11.0
-        rust-litemap-0.8.0
+        rust-ipnet-2.12.2
+        rust-is_terminal_polyfill-1.70.2
+        rust-itoa-1.0.18
+        rust-jiff-0.2.39
+        rust-jiff-core-0.1.2
+        rust-jiff-static-0.2.39
+        rust-jiff-tzdb-0.1.9
+        rust-jiff-tzdb-platform-0.1.3
+        rust-jni-0.22.4
+        rust-jni-macros-0.22.4
+        rust-jni-sys-0.4.1
+        rust-jni-sys-macros-0.4.1
+        rust-jobserver-0.1.35
+        rust-js-sys-0.3.107
+        rust-konst-0.2.20
+        rust-konst_macro_rules-0.2.19
+        rust-lazy_static-1.5.1
+        rust-libc-0.2.191
+        rust-libmimalloc-sys-0.1.49
+        rust-libredox-0.1.25
+        rust-linux-raw-sys-0.12.1
+        rust-litemap-0.8.3
         rust-locale_config-0.3.0
-        rust-lock_api-0.4.13
-        rust-log-0.4.28
-        rust-lru-slab-0.1.2
+        rust-lock_api-0.4.14
+        rust-log-0.4.35
+        rust-lru-slab-0.1.3
         rust-malloc_buf-0.0.6
         rust-matchers-0.2.0
-        rust-memchr-2.7.5
-        rust-memmap2-0.9.8
+        rust-memchr-2.8.3
+        rust-memmap2-0.9.12
         rust-memoffset-0.9.1
-        rust-mimalloc-0.1.48
-        rust-mime-0.3.17
+        rust-mimalloc-0.1.52
+        rust-mime-0.3.18
         rust-mime_guess-2.0.5
-        rust-miniz_oxide-0.8.9
-        rust-mio-1.0.4
-        rust-nanorand-0.7.0
+        rust-mio-1.2.4
         rust-new_mime_guess-4.0.4
-        rust-nix-0.30.1
-        rust-num-conv-0.1.0
+        rust-num-conv-0.2.2
         rust-num-traits-0.2.19
         rust-num_cpus-1.17.0
         rust-objc-0.2.7
         rust-objc-foundation-0.1.1
         rust-objc_id-0.1.1
-        rust-object-0.36.7
-        rust-once_cell-1.21.3
-        rust-once_cell_polyfill-1.70.1
+        rust-once_cell-1.21.4
+        rust-once_cell_polyfill-1.70.2
+        rust-openssl-probe-0.2.2
         rust-option-ext-0.2.0
         rust-ordered-stream-0.2.0
         rust-parking-2.2.1
         rust-percent-encoding-2.3.2
-        rust-pin-project-lite-0.2.16
-        rust-pin-utils-0.1.0
-        rust-piper-0.2.4
-        rust-pkg-config-0.3.32
+        rust-pin-project-lite-0.2.17
+        rust-pkg-config-0.3.34
         rust-polling-3.11.0
-        rust-potential_utf-0.1.3
-        rust-powerfmt-0.2.0
-        rust-ppv-lite86-0.2.21
-        rust-proc-macro-crate-3.4.0
-        rust-proc-macro2-1.0.101
+        rust-portable-atomic-1.15.0
+        rust-portable-atomic-util-0.2.8
+        rust-potential_utf-0.1.6
+        rust-powerfmt-0.2.1
+        rust-proc-macro2-1.0.107
         rust-quick-xml-0.36.2
-        rust-quick-xml-0.37.5
-        rust-quinn-0.11.9
-        rust-quinn-proto-0.11.13
-        rust-quinn-udp-0.5.14
-        rust-quote-1.0.40
-        rust-r-efi-5.3.0
-        rust-rand-0.9.2
-        rust-rand_chacha-0.9.0
-        rust-rand_core-0.9.3
-        rust-recently-used-xbel-1.1.0
+        rust-quick-xml-0.41.0
+        rust-quinn-0.11.12
+        rust-quinn-proto-0.11.19
+        rust-quinn-udp-0.5.16
+        rust-quote-1.0.47
+        rust-r-efi-6.0.0
+        rust-rand-0.10.3
+        rust-rand_core-0.10.1
+        rust-rand_pcg-0.10.2
+        rust-recently-used-xbel-1.2.0
         rust-redox_users-0.4.6
-        rust-redox_users-0.5.2
-        rust-ref-cast-1.0.24
-        rust-ref-cast-impl-1.0.24
-        rust-regex-1.11.2
-        rust-regex-automata-0.4.10
-        rust-regex-syntax-0.8.6
-        rust-reqwest-0.12.23
+        rust-redox_users-0.5.3
+        rust-ref-cast-1.0.27
+        rust-ref-cast-impl-1.0.27
+        rust-regex-1.13.1
+        rust-regex-automata-0.4.18
+        rust-regex-syntax-0.8.11
+        rust-reqwest-0.13.5
         rust-ring-0.17.14
-        rust-ron-0.11.0
-        rust-rustc-demangle-0.1.26
-        rust-rustc-hash-2.1.1
-        rust-rustix-1.1.2
-        rust-rustls-0.23.32
-        rust-rustls-pki-types-1.12.0
-        rust-rustls-webpki-0.103.6
-        rust-rustversion-1.0.22
-        rust-ryu-1.0.20
+        rust-ron-0.12.3
+        rust-rustc-hash-2.1.3
+        rust-rustc_version-0.4.1
+        rust-rustix-1.1.6
+        rust-rustls-0.23.46
+        rust-rustls-native-certs-0.8.5
+        rust-rustls-pki-types-1.15.1
+        rust-rustls-platform-verifier-0.7.1
+        rust-rustls-platform-verifier-android-0.2.0
+        rust-rustls-webpki-0.103.16
+        rust-rustversion-1.0.23
+        rust-same-file-1.0.6
+        rust-schannel-0.1.30
         rust-schemars-0.9.0
-        rust-schemars-1.0.4
+        rust-schemars-1.2.3
         rust-scopeguard-1.2.0
-        rust-serde-1.0.226
-        rust-serde_core-1.0.226
-        rust-serde_derive-1.0.226
-        rust-serde_json-1.0.145
-        rust-serde_repr-0.1.20
-        rust-serde_urlencoded-0.7.1
-        rust-serde_with-3.14.1
-        rust-serde_with_macros-3.14.1
+        rust-security-framework-3.7.0
+        rust-security-framework-sys-2.17.0
+        rust-semver-1.0.28
+        rust-serde-1.0.229
+        rust-serde_core-1.0.229
+        rust-serde_derive-1.0.229
+        rust-serde_json-1.0.154
+        rust-serde_repr-0.1.21
+        rust-serde_with-3.24.0
+        rust-serde_with_macros-3.24.0
         rust-sharded-slab-0.1.7
-        rust-shlex-1.3.0
-        rust-signal-hook-registry-1.4.6
-        rust-slab-0.4.11
-        rust-smallvec-1.15.1
+        rust-shlex-2.0.1
+        rust-signal-hook-registry-1.4.8
+        rust-simd_cesu8-1.2.0
+        rust-simdutf8-0.1.5
+        rust-slab-0.4.12
+        rust-smallvec-1.16.4
         rust-smithay-client-toolkit-0.20.0
-        rust-socket2-0.6.0
-        rust-spin-0.9.8
-        rust-stable_deref_trait-1.2.0
-        rust-static_assertions-1.1.0
+        rust-socket2-0.6.5
+        rust-spin-0.9.9
+        rust-stable_deref_trait-1.2.1
         rust-strsim-0.11.1
         rust-subtle-2.6.1
-        rust-syn-2.0.106
+        rust-syn-2.0.119
+        rust-syn-3.0.9
         rust-sync_wrapper-1.0.2
-        rust-synstructure-0.13.2
+        rust-synstructure-0.14.0
         rust-temp-dir-0.1.16
-        rust-tempfile-3.23.0
+        rust-tempfile-3.27.0
         rust-thiserror-1.0.69
-        rust-thiserror-2.0.16
+        rust-thiserror-2.0.21
         rust-thiserror-impl-1.0.69
-        rust-thiserror-impl-2.0.16
-        rust-thread_local-1.1.9
-        rust-time-0.3.44
-        rust-time-core-0.1.6
-        rust-time-macros-0.2.24
-        rust-tinystr-0.8.1
-        rust-tinyvec-1.10.0
-        rust-tinyvec_macros-0.1.1
-        rust-tokio-1.47.1
-        rust-tokio-macros-2.5.0
-        rust-tokio-rustls-0.26.3
-        rust-tokio-stream-0.1.17
-        rust-toml_datetime-0.7.2
-        rust-toml_edit-0.23.6
-        rust-toml_parser-1.0.3
-        rust-tower-0.5.2
-        rust-tower-http-0.6.6
+        rust-thiserror-impl-2.0.21
+        rust-thread_local-1.1.10
+        rust-time-0.3.55
+        rust-time-core-0.1.9
+        rust-time-macros-0.2.32
+        rust-tinystr-0.8.5
+        rust-tinyvec-1.13.3
+        rust-tokio-1.54.1
+        rust-tokio-macros-2.7.2
+        rust-tokio-rustls-0.26.6
+        rust-tokio-stream-0.1.19
+        rust-tower-0.5.3
+        rust-tower-http-0.6.11
         rust-tower-layer-0.3.3
         rust-tower-service-0.3.3
-        rust-tracing-0.1.41
-        rust-tracing-attributes-0.1.30
-        rust-tracing-core-0.1.34
-        rust-tracing-journald-0.3.1
-        rust-tracing-subscriber-0.3.20
+        rust-tracing-0.1.44
+        rust-tracing-attributes-0.1.31
+        rust-tracing-core-0.1.36
+        rust-tracing-journald-0.3.2
+        rust-tracing-subscriber-0.3.23
         rust-try-lock-0.2.5
-        rust-uds_windows-1.1.0
-        rust-unicase-2.8.1
-        rust-unicode-ident-1.0.19
+        rust-typeid-1.0.3
+        rust-uds_windows-1.2.1
+        rust-unicase-2.10.0
+        rust-unicode-ident-1.0.27
         rust-unicode-xid-0.2.6
         rust-untrusted-0.9.0
-        rust-url-2.5.7
+        rust-url-2.5.8
         rust-urlencoding-2.1.3
-        rust-utf8_iter-1.0.4
+        rust-utf8_iter-1.1.0
         rust-utf8parse-0.2.2
-        rust-uuid-1.18.1
+        rust-utf_types-1.0.0
+        rust-uuid-1.29.0
         rust-valuable-0.1.1
-        rust-want-0.3.1
+        rust-walkdir-2.5.0
+        rust-want-0.3.2
         rust-wasi-0.11.1-wasi-snapshot-preview1
-        rust-wasi-0.14.7-wasi-0.2.4
-        rust-wasip2-1.0.1-wasi-0.2.4
-        rust-wasm-bindgen-0.2.104
-        rust-wasm-bindgen-backend-0.2.104
-        rust-wasm-bindgen-futures-0.4.54
-        rust-wasm-bindgen-macro-0.2.104
-        rust-wasm-bindgen-macro-support-0.2.104
-        rust-wasm-bindgen-shared-0.2.104
-        rust-wayland-backend-0.3.11
-        rust-wayland-client-0.31.11
+        rust-wasm-bindgen-0.2.130
+        rust-wasm-bindgen-futures-0.4.80
+        rust-wasm-bindgen-macro-0.2.130
+        rust-wasm-bindgen-macro-support-0.2.130
+        rust-wasm-bindgen-shared-0.2.130
+        rust-wayland-backend-0.3.17
+        rust-wayland-client-0.31.15
         rust-wayland-csd-frame-0.3.0
-        rust-wayland-cursor-0.31.11
-        rust-wayland-protocols-0.32.9
+        rust-wayland-cursor-0.31.14
+        rust-wayland-protocols-0.32.13
         rust-wayland-protocols-experimental-20250721.0.1
-        rust-wayland-protocols-misc-0.3.9
-        rust-wayland-protocols-wlr-0.3.9
-        rust-wayland-scanner-0.31.7
-        rust-wayland-server-0.31.10
-        rust-wayland-sys-0.31.7
-        rust-web-sys-0.3.81
+        rust-wayland-protocols-misc-0.3.12
+        rust-wayland-protocols-wlr-0.3.12
+        rust-wayland-scanner-0.31.11
+        rust-wayland-server-0.31.14
+        rust-wayland-sys-0.31.11
+        rust-web-sys-0.3.107
         rust-web-time-1.1.0
-        rust-webpki-roots-1.0.2
+        rust-webpki-root-certs-1.0.11
         rust-winapi-0.3.9
         rust-winapi-i686-pc-windows-gnu-0.4.0
+        rust-winapi-util-0.1.11
         rust-winapi-x86_64-pc-windows-gnu-0.4.0
-        rust-windows-core-0.62.0
-        rust-windows-implement-0.60.0
-        rust-windows-interface-0.59.1
-        rust-windows-link-0.1.3
-        rust-windows-link-0.2.0
-        rust-windows-result-0.4.0
-        rust-windows-strings-0.5.0
+        rust-windows-core-0.62.2
+        rust-windows-implement-0.60.2
+        rust-windows-interface-0.59.3
+        rust-windows-link-0.2.1
+        rust-windows-result-0.4.1
+        rust-windows-strings-0.5.1
         rust-windows-sys-0.48.0
         rust-windows-sys-0.52.0
-        rust-windows-sys-0.59.0
-        rust-windows-sys-0.60.2
-        rust-windows-sys-0.61.0
+        rust-windows-sys-0.61.2
         rust-windows-targets-0.48.5
         rust-windows-targets-0.52.6
-        rust-windows-targets-0.53.3
         rust-windows_aarch64_gnullvm-0.48.5
         rust-windows_aarch64_gnullvm-0.52.6
-        rust-windows_aarch64_gnullvm-0.53.0
         rust-windows_aarch64_msvc-0.48.5
         rust-windows_aarch64_msvc-0.52.6
-        rust-windows_aarch64_msvc-0.53.0
         rust-windows_i686_gnu-0.48.5
         rust-windows_i686_gnu-0.52.6
-        rust-windows_i686_gnu-0.53.0
         rust-windows_i686_gnullvm-0.52.6
-        rust-windows_i686_gnullvm-0.53.0
         rust-windows_i686_msvc-0.48.5
         rust-windows_i686_msvc-0.52.6
-        rust-windows_i686_msvc-0.53.0
         rust-windows_x86_64_gnu-0.48.5
         rust-windows_x86_64_gnu-0.52.6
-        rust-windows_x86_64_gnu-0.53.0
         rust-windows_x86_64_gnullvm-0.48.5
         rust-windows_x86_64_gnullvm-0.52.6
-        rust-windows_x86_64_gnullvm-0.53.0
         rust-windows_x86_64_msvc-0.48.5
         rust-windows_x86_64_msvc-0.52.6
-        rust-windows_x86_64_msvc-0.53.0
-        rust-winnow-0.7.13
-        rust-wit-bindgen-0.46.0
-        rust-writeable-0.6.1
-        rust-xcursor-0.3.10
+        rust-winnow-1.0.5
+        rust-writeable-0.6.4
+        rust-xcursor-0.3.11
         rust-xdg-3.0.0
         rust-xkbcommon-0.8.0
         rust-xkeysym-0.2.1
-        rust-yoke-0.8.0
-        rust-yoke-derive-0.8.0
-        rust-zbus-5.11.0
-        rust-zbus_macros-5.11.0
-        rust-zbus_names-4.2.0
-        rust-zerocopy-0.8.27
-        rust-zerocopy-derive-0.8.27
-        rust-zerofrom-0.1.6
-        rust-zerofrom-derive-0.1.6
-        rust-zeroize-1.8.1
-        rust-zerotrie-0.2.2
-        rust-zerovec-0.11.4
-        rust-zerovec-derive-0.11.1
-        rust-zvariant-5.7.0
-        rust-zvariant_derive-5.7.0
-        rust-zvariant_utils-3.2.1))
+        rust-yoke-0.8.4
+        rust-yoke-derive-0.8.4
+        rust-zbus-6.2.1
+        rust-zbus_macros-6.2.1
+        rust-zbus_utils-6.1.0
+        rust-zcheapstr-1.2.0
+        rust-zerofrom-0.1.8
+        rust-zerofrom-derive-0.1.8
+        rust-zeroize-1.9.1
+        rust-zerotrie-0.2.5
+        rust-zerovec-0.11.9
+        rust-zerovec-derive-0.11.7
+        rust-zmij-1.0.23
+        rust-zruntime-0.2.2))
 
 (define pop-launcher-git-crates
-  (list (git-crate "cosmic-client-toolkit" "0.1.0"
-                   "git+https://github.com/pop-os//cosmic-protocols#af1997b1827ad64aab46fa31c0b77fb20d7a537a"
-                   cosmic-protocols-af1997b-checkout "client-toolkit")
-        (git-crate "cosmic-protocols" "0.1.0"
-                   "git+https://github.com/pop-os//cosmic-protocols#af1997b1827ad64aab46fa31c0b77fb20d7a537a"
-                   cosmic-protocols-af1997b-checkout ".")
-        (git-crate "switcheroo-control" "0.1.0"
-                   "git+https://github.com/pop-os/dbus-settings-bindings#0fa672f8dadb884001ef9a251b149ed432879629"
-                   dbus-settings-bindings-0fa672f-checkout "switcheroo-control")))
+  (list (git-crate "cosmic-client-toolkit" "0.2.0"
+                   "git+https://github.com/pop-os//cosmic-protocols#c0cff4db14c37ed954983158e4055aa94c7741d9"
+                   cosmic-protocols-c0cff4d-checkout "client-toolkit")
+        (git-crate "cosmic-protocols" "0.2.0"
+                   "git+https://github.com/pop-os//cosmic-protocols#c0cff4db14c37ed954983158e4055aa94c7741d9"
+                   cosmic-protocols-c0cff4d-checkout ".")
+        (git-crate "switcheroo-control-zbus" "1.0.0"
+                   "git+https://github.com/pop-os/dbus-settings-bindings#6ccc9fbf034220f0142bc907a7d7513b49aba0e1"
+                   dbus-settings-bindings-6ccc9fb-checkout "switcheroo-control")))

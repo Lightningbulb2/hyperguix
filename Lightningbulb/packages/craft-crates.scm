@@ -678,6 +678,8 @@
   (crate "dynify" "0.1.2" "0irpf9rsxafzqydgrddwgmvql2rnc9z5xpkkpxc27qm351bb3b41"))
 (define rust-dynify-macros-0.1.2
   (crate "dynify-macros" "0.1.2" "0zdadka855zabr7caf9xvl7dcifnqmcm4lsnjc1dac44f36k3i0y"))
+(define rust-ecb-0.1.2
+  (crate "ecb" "0.1.2" "1iw1i0mwkvg3599mlw24iibid6i6zv3a3jhghm2j3v0sbfbzm2qs"))
 (define rust-ecb-0.2.1
   (crate "ecb" "0.2.1" "1b213xmmrpd4yc9nsbl89rwqa0xd0cvk9p13fa3s1sv4wnrsiwi6"))
 (define rust-ecdsa-0.16.9
@@ -784,6 +786,8 @@
   (crate "faer-core" "0.17.1" "0njpbd97z3nhnqdzyg6ckg4g3y7limagpg87ch862lj4c9i0znij"))
 (define rust-faer-entity-0.17.0
   (crate "faer-entity" "0.17.0" "1lqi6c0br8parripyjj4pz1d4nsxj0yk9iy0xwzjn5m3dpri5ywk"))
+(define rust-fancy-regex-0.14.0
+  (crate "fancy-regex" "0.14.0" "162j2qx2ikgl79grq12mawyflwkirnjzrvxh11a1xbmwjidcn93f"))
 (define rust-fancy-regex-0.19.2
   (crate "fancy-regex" "0.19.2" "04hryammpy62r9iiq5bbbz6br81pa23x6s34rrgjjg3v32zza0fk"))
 (define rust-fast-float2-0.2.4
@@ -876,6 +880,8 @@
   (crate "form_urlencoded" "1.2.2" "1kqzb2qn608rxl3dws04zahcklpplkd5r1vpabwga5l50d2v4k6b"))
 (define rust-fs-set-times-0.20.3
   (crate "fs-set-times" "0.20.3" "0jm105d24vc6jkpxsvvan6yd2xbvc6fzzs2n2azarv0kcfghkrwl"))
+(define rust-fs4-1.1.0
+  (crate "fs4" "1.1.0" "1mfzy7kz6bdpszzn2vs4g90ylqx11kb8k74fz286453wns9fswky"))
 (define rust-fs_extra-1.3.0
   (crate "fs_extra" "1.3.0" "075i25z70j2mz9r7i9p9r521y8xdj81q7skslyb7zhqnnw33fw22"))
 (define rust-funty-2.0.0
@@ -1216,8 +1222,6 @@
   (crate "is-wsl" "0.4.0" "19bs5pq221d4bknnwiqqkqrnsx2in0fsk8fylxm1747iim4hjdhp"))
 (define rust-is_terminal_polyfill-1.70.2
   (crate "is_terminal_polyfill" "1.70.2" "15anlc47sbz0jfs9q8fhwf0h3vs2w4imc030shdnq54sny5i7jx6"))
-(define rust-itertools-0.10.5
-  (crate "itertools" "0.10.5" "0ww45h7nxx5kj6z2y6chlskxd1igvs4j507anr6dzg99x1h25zdh"))
 (define rust-itertools-0.13.0
   (crate "itertools" "0.13.0" "11hiy3qzl643zcigknclh446qb9zlg4dpdzfkjaa9q9fqpgyfgj1"))
 (define rust-itertools-0.14.0
@@ -1372,6 +1376,8 @@
   (crate "log" "0.4.34" "1ihkzn0m33ab79fcl4mkb04n5iwqzbxzyw7l7hazqkffaqzbvy7r"))
 (define rust-loop9-0.1.5
   (crate "loop9" "0.1.5" "0qphc1c0cbbx43pwm6isnwzwbg6nsxjh7jah04n1sg5h4p0qgbhg"))
+(define rust-lopdf-0.38.0
+  (crate "lopdf" "0.38.0" "12f2zlrn0brzln93yyw7bs3zka11qcq41v5cl5rd4g5wlbg4y667"))
 (define rust-lru-slab-0.1.3
   (crate "lru-slab" "0.1.3" "07y5xcnggc4f2ki68kzj93aycjc5z0j8y7scs4f31zx66yc4cl20"))
 (define rust-lyon_geom-1.0.20
@@ -1476,12 +1482,16 @@
   (crate "nom" "7.1.3" "0jha9901wxam390jcf5pfa0qqfrgh8li787jx2ip0yk5b8y9hwyj"))
 (define rust-nom-8.0.0
   (crate "nom" "8.0.0" "01cl5xng9d0gxf26h39m0l8lprgpa00fcc75ps1yzgbib1vn35yz"))
+(define rust-nom_locate-5.0.0
+  (crate "nom_locate" "5.0.0" "13a3d1f5gcqhjwchp1j2633wfk0wmpx2xdd2rd04fz42d4npwmqb"))
 (define rust-nonmax-0.5.5
   (crate "nonmax" "0.5.5" "0lfvyfz4falgmc9g1cbfi2wkys9wka2nfmdyga87zikf636ml2k1"))
 (define rust-noop_proc_macro-0.3.0
   (crate "noop_proc_macro" "0.3.0" "1j2v1c6ric4w9v12h34jghzmngcwmn0hll1ywly4h6lcm4rbnxh6"))
 (define rust-notify-rust-4.18.2
   (crate "notify-rust" "4.18.2" "1bzqpf3rprd0dkms6v2kdb2l0lr01aipbpxk54s36x00k953d1s5"))
+(define rust-ntapi-0.4.3
+  (crate "ntapi" "0.4.3" "1bl0d73avwla7laa4pkqvzvifjbs0avg65w01zxjydgx3likbcy3"))
 (define rust-nu-ansi-term-0.50.3
   (crate "nu-ansi-term" "0.50.3" "1ra088d885lbd21q1bxgpqdlk1zlndblmarn948jz2a40xsbjmvr"))
 (define rust-num-0.4.3
@@ -1572,6 +1582,8 @@
   (crate "objc2-foundation" "0.3.2" "0wijkxzzvw2xkzssds3fj8279cbykz2rz9agxf6qh7y2agpsvq73"))
 (define rust-objc2-image-io-0.3.2
   (crate "objc2-image-io" "0.3.2" "1sn4agws92n7rwbcch9q8slflziizwapf5x0qx67hjngk1p49c1j"))
+(define rust-objc2-io-kit-0.3.2
+  (crate "objc2-io-kit" "0.3.2" "05dvfcf97w39daaj5qsbfc399lw9hbx3s4h9nwgxrmlpjnizpyik"))
 (define rust-objc2-io-surface-0.3.2
   (crate "objc2-io-surface" "0.3.2" "07fqx4fmwydf2arrc4xs4awv7zyzzxh60fyqdfmrpm9n148qh1qq"))
 (define rust-objc2-link-presentation-0.2.2
@@ -1738,10 +1750,14 @@
   (crate "phf" "0.13.1" "1pzswx5gdglgjgp4azyzwyr4gh031r0kcnpqq6jblga72z3jsmn1"))
 (define rust-phf-0.14.0
   (crate "phf" "0.14.0" "1xm2nbg5c59b5wvvv4v3sd3sknrlg2z17bkzk440p2090dw7h0q1"))
+(define rust-phf_generator-0.11.3
+  (crate "phf_generator" "0.11.3" "0gc4np7s91ynrgw73s2i7iakhb4lzdv1gcyx7yhlc0n214a2701w"))
 (define rust-phf_generator-0.13.1
   (crate "phf_generator" "0.13.1" "0dwpp11l41dy9mag4phkyyvhpf66lwbp79q3ik44wmhyfqxcwnhk"))
 (define rust-phf_generator-0.14.0
   (crate "phf_generator" "0.14.0" "003i8qw6ghkcvs6bmxdhnq1a1kmpwbciakazjsybx8fmb44jxdmf"))
+(define rust-phf_macros-0.11.3
+  (crate "phf_macros" "0.11.3" "05kjfbyb439344rhmlzzw0f9bwk9fp95mmw56zs7yfn1552c0jpq"))
 (define rust-phf_macros-0.13.1
   (crate "phf_macros" "0.13.1" "1vv9h8pr7xh18sigpvq1hxc8q9nmjmv6gdpqsp65krxiahmh6bw1"))
 (define rust-phf_macros-0.14.0
@@ -1920,6 +1936,16 @@
   (crate "range-alloc" "0.1.5" "020xrpn0qaabkxg49wpi0hgy92d8ikji55cyancphnmfi6bl2ifa"))
 (define rust-rangemap-1.8.0
   (crate "rangemap" "1.8.0" "0gdaws5kkg3md7z4w7ln4sf3jkz6n3f3xl5pfr6fngvla1dx24d6"))
+(define rust-ratex-font-0.1.14
+  (crate "ratex-font" "0.1.14" "1nr4ijd3m54h2cw0i8mpg0vz9b4ds685rv95wyik9sdb3m9p6yva"))
+(define rust-ratex-layout-0.1.14
+  (crate "ratex-layout" "0.1.14" "1xz03zxwr834221h7kf8xxjrax9ka9m2jhp71p93qs1n5s7774hp"))
+(define rust-ratex-lexer-0.1.14
+  (crate "ratex-lexer" "0.1.14" "07m6p21jxhskmsr2b5xlljzinkx472mlazvnqznc9x3vdpcas17p"))
+(define rust-ratex-parser-0.1.14
+  (crate "ratex-parser" "0.1.14" "1w5646f165yfp6d5h60kllwi340z7lbkl2fylqvn3ivbmkkw57h7"))
+(define rust-ratex-types-0.1.14
+  (crate "ratex-types" "0.1.14" "004rdy71zpp3a2cn65y6rhic4j3n7m25mxbssgvz09850lyvxw0c"))
 (define rust-rav1e-0.8.1
   (crate "rav1e" "0.8.1" "0axk3ji3jmlr81svmsy5zvj8shmhpp8lz5nyghkq752xx1bdvdj3"))
 (define rust-ravif-0.13.0
@@ -2156,6 +2182,8 @@
   (crate "serde_json" "1.0.154" "1mjby21g8fxhrsfp73yz8wg6n2f4h23ah0nczds409l53f5wrsg7"))
 (define rust-serde_json_canonicalizer-0.3.2
   (crate "serde_json_canonicalizer" "0.3.2" "1wj9ar6g9zn7b2aly9cc7vyysrw1rmbm230qlnzsynbjjad32lpy"))
+(define rust-serde_path_to_error-0.1.20
+  (crate "serde_path_to_error" "0.1.20" "0mxls44p2ycmnxh03zpnlxxygq42w61ws7ir7r0ba6rp5s1gza8h"))
 (define rust-serde_repr-0.1.21
   (crate "serde_repr" "0.1.21" "01l987ghc17h1y9cf9xbzmcs77575mbrjf4ca2h70g15vqlicfwd"))
 (define rust-serde_spanned-0.6.9
@@ -2376,6 +2404,8 @@
   (crate "sysctl" "0.5.5" "1sly34bm4w2vcfqgn7f6255pxwa2wa4vkzdrz2x0drgyy32xszgc"))
 (define rust-sysctl-0.6.0
   (crate "sysctl" "0.6.0" "1z0x1lim5929fs60wjxnvd31z59d120p1v16d0mwcdxjxcnql681"))
+(define rust-sysinfo-0.40.1
+  (crate "sysinfo" "0.40.1" "1a5qrxappxpa17aiw2asxc4vwhnjkls00yliycay2k1rw3dkx2hf"))
 (define rust-system-configuration-0.7.0
   (crate "system-configuration" "0.7.0" "12rwilylzc625qnxl30h5kf8wj5ka61zjrwpmb034cd0mc6ksgx1"))
 (define rust-system-configuration-sys-0.6.0
@@ -2690,6 +2720,8 @@
   (crate "wasm-encoder" "0.261.0" "08kbhwmld0p3l79hnnpdilgvrg77srii7syhm3snizb7dnxyh216"))
 (define rust-wasm-encoder-0.262.0
   (crate "wasm-encoder" "0.262.0" "0nlvga8snhaj950hbg5x1h5xxynyqp5yy0wkfhf42k6rbpwad5a4"))
+(define rust-wasm-encoder-0.263.0
+  (crate "wasm-encoder" "0.263.0" "07x8a7idawqyapjil86mnpf5rvrrn1zblgrc5nzalbm0mqk3m20b"))
 (define rust-wasm-metadata-0.258.3
   (crate "wasm-metadata" "0.258.3" "0bwgm3xm03afbcgjjwpqidr9d4p1kw40c5qv5xlxxvr7xc40iqa7"))
 (define rust-wasmi-2.0.0
@@ -2708,6 +2740,8 @@
   (crate "wasmparser" "0.261.0" "1n6jahp2hli8vvgaxzg43gjm3plyhsfyl8s8fjvaxs7p8h7g482g"))
 (define rust-wasmparser-0.262.0
   (crate "wasmparser" "0.262.0" "06rb0l02bcxglypln7k2syn2i0sal4p03y7zw83jc9sv28xn8kcp"))
+(define rust-wasmparser-0.263.0
+  (crate "wasmparser" "0.263.0" "1jqg22xbcwcfcai4pq5v87d8rqhk8alb03l2vw33c5dfajha0psg"))
 (define rust-wasmprinter-0.258.3
   (crate "wasmprinter" "0.258.3" "0ar9gr8fmw0dkxw238jlc2kpiqsgxp1yl6kw6lyxp8vhhsx5g90l"))
 (define rust-wasmprinter-0.261.0
@@ -2740,10 +2774,14 @@
   (crate "wast" "261.0.0" "0jp42jkx2gfmrb1zvnbjmfv0jn80la92hf8dbcp0d91iawa46r3p"))
 (define rust-wast-262.0.0
   (crate "wast" "262.0.0" "08zbfnglw2gxa79zj1vxdci21n8rlpl0g8c8b0c5z6r45462lq9h"))
+(define rust-wast-263.0.0
+  (crate "wast" "263.0.0" "1iq7p5q1svfbxdh8i44nawvwsyd9zb05vg2qqfhill0vb37hpnb9"))
 (define rust-wat-1.261.0
   (crate "wat" "1.261.0" "0zya0pns1hbg6p9mw0yidfqh2w36vc2klkp74qrqyfm7ksjd3d57"))
 (define rust-wat-1.262.0
   (crate "wat" "1.262.0" "1lgqfmq2fbzlsjlc4h2cypk3p9zw6wjbxsw0d6aazfq75dzh4a72"))
+(define rust-wat-1.263.0
+  (crate "wat" "1.263.0" "1xyqlwb6qwh9v1igp9psql7bja656yckz7z8if1z3cw3lyncbjdv"))
 (define rust-wayland-backend-0.3.17
   (crate "wayland-backend" "0.3.17" "0y50cw56f09cdcsinbbl94naz91xf7iqaj87s4f7py6zmm71pa9q"))
 (define rust-wayland-client-0.31.15
@@ -2932,6 +2970,10 @@
   (crate "winresource" "0.1.34" "06r2cq65807qzrgf79qx3iv0906adn7g1axxlmr950hb90v6vg52"))
 (define rust-winsafe-0.0.29
   (crate "winsafe" "0.0.29" "1ilmdvhl3xg3kv1c7da72lmcsg8mj57nzzdzkv6c0igh4z2gzw4y"))
+(define rust-wintab-0.1.1
+  (crate "wintab" "0.1.1" "11hdwzwz4xgxa8r74fln6k12nzygqsjlh0dwykqrx9lawvdfy18f"))
+(define rust-wintab-sys-0.1.0
+  (crate "wintab-sys" "0.1.0" "1qhdjmvi21gir006mf1j173jpwxda3p7256c3k531zh7p91hfg9d"))
 (define rust-winx-0.36.4
   (crate "winx" "0.36.4" "0bgls70sd0lxyhbklbs6ccchx0r2bbz0rcmgwxibhn0ryxvd6grz"))
 (define rust-wit-bindgen-0.57.1
@@ -3074,8 +3116,6 @@
   (crate "zerovec-derive" "0.11.6" "1ni5j8v99x3fcf3l8kp64b7aq4vf8y22jshfq74xs9mxkp1nzprl"))
 (define rust-zerovec-derive-0.11.7
   (crate "zerovec-derive" "0.11.7" "0ypr1gq2nvb4mvwawcgyknbn408dsjcy3qhsrllxjf3pykdksx63"))
-(define rust-zip-2.4.2
-  (crate "zip" "2.4.2" "0l5s7sycj0w42hnkmj6vnrzcp3dn4smffg06a8f5my08x4j67gps"))
 (define rust-zip-2.6.1
   (crate "zip" "2.6.1" "0i276d0kracqv27f5r42p3ha2345f77isv5rp54sw9i52p829jqx"))
 (define rust-zip-3.0.0
@@ -3084,6 +3124,8 @@
   (crate "zip" "7.2.0" "1q1dy2z9wl36ify50278pcx5hcp2bh8ikvy2271m01iaqbpk6bn4"))
 (define rust-zip-7.4.0
   (crate "zip" "7.4.0" "1059r97bafa1fwj8qy9h89cymb4x41r3vr8w2r0a259bvfkbl4nc"))
+(define rust-zip-9.0.5
+  (crate "zip" "9.0.5" "07m1h3sqmaxkpxwjqfsqsa5az4x1jsrhb0ds0i1b1lr9lrnrf13f"))
 (define rust-zip-9.1.0
   (crate "zip" "9.1.0" "0167fmj70i225bf2gn3li98b4cwdj0sgqb7lwg74qb570c0b11i8"))
 (define rust-zip-9.1.1
@@ -3129,26 +3171,70 @@
 
 ;;; Git checkouts
 
+(define craft-libs-01315d9-checkout
+  (git-checkout "craft-libs" "https://github.com/storytold/craft-libs"
+                "01315d9c92b5b0e69082d35ca56099461a1efd45"
+                "1qkgi79gdp1b0qhn457awn2sfiqm6cvzdpvzfls7ymf8i98c8q4h"))
 (define craft-libs-1a11a48-checkout
   (git-checkout "craft-libs" "https://github.com/storytold/craft-libs"
                 "1a11a4897865f7410c40d25ca6e452ce399a1a2c"
                 "0qk68k61mrfbqrlhdk8n1dglgwm27pc2yqvva9d3zp7v82jsl3p9"))
+(define craft-libs-2e2312d-checkout
+  (git-checkout "craft-libs" "https://github.com/storytold/craft-libs"
+                "2e2312ddaf21bc3d85cd3395d0955c7d239306f6"
+                "16974qp1y7pknn3142vh2h3xffr2ricy3n1ga96x58ljp1gmgpns"))
 (define craft-libs-4323a0f-checkout
   (git-checkout "craft-libs" "https://github.com/storytold/craft-libs"
                 "4323a0f90e69e6e7a064607daacc25d081f58e1d"
                 "09bn4wvzqis011icgs2fsshna41php3kix0xyvckz704hiygkqxr"))
+(define craft-libs-762a06a-checkout
+  (git-checkout "craft-libs" "https://github.com/storytold/craft-libs"
+                "762a06a4c6b48b522b7d4de84a87917ef90265e6"
+                "00b8jwqbm81j18mb2x79dbz666zgdan6igx1842w8ziy6nvf8a3k"))
+(define craft-libs-787a7a0-checkout
+  (git-checkout "craft-libs" "https://github.com/storytold/craft-libs"
+                "787a7a0f972fd1d7a7618fdbeca3a5267a0407ff"
+                "02zl6g5g2535a5nvrx4iaqz4n0fj092prplahm8yzzcrg32inhx0"))
 (define craft-libs-92d392c-checkout
   (git-checkout "craft-libs" "https://github.com/storytold/craft-libs"
                 "92d392cff132eaf53e13afff77f38b5c11b73aa0"
                 "1j78srq59vyaja7hrxlgbrm0ix5c7wki0f7sc3l3kcxdr86kvhpz"))
+(define craft-libs-9be9a63-checkout
+  (git-checkout "craft-libs" "https://github.com/storytold/craft-libs"
+                "9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb"
+                "19zsq56vyiaadg9s63jb3qb38j4b3fi41iicsg4dw4117qdrih9z"))
+(define craft-libs-a231e51-checkout
+  (git-checkout "craft-libs" "https://github.com/storytold/craft-libs"
+                "a231e517c3b371e1bf0ee8af71ed807424a9a05d"
+                "00b98mykqabxm6wq7155q5qydrhj31y760yrszi5g3fk4pmchd3i"))
+(define craft-libs-a3e0b5a-checkout
+  (git-checkout "craft-libs" "https://github.com/storytold/craft-libs"
+                "a3e0b5a9440d18f19422a9dca13516747b7d3181"
+                "0r9p319qjrwzk2adhg2zx52mqyn94c5f58bcs6z2dip2xic4xkh4"))
+(define craft-libs-b8f7d93-checkout
+  (git-checkout "craft-libs" "https://github.com/storytold/craft-libs"
+                "b8f7d93b00dfb8f172938f3d2d796ae62dcfe123"
+                "1k00g9zswmjy5sxyf9gbhsag93s6w7x8mr2fn0n5rv28siplfyn7"))
 (define craft-libs-c5a1cbf-checkout
   (git-checkout "craft-libs" "https://github.com/storytold/craft-libs"
                 "c5a1cbfb5f9049f9270955caffb5bee5997aebf7"
                 "0iihgk1mimbsf4cq1fh2as3vqmk4h95d8m2xnkba5spxpv2ic685"))
+(define craft-libs-ca1b5e2-checkout
+  (git-checkout "craft-libs" "https://github.com/storytold/craft-libs"
+                "ca1b5e2edb8568335c6c14f390307bd5beae8238"
+                "1l9c197kr9qpj9q7v1482q3qyrpx94a7c5b0zq0xd2rj45dblib8"))
 (define craft-libs-e11f9d9-checkout
   (git-checkout "craft-libs" "https://github.com/storytold/craft-libs"
                 "e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545"
                 "165pb19c0l9y6cg3gbi12clyddmjsc79xqknq3drki23s8aiccy9"))
+(define craft-libs-f0ad6c1-checkout
+  (git-checkout "craft-libs" "https://github.com/storytold/craft-libs"
+                "f0ad6c1e1d297908915f4be315b0fcfc9be7b5d4"
+                "0kbkjwmj2zvsj2nz6m82py2lbyxj9axd39vhsrkp2pyipybn9w15"))
+(define craft-libs-f3b62ec-checkout
+  (git-checkout "craft-libs" "https://github.com/storytold/craft-libs"
+                "f3b62ec61f45534392376492fc5ad33047375205"
+                "02g2hqys72z927z6bi33nv5nwpm3wpi9lkv7frj32p2fhin578k7"))
 (define craft-libs-f8f8829-checkout
   (git-checkout "craft-libs" "https://github.com/storytold/craft-libs"
                 "f8f8829cc7be65d466d687dae381d1ca60e31242"
@@ -3157,10 +3243,10 @@
   (git-checkout "egui" "https://github.com/storytold/egui.git"
                 "6d518fc799681571963842f95b55a6b68431b15a"
                 "1mb3jrzna1q4pd4i54j3a5zirzdgpvf229b5y4cz6pxmla9h2f67"))
-(define filmcraft-09aaf9b-checkout
+(define filmcraft-d5ead4b-checkout
   (git-checkout "filmcraft" "https://github.com/storytold/filmcraft"
-                "09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5"
-                "0wgs80yrz0ygncxcnfds9431zq38fan3kn4nwvz091gkqwraa0fg"))
+                "d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5"
+                "0lgdqmhzmxjyxpxq4biz6k7klq486gpn17qgq9jkn5q3l7hapa6x"))
 (define indd-utils-7f3060e-checkout
   (git-checkout "indd-utils" "https://github.com/storytold/indd-utils"
                 "7f3060e5bce78d21ea70e0d5eacb96edce15dfbe"
@@ -3188,6 +3274,7 @@
         rust-accesskit_windows-0.35.1
         rust-accesskit_winit-0.34.1
         rust-adler2-2.0.1
+        rust-aes-0.8.4
         rust-ahash-0.8.12
         rust-aho-corasick-1.1.5
         rust-aligned-0.4.3
@@ -3251,6 +3338,7 @@
         rust-blake3-1.8.7
         rust-block-0.1.6
         rust-block-buffer-0.10.4
+        rust-block-padding-0.3.3
         rust-block2-0.5.1
         rust-block2-0.6.2
         rust-blocking-1.7.0
@@ -3259,6 +3347,7 @@
         rust-brotli-decompressor-5.0.3
         rust-built-0.8.1
         rust-bumpalo-3.20.3
+        rust-bytecount-0.6.9
         rust-bytemuck-1.25.2
         rust-bytemuck_derive-1.12.1
         rust-byteorder-lite-0.1.0
@@ -3270,6 +3359,7 @@
         rust-cap-primitives-4.0.3
         rust-cap-std-4.0.3
         rust-cast-0.3.0
+        rust-cbc-0.1.2
         rust-cc-1.5.1
         rust-cexpr-0.6.0
         rust-cfg-expr-0.20.10
@@ -3281,6 +3371,7 @@
         rust-ciborium-0.2.2
         rust-ciborium-io-0.2.2
         rust-ciborium-ll-0.2.2
+        rust-cipher-0.4.4
         rust-clang-sys-1.9.1
         rust-clap-4.6.7
         rust-clap_builder-4.6.7
@@ -3347,6 +3438,7 @@
         rust-drm-sys-0.8.1
         rust-dunce-1.0.5
         rust-dyn-clone-1.0.20
+        rust-ecb-0.1.2
         rust-either-1.18.0
         rust-encoding_rs-0.8.42
         rust-endi-1.1.1
@@ -3468,6 +3560,7 @@
         rust-imagesize-0.13.0
         rust-imgref-1.12.3
         rust-indexmap-2.14.2
+        rust-inout-0.1.4
         rust-interpolate_name-0.2.4
         rust-io-extras-0.19.0
         rust-io-lifetimes-2.0.4
@@ -3476,7 +3569,6 @@
         rust-is-docker-0.2.0
         rust-is-wsl-0.4.0
         rust-is_terminal_polyfill-1.70.2
-        rust-itertools-0.10.5
         rust-itertools-0.13.0
         rust-itertools-0.14.0
         rust-itertools-0.15.0
@@ -3528,9 +3620,12 @@
         rust-lock_api-0.4.14
         rust-log-0.4.34
         rust-loop9-0.1.5
+        rust-lopdf-0.38.0
         rust-lru-slab-0.1.3
+        rust-lz4_flex-0.11.6
         rust-maybe-owned-0.3.4
         rust-maybe-rayon-0.1.1
+        rust-md-5-0.10.6
         rust-memchr-2.8.3
         rust-memmap2-0.9.11
         rust-memoffset-0.9.1
@@ -3554,7 +3649,9 @@
         rust-nohash-hasher-0.2.0
         rust-nom-7.1.3
         rust-nom-8.0.0
+        rust-nom_locate-5.0.0
         rust-noop_proc_macro-0.3.0
+        rust-ntapi-0.4.3
         rust-num-bigint-0.4.8
         rust-num-complex-0.4.6
         rust-num-conv-0.2.2
@@ -3590,6 +3687,7 @@
         rust-objc2-foundation-0.2.2
         rust-objc2-foundation-0.3.2
         rust-objc2-image-io-0.3.2
+        rust-objc2-io-kit-0.3.2
         rust-objc2-io-surface-0.3.2
         rust-objc2-link-presentation-0.2.2
         rust-objc2-media-toolbox-0.3.2
@@ -3684,6 +3782,7 @@
         rust-rand_pcg-0.10.2
         rust-rand_xorshift-0.5.0
         rust-range-alloc-0.1.5
+        rust-rangemap-1.8.0
         rust-rav1e-0.8.1
         rust-ravif-0.13.0
         rust-raw-cpuid-11.6.0
@@ -3738,6 +3837,7 @@
         rust-schemars_derive-1.2.3
         rust-scoped-tls-1.0.1
         rust-scopeguard-1.2.0
+        rust-sctk-adwaita-0.10.1
         rust-security-framework-3.7.0
         rust-security-framework-sys-2.17.0
         rust-self_cell-1.3.0
@@ -3789,6 +3889,7 @@
         rust-strength_reduce-0.2.4
         rust-strict-num-0.1.1
         rust-string-interner-0.19.0
+        rust-stringprep-0.1.5
         rust-strsim-0.11.1
         rust-strum-0.28.0
         rust-strum_macros-0.28.0
@@ -3800,6 +3901,7 @@
         rust-sync_wrapper-1.0.2
         rust-synstructure-0.14.0
         rust-sys-locale-0.3.2
+        rust-sysinfo-0.40.1
         rust-system-configuration-0.7.0
         rust-system-configuration-sys-0.6.0
         rust-system-deps-7.0.8
@@ -3855,6 +3957,7 @@
         rust-unicode-ccc-0.4.0
         rust-unicode-general-category-1.1.0
         rust-unicode-ident-1.0.26
+        rust-unicode-normalization-0.1.26
         rust-unicode-properties-0.1.4
         rust-unicode-script-0.5.8
         rust-unicode-segmentation-1.13.3
@@ -3954,6 +4057,8 @@
         rust-winreg-0.55.0
         rust-winresource-0.1.34
         rust-winsafe-0.0.29
+        rust-wintab-0.1.1
+        rust-wintab-sys-0.1.0
         rust-winx-0.36.4
         rust-wit-bindgen-0.57.1
         rust-wl-clipboard-rs-0.9.4
@@ -4020,6 +4125,9 @@
         (git-crate "craft-jpeg" "0.1.0"
                    "git+https://github.com/storytold/craft-libs?rev=c5a1cbfb5f9049f9270955caffb5bee5997aebf7#c5a1cbfb5f9049f9270955caffb5bee5997aebf7"
                    craft-libs-c5a1cbf-checkout "crates/jpeg")
+        (git-crate "craft-pcraft-format" "0.1.0"
+                   "git+https://github.com/storytold/craft-libs?rev=b8f7d93b00dfb8f172938f3d2d796ae62dcfe123#b8f7d93b00dfb8f172938f3d2d796ae62dcfe123"
+                   craft-libs-b8f7d93-checkout "crates/pcraft-format")
         (git-crate "craft-print" "0.1.0"
                    "git+https://github.com/storytold/craft-libs?rev=c5a1cbfb5f9049f9270955caffb5bee5997aebf7#c5a1cbfb5f9049f9270955caffb5bee5997aebf7"
                    craft-libs-c5a1cbf-checkout "crates/print")
@@ -4207,6 +4315,8 @@
         rust-encoding_rs-0.8.42
         rust-endi-1.1.1
         rust-enum-as-inner-0.6.1
+        rust-enum-map-3.1.0
+        rust-enum-map-derive-1.0.1
         rust-enumflags2-0.7.12
         rust-enumflags2_derive-0.7.12
         rust-equator-0.4.2
@@ -4490,6 +4600,7 @@
         rust-schannel-0.1.30
         rust-scoped-tls-1.0.1
         rust-scopeguard-1.2.0
+        rust-sctk-adwaita-0.10.1
         rust-security-framework-3.7.0
         rust-security-framework-sys-2.17.0
         rust-self_cell-1.3.0
@@ -4561,7 +4672,9 @@
         rust-time-0.3.55
         rust-time-core-0.1.9
         rust-time-macros-0.2.32
+        rust-tiny-skia-0.11.4
         rust-tiny-skia-0.12.0
+        rust-tiny-skia-path-0.11.4
         rust-tiny-skia-path-0.12.0
         rust-tinystr-0.8.4
         rust-tinyvec-1.13.3
@@ -4735,12 +4848,18 @@
   (list (git-crate "craft-docpath" "0.1.0"
                    "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0"
                    craft-libs-92d392c-checkout "crates/docpath")
+        (git-crate "craft-ecproj-format" "0.1.0"
+                   "git+https://github.com/storytold/craft-libs?rev=ca1b5e2edb8568335c6c14f390307bd5beae8238#ca1b5e2edb8568335c6c14f390307bd5beae8238"
+                   craft-libs-ca1b5e2-checkout "crates/ecproj-format")
         (git-crate "craft-fonts-build" "0.1.0"
                    "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0"
                    craft-libs-92d392c-checkout "crates/fonts-build")
         (git-crate "craft-i18n" "0.1.0"
                    "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0"
                    craft-libs-92d392c-checkout "crates/i18n")
+        (git-crate "craft-media" "0.1.0"
+                   "git+https://github.com/storytold/craft-libs?rev=f0ad6c1e1d297908915f4be315b0fcfc9be7b5d4#f0ad6c1e1d297908915f4be315b0fcfc9be7b5d4"
+                   craft-libs-f0ad6c1-checkout "crates/media")
         (git-crate "craft-pdf" "0.1.0"
                    "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0"
                    craft-libs-92d392c-checkout "crates/pdf")
@@ -4768,6 +4887,9 @@
         (git-crate "egui-winit" "0.37.0"
                    "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
                    egui-6d518fc-checkout "crates/egui-winit")
+        (git-crate "egui_extras" "0.37.0"
+                   "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
+                   egui-6d518fc-checkout "crates/egui_extras")
         (git-crate "egui_glow" "0.37.0"
                    "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
                    egui-6d518fc-checkout "crates/egui_glow")
@@ -4783,99 +4905,99 @@
         (git-crate "epaint_default_fonts" "0.37.0"
                    "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
                    egui-6d518fc-checkout "crates/epaint_default_fonts")
-        (git-crate "filmcraft-aac" "0.8.0"
-                   "git+https://github.com/storytold/filmcraft?rev=09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5#09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5"
-                   filmcraft-09aaf9b-checkout "crates/aac")
-        (git-crate "filmcraft-ac3" "0.8.0"
-                   "git+https://github.com/storytold/filmcraft?rev=09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5#09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5"
-                   filmcraft-09aaf9b-checkout "crates/ac3")
-        (git-crate "filmcraft-apv" "0.8.0"
-                   "git+https://github.com/storytold/filmcraft?rev=09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5#09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5"
-                   filmcraft-09aaf9b-checkout "crates/apv")
-        (git-crate "filmcraft-av1" "0.8.0"
-                   "git+https://github.com/storytold/filmcraft?rev=09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5#09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5"
-                   filmcraft-09aaf9b-checkout "crates/av1")
-        (git-crate "filmcraft-avi" "0.8.0"
-                   "git+https://github.com/storytold/filmcraft?rev=09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5#09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5"
-                   filmcraft-09aaf9b-checkout "crates/avi")
-        (git-crate "filmcraft-bitstream" "0.8.0"
-                   "git+https://github.com/storytold/filmcraft?rev=09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5#09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5"
-                   filmcraft-09aaf9b-checkout "crates/bitstream")
-        (git-crate "filmcraft-cfb" "0.8.0"
-                   "git+https://github.com/storytold/filmcraft?rev=09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5#09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5"
-                   filmcraft-09aaf9b-checkout "crates/cfb")
-        (git-crate "filmcraft-codecs" "0.8.0"
-                   "git+https://github.com/storytold/filmcraft?rev=09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5#09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5"
-                   filmcraft-09aaf9b-checkout "crates/codecs")
-        (git-crate "filmcraft-color" "0.8.0"
-                   "git+https://github.com/storytold/filmcraft?rev=09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5#09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5"
-                   filmcraft-09aaf9b-checkout "crates/color")
-        (git-crate "filmcraft-dng" "0.8.0"
-                   "git+https://github.com/storytold/filmcraft?rev=09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5#09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5"
-                   filmcraft-09aaf9b-checkout "crates/dng")
-        (git-crate "filmcraft-dnx" "0.8.0"
-                   "git+https://github.com/storytold/filmcraft?rev=09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5#09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5"
-                   filmcraft-09aaf9b-checkout "crates/dnx")
-        (git-crate "filmcraft-frame" "0.8.0"
-                   "git+https://github.com/storytold/filmcraft?rev=09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5#09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5"
-                   filmcraft-09aaf9b-checkout "crates/frame")
-        (git-crate "filmcraft-geom" "0.8.0"
-                   "git+https://github.com/storytold/filmcraft?rev=09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5#09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5"
-                   filmcraft-09aaf9b-checkout "crates/geom")
-        (git-crate "filmcraft-h264" "0.8.0"
-                   "git+https://github.com/storytold/filmcraft?rev=09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5#09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5"
-                   filmcraft-09aaf9b-checkout "crates/h264")
-        (git-crate "filmcraft-h264enc" "0.8.0"
-                   "git+https://github.com/storytold/filmcraft?rev=09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5#09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5"
-                   filmcraft-09aaf9b-checkout "crates/h264enc")
-        (git-crate "filmcraft-hevc" "0.8.0"
-                   "git+https://github.com/storytold/filmcraft?rev=09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5#09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5"
-                   filmcraft-09aaf9b-checkout "crates/hevc")
-        (git-crate "filmcraft-interchange" "0.8.0"
-                   "git+https://github.com/storytold/filmcraft?rev=09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5#09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5"
-                   filmcraft-09aaf9b-checkout "crates/interchange")
-        (git-crate "filmcraft-isobmff" "0.8.0"
-                   "git+https://github.com/storytold/filmcraft?rev=09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5#09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5"
-                   filmcraft-09aaf9b-checkout "crates/isobmff")
-        (git-crate "filmcraft-matroska" "0.8.0"
-                   "git+https://github.com/storytold/filmcraft?rev=09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5#09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5"
-                   filmcraft-09aaf9b-checkout "crates/matroska")
-        (git-crate "filmcraft-media" "0.8.0"
-                   "git+https://github.com/storytold/filmcraft?rev=09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5#09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5"
-                   filmcraft-09aaf9b-checkout "crates/media")
-        (git-crate "filmcraft-mpa" "0.8.0"
-                   "git+https://github.com/storytold/filmcraft?rev=09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5#09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5"
-                   filmcraft-09aaf9b-checkout "crates/mpa")
-        (git-crate "filmcraft-mpeg2v" "0.8.0"
-                   "git+https://github.com/storytold/filmcraft?rev=09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5#09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5"
-                   filmcraft-09aaf9b-checkout "crates/mpeg2v")
-        (git-crate "filmcraft-mpegts" "0.8.0"
-                   "git+https://github.com/storytold/filmcraft?rev=09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5#09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5"
-                   filmcraft-09aaf9b-checkout "crates/mpegts")
-        (git-crate "filmcraft-mxf" "0.8.0"
-                   "git+https://github.com/storytold/filmcraft?rev=09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5#09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5"
-                   filmcraft-09aaf9b-checkout "crates/mxf")
-        (git-crate "filmcraft-ogg" "0.8.0"
-                   "git+https://github.com/storytold/filmcraft?rev=09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5#09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5"
-                   filmcraft-09aaf9b-checkout "crates/ogg")
-        (git-crate "filmcraft-opus" "0.8.0"
-                   "git+https://github.com/storytold/filmcraft?rev=09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5#09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5"
-                   filmcraft-09aaf9b-checkout "crates/opus")
-        (git-crate "filmcraft-project" "0.8.0"
-                   "git+https://github.com/storytold/filmcraft?rev=09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5#09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5"
-                   filmcraft-09aaf9b-checkout "crates/project")
-        (git-crate "filmcraft-prores" "0.8.0"
-                   "git+https://github.com/storytold/filmcraft?rev=09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5#09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5"
-                   filmcraft-09aaf9b-checkout "crates/prores")
-        (git-crate "filmcraft-time" "0.8.0"
-                   "git+https://github.com/storytold/filmcraft?rev=09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5#09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5"
-                   filmcraft-09aaf9b-checkout "crates/time")
-        (git-crate "filmcraft-vp8" "0.8.0"
-                   "git+https://github.com/storytold/filmcraft?rev=09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5#09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5"
-                   filmcraft-09aaf9b-checkout "crates/vp8")
-        (git-crate "filmcraft-vp9" "0.8.0"
-                   "git+https://github.com/storytold/filmcraft?rev=09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5#09aaf9bf15d510eda1c413c0ccabb1d7e08b41c5"
-                   filmcraft-09aaf9b-checkout "crates/vp9")
+        (git-crate "filmcraft-aac" "0.12.0"
+                   "git+https://github.com/storytold/filmcraft?rev=d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5#d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5"
+                   filmcraft-d5ead4b-checkout "crates/aac")
+        (git-crate "filmcraft-ac3" "0.12.0"
+                   "git+https://github.com/storytold/filmcraft?rev=d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5#d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5"
+                   filmcraft-d5ead4b-checkout "crates/ac3")
+        (git-crate "filmcraft-apv" "0.12.0"
+                   "git+https://github.com/storytold/filmcraft?rev=d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5#d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5"
+                   filmcraft-d5ead4b-checkout "crates/apv")
+        (git-crate "filmcraft-av1" "0.12.0"
+                   "git+https://github.com/storytold/filmcraft?rev=d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5#d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5"
+                   filmcraft-d5ead4b-checkout "crates/av1")
+        (git-crate "filmcraft-avi" "0.12.0"
+                   "git+https://github.com/storytold/filmcraft?rev=d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5#d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5"
+                   filmcraft-d5ead4b-checkout "crates/avi")
+        (git-crate "filmcraft-bitstream" "0.12.0"
+                   "git+https://github.com/storytold/filmcraft?rev=d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5#d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5"
+                   filmcraft-d5ead4b-checkout "crates/bitstream")
+        (git-crate "filmcraft-cfb" "0.12.0"
+                   "git+https://github.com/storytold/filmcraft?rev=d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5#d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5"
+                   filmcraft-d5ead4b-checkout "crates/cfb")
+        (git-crate "filmcraft-codecs" "0.12.0"
+                   "git+https://github.com/storytold/filmcraft?rev=d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5#d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5"
+                   filmcraft-d5ead4b-checkout "crates/codecs")
+        (git-crate "filmcraft-color" "0.12.0"
+                   "git+https://github.com/storytold/filmcraft?rev=d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5#d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5"
+                   filmcraft-d5ead4b-checkout "crates/color")
+        (git-crate "filmcraft-dng" "0.12.0"
+                   "git+https://github.com/storytold/filmcraft?rev=d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5#d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5"
+                   filmcraft-d5ead4b-checkout "crates/dng")
+        (git-crate "filmcraft-dnx" "0.12.0"
+                   "git+https://github.com/storytold/filmcraft?rev=d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5#d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5"
+                   filmcraft-d5ead4b-checkout "crates/dnx")
+        (git-crate "filmcraft-frame" "0.12.0"
+                   "git+https://github.com/storytold/filmcraft?rev=d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5#d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5"
+                   filmcraft-d5ead4b-checkout "crates/frame")
+        (git-crate "filmcraft-geom" "0.12.0"
+                   "git+https://github.com/storytold/filmcraft?rev=d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5#d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5"
+                   filmcraft-d5ead4b-checkout "crates/geom")
+        (git-crate "filmcraft-h264" "0.12.0"
+                   "git+https://github.com/storytold/filmcraft?rev=d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5#d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5"
+                   filmcraft-d5ead4b-checkout "crates/h264")
+        (git-crate "filmcraft-h264enc" "0.12.0"
+                   "git+https://github.com/storytold/filmcraft?rev=d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5#d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5"
+                   filmcraft-d5ead4b-checkout "crates/h264enc")
+        (git-crate "filmcraft-hevc" "0.12.0"
+                   "git+https://github.com/storytold/filmcraft?rev=d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5#d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5"
+                   filmcraft-d5ead4b-checkout "crates/hevc")
+        (git-crate "filmcraft-interchange" "0.12.0"
+                   "git+https://github.com/storytold/filmcraft?rev=d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5#d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5"
+                   filmcraft-d5ead4b-checkout "crates/interchange")
+        (git-crate "filmcraft-isobmff" "0.12.0"
+                   "git+https://github.com/storytold/filmcraft?rev=d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5#d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5"
+                   filmcraft-d5ead4b-checkout "crates/isobmff")
+        (git-crate "filmcraft-matroska" "0.12.0"
+                   "git+https://github.com/storytold/filmcraft?rev=d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5#d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5"
+                   filmcraft-d5ead4b-checkout "crates/matroska")
+        (git-crate "filmcraft-media" "0.12.0"
+                   "git+https://github.com/storytold/filmcraft?rev=d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5#d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5"
+                   filmcraft-d5ead4b-checkout "crates/media")
+        (git-crate "filmcraft-mpa" "0.12.0"
+                   "git+https://github.com/storytold/filmcraft?rev=d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5#d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5"
+                   filmcraft-d5ead4b-checkout "crates/mpa")
+        (git-crate "filmcraft-mpeg2v" "0.12.0"
+                   "git+https://github.com/storytold/filmcraft?rev=d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5#d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5"
+                   filmcraft-d5ead4b-checkout "crates/mpeg2v")
+        (git-crate "filmcraft-mpegts" "0.12.0"
+                   "git+https://github.com/storytold/filmcraft?rev=d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5#d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5"
+                   filmcraft-d5ead4b-checkout "crates/mpegts")
+        (git-crate "filmcraft-mxf" "0.12.0"
+                   "git+https://github.com/storytold/filmcraft?rev=d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5#d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5"
+                   filmcraft-d5ead4b-checkout "crates/mxf")
+        (git-crate "filmcraft-ogg" "0.12.0"
+                   "git+https://github.com/storytold/filmcraft?rev=d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5#d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5"
+                   filmcraft-d5ead4b-checkout "crates/ogg")
+        (git-crate "filmcraft-opus" "0.12.0"
+                   "git+https://github.com/storytold/filmcraft?rev=d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5#d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5"
+                   filmcraft-d5ead4b-checkout "crates/opus")
+        (git-crate "filmcraft-project" "0.12.0"
+                   "git+https://github.com/storytold/filmcraft?rev=d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5#d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5"
+                   filmcraft-d5ead4b-checkout "crates/project")
+        (git-crate "filmcraft-prores" "0.12.0"
+                   "git+https://github.com/storytold/filmcraft?rev=d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5#d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5"
+                   filmcraft-d5ead4b-checkout "crates/prores")
+        (git-crate "filmcraft-time" "0.12.0"
+                   "git+https://github.com/storytold/filmcraft?rev=d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5#d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5"
+                   filmcraft-d5ead4b-checkout "crates/time")
+        (git-crate "filmcraft-vp8" "0.12.0"
+                   "git+https://github.com/storytold/filmcraft?rev=d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5#d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5"
+                   filmcraft-d5ead4b-checkout "crates/vp8")
+        (git-crate "filmcraft-vp9" "0.12.0"
+                   "git+https://github.com/storytold/filmcraft?rev=d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5#d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5"
+                   filmcraft-d5ead4b-checkout "crates/vp9")
         (git-crate "hayro-jbig2" "0.3.0"
                    "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0"
                    craft-libs-92d392c-checkout "vendor/hayro-jbig2")
@@ -4888,9 +5010,6 @@
         (git-crate "egui_demo_lib" "0.37.0"
                    "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
                    egui-6d518fc-checkout "crates/egui_demo_lib")
-        (git-crate "egui_extras" "0.37.0"
-                   "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
-                   egui-6d518fc-checkout "crates/egui_extras")
         (git-crate "egui_inspection" "0.37.0"
                    "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
                    egui-6d518fc-checkout "crates/egui_inspection")
@@ -4899,11 +5018,11 @@
                    egui-6d518fc-checkout "crates/egui_system_font_provider")))
 
 (define filmcraft-cargo-inputs
-  (list rust-accesskit-0.25.1
+  (list rust-accesskit-0.25.2
         rust-accesskit_atspi_common-0.21.0
-        rust-accesskit_consumer-0.39.1
+        rust-accesskit_consumer-0.39.2
         rust-accesskit_ios-0.2.1
-        rust-accesskit_macos-0.27.1
+        rust-accesskit_macos-0.27.2
         rust-accesskit_unix-0.24.0
         rust-accesskit_windows-0.35.1
         rust-accesskit_winit-0.34.1
@@ -5036,6 +5155,8 @@
         rust-encoding_rs-0.8.42
         rust-endi-1.1.1
         rust-enum-as-inner-0.6.1
+        rust-enum-map-3.1.0
+        rust-enum-map-derive-1.0.1
         rust-enumflags2-0.7.12
         rust-enumflags2_derive-0.7.12
         rust-equivalent-1.0.2
@@ -5615,6 +5736,9 @@
         (git-crate "craft-update" "0.1.0"
                    "git+https://github.com/storytold/craft-libs?rev=c5a1cbfb5f9049f9270955caffb5bee5997aebf7#c5a1cbfb5f9049f9270955caffb5bee5997aebf7"
                    craft-libs-c5a1cbf-checkout "crates/update")
+        (git-crate "craft-web-host" "0.1.0"
+                   "git+https://github.com/storytold/craft-libs?rev=2e2312ddaf21bc3d85cd3395d0955c7d239306f6#2e2312ddaf21bc3d85cd3395d0955c7d239306f6"
+                   craft-libs-2e2312d-checkout "crates/web-host")
         (git-crate "ecolor" "0.37.0"
                    "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
                    egui-6d518fc-checkout "crates/ecolor")
@@ -5630,6 +5754,9 @@
         (git-crate "egui-winit" "0.37.0"
                    "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
                    egui-6d518fc-checkout "crates/egui-winit")
+        (git-crate "egui_extras" "0.37.0"
+                   "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
+                   egui-6d518fc-checkout "crates/egui_extras")
         (git-crate "egui_glow" "0.37.0"
                    "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
                    egui-6d518fc-checkout "crates/egui_glow")
@@ -5651,9 +5778,6 @@
         (git-crate "egui_demo_lib" "0.37.0"
                    "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
                    egui-6d518fc-checkout "crates/egui_demo_lib")
-        (git-crate "egui_extras" "0.37.0"
-                   "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
-                   egui-6d518fc-checkout "crates/egui_extras")
         (git-crate "egui_inspection" "0.37.0"
                    "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
                    egui-6d518fc-checkout "crates/egui_inspection")
@@ -5812,6 +5936,8 @@
         rust-elliptic-curve-0.13.8
         rust-endi-1.1.1
         rust-enum-as-inner-0.6.1
+        rust-enum-map-3.1.0
+        rust-enum-map-derive-1.0.1
         rust-enumflags2-0.7.12
         rust-enumflags2_derive-0.7.12
         rust-equator-0.1.10
@@ -5845,6 +5971,7 @@
         rust-foreign-types-0.5.0
         rust-foreign-types-macros-0.2.4
         rust-foreign-types-shared-0.3.1
+        rust-fs4-1.1.0
         rust-futures-core-0.3.34
         rust-futures-io-0.3.34
         rust-futures-lite-2.6.1
@@ -6217,6 +6344,7 @@
         rust-time-core-0.1.9
         rust-time-macros-0.2.32
         rust-tinystr-0.8.4
+        rust-tinyvec-1.13.3
         rust-tokio-1.53.1
         rust-toml-1.1.6-spec-1.1.0
         rust-toml_datetime-1.1.1-spec-1.1.0
@@ -6239,6 +6367,7 @@
         rust-unicode-bidi-0.3.18
         rust-unicode-general-category-1.1.0
         rust-unicode-ident-1.0.26
+        rust-unicode-normalization-0.1.26
         rust-unicode-properties-0.1.4
         rust-unicode-segmentation-1.13.3
         rust-unicode-width-0.2.2
@@ -6355,7 +6484,6 @@
         rust-zip-9.1.3
         rust-zlib-rs-0.6.8
         rust-zmij-1.0.23
-        rust-zopfli-0.8.4
         rust-zune-core-0.5.3
         rust-zune-jpeg-0.5.15
         rust-zune-jpegxl-0.5.2
@@ -6364,7 +6492,10 @@
         rust-zvariant_utils-4.2.0))
 
 (define lightcraft-git-crates
-  (list (git-crate "craft-docpath" "0.1.0"
+  (list (git-crate "craft-crw" "0.1.0"
+                   "git+https://github.com/storytold/craft-libs?rev=f3b62ec61f45534392376492fc5ad33047375205#f3b62ec61f45534392376492fc5ad33047375205"
+                   craft-libs-f3b62ec-checkout "crates/crw")
+        (git-crate "craft-docpath" "0.1.0"
                    "git+https://github.com/storytold/craft-libs?rev=c5a1cbfb5f9049f9270955caffb5bee5997aebf7#c5a1cbfb5f9049f9270955caffb5bee5997aebf7"
                    craft-libs-c5a1cbf-checkout "crates/docpath")
         (git-crate "craft-fonts-build" "0.1.0"
@@ -6377,8 +6508,8 @@
                    "git+https://github.com/storytold/craft-libs?rev=c5a1cbfb5f9049f9270955caffb5bee5997aebf7#c5a1cbfb5f9049f9270955caffb5bee5997aebf7"
                    craft-libs-c5a1cbf-checkout "crates/ui")
         (git-crate "craft-update" "0.1.0"
-                   "git+https://github.com/storytold/craft-libs?rev=c5a1cbfb5f9049f9270955caffb5bee5997aebf7#c5a1cbfb5f9049f9270955caffb5bee5997aebf7"
-                   craft-libs-c5a1cbf-checkout "crates/update")
+                   "git+https://github.com/storytold/craft-libs?rev=a231e517c3b371e1bf0ee8af71ed807424a9a05d#a231e517c3b371e1bf0ee8af71ed807424a9a05d"
+                   craft-libs-a231e51-checkout "crates/update")
         (git-crate "craft-window" "0.1.0"
                    "git+https://github.com/storytold/craft-libs?rev=c5a1cbfb5f9049f9270955caffb5bee5997aebf7#c5a1cbfb5f9049f9270955caffb5bee5997aebf7"
                    craft-libs-c5a1cbf-checkout "crates/window")
@@ -6397,6 +6528,9 @@
         (git-crate "egui-winit" "0.37.0"
                    "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
                    egui-6d518fc-checkout "crates/egui-winit")
+        (git-crate "egui_extras" "0.37.0"
+                   "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
+                   egui-6d518fc-checkout "crates/egui_extras")
         (git-crate "egui_glow" "0.37.0"
                    "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
                    egui-6d518fc-checkout "crates/egui_glow")
@@ -6418,9 +6552,6 @@
         (git-crate "egui_demo_lib" "0.37.0"
                    "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
                    egui-6d518fc-checkout "crates/egui_demo_lib")
-        (git-crate "egui_extras" "0.37.0"
-                   "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
-                   egui-6d518fc-checkout "crates/egui_extras")
         (git-crate "egui_inspection" "0.37.0"
                    "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
                    egui-6d518fc-checkout "crates/egui_inspection")
@@ -6994,15 +7125,15 @@
         rust-wasm-bindgen-macro-0.2.129
         rust-wasm-bindgen-macro-support-0.2.129
         rust-wasm-bindgen-shared-0.2.129
-        rust-wasm-encoder-0.262.0
+        rust-wasm-encoder-0.263.0
         rust-wasmi-2.0.0
         rust-wasmi_collections-2.0.0
         rust-wasmi_core-2.0.0
         rust-wasmi_ir-2.0.0
         rust-wasmparser-0.228.0
-        rust-wasmparser-0.262.0
-        rust-wast-262.0.0
-        rust-wat-1.262.0
+        rust-wasmparser-0.263.0
+        rust-wast-263.0.0
+        rust-wat-1.263.0
         rust-wayland-backend-0.3.17
         rust-wayland-client-0.31.15
         rust-wayland-csd-frame-0.3.0
@@ -7108,32 +7239,35 @@
 
 (define vectorcraft-git-crates
   (list (git-crate "craft-docpath" "0.1.0"
-                   "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0"
-                   craft-libs-92d392c-checkout "crates/docpath")
+                   "git+https://github.com/storytold/craft-libs?rev=9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb#9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb"
+                   craft-libs-9be9a63-checkout "crates/docpath")
         (git-crate "craft-fonts-build" "0.1.0"
-                   "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0"
-                   craft-libs-92d392c-checkout "crates/fonts-build")
+                   "git+https://github.com/storytold/craft-libs?rev=9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb#9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb"
+                   craft-libs-9be9a63-checkout "crates/fonts-build")
         (git-crate "craft-i18n" "0.1.0"
-                   "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0"
-                   craft-libs-92d392c-checkout "crates/i18n")
+                   "git+https://github.com/storytold/craft-libs?rev=9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb#9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb"
+                   craft-libs-9be9a63-checkout "crates/i18n")
         (git-crate "craft-keymap" "0.1.0"
-                   "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0"
-                   craft-libs-92d392c-checkout "crates/keymap")
+                   "git+https://github.com/storytold/craft-libs?rev=9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb#9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb"
+                   craft-libs-9be9a63-checkout "crates/keymap")
         (git-crate "craft-pdf" "0.1.0"
-                   "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0"
-                   craft-libs-92d392c-checkout "crates/pdf")
+                   "git+https://github.com/storytold/craft-libs?rev=9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb#9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb"
+                   craft-libs-9be9a63-checkout "crates/pdf")
         (git-crate "craft-print" "0.1.0"
-                   "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0"
-                   craft-libs-92d392c-checkout "crates/print")
+                   "git+https://github.com/storytold/craft-libs?rev=9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb#9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb"
+                   craft-libs-9be9a63-checkout "crates/print")
         (git-crate "craft-ui" "0.1.0"
-                   "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0"
-                   craft-libs-92d392c-checkout "crates/ui")
+                   "git+https://github.com/storytold/craft-libs?rev=9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb#9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb"
+                   craft-libs-9be9a63-checkout "crates/ui")
         (git-crate "craft-update" "0.1.0"
                    "git+https://github.com/storytold/craft-libs?rev=c5a1cbfb5f9049f9270955caffb5bee5997aebf7#c5a1cbfb5f9049f9270955caffb5bee5997aebf7"
                    craft-libs-c5a1cbf-checkout "crates/update")
+        (git-crate "craft-vectorcraft-format" "0.1.0"
+                   "git+https://github.com/storytold/craft-libs?rev=9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb#9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb"
+                   craft-libs-9be9a63-checkout "crates/vectorcraft-format")
         (git-crate "craft-window" "0.1.0"
-                   "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0"
-                   craft-libs-92d392c-checkout "crates/window")
+                   "git+https://github.com/storytold/craft-libs?rev=9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb#9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb"
+                   craft-libs-9be9a63-checkout "crates/window")
         (git-crate "craft-winprint-gdi" "0.1.0"
                    "git+https://github.com/storytold/winprint.rs?rev=417ac3c4d14d3da5485a99c7d5ce8f05664ec312#417ac3c4d14d3da5485a99c7d5ce8f05664ec312"
                    winprint.rs-417ac3c-checkout "crates/gdi")
@@ -7171,23 +7305,23 @@
                    "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
                    egui-6d518fc-checkout "crates/epaint_default_fonts")
         (git-crate "hayro-cmap" "0.1.0"
-                   "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0"
-                   craft-libs-92d392c-checkout "vendor/hayro-cmap")
+                   "git+https://github.com/storytold/craft-libs?rev=9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb#9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb"
+                   craft-libs-9be9a63-checkout "vendor/hayro-cmap")
         (git-crate "hayro-interpret" "0.7.0"
-                   "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0"
-                   craft-libs-92d392c-checkout "vendor/hayro-interpret")
+                   "git+https://github.com/storytold/craft-libs?rev=9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb#9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb"
+                   craft-libs-9be9a63-checkout "vendor/hayro-interpret")
         (git-crate "hayro-jbig2" "0.3.0"
-                   "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0"
-                   craft-libs-92d392c-checkout "vendor/hayro-jbig2")
+                   "git+https://github.com/storytold/craft-libs?rev=9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb#9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb"
+                   craft-libs-9be9a63-checkout "vendor/hayro-jbig2")
         (git-crate "hayro-postscript" "0.1.0"
-                   "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0"
-                   craft-libs-92d392c-checkout "vendor/hayro-postscript")
+                   "git+https://github.com/storytold/craft-libs?rev=9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb#9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb"
+                   craft-libs-9be9a63-checkout "vendor/hayro-postscript")
         (git-crate "hayro-syntax" "0.7.2"
-                   "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0"
-                   craft-libs-92d392c-checkout "vendor/hayro-syntax")
+                   "git+https://github.com/storytold/craft-libs?rev=9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb#9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb"
+                   craft-libs-9be9a63-checkout "vendor/hayro-syntax")
         (git-crate "krilla" "0.8.2"
-                   "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0"
-                   craft-libs-92d392c-checkout "vendor/krilla")
+                   "git+https://github.com/storytold/craft-libs?rev=9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb#9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb"
+                   craft-libs-9be9a63-checkout "vendor/krilla")
         (git-crate "winit" "0.30.13"
                    "git+https://github.com/storytold/winit.git?rev=a517b3846ee8457d84ee4975110bfda6797c44dc#a517b3846ee8457d84ee4975110bfda6797c44dc"
                    winit-a517b38-checkout ".")
@@ -7332,6 +7466,8 @@
         rust-either-1.19.0
         rust-encoding_rs-0.8.42
         rust-endi-1.1.1
+        rust-enum-map-3.1.0
+        rust-enum-map-derive-1.0.1
         rust-enumflags2-0.7.12
         rust-enumflags2_derive-0.7.12
         rust-equivalent-1.0.3
@@ -7637,6 +7773,7 @@
         rust-schannel-0.1.30
         rust-scoped-tls-1.0.1
         rust-scopeguard-1.2.0
+        rust-sctk-adwaita-0.10.1
         rust-security-framework-3.7.0
         rust-security-framework-sys-2.17.0
         rust-self_cell-1.3.0
@@ -7710,7 +7847,9 @@
         rust-time-0.3.55
         rust-time-core-0.1.9
         rust-time-macros-0.2.32
+        rust-tiny-skia-0.11.4
         rust-tiny-skia-0.12.0
+        rust-tiny-skia-path-0.11.4
         rust-tiny-skia-path-0.12.0
         rust-tinystr-0.8.5
         rust-tinyvec-1.13.3
@@ -7940,6 +8079,9 @@
         (git-crate "egui-winit" "0.37.0"
                    "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
                    egui-6d518fc-checkout "crates/egui-winit")
+        (git-crate "egui_extras" "0.37.0"
+                   "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
+                   egui-6d518fc-checkout "crates/egui_extras")
         (git-crate "egui_glow" "0.37.0"
                    "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
                    egui-6d518fc-checkout "crates/egui_glow")
@@ -7974,7 +8116,7 @@
                    "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0"
                    craft-libs-92d392c-checkout "vendor/hayro-syntax")
         (git-crate "indd" "0.1.0"
-                   "git+https://github.com/storytold/indd-utils?branch=main#7f3060e5bce78d21ea70e0d5eacb96edce15dfbe"
+                   "git+https://github.com/storytold/indd-utils?rev=7f3060e5bce78d21ea70e0d5eacb96edce15dfbe#7f3060e5bce78d21ea70e0d5eacb96edce15dfbe"
                    indd-utils-7f3060e-checkout ".")
         (git-crate "krilla" "0.8.2"
                    "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0"
@@ -7988,9 +8130,6 @@
         (git-crate "egui_demo_lib" "0.37.0"
                    "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
                    egui-6d518fc-checkout "crates/egui_demo_lib")
-        (git-crate "egui_extras" "0.37.0"
-                   "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
-                   egui-6d518fc-checkout "crates/egui_extras")
         (git-crate "egui_inspection" "0.37.0"
                    "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
                    egui-6d518fc-checkout "crates/egui_inspection")
@@ -8010,6 +8149,7 @@
         rust-adler2-2.0.1
         rust-aes-0.9.3
         rust-ahash-0.8.12
+        rust-aho-corasick-1.1.5
         rust-aligned-vec-0.6.4
         rust-alloc-no-stdlib-2.0.4
         rust-alloc-stdlib-0.2.4
@@ -8727,32 +8867,35 @@
 
 (define pdfcraft-git-crates
   (list (git-crate "craft-docpath" "0.1.0"
-                   "git+https://github.com/storytold/craft-libs?rev=c5a1cbfb5f9049f9270955caffb5bee5997aebf7#c5a1cbfb5f9049f9270955caffb5bee5997aebf7"
-                   craft-libs-c5a1cbf-checkout "crates/docpath")
+                   "git+https://github.com/storytold/craft-libs?rev=787a7a0f972fd1d7a7618fdbeca3a5267a0407ff#787a7a0f972fd1d7a7618fdbeca3a5267a0407ff"
+                   craft-libs-787a7a0-checkout "crates/docpath")
         (git-crate "craft-fonts-build" "0.1.0"
-                   "git+https://github.com/storytold/craft-libs?rev=c5a1cbfb5f9049f9270955caffb5bee5997aebf7#c5a1cbfb5f9049f9270955caffb5bee5997aebf7"
-                   craft-libs-c5a1cbf-checkout "crates/fonts-build")
+                   "git+https://github.com/storytold/craft-libs?rev=787a7a0f972fd1d7a7618fdbeca3a5267a0407ff#787a7a0f972fd1d7a7618fdbeca3a5267a0407ff"
+                   craft-libs-787a7a0-checkout "crates/fonts-build")
         (git-crate "craft-i18n" "0.1.0"
-                   "git+https://github.com/storytold/craft-libs?rev=c5a1cbfb5f9049f9270955caffb5bee5997aebf7#c5a1cbfb5f9049f9270955caffb5bee5997aebf7"
-                   craft-libs-c5a1cbf-checkout "crates/i18n")
+                   "git+https://github.com/storytold/craft-libs?rev=787a7a0f972fd1d7a7618fdbeca3a5267a0407ff#787a7a0f972fd1d7a7618fdbeca3a5267a0407ff"
+                   craft-libs-787a7a0-checkout "crates/i18n")
         (git-crate "craft-keymap" "0.1.0"
-                   "git+https://github.com/storytold/craft-libs?rev=c5a1cbfb5f9049f9270955caffb5bee5997aebf7#c5a1cbfb5f9049f9270955caffb5bee5997aebf7"
-                   craft-libs-c5a1cbf-checkout "crates/keymap")
+                   "git+https://github.com/storytold/craft-libs?rev=787a7a0f972fd1d7a7618fdbeca3a5267a0407ff#787a7a0f972fd1d7a7618fdbeca3a5267a0407ff"
+                   craft-libs-787a7a0-checkout "crates/keymap")
         (git-crate "craft-menu" "0.1.0"
-                   "git+https://github.com/storytold/craft-libs?rev=c5a1cbfb5f9049f9270955caffb5bee5997aebf7#c5a1cbfb5f9049f9270955caffb5bee5997aebf7"
-                   craft-libs-c5a1cbf-checkout "crates/menu")
+                   "git+https://github.com/storytold/craft-libs?rev=787a7a0f972fd1d7a7618fdbeca3a5267a0407ff#787a7a0f972fd1d7a7618fdbeca3a5267a0407ff"
+                   craft-libs-787a7a0-checkout "crates/menu")
         (git-crate "craft-print" "0.1.0"
-                   "git+https://github.com/storytold/craft-libs?rev=c5a1cbfb5f9049f9270955caffb5bee5997aebf7#c5a1cbfb5f9049f9270955caffb5bee5997aebf7"
-                   craft-libs-c5a1cbf-checkout "crates/print")
+                   "git+https://github.com/storytold/craft-libs?rev=787a7a0f972fd1d7a7618fdbeca3a5267a0407ff#787a7a0f972fd1d7a7618fdbeca3a5267a0407ff"
+                   craft-libs-787a7a0-checkout "crates/print")
         (git-crate "craft-quit" "0.1.0"
-                   "git+https://github.com/storytold/craft-libs?rev=c5a1cbfb5f9049f9270955caffb5bee5997aebf7#c5a1cbfb5f9049f9270955caffb5bee5997aebf7"
-                   craft-libs-c5a1cbf-checkout "crates/quit")
+                   "git+https://github.com/storytold/craft-libs?rev=787a7a0f972fd1d7a7618fdbeca3a5267a0407ff#787a7a0f972fd1d7a7618fdbeca3a5267a0407ff"
+                   craft-libs-787a7a0-checkout "crates/quit")
         (git-crate "craft-ui" "0.1.0"
-                   "git+https://github.com/storytold/craft-libs?rev=c5a1cbfb5f9049f9270955caffb5bee5997aebf7#c5a1cbfb5f9049f9270955caffb5bee5997aebf7"
-                   craft-libs-c5a1cbf-checkout "crates/ui")
+                   "git+https://github.com/storytold/craft-libs?rev=787a7a0f972fd1d7a7618fdbeca3a5267a0407ff#787a7a0f972fd1d7a7618fdbeca3a5267a0407ff"
+                   craft-libs-787a7a0-checkout "crates/ui")
         (git-crate "craft-update" "0.1.0"
-                   "git+https://github.com/storytold/craft-libs?rev=c5a1cbfb5f9049f9270955caffb5bee5997aebf7#c5a1cbfb5f9049f9270955caffb5bee5997aebf7"
-                   craft-libs-c5a1cbf-checkout "crates/update")
+                   "git+https://github.com/storytold/craft-libs?rev=787a7a0f972fd1d7a7618fdbeca3a5267a0407ff#787a7a0f972fd1d7a7618fdbeca3a5267a0407ff"
+                   craft-libs-787a7a0-checkout "crates/update")
+        (git-crate "craft-web-host" "0.1.0"
+                   "git+https://github.com/storytold/craft-libs?rev=2e2312ddaf21bc3d85cd3395d0955c7d239306f6#2e2312ddaf21bc3d85cd3395d0955c7d239306f6"
+                   craft-libs-2e2312d-checkout "crates/web-host")
         (git-crate "craft-winprint-gdi" "0.1.0"
                    "git+https://github.com/storytold/winprint.rs?rev=417ac3c4d14d3da5485a99c7d5ce8f05664ec312#417ac3c4d14d3da5485a99c7d5ce8f05664ec312"
                    winprint.rs-417ac3c-checkout "crates/gdi")
@@ -8936,6 +9079,8 @@
         rust-either-1.19.0
         rust-encoding_rs-0.8.42
         rust-endi-1.1.1
+        rust-enum-map-3.1.0
+        rust-enum-map-derive-1.0.1
         rust-enumflags2-0.7.12
         rust-enumflags2_derive-0.7.12
         rust-equivalent-1.0.2
@@ -8964,6 +9109,7 @@
         rust-foldhash-0.2.0
         rust-font-types-0.11.3
         rust-font-types-0.12.6
+        rust-fontique-0.11.1
         rust-foreign-types-0.5.0
         rust-foreign-types-macros-0.2.4
         rust-foreign-types-shared-0.3.1
@@ -9106,6 +9252,7 @@
         rust-objc2-core-graphics-0.3.2
         rust-objc2-core-image-0.2.2
         rust-objc2-core-location-0.2.2
+        rust-objc2-core-text-0.3.2
         rust-objc2-encode-4.1.0
         rust-objc2-foundation-0.2.2
         rust-objc2-foundation-0.3.2
@@ -9131,6 +9278,7 @@
         rust-parking-2.2.1
         rust-parking_lot-0.12.5
         rust-parking_lot_core-0.9.12
+        rust-parlance-0.1.1
         rust-pdf-writer-0.15.0
         rust-pem-3.0.6
         rust-pem-rfc7468-0.7.0
@@ -9218,6 +9366,7 @@
         rust-rustls-webpki-0.103.16
         rust-rustversion-1.0.23
         rust-rusty-fork-0.3.1
+        rust-ruzstd-0.9.1
         rust-ryu-1.0.23
         rust-ryu-js-1.0.3
         rust-same-file-1.0.6
@@ -9370,6 +9519,7 @@
         rust-web-time-1.1.0
         rust-webbrowser-1.2.4
         rust-webpki-root-certs-1.0.11
+        rust-webpki-roots-1.0.11
         rust-weezl-0.1.12
         rust-wgpu-30.0.1
         rust-wgpu-core-30.0.1
@@ -9427,6 +9577,7 @@
         rust-xml-1.4.0
         rust-xml-rs-0.8.29
         rust-xmp-writer-0.3.3
+        rust-yeslogic-fontconfig-sys-6.0.1
         rust-yoke-0.8.4
         rust-yoke-derive-0.8.4
         rust-zbus-5.19.0
@@ -9457,24 +9608,39 @@
         rust-zvariant_utils-4.2.0))
 
 (define wordcraft-git-crates
-  (list (git-crate "craft-fonts-build" "0.1.0"
+  (list (git-crate "craft-atomic" "0.1.0"
+                   "git+https://github.com/storytold/craft-libs?rev=762a06a4c6b48b522b7d4de84a87917ef90265e6#762a06a4c6b48b522b7d4de84a87917ef90265e6"
+                   craft-libs-762a06a-checkout "crates/atomic")
+        (git-crate "craft-font-catalog" "0.1.0"
+                   "git+https://github.com/storytold/craft-libs?rev=762a06a4c6b48b522b7d4de84a87917ef90265e6#762a06a4c6b48b522b7d4de84a87917ef90265e6"
+                   craft-libs-762a06a-checkout "crates/font-catalog")
+        (git-crate "craft-font-store" "0.1.0"
+                   "git+https://github.com/storytold/craft-libs?rev=762a06a4c6b48b522b7d4de84a87917ef90265e6#762a06a4c6b48b522b7d4de84a87917ef90265e6"
+                   craft-libs-762a06a-checkout "crates/font-store")
+        (git-crate "craft-fonts-build" "0.1.0"
                    "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0"
                    craft-libs-92d392c-checkout "crates/fonts-build")
         (git-crate "craft-i18n" "0.1.0"
                    "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0"
                    craft-libs-92d392c-checkout "crates/i18n")
         (git-crate "craft-pdf" "0.1.0"
-                   "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0"
-                   craft-libs-92d392c-checkout "crates/pdf")
+                   "git+https://github.com/storytold/craft-libs?rev=c5a1cbfb5f9049f9270955caffb5bee5997aebf7#c5a1cbfb5f9049f9270955caffb5bee5997aebf7"
+                   craft-libs-c5a1cbf-checkout "crates/pdf")
         (git-crate "craft-print" "0.1.0"
-                   "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0"
-                   craft-libs-92d392c-checkout "crates/print")
+                   "git+https://github.com/storytold/craft-libs?rev=a3e0b5a9440d18f19422a9dca13516747b7d3181#a3e0b5a9440d18f19422a9dca13516747b7d3181"
+                   craft-libs-a3e0b5a-checkout "crates/print")
+        (git-crate "craft-proof" "0.1.0"
+                   "git+https://github.com/storytold/craft-libs?rev=01315d9c92b5b0e69082d35ca56099461a1efd45#01315d9c92b5b0e69082d35ca56099461a1efd45"
+                   craft-libs-01315d9-checkout "crates/proof")
         (git-crate "craft-ui" "0.1.0"
                    "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0"
                    craft-libs-92d392c-checkout "crates/ui")
         (git-crate "craft-update" "0.1.0"
                    "git+https://github.com/storytold/craft-libs?rev=c5a1cbfb5f9049f9270955caffb5bee5997aebf7#c5a1cbfb5f9049f9270955caffb5bee5997aebf7"
                    craft-libs-c5a1cbf-checkout "crates/update")
+        (git-crate "craft-web-host" "0.1.0"
+                   "git+https://github.com/storytold/craft-libs?rev=2e2312ddaf21bc3d85cd3395d0955c7d239306f6#2e2312ddaf21bc3d85cd3395d0955c7d239306f6"
+                   craft-libs-2e2312d-checkout "crates/web-host")
         (git-crate "craft-window" "0.1.0"
                    "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0"
                    craft-libs-92d392c-checkout "crates/window")
@@ -9496,6 +9662,9 @@
         (git-crate "egui-winit" "0.37.0"
                    "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
                    egui-6d518fc-checkout "crates/egui-winit")
+        (git-crate "egui_extras" "0.37.0"
+                   "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
+                   egui-6d518fc-checkout "crates/egui_extras")
         (git-crate "egui_glow" "0.37.0"
                    "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
                    egui-6d518fc-checkout "crates/egui_glow")
@@ -9512,8 +9681,8 @@
                    "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
                    egui-6d518fc-checkout "crates/epaint_default_fonts")
         (git-crate "krilla" "0.8.2"
-                   "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0"
-                   craft-libs-92d392c-checkout "vendor/krilla")
+                   "git+https://github.com/storytold/craft-libs?rev=c5a1cbfb5f9049f9270955caffb5bee5997aebf7#c5a1cbfb5f9049f9270955caffb5bee5997aebf7"
+                   craft-libs-c5a1cbf-checkout "vendor/krilla")
         (git-crate "winit" "0.30.13"
                    "git+https://github.com/storytold/winit.git?rev=a517b3846ee8457d84ee4975110bfda6797c44dc#a517b3846ee8457d84ee4975110bfda6797c44dc"
                    winit-a517b38-checkout ".")
@@ -9523,9 +9692,6 @@
         (git-crate "egui_demo_lib" "0.37.0"
                    "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
                    egui-6d518fc-checkout "crates/egui_demo_lib")
-        (git-crate "egui_extras" "0.37.0"
-                   "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
-                   egui-6d518fc-checkout "crates/egui_extras")
         (git-crate "egui_inspection" "0.37.0"
                    "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
                    egui-6d518fc-checkout "crates/egui_inspection")
@@ -9553,6 +9719,7 @@
         rust-anyhow-1.0.104
         rust-arbitrary-1.5.0
         rust-arboard-3.7.0
+        rust-arrayref-0.3.9
         rust-arrayvec-0.7.8
         rust-as-raw-xcb-connection-1.0.1
         rust-ash-0.38.0-1.3.281
@@ -9576,7 +9743,9 @@
         rust-base64-0.22.1
         rust-base64-0.23.1
         rust-base64ct-1.8.3
+        rust-bit-set-0.8.0
         rust-bit-set-0.10.0
+        rust-bit-vec-0.8.0
         rust-bit-vec-0.9.1
         rust-bitflags-1.3.2
         rust-bitflags-2.13.2
@@ -9649,6 +9818,8 @@
         rust-either-1.19.0
         rust-encoding_rs-0.8.42
         rust-endi-1.1.1
+        rust-enum-map-3.1.0
+        rust-enum-map-derive-1.0.1
         rust-enumflags2-0.7.12
         rust-enumflags2_derive-0.7.12
         rust-equivalent-1.0.2
@@ -9657,6 +9828,7 @@
         rust-euclid-0.22.14
         rust-event-listener-5.4.2
         rust-event-listener-strategy-0.5.4
+        rust-fancy-regex-0.14.0
         rust-fastrand-2.5.0
         rust-fax-0.2.7
         rust-fdeflate-0.3.7
@@ -9834,9 +10006,13 @@
         rust-peniko-0.6.1
         rust-percent-encoding-2.3.2
         rust-petgraph-0.8.3
+        rust-phf-0.11.3
         rust-phf-0.14.0
+        rust-phf_generator-0.11.3
         rust-phf_generator-0.14.0
+        rust-phf_macros-0.11.3
         rust-phf_macros-0.14.0
+        rust-phf_shared-0.11.3
         rust-phf_shared-0.14.0
         rust-pin-project-1.1.13
         rust-pin-project-internal-1.1.13
@@ -9871,11 +10047,17 @@
         rust-quote-1.0.47
         rust-r-efi-5.3.0
         rust-r-efi-6.0.0
+        rust-rand-0.8.8
         rust-rand-0.10.3
         rust-rand_core-0.6.4
         rust-rand_core-0.10.1
         rust-rand_pcg-0.10.2
         rust-range-alloc-0.1.5
+        rust-ratex-font-0.1.14
+        rust-ratex-layout-0.1.14
+        rust-ratex-lexer-0.1.14
+        rust-ratex-parser-0.1.14
+        rust-ratex-types-0.1.14
         rust-raw-window-handle-0.6.2
         rust-raw-window-metal-1.1.0
         rust-rayon-1.12.0
@@ -9886,6 +10068,7 @@
         rust-redox_syscall-0.9.4
         rust-regex-1.13.1
         rust-regex-automata-0.4.18
+        rust-regex-lite-0.1.9
         rust-regex-syntax-0.8.11
         rust-renderdoc-sys-1.1.0
         rust-reqwest-0.13.5
@@ -9910,6 +10093,7 @@
         rust-schannel-0.1.29
         rust-scoped-tls-1.0.1
         rust-scopeguard-1.2.0
+        rust-sctk-adwaita-0.10.1
         rust-security-framework-3.7.0
         rust-security-framework-sys-2.17.0
         rust-self_cell-1.3.0
@@ -9955,6 +10139,7 @@
         rust-spki-0.7.3
         rust-stable_deref_trait-1.2.1
         rust-static_assertions-1.1.0
+        rust-strict-num-0.1.1
         rust-strum-0.28.0
         rust-strum_macros-0.28.0
         rust-subtle-2.6.1
@@ -9977,6 +10162,8 @@
         rust-time-0.3.55
         rust-time-core-0.1.9
         rust-time-macros-0.2.32
+        rust-tiny-skia-0.11.4
+        rust-tiny-skia-path-0.11.4
         rust-tinystr-0.8.4
         rust-tinyvec-1.13.3
         rust-tls_codec-0.4.2
@@ -10005,6 +10192,7 @@
         rust-unicode-bidi-0.3.18
         rust-unicode-general-category-1.1.0
         rust-unicode-ident-1.0.26
+        rust-unicode-normalization-0.1.26
         rust-unicode-properties-0.1.4
         rust-unicode-segmentation-1.13.3
         rust-unicode-width-0.2.2
@@ -10143,6 +10331,9 @@
         (git-crate "craft-update" "0.1.0"
                    "git+https://github.com/storytold/craft-libs?rev=c5a1cbfb5f9049f9270955caffb5bee5997aebf7#c5a1cbfb5f9049f9270955caffb5bee5997aebf7"
                    craft-libs-c5a1cbf-checkout "crates/update")
+        (git-crate "craft-web-host" "0.1.0"
+                   "git+https://github.com/storytold/craft-libs?rev=2e2312ddaf21bc3d85cd3395d0955c7d239306f6#2e2312ddaf21bc3d85cd3395d0955c7d239306f6"
+                   craft-libs-2e2312d-checkout "crates/web-host")
         (git-crate "craft-window" "0.1.0"
                    "git+https://github.com/storytold/craft-libs?rev=c5a1cbfb5f9049f9270955caffb5bee5997aebf7#c5a1cbfb5f9049f9270955caffb5bee5997aebf7"
                    craft-libs-c5a1cbf-checkout "crates/window")
@@ -10164,6 +10355,9 @@
         (git-crate "egui-winit" "0.37.0"
                    "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
                    egui-6d518fc-checkout "crates/egui-winit")
+        (git-crate "egui_extras" "0.37.0"
+                   "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
+                   egui-6d518fc-checkout "crates/egui_extras")
         (git-crate "egui_glow" "0.37.0"
                    "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
                    egui-6d518fc-checkout "crates/egui_glow")
@@ -10188,9 +10382,6 @@
         (git-crate "egui_demo_lib" "0.37.0"
                    "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
                    egui-6d518fc-checkout "crates/egui_demo_lib")
-        (git-crate "egui_extras" "0.37.0"
-                   "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
-                   egui-6d518fc-checkout "crates/egui_extras")
         (git-crate "egui_inspection" "0.37.0"
                    "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
                    egui-6d518fc-checkout "crates/egui_inspection")
@@ -10223,6 +10414,7 @@
         rust-anstyle-wincon-3.0.11
         rust-anyhow-1.0.104
         rust-arboard-3.7.0
+        rust-arrayref-0.3.9
         rust-arrayvec-0.7.8
         rust-as-raw-xcb-connection-1.0.1
         rust-ash-0.38.0-1.3.281
@@ -10321,6 +10513,8 @@
         rust-dunce-1.0.5
         rust-either-1.19.0
         rust-endi-1.1.1
+        rust-enum-map-3.1.0
+        rust-enum-map-derive-1.0.1
         rust-enumflags2-0.7.12
         rust-enumflags2_derive-0.7.12
         rust-equivalent-1.0.3
@@ -10573,6 +10767,7 @@
         rust-schannel-0.1.30
         rust-scoped-tls-1.0.1
         rust-scopeguard-1.2.0
+        rust-sctk-adwaita-0.10.1
         rust-security-framework-3.7.0
         rust-security-framework-sys-2.17.0
         rust-self_cell-1.3.0
@@ -10604,6 +10799,7 @@
         rust-stable_deref_trait-1.2.1
         rust-static_assertions-1.1.0
         rust-strength_reduce-0.2.4
+        rust-strict-num-0.1.1
         rust-strsim-0.11.1
         rust-subtle-2.6.1
         rust-symphonia-0.6.1
@@ -10637,6 +10833,8 @@
         rust-time-0.3.55
         rust-time-core-0.1.9
         rust-time-macros-0.2.32
+        rust-tiny-skia-0.11.4
+        rust-tiny-skia-path-0.11.4
         rust-tinystr-0.8.5
         rust-tokio-1.54.1
         rust-toml-1.1.8-spec-1.1.0
@@ -10809,6 +11007,9 @@
         (git-crate "egui-winit" "0.37.0"
                    "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
                    egui-6d518fc-checkout "crates/egui-winit")
+        (git-crate "egui_extras" "0.37.0"
+                   "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
+                   egui-6d518fc-checkout "crates/egui_extras")
         (git-crate "egui_glow" "0.37.0"
                    "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
                    egui-6d518fc-checkout "crates/egui_glow")
@@ -10830,9 +11031,6 @@
         (git-crate "egui_demo_lib" "0.37.0"
                    "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
                    egui-6d518fc-checkout "crates/egui_demo_lib")
-        (git-crate "egui_extras" "0.37.0"
-                   "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
-                   egui-6d518fc-checkout "crates/egui_extras")
         (git-crate "egui_inspection" "0.37.0"
                    "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
                    egui-6d518fc-checkout "crates/egui_inspection")
@@ -10929,6 +11127,7 @@
         rust-core-graphics-0.23.2
         rust-core-graphics-types-0.1.3
         rust-core_detect-1.0.0
+        rust-core_maths-0.1.1
         rust-cpufeatures-0.2.17
         rust-crc32fast-1.5.3
         rust-crossbeam-channel-0.5.17
@@ -10952,6 +11151,8 @@
         rust-either-1.19.0
         rust-encoding_rs-0.8.42
         rust-endi-1.1.1
+        rust-enum-map-3.1.0
+        rust-enum-map-derive-1.0.1
         rust-enumflags2-0.7.12
         rust-enumflags2_derive-0.7.12
         rust-enumn-0.1.14
@@ -11033,6 +11234,8 @@
         rust-icu_provider-2.3.1
         rust-icu_provider_adapters-2.3.0
         rust-icu_provider_blob-2.3.0
+        rust-icu_segmenter-2.3.0
+        rust-icu_segmenter_data-2.3.0
         rust-idna-1.1.0
         rust-idna_adapter-1.2.2
         rust-image-0.25.10
@@ -11415,6 +11618,9 @@
         (git-crate "craft-update" "0.1.0"
                    "git+https://github.com/storytold/craft-libs?rev=c5a1cbfb5f9049f9270955caffb5bee5997aebf7#c5a1cbfb5f9049f9270955caffb5bee5997aebf7"
                    craft-libs-c5a1cbf-checkout "crates/update")
+        (git-crate "craft-web-host" "0.1.0"
+                   "git+https://github.com/storytold/craft-libs?rev=2e2312ddaf21bc3d85cd3395d0955c7d239306f6#2e2312ddaf21bc3d85cd3395d0955c7d239306f6"
+                   craft-libs-2e2312d-checkout "crates/web-host")
         (git-crate "craft-window" "0.1.0"
                    "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0"
                    craft-libs-92d392c-checkout "crates/window")
@@ -11433,6 +11639,9 @@
         (git-crate "egui-winit" "0.37.0"
                    "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
                    egui-6d518fc-checkout "crates/egui-winit")
+        (git-crate "egui_extras" "0.37.0"
+                   "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
+                   egui-6d518fc-checkout "crates/egui_extras")
         (git-crate "egui_glow" "0.37.0"
                    "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
                    egui-6d518fc-checkout "crates/egui_glow")
@@ -11459,19 +11668,7 @@
                    craft-libs-92d392c-checkout "vendor/krilla")
         (git-crate "winit" "0.30.13"
                    "git+https://github.com/storytold/winit.git?rev=a517b3846ee8457d84ee4975110bfda6797c44dc#a517b3846ee8457d84ee4975110bfda6797c44dc"
-                   winit-a517b38-checkout ".")
-        (git-crate "egui_demo_lib" "0.37.0"
-                   "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
-                   egui-6d518fc-checkout "crates/egui_demo_lib")
-        (git-crate "egui_extras" "0.37.0"
-                   "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
-                   egui-6d518fc-checkout "crates/egui_extras")
-        (git-crate "egui_inspection" "0.37.0"
-                   "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
-                   egui-6d518fc-checkout "crates/egui_inspection")
-        (git-crate "egui_system_font_provider" "0.37.0"
-                   "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
-                   egui-6d518fc-checkout "crates/egui_system_font_provider")))
+                   winit-a517b38-checkout ".")))
 
 (define figcraft-cargo-inputs
   (list rust-accesskit-0.25.2
@@ -12133,6 +12330,9 @@
         (git-crate "craft-update" "0.1.0"
                    "git+https://github.com/storytold/craft-libs?rev=c5a1cbfb5f9049f9270955caffb5bee5997aebf7#c5a1cbfb5f9049f9270955caffb5bee5997aebf7"
                    craft-libs-c5a1cbf-checkout "crates/update")
+        (git-crate "craft-web-host" "0.1.0"
+                   "git+https://github.com/storytold/craft-libs?rev=2e2312ddaf21bc3d85cd3395d0955c7d239306f6#2e2312ddaf21bc3d85cd3395d0955c7d239306f6"
+                   craft-libs-2e2312d-checkout "crates/web-host")
         (git-crate "craft-window" "0.1.0"
                    "git+https://github.com/storytold/craft-libs?rev=e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545#e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545"
                    craft-libs-e11f9d9-checkout "crates/window")
@@ -12240,7 +12440,9 @@
         rust-byteorder-lite-0.1.0
         rust-bytes-1.12.1
         rust-calloop-0.13.0
+        rust-calloop-0.14.5
         rust-calloop-wayland-source-0.3.0
+        rust-calloop-wayland-source-0.4.1
         rust-cast-0.3.0
         rust-cc-1.6.0
         rust-cesu8-1.1.0
@@ -12290,6 +12492,8 @@
         rust-either-1.19.0
         rust-encoding_rs-0.8.42
         rust-endi-1.1.1
+        rust-enum-map-3.1.0
+        rust-enum-map-derive-1.0.1
         rust-enumflags2-0.7.12
         rust-enumflags2_derive-0.7.12
         rust-equivalent-1.0.2
@@ -12568,6 +12772,8 @@
         rust-slotmap-1.1.1
         rust-smallvec-1.16.2
         rust-smithay-client-toolkit-0.19.2
+        rust-smithay-client-toolkit-0.20.0
+        rust-smithay-clipboard-0.7.3
         rust-smol_str-0.2.2
         rust-spirv-0.4.0-sdk-1.4.341.0
         rust-stable_deref_trait-1.2.1
@@ -12662,6 +12868,8 @@
         rust-wayland-csd-frame-0.3.0
         rust-wayland-cursor-0.31.14
         rust-wayland-protocols-0.32.13
+        rust-wayland-protocols-experimental-20250721.0.1
+        rust-wayland-protocols-misc-0.3.12
         rust-wayland-protocols-plasma-0.3.12
         rust-wayland-protocols-wlr-0.3.12
         rust-wayland-scanner-0.31.11
@@ -12781,6 +12989,9 @@
         (git-crate "craft-update" "0.1.0"
                    "git+https://github.com/storytold/craft-libs?rev=c5a1cbfb5f9049f9270955caffb5bee5997aebf7#c5a1cbfb5f9049f9270955caffb5bee5997aebf7"
                    craft-libs-c5a1cbf-checkout "crates/update")
+        (git-crate "craft-web-host" "0.1.0"
+                   "git+https://github.com/storytold/craft-libs?rev=2e2312ddaf21bc3d85cd3395d0955c7d239306f6#2e2312ddaf21bc3d85cd3395d0955c7d239306f6"
+                   craft-libs-2e2312d-checkout "crates/web-host")
         (git-crate "ecolor" "0.37.0"
                    "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
                    egui-6d518fc-checkout "crates/ecolor")
@@ -12796,6 +13007,9 @@
         (git-crate "egui-winit" "0.37.0"
                    "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
                    egui-6d518fc-checkout "crates/egui-winit")
+        (git-crate "egui_extras" "0.37.0"
+                   "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
+                   egui-6d518fc-checkout "crates/egui_extras")
         (git-crate "egui_glow" "0.37.0"
                    "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
                    egui-6d518fc-checkout "crates/egui_glow")
@@ -12820,9 +13034,6 @@
         (git-crate "egui_demo_lib" "0.37.0"
                    "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
                    egui-6d518fc-checkout "crates/egui_demo_lib")
-        (git-crate "egui_extras" "0.37.0"
-                   "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
-                   egui-6d518fc-checkout "crates/egui_extras")
         (git-crate "egui_inspection" "0.37.0"
                    "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a"
                    egui-6d518fc-checkout "crates/egui_inspection")
@@ -13616,6 +13827,7 @@
         rust-crc-3.4.0
         rust-crc-catalog-2.5.0
         rust-crc32fast-1.5.2
+        rust-crossbeam-channel-0.5.17
         rust-crossbeam-deque-0.8.8
         rust-crossbeam-epoch-0.9.21
         rust-crossbeam-utils-0.8.23
@@ -13774,6 +13986,7 @@
         rust-jobserver-0.1.35
         rust-js-sys-0.3.106
         rust-json-escape-simd-3.1.2
+        rust-keyboard-types-0.8.3
         rust-keyring-3.6.3
         rust-khronos-egl-6.0.0
         rust-khronos_api-3.1.0
@@ -13808,6 +14021,7 @@
         rust-miniz_oxide-0.8.9
         rust-miniz_oxide-0.9.1
         rust-moxcms-0.8.1
+        rust-muda-0.21.2
         rust-multiversion_no_op-1.0.0
         rust-naga-30.0.1
         rust-naga-types-30.0.1
@@ -14010,6 +14224,7 @@
         rust-serde_derive-1.0.229
         rust-serde_derive_internals-0.30.0
         rust-serde_json-1.0.154
+        rust-serde_path_to_error-0.1.20
         rust-serde_repr-0.1.21
         rust-serde_spanned-1.1.2
         rust-serial2-0.2.38
@@ -14047,6 +14262,7 @@
         rust-syn-2.0.119
         rust-syn-3.0.9
         rust-synstructure-0.14.0
+        rust-sys-locale-0.3.2
         rust-system-deps-7.0.8
         rust-tap-1.0.1
         rust-target-lexicon-0.13.5
@@ -14151,7 +14367,6 @@
         rust-wgpu-core-deps-emscripten-30.0.1
         rust-wgpu-core-deps-wasm-30.0.1
         rust-wgpu-core-deps-windows-linux-android-30.0.1
-        rust-wgpu-hal-30.0.1
         rust-wgpu-naga-bridge-30.0.1
         rust-wgpu-types-30.0.1
         rust-widestring-1.2.1
@@ -14266,7 +14481,6 @@
         rust-android-activity-0.6.1
         rust-android-properties-0.2.2
         rust-android_system_properties-0.1.6
-        rust-arbitrary-1.5.0
         rust-arboard-3.6.1
         rust-arrayvec-0.7.8
         rust-as-raw-xcb-connection-1.0.1
@@ -14330,7 +14544,6 @@
         rust-darling-0.24.1
         rust-darling_core-0.24.1
         rust-darling_macro-0.24.1
-        rust-derive_arbitrary-1.5.0
         rust-dispatch-0.2.0
         rust-dispatch2-0.3.1
         rust-displaydoc-0.2.7
@@ -14467,6 +14680,7 @@
         rust-ndk-0.9.0
         rust-ndk-context-0.1.1
         rust-ndk-sys-0.6.0-11769913
+        rust-nix-0.31.3
         rust-nohash-hasher-0.2.0
         rust-nom-8.0.0
         rust-num-complex-0.4.6
@@ -14630,6 +14844,7 @@
         rust-tracing-core-0.1.36
         rust-tree_magic_mini-3.2.2
         rust-type-map-0.5.1
+        rust-typed-path-0.12.4
         rust-typeid-1.0.3
         rust-uds_windows-1.2.1
         rust-unicode-bidi-0.3.18
@@ -14742,7 +14957,7 @@
         rust-zerotrie-0.2.5
         rust-zerovec-0.11.9
         rust-zerovec-derive-0.11.7
-        rust-zip-2.4.2
+        rust-zip-9.0.5
         rust-zlib-rs-0.6.8
         rust-zmij-1.0.23
         rust-zopfli-0.8.4
