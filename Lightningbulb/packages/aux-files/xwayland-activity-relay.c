@@ -3,7 +3,7 @@
 
    Xwayland only gets input aimed at X11 windows, so X11 programs that read
    the X11 idle time (MIT-SCREEN-SAVER) consider you idle while you use
-   Wayland programs.  Every second this asks the session's idle time
+   Wayland programs.  Twice a second this asks the session's idle time
    (cosmic-idle answers org.freedesktop.ScreenSaver.GetSessionIdleTime), and
    when there was input, resets the X11 screen saver, which
    xwayland-with-idle-time counts as activity.  It doesn't touch the pointer:
@@ -14,12 +14,13 @@
    therefore also shifts the position it reports to such polls by 8 pixels on each
    reset, which is what keeps Steam Online.
 
-   Usage: xwayland-activity-relay [SECONDS]   (default 1)  */
+   Usage: xwayland-activity-relay  */
 
 #include <dbus/dbus.h>
 #include <X11/Xlib.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include <unistd.h>
 
 /* Milliseconds since the last input, or -1 when nobody answers.  */
@@ -54,18 +55,34 @@ relay_activity (Display *display)
   XSync (display, False);
 }
 
+/* Milliseconds on a monotonic clock.  */
+static long long
+now_ms (void)
+{
+  struct timespec ts;
+  clock_gettime (CLOCK_MONOTONIC, &ts);
+  return ts.tv_sec * 1000LL + ts.tv_nsec / 1000000;
+}
+
+/* Steam checks the pointer about once a second and needs it to have moved
+   since its previous check, so each reset (which shifts the position it is
+   shown) must last longer than that or two could cancel out unseen.  */
+#define MIN_GAP_MS 2500
+
 int
 main (int argc, char *argv[])
 {
-  unsigned int interval = argc > 1 ? (unsigned int) atoi (argv[1]) : 1;
   DBusConnection *bus = NULL;
+  /* When the screen saver was last reset; long ago at startup.  */
+  long long last_reset = now_ms () - 3600 * 1000LL;
 
-  if (interval == 0)
-    interval = 1;
+  (void) argc;
+  (void) argv;
 
-  for (;; sleep (interval))
+  for (;; usleep (500 * 1000))
     {
       long idle;
+      long long now;
 
       if (!bus && !(bus = dbus_bus_get (DBUS_BUS_SESSION, NULL)))
         continue;
@@ -78,7 +95,12 @@ main (int argc, char *argv[])
         }
 
       idle = session_idle_time (bus);
-      if (idle < 0 || idle >= interval * 1000L)
+      now = now_ms ();
+      /* Relay activity when there was input since the last reset (cosmic-idle
+         reports 0 while input is ongoing), at most once per MIN_GAP_MS.  On
+         return from being away the last reset is long past, so this reacts
+         within half a second.  */
+      if (idle < 0 || now - last_reset < MIN_GAP_MS || idle >= now - last_reset)
         continue;
 
       /* Connect each time: Xwayland may have restarted meanwhile, and a
@@ -88,6 +110,7 @@ main (int argc, char *argv[])
         {
           relay_activity (display);
           XCloseDisplay (display);
+          last_reset = now;
         }
     }
 }
