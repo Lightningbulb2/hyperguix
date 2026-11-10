@@ -44,7 +44,7 @@
     (name "codecanvas")
     (version "0.1.0")
     (source (codecanvas-source "CodeCanvas"
-                               "bdb2fa786c4098b7d5edb4f0a5581b591b18693d"))
+                               "bf1b0c64800031b735399c9a8670e2f839181e8e"))
     (build-system cargo-build-system)
     (arguments
      (list
@@ -138,9 +138,9 @@ add it to Zed's @file{settings.json} as a context server:
 (define-public codecanvas-vscode
   (package
     (name "codecanvas-vscode")
-    (version "0.7.4")
+    (version "0.7.5")
     (source (codecanvas-source "CodeCanvas-vscode"
-                               "0bffb5cf76346ad4e29b289bc95027fda5e1136b"))
+                               "db109af93df92c8fff0e631626879b462254f20c"))
     (build-system gnu-build-system)
     (arguments
      (list
