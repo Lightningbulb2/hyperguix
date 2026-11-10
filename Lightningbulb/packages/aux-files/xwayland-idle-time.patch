@@ -2,11 +2,13 @@ Keep MIT-SCREEN-SAVER in rootless Xwayland and count a forced screen saver
 reset as user activity, so X11 programs get a usable idle time when a helper
 resets the screen saver while the user is active on the Wayland side.
 
-Steam doesn't read that idle time: once a second it polls QueryPointer on the
-root window and takes a pointer that doesn't move for an idle user, and the
-X11 pointer only moves over X11 windows.  So each forced reset also shifts the
-position QueryPointer reports by one pixel (back and forth; events and the
-real pointer are untouched).
+Steam doesn't read that idle time.  Once a second it opens a new connection,
+calls QueryPointer on the root window and counts the user active when the
+pointer is more than 5 pixels from where it last saw it -- and the X11
+pointer only moves over X11 windows.  So each forced reset also toggles an
+8 pixel shift of the position QueryPointer reports to connections that have
+made fewer than 32 requests.  Events, the real pointer and long-lived clients
+(games reading the cursor position) are untouched.
 
 --- a/dix/events.c
 +++ b/dix/events.c
@@ -19,16 +21,19 @@ real pointer are untouched).
  int
  ProcQueryPointer(ClientPtr client)
  {
-@@ -5386,9 +5388,15 @@
+@@ -5386,9 +5388,18 @@
          .rootY = pSprite->hot.y,
          .child = None
      };
 +    /* Activity outside X11 windows doesn't move the X11 pointer; clients
-+     * that poll its position to tell whether the user is there (Steam)
-+     * would see none.  A forced screen saver reset flips this, shifting
-+     * the reported position by a pixel.  Events are unaffected.  */
-+    if (activityPointerNudge)
-+        rep.rootX += pSprite->hot.x > 0 ? -1 : 1;
++     * that poll its position to tell whether the user is there would see
++     * none.  Steam does that: every second it opens a connection, queries
++     * the pointer and counts a move of more than 5 pixels as activity.
++     * A forced screen saver reset flips activityPointerNudge; while set,
++     * shift the position reported to such throwaway connections.  Events
++     * and long-lived clients (games reading the cursor) are unaffected.  */
++    if (activityPointerNudge && client->sequence < 32)
++        rep.rootX += pSprite->hot.x >= 8 ? -8 : 8;
      if (pSprite->hot.pScreen == pWin->drawable.pScreen) {
          rep.sameScreen = xTrue;
 -        rep.winX = pSprite->hot.x - pWin->drawable.x;
@@ -42,8 +47,8 @@ real pointer are untouched).
  }
  
  #define RANDOM_WIDTH 32
-+/* Flips on each forced screen saver reset; ProcQueryPointer shifts the
-+ * position it reports by this many pixels.  */
++/* Flips on each forced screen saver reset; while set, ProcQueryPointer
++ * shifts the position it reports to short-lived connections.  */
 +int activityPointerNudge = 0;
 +
  int

@@ -10,8 +10,8 @@
    warping it over a game that hides the cursor makes Xwayland lock the
    pointer to the game, and clicks stopped reaching Wine programs (BFME).
    Steam's Away status doesn't read the idle time: it polls QueryPointer every
-   second and waits for the pointer to move.  xwayland-with-idle-time
-   therefore also shifts the position QueryPointer reports by a pixel on each
+   second and waits for the pointer to move more than 5 pixels.  xwayland-with-idle-time
+   therefore also shifts the position it reports to such polls by 8 pixels on each
    reset, which is what keeps Steam Online.
 
    Usage: xwayland-activity-relay [SECONDS]   (default 20)  */

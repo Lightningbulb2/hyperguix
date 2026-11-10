@@ -12,9 +12,10 @@
 ;;; programs a correct idle time.  Blanking stays off, as upstream has it.
 ;;;
 ;;; Steam itself doesn't read that idle time for its Away status: it polls
-;;; QueryPointer once a second and waits for the pointer to move, which under
+;;; QueryPointer once a second (on a new connection each time) and waits for
+;;; the pointer to move more than 5 pixels, which under
 ;;; Xwayland it only does over X11 windows.  So a reset also shifts the
-;;; position QueryPointer reports by a pixel (see the patch).
+;;; position reported to such short-lived connections by 8 pixels (see the patch).
 ;;;
 ;;; It also finds the system's EGL/GBM drivers (NVIDIA's included) without
 ;;; relying on the environment the compositor passes it; see the wrapper.
