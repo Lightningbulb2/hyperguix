@@ -44,7 +44,7 @@
     (name "codecanvas")
     (version "0.1.0")
     (source (codecanvas-source "CodeCanvas"
-                               "9585c8469401e168477e3917c565de56dda8b87f"))
+                               "76d0e774a9a3187afbb9eca7c97cfc496ba0365a"))
     (build-system cargo-build-system)
     (arguments
      (list
@@ -94,8 +94,10 @@ snippet can have its own chat with a local or remote language model.")
       #:phases
       #~(modify-phases %standard-phases
           (add-after 'unpack 'install-extension-source
-            ;; Zed compiles extensions itself: `zed: install dev extension'
-            ;; on a writable copy of this directory.
+            ;; The extension's source, for reference.  Zed compiles dev
+            ;; extensions itself with rustup and the wasm32-wasip2 target,
+            ;; neither of which Guix has, so on Guix System the bridge is
+            ;; started directly instead (see the description).
             (lambda _
               (let ((share (string-append #$output "/share/codecanvas-zed")))
                 (for-each (lambda (file) (install-file file share))
@@ -112,8 +114,12 @@ snippet can have its own chat with a local or remote language model.")
      "This is the program the CodeCanvas extension for Zed starts as an MCP
 server.  It finds the @command{codecanvas} application, keeps a task and a
 keyboard shortcut for it in Zed's configuration, and gives Zed's agent a tool
-that opens a canvas.  Point the extension's @code{bridge_path} setting at it.
-The extension's source is in @file{share/codecanvas-zed}.")
+that opens a canvas.  On Guix System, where Zed cannot compile the extension,
+add it to Zed's @file{settings.json} as a context server:
+@code{\"context_servers\": @{\"codecanvas\": @{\"command\":
+\"codecanvas-zed-bridge\"@}@}}.  Elsewhere, point the extension's
+@code{bridge_path} setting at it.  The extension's source is in
+@file{share/codecanvas-zed}.")
     (license license:expat)))
 
 (define %codecanvas-vscode-tarballs
@@ -129,9 +135,9 @@ The extension's source is in @file{share/codecanvas-zed}.")
 (define-public codecanvas-vscode
   (package
     (name "codecanvas-vscode")
-    (version "0.7.1")
+    (version "0.7.2")
     (source (codecanvas-source "CodeCanvas-vscode"
-                               "d1b104eeb56e3f9b4f4811ec05febf6a6c536e64"))
+                               "233e71bdd5f5e8f9631cd261f322cf5a0e63ace1"))
     (build-system gnu-build-system)
     (arguments
      (list
