@@ -44,7 +44,7 @@
     (name "codecanvas")
     (version "0.1.0")
     (source (codecanvas-source "CodeCanvas"
-                               "53ec1f474cfe38dbd300a2cf5dc263b88388fc96"))
+                               "c1c27d3c5f5ffde4218986708c7b274bcaf66c6b"))
     (build-system cargo-build-system)
     (arguments
      (list
@@ -56,7 +56,10 @@
           (add-after 'install 'install-desktop-file
             (lambda _
               (install-file "packaging/codecanvas.desktop"
-                            (string-append #$output "/share/applications"))))
+                            (string-append #$output "/share/applications"))
+              (install-file "packaging/codecanvas.svg"
+                            (string-append
+                             #$output "/share/icons/hicolor/scalable/apps"))))
           (add-after 'install-desktop-file 'wrap-runtime-libraries
             ;; GPUI dlopen()s these at run time.
             (lambda* (#:key inputs #:allow-other-keys)

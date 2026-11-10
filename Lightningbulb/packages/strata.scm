@@ -15,6 +15,7 @@
   #:use-module (guix gexp)
   #:use-module (guix git-download)
   #:use-module (guix build-system cmake)
+  #:use-module (guix build-system trivial)
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (gnu packages bash)
   #:use-module (gnu packages elf)
@@ -178,3 +179,40 @@ OpenAI- and Anthropic-compatible API and a web page.  This package has the
 @command{strata} command and the CUDA engine for compute capability 8.6 GPUs,
 without the desktop application.")
       (license license:expat))))
+
+;; Kept apart from `strata' so that adding a menu entry does not rebuild the
+;; CUDA engine.
+(define-public strata-desktop
+  (package
+    (name "strata-desktop")
+    (version "1")
+    (source #f)
+    (build-system trivial-build-system)
+    (arguments
+     (list
+      #:builder
+      (with-imported-modules '((guix build utils))
+        #~(begin
+            (use-modules (guix build utils))
+            (let ((dir (string-append #$output "/share/applications")))
+              (mkdir-p dir)
+              (call-with-output-file (string-append dir "/strata.desktop")
+                (lambda (port)
+                  (display "[Desktop Entry]
+Type=Application
+Name=Strata
+GenericName=Local LLM Server
+Comment=Set up, serve and monitor local language models
+Exec=strata launch
+Icon=utilities-terminal
+Terminal=true
+Categories=Development;Science;
+Keywords=llm;ai;model;server;
+" port))))))))
+    (home-page "https://github.com/Niko1221/Strata")
+    (synopsis "Application menu entry for Strata")
+    (description
+     "This adds Strata to the desktop's application list.  The entry opens a
+terminal running @command{strata launch}, Strata's guided setup, serving and
+monitoring screens.  Install it next to the @code{strata} package.")
+    (license license:expat)))
