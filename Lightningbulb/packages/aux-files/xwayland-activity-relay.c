@@ -3,7 +3,7 @@
 
    Xwayland only gets input aimed at X11 windows, so X11 programs that read
    the X11 idle time (MIT-SCREEN-SAVER) consider you idle while you use
-   Wayland programs.  Every few seconds this asks the session's idle time
+   Wayland programs.  Every second this asks the session's idle time
    (cosmic-idle answers org.freedesktop.ScreenSaver.GetSessionIdleTime), and
    when there was input, resets the X11 screen saver, which
    xwayland-with-idle-time counts as activity.  It doesn't touch the pointer:
@@ -14,7 +14,7 @@
    therefore also shifts the position it reports to such polls by 8 pixels on each
    reset, which is what keeps Steam Online.
 
-   Usage: xwayland-activity-relay [SECONDS]   (default 20)  */
+   Usage: xwayland-activity-relay [SECONDS]   (default 1)  */
 
 #include <dbus/dbus.h>
 #include <X11/Xlib.h>
@@ -57,11 +57,11 @@ relay_activity (Display *display)
 int
 main (int argc, char *argv[])
 {
-  unsigned int interval = argc > 1 ? (unsigned int) atoi (argv[1]) : 20;
+  unsigned int interval = argc > 1 ? (unsigned int) atoi (argv[1]) : 1;
   DBusConnection *bus = NULL;
 
   if (interval == 0)
-    interval = 20;
+    interval = 1;
 
   for (;; sleep (interval))
     {
