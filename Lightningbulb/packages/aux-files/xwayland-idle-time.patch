@@ -1,10 +1,55 @@
 Keep MIT-SCREEN-SAVER in rootless Xwayland and count a forced screen saver
-reset as user activity, so X11 programs (Steam) get a usable idle time when a
-helper resets the screen saver while the user is active on the Wayland side.
+reset as user activity, so X11 programs get a usable idle time when a helper
+resets the screen saver while the user is active on the Wayland side.
 
+Steam doesn't read that idle time: once a second it polls QueryPointer on the
+root window and takes a pointer that doesn't move for an idle user, and the
+X11 pointer only moves over X11 windows.  So each forced reset also shifts the
+position QueryPointer reports by one pixel (back and forth; events and the
+real pointer are untouched).
+
+--- a/dix/events.c
++++ b/dix/events.c
+@@ -5351,6 +5351,8 @@
+  * Returns the current state and position of the client's ClientPointer to the
+  * client.
+  */
++extern int activityPointerNudge;       /* window.c */
++
+ int
+ ProcQueryPointer(ClientPtr client)
+ {
+@@ -5386,9 +5388,15 @@
+         .rootY = pSprite->hot.y,
+         .child = None
+     };
++    /* Activity outside X11 windows doesn't move the X11 pointer; clients
++     * that poll its position to tell whether the user is there (Steam)
++     * would see none.  A forced screen saver reset flips this, shifting
++     * the reported position by a pixel.  Events are unaffected.  */
++    if (activityPointerNudge)
++        rep.rootX += pSprite->hot.x > 0 ? -1 : 1;
+     if (pSprite->hot.pScreen == pWin->drawable.pScreen) {
+         rep.sameScreen = xTrue;
+-        rep.winX = pSprite->hot.x - pWin->drawable.x;
++        rep.winX = rep.rootX - pWin->drawable.x;
+         rep.winY = pSprite->hot.y - pWin->drawable.y;
+         for (t = pSprite->win; t; t = t->parent)
+             if (t->parent == pWin) {
 --- a/dix/window.c
 +++ b/dix/window.c
-@@ -3097,8 +3097,13 @@
+@@ -3090,6 +3090,10 @@
+ }
+ 
+ #define RANDOM_WIDTH 32
++/* Flips on each forced screen saver reset; ProcQueryPointer shifts the
++ * position it reports by this many pixels.  */
++int activityPointerNudge = 0;
++
+ int
+ dixSaveScreens(ClientPtr client, int on, int mode)
+ {
+@@ -3097,8 +3101,16 @@
      XID vlist[2];
  
      if (on == SCREEN_SAVER_FORCER) {
@@ -12,9 +57,12 @@ helper resets the screen saver while the user is active on the Wayland side.
 +        if (mode == ScreenSaverReset) {
              what = SCREEN_SAVER_OFF;
 +            /* Count a forced reset as user activity: MIT-SCREEN-SAVER
-+             * measures idle time from the last device event.  */
++             * measures idle time from the last device event.  Steam
++             * instead polls QueryPointer and takes a pointer that stays
++             * put for idleness, so make the next replies differ too.  */
 +            UpdateCurrentTimeIf();
 +            NoticeTime(inputInfo.pointer, currentTime);
++            activityPointerNudge ^= 1;
 +        }
          else
              what = SCREEN_SAVER_ON;

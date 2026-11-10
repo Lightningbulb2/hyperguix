@@ -9,8 +9,10 @@
    xwayland-with-idle-time counts as activity.  It doesn't touch the pointer:
    warping it over a game that hides the cursor makes Xwayland lock the
    pointer to the game, and clicks stopped reaching Wine programs (BFME).
-   (Steam's Away status doesn't follow any of this: on Linux it only counts
-   input to its own windows.)
+   Steam's Away status doesn't read the idle time: it polls QueryPointer every
+   second and waits for the pointer to move.  xwayland-with-idle-time
+   therefore also shifts the position QueryPointer reports by a pixel on each
+   reset, which is what keeps Steam Online.
 
    Usage: xwayland-activity-relay [SECONDS]   (default 20)  */
 

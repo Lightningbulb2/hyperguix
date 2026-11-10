@@ -11,6 +11,11 @@
 ;;; swayidle) and resets the screen saver while you're active then gives X11
 ;;; programs a correct idle time.  Blanking stays off, as upstream has it.
 ;;;
+;;; Steam itself doesn't read that idle time for its Away status: it polls
+;;; QueryPointer once a second and waits for the pointer to move, which under
+;;; Xwayland it only does over X11 windows.  So a reset also shifts the
+;;; position QueryPointer reports by a pixel (see the patch).
+;;;
 ;;; It also finds the system's EGL/GBM drivers (NVIDIA's included) without
 ;;; relying on the environment the compositor passes it; see the wrapper.
 ;;;
