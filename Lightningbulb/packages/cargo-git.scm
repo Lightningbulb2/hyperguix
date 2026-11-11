@@ -27,9 +27,13 @@
   #:use-module (guix build-system cargo)
   #:use-module (srfi srfi-1)
   #:export (crate
+            crate-table
+            crate-selection
             git-checkout
             git-crate
-            vendor-git-crates-phases))
+            git-crate-selection
+            vendor-git-crates-phases
+            fast-cargo-release-phases))
 
 (define (crate name version hash)
   "Origin of crates.io crate NAME at VERSION (HASH is its Cargo.lock
@@ -39,6 +43,30 @@ checksum in nix-base32)."
     (uri (crate-uri name version))
     (file-name (string-append "rust-" name "-" version ".tar.gz"))
     (sha256 (base32 hash))))
+
+;; The generated *-crates modules hold their crates as quoted data rather
+;; than one `define' per crate: Guile compiles a quoted list almost
+;; instantly, while thousands of top-level definitions and calls took
+;; minutes (cosmic-crates: ~2.4 min, craft-crates: ~1.2 min) on every
+;; `guix pull'.  The origins built are the same, so no package changes.
+
+(define (crate-table specs)
+  "Return a vector of crate origins, one per (NAME VERSION HASH) in SPECS."
+  (list->vector (map (lambda (spec) (apply crate spec)) specs)))
+
+(define (crate-selection table indices)
+  "Return the crates of TABLE (from `crate-table') at INDICES, in order."
+  (map (lambda (i) (vector-ref table i)) indices))
+
+(define (git-crate-selection checkouts entries)
+  "Return `git-crate' entries for ENTRIES, each (NAME VERSION SOURCE INDEX
+SUBDIR) where INDEX picks the checkout origin from the vector CHECKOUTS."
+  (map (lambda (entry)
+         (apply (lambda (name version source index subdir)
+                  (git-crate name version source
+                             (vector-ref checkouts index) subdir))
+                entry))
+       entries))
 
 (define* (git-checkout name url commit hash #:optional recursive?)
   (origin
@@ -88,3 +116,21 @@ Needs python (3.11 or later) among the native inputs."
                          ".cargo/config"
                          ".cargo/config.toml")
                      "Cargo.lock"))))))
+
+(define (fast-cargo-release-phases)
+  "Return modify-phases clauses that make release builds faster to compile.
+
+Upstream release profiles often ask for `codegen-units = 1' and LTO (the
+Craft apps: thin LTO with one codegen unit; cosmic-comp: fat LTO).  That
+squeezes out a few percent of speed but compiles the biggest crates on one
+core, which is why the Craft apps took 16-26 minutes each.  Cargo's own
+release defaults (16 units, no cross-crate LTO) are used instead.  Also
+drops Guix's scan for bundled binaries, which only prints warnings and took
+up to a minute per package."
+  (list
+   #~(delete 'check-for-pregenerated-files)
+   #~(add-before 'build 'fast-release-profile
+       (lambda _
+         ;; Environment variables override Cargo.toml's [profile.release].
+         (setenv "CARGO_PROFILE_RELEASE_LTO" "false")
+         (setenv "CARGO_PROFILE_RELEASE_CODEGEN_UNITS" "16")))))

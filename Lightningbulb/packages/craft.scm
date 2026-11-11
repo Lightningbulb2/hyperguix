@@ -107,6 +107,7 @@ fonts it lists (CJK, Arabic, Thai, ...) through CRAFT_FONTS_DIR."
       #:phases
       #~(modify-phases %standard-phases
           #$@(vendor-git-crates-phases git-crates)
+          #$@(fast-cargo-release-phases)
           #$@(if fonts
                  (list #~(add-before 'build 'set-craft-fonts
                            (lambda _

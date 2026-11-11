@@ -4,2155 +4,771 @@
   #:use-module (Lightningbulb packages cargo-git)
   #:export (codecanvas-cargo-inputs codecanvas-git-crates codecanvas-zed-bridge-cargo-inputs codecanvas-zed-bridge-git-crates))
 
-(define rust-adler2-2.0.1
-  (crate "adler2" "2.0.1" "1ymy18s9hs7ya1pjc9864l30wk8p2qfqdi7mhhcc5nfakxbij09j"))
-(define rust-aes-0.8.4
-  (crate "aes" "0.8.4" "1853796anlwp4kqim0s6wm1srl4ib621nm0cl2h3c8klsjkgfsdi"))
-(define rust-ahash-0.8.12
-  (crate "ahash" "0.8.12" "0xbsp9rlm5ki017c0w6ay8kjwinwm8knjncci95mii30rmwz25as"))
-(define rust-aho-corasick-1.1.5
-  (crate "aho-corasick" "1.1.5" "1fhjkp2nbs7gg4y1b68hpc8028rpax8aiscfh9b60q78m4pn90n9"))
-(define rust-aligned-0.4.3
-  (crate "aligned" "0.4.3" "1186lhb3gb4x6spzw7ff0zcraa8cr9zqk4ldpm5g1vb2ijc0higf"))
-(define rust-aligned-vec-0.6.4
-  (crate "aligned-vec" "0.6.4" "16vnf78hvfix5cwzd5xs5a2g6afmgb4h7n6yfsc36bv0r22072fw"))
-(define rust-anyhow-1.0.104
-  (crate "anyhow" "1.0.104" "0w34jjcm02p5g9kvsjr1dvpw0zs2fi7igi6nr414fkm5gz85w2ik"))
-(define rust-ar_archive_writer-0.5.3
-  (crate "ar_archive_writer" "0.5.3" "1dhjwdapx0ydx38r7aj8w4rqmdhxs1xl2zp8xala0h11zzg5ikbk"))
-(define rust-arbitrary-1.5.0
-  (crate "arbitrary" "1.5.0" "1v8a080p8z746w8pi7lggaa5791qpk1i9mb313sj2cy3gk4jmiiv"))
-(define rust-arg_enum_proc_macro-0.3.4
-  (crate "arg_enum_proc_macro" "0.3.4" "1sjdfd5a8j6r99cf0bpqrd6b160x9vz97y5rysycsjda358jms8a"))
-(define rust-arrayref-0.3.9
-  (crate "arrayref" "0.3.9" "1jzyp0nvp10dmahaq9a2rnxqdd5wxgbvp8xaibps3zai8c9fi8kn"))
-(define rust-arrayvec-0.7.8
-  (crate "arrayvec" "0.7.8" "0mmd8lrijbvg1qp4c5zis5dq41a3mjv2rb6bxkyj9kwaw2k6gyyk"))
-(define rust-as-raw-xcb-connection-1.0.1
-  (crate "as-raw-xcb-connection" "1.0.1" "0sqgpz2ymv5yx76r5j2npjq2x5qvvqnw0vrs35cyv30p3pfp2m8p"))
-(define rust-as-slice-0.2.1
-  (crate "as-slice" "0.2.1" "05j52y1ws8kir5zjxnl48ann0if79sb56p9nm76hvma01r7nnssi"))
-(define rust-ash-0.38.0-1.3.281
-  (crate "ash" "0.38.0+1.3.281" "0vx4yf689v1rc680jvy8bnysx5sgd8f33wnp2vqaizh0v0v4kd0b"))
-(define rust-ash-window-0.13.0
-  (crate "ash-window" "0.13.0" "10kcx905yglg2s06yxkrvfv3qw8z46w83pmb7dayb0fbc5xsdg2j"))
-(define rust-ashpd-0.11.1
-  (crate "ashpd" "0.11.1" "0fcw7n3ssbc8qvkaqbjrqs3sgjk4k0sfn50301ax2ky7anbzgwyj"))
-(define rust-ashpd-0.12.3
-  (crate "ashpd" "0.12.3" "0id6nyz8xhzwfb1mspd4k0isbdchzamqkl8fa3x0y36p7xpwi8rk"))
-(define rust-async-broadcast-0.7.2
-  (crate "async-broadcast" "0.7.2" "0ckmqcwyqwbl2cijk1y4r0vy60i89gqc86ijrxzz5f2m4yjqfnj3"))
-(define rust-async-channel-1.9.0
-  (crate "async-channel" "1.9.0" "0dbdlkzlncbibd3ij6y6jmvjd0cmdn48ydcfdpfhw09njd93r5c1"))
-(define rust-async-channel-2.5.0
-  (crate "async-channel" "2.5.0" "1ljq24ig8lgs2555myrrjighycpx2mbjgrm3q7lpa6rdsmnxjklj"))
-(define rust-async-compression-0.4.52
-  (crate "async-compression" "0.4.52" "0nclk4a8m84zjdlbvbmzyw01clg2zpavds4iv3yzy1mr1xs7mm3a"))
-(define rust-async-executor-1.14.1
-  (crate "async-executor" "1.14.1" "0dsg3ijjbrky4qas8g7nyjpryg1646jsfpmwjxi14df74q8s69pl"))
-(define rust-async-fs-2.2.0
-  (crate "async-fs" "2.2.0" "1iclw9970mh4ndb0bd68a6901kqy81rf9yypvf78pvaavy0scd40"))
-(define rust-async-global-executor-2.4.1
-  (crate "async-global-executor" "2.4.1" "1762s45cc134d38rrv0hyp41hv4iv6nmx59vswid2p0il8rvdc85"))
-(define rust-async-io-2.6.0
-  (crate "async-io" "2.6.0" "1z16s18bm4jxlmp6rif38mvn55442yd3wjvdfhvx4hkgxf7qlss5"))
-(define rust-async-lock-3.5.0
-  (crate "async-lock" "3.5.0" "0vwz6v1hnvaq1lx6dgwnsbv9mby3b515m1h8amfx4yh01l5p0xh8"))
-(define rust-async-net-2.0.0
-  (crate "async-net" "2.0.0" "1xyc5a5vcp3a7h1q2lbfh79wz8136dig4q4x6g4w2ws8ml7h0j5r"))
-(define rust-async-process-2.5.0
-  (crate "async-process" "2.5.0" "0xfswxmng6835hjlfhv7k0jrfp7czqxpfj6y2s5dsp05q0g94l7w"))
-(define rust-async-recursion-1.2.0
-  (crate "async-recursion" "1.2.0" "0lg4v61ax9wnfb5b5m11895qddcmq5a6h57cihf6n9mdp89br2jg"))
-(define rust-async-signal-0.2.14
-  (crate "async-signal" "0.2.14" "11dlpb15la279r5cazppy18gbk2xzzl60ahzl19m1kr0l2psmdaj"))
-(define rust-async-std-1.13.2
-  (crate "async-std" "1.13.2" "0fzrg0ainb5h87z0q09adnrnspc13132wqq3fhmyaymn9ad0g3ic"))
-(define rust-async-task-4.7.1
-  (crate "async-task" "4.7.1" "1pp3avr4ri2nbh7s6y9ws0397nkx1zymmcr14sq761ljarh3axcb"))
-(define rust-async-trait-0.1.92
-  (crate "async-trait" "0.1.92" "0rqn5iga1hlv2lm8xzav1zhar46jb4dvx89i6kfv93kb53maxxl2"))
-(define rust-async_zip-0.0.17
-  (crate "async_zip" "0.0.17" "0lkvp0ggkk9dvqakdhp93phxb7ajcfsh95ma015yvm9k50jzgf80"))
-(define rust-atomic-0.5.3
-  (crate "atomic" "0.5.3" "1fhc6ayg4d5vw1cibqwff15d45fc5448zg9i3drk42k5phsdp6y5"))
-(define rust-atomic-waker-1.1.2
-  (crate "atomic-waker" "1.1.2" "1h5av1lw56m0jf0fd3bchxq8a30xv0b4wv8s4zkp4s0i7mfvs18m"))
-(define rust-autocfg-1.5.1
-  (crate "autocfg" "1.5.1" "0lqasy5i30flcgih1b50kvsk6z32g09r1q4ql7q81pj6228jy0zj"))
-(define rust-av-scenechange-0.14.1
-  (crate "av-scenechange" "0.14.1" "1543y7riwcy4mmsgcalxcm3bnb41hvwiqiz774nbj68fq9vischg"))
-(define rust-av1-grain-0.2.5
-  (crate "av1-grain" "0.2.5" "1y3p43i5xncbny0pfh8kw09am3l3mgyg82ln65r3f434443xpzcc"))
-(define rust-avif-serialize-0.8.9
-  (crate "avif-serialize" "0.8.9" "0f3z55fma6xmdj0a0x15vz91cqisiardrfgbjlwb2q6lyzjqy5z7"))
-(define rust-base64-0.22.1
-  (crate "base64" "0.22.1" "1imqzgh7bxcikp5vx3shqvw9j09g9ly0xr0jma0q66i52r7jbcvj"))
-(define rust-bindgen-0.71.1
-  (crate "bindgen" "0.71.1" "1cynz43s9xwjbd1y03rx9h37xs0isyl8bi6g6yngp35nglyvyn2z"))
-(define rust-bit-set-0.8.0
-  (crate "bit-set" "0.8.0" "18riaa10s6n59n39vix0cr7l2dgwdhcpbcm97x1xbyfp1q47x008"))
-(define rust-bit-vec-0.8.0
-  (crate "bit-vec" "0.8.0" "1xxa1s2cj291r7k1whbxq840jxvmdsq9xgh7bvrxl46m80fllxjy"))
-(define rust-bit_field-0.10.3
-  (crate "bit_field" "0.10.3" "1ikhbph4ap4w692c33r8bbv6yd2qxm1q3f64845grp1s6b3l0jqy"))
-(define rust-bitflags-1.3.2
-  (crate "bitflags" "1.3.2" "12ki6w8gn1ldq7yz9y680llwk5gmrhrzszaa17g1sbrw2r2qvwxy"))
-(define rust-bitflags-2.13.2
-  (crate "bitflags" "2.13.2" "01hbgjwvid66850fzi76mvn5f2bqycx6sf165ng1kfjqq9bl1v9x"))
-(define rust-bitstream-io-4.10.0
-  (crate "bitstream-io" "4.10.0" "07zxcy47l51k6vsxphzhgcnqyzl21pprs7212687c64s56z01zvy"))
-(define rust-blade-graphics-0.7.1
-  (crate "blade-graphics" "0.7.1" "1vcgnika17s94dsvahf143yrfx2fvwdslj20x27gbfcfp5rzn777"))
-(define rust-blade-macros-0.3.0
-  (crate "blade-macros" "0.3.0" "1jh9y5933kahribvzd6qc3gcvk0az2wwrsk721c69hplw8cj6517"))
-(define rust-blade-util-0.3.0
-  (crate "blade-util" "0.3.0" "0k4hqjsibz0gmzpzh4vj0kk0842xvqz433kggfhsf6q05jlf6srs"))
-(define rust-block-0.1.6
-  (crate "block" "0.1.6" "16k9jgll25pzsq14f244q22cdv0zb4bqacldg3kx6h89d7piz30d"))
-(define rust-block-buffer-0.10.4
-  (crate "block-buffer" "0.10.4" "0w9sa2ypmrsqqvc20nhwr75wbb5cjr4kkyhpjm1z1lv2kdicfy1h"))
-(define rust-block-buffer-0.12.1
-  (crate "block-buffer" "0.12.1" "1ak0cvmxz3yifqmzv6aba9606brsz7d5g3piv5xdcvjsx7dwgxnj"))
-(define rust-block-padding-0.3.3
-  (crate "block-padding" "0.3.3" "14wdad0r1qk5gmszxqd8cky6vx8qg7c153jv981mixzrpzmlz2d8"))
-(define rust-block2-0.6.2
-  (crate "block2" "0.6.2" "1xcfllzx6c3jc554nmb5qy6xmlkl6l6j5ib4wd11800n0n3rvsyd"))
-(define rust-blocking-1.7.0
-  (crate "blocking" "1.7.0" "1ykd0gj18r4v4b8r692hds5dsg2w6y9fq4nlxs2l7fbcvwll63m7"))
-(define rust-bstr-1.13.1
-  (crate "bstr" "1.13.1" "0pxyrnp8nb2iwcbadzird7xr2awrbjzi2jwqx47f4i22q531pcvb"))
-(define rust-built-0.8.1
-  (crate "built" "0.8.1" "1saq332pd6g3svvc9ah8myjpfvgqlzl2ksb1ypp3976kjcfm63jw"))
-(define rust-bumpalo-3.20.3
-  (crate "bumpalo" "3.20.3" "0jc6va3nwcqikm7chnpdv1s87my3gs2j7g1sc7g3k91brg3arxbj"))
-(define rust-bytemuck-1.25.2
-  (crate "bytemuck" "1.25.2" "15rp2m7j7kq22s76cbjwmrkd5r8lvacnm0mnrj013cnzka22x0wm"))
-(define rust-bytemuck_derive-1.12.1
-  (crate "bytemuck_derive" "1.12.1" "17379imphax0d85jzkc50acw746mw89hjbrxqxlw1wmnhxjqj7va"))
-(define rust-byteorder-1.5.0
-  (crate "byteorder" "1.5.0" "0jzncxyf404mwqdbspihyzpkndfgda450l0893pz5xj685cg5l0z"))
-(define rust-byteorder-lite-0.1.0
-  (crate "byteorder-lite" "0.1.0" "15alafmz4b9az56z6x7glcbcb6a8bfgyd109qc3bvx07zx4fj7wg"))
-(define rust-bytes-1.12.1
-  (crate "bytes" "1.12.1" "017z19dpg4f942h051m7bpnzcgng042hhcpd7bmg7bjjqd42lrgw"))
-(define rust-calloop-0.13.0
-  (crate "calloop" "0.13.0" "1v5zgidnhsyml403rzr7vm99f8q6r5bxq5gxyiqkr8lcapwa57dr"))
-(define rust-calloop-wayland-source-0.3.0
-  (crate "calloop-wayland-source" "0.3.0" "086x5mq16prrcwd9k6bw9an0sp8bj9l5daz4ziz5z4snf2c6m9lm"))
-(define rust-cbc-0.1.2
-  (crate "cbc" "0.1.2" "19l9y9ccv1ffg6876hshd123f2f8v7zbkc4nkckqycxf8fajmd96"))
-(define rust-cbindgen-0.28.0
-  (crate "cbindgen" "0.28.0" "1zyiaifg6mcd4wwhhbxk8adzhph6qz4wxzgagvg3ijp95j58dpga"))
-(define rust-cc-1.11.1
-  (crate "cc" "1.11.1" "0mgicvynjmz4xan2nbdi1dr62pjqb9kikml0j21qq3zzdw9aiwjg"))
-(define rust-cexpr-0.6.0
-  (crate "cexpr" "0.6.0" "0rl77bwhs5p979ih4r0202cn5jrfsrbgrksp40lkfz5vk1x3ib3g"))
-(define rust-cfg-if-1.0.5
-  (crate "cfg-if" "1.0.5" "0026j56901nzjraap3da0a8njw42j66zcxnn6s2s9aa5bcblhxjf"))
-(define rust-cfg_aliases-0.2.2
-  (crate "cfg_aliases" "0.2.2" "09rm3dv28gbsal7w6q76lg2nfyn8wp789ska9b8vr1w750xfhygh"))
-(define rust-cgl-0.3.2
-  (crate "cgl" "0.3.2" "1zs7skrsyrsm759vfy2cygkx52fx91b567a12bpaz1sf4d8hbv8c"))
-(define rust-chacha20-0.10.2
-  (crate "chacha20" "0.10.2" "01hvvbgdmqkcgs2s4f12s9wa5h2gbq05rqvypv61azlwd55mxhv5"))
-(define rust-cipher-0.4.4
-  (crate "cipher" "0.4.4" "1b9x9agg67xq5nq879z66ni4l08m6m3hqcshk37d4is4ysd3ngvp"))
-(define rust-clang-sys-1.9.1
-  (crate "clang-sys" "1.9.1" "12kqa3wywpxw3jk7n2dqz9fjm8p0qczx37y0yib3nwc0njkqnyhm"))
-(define rust-cocoa-0.25.0
-  (crate "cocoa" "0.25.0" "0g1pl5hq28arqmvsswf2ib7smj445miwa58qa7wrfvksz54h857n"))
-(define rust-cocoa-0.26.0
-  (crate "cocoa" "0.26.0" "1cnvpgf5kfms0ab622lmwyljmd94d7mi01knr7shhb3f18iri4zp"))
-(define rust-cocoa-foundation-0.1.2
-  (crate "cocoa-foundation" "0.1.2" "1xwk1khdyqw3dwsl15vr8p86shdcn544fr60ass8biz4nb5k8qlc"))
-(define rust-cocoa-foundation-0.2.0
-  (crate "cocoa-foundation" "0.2.0" "17b7a0a7zwfn3ifs6ps56fs3a5j6h0hlp260y6nba1xyhgxlah71"))
-(define rust-codespan-reporting-0.12.0
-  (crate "codespan-reporting" "0.12.0" "108g41xqzhr8fx8hlpy5qzmqq8ylldbj37wndkaqm34yy1d2wvgy"))
-(define rust-color_quant-1.1.0
-  (crate "color_quant" "1.1.0" "12q1n427h2bbmmm1mnglr57jaz2dj9apk0plcxw7nwqiai7qjyrx"))
-(define rust-command-fds-0.3.3
-  (crate "command-fds" "0.3.3" "0gs4x8sjawnxbp3j0ib9a14vpvnnl6bqp7fqvndcvz3r949baq0v"))
-(define rust-compression-codecs-0.4.47
-  (crate "compression-codecs" "0.4.47" "0hyskjyyhlhlljr0jar1f6g6kbyh6hwh4q74c190h42dz37l1y44"))
-(define rust-compression-core-0.4.34
-  (crate "compression-core" "0.4.34" "0sn32gnrjjwrvqm5aijqgrarar1vcdi7b1fjbn6vyd65xn4xmg9f"))
-(define rust-concurrent-queue-2.5.0
-  (crate "concurrent-queue" "2.5.0" "0wrr3mzq2ijdkxwndhf79k952cp4zkz35ray8hvsxl96xrx1k82c"))
-(define rust-const-oid-0.10.2
-  (crate "const-oid" "0.10.2" "0p7m286mp8aai4sa72g7ji6qm0d4ns8wg4i4b2hj9p9615zm3vx6"))
-(define rust-const-random-0.1.18
-  (crate "const-random" "0.1.18" "0n8kqz3y82ks8znvz1mxn3a9hadca3amzf33gmi6dc3lzs103q47"))
-(define rust-const-random-macro-0.1.16
-  (crate "const-random-macro" "0.1.16" "03iram4ijjjq9j5a7hbnmdngj8935wbsd0f5bm8yw2hblbr3kn7r"))
-(define rust-convert_case-0.4.0
-  (crate "convert_case" "0.4.0" "03jaf1wrsyqzcaah9jf8l1iznvdw5mlsca2qghhzr9w27sddaib2"))
-(define rust-core-foundation-0.10.0
-  (crate "core-foundation" "0.10.0" "0qscay14s2rwkg8nd8ljhiaf149hj8sfy95d70zssy64r3jp2lmm"))
-(define rust-core-foundation-0.9.4
-  (crate "core-foundation" "0.9.4" "13zvbbj07yk3b61b8fhwfzhy35535a583irf23vlcg59j7h9bqci"))
-(define rust-core-foundation-sys-0.8.7
-  (crate "core-foundation-sys" "0.8.7" "12w8j73lazxmr1z0h98hf3z623kl8ms7g07jch7n4p8f9nwlhdkp"))
-(define rust-core-graphics-0.23.2
-  (crate "core-graphics" "0.23.2" "10dhv3gk4kmbzl14xxkrhhky4fdp8h6nzff6h0019qgr6nz84xy0"))
-(define rust-core-graphics-0.24.0
-  (crate "core-graphics" "0.24.0" "1w8n8gqqm8swkanaibilqya8ryldp9fvf80byjxsaprn493a75gs"))
-(define rust-core-graphics-helmer-fork-0.24.0
-  (crate "core-graphics-helmer-fork" "0.24.0" "1mcwisxgzs287vbj76qhm0vr616dgv79k403lqvx9xp998sprsrj"))
-(define rust-core-graphics-types-0.1.3
-  (crate "core-graphics-types" "0.1.3" "1bxg8nxc8fk4kxnqyanhf36wq0zrjr552c58qy6733zn2ihhwfa5"))
-(define rust-core-graphics-types-0.2.0
-  (crate "core-graphics-types" "0.2.0" "1sqka1rz84lr3p69i1s6lggnpnznmrw4ngc5q76w9xhky80s2i1x"))
-(define rust-core-graphics2-0.4.1
-  (crate "core-graphics2" "0.4.1" "0k9kz027bnx6yq42z5w2qbpj0dpb0pp3mcpwffgvc1lqdfaq6iby"))
-(define rust-core-text-21.0.0
-  (crate "core-text" "21.0.0" "0c61m5fb389br06n13cw808q6cfiw7czs38559xh1m6bcrxj54x5"))
-(define rust-core-video-0.4.3
-  (crate "core-video" "0.4.3" "1vzqqil82ly4df680qw93g9w7i2z66cwphy3agnnn812pvap2pnl"))
-(define rust-core_detect-1.0.0
-  (crate "core_detect" "1.0.0" "0j0xp1j6f9lrp4ybylc3d0zdg8jq2hkmr1122qyil14qk84q13vz"))
-(define rust-core_maths-0.1.1
-  (crate "core_maths" "0.1.1" "0c0dv11ixxpc9bsx5xasvl98mb1dlprzcm6qq6ls3nsygw0mwx3p"))
-(define rust-cosmic-text-0.14.2
-  (crate "cosmic-text" "0.14.2" "1s5vph1f3z2f2708hmcw0i8pmphh8mmfpg55lhwcap4hm3asjins"))
-(define rust-cpufeatures-0.2.17
-  (crate "cpufeatures" "0.2.17" "10023dnnaghhdl70xcds12fsx2b966sxbxjq5sxs49mvxqw5ivar"))
-(define rust-cpufeatures-0.3.1
-  (crate "cpufeatures" "0.3.1" "0rkm1l35jy1z1yfg723fddsxc7vr0gc1hhfvc138hnqiwc58p8jw"))
-(define rust-crc32fast-1.5.4
-  (crate "crc32fast" "1.5.4" "017g8wq37261s7i21v2p7wacl8pr3p4why0d9dfd2dskdm0x75sz"))
-(define rust-crossbeam-deque-0.8.8
-  (crate "crossbeam-deque" "0.8.8" "06kip6ay8wcx5y4flg6wxbnyd44ay8308c8lf8y3iglh6v3kybv2"))
-(define rust-crossbeam-epoch-0.9.21
-  (crate "crossbeam-epoch" "0.9.21" "17bdp2linl0milbmx00s3bda3fphgc85im1gqwa3p6hhhw39hx6w"))
-(define rust-crossbeam-queue-0.3.14
-  (crate "crossbeam-queue" "0.3.14" "1bizbcv98anbink3gr3xhnb757d9vj6pcv7df2f4hybl5xvbvs03"))
-(define rust-crossbeam-utils-0.8.23
-  (crate "crossbeam-utils" "0.8.23" "1ilan2nw7fvka8hki80fr57a5dgd4mvcsvwq60437j6yvlwyw7m3"))
-(define rust-crunchy-0.2.4
-  (crate "crunchy" "0.2.4" "1mbp5navim2qr3x48lyvadqblcxc1dm0lqr0swrkkwy2qblvw3s6"))
-(define rust-crypto-common-0.1.7
-  (crate "crypto-common" "0.1.7" "02nn2rhfy7kvdkdjl457q2z0mklcvj9h662xrq6dzhfialh2kj3q"))
-(define rust-crypto-common-0.2.2
-  (crate "crypto-common" "0.2.2" "0lql5wjlrjkd3r0w32rwbgqfmgg84ms3h65ldnlckmkc3nb4qvnf"))
-(define rust-ctor-0.4.3
-  (crate "ctor" "0.4.3" "19p88hk42pyj9gyp29d57gfdh4y7sq0mg9x9glayc788yl1fh2gc"))
-(define rust-ctor-proc-macro-0.0.6
-  (crate "ctor-proc-macro" "0.0.6" "1hl2cxpv92322sqq972w257dc5d1dz6gqsnjx7c4bh1xw7vim4z2"))
-(define rust-data-url-0.3.2
-  (crate "data-url" "0.3.2" "0xl30jidc8s3kh2z3nvnn1nyzhbq5b2wpiqwzj9gjdrndk50n7my"))
-(define rust-deflate64-0.1.12
-  (crate "deflate64" "0.1.12" "1qj6a4y5b7jb6h8rgjj4b8lgi6b310hpn43fl6zn176z2rjr4sxc"))
-(define rust-derive_more-0.99.20
-  (crate "derive_more" "0.99.20" "0zvz94kbc5d4r817wni1l7xk8f289nhf73vqk677p5rxlij4pnvf"))
-(define rust-digest-0.10.7
-  (crate "digest" "0.10.7" "14p2n6ih29x81akj097lvz7wi9b6b9hvls0lwrv7b6xwyy0s5ncy"))
-(define rust-digest-0.11.3
-  (crate "digest" "0.11.3" "1hnmhd4rkybr11292w42pz9ppzx1h49glrhqg107k4s1b2xnvpgi"))
-(define rust-dirs-4.0.0
-  (crate "dirs" "4.0.0" "0n8020zl4f0frfnzvgb9agvk4a14i1kjz4daqnxkgslndwmaffna"))
-(define rust-dirs-5.0.1
-  (crate "dirs" "5.0.1" "0992xk5vx75b2x91nw9ssb51mpl8x73j9rxmpi96cryn0ffmmi24"))
-(define rust-dirs-sys-0.3.7
-  (crate "dirs-sys" "0.3.7" "19md1cnkazham8a6kh22v12d8hh3raqahfk6yb043vrjr68is78v"))
-(define rust-dirs-sys-0.4.1
-  (crate "dirs-sys" "0.4.1" "071jy0pvaad9lsa6mzawxrh7cmr7hsmsdxwzm7jzldfkrfjha3sj"))
-(define rust-dispatch-0.2.0
-  (crate "dispatch" "0.2.0" "0fwjr9b7582ic5689zxj8lf7zl94iklhlns3yivrnv8c9fxr635x"))
-(define rust-dispatch2-0.3.1
-  (crate "dispatch2" "0.3.1" "0f5xmnbzpaz1g80m27kd804p75nswh0ikb6wvqh4ba3x9rz3c3hy"))
-(define rust-displaydoc-0.2.7
-  (crate "displaydoc" "0.2.7" "1a42mwpgpwcqq2qqgkcc630wvsc2p2dkmgacjnclginwfz9js8y6"))
-(define rust-dlib-0.5.3
-  (crate "dlib" "0.5.3" "0jpr4smrwrv8xj70mz4ixnbc6ljm82f12z2mz1hv89056y3wv3mb"))
-(define rust-downcast-rs-1.2.1
-  (crate "downcast-rs" "1.2.1" "1lmrq383d1yszp7mg5i7i56b17x2lnn3kb91jwsq0zykvg2jbcvm"))
-(define rust-dtor-0.0.6
-  (crate "dtor" "0.0.6" "1a1k0rbvx6sbwjhf0bm1mfmy6c7vmdqm3w2xwbl2aq44sqmdzjwp"))
-(define rust-dtor-proc-macro-0.0.5
-  (crate "dtor-proc-macro" "0.0.5" "0m8hgbs9p3ay96aq8mlhghdvk8xgwg2pbx7p7kah0b01z4gy8m3l"))
-(define rust-dunce-1.0.5
-  (crate "dunce" "1.0.5" "04y8wwv3vvcqaqmqzssi6k0ii9gs6fpz96j5w9nky2ccsl23axwj"))
-(define rust-dwrote-0.11.5
-  (crate "dwrote" "0.11.5" "00jd7grrf7sz10y4zzipl0z8s27sbpirdl7fkjqwib1j4i9ka6wy"))
-(define rust-dyn-clone-1.0.20
-  (crate "dyn-clone" "1.0.20" "0m956cxcg8v2n8kmz6xs5zl13k2fak3zkapzfzzp7pxih6hix26h"))
-(define rust-either-1.19.0
-  (crate "either" "1.19.0" "1gjq21g0sgk5ylpj85zafcinwhh3jj91i6drhb4278vw2v17370f"))
-(define rust-embed-resource-3.0.12
-  (crate "embed-resource" "3.0.12" "17r4794rvg84pwqq02yalqvf85l0hjqh04pydqz6gckybrxlhs31"))
-(define rust-encoding_rs-0.8.44
-  (crate "encoding_rs" "0.8.44" "1xb9w64hibnyh68sfh9qll8h43k3716j5nzr0jdqdaq4wxsk29c9"))
-(define rust-endi-1.1.1
-  (crate "endi" "1.1.1" "16a0076dx41vgrzzimm9clcym77h732czqjiajanmzvd1i1y5dv6"))
-(define rust-enumflags2-0.7.12
-  (crate "enumflags2" "0.7.12" "1vzcskg4dca2jiflsfx1p9yw1fvgzcakcs7cpip0agl51ilgf9qh"))
-(define rust-enumflags2_derive-0.7.12
-  (crate "enumflags2_derive" "0.7.12" "09rqffacafl1b83ir55hrah9gza0x7pzjn6lr6jm76fzix6qmiv7"))
-(define rust-equator-0.4.2
-  (crate "equator" "0.4.2" "1z760z5r0haxjyakbqxvswrz9mq7c29arrivgq8y1zldhc9v44a7"))
-(define rust-equator-macro-0.4.2
-  (crate "equator-macro" "0.4.2" "1cqzx3cqn9rxln3a607xr54wippzff56zs5chqdf3z2bnks3rwj4"))
-(define rust-equivalent-1.0.3
-  (crate "equivalent" "1.0.3" "09nqddaa84mix3vil6r02jlmya3qypi4j45dhzb8yphf83ap9l80"))
-(define rust-erased-serde-0.4.11
-  (crate "erased-serde" "0.4.11" "0rjyc19057vbj7qaa726798a5zq63a339mjbkm2x6ckz2mlbcn8y"))
-(define rust-errno-0.3.14
-  (crate "errno" "0.3.14" "1szgccmh8vgryqyadg8xd58mnwwicf39zmin3bsn63df2wbbgjir"))
-(define rust-etagere-0.2.15
-  (crate "etagere" "0.2.15" "0hjkik00nl8bm9fafpzqkb6yah3mkphc21zpc159a5fwwncvz2gw"))
-(define rust-euclid-0.22.14
-  (crate "euclid" "0.22.14" "01ksjl4vb8ms89laswnjpld3z4n6c1s7qlqq0djx3imiwdjm787i"))
-(define rust-event-listener-2.5.3
-  (crate "event-listener" "2.5.3" "1q4w3pndc518crld6zsqvvpy9lkzwahp2zgza9kbzmmqh9gif1h2"))
-(define rust-event-listener-5.4.2
-  (crate "event-listener" "5.4.2" "1lk9sv7r07l58jk263s18896l55mx9jv0g1rm4hj2mpi3paas8ss"))
-(define rust-event-listener-strategy-0.5.4
-  (crate "event-listener-strategy" "0.5.4" "14rv18av8s7n8yixg38bxp5vg2qs394rl1w052by5npzmbgz7scb"))
-(define rust-exr-1.74.3
-  (crate "exr" "1.74.3" "1xn231fcww1pvf5gjn8f80yshswhf8sgkcnr8p395praf2zd0afb"))
-(define rust-fastrand-1.9.0
-  (crate "fastrand" "1.9.0" "1gh12m56265ihdbzh46bhh0jf74i197wm51jg1cw75q7ggi96475"))
-(define rust-fastrand-2.5.0
-  (crate "fastrand" "2.5.0" "08q2r30y62winysimnlpbvw9kiwn0rmdlidqlmzd6z90mv764z6s"))
-(define rust-fax-0.2.7
-  (crate "fax" "0.2.7" "0nmc65jjdym0f7lr4qm2q7awz1p5arm8i19wv1cmsg92cfahgwfa"))
-(define rust-fdeflate-0.3.7
-  (crate "fdeflate" "0.3.7" "130ga18vyxbb5idbgi07njymdaavvk6j08yh1dfarm294ssm6s0y"))
-(define rust-filedescriptor-0.8.3
-  (crate "filedescriptor" "0.8.3" "0bb8qqa9h9sj2mzf09yqxn260qkcqvmhmyrmdjvyxcn94knmh1z4"))
-(define rust-filetime-0.2.29
-  (crate "filetime" "0.2.29" "0napyyfccb26r7fyh9hg7ixrh4vph9h7y7k4iv1j19phqwrpla2w"))
-(define rust-find-msvc-tools-0.1.15
-  (crate "find-msvc-tools" "0.1.15" "0j5sh4lb7g8xh6kd67s0vz037ah5hlp9f2rbgbg9f41rqmf92rhw"))
-(define rust-flate2-1.1.11
-  (crate "flate2" "1.1.11" "1i44w2j9sw5lqvkrw0d0d3dnn84zrz3nzlsyyrq6wr3b68l4jvb2"))
-(define rust-float-cmp-0.9.0
-  (crate "float-cmp" "0.9.0" "1i799ksbq7fj9rm9m82g1yqgm6xi3jnrmylddmqknmksajylpplq"))
-(define rust-float-ord-0.3.2
-  (crate "float-ord" "0.3.2" "0gbvx6dzz8xvj38bj02cajpqd9p5syxjx9jyqpj8414amr4izs4c"))
-(define rust-float_next_after-1.0.0
-  (crate "float_next_after" "1.0.0" "1s7ikn69b394frihag05b0qcw9i9y04qanlhp5c8sjrw70bcrxwb"))
-(define rust-flume-0.11.1
-  (crate "flume" "0.11.1" "15ch0slxa8sqsi6c73a0ky6vdnh48q8cxjf7rksa3243m394s3ns"))
-(define rust-fnv-1.0.7
-  (crate "fnv" "1.0.7" "1hc2mcqha06aibcaza94vbi81j6pr9a1bbxrxjfhc91zin8yr7iz"))
-(define rust-foldhash-0.1.5
-  (crate "foldhash" "0.1.5" "1wisr1xlc2bj7hk4rgkcjkz3j2x4dhd1h9lwk7mj8p71qpdgbi6r"))
-(define rust-foldhash-0.2.0
-  (crate "foldhash" "0.2.0" "1nvgylb099s11xpfm1kn2wcsql080nqmnhj1l25bp3r2b35j9kkp"))
-(define rust-font-types-0.12.7
-  (crate "font-types" "0.12.7" "0pgks8skqzhjidjpxkyp154rl335pjf7yf6ydh17jjj6h7byjnl3"))
-(define rust-fontconfig-parser-0.5.8
-  (crate "fontconfig-parser" "0.5.8" "0ijnbzg31sl6v49g7q2l7sl76hjj8z0hvlsz77cdvm029vi77ixv"))
-(define rust-fontdb-0.16.2
-  (crate "fontdb" "0.16.2" "1hqxv3jnh06s4bflrwnb39mi3knllfs4mxm44vsn0gzgqch90adh"))
-(define rust-fontdb-0.23.0
-  (crate "fontdb" "0.23.0" "0199vry9x8zn9ix4x4rqvv53dy2ryhy68l53jwr580hj7ndphzj5"))
-(define rust-foreign-types-0.5.0
-  (crate "foreign-types" "0.5.0" "0rfr2zfxnx9rz3292z5nyk8qs2iirznn5ff3rd4vgdwza6mdjdyp"))
-(define rust-foreign-types-macros-0.2.4
-  (crate "foreign-types-macros" "0.2.4" "09aj8wl64pqvm6ix1800khgypdhinwinxhfv7n3yn5b95qc90lga"))
-(define rust-foreign-types-shared-0.3.1
-  (crate "foreign-types-shared" "0.3.1" "0nykdvv41a3d4py61bylmlwjhhvdm0b3bcj9vxhqgxaxnp5ik6ma"))
-(define rust-form_urlencoded-1.2.2
-  (crate "form_urlencoded" "1.2.2" "1kqzb2qn608rxl3dws04zahcklpplkd5r1vpabwga5l50d2v4k6b"))
-(define rust-freetype-sys-0.20.1
-  (crate "freetype-sys" "0.20.1" "0d5iiv95ap3lwy7b0hxbc8caa9ng1fg3wlwrvb7rld39jrdxqzhf"))
-(define rust-futf-0.1.5
-  (crate "futf" "0.1.5" "0hvqk2r7v4fnc34hvc3vkri89gn52d5m9ihygmwn75l1hhp0whnz"))
-(define rust-futures-0.3.34
-  (crate "futures" "0.3.34" "18yhwmbdalhz2z9i1vm10hy2v0cfm82dkgcb6vr2msxazfix4ccs"))
-(define rust-futures-channel-0.3.34
-  (crate "futures-channel" "0.3.34" "1i4kwcanpaphn1ax62ci3nx176kglxqx0gnhzqpqdr1rkpbf7ydi"))
-(define rust-futures-core-0.3.34
-  (crate "futures-core" "0.3.34" "0pjgv4fx0np6hrs5sz5a2phabwv0z70yr51v03injbi44bjrkmlj"))
-(define rust-futures-executor-0.3.34
-  (crate "futures-executor" "0.3.34" "0cjl3y7jgg60wwb96ikxj23r6q91ylvx8v675yychv1w3b7lf6q3"))
-(define rust-futures-io-0.3.34
-  (crate "futures-io" "0.3.34" "1v9z6wj92ra18kpv0xig21hgpzrvcwmcr8fszyzh64yyay0zmh2k"))
-(define rust-futures-lite-1.13.0
-  (crate "futures-lite" "1.13.0" "1kkbqhaib68nzmys2dc8j9fl2bwzf2s91jfk13lb2q3nwhfdbaa9"))
-(define rust-futures-lite-2.6.1
-  (crate "futures-lite" "2.6.1" "1ba4dg26sc168vf60b1a23dv1d8rcf3v3ykz2psb7q70kxh113pp"))
-(define rust-futures-macro-0.3.34
-  (crate "futures-macro" "0.3.34" "0i0czvcvsqq4hrccibq2f23004si5z34zjwdxfmqhlrmm15nbfcz"))
-(define rust-futures-sink-0.3.34
-  (crate "futures-sink" "0.3.34" "07cfvrgc3vxk6sw5g8a8dnrm1mzg6d5mwy08ywa1sgyhyxml4i0r"))
-(define rust-futures-task-0.3.34
-  (crate "futures-task" "0.3.34" "1zfilqs8nwlfqz4prk7ihvpp5avvzins87ibzlxzq5fhs7ipshfd"))
-(define rust-futures-util-0.3.34
-  (crate "futures-util" "0.3.34" "1g3r9ghzq7c2fh34lis43i72xavk9p84npgfwgb5vfpqcwjajl0d"))
-(define rust-generic-array-0.14.7
-  (crate "generic-array" "0.14.7" "16lyyrzrljfq424c3n8kfwkqihlimmsg5nhshbbp48np3yjrqr45"))
-(define rust-gethostname-1.1.0
-  (crate "gethostname" "1.1.0" "1n6bj9gh503ggjblfjcai96gmxynxsrykaynljlrfdra34q95m0v"))
-(define rust-getrandom-0.2.17
-  (crate "getrandom" "0.2.17" "1l2ac6jfj9xhpjjgmcx6s1x89bbnw9x6j9258yy6xjkzpq0bqapz"))
-(define rust-getrandom-0.3.4
-  (crate "getrandom" "0.3.4" "1zbpvpicry9lrbjmkd4msgj3ihff1q92i334chk7pzf46xffz7c9"))
-(define rust-getrandom-0.4.3
-  (crate "getrandom" "0.4.3" "16b0202fkdwz3p2cyll82dv24ljbn0wiyy829v4lwbkbflyqh3ih"))
-(define rust-gif-0.14.2
-  (crate "gif" "0.14.2" "0n81js7vlb9bwrjb765sicza3k0vrihjddrgm2mvpbfr272gr37f"))
-(define rust-glob-0.3.4
-  (crate "glob" "0.3.4" "02zby4rsidb2ksrnysyrsaap7rk6wpp7vl5chflndafhl5gaisz4"))
-(define rust-globset-0.4.21
-  (crate "globset" "0.4.21" "0bfxrhhdzywx65q07slbasf2i6sazya9bg7brwjaih1daa2hv2zr"))
-(define rust-gloo-timers-0.3.0
-  (crate "gloo-timers" "0.3.0" "1519157n7xppkk6pdw5w52vy1llzn5iljkqd7q1h5609jv7l7cdv"))
-(define rust-glow-0.16.0
-  (crate "glow" "0.16.0" "022z12nlyfpy36fvp2szq792xix1xbgkznpmicf1c404sxhfmrf5"))
-(define rust-gpu-alloc-0.6.2
-  (crate "gpu-alloc" "0.6.2" "1ybbd5p0m8cbzl7rl6kpmjbxy369rmm75pn611axy0kgfar09ks5"))
-(define rust-gpu-alloc-ash-0.7.1
-  (crate "gpu-alloc-ash" "0.7.1" "18ak5zg68jiplk4p60skqsj9aqsrcr3rw6bnqw9zippnivq5cdv4"))
-(define rust-gpu-alloc-types-0.3.1
-  (crate "gpu-alloc-types" "0.3.1" "0n3h4arigd24d2naynhffdhir9x43ir3xzp4q8kda3ni9lbfvfxj"))
-(define rust-gpui-0.2.2
-  (crate "gpui" "0.2.2" "01z7pq1ad33zd7whbmdj086r76vnnfhia29k89pknwpclv7lb6wp"))
-(define rust-gpui-macros-0.2.2
-  (crate "gpui-macros" "0.2.2" "1girj2kj6h4hgjgv9wbs2m2cghqpfs9pdd5nqx572n987bb2vc5w"))
-(define rust-gpui_collections-0.2.2
-  (crate "gpui_collections" "0.2.2" "071m88rh9hwcdrw0akkksp1vbi9bxzdrd3f09dzfj6r07mnxqfdf"))
-(define rust-gpui_derive_refineable-0.2.2
-  (crate "gpui_derive_refineable" "0.2.2" "0r66ry1lywr30mq6bs5jyay6iy4alfy6cnynid3v71qs6isf2kb4"))
-(define rust-gpui_http_client-0.2.2
-  (crate "gpui_http_client" "0.2.2" "0pikj3v4dxl7h7wqwb4l12lhwqa872ms103ra116lpicdl52p0i3"))
-(define rust-gpui_media-0.2.2
-  (crate "gpui_media" "0.2.2" "0jzi22c54jqkq7jqxmcmrjn5b8lpczn7ward2cjifdqpmq98kjq5"))
-(define rust-gpui_perf-0.2.2
-  (crate "gpui_perf" "0.2.2" "0xvdm0vi0z3nccd1pd17cia202hm66vz8rz8618rb67mvihhj2pl"))
-(define rust-gpui_refineable-0.2.2
-  (crate "gpui_refineable" "0.2.2" "0hb61pv8bfd0ni8ivz0mw55dnqds1x0i8mpf38c6i52f4ncv1315"))
-(define rust-gpui_semantic_version-0.2.2
-  (crate "gpui_semantic_version" "0.2.2" "0dcfji1xg2qrkmdpag9jnlnvqgwl6jjn0rdgnf7m55dnyzpla7i0"))
-(define rust-gpui_sum_tree-0.2.2
-  (crate "gpui_sum_tree" "0.2.2" "1aczajdsapizpf23cvkqn97hkkw8qmbb600j7nhszbrzazfvxwz4"))
-(define rust-gpui_util-0.2.2
-  (crate "gpui_util" "0.2.2" "1hq5bs843zd7mv09m4l5s26vrg2imawr0fgqkbg29r9sj0jymyk8"))
-(define rust-gpui_util_macros-0.2.2
-  (crate "gpui_util_macros" "0.2.2" "08hs9wiyl5a00p46v10c07d6wl62risxvm1gx0hpxfbzyiggca1c"))
-(define rust-grid-0.18.0
-  (crate "grid" "0.18.0" "10cnvyr90rf6w1piihi1jq3njqdb9q3n60n7bdknvsi5hb61w40j"))
-(define rust-h2-0.4.20
-  (crate "h2" "0.4.20" "0661bxispf05ik0idbjlyabwyqpngh9c2r6avaqkzann68104abx"))
-(define rust-half-2.7.1
-  (crate "half" "2.7.1" "0jyq42xfa6sghc397mx84av7fayd4xfxr4jahsqv90lmjr5xi8kf"))
-(define rust-hashbrown-0.14.5
-  (crate "hashbrown" "0.14.5" "1wa1vy1xs3mp11bn3z9dv0jricgr6a2j0zkf1g19yz3vw4il89z5"))
-(define rust-hashbrown-0.15.5
-  (crate "hashbrown" "0.15.5" "189qaczmjxnikm9db748xyhiw04kpmhm9xj9k9hg0sgx7pjwyacj"))
-(define rust-hashbrown-0.17.1
-  (crate "hashbrown" "0.17.1" "0jmqz7i4yl6cm7rbn0i2ffkfrmwi6xkmzkaldr2v8bcsx2v0jngd"))
-(define rust-heck-0.4.1
-  (crate "heck" "0.4.1" "1a7mqsnycv5z4z5vnv1k34548jzmc0ajic7c1j8jsaspnhw5ql4m"))
-(define rust-heck-0.5.0
-  (crate "heck" "0.5.0" "1sjmpsdl8czyh9ywl3qcsfsq9a307dg4ni2vnlwgnzzqhc4y0113"))
-(define rust-hermit-abi-0.5.3
-  (crate "hermit-abi" "0.5.3" "115jzi6ixx2nhkzbr2ijj36634agz32n6ilz2rg7vk5s1vb94xg1"))
-(define rust-hex-0.4.3
-  (crate "hex" "0.4.3" "0w1a4davm1lgzpamwnba907aysmlrnygbqmfis2mqjx5m552a93z"))
-(define rust-hexf-parse-0.2.1
-  (crate "hexf-parse" "0.2.1" "1pr3a3sk66ddxdyxdxac7q6qaqjcn28v0njy22ghdpfn78l8d9nz"))
-(define rust-hidden-trait-0.1.2
-  (crate "hidden-trait" "0.1.2" "1pv0i3h0qn0hn0q8r655jv9wn2ckpsgx1rq7xjdq9b1q0j2rxvb8"))
-(define rust-hkdf-0.12.4
-  (crate "hkdf" "0.12.4" "1xxxzcarz151p1b858yn5skmhyrvn8fs4ivx5km3i1kjmnr8wpvv"))
-(define rust-hmac-0.12.1
-  (crate "hmac" "0.12.1" "0pmbr069sfg76z7wsssfk5ddcqd9ncp79fyz6zcm6yn115yc6jbc"))
-(define rust-home-0.5.12
-  (crate "home" "0.5.12" "13bjyzgx6q9srnfvl43dvmhn93qc8mh5w7cylk2g13sj3i3pyqnc"))
-(define rust-http-1.5.0
-  (crate "http" "1.5.0" "1q4wpz5hb4cf37g3jrdyffrpa6ngidmd9wrfph92fddzprl3b3ci"))
-(define rust-http-body-1.1.0
-  (crate "http-body" "1.1.0" "0b5wj0rdj8p03k20q8x0jy249amg2db919fnmh7zcrgf2clqyana"))
-(define rust-http-body-util-0.1.5
-  (crate "http-body-util" "0.1.5" "07773iilap808wjp6vywlq15zkgwnswqzrv270zxvg2z9biry5i3"))
-(define rust-httparse-1.10.1
-  (crate "httparse" "1.10.1" "11ycd554bw2dkgw0q61xsa7a4jn1wb1xbfacmf3dbwsikvkkvgvd"))
-(define rust-hybrid-array-0.4.15
-  (crate "hybrid-array" "0.4.15" "05wsyp2n5gyf49qk51mblj9qyb15aay74m6fwmf74mpv1pqn9y17"))
-(define rust-hyper-1.12.0
-  (crate "hyper" "1.12.0" "173wg6msakx4lha6hxm9z0i1h3bw34q8fk0x57b7flf9li6k4gic"))
-(define rust-hyper-rustls-0.27.10
-  (crate "hyper-rustls" "0.27.10" "0lvz2bxpphyxmkws5ysfnydvsd0q4smbwgy254g92irjf1afda6z"))
-(define rust-hyper-util-0.1.21
-  (crate "hyper-util" "0.1.21" "1zwbrhqr9js6r7db3zd8bsmm6ys1i0abgkc7lyw2d4jgd2b3vh6x"))
-(define rust-icu_collections-2.4.0
-  (crate "icu_collections" "2.4.0" "1p85w6wf2bfyv1ffbgzln8n440nczv8kw9k3iknhy56kl110l2gy"))
-(define rust-icu_locale_core-2.4.0
-  (crate "icu_locale_core" "2.4.0" "1h44m6jbiff814wpllybb93010nhlb7l28acvk82hrbwq5brpli5"))
-(define rust-icu_normalizer-2.4.0
-  (crate "icu_normalizer" "2.4.0" "16f5hzppvfl136p72ikfdpblljnqjilan8vzzs3mq83g9263njj0"))
-(define rust-icu_normalizer_data-2.4.0
-  (crate "icu_normalizer_data" "2.4.0" "1g4cir7jji6wlv98rkmrqv5a3jz9n46f5jd0gyizfhblzf5hiw10"))
-(define rust-icu_properties-2.4.0
-  (crate "icu_properties" "2.4.0" "17rpgbrwk5963yaqizl2xq3przhxdi1qdgwqz1y8y5an3jckva1f"))
-(define rust-icu_properties_data-2.4.0
-  (crate "icu_properties_data" "2.4.0" "1kyzmmgm1jqlfcpqr3nc0wqvnhz7a21khq81wlzicayhhapjk3xr"))
-(define rust-icu_provider-2.4.0
-  (crate "icu_provider" "2.4.0" "05458rwq7bnw05z1b7dfiyda0wdr56rr0481izp8ii9naqqrjc21"))
-(define rust-idna-1.1.0
-  (crate "idna" "1.1.0" "1pp4n7hppm480zcx411dsv9wfibai00wbpgnjj4qj0xa7kr7a21v"))
-(define rust-idna_adapter-1.2.2
-  (crate "idna_adapter" "1.2.2" "0557p76l8hj35r9zn1yv7c6x1c0qbrsffmg80n0yy8361ly3fs6b"))
-(define rust-image-0.25.10
-  (crate "image" "0.25.10" "0131b9fsd5grxf3lchfs2ci0rg8ga2mh1ygai7k2zh1k8cwq1aw5"))
-(define rust-image-webp-0.2.4
-  (crate "image-webp" "0.2.4" "1hz814csyi9283vinzlkix6qpnd6hs3fkw7xl6z2zgm4w7rrypjj"))
-(define rust-imagesize-0.13.0
-  (crate "imagesize" "0.13.0" "11f26ac9zvbr7sjnsv2z9jd3ryaz40pg8xch4ij1q1rg5zbjgkgd"))
-(define rust-imgref-1.12.3
-  (crate "imgref" "1.12.3" "0byjryn74gh3jxshkvmf81r7hnphspr67aah3m22zj54xajb0i3f"))
-(define rust-indexmap-2.14.2
-  (crate "indexmap" "2.14.2" "0mf86hbjkkcd82cpq683bblbs0zwa8ndla96ci8p1ji6bl7ijknc"))
-(define rust-inout-0.1.4
-  (crate "inout" "0.1.4" "008xfl1jn9rxsq19phnhbimccf4p64880jmnpg59wqi07kk117w7"))
-(define rust-instant-0.1.13
-  (crate "instant" "0.1.13" "08h27kzvb5jw74mh0ajv0nv9ggwvgqm8ynjsn2sa9jsks4cjh970"))
-(define rust-interpolate_name-0.2.4
-  (crate "interpolate_name" "0.2.4" "0q7s5mrfkx4p56dl8q9zq71y1ysdj4shh6f28qf9gly35l21jj63"))
-(define rust-inventory-0.3.25
-  (crate "inventory" "0.3.25" "0z6d57l6pkan8sdr4j87fwk1rfih1awir6hwpy8ss8n84ql2ha39"))
-(define rust-io-surface-0.16.1
-  (crate "io-surface" "0.16.1" "13lbjvaayxs85biwpkcr53rhzq3kibaf8n7y42js62gccifqqjsm"))
-(define rust-ipnet-2.12.2
-  (crate "ipnet" "2.12.2" "1h65hw16sqv8nrrmqp0g8drv5wh98n4z7a4h1lb76n8d7js306br"))
-(define rust-is-docker-0.2.0
-  (crate "is-docker" "0.2.0" "1cyibrv6817cqcpf391m327ss40xlbik8wxcv5h9pj9byhksx2wj"))
-(define rust-is-wsl-0.4.0
-  (crate "is-wsl" "0.4.0" "19bs5pq221d4bknnwiqqkqrnsx2in0fsk8fylxm1747iim4hjdhp"))
-(define rust-itertools-0.13.0
-  (crate "itertools" "0.13.0" "11hiy3qzl643zcigknclh446qb9zlg4dpdzfkjaa9q9fqpgyfgj1"))
-(define rust-itertools-0.14.0
-  (crate "itertools" "0.14.0" "118j6l1vs2mx65dqhwyssbrxpawa90886m3mzafdvyip41w2q69b"))
-(define rust-itoa-1.0.19
-  (crate "itoa" "1.0.19" "1m44ca6ihrapjhlfy1vn4zj207qyhizbv0c1iwgnr6ksc575gl9v"))
-(define rust-jobserver-0.1.35
-  (crate "jobserver" "0.1.35" "1crwgbb0wjph42ni4hqryjxlv4vlr0hyk81g76id9fpa56ysq00w"))
-(define rust-js-sys-0.3.107
-  (crate "js-sys" "0.3.107" "0fjdb084avbdxqb6n14lzszwn91wg88npasfym7bz2q9ahhrvh4d"))
-(define rust-khronos-egl-6.0.0
-  (crate "khronos-egl" "6.0.0" "0xnzdx0n1bil06xmh8i1x6dbxvk7kd2m70bbm6nw1qzc43r1vbka"))
-(define rust-kurbo-0.11.3
-  (crate "kurbo" "0.11.3" "0qiwq4l83fy9v5d1piywvh44yg9ha3rl04d2kdcqlvvm8jp2c866"))
-(define rust-kv-log-macro-1.0.7
-  (crate "kv-log-macro" "1.0.7" "0zwp4bxkkp87rl7xy2dain77z977rvcry1gmr5bssdbn541v7s0d"))
-(define rust-lazy_static-1.5.1
-  (crate "lazy_static" "1.5.1" "1yqaqmp510xw2ldpw88mx9b5s5qj8flb4rw0wd9ks1zpk9j0z1r0"))
-(define rust-leak-0.1.2
-  (crate "leak" "0.1.2" "0wqcb8jlacif35j535gsqywx09dbmqcj5l57vw42jkqmy40hw45x"))
-(define rust-leaky-cow-0.1.1
-  (crate "leaky-cow" "0.1.1" "1z16b4gyfm7gydf4vpm7x6kwiiszcfx0ca5gm0jd67r48ifj5a20"))
-(define rust-lebe-0.5.3
-  (crate "lebe" "0.5.3" "1f459clndzzm35nyd15vj5dlasyagfasp7hcgl6lh2b658rs6ybs"))
-(define rust-libc-0.2.191
-  (crate "libc" "0.2.191" "02i4j7pjh129y92rijaia4576131fa2xjsii1dc3c1fnlv4qgkb5"))
-(define rust-libfuzzer-sys-0.4.13
-  (crate "libfuzzer-sys" "0.4.13" "1li9z5q55wi81zzyifm7a4rw1xvcclsnqsqbkbvrk86bl50jzzd9"))
-(define rust-libloading-0.8.9
-  (crate "libloading" "0.8.9" "0mfwxwjwi2cf0plxcd685yxzavlslz7xirss3b9cbrzyk4hv1i6p"))
-(define rust-libm-0.2.16
-  (crate "libm" "0.2.16" "10brh0a3qjmbzkr5mf5xqi887nhs5y9layvnki89ykz9xb1wxlmn"))
-(define rust-libredox-0.1.25
-  (crate "libredox" "0.1.25" "078pc91l1c1w9hbzi7m4ph5qjnk4i2zgsqhg4hx80yh7yv591zv1"))
-(define rust-linux-raw-sys-0.12.1
-  (crate "linux-raw-sys" "0.12.1" "0lwasljrqxjjfk9l2j8lyib1babh2qjlnhylqzl01nihw14nk9ij"))
-(define rust-linux-raw-sys-0.4.15
-  (crate "linux-raw-sys" "0.4.15" "1aq7r2g7786hyxhv40spzf2nhag5xbw2axxc1k8z5k1dsgdm4v6j"))
-(define rust-litemap-0.8.3
-  (crate "litemap" "0.8.3" "1bpgpj87560hmckh3875fbahpmfxbk4g8pzns84h3ykf3nfx3na7"))
-(define rust-lock_api-0.4.14
-  (crate "lock_api" "0.4.14" "0rg9mhx7vdpajfxvdjmgmlyrn20ligzqvn8ifmaz7dc79gkrjhr2"))
-(define rust-log-0.4.35
-  (crate "log" "0.4.35" "0p002750b2hab9bnlxxrvk5g9dvyaf23kiy39s6wsi6s29nzh5ax"))
-(define rust-loop9-0.1.5
-  (crate "loop9" "0.1.5" "0qphc1c0cbbx43pwm6isnwzwbg6nsxjh7jah04n1sg5h4p0qgbhg"))
-(define rust-lru-slab-0.1.3
-  (crate "lru-slab" "0.1.3" "07y5xcnggc4f2ki68kzj93aycjc5z0j8y7scs4f31zx66yc4cl20"))
-(define rust-lyon-1.0.19
-  (crate "lyon" "1.0.19" "1dz70iwmcjij4f30gqgcs3wivy72lkiv3cmqhy4ximmpxjyph1dx"))
-(define rust-lyon_algorithms-1.0.22
-  (crate "lyon_algorithms" "1.0.22" "01fqk44g9x392kmbv4kb1gkgc397kfnl24mz3x9wv2mlx3abk9pk"))
-(define rust-lyon_geom-1.0.20
-  (crate "lyon_geom" "1.0.20" "0gprjf619bfhwsqy2a2arx1wnaw44jcfap8ip5q5n2ywlimd4bfq"))
-(define rust-lyon_path-1.0.19
-  (crate "lyon_path" "1.0.19" "07k2v24lxiwqdwzlhcqf3l8jj7m69b73kkaxi3ncazwb8af3yijw"))
-(define rust-lyon_tessellation-1.0.23
-  (crate "lyon_tessellation" "1.0.23" "0nzppc5qfw29f8p3nhlfcp9a0mynsx4w9szpsiyr1p3h1rjp4j7x"))
-(define rust-mac-0.1.1
-  (crate "mac" "0.1.1" "194vc7vrshqff72rl56f9xgb0cazyl4jda7qsv31m5l6xx7hq7n4"))
-(define rust-malloc_buf-0.0.6
-  (crate "malloc_buf" "0.0.6" "1jqr77j89pwszv51fmnknzvd53i1nkmcr8rjrvcxhm4dx1zr1fv2"))
-(define rust-maybe-rayon-0.1.1
-  (crate "maybe-rayon" "0.1.1" "06cmvhj4n36459g327ng5dnj8d58qs472pv5ahlhm7ynxl6g78cf"))
-(define rust-md-5-0.10.6
-  (crate "md-5" "0.10.6" "1kvq5rnpm4fzwmyv5nmnxygdhhb2369888a06gdc9pxyrzh7x7nq"))
-(define rust-memchr-2.8.3
-  (crate "memchr" "2.8.3" "161xa63ipfanf8v3nb82xd5hqgydv55nzw59wyngqbz6alfaz2yg"))
-(define rust-memmap2-0.9.12
-  (crate "memmap2" "0.9.12" "0my158ms3h2akj1l8bzabwjz1v9jkw8klcg82am2bk4yb8as233b"))
-(define rust-memoffset-0.9.1
-  (crate "memoffset" "0.9.1" "12i17wh9a9plx869g7j4whf62xw68k5zd4k0k5nh6ys5mszid028"))
-(define rust-metal-0.29.0
-  (crate "metal" "0.29.0" "08gsqxnj0pq1018c8l4q0377i7gsrrqkrb7vyv0vfmlcdwlx7kvy"))
-(define rust-mime-0.3.18
-  (crate "mime" "0.3.18" "18dzfqp5gaza7lg8qqpq1xh83zw79b1al3zryaacy5w1krd8z16m"))
-(define rust-mime_guess-2.0.5
-  (crate "mime_guess" "2.0.5" "03jmg3yx6j39mg0kayf7w4a886dl3j15y8zs119zw01ccy74zi7p"))
-(define rust-minimal-lexical-0.2.1
-  (crate "minimal-lexical" "0.2.1" "16ppc5g84aijpri4jzv14rvcnslvlpphbszc7zzp6vfkddf4qdb8"))
-(define rust-miniz_oxide-0.8.9
-  (crate "miniz_oxide" "0.8.9" "05k3pdg8bjjzayq3rf0qhpirq9k37pxnasfn4arbs17phqn6m9qz"))
-(define rust-miniz_oxide-0.9.1
-  (crate "miniz_oxide" "0.9.1" "0k2bgjzk2sbsynpsv4wizwxbqp6vs7g08y5anbkrh3l6a15bqgxn"))
-(define rust-mint-0.5.9
-  (crate "mint" "0.5.9" "1zw5glv8z2d99c82jy2za97hh9p6377xmf4rbwz7jynsdfxfngg5"))
-(define rust-mio-1.2.4
-  (crate "mio" "1.2.4" "1vl6px9zy0pwhlwnw3cknsqyzkg8bcpiwiq4cgicf2fwgywfv20p"))
-(define rust-moxcms-0.8.1
-  (crate "moxcms" "0.8.1" "0jz4fd5f7pdn1rngqc96lxriqjkym1lswdhdbjr037s8p9ac31dv"))
-(define rust-multiversion-0.8.1
-  (crate "multiversion" "0.8.1" "0xihqpndds450pjz00qrry3jcwycjsw7jzp4py1myxfh46z6i2pb"))
-(define rust-multiversion-macros-0.8.1
-  (crate "multiversion-macros" "0.8.1" "1q9mrsfiimiv6m1yrimwa8vndhxhs0p8aif6hwfs5njf7qy0qpm0"))
-(define rust-multiversion_no_op-1.0.0
-  (crate "multiversion_no_op" "1.0.0" "03d2k7xk7vky38q48h08miw4jca34ymckggnrqggn60vlddvagvl"))
-(define rust-naga-25.0.1
-  (crate "naga" "25.0.1" "0cm69nrd703v5slnk397rd16k0wb7cf678xcz5brgr16bx27r5rb"))
-(define rust-nanorand-0.7.0
-  (crate "nanorand" "0.7.0" "1hr60b8zlfy7mxjcwx2wfmhpkx7vfr3v9x12shmv1c10b0y32lba"))
-(define rust-new_debug_unreachable-1.0.6
-  (crate "new_debug_unreachable" "1.0.6" "11phpf1mjxq6khk91yzcbd3ympm78m3ivl7xg6lg2c0lf66fy3k5"))
-(define rust-nix-0.29.0
-  (crate "nix" "0.29.0" "0ikvn7s9r2lrfdm3mx1h7nbfjvcc6s9vxdzw7j5xfkd2qdnp9qki"))
-(define rust-nix-0.31.3
-  (crate "nix" "0.31.3" "0gbwnjfny9rq9hl5bz4ry520n9rnfknna4bg88n66f7zx3yx486g"))
-(define rust-no_std_io2-0.9.4
-  (crate "no_std_io2" "0.9.4" "00w0ggkaaacbwiv4qw188ih5llmhf53qgp20wk5gdyrldldvv2j1"))
-(define rust-nom-7.1.3
-  (crate "nom" "7.1.3" "0jha9901wxam390jcf5pfa0qqfrgh8li787jx2ip0yk5b8y9hwyj"))
-(define rust-nom-8.0.0
-  (crate "nom" "8.0.0" "01cl5xng9d0gxf26h39m0l8lprgpa00fcc75ps1yzgbib1vn35yz"))
-(define rust-noop_proc_macro-0.3.0
-  (crate "noop_proc_macro" "0.3.0" "1j2v1c6ric4w9v12h34jghzmngcwmn0hll1ywly4h6lcm4rbnxh6"))
-(define rust-ntapi-0.4.3
-  (crate "ntapi" "0.4.3" "1bl0d73avwla7laa4pkqvzvifjbs0avg65w01zxjydgx3likbcy3"))
-(define rust-num-0.4.3
-  (crate "num" "0.4.3" "08yb2fc1psig7pkzaplm495yp7c30m4pykpkwmi5bxrgid705g9m"))
-(define rust-num-bigint-0.4.8
-  (crate "num-bigint" "0.4.8" "0ry3xjal8f5xhdinani268ci13h14mf7j4w0y1gflfzhw3knk7n8"))
-(define rust-num-bigint-dig-0.8.6
-  (crate "num-bigint-dig" "0.8.6" "1dxh3d8pzjc5k0kpy8gy2qhhhqs7zw8a7m564zl3ib8gcjkdsqg6"))
-(define rust-num-complex-0.4.6
-  (crate "num-complex" "0.4.6" "15cla16mnw12xzf5g041nxbjjm9m85hdgadd5dl5d0b30w9qmy3k"))
-(define rust-num-derive-0.4.2
-  (crate "num-derive" "0.4.2" "00p2am9ma8jgd2v6xpsz621wc7wbn1yqi71g15gc3h67m7qmafgd"))
-(define rust-num-integer-0.1.47
-  (crate "num-integer" "0.1.47" "02z1p3azy6p10n99skrab4a6hhfd4amf2i9gm8sxqd1p9dfxkqkw"))
-(define rust-num-iter-0.1.46
-  (crate "num-iter" "0.1.46" "12q4x0lp9l6bvsak1p5q24lvfzl99ak9vzmwhqbwksm1d6yh0a69"))
-(define rust-num-rational-0.4.2
-  (crate "num-rational" "0.4.2" "093qndy02817vpgcqjnj139im3jl7vkq4h68kykdqqh577d18ggq"))
-(define rust-num-traits-0.2.19
-  (crate "num-traits" "0.2.19" "0h984rhdkkqd4ny9cif7y2azl3xdfb7768hb9irhpsch4q3gq787"))
-(define rust-num_cpus-1.17.0
-  (crate "num_cpus" "1.17.0" "0fxjazlng4z8cgbmsvbzv411wrg7x3hyxdq8nxixgzjswyylppwi"))
-(define rust-objc-0.2.7
-  (crate "objc" "0.2.7" "1cbpf6kz8a244nn1qzl3xyhmp05gsg4n313c9m3567625d3innwi"))
-(define rust-objc-foundation-0.1.1
-  (crate "objc-foundation" "0.1.1" "1y9bwb3m5fdq7w7i4bnds067dhm4qxv4m1mbg9y61j9nkrjipp8s"))
-(define rust-objc2-0.6.5
-  (crate "objc2" "0.6.5" "1y41g7xhc3idzymsgr5vh414xzl43jp5cs39ayaaxpv78yyrp108"))
-(define rust-objc2-app-kit-0.3.2
-  (crate "objc2-app-kit" "0.3.2" "132ijwni8lsi8phq7wnmialkxp46zx998fns3zq5np0ya1mr77nl"))
-(define rust-objc2-core-foundation-0.3.2
-  (crate "objc2-core-foundation" "0.3.2" "0dnmg7606n4zifyjw4ff554xvjmi256cs8fpgpdmr91gckc0s61a"))
-(define rust-objc2-encode-4.1.0
-  (crate "objc2-encode" "4.1.0" "0cqckp4cpf68mxyc2zgnazj8klv0z395nsgbafa61cjgsyyan9gg"))
-(define rust-objc2-foundation-0.3.2
-  (crate "objc2-foundation" "0.3.2" "0wijkxzzvw2xkzssds3fj8279cbykz2rz9agxf6qh7y2agpsvq73"))
-(define rust-objc2-metal-0.3.2
-  (crate "objc2-metal" "0.3.2" "1527q158b8kagmdzlmvg782s5m7h15j62x1d2ps0ml0hd9vmy4m0"))
-(define rust-objc2-quartz-core-0.3.2
-  (crate "objc2-quartz-core" "0.3.2" "07vzaf6y1lk7zygkgvpp23mm19ipdm9yq8af22gvywdkaa23bhcn"))
-(define rust-objc2-ui-kit-0.3.2
-  (crate "objc2-ui-kit" "0.3.2" "08mbgqg8pffclyxpz2lr8r1fv8wn2i4m1k6bk1s5fvy06f766zfq"))
-(define rust-objc_exception-0.1.2
-  (crate "objc_exception" "0.1.2" "191cmdmlypp6piw67y4m8y5swlxf5w0ss8n1lk5xd2l1ans0z5xd"))
-(define rust-objc_id-0.1.1
-  (crate "objc_id" "0.1.1" "0fq71hnp2sdblaighjc82yrac3adfmqzhpr11irhvdfp9gdlsbf9"))
-(define rust-object-0.39.1
-  (crate "object" "0.39.1" "16vkcaamik55jd9f04g73hvgsm5w636gb4w06x3nafvsih4nqnif"))
-(define rust-once_cell-1.21.4
-  (crate "once_cell" "1.21.4" "0l1v676wf71kjg2khch4dphwh1jp3291ffiymr2mvy1kxd5kwz4z"))
-(define rust-oo7-0.5.0
-  (crate "oo7" "0.5.0" "17dq0cswgkj2m6pvjjr45yrcy3zihq2irzfqmx2ivbzy07a9sag3"))
-(define rust-open-5.4.5
-  (crate "open" "5.4.5" "15faqj24cm451lhj148x9xxhlji9ckqb4vl9sq269ljsfa78p34d"))
-(define rust-openssl-probe-0.2.2
-  (crate "openssl-probe" "0.2.2" "1c90103d6q2qqf2ihgd9dxhczi8kk97bg52fnzb2y4sl2x0nn0vy"))
-(define rust-option-ext-0.2.0
-  (crate "option-ext" "0.2.0" "0zbf7cx8ib99frnlanpyikm1bx8qn8x602sw1n7bg6p9x94lyx04"))
-(define rust-ordered-stream-0.2.0
-  (crate "ordered-stream" "0.2.0" "0l0xxp697q7wiix1gnfn66xsss7fdhfivl2k7bvpjs4i3lgb18ls"))
-(define rust-parking-2.2.1
-  (crate "parking" "2.2.1" "1fnfgmzkfpjd69v4j9x737b1k8pnn054bvzcn5dm3pkgq595d3gk"))
-(define rust-parking_lot-0.12.5
-  (crate "parking_lot" "0.12.5" "06jsqh9aqmc94j2rlm8gpccilqm6bskbd67zf6ypfc0f4m9p91ck"))
-(define rust-parking_lot_core-0.9.12
-  (crate "parking_lot_core" "0.9.12" "1hb4rggy70fwa1w9nb0svbyflzdc69h047482v2z3sx2hmcnh896"))
-(define rust-paste-1.0.15
-  (crate "paste" "1.0.15" "02pxffpdqkapy292harq6asfjvadgp1s005fip9ljfsn9fvxgh2p"))
-(define rust-pastey-0.1.1
-  (crate "pastey" "0.1.1" "1v389jkifv757903flrrps67dvc6q6giwlyx3xi33hcfjmgjxyrm"))
-(define rust-pathfinder_geometry-0.5.1
-  (crate "pathfinder_geometry" "0.5.1" "1lssir0s1cmrpzzrk49jm31nkssh2j715gryww6700x79rxpwyqb"))
-(define rust-pathfinder_simd-0.5.6
-  (crate "pathfinder_simd" "0.5.6" "0xsp8dh6pgrkm3anwdc4870bdv0sinaknvzk4gag2jif60606025"))
-(define rust-pbkdf2-0.12.2
-  (crate "pbkdf2" "0.12.2" "1wms79jh4flpy1zi8xdp4h8ccxv4d85adc6zjagknvppc5vnmvgq"))
-(define rust-percent-encoding-2.3.2
-  (crate "percent-encoding" "2.3.2" "083jv1ai930azvawz2khv7w73xh8mnylk7i578cifndjn5y64kwv"))
-(define rust-pico-args-0.5.0
-  (crate "pico-args" "0.5.0" "05d30pvxd6zlnkg2i3ilr5a70v3f3z2in18m67z25vinmykngqav"))
-(define rust-pin-project-1.1.13
-  (crate "pin-project" "1.1.13" "09091qp946lpmjz4yp0xil1r5v4hgc91fi19dg5csayhdqrv4ri4"))
-(define rust-pin-project-internal-1.1.13
-  (crate "pin-project-internal" "1.1.13" "12rzlh07i1sdgrvzj6wgkka5bjqyvbfsl8knq6qi7g16m7q9aqy9"))
-(define rust-pin-project-lite-0.2.17
-  (crate "pin-project-lite" "0.2.17" "1kfmwvs271si96zay4mm8887v5khw0c27jc9srw1a75ykvgj54x8"))
-(define rust-pin-utils-0.1.1
-  (crate "pin-utils" "0.1.1" "04x1i74a3dsihlfxigzlv4ywyqq31fv34a18573laqx27p3ydghk"))
-(define rust-piper-0.2.5
-  (crate "piper" "0.2.5" "1hd3j94mw5dwc457gs9ssb2r5b9iipywndf5srqx7pj38jd4fdf8"))
-(define rust-pkg-config-0.3.34
-  (crate "pkg-config" "0.3.34" "0j05h08nzg0q8rf6lzw7nry0b7kn7x97vc9n4hwrl52fqzxn9d7n"))
-(define rust-png-0.17.16
-  (crate "png" "0.17.16" "09kmkms9fmkbkarw0lnf0scqvjwwg3r7riddag0i3q39r0pil5c2"))
-(define rust-png-0.18.1
-  (crate "png" "0.18.1" "0qca282xp8a6d7mikxrwji3f52mjn4vnqxz2v9iz5adj665rnxk0"))
-(define rust-polling-3.11.0
-  (crate "polling" "3.11.0" "0622qfbxi3gb0ly2c99n3xawp878fkrd1sl83hjdhisx11cly3jx"))
-(define rust-pollster-0.2.5
-  (crate "pollster" "0.2.5" "1xzji8cq4crr795c7liy3ksd798sb45pjphbm8h5gvnp7whb18sx"))
-(define rust-postage-0.5.0
-  (crate "postage" "0.5.0" "1hfk0rdwgv87aicna89ak0y3kz9ayakn28vwjdvgnx18cccbcgxg"))
-(define rust-potential_utf-0.1.6
-  (crate "potential_utf" "0.1.6" "0qbndl2fpphq7mph41m11vaixs05xrh1s451wxlgap4fdnybjgnq"))
-(define rust-ppv-lite86-0.2.21
-  (crate "ppv-lite86" "0.2.21" "1abxx6qz5qnd43br1dd9b2savpihzjza8gb4fbzdql1gxp2f7sl5"))
-(define rust-prettyplease-0.2.37
-  (crate "prettyplease" "0.2.37" "0azn11i1kh0byabhsgab6kqs74zyrg69xkirzgqyhz6xmjnsi727"))
-(define rust-proc-macro-crate-3.5.0
-  (crate "proc-macro-crate" "3.5.0" "0kv1g1d1zjwxlgcaba2qlshzyy32j03xic8rskqlcr5mnblsfyz6"))
-(define rust-proc-macro-error-attr2-2.0.0
-  (crate "proc-macro-error-attr2" "2.0.0" "1ifzi763l7swl258d8ar4wbpxj4c9c2im7zy89avm6xv6vgl5pln"))
-(define rust-proc-macro-error2-2.0.1
-  (crate "proc-macro-error2" "2.0.1" "00lq21vgh7mvyx51nwxwf822w2fpww1x0z8z0q47p8705g2hbv0i"))
-(define rust-proc-macro2-1.0.107
-  (crate "proc-macro2" "1.0.107" "1nb6ly8kp65f724kj73ippc7lvydss24sm2vagk6qpklpg4pwplq"))
-(define rust-profiling-1.0.18
-  (crate "profiling" "1.0.18" "1xdwlvxlgy99nn1dra7arzinkc8lbqljvcwpq70m7g16lda5wn9x"))
-(define rust-profiling-procmacros-1.0.18
-  (crate "profiling-procmacros" "1.0.18" "1jxvqff6j1z7ph3qghw2xhv18z7pf6cs6cja6fwscjwsdfis9224"))
-(define rust-psm-0.1.32
-  (crate "psm" "0.1.32" "08m67yndaikwq8kviipphi50lfb25ph7j3gp4w3rffz6k52h7kad"))
-(define rust-pxfm-0.1.30
-  (crate "pxfm" "0.1.30" "1slrnbxd0nc96sny6x50ss1sm9ci0gig0fp1w8mw0pkgm5prapfm"))
-(define rust-qoi-0.4.1
-  (crate "qoi" "0.4.1" "00c0wkb112annn2wl72ixyd78mf56p4lxkhlmsggx65l3v3n8vbz"))
-(define rust-quick-error-2.0.1
-  (crate "quick-error" "2.0.1" "18z6r2rcjvvf8cn92xjhm2qc3jpd1ljvcbf12zv0k9p565gmb4x9"))
-(define rust-quick-xml-0.41.0
-  (crate "quick-xml" "0.41.0" "1h9y8zry34r3mxfd5vqfj50vvvzvri4kzbx5d657jkqjalg4aq76"))
-(define rust-quinn-0.11.12
-  (crate "quinn" "0.11.12" "04cxgnriz43bzhicvvjjj0sjv8l7rbdrrx9ywfkmbhl5j4zf4la0"))
-(define rust-quinn-proto-0.11.19
-  (crate "quinn-proto" "0.11.19" "1gpg5d36v8wrm1hjrrz8jfcyflcnv8lva2sxl4wh8kzyap50qx8f"))
-(define rust-quinn-udp-0.5.16
-  (crate "quinn-udp" "0.5.16" "05phk0ragk1655pxkbfvjxxb5i5b1i4nbjjnvgsdqfc6y5yr0rmg"))
-(define rust-quote-1.0.47
-  (crate "quote" "1.0.47" "00ch0yyzvv6s671ik0kcsbw8nigdaj2g3fr61kcahwx48aqlvgqz"))
-(define rust-r-efi-5.3.0
-  (crate "r-efi" "5.3.0" "03sbfm3g7myvzyylff6qaxk4z6fy76yv860yy66jiswc2m6b7kb9"))
-(define rust-r-efi-6.0.0
-  (crate "r-efi" "6.0.0" "1gyrl2k5fyzj9k7kchg2n296z5881lg7070msabid09asp3wkp7q"))
-(define rust-rand-0.10.3
-  (crate "rand" "0.10.3" "1bxlhj4m9zrgfgk1yirf0nny86izrngscydfx9w387n9rfbgpjb5"))
-(define rust-rand-0.8.8
-  (crate "rand" "0.8.8" "0k3d9psya5icpiylff1w1wjbnc3q4pb1953n1iw7gbr61ggcfn70"))
-(define rust-rand-0.9.5
-  (crate "rand" "0.9.5" "0hbvllk8g28mqjld6hqmckk69w296qpzg95whm3didsyg46ivvxr"))
-(define rust-rand_chacha-0.3.1
-  (crate "rand_chacha" "0.3.1" "123x2adin558xbhvqb8w4f6syjsdkmqff8cxwhmjacpsl1ihmhg6"))
-(define rust-rand_chacha-0.9.0
-  (crate "rand_chacha" "0.9.0" "1jr5ygix7r60pz0s1cv3ms1f6pd1i9pcdmnxzzhjc3zn3mgjn0nk"))
-(define rust-rand_core-0.10.1
-  (crate "rand_core" "0.10.1" "0s9wiacxrr100icl7i41308gcj85nlcclrc5jx1jd6p10dhigf33"))
-(define rust-rand_core-0.6.4
-  (crate "rand_core" "0.6.4" "0b4j2v4cb5krak1pv6kakv4sz6xcwbrmy2zckc32hsigbrwy82zc"))
-(define rust-rand_core-0.9.5
-  (crate "rand_core" "0.9.5" "0g6qc5r3f0hdmz9b11nripyp9qqrzb0xqk9piip8w8qlvqkcibvn"))
-(define rust-rand_pcg-0.10.2
-  (crate "rand_pcg" "0.10.2" "0sp817pvwb3d2nxb1ww1y0f8x3kc4w198j2iqvs742hwgq9z986a"))
-(define rust-rangemap-1.8.0
-  (crate "rangemap" "1.8.0" "0gdaws5kkg3md7z4w7ln4sf3jkz6n3f3xl5pfr6fngvla1dx24d6"))
-(define rust-rav1e-0.8.1
-  (crate "rav1e" "0.8.1" "0axk3ji3jmlr81svmsy5zvj8shmhpp8lz5nyghkq752xx1bdvdj3"))
-(define rust-ravif-0.13.0
-  (crate "ravif" "0.13.0" "0ifcpczxf6kcsqlky08vbjrvw9yd1m9mfszywxdhy6wpglci08z5"))
-(define rust-raw-window-handle-0.6.2
-  (crate "raw-window-handle" "0.6.2" "0ff5c648hncwx7hm2a8fqgqlbvbl4xawb6v3xxv9wkpjyrr5arr0"))
-(define rust-raw-window-metal-0.4.0
-  (crate "raw-window-metal" "0.4.0" "1w8g6s48jmgwskq07nyd0xms6sjar58z1a1gw7z9ifri5slcms3n"))
-(define rust-rayon-1.12.0
-  (crate "rayon" "1.12.0" "0vcj63xgnk72c30vdrak7dhl53snnaqv9x2faf1d94hzg1kb2fgv"))
-(define rust-rayon-core-1.13.0
-  (crate "rayon-core" "1.13.0" "14dbr0sq83a6lf1rfjq5xdpk5r6zgzvmzs5j6110vlv2007qpq92"))
-(define rust-read-fonts-0.41.0
-  (crate "read-fonts" "0.41.0" "02c7q458gz6cfsyryiss5w6xp0k8dl2n4l1gncjrhidg9mkpssh4"))
-(define rust-redox_syscall-0.2.16
-  (crate "redox_syscall" "0.2.16" "16jicm96kjyzm802cxdd1k9jmcph0db1a4lhslcnhjsvhp0mhnpv"))
-(define rust-redox_syscall-0.5.18
-  (crate "redox_syscall" "0.5.18" "0b9n38zsxylql36vybw18if68yc9jczxmbyzdwyhb9sifmag4azd"))
-(define rust-redox_users-0.4.6
-  (crate "redox_users" "0.4.6" "0hya2cxx6hxmjfxzv9n8rjl5igpychav7zfi1f81pz6i4krry05s"))
-(define rust-ref-cast-1.0.27
-  (crate "ref-cast" "1.0.27" "1hv5sf0j7b65gz2g57c3wp0fzr5r3807dywf6fap455lwjs0yi3y"))
-(define rust-ref-cast-impl-1.0.27
-  (crate "ref-cast-impl" "1.0.27" "0fnzgkvddgl9xs3884x5ypi9rd0dgc1p5vd1k4b74lw49ybdiv4j"))
-(define rust-regex-1.13.1
-  (crate "regex" "1.13.1" "1391a0a4100ik8cp7l577p3ip3haqq03rd9c5vdr7vcfdixj687h"))
-(define rust-regex-automata-0.4.18
-  (crate "regex-automata" "0.4.18" "1cml0rm0ssqfkibh9nh3gy4b6hbsbicj1rihpwf2a4v4nawm71dd"))
-(define rust-regex-syntax-0.8.11
-  (crate "regex-syntax" "0.8.11" "1m25h5q2wp976fb9gc3dsc9l99svcvd5cri8lncb51c46ydgzxnn"))
-(define rust-resvg-0.45.1
-  (crate "resvg" "0.45.1" "0hyz89wyasn0wdnpw7qy5iyl4xv3yx36hk3crb4h6pm5q2c8g4m8"))
-(define rust-rgb-0.8.53
-  (crate "rgb" "0.8.53" "1i0c55whln68zs6f5qqrkbg1mzai0p3qk1mwkwzdgr9i3dw4pcs7"))
-(define rust-ring-0.17.14
-  (crate "ring" "0.17.14" "1dw32gv19ccq4hsx3ribhpdzri1vnrlcfqb2vj41xn4l49n9ws54"))
-(define rust-roxmltree-0.20.0
-  (crate "roxmltree" "0.20.0" "15vw91ps91wkmmgy62khf9zb63bdinvm80957dascbsw7dwvc83c"))
-(define rust-rust-embed-8.13.0
-  (crate "rust-embed" "8.13.0" "08yc6prrqinqa8zrqrzhk69lq21rdypfdnhvpl0dw4d6nssabbqr"))
-(define rust-rust-embed-impl-8.13.0
-  (crate "rust-embed-impl" "8.13.0" "0ls0wdb877l7w9wghv00yfxfnisj4rny1gka0sgcbsklcgdazn70"))
-(define rust-rust-embed-utils-8.13.0
-  (crate "rust-embed-utils" "8.13.0" "12lnp9wvi5xhiyfdbbb9gqxiq20vpr60hbwjwmil4f5xg2xfi10d"))
-(define rust-rustc-hash-1.1.0
-  (crate "rustc-hash" "1.1.0" "1qkc5khrmv5pqi5l5ca9p5nl5hs742cagrndhbrlk3dhlrx3zm08"))
-(define rust-rustc-hash-2.1.3
-  (crate "rustc-hash" "2.1.3" "0bbla578m87qmf3yr55q49l97gxn7z0ha1dwqlnvwwc58ad7y7kb"))
-(define rust-rustc_version-0.4.1
-  (crate "rustc_version" "0.4.1" "14lvdsmr5si5qbqzrajgb6vfn69k0sfygrvfvr2mps26xwi3mjyg"))
-(define rust-rustix-0.38.44
-  (crate "rustix" "0.38.44" "0m61v0h15lf5rrnbjhcb9306bgqrhskrqv7i1n0939dsw8dbrdgx"))
-(define rust-rustix-1.1.6
-  (crate "rustix" "1.1.6" "1ajqv2zxmfms30hhvp5bdzpixn5xqnz7s871vpa56h99wm16grz5"))
-(define rust-rustls-0.23.46
-  (crate "rustls" "0.23.46" "1pwg7i8drr70374amj96952cils9mpwyijd5rx1mqdp9q3c3pqa8"))
-(define rust-rustls-native-certs-0.8.5
-  (crate "rustls-native-certs" "0.8.5" "1i5f916arhb4gc5qipmn6d8p81q87fv549xda969i7s6qxfky1sa"))
-(define rust-rustls-pemfile-2.2.0
-  (crate "rustls-pemfile" "2.2.0" "0l3f3mrfkgdjrava7ibwzgwc4h3dljw3pdkbsi9rkwz3zvji9qyw"))
-(define rust-rustls-pki-types-1.15.1
-  (crate "rustls-pki-types" "1.15.1" "15hakk4pcvr5278cazgw9qf2r7gdg09rg5pivbyd3dbyih12aj9g"))
-(define rust-rustls-webpki-0.103.16
-  (crate "rustls-webpki" "0.103.16" "10djm2f00xzi5qlbcfqjhhn2smk2h9aw8b4l74qncz4xsfvb2hs4"))
-(define rust-rustversion-1.0.23
-  (crate "rustversion" "1.0.23" "07z2a843fs80fawwflj9jwn49k9b0bd0dhhbvy0ar69vaxd72m6g"))
-(define rust-rustybuzz-0.14.1
-  (crate "rustybuzz" "0.14.1" "0p5mr2nk29448qf8rhq0lnmnpdcqwd3v4zmwlgj24wkpfy4czffg"))
-(define rust-rustybuzz-0.20.1
-  (crate "rustybuzz" "0.20.1" "00hp1gwykjfli258zs7lqg8p2zdh94dv2mw8zx7f73m0z2b7qg7x"))
-(define rust-ryu-1.0.23
-  (crate "ryu" "1.0.23" "0zs70sg00l2fb9jwrf6cbkdyscjs53anrvai2hf7npyyfi5blx4p"))
-(define rust-same-file-1.0.6
-  (crate "same-file" "1.0.6" "00h5j1w87dmhnvbv9l8bic3y7xxsnjmssvifw2ayvgx9mb1ivz4k"))
-(define rust-schannel-0.1.30
-  (crate "schannel" "0.1.30" "1das969n0zgq630zx56mcw062aky4g57fdl19nxl3s4f9m13rclw"))
-(define rust-schemars-1.2.3
-  (crate "schemars" "1.2.3" "0vnzz8smh3ixzy297898mwzfx0r5aadz2vxsbafwlxsaywk8hl5b"))
-(define rust-schemars_derive-1.2.3
-  (crate "schemars_derive" "1.2.3" "0sgwpzi91y6ibw7ns4wpqzgm9ddnmi7q8ia62am62zgsjhhakhz1"))
-(define rust-scoped-tls-1.0.1
-  (crate "scoped-tls" "1.0.1" "15524h04mafihcvfpgxd8f4bgc3k95aclz8grjkg9a0rxcvn9kz1"))
-(define rust-scopeguard-1.2.0
-  (crate "scopeguard" "1.2.0" "0jcz9sd47zlsgcnm1hdw0664krxwb5gczlif4qngj2aif8vky54l"))
-(define rust-screencapturekit-0.2.8
-  (crate "screencapturekit" "0.2.8" "0knn97lc4j304wdz8b4ssb4f8njqwqml0k7zwp7n0jf9gasywphs"))
-(define rust-screencapturekit-sys-0.2.8
-  (crate "screencapturekit-sys" "0.2.8" "0q2cvqmwh4hci33ypx7gwlg5xmkgxq9qh695h3h7z7nlyxbinh92"))
-(define rust-seahash-4.1.0
-  (crate "seahash" "4.1.0" "0sxsb64np6bvnppjz5hg4rqpnkczhsl8w8kf2a5lr1c08xppn40w"))
-(define rust-security-framework-3.7.0
-  (crate "security-framework" "3.7.0" "07fd0j29j8yczb3hd430vwz784lx9knb5xwbvqna1nbkbivvrx5p"))
-(define rust-security-framework-sys-2.17.0
-  (crate "security-framework-sys" "2.17.0" "1qr0w0y9iwvmv3hwg653q1igngnc5b74xcf0679cbv23z0fnkqkc"))
-(define rust-self_cell-1.3.0
-  (crate "self_cell" "1.3.0" "04x883z7awzkmn5lqb67n51xynrj2pa9339jgq4j1qa94yh2rd1a"))
-(define rust-semver-1.0.28
-  (crate "semver" "1.0.28" "1kaimrpy876bcgi8bfj0qqfxk77zm9iz2zhn1hp9hj685z854y4a"))
-(define rust-serde-1.0.229
-  (crate "serde" "1.0.229" "1fp04fq4a79bpm61xz1zy0pbz4kpc7d771zii1k3inmszq55jj21"))
-(define rust-serde_core-1.0.229
-  (crate "serde_core" "1.0.229" "0j1ajiha76h3nmd976il9li6975k121xa7jb39ws8n0yqp4s5p37"))
-(define rust-serde_derive-1.0.229
-  (crate "serde_derive" "1.0.229" "0j4k63i7h1bikxwz2c89ig0hrwbnl9mz1czn85xx99x5cc9dg9g7"))
-(define rust-serde_derive_internals-0.30.0
-  (crate "serde_derive_internals" "0.30.0" "1gd9n45na7n79nr54ghfl79rygkbzw2ybk3wyr6nlp83rry16lpq"))
-(define rust-serde_fmt-1.1.0
-  (crate "serde_fmt" "1.1.0" "1va5qd0a1k8d65wq6v9grgzj24c6y94zg913g835vfdki3r7ljbf"))
-(define rust-serde_json-1.0.154
-  (crate "serde_json" "1.0.154" "1mjby21g8fxhrsfp73yz8wg6n2f4h23ah0nczds409l53f5wrsg7"))
-(define rust-serde_json_lenient-0.2.4
-  (crate "serde_json_lenient" "0.2.4" "0h1mh5ncn58l9qndmzban8wkhl4pnyxqxha25fk5jaqdpybk00qf"))
-(define rust-serde_repr-0.1.21
-  (crate "serde_repr" "0.1.21" "01l987ghc17h1y9cf9xbzmcs77575mbrjf4ca2h70g15vqlicfwd"))
-(define rust-serde_spanned-0.6.9
-  (crate "serde_spanned" "0.6.9" "18vmxq6qfrm110caszxrzibjhy2s54n1g5w1bshxq9kjmz7y0hdz"))
-(define rust-serde_spanned-1.1.3
-  (crate "serde_spanned" "1.1.3" "10mpm2i41lx4jnp530fjk942myplsibbm302mx8cawcl6q57w64w"))
-(define rust-serde_urlencoded-0.7.1
-  (crate "serde_urlencoded" "0.7.1" "1zgklbdaysj3230xivihs30qi5vkhigg323a9m62k8jwf4a1qjfk"))
-(define rust-sha1_smol-1.0.1
-  (crate "sha1_smol" "1.0.1" "0pbh2xjfnzgblws3hims0ib5bphv7r5rfdpizyh51vnzvnribymv"))
-(define rust-sha2-0.10.9
-  (crate "sha2" "0.10.9" "10xjj843v31ghsksd9sl9y12qfc48157j1xpb8v1ml39jy0psl57"))
-(define rust-sha2-0.11.1
-  (crate "sha2" "0.11.1" "06ddr559jvwx17d7847l6i1g4hrlwy39j0yimjwwfskxxfdhdms7"))
-(define rust-shlex-1.3.0
-  (crate "shlex" "1.3.0" "0r1y6bv26c1scpxvhg2cabimrmwgbp4p3wy6syj9n0c4s3q2znhg"))
-(define rust-shlex-2.0.1
-  (crate "shlex" "2.0.1" "1fjsll1cd7d2bcpdij9kd6w62rpbc7qqzvydvs021vsmr1cxvypq"))
-(define rust-signal-hook-registry-1.4.8
-  (crate "signal-hook-registry" "1.4.8" "06vc7pmnki6lmxar3z31gkyg9cw7py5x9g7px70gy2hil75nkny4"))
-(define rust-simd-adler32-0.3.10
-  (crate "simd-adler32" "0.3.10" "1sny4y2qa5mwyxx5x59ln2p02vsdh92004njlslnx98imjc9489s"))
-(define rust-simd_helpers-0.1.0
-  (crate "simd_helpers" "0.1.0" "19idqicn9k4vhd04ifh2ff41wvna79zphdf2c81rlmpc7f3hz2cm"))
-(define rust-simdutf8-0.1.5
-  (crate "simdutf8" "0.1.5" "0vmpf7xaa0dnaikib5jlx6y4dxd3hxqz6l830qb079g7wcsgxag3"))
-(define rust-simplecss-0.2.2
-  (crate "simplecss" "0.2.2" "0v0kid7b2602kcka2x2xs9wwfjf8lnvpgpl8x287qg4wra1ni73s"))
-(define rust-siphasher-1.0.4
-  (crate "siphasher" "1.0.4" "0mn28y43123jdpskdn6r9wibmn066f7h30zkkqn88bd6hj8zxx1k"))
-(define rust-skrifa-0.44.0
-  (crate "skrifa" "0.44.0" "0s5a3fnyrxfv514vjjrn268lyhihmh5nb9fyv7cp4ghx5gbbg6l1"))
-(define rust-slab-0.4.12
-  (crate "slab" "0.4.12" "1xcwik6s6zbd3lf51kkrcicdq2j4c1fw0yjdai2apy9467i0sy8c"))
-(define rust-slotmap-1.1.1
-  (crate "slotmap" "1.1.1" "0f20xf53zaysx9ydzkwwqm6hsjyb8lj2j6amhg57iln3jcy8rmdx"))
-(define rust-smallvec-1.16.5
-  (crate "smallvec" "1.16.5" "0ipfizwpq0byhrl50xcizs2yf758mgccmq6s5nqk8wszi94hk4ql"))
-(define rust-smol-2.0.2
-  (crate "smol" "2.0.2" "17srgkyzswns43cnqcfb1846a8nsna47qj7wrk1rj8c9c3id6fx3"))
-(define rust-smol_str-0.2.2
-  (crate "smol_str" "0.2.2" "1bfylqf2vnqaglw58930vpxm2rfzji5gjp15a2c0kh8aj6v8ylyx"))
-(define rust-socket2-0.6.5
-  (crate "socket2" "0.6.5" "1m7diygswpvlpvrxd6ap169nxgax014jr8220nqlr3bzyb3y5lf3"))
-(define rust-spin-0.9.9
-  (crate "spin" "0.9.9" "03psal0vh1xdxp7agphw09p7kf50v3bj1zshijq1s5bkdd7jcqrp"))
-(define rust-spirv-0.3.0-sdk-1.3.268.0
-  (crate "spirv" "0.3.0+sdk-1.3.268.0" "0i3qj7yvvprai1s03dvll2gkfy8398nl64wvllkhaaa4vh1i197d"))
-(define rust-stable_deref_trait-1.2.1
-  (crate "stable_deref_trait" "1.2.1" "15h5h73ppqyhdhx6ywxfj88azmrpml9gl6zp3pwy2malqa6vxqkc"))
-(define rust-stacker-0.1.25
-  (crate "stacker" "0.1.25" "0rwrws4iyh8cay7pghzf2dy55pprwfn1vm805f5czfh6cza4jzvh"))
-(define rust-stacksafe-0.1.4
-  (crate "stacksafe" "0.1.4" "146hnfl56qm2gpwnwaxq3l5b8n6r82h69lxnvn3pwcaxjrr1370x"))
-(define rust-stacksafe-macro-0.1.4
-  (crate "stacksafe-macro" "0.1.4" "0sfv2wdm9b26xqmniim7sba4d02hldy11nbrx5iq2rs920s7a88p"))
-(define rust-static_assertions-1.1.0
-  (crate "static_assertions" "1.1.0" "0gsl6xmw10gvn3zs1rv99laj5ig7ylffnh71f9l34js4nr4r7sx2"))
-(define rust-strict-num-0.1.1
-  (crate "strict-num" "0.1.1" "0cb7l1vhb8zj90mzm8avlk815k40sql9515s865rqdrdfavvldv6"))
-(define rust-strum-0.26.3
-  (crate "strum" "0.26.3" "01lgl6jvrf4j28v5kmx9bp480ygf1nhvac8b4p7rcj9hxw50zv4g"))
-(define rust-strum-0.27.2
-  (crate "strum" "0.27.2" "1ksb9jssw4bg9kmv9nlgp2jqa4vnsa3y4q9zkppvl952q7vdc8xg"))
-(define rust-strum_macros-0.26.4
-  (crate "strum_macros" "0.26.4" "1gl1wmq24b8md527cpyd5bw9rkbqldd7k1h38kf5ajd2ln2ywssc"))
-(define rust-strum_macros-0.27.2
-  (crate "strum_macros" "0.27.2" "19xwikxma0yi70fxkcy1yxcv0ica8gf3jnh5gj936jza8lwcx5bn"))
-(define rust-subtle-2.6.1
-  (crate "subtle" "2.6.1" "14ijxaymghbl1p0wql9cib5zlwiina7kall6w7g89csprkgbvhhk"))
-(define rust-sval-2.22.0
-  (crate "sval" "2.22.0" "1invi54ghisdjlfbgy3q6233lpp28sdy6kx7wg2grq8zl96ja6xq"))
-(define rust-sval_buffer-2.22.0
-  (crate "sval_buffer" "2.22.0" "0vvsx18kd7qvjlm5lyxvmppg4q7fsp4xlb9ykssszzr250nkbgjh"))
-(define rust-sval_dynamic-2.22.0
-  (crate "sval_dynamic" "2.22.0" "0gap0m247frxjij02ryw9kkr2dq6ci5gjncicm2rm3cr7clwlj5h"))
-(define rust-sval_fmt-2.22.0
-  (crate "sval_fmt" "2.22.0" "1cjk1rrh9a5i4k23dv8c81iz8idq2xrppwhp69rnh1gq8278idg6"))
-(define rust-sval_json-2.22.0
-  (crate "sval_json" "2.22.0" "0jb0g50g8dznpvy1dvjdimizb6xa3jcpr7dbz9x98x3bpgb68xp1"))
-(define rust-sval_nested-2.22.0
-  (crate "sval_nested" "2.22.0" "0b0jxks2ii7mvjmr5fhsd4bkv5sq2xkckxpylwz1djm5kjb5kh07"))
-(define rust-sval_ref-2.22.0
-  (crate "sval_ref" "2.22.0" "1ws84nhm45ndywrk2dn62rh4pzyz58fza1qqas3mrj38yngv5mj2"))
-(define rust-sval_serde-2.22.0
-  (crate "sval_serde" "2.22.0" "0lsqw3jccqg6y43pblhyx2ywd2a1v2hs0369smj2gca2vjgfqcwg"))
-(define rust-svg_fmt-0.4.5
-  (crate "svg_fmt" "0.4.5" "1yq2kv7klg8s5k19prn36cprlnb811cqgwhy079g7lng651wr4q1"))
-(define rust-svgtypes-0.15.3
-  (crate "svgtypes" "0.15.3" "1z4a0b76ww6rf2c8zdapqh2a7r7kmmy7m957q5h5ics4zwgm9iv8"))
-(define rust-swash-0.2.10
-  (crate "swash" "0.2.10" "0bprhdib5yjpzvfb0nkqplwpm47di9qnh8ibhy416lr6v319j93c"))
-(define rust-syn-1.0.109
-  (crate "syn" "1.0.109" "0ds2if4600bd59wsv7jjgfkayfzy3hnazs394kz6zdkmna8l3dkj"))
-(define rust-syn-2.0.119
-  (crate "syn" "2.0.119" "15vjy620l91a3q4n4f4gzhnflmdr6pnm38v2m6cpk86i8av32a47"))
-(define rust-syn-3.0.9
-  (crate "syn" "3.0.9" "0fw28lhl90kls24q2h2sp39yjb0lsvz5cwh9fd3f3w3v9kp8v36p"))
-(define rust-sync_wrapper-1.0.2
-  (crate "sync_wrapper" "1.0.2" "0qvjyasd6w18mjg5xlaq5jgy84jsjfsvmnn12c13gypxbv75dwhb"))
-(define rust-synstructure-0.14.0
-  (crate "synstructure" "0.14.0" "00kzyz38xqvs7x1dn6rp64y0ckly4m7ywf3qk3qkgqfzs3nh85wh"))
-(define rust-sys-locale-0.3.2
-  (crate "sys-locale" "0.3.2" "1i16hq9mkwpzqvixjfy1ph4i2q5klgagjg4hibz6k894l2crmawf"))
-(define rust-sysinfo-0.31.4
-  (crate "sysinfo" "0.31.4" "1gm1d4pxwnx4gmh6kwawchv8v8djb7y0a3qvbsq09cwrhx7vwp9m"))
-(define rust-system-configuration-0.6.1
-  (crate "system-configuration" "0.6.1" "0sxslml567zm0v8g732314vd2gk9sd3k4xj22xk6p64xir29v1rw"))
-(define rust-system-configuration-sys-0.6.0
-  (crate "system-configuration-sys" "0.6.0" "1i5sqrmgy58l4704hibjbl36hclddglh73fb3wx95jnmrq81n7cf"))
-(define rust-taffy-0.9.0
-  (crate "taffy" "0.9.0" "0150r61qrajrx56q0rwl8bd9j3nam0n0g61s6mfqnmcxyw9msgm1"))
-(define rust-take-until-0.2.0
-  (crate "take-until" "0.2.0" "1fqbg8pk6yl03k9pr411h6fvj8ygknx42w3bwv0khyx6vyh6znwb"))
-(define rust-tao-core-video-sys-0.2.0
-  (crate "tao-core-video-sys" "0.2.0" "1xlqdcp7a5hni0jwc7yn7p4mij68f86ffv0cfb8did4w53mm0517"))
-(define rust-target-features-0.1.6
-  (crate "target-features" "0.1.6" "1m8y0ksw30gnkidjsjvnmhlpj165mgyj8ylk0lbs0qy4qprvkfy1"))
-(define rust-tempfile-3.27.0
-  (crate "tempfile" "3.27.0" "1gblhnyfjsbg9wjg194n89wrzah7jy3yzgnyzhp56f3v9jd7wj9j"))
-(define rust-tendril-0.4.3
-  (crate "tendril" "0.4.3" "1c3vip59sqwxn148i714nmkrvjzbk7105vj0h92s6r64bw614jnj"))
-(define rust-termcolor-1.4.1
-  (crate "termcolor" "1.4.1" "0mappjh3fj3p2nmrg4y7qv94rchwi9mzmgmfflr8p2awdj7lyy86"))
-(define rust-thiserror-1.0.69
-  (crate "thiserror" "1.0.69" "0lizjay08agcr5hs9yfzzj6axs53a2rgx070a1dsi3jpkcrzbamn"))
-(define rust-thiserror-2.0.21
-  (crate "thiserror" "2.0.21" "17hq1lh5dyr3bkc7zzjrbrp4qgkvhc48kgq1n5fdxkindaw2rr89"))
-(define rust-thiserror-impl-1.0.69
-  (crate "thiserror-impl" "1.0.69" "1h84fmn2nai41cxbhk6pqf46bxqq1b344v8yz089w1chzi76rvjg"))
-(define rust-thiserror-impl-2.0.21
-  (crate "thiserror-impl" "2.0.21" "0945n8agp7kg6n6b35yyjb4g5xv2q22vrw15h6jj1nw76a99flgy"))
-(define rust-tiff-0.11.3
-  (crate "tiff" "0.11.3" "0lmw68ic77sixk17r4rl2vsv00rqhja3yj2h9p5bcd9x6krylgxn"))
-(define rust-tiny-keccak-2.0.2
-  (crate "tiny-keccak" "2.0.2" "0dq2x0hjffmixgyf6xv9wgsbcxkd65ld0wrfqmagji8a829kg79c"))
-(define rust-tiny-skia-0.11.4
-  (crate "tiny-skia" "0.11.4" "1aq9gd4qh4418g8v08qzakqqggx8hl66qcianl3k5bjdsja37lc3"))
-(define rust-tiny-skia-path-0.11.4
-  (crate "tiny-skia-path" "0.11.4" "14ywbdfakvacl6rxxmzbnycplaxpc6i2linh2yqk0sp8qb07z7lw"))
-(define rust-tinystr-0.8.5
-  (crate "tinystr" "0.8.5" "06l0g5wy57a43bd1qvk92xd5dpnz3qk949vbx3wmhk8m73141j5b"))
-(define rust-tinyvec-1.13.3
-  (crate "tinyvec" "1.13.3" "1vphg4gnlpykjy5h4v7r8nl38ij4zr9qyh7qd34ddvwjyqaa6g7x"))
-(define rust-tokio-1.54.1
-  (crate "tokio" "1.54.1" "18wn0c3yvy6ld8yis0fw6rqkc4rwnmv5mav4fan6zljqa8jx6bxm"))
-(define rust-tokio-rustls-0.26.6
-  (crate "tokio-rustls" "0.26.6" "1nq5s413p6hkwrgjrpag1gi2mnjajpbszqhmhbpnkmfdq9w2dk69"))
-(define rust-tokio-socks-0.5.3
-  (crate "tokio-socks" "0.5.3" "05bndwj4lrycixadgs8gxpfzvhal52n79yy7y8snpqnvc27r9qm7"))
-(define rust-tokio-util-0.7.20
-  (crate "tokio-util" "0.7.20" "0jwagxx9vr940rlxjh0y7zimd2cbxqbjym5nz73byvm93d2wyr74"))
-(define rust-toml-0.8.23
-  (crate "toml" "0.8.23" "0qnkrq4lm2sdhp3l6cb6f26i8zbnhqb7mhbmksd550wxdfcyn6yw"))
-(define rust-toml-1.2.1-spec-1.1.0
-  (crate "toml" "1.2.1+spec-1.1.0" "1mrcyghs23p7g74w9lzpal3hd3jqp67ayswmy48wgniwhr8mqxfm"))
-(define rust-toml_datetime-0.6.11
-  (crate "toml_datetime" "0.6.11" "077ix2hb1dcya49hmi1avalwbixmrs75zgzb3b2i7g2gizwdmk92"))
-(define rust-toml_datetime-1.1.3-spec-1.1.0
-  (crate "toml_datetime" "1.1.3+spec-1.1.0" "0jbfdgsl0vw6f394cifqm62d8q0aiiima891v2i7c8fdhg42agqp"))
-(define rust-toml_edit-0.22.27
-  (crate "toml_edit" "0.22.27" "16l15xm40404asih8vyjvnka9g0xs9i4hfb6ry3ph9g419k8rzj1"))
-(define rust-toml_edit-0.25.19-spec-1.1.0
-  (crate "toml_edit" "0.25.19+spec-1.1.0" "063j62l4wsmxpvbiqfw89avzxhv79a3rz6ngw552dmsq9266hhyx"))
-(define rust-toml_parser-1.1.5-spec-1.1.0
-  (crate "toml_parser" "1.1.5+spec-1.1.0" "0k3lljyi4zxchdklaqghkwbl7wkd2ab1w16hlyniqzid0fl979ms"))
-(define rust-toml_write-0.1.2
-  (crate "toml_write" "0.1.2" "008qlhqlqvljp1gpp9rn5cqs74gwvdgbvs92wnpq8y3jlz4zi6ax"))
-(define rust-toml_writer-1.2.0-spec-1.1.0
-  (crate "toml_writer" "1.2.0+spec-1.1.0" "0fp14qh313y31pqddn2bhk01l7ygx70f9fxfhgpma77i01vvp780"))
-(define rust-tower-0.5.3
-  (crate "tower" "0.5.3" "1m5i3a2z1sgs8nnz1hgfq2nr4clpdmizlp1d9qsg358ma5iyzrgb"))
-(define rust-tower-layer-0.3.3
-  (crate "tower-layer" "0.3.3" "03kq92fdzxin51w8iqix06dcfgydyvx7yr6izjq0p626v9n2l70j"))
-(define rust-tower-service-0.3.3
-  (crate "tower-service" "0.3.3" "1hzfkvkci33ra94xjx64vv3pp0sq346w06fpkcdwjcid7zhvdycd"))
-(define rust-tracing-0.1.44
-  (crate "tracing" "0.1.44" "006ilqkg1lmfdh3xhg3z762izfwmxcvz0w7m4qx2qajbz9i1drv3"))
-(define rust-tracing-attributes-0.1.31
-  (crate "tracing-attributes" "0.1.31" "1np8d77shfvz0n7camx2bsf1qw0zg331lra0hxb4cdwnxjjwz43l"))
-(define rust-tracing-core-0.1.36
-  (crate "tracing-core" "0.1.36" "16mpbz6p8vd6j7sf925k9k8wzvm9vdfsjbynbmaxxyq6v7wwm5yv"))
-(define rust-try-lock-0.2.5
-  (crate "try-lock" "0.2.5" "0jqijrrvm1pyq34zn1jmy2vihd4jcrjlvsh4alkjahhssjnsn8g4"))
-(define rust-ttf-parser-0.20.0
-  (crate "ttf-parser" "0.20.0" "1d4n3p9ccjvy4mj72700i0c2q6d49dxjpwflw47q79rpv1v7vxqp"))
-(define rust-ttf-parser-0.21.1
-  (crate "ttf-parser" "0.21.1" "1y0wsfgri7yi41cn57g4fzqm30x1v5nlrci6j5mqcxwpys1isn9c"))
-(define rust-ttf-parser-0.25.1
-  (crate "ttf-parser" "0.25.1" "0cbgqglcwwjg3hirwq6xlza54w04mb5x02kf7zx4hrw50xmr1pyj"))
-(define rust-typeid-1.0.3
-  (crate "typeid" "1.0.3" "0727ypay2p6mlw72gz3yxkqayzdmjckw46sxqpaj08v0b0r64zdw"))
-(define rust-typenum-1.20.1
-  (crate "typenum" "1.20.1" "086s9ly0906kw5yw41249fba97w5zfxf03pyfwdkffvcprqfixdn"))
-(define rust-uds_windows-1.2.1
-  (crate "uds_windows" "1.2.1" "0vidqwwfgn8wyzvbxiqil787b4wyqjia50zpdbbjqx7n8wlgpxpj"))
-(define rust-unicase-2.10.0
-  (crate "unicase" "2.10.0" "13x2h9s4jhch7rknqkqb1pb35irpj00fswy9ssgh0dm0qsnc6z1m"))
-(define rust-unicode-bidi-0.3.18
-  (crate "unicode-bidi" "0.3.18" "1xcxwbsqa24b8vfchhzyyzgj0l6bn51ib5v8j6krha0m77dva72w"))
-(define rust-unicode-bidi-mirroring-0.2.0
-  (crate "unicode-bidi-mirroring" "0.2.0" "11mgyp2vclhzcm0kzy8jjn5ivsry4c37368finacb4mwzs7pijr3"))
-(define rust-unicode-bidi-mirroring-0.4.0
-  (crate "unicode-bidi-mirroring" "0.4.0" "1zirs1z3ahlwy7swg7apnm3pc6vix1g15q0kn6fx8rmvc266xyjx"))
-(define rust-unicode-ccc-0.2.0
-  (crate "unicode-ccc" "0.2.0" "0mkn2ns6q2xmmr3g8sxinbhgzkjq9xzavidgipbs6knc3c87pxqx"))
-(define rust-unicode-ccc-0.4.0
-  (crate "unicode-ccc" "0.4.0" "0gjhxwx27ywm3rcbb0m5q20w8zxi51440b3ps6swi6ywpj4d8qff"))
-(define rust-unicode-ident-1.0.27
-  (crate "unicode-ident" "1.0.27" "0qv54hz0sxmspjyr162z3435pnyylzjjhx3j4k1s359pqgb59ix2"))
-(define rust-unicode-linebreak-0.1.5
-  (crate "unicode-linebreak" "0.1.5" "07spj2hh3daajg335m4wdav6nfkl0f6c0q72lc37blr97hych29v"))
-(define rust-unicode-properties-0.1.5
-  (crate "unicode-properties" "0.1.5" "0cqq9jq11jnxr8x8cxa0c1fz5q0k2kz1r00jadsvms10xf3x4flr"))
-(define rust-unicode-script-0.5.9
-  (crate "unicode-script" "0.5.9" "1gyaarvyy34wgxsc7943wxk1hzk7xv0rbm3l9i39shh5vdawj15a"))
-(define rust-unicode-segmentation-1.13.3
-  (crate "unicode-segmentation" "1.13.3" "1a47zaq83p386r3baq4m018xd5q4q0grdg56i1x042dzn71x7xf6"))
-(define rust-unicode-vo-0.1.0
-  (crate "unicode-vo" "0.1.0" "151sha088v9jyfvbg5164xh4dk72g53b82xm4zzbf5dlagzqdlxi"))
-(define rust-unicode-width-0.2.3
-  (crate "unicode-width" "0.2.3" "0mymrsdklcgys4fndds2h2hasij36gyalcqy4nghb4k9hxqq8wfa"))
-(define rust-untrusted-0.9.0
-  (crate "untrusted" "0.9.0" "1ha7ib98vkc538x0z60gfn0fc5whqdd85mb87dvisdcaifi6vjwf"))
-(define rust-ureq-2.12.1
-  (crate "ureq" "2.12.1" "07f0qdn6459k4rmdnkivkz0y7j28vxh5c8q8sr0gcxgdfxiadl82"))
-(define rust-url-2.5.8
-  (crate "url" "2.5.8" "1v8f7nx3hpr1qh76if0a04sj08k86amsq4h8cvpw6wvk76jahrzz"))
-(define rust-usvg-0.45.1
-  (crate "usvg" "0.45.1" "1vs7gfhyxjgkgibgwfjniwrszfw0iivj1aq06hq8nfxfzc39pgl0"))
-(define rust-utf-8-0.7.6
-  (crate "utf-8" "0.7.6" "1a9ns3fvgird0snjkd3wbdhwd3zdpc2h5gpyybrfr6ra5pkqxk09"))
-(define rust-utf8_iter-1.1.0
-  (crate "utf8_iter" "1.1.0" "1w7d0f7xc46qfmb7m6zy5y6in1mblmzbhcyhx766zhkiwp9xjfxg"))
-(define rust-utf_types-1.0.0
-  (crate "utf_types" "1.0.0" "1dhbsnxfxxbg9a13anjfax5i7jyd51nkngs5g1r3c2lqhr944frs"))
-(define rust-uuid-1.29.2
-  (crate "uuid" "1.29.2" "0z161qj1jw91fz64pmz1vqs9l1y7dpbf8yziwp7vbjfsywwr3ndy"))
-(define rust-v_frame-0.3.9
-  (crate "v_frame" "0.3.9" "1qkvb4ks33zck931vzqckjn36hkngj6l2cwmvfsnlpc7r0kpfsv6"))
-(define rust-value-bag-1.14.1
-  (crate "value-bag" "1.14.1" "04g5rg7d993a7aasj3s7q3qnwnl1i9n30w9bj3yyr4m756rzz697"))
-(define rust-value-bag-serde1-1.14.1
-  (crate "value-bag-serde1" "1.14.1" "130xm1ilns5kjzbmlc862fj88a00jxdx95hhx9cqyymymz7gwh89"))
-(define rust-value-bag-sval2-1.14.1
-  (crate "value-bag-sval2" "1.14.1" "1k880nyixhld71il2hmp1bkfkvdi8531d51bxckpsa3rh6pm55w3"))
-(define rust-version_check-0.9.5
-  (crate "version_check" "0.9.5" "0nhhi4i5x89gm911azqbn7avs9mdacw2i3vcz3cnmz3mv4rqz4hb"))
-(define rust-vswhom-0.1.0
-  (crate "vswhom" "0.1.0" "12v0fjjzxdc3y5c0lcwycfhphz7zf2s06hl5krwhawah0xzrp5xy"))
-(define rust-vswhom-sys-0.1.3
-  (crate "vswhom-sys" "0.1.3" "0l0i4fijapsybmfckfqh53yqxsg0bm5ikja6vz8ngw0zpm67w1pv"))
-(define rust-waker-fn-1.2.0
-  (crate "waker-fn" "1.2.0" "1dvk0qsv88kiq22x8w0qz0k9nyrxxm5a9a9czdwdvvhcvjh12wii"))
-(define rust-walkdir-2.5.0
-  (crate "walkdir" "2.5.0" "0jsy7a710qv8gld5957ybrnc07gavppp963gs32xk4ag8130jy99"))
-(define rust-want-0.3.2
-  (crate "want" "0.3.2" "02zdlaqarwm9x3z1l0vm61mv8f6mv0kp4izgnxlfibqhv46xsk7c"))
-(define rust-wasi-0.11.1-wasi-snapshot-preview1
-  (crate "wasi" "0.11.1+wasi-snapshot-preview1" "0jx49r7nbkbhyfrfyhz0bm4817yrnxgd3jiwwwfv0zl439jyrwyc"))
-(define rust-wasip2-1.0.4-wasi-0.2.12
-  (crate "wasip2" "1.0.4+wasi-0.2.12" "11wl7lqwq4pbmlmzr6n7bwz0hzy1z6sxc4554bkmrr86w4vznzmn"))
-(define rust-wasm-bindgen-0.2.130
-  (crate "wasm-bindgen" "0.2.130" "071xi9mqha1vdrxsjgndjgcf0azkl8g5yahkn2qbiiynvla1q650"))
-(define rust-wasm-bindgen-futures-0.4.80
-  (crate "wasm-bindgen-futures" "0.4.80" "00f5mq5rx8wzbq98svcjbb4r79i7k15d08nb1kb8ldmmghrf052y"))
-(define rust-wasm-bindgen-macro-0.2.130
-  (crate "wasm-bindgen-macro" "0.2.130" "1ncfybmdiczbsjz8a257a13k8n7dnl15khvgjrkbzgcslc11m4vf"))
-(define rust-wasm-bindgen-macro-support-0.2.130
-  (crate "wasm-bindgen-macro-support" "0.2.130" "0fm58fh6gkhlmi15rhzvcgz35x5s6kkvi9ik3s1vsmg4h11bb91c"))
-(define rust-wasm-bindgen-shared-0.2.130
-  (crate "wasm-bindgen-shared" "0.2.130" "17iq85zyk1z7hq533c0apj5ix0y0ks35fbszxv31cl3jk0vrq7rv"))
-(define rust-wasm-streams-0.4.2
-  (crate "wasm-streams" "0.4.2" "0rddn007hp6k2cm91mm9y33n79b0jxv0c3znzszcvv67hn6ks18m"))
-(define rust-wayland-backend-0.3.17
-  (crate "wayland-backend" "0.3.17" "0y50cw56f09cdcsinbbl94naz91xf7iqaj87s4f7py6zmm71pa9q"))
-(define rust-wayland-client-0.31.15
-  (crate "wayland-client" "0.31.15" "0ww0d0r6rn2h0sn8ma1f7zvxj40l6930p07j044nvmqshq7nmhz3"))
-(define rust-wayland-cursor-0.31.14
-  (crate "wayland-cursor" "0.31.14" "0kdk7xwj465idk54jf1f24024gdp63wyagca68a176xyh23x2lja"))
-(define rust-wayland-protocols-0.31.2
-  (crate "wayland-protocols" "0.31.2" "1x310l1p6p3p3l76nl1l2yava9408dy77s605917zadlp1jz70cg"))
-(define rust-wayland-protocols-0.32.13
-  (crate "wayland-protocols" "0.32.13" "1dn4injzx1lnmacnhl3q60m743lvshxmmy0aabb2xaixvq9wil13"))
-(define rust-wayland-protocols-plasma-0.2.0
-  (crate "wayland-protocols-plasma" "0.2.0" "0yglbxd4ka8284k0j0ssh9hf6wd9qp2n0s2qrsdymyaz258kb013"))
-(define rust-wayland-scanner-0.31.11
-  (crate "wayland-scanner" "0.31.11" "1h0al3271l2w124sxlh77s1kmjg0z24ns2mk1vbnfars3d3313ik"))
-(define rust-wayland-sys-0.31.11
-  (crate "wayland-sys" "0.31.11" "1gp3hlkxx13i55lyyi794vnw9a780z3skx0xhj71zr69xwzv5snq"))
-(define rust-web-sys-0.3.107
-  (crate "web-sys" "0.3.107" "125b0y934gyfwjkd60wnqjf2irmx250dar6vwinhzv7mdxcpklfp"))
-(define rust-web-time-1.1.0
-  (crate "web-time" "1.1.0" "1fx05yqx83dhx628wb70fyy10yjfq1jpl20qfqhdkymi13rq0ras"))
-(define rust-webpki-roots-0.26.11
-  (crate "webpki-roots" "0.26.11" "1agpayg5zzf7m1a01q30jahlgmn5nwggbabdhq0in008pf5c66sj"))
-(define rust-webpki-roots-1.0.11
-  (crate "webpki-roots" "1.0.11" "0wgidma8qmksdhmx8pnbpg8m1zx08llqbqz7gn7br1xjnaxq1wpm"))
-(define rust-weezl-0.1.12
-  (crate "weezl" "0.1.12" "122a1dhha6cib5az4ihcqlh60ns2bi6rskdv875p94lbvj6wk2m2"))
-(define rust-which-6.0.3
-  (crate "which" "6.0.3" "07yg74dsq644hq5a35546c9mja6rsjdsg92rykr9hkflxf7r5vml"))
-(define rust-winapi-0.3.9
-  (crate "winapi" "0.3.9" "06gl025x418lchw1wxj64ycr7gha83m44cjr5sarhynd9xkrm0sw"))
-(define rust-winapi-i686-pc-windows-gnu-0.4.0
-  (crate "winapi-i686-pc-windows-gnu" "0.4.0" "1dmpa6mvcvzz16zg6d5vrfy4bxgg541wxrcip7cnshi06v38ffxc"))
-(define rust-winapi-util-0.1.11
-  (crate "winapi-util" "0.1.11" "08hdl7mkll7pz8whg869h58c1r9y7in0w0pk8fm24qc77k0b39y2"))
-(define rust-winapi-x86_64-pc-windows-gnu-0.4.0
-  (crate "winapi-x86_64-pc-windows-gnu" "0.4.0" "0gqq64czqb64kskjryj8isp62m2sgvx25yyj3kpc2myh85w24bki"))
-(define rust-windows-0.57.0
-  (crate "windows" "0.57.0" "0hqid10bqvxa3pbpgvrh2cilf950lxsd9zqfv3rldc73v2s2qd0j"))
-(define rust-windows-0.61.3
-  (crate "windows" "0.61.3" "14v8dln7i4ccskd8danzri22bkjkbmgzh284j3vaxhd4cykx7awv"))
-(define rust-windows-capture-1.5.0
-  (crate "windows-capture" "1.5.0" "091bi2fg3kgcy4l8vxzgxvarg31v6ak2r73y3bnbkpgyjlzgfk9s"))
-(define rust-windows-collections-0.2.0
-  (crate "windows-collections" "0.2.0" "1s65anr609qvsjga7w971p6iq964h87670dkfqfypnfgwnswxviv"))
-(define rust-windows-core-0.57.0
-  (crate "windows-core" "0.57.0" "0bc3jxw2jw76xkk3ddvnp5b2m76qmbzv1qncgvb6qrlhl8wj9vfj"))
-(define rust-windows-core-0.61.2
-  (crate "windows-core" "0.61.2" "1qsa3iw14wk4ngfl7ipcvdf9xyq456ms7cx2i9iwf406p7fx7zf0"))
-(define rust-windows-future-0.2.1
-  (crate "windows-future" "0.2.1" "13mdzcdn51ckpzp3frb8glnmkyjr1c30ym9wnzj9zc97hkll2spw"))
-(define rust-windows-implement-0.57.0
-  (crate "windows-implement" "0.57.0" "1mqs7qypclnmx5r8yq5jy3g2d8i27vzag9yzzzxzpdnmb70ds1wi"))
-(define rust-windows-implement-0.60.2
-  (crate "windows-implement" "0.60.2" "1psxhmklzcf3wjs4b8qb42qb6znvc142cb5pa74rsyxm1822wgh5"))
-(define rust-windows-interface-0.57.0
-  (crate "windows-interface" "0.57.0" "19zwlzr0q1z9s692681yb5w2lhvwcyx4v95s25hfdkd3isry9gi9"))
-(define rust-windows-interface-0.59.3
-  (crate "windows-interface" "0.59.3" "0n73cwrn4247d0axrk7gjp08p34x1723483jxjxjdfkh4m56qc9z"))
-(define rust-windows-link-0.1.3
-  (crate "windows-link" "0.1.3" "12kr1p46dbhpijr4zbwr2spfgq8i8c5x55mvvfmyl96m01cx4sjy"))
-(define rust-windows-link-0.2.1
-  (crate "windows-link" "0.2.1" "1rag186yfr3xx7piv5rg8b6im2dwcf8zldiflvb22xbzwli5507h"))
-(define rust-windows-numerics-0.2.0
-  (crate "windows-numerics" "0.2.0" "1cf2j8nbqf0hqqa7chnyid91wxsl2m131kn0vl3mqk3c0rlayl4i"))
-(define rust-windows-registry-0.4.0
-  (crate "windows-registry" "0.4.0" "18wbgr6z6765qdnasi8mmvxhvp82xd1zlvd6s7pp2l5lvn8av1j2"))
-(define rust-windows-registry-0.5.3
-  (crate "windows-registry" "0.5.3" "17j9cxlnksdypanazss6cnh36v3rwvs86j4mpixwkvv5hz99x2jv"))
-(define rust-windows-result-0.1.2
-  (crate "windows-result" "0.1.2" "1y274q1v0vy21lhkgslpxpq1m08hvr1mcs2l88h1b1gcx0136f2y"))
-(define rust-windows-result-0.3.4
-  (crate "windows-result" "0.3.4" "1il60l6idrc6hqsij0cal0mgva6n3w6gq4ziban8wv6c6b9jpx2n"))
-(define rust-windows-strings-0.3.1
-  (crate "windows-strings" "0.3.1" "06bkhkyclbfchcsv5bnhz77r290k20m15glj2xq60ra0bp64iyl7"))
-(define rust-windows-strings-0.4.2
-  (crate "windows-strings" "0.4.2" "0mrv3plibkla4v5kaakc2rfksdd0b14plcmidhbkcfqc78zwkrjn"))
-(define rust-windows-sys-0.48.0
-  (crate "windows-sys" "0.48.0" "1aan23v5gs7gya1lc46hqn9mdh8yph3fhxmhxlw36pn6pqc28zb7"))
-(define rust-windows-sys-0.52.0
-  (crate "windows-sys" "0.52.0" "0gd3v4ji88490zgb6b5mq5zgbvwv7zx1ibn8v3x83rwcdbryaar8"))
-(define rust-windows-sys-0.59.0
-  (crate "windows-sys" "0.59.0" "0fw5672ziw8b3zpmnbp9pdv1famk74f1l9fcbc3zsrzdg56vqf0y"))
-(define rust-windows-sys-0.61.2
-  (crate "windows-sys" "0.61.2" "1z7k3y9b6b5h52kid57lvmvm05362zv1v8w0gc7xyv5xphlp44xf"))
-(define rust-windows-targets-0.48.5
-  (crate "windows-targets" "0.48.5" "034ljxqshifs1lan89xwpcy1hp0lhdh4b5n0d2z4fwjx2piacbws"))
-(define rust-windows-targets-0.52.6
-  (crate "windows-targets" "0.52.6" "0wwrx625nwlfp7k93r2rra568gad1mwd888h1jwnl0vfg5r4ywlv"))
-(define rust-windows-targets-0.53.5
-  (crate "windows-targets" "0.53.5" "1wv9j2gv3l6wj3gkw5j1kr6ymb5q6dfc42yvydjhv3mqa7szjia9"))
-(define rust-windows-threading-0.1.0
-  (crate "windows-threading" "0.1.0" "19jpn37zpjj2q7pn07dpq0ay300w65qx7wdp13wbp8qf5snn6r5n"))
-(define rust-windows_aarch64_gnullvm-0.48.5
-  (crate "windows_aarch64_gnullvm" "0.48.5" "1n05v7qblg1ci3i567inc7xrkmywczxrs1z3lj3rkkxw18py6f1b"))
-(define rust-windows_aarch64_gnullvm-0.52.6
-  (crate "windows_aarch64_gnullvm" "0.52.6" "1lrcq38cr2arvmz19v32qaggvj8bh1640mdm9c2fr877h0hn591j"))
-(define rust-windows_aarch64_gnullvm-0.53.1
-  (crate "windows_aarch64_gnullvm" "0.53.1" "0lqvdm510mka9w26vmga7hbkmrw9glzc90l4gya5qbxlm1pl3n59"))
-(define rust-windows_aarch64_msvc-0.48.5
-  (crate "windows_aarch64_msvc" "0.48.5" "1g5l4ry968p73g6bg6jgyvy9lb8fyhcs54067yzxpcpkf44k2dfw"))
-(define rust-windows_aarch64_msvc-0.52.6
-  (crate "windows_aarch64_msvc" "0.52.6" "0sfl0nysnz32yyfh773hpi49b1q700ah6y7sacmjbqjjn5xjmv09"))
-(define rust-windows_aarch64_msvc-0.53.1
-  (crate "windows_aarch64_msvc" "0.53.1" "01jh2adlwx043rji888b22whx4bm8alrk3khjpik5xn20kl85mxr"))
-(define rust-windows_i686_gnu-0.48.5
-  (crate "windows_i686_gnu" "0.48.5" "0gklnglwd9ilqx7ac3cn8hbhkraqisd0n83jxzf9837nvvkiand7"))
-(define rust-windows_i686_gnu-0.52.6
-  (crate "windows_i686_gnu" "0.52.6" "02zspglbykh1jh9pi7gn8g1f97jh1rrccni9ivmrfbl0mgamm6wf"))
-(define rust-windows_i686_gnu-0.53.1
-  (crate "windows_i686_gnu" "0.53.1" "18wkcm82ldyg4figcsidzwbg1pqd49jpm98crfz0j7nqd6h6s3ln"))
-(define rust-windows_i686_gnullvm-0.52.6
-  (crate "windows_i686_gnullvm" "0.52.6" "0rpdx1537mw6slcpqa0rm3qixmsb79nbhqy5fsm3q2q9ik9m5vhf"))
-(define rust-windows_i686_gnullvm-0.53.1
-  (crate "windows_i686_gnullvm" "0.53.1" "030qaxqc4salz6l4immfb6sykc6gmhyir9wzn2w8mxj8038mjwzs"))
-(define rust-windows_i686_msvc-0.48.5
-  (crate "windows_i686_msvc" "0.48.5" "01m4rik437dl9rdf0ndnm2syh10hizvq0dajdkv2fjqcywrw4mcg"))
-(define rust-windows_i686_msvc-0.52.6
-  (crate "windows_i686_msvc" "0.52.6" "0rkcqmp4zzmfvrrrx01260q3xkpzi6fzi2x2pgdcdry50ny4h294"))
-(define rust-windows_i686_msvc-0.53.1
-  (crate "windows_i686_msvc" "0.53.1" "1hi6scw3mn2pbdl30ji5i4y8vvspb9b66l98kkz350pig58wfyhy"))
-(define rust-windows_x86_64_gnu-0.48.5
-  (crate "windows_x86_64_gnu" "0.48.5" "13kiqqcvz2vnyxzydjh73hwgigsdr2z1xpzx313kxll34nyhmm2k"))
-(define rust-windows_x86_64_gnu-0.52.6
-  (crate "windows_x86_64_gnu" "0.52.6" "0y0sifqcb56a56mvn7xjgs8g43p33mfqkd8wj1yhrgxzma05qyhl"))
-(define rust-windows_x86_64_gnu-0.53.1
-  (crate "windows_x86_64_gnu" "0.53.1" "16d4yiysmfdlsrghndr97y57gh3kljkwhfdbcs05m1jasz6l4f4w"))
-(define rust-windows_x86_64_gnullvm-0.48.5
-  (crate "windows_x86_64_gnullvm" "0.48.5" "1k24810wfbgz8k48c2yknqjmiigmql6kk3knmddkv8k8g1v54yqb"))
-(define rust-windows_x86_64_gnullvm-0.52.6
-  (crate "windows_x86_64_gnullvm" "0.52.6" "03gda7zjx1qh8k9nnlgb7m3w3s1xkysg55hkd1wjch8pqhyv5m94"))
-(define rust-windows_x86_64_gnullvm-0.53.1
-  (crate "windows_x86_64_gnullvm" "0.53.1" "1qbspgv4g3q0vygkg8rnql5c6z3caqv38japiynyivh75ng1gyhg"))
-(define rust-windows_x86_64_msvc-0.48.5
-  (crate "windows_x86_64_msvc" "0.48.5" "0f4mdp895kkjh9zv8dxvn4pc10xr7839lf5pa9l0193i2pkgr57d"))
-(define rust-windows_x86_64_msvc-0.52.6
-  (crate "windows_x86_64_msvc" "0.52.6" "1v7rb5cibyzx8vak29pdrk8nx9hycsjs4w0jgms08qk49jl6v7sq"))
-(define rust-windows_x86_64_msvc-0.53.1
-  (crate "windows_x86_64_msvc" "0.53.1" "0l6npq76vlq4ksn4bwsncpr8508mk0gmznm6wnhjg95d19gzzfyn"))
-(define rust-winnow-0.7.15
-  (crate "winnow" "0.7.15" "0i9rkl2rqpbnnxlgs20gmkj3nd0b2k8q55mjmpc2ybb84xwxjyfz"))
-(define rust-winnow-1.0.5
-  (crate "winnow" "1.0.5" "1vvs4zmisyxxp1igpjpi87z26d6wl3q98shcvx68gazhklcr6fwc"))
-(define rust-winreg-0.56.0
-  (crate "winreg" "0.56.0" "046a5jpvc0yzr9c0wgik743k6yalr2f0bchy4c0nz7sazyh34vvx"))
-(define rust-winsafe-0.0.19
-  (crate "winsafe" "0.0.19" "0169xy9mjma8dys4m8v4x0xhw2gkbhv2v1wsbvcjl9bhnxxd2dfi"))
-(define rust-wio-0.2.2
-  (crate "wio" "0.2.2" "199p404fp96w1f1c93bf1jrvaqwypxf3hmmldhww4jk4yhr9j4jx"))
-(define rust-wit-bindgen-0.57.1
-  (crate "wit-bindgen" "0.57.1" "0vjk2jb593ri9k1aq4iqs2si9mrw5q46wxnn78im7hm7hx799gqy"))
-(define rust-writeable-0.6.4
-  (crate "writeable" "0.6.4" "1p3r4s4wbf3dksfpj3xyrn7id5p0f7r74mj6qx6ngjfd6cm2vn1s"))
-(define rust-x11-2.21.0
-  (crate "x11" "2.21.0" "0bnvl09d7044k067gqdx1ln2r0ljp5f4675icwb0216d9i3aabah"))
-(define rust-x11-clipboard-0.9.3
-  (crate "x11-clipboard" "0.9.3" "18rmsm0lrcc4hy2wqs7gn90czv59sv5bj07bbf76nfbysyrp8bb6"))
-(define rust-x11rb-0.13.2
-  (crate "x11rb" "0.13.2" "053lvnaw9ycbl791mgwly2hw27q6vqgzrb1y5kz1as52wmdsm4wr"))
-(define rust-x11rb-protocol-0.13.2
-  (crate "x11rb-protocol" "0.13.2" "1g81cznbyn522b0fbis0i44wh3adad2vhsz5pzf99waf3sbc4vza"))
-(define rust-xcb-1.7.1
-  (crate "xcb" "1.7.1" "0rh5nf63b68irmbavbakg6z4ncwji4mqdzlsx1p8a8p9w0asvhm6"))
-(define rust-xcursor-0.3.11
-  (crate "xcursor" "0.3.11" "08wfv0wrij9rrmbgfd2l8a132gyfax05abypllpmwic6hznk6fqn"))
-(define rust-xim-ctext-0.3.0
-  (crate "xim-ctext" "0.3.0" "0k186cy9dcw999w74ak39f1cfp2xhgpywbp8nqvkq3y4c9q1miia"))
-(define rust-xim-parser-0.2.2
-  (crate "xim-parser" "0.2.2" "1dyp9ma824i3vslklv8ad7mga96vgm7aiwqa31jmlbapi5gy9kjx"))
-(define rust-xkbcommon-0.8.0
-  (crate "xkbcommon" "0.8.0" "1j8s1sfwc6bw9phsca65rw3q3b5l2651v1s0pk5yxm6baa9wlrld"))
-(define rust-xkeysym-0.2.1
-  (crate "xkeysym" "0.2.1" "0mksx670cszyd7jln6s7dhkw11hdfv7blwwr3isq98k22ljh1k5r"))
-(define rust-xmlwriter-0.1.0
-  (crate "xmlwriter" "0.1.0" "1fg0ldmkgiis6hnxpi1c9gy7v23y0lpi824bp8yp12fi3r82lypc"))
-(define rust-y4m-0.8.0
-  (crate "y4m" "0.8.0" "0j24y2zf60lpxwd7kyg737hqfyqx16y32s0fjyi6fax6w4hlnnks"))
-(define rust-yazi-0.2.2
-  (crate "yazi" "0.2.2" "11pch7fbmgjzmg13cbvhd572ip5i4njxxjffjalyd3ps6ajnwdmc"))
-(define rust-yeslogic-fontconfig-sys-6.0.1
-  (crate "yeslogic-fontconfig-sys" "6.0.1" "0xjgmw2nh3hr6wh72s9ss41njqrkgk4p25if27zjk6ibj6zqm2qx"))
-(define rust-yoke-0.8.4
-  (crate "yoke" "0.8.4" "1cs06ci8h7pdhr3wzwrnslmc0cb9fhd571awsbdvf063yvyg6zj1"))
-(define rust-yoke-derive-0.8.4
-  (crate "yoke-derive" "0.8.4" "0wbdvvdv9birwxrr9ynxj0k7as0f0ci7ihhck34yi09nvgibv3pc"))
-(define rust-zbus-5.19.0
-  (crate "zbus" "5.19.0" "01sram5sgwsg3x8mghx77cjbsfa2c10mar7fnzj23d2w0xybxd2x"))
-(define rust-zbus_macros-5.19.0
-  (crate "zbus_macros" "5.19.0" "0h4gr26kyhdyn503rgg8h44sjxm8d6n8qbzpd0cdzrmd15fn7419"))
-(define rust-zbus_names-4.3.5
-  (crate "zbus_names" "4.3.5" "1pc8w0m4g8k6f13c2by67fvnc06xib84gw58ivhmjymd9sz14al1"))
-(define rust-zcheapstr-1.2.0
-  (crate "zcheapstr" "1.2.0" "084rpjymhbqcb96rbp1a2lhvr2sng1pnvjx52m1h9gnfkrnii7wk"))
-(define rust-zed-async-tar-0.5.0-zed
-  (crate "zed-async-tar" "0.5.0-zed" "10dq5v0a1ijz5mj7wvzrc9xv64mi9a8ws6nbfgj015z2apvbbx3c"))
-(define rust-zed-font-kit-0.14.1-zed
-  (crate "zed-font-kit" "0.14.1-zed" "1xdzz6a37y87n4ihnyai94n089j4qf2zkqvjvbnm5y1n1x2qx2d3"))
-(define rust-zed-reqwest-0.12.15-zed
-  (crate "zed-reqwest" "0.12.15-zed" "0w4r7gh2qjn3s5d20z3r10zss5rqrxxav0ij1jakk1gldxshabdc"))
-(define rust-zed-scap-0.0.8-zed
-  (crate "zed-scap" "0.0.8-zed" "1j4ad4zqd360l5r1n43vll57lfih548w31q2l0ya8cxf0pbkicxn"))
-(define rust-zed-xim-0.4.0-zed
-  (crate "zed-xim" "0.4.0-zed" "0hl62iwc5pnm5px4r1ygl830wpk61gf4vnakpbck9flf27nlc2qc"))
-(define rust-zeno-0.3.3
-  (crate "zeno" "0.3.3" "0915lg3b1qiixizic9kwj2bw42x35baxqvl9dn0m2plkj91drwvd"))
-(define rust-zerocopy-0.8.63
-  (crate "zerocopy" "0.8.63" "1n1fm40mq4adw83hvn56j6rhnph0lldccx11jq01l6863f7izzp5"))
-(define rust-zerocopy-derive-0.8.63
-  (crate "zerocopy-derive" "0.8.63" "0zqc4g3yf378dkbsr68h1jjx3n0d4k4zvnxf83bv8gr9hfnd6fl6"))
-(define rust-zerofrom-0.1.8
-  (crate "zerofrom" "0.1.8" "0wjjdj7gdmd0iq91gzkxl7dlv0nhkk80l4bmdpzh3a1yh48mmh0f"))
-(define rust-zerofrom-derive-0.1.8
-  (crate "zerofrom-derive" "0.1.8" "0jhdy4p9c6ja3dynsdck14g2iilq8ai5ch6nsi455x67ys1lcnzp"))
-(define rust-zeroize-1.9.1
-  (crate "zeroize" "1.9.1" "0yb8iykihpl3hfw5c4silw2lklpfxajkaa9yj1qw6jsy5hwq8c71"))
-(define rust-zeroize_derive-1.5.0
-  (crate "zeroize_derive" "1.5.0" "0a7kq8srk81pn23xqn7c9jw1jpnfy41ffn802x1zrqqgpdf6al1w"))
-(define rust-zerotrie-0.2.5
-  (crate "zerotrie" "0.2.5" "0gss16krjzk22m57dz5hkdjg99ibj6pa41qr68na7w1jpp1nk8jf"))
-(define rust-zerovec-0.11.9
-  (crate "zerovec" "0.11.9" "0h3amsfmvqx93grkpy576z5r7nwfxx9bvvd8gq66g8g9rycjg2pm"))
-(define rust-zerovec-derive-0.11.7
-  (crate "zerovec-derive" "0.11.7" "0ypr1gq2nvb4mvwawcgyknbn408dsjcy3qhsrllxjf3pykdksx63"))
-(define rust-zlib-rs-0.6.8
-  (crate "zlib-rs" "0.6.8" "04j158293bx73kv5pj1i89ai411q7fxc9zwk3wkpqgb9gj7fas5j"))
-(define rust-zmij-1.0.23
-  (crate "zmij" "1.0.23" "06zwri21nnrl34rwinmvbciap8yk1mrl8qfg9pff7lgspc56sri9"))
-(define rust-zune-core-0.5.3
-  (crate "zune-core" "0.5.3" "12v5zdwcmjwzlfz61ajchzdaab75cxasqnmwf2hq929n8vypfqym"))
-(define rust-zune-inflate-0.2.54
-  (crate "zune-inflate" "0.2.54" "00kg24jh3zqa3i6rg6yksnb71bch9yi1casqydl00s7nw8pk7avk"))
-(define rust-zune-jpeg-0.5.15
-  (crate "zune-jpeg" "0.5.15" "15kjpn6pywxlwb8w5irfd68x31wi3mb4y1da8bqh7havh5drvg17"))
-(define rust-zvariant-5.15.1
-  (crate "zvariant" "5.15.1" "1dzvl7la92pc8qyaw9pgfpxgqhy6rn285yscnsn03dm4srn6vgw0"))
-(define rust-zvariant_derive-5.15.1
-  (crate "zvariant_derive" "5.15.1" "0va8dm4k7rk2iar573lkzfap8g2v2dinw4zcxasm9jx1dd2p49pg"))
-(define rust-zvariant_utils-4.2.0
-  (crate "zvariant_utils" "4.2.0" "18q80094ci64myzvcp0g2l3c6mnx7b3hsii8lfabc853c51jkl5s"))
+;;; crates.io crates: (NAME VERSION HASH); projects refer to them by index.
+(define %crates
+  (crate-table
+   '(("adler2" "2.0.1" "1ymy18s9hs7ya1pjc9864l30wk8p2qfqdi7mhhcc5nfakxbij09j")
+     ("aes" "0.8.4" "1853796anlwp4kqim0s6wm1srl4ib621nm0cl2h3c8klsjkgfsdi")
+     ("ahash" "0.8.12" "0xbsp9rlm5ki017c0w6ay8kjwinwm8knjncci95mii30rmwz25as")
+     ("aho-corasick" "1.1.5" "1fhjkp2nbs7gg4y1b68hpc8028rpax8aiscfh9b60q78m4pn90n9")
+     ("aligned" "0.4.3" "1186lhb3gb4x6spzw7ff0zcraa8cr9zqk4ldpm5g1vb2ijc0higf")
+     ("aligned-vec" "0.6.4" "16vnf78hvfix5cwzd5xs5a2g6afmgb4h7n6yfsc36bv0r22072fw")
+     ("anyhow" "1.0.104" "0w34jjcm02p5g9kvsjr1dvpw0zs2fi7igi6nr414fkm5gz85w2ik")
+     ("ar_archive_writer" "0.5.3" "1dhjwdapx0ydx38r7aj8w4rqmdhxs1xl2zp8xala0h11zzg5ikbk")
+     ("arbitrary" "1.5.0" "1v8a080p8z746w8pi7lggaa5791qpk1i9mb313sj2cy3gk4jmiiv")
+     ("arg_enum_proc_macro" "0.3.4" "1sjdfd5a8j6r99cf0bpqrd6b160x9vz97y5rysycsjda358jms8a")
+     ("arrayref" "0.3.9" "1jzyp0nvp10dmahaq9a2rnxqdd5wxgbvp8xaibps3zai8c9fi8kn")
+     ("arrayvec" "0.7.8" "0mmd8lrijbvg1qp4c5zis5dq41a3mjv2rb6bxkyj9kwaw2k6gyyk")
+     ("as-raw-xcb-connection" "1.0.1" "0sqgpz2ymv5yx76r5j2npjq2x5qvvqnw0vrs35cyv30p3pfp2m8p")
+     ("as-slice" "0.2.1" "05j52y1ws8kir5zjxnl48ann0if79sb56p9nm76hvma01r7nnssi")
+     ("ash" "0.38.0+1.3.281" "0vx4yf689v1rc680jvy8bnysx5sgd8f33wnp2vqaizh0v0v4kd0b")
+     ("ash-window" "0.13.0" "10kcx905yglg2s06yxkrvfv3qw8z46w83pmb7dayb0fbc5xsdg2j")
+     ("ashpd" "0.11.1" "0fcw7n3ssbc8qvkaqbjrqs3sgjk4k0sfn50301ax2ky7anbzgwyj")
+     ("ashpd" "0.12.3" "0id6nyz8xhzwfb1mspd4k0isbdchzamqkl8fa3x0y36p7xpwi8rk")
+     ("async-broadcast" "0.7.2" "0ckmqcwyqwbl2cijk1y4r0vy60i89gqc86ijrxzz5f2m4yjqfnj3")
+     ("async-channel" "1.9.0" "0dbdlkzlncbibd3ij6y6jmvjd0cmdn48ydcfdpfhw09njd93r5c1")
+     ("async-channel" "2.5.0" "1ljq24ig8lgs2555myrrjighycpx2mbjgrm3q7lpa6rdsmnxjklj")
+     ("async-compression" "0.4.52" "0nclk4a8m84zjdlbvbmzyw01clg2zpavds4iv3yzy1mr1xs7mm3a")
+     ("async-executor" "1.14.1" "0dsg3ijjbrky4qas8g7nyjpryg1646jsfpmwjxi14df74q8s69pl")
+     ("async-fs" "2.2.0" "1iclw9970mh4ndb0bd68a6901kqy81rf9yypvf78pvaavy0scd40")
+     ("async-global-executor" "2.4.1" "1762s45cc134d38rrv0hyp41hv4iv6nmx59vswid2p0il8rvdc85")
+     ("async-io" "2.6.0" "1z16s18bm4jxlmp6rif38mvn55442yd3wjvdfhvx4hkgxf7qlss5")
+     ("async-lock" "3.5.0" "0vwz6v1hnvaq1lx6dgwnsbv9mby3b515m1h8amfx4yh01l5p0xh8")
+     ("async-net" "2.0.0" "1xyc5a5vcp3a7h1q2lbfh79wz8136dig4q4x6g4w2ws8ml7h0j5r")
+     ("async-process" "2.5.0" "0xfswxmng6835hjlfhv7k0jrfp7czqxpfj6y2s5dsp05q0g94l7w")
+     ("async-recursion" "1.2.0" "0lg4v61ax9wnfb5b5m11895qddcmq5a6h57cihf6n9mdp89br2jg")
+     ("async-signal" "0.2.14" "11dlpb15la279r5cazppy18gbk2xzzl60ahzl19m1kr0l2psmdaj")
+     ("async-std" "1.13.2" "0fzrg0ainb5h87z0q09adnrnspc13132wqq3fhmyaymn9ad0g3ic")
+     ("async-task" "4.7.1" "1pp3avr4ri2nbh7s6y9ws0397nkx1zymmcr14sq761ljarh3axcb")
+     ("async-trait" "0.1.92" "0rqn5iga1hlv2lm8xzav1zhar46jb4dvx89i6kfv93kb53maxxl2")
+     ("async_zip" "0.0.17" "0lkvp0ggkk9dvqakdhp93phxb7ajcfsh95ma015yvm9k50jzgf80")
+     ("atomic" "0.5.3" "1fhc6ayg4d5vw1cibqwff15d45fc5448zg9i3drk42k5phsdp6y5")
+     ("atomic-waker" "1.1.2" "1h5av1lw56m0jf0fd3bchxq8a30xv0b4wv8s4zkp4s0i7mfvs18m")
+     ("autocfg" "1.5.1" "0lqasy5i30flcgih1b50kvsk6z32g09r1q4ql7q81pj6228jy0zj")
+     ("av-scenechange" "0.14.1" "1543y7riwcy4mmsgcalxcm3bnb41hvwiqiz774nbj68fq9vischg")
+     ("av1-grain" "0.2.5" "1y3p43i5xncbny0pfh8kw09am3l3mgyg82ln65r3f434443xpzcc")
+     ("avif-serialize" "0.8.9" "0f3z55fma6xmdj0a0x15vz91cqisiardrfgbjlwb2q6lyzjqy5z7")
+     ("base64" "0.22.1" "1imqzgh7bxcikp5vx3shqvw9j09g9ly0xr0jma0q66i52r7jbcvj")
+     ("bindgen" "0.71.1" "1cynz43s9xwjbd1y03rx9h37xs0isyl8bi6g6yngp35nglyvyn2z")
+     ("bit-set" "0.8.0" "18riaa10s6n59n39vix0cr7l2dgwdhcpbcm97x1xbyfp1q47x008")
+     ("bit-vec" "0.8.0" "1xxa1s2cj291r7k1whbxq840jxvmdsq9xgh7bvrxl46m80fllxjy")
+     ("bit_field" "0.10.3" "1ikhbph4ap4w692c33r8bbv6yd2qxm1q3f64845grp1s6b3l0jqy")
+     ("bitflags" "1.3.2" "12ki6w8gn1ldq7yz9y680llwk5gmrhrzszaa17g1sbrw2r2qvwxy")
+     ("bitflags" "2.13.2" "01hbgjwvid66850fzi76mvn5f2bqycx6sf165ng1kfjqq9bl1v9x")
+     ("bitstream-io" "4.10.0" "07zxcy47l51k6vsxphzhgcnqyzl21pprs7212687c64s56z01zvy")
+     ("blade-graphics" "0.7.1" "1vcgnika17s94dsvahf143yrfx2fvwdslj20x27gbfcfp5rzn777")
+     ("blade-macros" "0.3.0" "1jh9y5933kahribvzd6qc3gcvk0az2wwrsk721c69hplw8cj6517")
+     ("blade-util" "0.3.0" "0k4hqjsibz0gmzpzh4vj0kk0842xvqz433kggfhsf6q05jlf6srs")
+     ("block" "0.1.6" "16k9jgll25pzsq14f244q22cdv0zb4bqacldg3kx6h89d7piz30d")
+     ("block-buffer" "0.10.4" "0w9sa2ypmrsqqvc20nhwr75wbb5cjr4kkyhpjm1z1lv2kdicfy1h")
+     ("block-buffer" "0.12.1" "1ak0cvmxz3yifqmzv6aba9606brsz7d5g3piv5xdcvjsx7dwgxnj")
+     ("block-padding" "0.3.3" "14wdad0r1qk5gmszxqd8cky6vx8qg7c153jv981mixzrpzmlz2d8")
+     ("block2" "0.6.2" "1xcfllzx6c3jc554nmb5qy6xmlkl6l6j5ib4wd11800n0n3rvsyd")
+     ("blocking" "1.7.0" "1ykd0gj18r4v4b8r692hds5dsg2w6y9fq4nlxs2l7fbcvwll63m7")
+     ("bstr" "1.13.1" "0pxyrnp8nb2iwcbadzird7xr2awrbjzi2jwqx47f4i22q531pcvb")
+     ("built" "0.8.1" "1saq332pd6g3svvc9ah8myjpfvgqlzl2ksb1ypp3976kjcfm63jw")
+     ("bumpalo" "3.20.3" "0jc6va3nwcqikm7chnpdv1s87my3gs2j7g1sc7g3k91brg3arxbj")
+     ("bytemuck" "1.25.2" "15rp2m7j7kq22s76cbjwmrkd5r8lvacnm0mnrj013cnzka22x0wm")
+     ("bytemuck_derive" "1.12.1" "17379imphax0d85jzkc50acw746mw89hjbrxqxlw1wmnhxjqj7va")
+     ("byteorder" "1.5.0" "0jzncxyf404mwqdbspihyzpkndfgda450l0893pz5xj685cg5l0z")
+     ("byteorder-lite" "0.1.0" "15alafmz4b9az56z6x7glcbcb6a8bfgyd109qc3bvx07zx4fj7wg")
+     ("bytes" "1.12.1" "017z19dpg4f942h051m7bpnzcgng042hhcpd7bmg7bjjqd42lrgw")
+     ("calloop" "0.13.0" "1v5zgidnhsyml403rzr7vm99f8q6r5bxq5gxyiqkr8lcapwa57dr")
+     ("calloop-wayland-source" "0.3.0" "086x5mq16prrcwd9k6bw9an0sp8bj9l5daz4ziz5z4snf2c6m9lm")
+     ("cbc" "0.1.2" "19l9y9ccv1ffg6876hshd123f2f8v7zbkc4nkckqycxf8fajmd96")
+     ("cbindgen" "0.28.0" "1zyiaifg6mcd4wwhhbxk8adzhph6qz4wxzgagvg3ijp95j58dpga")
+     ("cc" "1.11.1" "0mgicvynjmz4xan2nbdi1dr62pjqb9kikml0j21qq3zzdw9aiwjg")
+     ("cexpr" "0.6.0" "0rl77bwhs5p979ih4r0202cn5jrfsrbgrksp40lkfz5vk1x3ib3g")
+     ("cfg-if" "1.0.5" "0026j56901nzjraap3da0a8njw42j66zcxnn6s2s9aa5bcblhxjf")
+     ("cfg_aliases" "0.2.2" "09rm3dv28gbsal7w6q76lg2nfyn8wp789ska9b8vr1w750xfhygh")
+     ("cgl" "0.3.2" "1zs7skrsyrsm759vfy2cygkx52fx91b567a12bpaz1sf4d8hbv8c")
+     ("chacha20" "0.10.2" "01hvvbgdmqkcgs2s4f12s9wa5h2gbq05rqvypv61azlwd55mxhv5")
+     ("cipher" "0.4.4" "1b9x9agg67xq5nq879z66ni4l08m6m3hqcshk37d4is4ysd3ngvp")
+     ("clang-sys" "1.9.1" "12kqa3wywpxw3jk7n2dqz9fjm8p0qczx37y0yib3nwc0njkqnyhm")
+     ("cocoa" "0.25.0" "0g1pl5hq28arqmvsswf2ib7smj445miwa58qa7wrfvksz54h857n")
+     ("cocoa" "0.26.0" "1cnvpgf5kfms0ab622lmwyljmd94d7mi01knr7shhb3f18iri4zp")
+     ("cocoa-foundation" "0.1.2" "1xwk1khdyqw3dwsl15vr8p86shdcn544fr60ass8biz4nb5k8qlc")
+     ("cocoa-foundation" "0.2.0" "17b7a0a7zwfn3ifs6ps56fs3a5j6h0hlp260y6nba1xyhgxlah71")
+     ("codespan-reporting" "0.12.0" "108g41xqzhr8fx8hlpy5qzmqq8ylldbj37wndkaqm34yy1d2wvgy")
+     ("color_quant" "1.1.0" "12q1n427h2bbmmm1mnglr57jaz2dj9apk0plcxw7nwqiai7qjyrx")
+     ("command-fds" "0.3.3" "0gs4x8sjawnxbp3j0ib9a14vpvnnl6bqp7fqvndcvz3r949baq0v")
+     ("compression-codecs" "0.4.47" "0hyskjyyhlhlljr0jar1f6g6kbyh6hwh4q74c190h42dz37l1y44")
+     ("compression-core" "0.4.34" "0sn32gnrjjwrvqm5aijqgrarar1vcdi7b1fjbn6vyd65xn4xmg9f")
+     ("concurrent-queue" "2.5.0" "0wrr3mzq2ijdkxwndhf79k952cp4zkz35ray8hvsxl96xrx1k82c")
+     ("const-oid" "0.10.2" "0p7m286mp8aai4sa72g7ji6qm0d4ns8wg4i4b2hj9p9615zm3vx6")
+     ("const-random" "0.1.18" "0n8kqz3y82ks8znvz1mxn3a9hadca3amzf33gmi6dc3lzs103q47")
+     ("const-random-macro" "0.1.16" "03iram4ijjjq9j5a7hbnmdngj8935wbsd0f5bm8yw2hblbr3kn7r")
+     ("convert_case" "0.4.0" "03jaf1wrsyqzcaah9jf8l1iznvdw5mlsca2qghhzr9w27sddaib2")
+     ("core-foundation" "0.10.0" "0qscay14s2rwkg8nd8ljhiaf149hj8sfy95d70zssy64r3jp2lmm")
+     ("core-foundation" "0.9.4" "13zvbbj07yk3b61b8fhwfzhy35535a583irf23vlcg59j7h9bqci")
+     ("core-foundation-sys" "0.8.7" "12w8j73lazxmr1z0h98hf3z623kl8ms7g07jch7n4p8f9nwlhdkp")
+     ("core-graphics" "0.23.2" "10dhv3gk4kmbzl14xxkrhhky4fdp8h6nzff6h0019qgr6nz84xy0")
+     ("core-graphics" "0.24.0" "1w8n8gqqm8swkanaibilqya8ryldp9fvf80byjxsaprn493a75gs")
+     ("core-graphics-helmer-fork" "0.24.0" "1mcwisxgzs287vbj76qhm0vr616dgv79k403lqvx9xp998sprsrj")
+     ("core-graphics-types" "0.1.3" "1bxg8nxc8fk4kxnqyanhf36wq0zrjr552c58qy6733zn2ihhwfa5")
+     ("core-graphics-types" "0.2.0" "1sqka1rz84lr3p69i1s6lggnpnznmrw4ngc5q76w9xhky80s2i1x")
+     ("core-graphics2" "0.4.1" "0k9kz027bnx6yq42z5w2qbpj0dpb0pp3mcpwffgvc1lqdfaq6iby")
+     ("core-text" "21.0.0" "0c61m5fb389br06n13cw808q6cfiw7czs38559xh1m6bcrxj54x5")
+     ("core-video" "0.4.3" "1vzqqil82ly4df680qw93g9w7i2z66cwphy3agnnn812pvap2pnl")
+     ("core_detect" "1.0.0" "0j0xp1j6f9lrp4ybylc3d0zdg8jq2hkmr1122qyil14qk84q13vz")
+     ("core_maths" "0.1.1" "0c0dv11ixxpc9bsx5xasvl98mb1dlprzcm6qq6ls3nsygw0mwx3p")
+     ("cosmic-text" "0.14.2" "1s5vph1f3z2f2708hmcw0i8pmphh8mmfpg55lhwcap4hm3asjins")
+     ("cpufeatures" "0.2.17" "10023dnnaghhdl70xcds12fsx2b966sxbxjq5sxs49mvxqw5ivar")
+     ("cpufeatures" "0.3.1" "0rkm1l35jy1z1yfg723fddsxc7vr0gc1hhfvc138hnqiwc58p8jw")
+     ("crc32fast" "1.5.4" "017g8wq37261s7i21v2p7wacl8pr3p4why0d9dfd2dskdm0x75sz")
+     ("crossbeam-deque" "0.8.8" "06kip6ay8wcx5y4flg6wxbnyd44ay8308c8lf8y3iglh6v3kybv2")
+     ("crossbeam-epoch" "0.9.21" "17bdp2linl0milbmx00s3bda3fphgc85im1gqwa3p6hhhw39hx6w")
+     ("crossbeam-queue" "0.3.14" "1bizbcv98anbink3gr3xhnb757d9vj6pcv7df2f4hybl5xvbvs03")
+     ("crossbeam-utils" "0.8.23" "1ilan2nw7fvka8hki80fr57a5dgd4mvcsvwq60437j6yvlwyw7m3")
+     ("crunchy" "0.2.4" "1mbp5navim2qr3x48lyvadqblcxc1dm0lqr0swrkkwy2qblvw3s6")
+     ("crypto-common" "0.1.7" "02nn2rhfy7kvdkdjl457q2z0mklcvj9h662xrq6dzhfialh2kj3q")
+     ("crypto-common" "0.2.2" "0lql5wjlrjkd3r0w32rwbgqfmgg84ms3h65ldnlckmkc3nb4qvnf")
+     ("ctor" "0.4.3" "19p88hk42pyj9gyp29d57gfdh4y7sq0mg9x9glayc788yl1fh2gc")
+     ("ctor-proc-macro" "0.0.6" "1hl2cxpv92322sqq972w257dc5d1dz6gqsnjx7c4bh1xw7vim4z2")
+     ("data-url" "0.3.2" "0xl30jidc8s3kh2z3nvnn1nyzhbq5b2wpiqwzj9gjdrndk50n7my")
+     ("deflate64" "0.1.12" "1qj6a4y5b7jb6h8rgjj4b8lgi6b310hpn43fl6zn176z2rjr4sxc")
+     ("derive_more" "0.99.20" "0zvz94kbc5d4r817wni1l7xk8f289nhf73vqk677p5rxlij4pnvf")
+     ("digest" "0.10.7" "14p2n6ih29x81akj097lvz7wi9b6b9hvls0lwrv7b6xwyy0s5ncy")
+     ("digest" "0.11.3" "1hnmhd4rkybr11292w42pz9ppzx1h49glrhqg107k4s1b2xnvpgi")
+     ("dirs" "4.0.0" "0n8020zl4f0frfnzvgb9agvk4a14i1kjz4daqnxkgslndwmaffna")
+     ("dirs" "5.0.1" "0992xk5vx75b2x91nw9ssb51mpl8x73j9rxmpi96cryn0ffmmi24")
+     ("dirs-sys" "0.3.7" "19md1cnkazham8a6kh22v12d8hh3raqahfk6yb043vrjr68is78v")
+     ("dirs-sys" "0.4.1" "071jy0pvaad9lsa6mzawxrh7cmr7hsmsdxwzm7jzldfkrfjha3sj")
+     ("dispatch" "0.2.0" "0fwjr9b7582ic5689zxj8lf7zl94iklhlns3yivrnv8c9fxr635x")
+     ("dispatch2" "0.3.1" "0f5xmnbzpaz1g80m27kd804p75nswh0ikb6wvqh4ba3x9rz3c3hy")
+     ("displaydoc" "0.2.7" "1a42mwpgpwcqq2qqgkcc630wvsc2p2dkmgacjnclginwfz9js8y6")
+     ("dlib" "0.5.3" "0jpr4smrwrv8xj70mz4ixnbc6ljm82f12z2mz1hv89056y3wv3mb")
+     ("downcast-rs" "1.2.1" "1lmrq383d1yszp7mg5i7i56b17x2lnn3kb91jwsq0zykvg2jbcvm")
+     ("dtor" "0.0.6" "1a1k0rbvx6sbwjhf0bm1mfmy6c7vmdqm3w2xwbl2aq44sqmdzjwp")
+     ("dtor-proc-macro" "0.0.5" "0m8hgbs9p3ay96aq8mlhghdvk8xgwg2pbx7p7kah0b01z4gy8m3l")
+     ("dunce" "1.0.5" "04y8wwv3vvcqaqmqzssi6k0ii9gs6fpz96j5w9nky2ccsl23axwj")
+     ("dwrote" "0.11.5" "00jd7grrf7sz10y4zzipl0z8s27sbpirdl7fkjqwib1j4i9ka6wy")
+     ("dyn-clone" "1.0.20" "0m956cxcg8v2n8kmz6xs5zl13k2fak3zkapzfzzp7pxih6hix26h")
+     ("either" "1.19.0" "1gjq21g0sgk5ylpj85zafcinwhh3jj91i6drhb4278vw2v17370f")
+     ("embed-resource" "3.0.12" "17r4794rvg84pwqq02yalqvf85l0hjqh04pydqz6gckybrxlhs31")
+     ("encoding_rs" "0.8.44" "1xb9w64hibnyh68sfh9qll8h43k3716j5nzr0jdqdaq4wxsk29c9")
+     ("endi" "1.1.1" "16a0076dx41vgrzzimm9clcym77h732czqjiajanmzvd1i1y5dv6")
+     ("enumflags2" "0.7.12" "1vzcskg4dca2jiflsfx1p9yw1fvgzcakcs7cpip0agl51ilgf9qh")
+     ("enumflags2_derive" "0.7.12" "09rqffacafl1b83ir55hrah9gza0x7pzjn6lr6jm76fzix6qmiv7")
+     ("equator" "0.4.2" "1z760z5r0haxjyakbqxvswrz9mq7c29arrivgq8y1zldhc9v44a7")
+     ("equator-macro" "0.4.2" "1cqzx3cqn9rxln3a607xr54wippzff56zs5chqdf3z2bnks3rwj4")
+     ("equivalent" "1.0.3" "09nqddaa84mix3vil6r02jlmya3qypi4j45dhzb8yphf83ap9l80")
+     ("erased-serde" "0.4.11" "0rjyc19057vbj7qaa726798a5zq63a339mjbkm2x6ckz2mlbcn8y")
+     ("errno" "0.3.14" "1szgccmh8vgryqyadg8xd58mnwwicf39zmin3bsn63df2wbbgjir")
+     ("etagere" "0.2.15" "0hjkik00nl8bm9fafpzqkb6yah3mkphc21zpc159a5fwwncvz2gw")
+     ("euclid" "0.22.14" "01ksjl4vb8ms89laswnjpld3z4n6c1s7qlqq0djx3imiwdjm787i")
+     ("event-listener" "2.5.3" "1q4w3pndc518crld6zsqvvpy9lkzwahp2zgza9kbzmmqh9gif1h2")
+     ("event-listener" "5.4.2" "1lk9sv7r07l58jk263s18896l55mx9jv0g1rm4hj2mpi3paas8ss")
+     ("event-listener-strategy" "0.5.4" "14rv18av8s7n8yixg38bxp5vg2qs394rl1w052by5npzmbgz7scb")
+     ("exr" "1.74.3" "1xn231fcww1pvf5gjn8f80yshswhf8sgkcnr8p395praf2zd0afb")
+     ("fastrand" "1.9.0" "1gh12m56265ihdbzh46bhh0jf74i197wm51jg1cw75q7ggi96475")
+     ("fastrand" "2.5.0" "08q2r30y62winysimnlpbvw9kiwn0rmdlidqlmzd6z90mv764z6s")
+     ("fax" "0.2.7" "0nmc65jjdym0f7lr4qm2q7awz1p5arm8i19wv1cmsg92cfahgwfa")
+     ("fdeflate" "0.3.7" "130ga18vyxbb5idbgi07njymdaavvk6j08yh1dfarm294ssm6s0y")
+     ("filedescriptor" "0.8.3" "0bb8qqa9h9sj2mzf09yqxn260qkcqvmhmyrmdjvyxcn94knmh1z4")
+     ("filetime" "0.2.29" "0napyyfccb26r7fyh9hg7ixrh4vph9h7y7k4iv1j19phqwrpla2w")
+     ("find-msvc-tools" "0.1.15" "0j5sh4lb7g8xh6kd67s0vz037ah5hlp9f2rbgbg9f41rqmf92rhw")
+     ("flate2" "1.1.11" "1i44w2j9sw5lqvkrw0d0d3dnn84zrz3nzlsyyrq6wr3b68l4jvb2")
+     ("float-cmp" "0.9.0" "1i799ksbq7fj9rm9m82g1yqgm6xi3jnrmylddmqknmksajylpplq")
+     ("float-ord" "0.3.2" "0gbvx6dzz8xvj38bj02cajpqd9p5syxjx9jyqpj8414amr4izs4c")
+     ("float_next_after" "1.0.0" "1s7ikn69b394frihag05b0qcw9i9y04qanlhp5c8sjrw70bcrxwb")
+     ("flume" "0.11.1" "15ch0slxa8sqsi6c73a0ky6vdnh48q8cxjf7rksa3243m394s3ns")
+     ("fnv" "1.0.7" "1hc2mcqha06aibcaza94vbi81j6pr9a1bbxrxjfhc91zin8yr7iz")
+     ("foldhash" "0.1.5" "1wisr1xlc2bj7hk4rgkcjkz3j2x4dhd1h9lwk7mj8p71qpdgbi6r")
+     ("foldhash" "0.2.0" "1nvgylb099s11xpfm1kn2wcsql080nqmnhj1l25bp3r2b35j9kkp")
+     ("font-types" "0.12.7" "0pgks8skqzhjidjpxkyp154rl335pjf7yf6ydh17jjj6h7byjnl3")
+     ("fontconfig-parser" "0.5.8" "0ijnbzg31sl6v49g7q2l7sl76hjj8z0hvlsz77cdvm029vi77ixv")
+     ("fontdb" "0.16.2" "1hqxv3jnh06s4bflrwnb39mi3knllfs4mxm44vsn0gzgqch90adh")
+     ("fontdb" "0.23.0" "0199vry9x8zn9ix4x4rqvv53dy2ryhy68l53jwr580hj7ndphzj5")
+     ("foreign-types" "0.5.0" "0rfr2zfxnx9rz3292z5nyk8qs2iirznn5ff3rd4vgdwza6mdjdyp")
+     ("foreign-types-macros" "0.2.4" "09aj8wl64pqvm6ix1800khgypdhinwinxhfv7n3yn5b95qc90lga")
+     ("foreign-types-shared" "0.3.1" "0nykdvv41a3d4py61bylmlwjhhvdm0b3bcj9vxhqgxaxnp5ik6ma")
+     ("form_urlencoded" "1.2.2" "1kqzb2qn608rxl3dws04zahcklpplkd5r1vpabwga5l50d2v4k6b")
+     ("freetype-sys" "0.20.1" "0d5iiv95ap3lwy7b0hxbc8caa9ng1fg3wlwrvb7rld39jrdxqzhf")
+     ("futf" "0.1.5" "0hvqk2r7v4fnc34hvc3vkri89gn52d5m9ihygmwn75l1hhp0whnz")
+     ("futures" "0.3.34" "18yhwmbdalhz2z9i1vm10hy2v0cfm82dkgcb6vr2msxazfix4ccs")
+     ("futures-channel" "0.3.34" "1i4kwcanpaphn1ax62ci3nx176kglxqx0gnhzqpqdr1rkpbf7ydi")
+     ("futures-core" "0.3.34" "0pjgv4fx0np6hrs5sz5a2phabwv0z70yr51v03injbi44bjrkmlj")
+     ("futures-executor" "0.3.34" "0cjl3y7jgg60wwb96ikxj23r6q91ylvx8v675yychv1w3b7lf6q3")
+     ("futures-io" "0.3.34" "1v9z6wj92ra18kpv0xig21hgpzrvcwmcr8fszyzh64yyay0zmh2k")
+     ("futures-lite" "1.13.0" "1kkbqhaib68nzmys2dc8j9fl2bwzf2s91jfk13lb2q3nwhfdbaa9")
+     ("futures-lite" "2.6.1" "1ba4dg26sc168vf60b1a23dv1d8rcf3v3ykz2psb7q70kxh113pp")
+     ("futures-macro" "0.3.34" "0i0czvcvsqq4hrccibq2f23004si5z34zjwdxfmqhlrmm15nbfcz")
+     ("futures-sink" "0.3.34" "07cfvrgc3vxk6sw5g8a8dnrm1mzg6d5mwy08ywa1sgyhyxml4i0r")
+     ("futures-task" "0.3.34" "1zfilqs8nwlfqz4prk7ihvpp5avvzins87ibzlxzq5fhs7ipshfd")
+     ("futures-util" "0.3.34" "1g3r9ghzq7c2fh34lis43i72xavk9p84npgfwgb5vfpqcwjajl0d")
+     ("generic-array" "0.14.7" "16lyyrzrljfq424c3n8kfwkqihlimmsg5nhshbbp48np3yjrqr45")
+     ("gethostname" "1.1.0" "1n6bj9gh503ggjblfjcai96gmxynxsrykaynljlrfdra34q95m0v")
+     ("getrandom" "0.2.17" "1l2ac6jfj9xhpjjgmcx6s1x89bbnw9x6j9258yy6xjkzpq0bqapz")
+     ("getrandom" "0.3.4" "1zbpvpicry9lrbjmkd4msgj3ihff1q92i334chk7pzf46xffz7c9")
+     ("getrandom" "0.4.3" "16b0202fkdwz3p2cyll82dv24ljbn0wiyy829v4lwbkbflyqh3ih")
+     ("gif" "0.14.2" "0n81js7vlb9bwrjb765sicza3k0vrihjddrgm2mvpbfr272gr37f")
+     ("glob" "0.3.4" "02zby4rsidb2ksrnysyrsaap7rk6wpp7vl5chflndafhl5gaisz4")
+     ("globset" "0.4.21" "0bfxrhhdzywx65q07slbasf2i6sazya9bg7brwjaih1daa2hv2zr")
+     ("gloo-timers" "0.3.0" "1519157n7xppkk6pdw5w52vy1llzn5iljkqd7q1h5609jv7l7cdv")
+     ("glow" "0.16.0" "022z12nlyfpy36fvp2szq792xix1xbgkznpmicf1c404sxhfmrf5")
+     ("gpu-alloc" "0.6.2" "1ybbd5p0m8cbzl7rl6kpmjbxy369rmm75pn611axy0kgfar09ks5")
+     ("gpu-alloc-ash" "0.7.1" "18ak5zg68jiplk4p60skqsj9aqsrcr3rw6bnqw9zippnivq5cdv4")
+     ("gpu-alloc-types" "0.3.1" "0n3h4arigd24d2naynhffdhir9x43ir3xzp4q8kda3ni9lbfvfxj")
+     ("gpui" "0.2.2" "01z7pq1ad33zd7whbmdj086r76vnnfhia29k89pknwpclv7lb6wp")
+     ("gpui-macros" "0.2.2" "1girj2kj6h4hgjgv9wbs2m2cghqpfs9pdd5nqx572n987bb2vc5w")
+     ("gpui_collections" "0.2.2" "071m88rh9hwcdrw0akkksp1vbi9bxzdrd3f09dzfj6r07mnxqfdf")
+     ("gpui_derive_refineable" "0.2.2" "0r66ry1lywr30mq6bs5jyay6iy4alfy6cnynid3v71qs6isf2kb4")
+     ("gpui_http_client" "0.2.2" "0pikj3v4dxl7h7wqwb4l12lhwqa872ms103ra116lpicdl52p0i3")
+     ("gpui_media" "0.2.2" "0jzi22c54jqkq7jqxmcmrjn5b8lpczn7ward2cjifdqpmq98kjq5")
+     ("gpui_perf" "0.2.2" "0xvdm0vi0z3nccd1pd17cia202hm66vz8rz8618rb67mvihhj2pl")
+     ("gpui_refineable" "0.2.2" "0hb61pv8bfd0ni8ivz0mw55dnqds1x0i8mpf38c6i52f4ncv1315")
+     ("gpui_semantic_version" "0.2.2" "0dcfji1xg2qrkmdpag9jnlnvqgwl6jjn0rdgnf7m55dnyzpla7i0")
+     ("gpui_sum_tree" "0.2.2" "1aczajdsapizpf23cvkqn97hkkw8qmbb600j7nhszbrzazfvxwz4")
+     ("gpui_util" "0.2.2" "1hq5bs843zd7mv09m4l5s26vrg2imawr0fgqkbg29r9sj0jymyk8")
+     ("gpui_util_macros" "0.2.2" "08hs9wiyl5a00p46v10c07d6wl62risxvm1gx0hpxfbzyiggca1c")
+     ("grid" "0.18.0" "10cnvyr90rf6w1piihi1jq3njqdb9q3n60n7bdknvsi5hb61w40j")
+     ("h2" "0.4.20" "0661bxispf05ik0idbjlyabwyqpngh9c2r6avaqkzann68104abx")
+     ("half" "2.7.1" "0jyq42xfa6sghc397mx84av7fayd4xfxr4jahsqv90lmjr5xi8kf")
+     ("hashbrown" "0.14.5" "1wa1vy1xs3mp11bn3z9dv0jricgr6a2j0zkf1g19yz3vw4il89z5")
+     ("hashbrown" "0.15.5" "189qaczmjxnikm9db748xyhiw04kpmhm9xj9k9hg0sgx7pjwyacj")
+     ("hashbrown" "0.17.1" "0jmqz7i4yl6cm7rbn0i2ffkfrmwi6xkmzkaldr2v8bcsx2v0jngd")
+     ("heck" "0.4.1" "1a7mqsnycv5z4z5vnv1k34548jzmc0ajic7c1j8jsaspnhw5ql4m")
+     ("heck" "0.5.0" "1sjmpsdl8czyh9ywl3qcsfsq9a307dg4ni2vnlwgnzzqhc4y0113")
+     ("hermit-abi" "0.5.3" "115jzi6ixx2nhkzbr2ijj36634agz32n6ilz2rg7vk5s1vb94xg1")
+     ("hex" "0.4.3" "0w1a4davm1lgzpamwnba907aysmlrnygbqmfis2mqjx5m552a93z")
+     ("hexf-parse" "0.2.1" "1pr3a3sk66ddxdyxdxac7q6qaqjcn28v0njy22ghdpfn78l8d9nz")
+     ("hidden-trait" "0.1.2" "1pv0i3h0qn0hn0q8r655jv9wn2ckpsgx1rq7xjdq9b1q0j2rxvb8")
+     ("hkdf" "0.12.4" "1xxxzcarz151p1b858yn5skmhyrvn8fs4ivx5km3i1kjmnr8wpvv")
+     ("hmac" "0.12.1" "0pmbr069sfg76z7wsssfk5ddcqd9ncp79fyz6zcm6yn115yc6jbc")
+     ("home" "0.5.12" "13bjyzgx6q9srnfvl43dvmhn93qc8mh5w7cylk2g13sj3i3pyqnc")
+     ("http" "1.5.0" "1q4wpz5hb4cf37g3jrdyffrpa6ngidmd9wrfph92fddzprl3b3ci")
+     ("http-body" "1.1.0" "0b5wj0rdj8p03k20q8x0jy249amg2db919fnmh7zcrgf2clqyana")
+     ("http-body-util" "0.1.5" "07773iilap808wjp6vywlq15zkgwnswqzrv270zxvg2z9biry5i3")
+     ("httparse" "1.10.1" "11ycd554bw2dkgw0q61xsa7a4jn1wb1xbfacmf3dbwsikvkkvgvd")
+     ("hybrid-array" "0.4.15" "05wsyp2n5gyf49qk51mblj9qyb15aay74m6fwmf74mpv1pqn9y17")
+     ("hyper" "1.12.0" "173wg6msakx4lha6hxm9z0i1h3bw34q8fk0x57b7flf9li6k4gic")
+     ("hyper-rustls" "0.27.10" "0lvz2bxpphyxmkws5ysfnydvsd0q4smbwgy254g92irjf1afda6z")
+     ("hyper-util" "0.1.21" "1zwbrhqr9js6r7db3zd8bsmm6ys1i0abgkc7lyw2d4jgd2b3vh6x")
+     ("icu_collections" "2.4.0" "1p85w6wf2bfyv1ffbgzln8n440nczv8kw9k3iknhy56kl110l2gy")
+     ("icu_locale_core" "2.4.0" "1h44m6jbiff814wpllybb93010nhlb7l28acvk82hrbwq5brpli5")
+     ("icu_normalizer" "2.4.0" "16f5hzppvfl136p72ikfdpblljnqjilan8vzzs3mq83g9263njj0")
+     ("icu_normalizer_data" "2.4.0" "1g4cir7jji6wlv98rkmrqv5a3jz9n46f5jd0gyizfhblzf5hiw10")
+     ("icu_properties" "2.4.0" "17rpgbrwk5963yaqizl2xq3przhxdi1qdgwqz1y8y5an3jckva1f")
+     ("icu_properties_data" "2.4.0" "1kyzmmgm1jqlfcpqr3nc0wqvnhz7a21khq81wlzicayhhapjk3xr")
+     ("icu_provider" "2.4.0" "05458rwq7bnw05z1b7dfiyda0wdr56rr0481izp8ii9naqqrjc21")
+     ("idna" "1.1.0" "1pp4n7hppm480zcx411dsv9wfibai00wbpgnjj4qj0xa7kr7a21v")
+     ("idna_adapter" "1.2.2" "0557p76l8hj35r9zn1yv7c6x1c0qbrsffmg80n0yy8361ly3fs6b")
+     ("image" "0.25.10" "0131b9fsd5grxf3lchfs2ci0rg8ga2mh1ygai7k2zh1k8cwq1aw5")
+     ("image-webp" "0.2.4" "1hz814csyi9283vinzlkix6qpnd6hs3fkw7xl6z2zgm4w7rrypjj")
+     ("imagesize" "0.13.0" "11f26ac9zvbr7sjnsv2z9jd3ryaz40pg8xch4ij1q1rg5zbjgkgd")
+     ("imgref" "1.12.3" "0byjryn74gh3jxshkvmf81r7hnphspr67aah3m22zj54xajb0i3f")
+     ("indexmap" "2.14.2" "0mf86hbjkkcd82cpq683bblbs0zwa8ndla96ci8p1ji6bl7ijknc")
+     ("inout" "0.1.4" "008xfl1jn9rxsq19phnhbimccf4p64880jmnpg59wqi07kk117w7")
+     ("instant" "0.1.13" "08h27kzvb5jw74mh0ajv0nv9ggwvgqm8ynjsn2sa9jsks4cjh970")
+     ("interpolate_name" "0.2.4" "0q7s5mrfkx4p56dl8q9zq71y1ysdj4shh6f28qf9gly35l21jj63")
+     ("inventory" "0.3.25" "0z6d57l6pkan8sdr4j87fwk1rfih1awir6hwpy8ss8n84ql2ha39")
+     ("io-surface" "0.16.1" "13lbjvaayxs85biwpkcr53rhzq3kibaf8n7y42js62gccifqqjsm")
+     ("ipnet" "2.12.2" "1h65hw16sqv8nrrmqp0g8drv5wh98n4z7a4h1lb76n8d7js306br")
+     ("is-docker" "0.2.0" "1cyibrv6817cqcpf391m327ss40xlbik8wxcv5h9pj9byhksx2wj")
+     ("is-wsl" "0.4.0" "19bs5pq221d4bknnwiqqkqrnsx2in0fsk8fylxm1747iim4hjdhp")
+     ("itertools" "0.13.0" "11hiy3qzl643zcigknclh446qb9zlg4dpdzfkjaa9q9fqpgyfgj1")
+     ("itertools" "0.14.0" "118j6l1vs2mx65dqhwyssbrxpawa90886m3mzafdvyip41w2q69b")
+     ("itoa" "1.0.19" "1m44ca6ihrapjhlfy1vn4zj207qyhizbv0c1iwgnr6ksc575gl9v")
+     ("jobserver" "0.1.35" "1crwgbb0wjph42ni4hqryjxlv4vlr0hyk81g76id9fpa56ysq00w")
+     ("js-sys" "0.3.107" "0fjdb084avbdxqb6n14lzszwn91wg88npasfym7bz2q9ahhrvh4d")
+     ("khronos-egl" "6.0.0" "0xnzdx0n1bil06xmh8i1x6dbxvk7kd2m70bbm6nw1qzc43r1vbka")
+     ("kurbo" "0.11.3" "0qiwq4l83fy9v5d1piywvh44yg9ha3rl04d2kdcqlvvm8jp2c866")
+     ("kv-log-macro" "1.0.7" "0zwp4bxkkp87rl7xy2dain77z977rvcry1gmr5bssdbn541v7s0d")
+     ("lazy_static" "1.5.1" "1yqaqmp510xw2ldpw88mx9b5s5qj8flb4rw0wd9ks1zpk9j0z1r0")
+     ("leak" "0.1.2" "0wqcb8jlacif35j535gsqywx09dbmqcj5l57vw42jkqmy40hw45x")
+     ("leaky-cow" "0.1.1" "1z16b4gyfm7gydf4vpm7x6kwiiszcfx0ca5gm0jd67r48ifj5a20")
+     ("lebe" "0.5.3" "1f459clndzzm35nyd15vj5dlasyagfasp7hcgl6lh2b658rs6ybs")
+     ("libc" "0.2.191" "02i4j7pjh129y92rijaia4576131fa2xjsii1dc3c1fnlv4qgkb5")
+     ("libfuzzer-sys" "0.4.13" "1li9z5q55wi81zzyifm7a4rw1xvcclsnqsqbkbvrk86bl50jzzd9")
+     ("libloading" "0.8.9" "0mfwxwjwi2cf0plxcd685yxzavlslz7xirss3b9cbrzyk4hv1i6p")
+     ("libm" "0.2.16" "10brh0a3qjmbzkr5mf5xqi887nhs5y9layvnki89ykz9xb1wxlmn")
+     ("libredox" "0.1.25" "078pc91l1c1w9hbzi7m4ph5qjnk4i2zgsqhg4hx80yh7yv591zv1")
+     ("linux-raw-sys" "0.12.1" "0lwasljrqxjjfk9l2j8lyib1babh2qjlnhylqzl01nihw14nk9ij")
+     ("linux-raw-sys" "0.4.15" "1aq7r2g7786hyxhv40spzf2nhag5xbw2axxc1k8z5k1dsgdm4v6j")
+     ("litemap" "0.8.3" "1bpgpj87560hmckh3875fbahpmfxbk4g8pzns84h3ykf3nfx3na7")
+     ("lock_api" "0.4.14" "0rg9mhx7vdpajfxvdjmgmlyrn20ligzqvn8ifmaz7dc79gkrjhr2")
+     ("log" "0.4.35" "0p002750b2hab9bnlxxrvk5g9dvyaf23kiy39s6wsi6s29nzh5ax")
+     ("loop9" "0.1.5" "0qphc1c0cbbx43pwm6isnwzwbg6nsxjh7jah04n1sg5h4p0qgbhg")
+     ("lru-slab" "0.1.3" "07y5xcnggc4f2ki68kzj93aycjc5z0j8y7scs4f31zx66yc4cl20")
+     ("lyon" "1.0.19" "1dz70iwmcjij4f30gqgcs3wivy72lkiv3cmqhy4ximmpxjyph1dx")
+     ("lyon_algorithms" "1.0.22" "01fqk44g9x392kmbv4kb1gkgc397kfnl24mz3x9wv2mlx3abk9pk")
+     ("lyon_geom" "1.0.20" "0gprjf619bfhwsqy2a2arx1wnaw44jcfap8ip5q5n2ywlimd4bfq")
+     ("lyon_path" "1.0.19" "07k2v24lxiwqdwzlhcqf3l8jj7m69b73kkaxi3ncazwb8af3yijw")
+     ("lyon_tessellation" "1.0.23" "0nzppc5qfw29f8p3nhlfcp9a0mynsx4w9szpsiyr1p3h1rjp4j7x")
+     ("mac" "0.1.1" "194vc7vrshqff72rl56f9xgb0cazyl4jda7qsv31m5l6xx7hq7n4")
+     ("malloc_buf" "0.0.6" "1jqr77j89pwszv51fmnknzvd53i1nkmcr8rjrvcxhm4dx1zr1fv2")
+     ("maybe-rayon" "0.1.1" "06cmvhj4n36459g327ng5dnj8d58qs472pv5ahlhm7ynxl6g78cf")
+     ("md-5" "0.10.6" "1kvq5rnpm4fzwmyv5nmnxygdhhb2369888a06gdc9pxyrzh7x7nq")
+     ("memchr" "2.8.3" "161xa63ipfanf8v3nb82xd5hqgydv55nzw59wyngqbz6alfaz2yg")
+     ("memmap2" "0.9.12" "0my158ms3h2akj1l8bzabwjz1v9jkw8klcg82am2bk4yb8as233b")
+     ("memoffset" "0.9.1" "12i17wh9a9plx869g7j4whf62xw68k5zd4k0k5nh6ys5mszid028")
+     ("metal" "0.29.0" "08gsqxnj0pq1018c8l4q0377i7gsrrqkrb7vyv0vfmlcdwlx7kvy")
+     ("mime" "0.3.18" "18dzfqp5gaza7lg8qqpq1xh83zw79b1al3zryaacy5w1krd8z16m")
+     ("mime_guess" "2.0.5" "03jmg3yx6j39mg0kayf7w4a886dl3j15y8zs119zw01ccy74zi7p")
+     ("minimal-lexical" "0.2.1" "16ppc5g84aijpri4jzv14rvcnslvlpphbszc7zzp6vfkddf4qdb8")
+     ("miniz_oxide" "0.8.9" "05k3pdg8bjjzayq3rf0qhpirq9k37pxnasfn4arbs17phqn6m9qz")
+     ("miniz_oxide" "0.9.1" "0k2bgjzk2sbsynpsv4wizwxbqp6vs7g08y5anbkrh3l6a15bqgxn")
+     ("mint" "0.5.9" "1zw5glv8z2d99c82jy2za97hh9p6377xmf4rbwz7jynsdfxfngg5")
+     ("mio" "1.2.4" "1vl6px9zy0pwhlwnw3cknsqyzkg8bcpiwiq4cgicf2fwgywfv20p")
+     ("moxcms" "0.8.1" "0jz4fd5f7pdn1rngqc96lxriqjkym1lswdhdbjr037s8p9ac31dv")
+     ("multiversion" "0.8.1" "0xihqpndds450pjz00qrry3jcwycjsw7jzp4py1myxfh46z6i2pb")
+     ("multiversion-macros" "0.8.1" "1q9mrsfiimiv6m1yrimwa8vndhxhs0p8aif6hwfs5njf7qy0qpm0")
+     ("multiversion_no_op" "1.0.0" "03d2k7xk7vky38q48h08miw4jca34ymckggnrqggn60vlddvagvl")
+     ("naga" "25.0.1" "0cm69nrd703v5slnk397rd16k0wb7cf678xcz5brgr16bx27r5rb")
+     ("nanorand" "0.7.0" "1hr60b8zlfy7mxjcwx2wfmhpkx7vfr3v9x12shmv1c10b0y32lba")
+     ("new_debug_unreachable" "1.0.6" "11phpf1mjxq6khk91yzcbd3ympm78m3ivl7xg6lg2c0lf66fy3k5")
+     ("nix" "0.29.0" "0ikvn7s9r2lrfdm3mx1h7nbfjvcc6s9vxdzw7j5xfkd2qdnp9qki")
+     ("nix" "0.31.3" "0gbwnjfny9rq9hl5bz4ry520n9rnfknna4bg88n66f7zx3yx486g")
+     ("no_std_io2" "0.9.4" "00w0ggkaaacbwiv4qw188ih5llmhf53qgp20wk5gdyrldldvv2j1")
+     ("nom" "7.1.3" "0jha9901wxam390jcf5pfa0qqfrgh8li787jx2ip0yk5b8y9hwyj")
+     ("nom" "8.0.0" "01cl5xng9d0gxf26h39m0l8lprgpa00fcc75ps1yzgbib1vn35yz")
+     ("noop_proc_macro" "0.3.0" "1j2v1c6ric4w9v12h34jghzmngcwmn0hll1ywly4h6lcm4rbnxh6")
+     ("ntapi" "0.4.3" "1bl0d73avwla7laa4pkqvzvifjbs0avg65w01zxjydgx3likbcy3")
+     ("num" "0.4.3" "08yb2fc1psig7pkzaplm495yp7c30m4pykpkwmi5bxrgid705g9m")
+     ("num-bigint" "0.4.8" "0ry3xjal8f5xhdinani268ci13h14mf7j4w0y1gflfzhw3knk7n8")
+     ("num-bigint-dig" "0.8.6" "1dxh3d8pzjc5k0kpy8gy2qhhhqs7zw8a7m564zl3ib8gcjkdsqg6")
+     ("num-complex" "0.4.6" "15cla16mnw12xzf5g041nxbjjm9m85hdgadd5dl5d0b30w9qmy3k")
+     ("num-derive" "0.4.2" "00p2am9ma8jgd2v6xpsz621wc7wbn1yqi71g15gc3h67m7qmafgd")
+     ("num-integer" "0.1.47" "02z1p3azy6p10n99skrab4a6hhfd4amf2i9gm8sxqd1p9dfxkqkw")
+     ("num-iter" "0.1.46" "12q4x0lp9l6bvsak1p5q24lvfzl99ak9vzmwhqbwksm1d6yh0a69")
+     ("num-rational" "0.4.2" "093qndy02817vpgcqjnj139im3jl7vkq4h68kykdqqh577d18ggq")
+     ("num-traits" "0.2.19" "0h984rhdkkqd4ny9cif7y2azl3xdfb7768hb9irhpsch4q3gq787")
+     ("num_cpus" "1.17.0" "0fxjazlng4z8cgbmsvbzv411wrg7x3hyxdq8nxixgzjswyylppwi")
+     ("objc" "0.2.7" "1cbpf6kz8a244nn1qzl3xyhmp05gsg4n313c9m3567625d3innwi")
+     ("objc-foundation" "0.1.1" "1y9bwb3m5fdq7w7i4bnds067dhm4qxv4m1mbg9y61j9nkrjipp8s")
+     ("objc2" "0.6.5" "1y41g7xhc3idzymsgr5vh414xzl43jp5cs39ayaaxpv78yyrp108")
+     ("objc2-app-kit" "0.3.2" "132ijwni8lsi8phq7wnmialkxp46zx998fns3zq5np0ya1mr77nl")
+     ("objc2-core-foundation" "0.3.2" "0dnmg7606n4zifyjw4ff554xvjmi256cs8fpgpdmr91gckc0s61a")
+     ("objc2-encode" "4.1.0" "0cqckp4cpf68mxyc2zgnazj8klv0z395nsgbafa61cjgsyyan9gg")
+     ("objc2-foundation" "0.3.2" "0wijkxzzvw2xkzssds3fj8279cbykz2rz9agxf6qh7y2agpsvq73")
+     ("objc2-metal" "0.3.2" "1527q158b8kagmdzlmvg782s5m7h15j62x1d2ps0ml0hd9vmy4m0")
+     ("objc2-quartz-core" "0.3.2" "07vzaf6y1lk7zygkgvpp23mm19ipdm9yq8af22gvywdkaa23bhcn")
+     ("objc2-ui-kit" "0.3.2" "08mbgqg8pffclyxpz2lr8r1fv8wn2i4m1k6bk1s5fvy06f766zfq")
+     ("objc_exception" "0.1.2" "191cmdmlypp6piw67y4m8y5swlxf5w0ss8n1lk5xd2l1ans0z5xd")
+     ("objc_id" "0.1.1" "0fq71hnp2sdblaighjc82yrac3adfmqzhpr11irhvdfp9gdlsbf9")
+     ("object" "0.39.1" "16vkcaamik55jd9f04g73hvgsm5w636gb4w06x3nafvsih4nqnif")
+     ("once_cell" "1.21.4" "0l1v676wf71kjg2khch4dphwh1jp3291ffiymr2mvy1kxd5kwz4z")
+     ("oo7" "0.5.0" "17dq0cswgkj2m6pvjjr45yrcy3zihq2irzfqmx2ivbzy07a9sag3")
+     ("open" "5.4.5" "15faqj24cm451lhj148x9xxhlji9ckqb4vl9sq269ljsfa78p34d")
+     ("openssl-probe" "0.2.2" "1c90103d6q2qqf2ihgd9dxhczi8kk97bg52fnzb2y4sl2x0nn0vy")
+     ("option-ext" "0.2.0" "0zbf7cx8ib99frnlanpyikm1bx8qn8x602sw1n7bg6p9x94lyx04")
+     ("ordered-stream" "0.2.0" "0l0xxp697q7wiix1gnfn66xsss7fdhfivl2k7bvpjs4i3lgb18ls")
+     ("parking" "2.2.1" "1fnfgmzkfpjd69v4j9x737b1k8pnn054bvzcn5dm3pkgq595d3gk")
+     ("parking_lot" "0.12.5" "06jsqh9aqmc94j2rlm8gpccilqm6bskbd67zf6ypfc0f4m9p91ck")
+     ("parking_lot_core" "0.9.12" "1hb4rggy70fwa1w9nb0svbyflzdc69h047482v2z3sx2hmcnh896")
+     ("paste" "1.0.15" "02pxffpdqkapy292harq6asfjvadgp1s005fip9ljfsn9fvxgh2p")
+     ("pastey" "0.1.1" "1v389jkifv757903flrrps67dvc6q6giwlyx3xi33hcfjmgjxyrm")
+     ("pathfinder_geometry" "0.5.1" "1lssir0s1cmrpzzrk49jm31nkssh2j715gryww6700x79rxpwyqb")
+     ("pathfinder_simd" "0.5.6" "0xsp8dh6pgrkm3anwdc4870bdv0sinaknvzk4gag2jif60606025")
+     ("pbkdf2" "0.12.2" "1wms79jh4flpy1zi8xdp4h8ccxv4d85adc6zjagknvppc5vnmvgq")
+     ("percent-encoding" "2.3.2" "083jv1ai930azvawz2khv7w73xh8mnylk7i578cifndjn5y64kwv")
+     ("pico-args" "0.5.0" "05d30pvxd6zlnkg2i3ilr5a70v3f3z2in18m67z25vinmykngqav")
+     ("pin-project" "1.1.13" "09091qp946lpmjz4yp0xil1r5v4hgc91fi19dg5csayhdqrv4ri4")
+     ("pin-project-internal" "1.1.13" "12rzlh07i1sdgrvzj6wgkka5bjqyvbfsl8knq6qi7g16m7q9aqy9")
+     ("pin-project-lite" "0.2.17" "1kfmwvs271si96zay4mm8887v5khw0c27jc9srw1a75ykvgj54x8")
+     ("pin-utils" "0.1.1" "04x1i74a3dsihlfxigzlv4ywyqq31fv34a18573laqx27p3ydghk")
+     ("piper" "0.2.5" "1hd3j94mw5dwc457gs9ssb2r5b9iipywndf5srqx7pj38jd4fdf8")
+     ("pkg-config" "0.3.34" "0j05h08nzg0q8rf6lzw7nry0b7kn7x97vc9n4hwrl52fqzxn9d7n")
+     ("png" "0.17.16" "09kmkms9fmkbkarw0lnf0scqvjwwg3r7riddag0i3q39r0pil5c2")
+     ("png" "0.18.1" "0qca282xp8a6d7mikxrwji3f52mjn4vnqxz2v9iz5adj665rnxk0")
+     ("polling" "3.11.0" "0622qfbxi3gb0ly2c99n3xawp878fkrd1sl83hjdhisx11cly3jx")
+     ("pollster" "0.2.5" "1xzji8cq4crr795c7liy3ksd798sb45pjphbm8h5gvnp7whb18sx")
+     ("postage" "0.5.0" "1hfk0rdwgv87aicna89ak0y3kz9ayakn28vwjdvgnx18cccbcgxg")
+     ("potential_utf" "0.1.6" "0qbndl2fpphq7mph41m11vaixs05xrh1s451wxlgap4fdnybjgnq")
+     ("ppv-lite86" "0.2.21" "1abxx6qz5qnd43br1dd9b2savpihzjza8gb4fbzdql1gxp2f7sl5")
+     ("prettyplease" "0.2.37" "0azn11i1kh0byabhsgab6kqs74zyrg69xkirzgqyhz6xmjnsi727")
+     ("proc-macro-crate" "3.5.0" "0kv1g1d1zjwxlgcaba2qlshzyy32j03xic8rskqlcr5mnblsfyz6")
+     ("proc-macro-error-attr2" "2.0.0" "1ifzi763l7swl258d8ar4wbpxj4c9c2im7zy89avm6xv6vgl5pln")
+     ("proc-macro-error2" "2.0.1" "00lq21vgh7mvyx51nwxwf822w2fpww1x0z8z0q47p8705g2hbv0i")
+     ("proc-macro2" "1.0.107" "1nb6ly8kp65f724kj73ippc7lvydss24sm2vagk6qpklpg4pwplq")
+     ("profiling" "1.0.18" "1xdwlvxlgy99nn1dra7arzinkc8lbqljvcwpq70m7g16lda5wn9x")
+     ("profiling-procmacros" "1.0.18" "1jxvqff6j1z7ph3qghw2xhv18z7pf6cs6cja6fwscjwsdfis9224")
+     ("psm" "0.1.32" "08m67yndaikwq8kviipphi50lfb25ph7j3gp4w3rffz6k52h7kad")
+     ("pxfm" "0.1.30" "1slrnbxd0nc96sny6x50ss1sm9ci0gig0fp1w8mw0pkgm5prapfm")
+     ("qoi" "0.4.1" "00c0wkb112annn2wl72ixyd78mf56p4lxkhlmsggx65l3v3n8vbz")
+     ("quick-error" "2.0.1" "18z6r2rcjvvf8cn92xjhm2qc3jpd1ljvcbf12zv0k9p565gmb4x9")
+     ("quick-xml" "0.41.0" "1h9y8zry34r3mxfd5vqfj50vvvzvri4kzbx5d657jkqjalg4aq76")
+     ("quinn" "0.11.12" "04cxgnriz43bzhicvvjjj0sjv8l7rbdrrx9ywfkmbhl5j4zf4la0")
+     ("quinn-proto" "0.11.19" "1gpg5d36v8wrm1hjrrz8jfcyflcnv8lva2sxl4wh8kzyap50qx8f")
+     ("quinn-udp" "0.5.16" "05phk0ragk1655pxkbfvjxxb5i5b1i4nbjjnvgsdqfc6y5yr0rmg")
+     ("quote" "1.0.47" "00ch0yyzvv6s671ik0kcsbw8nigdaj2g3fr61kcahwx48aqlvgqz")
+     ("r-efi" "5.3.0" "03sbfm3g7myvzyylff6qaxk4z6fy76yv860yy66jiswc2m6b7kb9")
+     ("r-efi" "6.0.0" "1gyrl2k5fyzj9k7kchg2n296z5881lg7070msabid09asp3wkp7q")
+     ("rand" "0.10.3" "1bxlhj4m9zrgfgk1yirf0nny86izrngscydfx9w387n9rfbgpjb5")
+     ("rand" "0.8.8" "0k3d9psya5icpiylff1w1wjbnc3q4pb1953n1iw7gbr61ggcfn70")
+     ("rand" "0.9.5" "0hbvllk8g28mqjld6hqmckk69w296qpzg95whm3didsyg46ivvxr")
+     ("rand_chacha" "0.3.1" "123x2adin558xbhvqb8w4f6syjsdkmqff8cxwhmjacpsl1ihmhg6")
+     ("rand_chacha" "0.9.0" "1jr5ygix7r60pz0s1cv3ms1f6pd1i9pcdmnxzzhjc3zn3mgjn0nk")
+     ("rand_core" "0.10.1" "0s9wiacxrr100icl7i41308gcj85nlcclrc5jx1jd6p10dhigf33")
+     ("rand_core" "0.6.4" "0b4j2v4cb5krak1pv6kakv4sz6xcwbrmy2zckc32hsigbrwy82zc")
+     ("rand_core" "0.9.5" "0g6qc5r3f0hdmz9b11nripyp9qqrzb0xqk9piip8w8qlvqkcibvn")
+     ("rand_pcg" "0.10.2" "0sp817pvwb3d2nxb1ww1y0f8x3kc4w198j2iqvs742hwgq9z986a")
+     ("rangemap" "1.8.0" "0gdaws5kkg3md7z4w7ln4sf3jkz6n3f3xl5pfr6fngvla1dx24d6")
+     ("rav1e" "0.8.1" "0axk3ji3jmlr81svmsy5zvj8shmhpp8lz5nyghkq752xx1bdvdj3")
+     ("ravif" "0.13.0" "0ifcpczxf6kcsqlky08vbjrvw9yd1m9mfszywxdhy6wpglci08z5")
+     ("raw-window-handle" "0.6.2" "0ff5c648hncwx7hm2a8fqgqlbvbl4xawb6v3xxv9wkpjyrr5arr0")
+     ("raw-window-metal" "0.4.0" "1w8g6s48jmgwskq07nyd0xms6sjar58z1a1gw7z9ifri5slcms3n")
+     ("rayon" "1.12.0" "0vcj63xgnk72c30vdrak7dhl53snnaqv9x2faf1d94hzg1kb2fgv")
+     ("rayon-core" "1.13.0" "14dbr0sq83a6lf1rfjq5xdpk5r6zgzvmzs5j6110vlv2007qpq92")
+     ("read-fonts" "0.41.0" "02c7q458gz6cfsyryiss5w6xp0k8dl2n4l1gncjrhidg9mkpssh4")
+     ("redox_syscall" "0.2.16" "16jicm96kjyzm802cxdd1k9jmcph0db1a4lhslcnhjsvhp0mhnpv")
+     ("redox_syscall" "0.5.18" "0b9n38zsxylql36vybw18if68yc9jczxmbyzdwyhb9sifmag4azd")
+     ("redox_users" "0.4.6" "0hya2cxx6hxmjfxzv9n8rjl5igpychav7zfi1f81pz6i4krry05s")
+     ("ref-cast" "1.0.27" "1hv5sf0j7b65gz2g57c3wp0fzr5r3807dywf6fap455lwjs0yi3y")
+     ("ref-cast-impl" "1.0.27" "0fnzgkvddgl9xs3884x5ypi9rd0dgc1p5vd1k4b74lw49ybdiv4j")
+     ("regex" "1.13.1" "1391a0a4100ik8cp7l577p3ip3haqq03rd9c5vdr7vcfdixj687h")
+     ("regex-automata" "0.4.18" "1cml0rm0ssqfkibh9nh3gy4b6hbsbicj1rihpwf2a4v4nawm71dd")
+     ("regex-syntax" "0.8.11" "1m25h5q2wp976fb9gc3dsc9l99svcvd5cri8lncb51c46ydgzxnn")
+     ("resvg" "0.45.1" "0hyz89wyasn0wdnpw7qy5iyl4xv3yx36hk3crb4h6pm5q2c8g4m8")
+     ("rgb" "0.8.53" "1i0c55whln68zs6f5qqrkbg1mzai0p3qk1mwkwzdgr9i3dw4pcs7")
+     ("ring" "0.17.14" "1dw32gv19ccq4hsx3ribhpdzri1vnrlcfqb2vj41xn4l49n9ws54")
+     ("roxmltree" "0.20.0" "15vw91ps91wkmmgy62khf9zb63bdinvm80957dascbsw7dwvc83c")
+     ("rust-embed" "8.13.0" "08yc6prrqinqa8zrqrzhk69lq21rdypfdnhvpl0dw4d6nssabbqr")
+     ("rust-embed-impl" "8.13.0" "0ls0wdb877l7w9wghv00yfxfnisj4rny1gka0sgcbsklcgdazn70")
+     ("rust-embed-utils" "8.13.0" "12lnp9wvi5xhiyfdbbb9gqxiq20vpr60hbwjwmil4f5xg2xfi10d")
+     ("rustc-hash" "1.1.0" "1qkc5khrmv5pqi5l5ca9p5nl5hs742cagrndhbrlk3dhlrx3zm08")
+     ("rustc-hash" "2.1.3" "0bbla578m87qmf3yr55q49l97gxn7z0ha1dwqlnvwwc58ad7y7kb")
+     ("rustc_version" "0.4.1" "14lvdsmr5si5qbqzrajgb6vfn69k0sfygrvfvr2mps26xwi3mjyg")
+     ("rustix" "0.38.44" "0m61v0h15lf5rrnbjhcb9306bgqrhskrqv7i1n0939dsw8dbrdgx")
+     ("rustix" "1.1.6" "1ajqv2zxmfms30hhvp5bdzpixn5xqnz7s871vpa56h99wm16grz5")
+     ("rustls" "0.23.46" "1pwg7i8drr70374amj96952cils9mpwyijd5rx1mqdp9q3c3pqa8")
+     ("rustls-native-certs" "0.8.5" "1i5f916arhb4gc5qipmn6d8p81q87fv549xda969i7s6qxfky1sa")
+     ("rustls-pemfile" "2.2.0" "0l3f3mrfkgdjrava7ibwzgwc4h3dljw3pdkbsi9rkwz3zvji9qyw")
+     ("rustls-pki-types" "1.15.1" "15hakk4pcvr5278cazgw9qf2r7gdg09rg5pivbyd3dbyih12aj9g")
+     ("rustls-webpki" "0.103.16" "10djm2f00xzi5qlbcfqjhhn2smk2h9aw8b4l74qncz4xsfvb2hs4")
+     ("rustversion" "1.0.23" "07z2a843fs80fawwflj9jwn49k9b0bd0dhhbvy0ar69vaxd72m6g")
+     ("rustybuzz" "0.14.1" "0p5mr2nk29448qf8rhq0lnmnpdcqwd3v4zmwlgj24wkpfy4czffg")
+     ("rustybuzz" "0.20.1" "00hp1gwykjfli258zs7lqg8p2zdh94dv2mw8zx7f73m0z2b7qg7x")
+     ("ryu" "1.0.23" "0zs70sg00l2fb9jwrf6cbkdyscjs53anrvai2hf7npyyfi5blx4p")
+     ("same-file" "1.0.6" "00h5j1w87dmhnvbv9l8bic3y7xxsnjmssvifw2ayvgx9mb1ivz4k")
+     ("schannel" "0.1.30" "1das969n0zgq630zx56mcw062aky4g57fdl19nxl3s4f9m13rclw")
+     ("schemars" "1.2.3" "0vnzz8smh3ixzy297898mwzfx0r5aadz2vxsbafwlxsaywk8hl5b")
+     ("schemars_derive" "1.2.3" "0sgwpzi91y6ibw7ns4wpqzgm9ddnmi7q8ia62am62zgsjhhakhz1")
+     ("scoped-tls" "1.0.1" "15524h04mafihcvfpgxd8f4bgc3k95aclz8grjkg9a0rxcvn9kz1")
+     ("scopeguard" "1.2.0" "0jcz9sd47zlsgcnm1hdw0664krxwb5gczlif4qngj2aif8vky54l")
+     ("screencapturekit" "0.2.8" "0knn97lc4j304wdz8b4ssb4f8njqwqml0k7zwp7n0jf9gasywphs")
+     ("screencapturekit-sys" "0.2.8" "0q2cvqmwh4hci33ypx7gwlg5xmkgxq9qh695h3h7z7nlyxbinh92")
+     ("seahash" "4.1.0" "0sxsb64np6bvnppjz5hg4rqpnkczhsl8w8kf2a5lr1c08xppn40w")
+     ("security-framework" "3.7.0" "07fd0j29j8yczb3hd430vwz784lx9knb5xwbvqna1nbkbivvrx5p")
+     ("security-framework-sys" "2.17.0" "1qr0w0y9iwvmv3hwg653q1igngnc5b74xcf0679cbv23z0fnkqkc")
+     ("self_cell" "1.3.0" "04x883z7awzkmn5lqb67n51xynrj2pa9339jgq4j1qa94yh2rd1a")
+     ("semver" "1.0.28" "1kaimrpy876bcgi8bfj0qqfxk77zm9iz2zhn1hp9hj685z854y4a")
+     ("serde" "1.0.229" "1fp04fq4a79bpm61xz1zy0pbz4kpc7d771zii1k3inmszq55jj21")
+     ("serde_core" "1.0.229" "0j1ajiha76h3nmd976il9li6975k121xa7jb39ws8n0yqp4s5p37")
+     ("serde_derive" "1.0.229" "0j4k63i7h1bikxwz2c89ig0hrwbnl9mz1czn85xx99x5cc9dg9g7")
+     ("serde_derive_internals" "0.30.0" "1gd9n45na7n79nr54ghfl79rygkbzw2ybk3wyr6nlp83rry16lpq")
+     ("serde_fmt" "1.1.0" "1va5qd0a1k8d65wq6v9grgzj24c6y94zg913g835vfdki3r7ljbf")
+     ("serde_json" "1.0.154" "1mjby21g8fxhrsfp73yz8wg6n2f4h23ah0nczds409l53f5wrsg7")
+     ("serde_json_lenient" "0.2.4" "0h1mh5ncn58l9qndmzban8wkhl4pnyxqxha25fk5jaqdpybk00qf")
+     ("serde_repr" "0.1.21" "01l987ghc17h1y9cf9xbzmcs77575mbrjf4ca2h70g15vqlicfwd")
+     ("serde_spanned" "0.6.9" "18vmxq6qfrm110caszxrzibjhy2s54n1g5w1bshxq9kjmz7y0hdz")
+     ("serde_spanned" "1.1.3" "10mpm2i41lx4jnp530fjk942myplsibbm302mx8cawcl6q57w64w")
+     ("serde_urlencoded" "0.7.1" "1zgklbdaysj3230xivihs30qi5vkhigg323a9m62k8jwf4a1qjfk")
+     ("sha1_smol" "1.0.1" "0pbh2xjfnzgblws3hims0ib5bphv7r5rfdpizyh51vnzvnribymv")
+     ("sha2" "0.10.9" "10xjj843v31ghsksd9sl9y12qfc48157j1xpb8v1ml39jy0psl57")
+     ("sha2" "0.11.1" "06ddr559jvwx17d7847l6i1g4hrlwy39j0yimjwwfskxxfdhdms7")
+     ("shlex" "1.3.0" "0r1y6bv26c1scpxvhg2cabimrmwgbp4p3wy6syj9n0c4s3q2znhg")
+     ("shlex" "2.0.1" "1fjsll1cd7d2bcpdij9kd6w62rpbc7qqzvydvs021vsmr1cxvypq")
+     ("signal-hook-registry" "1.4.8" "06vc7pmnki6lmxar3z31gkyg9cw7py5x9g7px70gy2hil75nkny4")
+     ("simd-adler32" "0.3.10" "1sny4y2qa5mwyxx5x59ln2p02vsdh92004njlslnx98imjc9489s")
+     ("simd_helpers" "0.1.0" "19idqicn9k4vhd04ifh2ff41wvna79zphdf2c81rlmpc7f3hz2cm")
+     ("simdutf8" "0.1.5" "0vmpf7xaa0dnaikib5jlx6y4dxd3hxqz6l830qb079g7wcsgxag3")
+     ("simplecss" "0.2.2" "0v0kid7b2602kcka2x2xs9wwfjf8lnvpgpl8x287qg4wra1ni73s")
+     ("siphasher" "1.0.4" "0mn28y43123jdpskdn6r9wibmn066f7h30zkkqn88bd6hj8zxx1k")
+     ("skrifa" "0.44.0" "0s5a3fnyrxfv514vjjrn268lyhihmh5nb9fyv7cp4ghx5gbbg6l1")
+     ("slab" "0.4.12" "1xcwik6s6zbd3lf51kkrcicdq2j4c1fw0yjdai2apy9467i0sy8c")
+     ("slotmap" "1.1.1" "0f20xf53zaysx9ydzkwwqm6hsjyb8lj2j6amhg57iln3jcy8rmdx")
+     ("smallvec" "1.16.5" "0ipfizwpq0byhrl50xcizs2yf758mgccmq6s5nqk8wszi94hk4ql")
+     ("smol" "2.0.2" "17srgkyzswns43cnqcfb1846a8nsna47qj7wrk1rj8c9c3id6fx3")
+     ("smol_str" "0.2.2" "1bfylqf2vnqaglw58930vpxm2rfzji5gjp15a2c0kh8aj6v8ylyx")
+     ("socket2" "0.6.5" "1m7diygswpvlpvrxd6ap169nxgax014jr8220nqlr3bzyb3y5lf3")
+     ("spin" "0.9.9" "03psal0vh1xdxp7agphw09p7kf50v3bj1zshijq1s5bkdd7jcqrp")
+     ("spirv" "0.3.0+sdk-1.3.268.0" "0i3qj7yvvprai1s03dvll2gkfy8398nl64wvllkhaaa4vh1i197d")
+     ("stable_deref_trait" "1.2.1" "15h5h73ppqyhdhx6ywxfj88azmrpml9gl6zp3pwy2malqa6vxqkc")
+     ("stacker" "0.1.25" "0rwrws4iyh8cay7pghzf2dy55pprwfn1vm805f5czfh6cza4jzvh")
+     ("stacksafe" "0.1.4" "146hnfl56qm2gpwnwaxq3l5b8n6r82h69lxnvn3pwcaxjrr1370x")
+     ("stacksafe-macro" "0.1.4" "0sfv2wdm9b26xqmniim7sba4d02hldy11nbrx5iq2rs920s7a88p")
+     ("static_assertions" "1.1.0" "0gsl6xmw10gvn3zs1rv99laj5ig7ylffnh71f9l34js4nr4r7sx2")
+     ("strict-num" "0.1.1" "0cb7l1vhb8zj90mzm8avlk815k40sql9515s865rqdrdfavvldv6")
+     ("strum" "0.26.3" "01lgl6jvrf4j28v5kmx9bp480ygf1nhvac8b4p7rcj9hxw50zv4g")
+     ("strum" "0.27.2" "1ksb9jssw4bg9kmv9nlgp2jqa4vnsa3y4q9zkppvl952q7vdc8xg")
+     ("strum_macros" "0.26.4" "1gl1wmq24b8md527cpyd5bw9rkbqldd7k1h38kf5ajd2ln2ywssc")
+     ("strum_macros" "0.27.2" "19xwikxma0yi70fxkcy1yxcv0ica8gf3jnh5gj936jza8lwcx5bn")
+     ("subtle" "2.6.1" "14ijxaymghbl1p0wql9cib5zlwiina7kall6w7g89csprkgbvhhk")
+     ("sval" "2.22.0" "1invi54ghisdjlfbgy3q6233lpp28sdy6kx7wg2grq8zl96ja6xq")
+     ("sval_buffer" "2.22.0" "0vvsx18kd7qvjlm5lyxvmppg4q7fsp4xlb9ykssszzr250nkbgjh")
+     ("sval_dynamic" "2.22.0" "0gap0m247frxjij02ryw9kkr2dq6ci5gjncicm2rm3cr7clwlj5h")
+     ("sval_fmt" "2.22.0" "1cjk1rrh9a5i4k23dv8c81iz8idq2xrppwhp69rnh1gq8278idg6")
+     ("sval_json" "2.22.0" "0jb0g50g8dznpvy1dvjdimizb6xa3jcpr7dbz9x98x3bpgb68xp1")
+     ("sval_nested" "2.22.0" "0b0jxks2ii7mvjmr5fhsd4bkv5sq2xkckxpylwz1djm5kjb5kh07")
+     ("sval_ref" "2.22.0" "1ws84nhm45ndywrk2dn62rh4pzyz58fza1qqas3mrj38yngv5mj2")
+     ("sval_serde" "2.22.0" "0lsqw3jccqg6y43pblhyx2ywd2a1v2hs0369smj2gca2vjgfqcwg")
+     ("svg_fmt" "0.4.5" "1yq2kv7klg8s5k19prn36cprlnb811cqgwhy079g7lng651wr4q1")
+     ("svgtypes" "0.15.3" "1z4a0b76ww6rf2c8zdapqh2a7r7kmmy7m957q5h5ics4zwgm9iv8")
+     ("swash" "0.2.10" "0bprhdib5yjpzvfb0nkqplwpm47di9qnh8ibhy416lr6v319j93c")
+     ("syn" "1.0.109" "0ds2if4600bd59wsv7jjgfkayfzy3hnazs394kz6zdkmna8l3dkj")
+     ("syn" "2.0.119" "15vjy620l91a3q4n4f4gzhnflmdr6pnm38v2m6cpk86i8av32a47")
+     ("syn" "3.0.9" "0fw28lhl90kls24q2h2sp39yjb0lsvz5cwh9fd3f3w3v9kp8v36p")
+     ("sync_wrapper" "1.0.2" "0qvjyasd6w18mjg5xlaq5jgy84jsjfsvmnn12c13gypxbv75dwhb")
+     ("synstructure" "0.14.0" "00kzyz38xqvs7x1dn6rp64y0ckly4m7ywf3qk3qkgqfzs3nh85wh")
+     ("sys-locale" "0.3.2" "1i16hq9mkwpzqvixjfy1ph4i2q5klgagjg4hibz6k894l2crmawf")
+     ("sysinfo" "0.31.4" "1gm1d4pxwnx4gmh6kwawchv8v8djb7y0a3qvbsq09cwrhx7vwp9m")
+     ("system-configuration" "0.6.1" "0sxslml567zm0v8g732314vd2gk9sd3k4xj22xk6p64xir29v1rw")
+     ("system-configuration-sys" "0.6.0" "1i5sqrmgy58l4704hibjbl36hclddglh73fb3wx95jnmrq81n7cf")
+     ("taffy" "0.9.0" "0150r61qrajrx56q0rwl8bd9j3nam0n0g61s6mfqnmcxyw9msgm1")
+     ("take-until" "0.2.0" "1fqbg8pk6yl03k9pr411h6fvj8ygknx42w3bwv0khyx6vyh6znwb")
+     ("tao-core-video-sys" "0.2.0" "1xlqdcp7a5hni0jwc7yn7p4mij68f86ffv0cfb8did4w53mm0517")
+     ("target-features" "0.1.6" "1m8y0ksw30gnkidjsjvnmhlpj165mgyj8ylk0lbs0qy4qprvkfy1")
+     ("tempfile" "3.27.0" "1gblhnyfjsbg9wjg194n89wrzah7jy3yzgnyzhp56f3v9jd7wj9j")
+     ("tendril" "0.4.3" "1c3vip59sqwxn148i714nmkrvjzbk7105vj0h92s6r64bw614jnj")
+     ("termcolor" "1.4.1" "0mappjh3fj3p2nmrg4y7qv94rchwi9mzmgmfflr8p2awdj7lyy86")
+     ("thiserror" "1.0.69" "0lizjay08agcr5hs9yfzzj6axs53a2rgx070a1dsi3jpkcrzbamn")
+     ("thiserror" "2.0.21" "17hq1lh5dyr3bkc7zzjrbrp4qgkvhc48kgq1n5fdxkindaw2rr89")
+     ("thiserror-impl" "1.0.69" "1h84fmn2nai41cxbhk6pqf46bxqq1b344v8yz089w1chzi76rvjg")
+     ("thiserror-impl" "2.0.21" "0945n8agp7kg6n6b35yyjb4g5xv2q22vrw15h6jj1nw76a99flgy")
+     ("tiff" "0.11.3" "0lmw68ic77sixk17r4rl2vsv00rqhja3yj2h9p5bcd9x6krylgxn")
+     ("tiny-keccak" "2.0.2" "0dq2x0hjffmixgyf6xv9wgsbcxkd65ld0wrfqmagji8a829kg79c")
+     ("tiny-skia" "0.11.4" "1aq9gd4qh4418g8v08qzakqqggx8hl66qcianl3k5bjdsja37lc3")
+     ("tiny-skia-path" "0.11.4" "14ywbdfakvacl6rxxmzbnycplaxpc6i2linh2yqk0sp8qb07z7lw")
+     ("tinystr" "0.8.5" "06l0g5wy57a43bd1qvk92xd5dpnz3qk949vbx3wmhk8m73141j5b")
+     ("tinyvec" "1.13.3" "1vphg4gnlpykjy5h4v7r8nl38ij4zr9qyh7qd34ddvwjyqaa6g7x")
+     ("tokio" "1.54.1" "18wn0c3yvy6ld8yis0fw6rqkc4rwnmv5mav4fan6zljqa8jx6bxm")
+     ("tokio-rustls" "0.26.6" "1nq5s413p6hkwrgjrpag1gi2mnjajpbszqhmhbpnkmfdq9w2dk69")
+     ("tokio-socks" "0.5.3" "05bndwj4lrycixadgs8gxpfzvhal52n79yy7y8snpqnvc27r9qm7")
+     ("tokio-util" "0.7.20" "0jwagxx9vr940rlxjh0y7zimd2cbxqbjym5nz73byvm93d2wyr74")
+     ("toml" "0.8.23" "0qnkrq4lm2sdhp3l6cb6f26i8zbnhqb7mhbmksd550wxdfcyn6yw")
+     ("toml" "1.2.1+spec-1.1.0" "1mrcyghs23p7g74w9lzpal3hd3jqp67ayswmy48wgniwhr8mqxfm")
+     ("toml_datetime" "0.6.11" "077ix2hb1dcya49hmi1avalwbixmrs75zgzb3b2i7g2gizwdmk92")
+     ("toml_datetime" "1.1.3+spec-1.1.0" "0jbfdgsl0vw6f394cifqm62d8q0aiiima891v2i7c8fdhg42agqp")
+     ("toml_edit" "0.22.27" "16l15xm40404asih8vyjvnka9g0xs9i4hfb6ry3ph9g419k8rzj1")
+     ("toml_edit" "0.25.19+spec-1.1.0" "063j62l4wsmxpvbiqfw89avzxhv79a3rz6ngw552dmsq9266hhyx")
+     ("toml_parser" "1.1.5+spec-1.1.0" "0k3lljyi4zxchdklaqghkwbl7wkd2ab1w16hlyniqzid0fl979ms")
+     ("toml_write" "0.1.2" "008qlhqlqvljp1gpp9rn5cqs74gwvdgbvs92wnpq8y3jlz4zi6ax")
+     ("toml_writer" "1.2.0+spec-1.1.0" "0fp14qh313y31pqddn2bhk01l7ygx70f9fxfhgpma77i01vvp780")
+     ("tower" "0.5.3" "1m5i3a2z1sgs8nnz1hgfq2nr4clpdmizlp1d9qsg358ma5iyzrgb")
+     ("tower-layer" "0.3.3" "03kq92fdzxin51w8iqix06dcfgydyvx7yr6izjq0p626v9n2l70j")
+     ("tower-service" "0.3.3" "1hzfkvkci33ra94xjx64vv3pp0sq346w06fpkcdwjcid7zhvdycd")
+     ("tracing" "0.1.44" "006ilqkg1lmfdh3xhg3z762izfwmxcvz0w7m4qx2qajbz9i1drv3")
+     ("tracing-attributes" "0.1.31" "1np8d77shfvz0n7camx2bsf1qw0zg331lra0hxb4cdwnxjjwz43l")
+     ("tracing-core" "0.1.36" "16mpbz6p8vd6j7sf925k9k8wzvm9vdfsjbynbmaxxyq6v7wwm5yv")
+     ("try-lock" "0.2.5" "0jqijrrvm1pyq34zn1jmy2vihd4jcrjlvsh4alkjahhssjnsn8g4")
+     ("ttf-parser" "0.20.0" "1d4n3p9ccjvy4mj72700i0c2q6d49dxjpwflw47q79rpv1v7vxqp")
+     ("ttf-parser" "0.21.1" "1y0wsfgri7yi41cn57g4fzqm30x1v5nlrci6j5mqcxwpys1isn9c")
+     ("ttf-parser" "0.25.1" "0cbgqglcwwjg3hirwq6xlza54w04mb5x02kf7zx4hrw50xmr1pyj")
+     ("typeid" "1.0.3" "0727ypay2p6mlw72gz3yxkqayzdmjckw46sxqpaj08v0b0r64zdw")
+     ("typenum" "1.20.1" "086s9ly0906kw5yw41249fba97w5zfxf03pyfwdkffvcprqfixdn")
+     ("uds_windows" "1.2.1" "0vidqwwfgn8wyzvbxiqil787b4wyqjia50zpdbbjqx7n8wlgpxpj")
+     ("unicase" "2.10.0" "13x2h9s4jhch7rknqkqb1pb35irpj00fswy9ssgh0dm0qsnc6z1m")
+     ("unicode-bidi" "0.3.18" "1xcxwbsqa24b8vfchhzyyzgj0l6bn51ib5v8j6krha0m77dva72w")
+     ("unicode-bidi-mirroring" "0.2.0" "11mgyp2vclhzcm0kzy8jjn5ivsry4c37368finacb4mwzs7pijr3")
+     ("unicode-bidi-mirroring" "0.4.0" "1zirs1z3ahlwy7swg7apnm3pc6vix1g15q0kn6fx8rmvc266xyjx")
+     ("unicode-ccc" "0.2.0" "0mkn2ns6q2xmmr3g8sxinbhgzkjq9xzavidgipbs6knc3c87pxqx")
+     ("unicode-ccc" "0.4.0" "0gjhxwx27ywm3rcbb0m5q20w8zxi51440b3ps6swi6ywpj4d8qff")
+     ("unicode-ident" "1.0.27" "0qv54hz0sxmspjyr162z3435pnyylzjjhx3j4k1s359pqgb59ix2")
+     ("unicode-linebreak" "0.1.5" "07spj2hh3daajg335m4wdav6nfkl0f6c0q72lc37blr97hych29v")
+     ("unicode-properties" "0.1.5" "0cqq9jq11jnxr8x8cxa0c1fz5q0k2kz1r00jadsvms10xf3x4flr")
+     ("unicode-script" "0.5.9" "1gyaarvyy34wgxsc7943wxk1hzk7xv0rbm3l9i39shh5vdawj15a")
+     ("unicode-segmentation" "1.13.3" "1a47zaq83p386r3baq4m018xd5q4q0grdg56i1x042dzn71x7xf6")
+     ("unicode-vo" "0.1.0" "151sha088v9jyfvbg5164xh4dk72g53b82xm4zzbf5dlagzqdlxi")
+     ("unicode-width" "0.2.3" "0mymrsdklcgys4fndds2h2hasij36gyalcqy4nghb4k9hxqq8wfa")
+     ("untrusted" "0.9.0" "1ha7ib98vkc538x0z60gfn0fc5whqdd85mb87dvisdcaifi6vjwf")
+     ("ureq" "2.12.1" "07f0qdn6459k4rmdnkivkz0y7j28vxh5c8q8sr0gcxgdfxiadl82")
+     ("url" "2.5.8" "1v8f7nx3hpr1qh76if0a04sj08k86amsq4h8cvpw6wvk76jahrzz")
+     ("usvg" "0.45.1" "1vs7gfhyxjgkgibgwfjniwrszfw0iivj1aq06hq8nfxfzc39pgl0")
+     ("utf-8" "0.7.6" "1a9ns3fvgird0snjkd3wbdhwd3zdpc2h5gpyybrfr6ra5pkqxk09")
+     ("utf8_iter" "1.1.0" "1w7d0f7xc46qfmb7m6zy5y6in1mblmzbhcyhx766zhkiwp9xjfxg")
+     ("utf_types" "1.0.0" "1dhbsnxfxxbg9a13anjfax5i7jyd51nkngs5g1r3c2lqhr944frs")
+     ("uuid" "1.29.2" "0z161qj1jw91fz64pmz1vqs9l1y7dpbf8yziwp7vbjfsywwr3ndy")
+     ("v_frame" "0.3.9" "1qkvb4ks33zck931vzqckjn36hkngj6l2cwmvfsnlpc7r0kpfsv6")
+     ("value-bag" "1.14.1" "04g5rg7d993a7aasj3s7q3qnwnl1i9n30w9bj3yyr4m756rzz697")
+     ("value-bag-serde1" "1.14.1" "130xm1ilns5kjzbmlc862fj88a00jxdx95hhx9cqyymymz7gwh89")
+     ("value-bag-sval2" "1.14.1" "1k880nyixhld71il2hmp1bkfkvdi8531d51bxckpsa3rh6pm55w3")
+     ("version_check" "0.9.5" "0nhhi4i5x89gm911azqbn7avs9mdacw2i3vcz3cnmz3mv4rqz4hb")
+     ("vswhom" "0.1.0" "12v0fjjzxdc3y5c0lcwycfhphz7zf2s06hl5krwhawah0xzrp5xy")
+     ("vswhom-sys" "0.1.3" "0l0i4fijapsybmfckfqh53yqxsg0bm5ikja6vz8ngw0zpm67w1pv")
+     ("waker-fn" "1.2.0" "1dvk0qsv88kiq22x8w0qz0k9nyrxxm5a9a9czdwdvvhcvjh12wii")
+     ("walkdir" "2.5.0" "0jsy7a710qv8gld5957ybrnc07gavppp963gs32xk4ag8130jy99")
+     ("want" "0.3.2" "02zdlaqarwm9x3z1l0vm61mv8f6mv0kp4izgnxlfibqhv46xsk7c")
+     ("wasi" "0.11.1+wasi-snapshot-preview1" "0jx49r7nbkbhyfrfyhz0bm4817yrnxgd3jiwwwfv0zl439jyrwyc")
+     ("wasip2" "1.0.4+wasi-0.2.12" "11wl7lqwq4pbmlmzr6n7bwz0hzy1z6sxc4554bkmrr86w4vznzmn")
+     ("wasm-bindgen" "0.2.130" "071xi9mqha1vdrxsjgndjgcf0azkl8g5yahkn2qbiiynvla1q650")
+     ("wasm-bindgen-futures" "0.4.80" "00f5mq5rx8wzbq98svcjbb4r79i7k15d08nb1kb8ldmmghrf052y")
+     ("wasm-bindgen-macro" "0.2.130" "1ncfybmdiczbsjz8a257a13k8n7dnl15khvgjrkbzgcslc11m4vf")
+     ("wasm-bindgen-macro-support" "0.2.130" "0fm58fh6gkhlmi15rhzvcgz35x5s6kkvi9ik3s1vsmg4h11bb91c")
+     ("wasm-bindgen-shared" "0.2.130" "17iq85zyk1z7hq533c0apj5ix0y0ks35fbszxv31cl3jk0vrq7rv")
+     ("wasm-streams" "0.4.2" "0rddn007hp6k2cm91mm9y33n79b0jxv0c3znzszcvv67hn6ks18m")
+     ("wayland-backend" "0.3.17" "0y50cw56f09cdcsinbbl94naz91xf7iqaj87s4f7py6zmm71pa9q")
+     ("wayland-client" "0.31.15" "0ww0d0r6rn2h0sn8ma1f7zvxj40l6930p07j044nvmqshq7nmhz3")
+     ("wayland-cursor" "0.31.14" "0kdk7xwj465idk54jf1f24024gdp63wyagca68a176xyh23x2lja")
+     ("wayland-protocols" "0.31.2" "1x310l1p6p3p3l76nl1l2yava9408dy77s605917zadlp1jz70cg")
+     ("wayland-protocols" "0.32.13" "1dn4injzx1lnmacnhl3q60m743lvshxmmy0aabb2xaixvq9wil13")
+     ("wayland-protocols-plasma" "0.2.0" "0yglbxd4ka8284k0j0ssh9hf6wd9qp2n0s2qrsdymyaz258kb013")
+     ("wayland-scanner" "0.31.11" "1h0al3271l2w124sxlh77s1kmjg0z24ns2mk1vbnfars3d3313ik")
+     ("wayland-sys" "0.31.11" "1gp3hlkxx13i55lyyi794vnw9a780z3skx0xhj71zr69xwzv5snq")
+     ("web-sys" "0.3.107" "125b0y934gyfwjkd60wnqjf2irmx250dar6vwinhzv7mdxcpklfp")
+     ("web-time" "1.1.0" "1fx05yqx83dhx628wb70fyy10yjfq1jpl20qfqhdkymi13rq0ras")
+     ("webpki-roots" "0.26.11" "1agpayg5zzf7m1a01q30jahlgmn5nwggbabdhq0in008pf5c66sj")
+     ("webpki-roots" "1.0.11" "0wgidma8qmksdhmx8pnbpg8m1zx08llqbqz7gn7br1xjnaxq1wpm")
+     ("weezl" "0.1.12" "122a1dhha6cib5az4ihcqlh60ns2bi6rskdv875p94lbvj6wk2m2")
+     ("which" "6.0.3" "07yg74dsq644hq5a35546c9mja6rsjdsg92rykr9hkflxf7r5vml")
+     ("winapi" "0.3.9" "06gl025x418lchw1wxj64ycr7gha83m44cjr5sarhynd9xkrm0sw")
+     ("winapi-i686-pc-windows-gnu" "0.4.0" "1dmpa6mvcvzz16zg6d5vrfy4bxgg541wxrcip7cnshi06v38ffxc")
+     ("winapi-util" "0.1.11" "08hdl7mkll7pz8whg869h58c1r9y7in0w0pk8fm24qc77k0b39y2")
+     ("winapi-x86_64-pc-windows-gnu" "0.4.0" "0gqq64czqb64kskjryj8isp62m2sgvx25yyj3kpc2myh85w24bki")
+     ("windows" "0.57.0" "0hqid10bqvxa3pbpgvrh2cilf950lxsd9zqfv3rldc73v2s2qd0j")
+     ("windows" "0.61.3" "14v8dln7i4ccskd8danzri22bkjkbmgzh284j3vaxhd4cykx7awv")
+     ("windows-capture" "1.5.0" "091bi2fg3kgcy4l8vxzgxvarg31v6ak2r73y3bnbkpgyjlzgfk9s")
+     ("windows-collections" "0.2.0" "1s65anr609qvsjga7w971p6iq964h87670dkfqfypnfgwnswxviv")
+     ("windows-core" "0.57.0" "0bc3jxw2jw76xkk3ddvnp5b2m76qmbzv1qncgvb6qrlhl8wj9vfj")
+     ("windows-core" "0.61.2" "1qsa3iw14wk4ngfl7ipcvdf9xyq456ms7cx2i9iwf406p7fx7zf0")
+     ("windows-future" "0.2.1" "13mdzcdn51ckpzp3frb8glnmkyjr1c30ym9wnzj9zc97hkll2spw")
+     ("windows-implement" "0.57.0" "1mqs7qypclnmx5r8yq5jy3g2d8i27vzag9yzzzxzpdnmb70ds1wi")
+     ("windows-implement" "0.60.2" "1psxhmklzcf3wjs4b8qb42qb6znvc142cb5pa74rsyxm1822wgh5")
+     ("windows-interface" "0.57.0" "19zwlzr0q1z9s692681yb5w2lhvwcyx4v95s25hfdkd3isry9gi9")
+     ("windows-interface" "0.59.3" "0n73cwrn4247d0axrk7gjp08p34x1723483jxjxjdfkh4m56qc9z")
+     ("windows-link" "0.1.3" "12kr1p46dbhpijr4zbwr2spfgq8i8c5x55mvvfmyl96m01cx4sjy")
+     ("windows-link" "0.2.1" "1rag186yfr3xx7piv5rg8b6im2dwcf8zldiflvb22xbzwli5507h")
+     ("windows-numerics" "0.2.0" "1cf2j8nbqf0hqqa7chnyid91wxsl2m131kn0vl3mqk3c0rlayl4i")
+     ("windows-registry" "0.4.0" "18wbgr6z6765qdnasi8mmvxhvp82xd1zlvd6s7pp2l5lvn8av1j2")
+     ("windows-registry" "0.5.3" "17j9cxlnksdypanazss6cnh36v3rwvs86j4mpixwkvv5hz99x2jv")
+     ("windows-result" "0.1.2" "1y274q1v0vy21lhkgslpxpq1m08hvr1mcs2l88h1b1gcx0136f2y")
+     ("windows-result" "0.3.4" "1il60l6idrc6hqsij0cal0mgva6n3w6gq4ziban8wv6c6b9jpx2n")
+     ("windows-strings" "0.3.1" "06bkhkyclbfchcsv5bnhz77r290k20m15glj2xq60ra0bp64iyl7")
+     ("windows-strings" "0.4.2" "0mrv3plibkla4v5kaakc2rfksdd0b14plcmidhbkcfqc78zwkrjn")
+     ("windows-sys" "0.48.0" "1aan23v5gs7gya1lc46hqn9mdh8yph3fhxmhxlw36pn6pqc28zb7")
+     ("windows-sys" "0.52.0" "0gd3v4ji88490zgb6b5mq5zgbvwv7zx1ibn8v3x83rwcdbryaar8")
+     ("windows-sys" "0.59.0" "0fw5672ziw8b3zpmnbp9pdv1famk74f1l9fcbc3zsrzdg56vqf0y")
+     ("windows-sys" "0.61.2" "1z7k3y9b6b5h52kid57lvmvm05362zv1v8w0gc7xyv5xphlp44xf")
+     ("windows-targets" "0.48.5" "034ljxqshifs1lan89xwpcy1hp0lhdh4b5n0d2z4fwjx2piacbws")
+     ("windows-targets" "0.52.6" "0wwrx625nwlfp7k93r2rra568gad1mwd888h1jwnl0vfg5r4ywlv")
+     ("windows-targets" "0.53.5" "1wv9j2gv3l6wj3gkw5j1kr6ymb5q6dfc42yvydjhv3mqa7szjia9")
+     ("windows-threading" "0.1.0" "19jpn37zpjj2q7pn07dpq0ay300w65qx7wdp13wbp8qf5snn6r5n")
+     ("windows_aarch64_gnullvm" "0.48.5" "1n05v7qblg1ci3i567inc7xrkmywczxrs1z3lj3rkkxw18py6f1b")
+     ("windows_aarch64_gnullvm" "0.52.6" "1lrcq38cr2arvmz19v32qaggvj8bh1640mdm9c2fr877h0hn591j")
+     ("windows_aarch64_gnullvm" "0.53.1" "0lqvdm510mka9w26vmga7hbkmrw9glzc90l4gya5qbxlm1pl3n59")
+     ("windows_aarch64_msvc" "0.48.5" "1g5l4ry968p73g6bg6jgyvy9lb8fyhcs54067yzxpcpkf44k2dfw")
+     ("windows_aarch64_msvc" "0.52.6" "0sfl0nysnz32yyfh773hpi49b1q700ah6y7sacmjbqjjn5xjmv09")
+     ("windows_aarch64_msvc" "0.53.1" "01jh2adlwx043rji888b22whx4bm8alrk3khjpik5xn20kl85mxr")
+     ("windows_i686_gnu" "0.48.5" "0gklnglwd9ilqx7ac3cn8hbhkraqisd0n83jxzf9837nvvkiand7")
+     ("windows_i686_gnu" "0.52.6" "02zspglbykh1jh9pi7gn8g1f97jh1rrccni9ivmrfbl0mgamm6wf")
+     ("windows_i686_gnu" "0.53.1" "18wkcm82ldyg4figcsidzwbg1pqd49jpm98crfz0j7nqd6h6s3ln")
+     ("windows_i686_gnullvm" "0.52.6" "0rpdx1537mw6slcpqa0rm3qixmsb79nbhqy5fsm3q2q9ik9m5vhf")
+     ("windows_i686_gnullvm" "0.53.1" "030qaxqc4salz6l4immfb6sykc6gmhyir9wzn2w8mxj8038mjwzs")
+     ("windows_i686_msvc" "0.48.5" "01m4rik437dl9rdf0ndnm2syh10hizvq0dajdkv2fjqcywrw4mcg")
+     ("windows_i686_msvc" "0.52.6" "0rkcqmp4zzmfvrrrx01260q3xkpzi6fzi2x2pgdcdry50ny4h294")
+     ("windows_i686_msvc" "0.53.1" "1hi6scw3mn2pbdl30ji5i4y8vvspb9b66l98kkz350pig58wfyhy")
+     ("windows_x86_64_gnu" "0.48.5" "13kiqqcvz2vnyxzydjh73hwgigsdr2z1xpzx313kxll34nyhmm2k")
+     ("windows_x86_64_gnu" "0.52.6" "0y0sifqcb56a56mvn7xjgs8g43p33mfqkd8wj1yhrgxzma05qyhl")
+     ("windows_x86_64_gnu" "0.53.1" "16d4yiysmfdlsrghndr97y57gh3kljkwhfdbcs05m1jasz6l4f4w")
+     ("windows_x86_64_gnullvm" "0.48.5" "1k24810wfbgz8k48c2yknqjmiigmql6kk3knmddkv8k8g1v54yqb")
+     ("windows_x86_64_gnullvm" "0.52.6" "03gda7zjx1qh8k9nnlgb7m3w3s1xkysg55hkd1wjch8pqhyv5m94")
+     ("windows_x86_64_gnullvm" "0.53.1" "1qbspgv4g3q0vygkg8rnql5c6z3caqv38japiynyivh75ng1gyhg")
+     ("windows_x86_64_msvc" "0.48.5" "0f4mdp895kkjh9zv8dxvn4pc10xr7839lf5pa9l0193i2pkgr57d")
+     ("windows_x86_64_msvc" "0.52.6" "1v7rb5cibyzx8vak29pdrk8nx9hycsjs4w0jgms08qk49jl6v7sq")
+     ("windows_x86_64_msvc" "0.53.1" "0l6npq76vlq4ksn4bwsncpr8508mk0gmznm6wnhjg95d19gzzfyn")
+     ("winnow" "0.7.15" "0i9rkl2rqpbnnxlgs20gmkj3nd0b2k8q55mjmpc2ybb84xwxjyfz")
+     ("winnow" "1.0.5" "1vvs4zmisyxxp1igpjpi87z26d6wl3q98shcvx68gazhklcr6fwc")
+     ("winreg" "0.56.0" "046a5jpvc0yzr9c0wgik743k6yalr2f0bchy4c0nz7sazyh34vvx")
+     ("winsafe" "0.0.19" "0169xy9mjma8dys4m8v4x0xhw2gkbhv2v1wsbvcjl9bhnxxd2dfi")
+     ("wio" "0.2.2" "199p404fp96w1f1c93bf1jrvaqwypxf3hmmldhww4jk4yhr9j4jx")
+     ("wit-bindgen" "0.57.1" "0vjk2jb593ri9k1aq4iqs2si9mrw5q46wxnn78im7hm7hx799gqy")
+     ("writeable" "0.6.4" "1p3r4s4wbf3dksfpj3xyrn7id5p0f7r74mj6qx6ngjfd6cm2vn1s")
+     ("x11" "2.21.0" "0bnvl09d7044k067gqdx1ln2r0ljp5f4675icwb0216d9i3aabah")
+     ("x11-clipboard" "0.9.3" "18rmsm0lrcc4hy2wqs7gn90czv59sv5bj07bbf76nfbysyrp8bb6")
+     ("x11rb" "0.13.2" "053lvnaw9ycbl791mgwly2hw27q6vqgzrb1y5kz1as52wmdsm4wr")
+     ("x11rb-protocol" "0.13.2" "1g81cznbyn522b0fbis0i44wh3adad2vhsz5pzf99waf3sbc4vza")
+     ("xcb" "1.7.1" "0rh5nf63b68irmbavbakg6z4ncwji4mqdzlsx1p8a8p9w0asvhm6")
+     ("xcursor" "0.3.11" "08wfv0wrij9rrmbgfd2l8a132gyfax05abypllpmwic6hznk6fqn")
+     ("xim-ctext" "0.3.0" "0k186cy9dcw999w74ak39f1cfp2xhgpywbp8nqvkq3y4c9q1miia")
+     ("xim-parser" "0.2.2" "1dyp9ma824i3vslklv8ad7mga96vgm7aiwqa31jmlbapi5gy9kjx")
+     ("xkbcommon" "0.8.0" "1j8s1sfwc6bw9phsca65rw3q3b5l2651v1s0pk5yxm6baa9wlrld")
+     ("xkeysym" "0.2.1" "0mksx670cszyd7jln6s7dhkw11hdfv7blwwr3isq98k22ljh1k5r")
+     ("xmlwriter" "0.1.0" "1fg0ldmkgiis6hnxpi1c9gy7v23y0lpi824bp8yp12fi3r82lypc")
+     ("y4m" "0.8.0" "0j24y2zf60lpxwd7kyg737hqfyqx16y32s0fjyi6fax6w4hlnnks")
+     ("yazi" "0.2.2" "11pch7fbmgjzmg13cbvhd572ip5i4njxxjffjalyd3ps6ajnwdmc")
+     ("yeslogic-fontconfig-sys" "6.0.1" "0xjgmw2nh3hr6wh72s9ss41njqrkgk4p25if27zjk6ibj6zqm2qx")
+     ("yoke" "0.8.4" "1cs06ci8h7pdhr3wzwrnslmc0cb9fhd571awsbdvf063yvyg6zj1")
+     ("yoke-derive" "0.8.4" "0wbdvvdv9birwxrr9ynxj0k7as0f0ci7ihhck34yi09nvgibv3pc")
+     ("zbus" "5.19.0" "01sram5sgwsg3x8mghx77cjbsfa2c10mar7fnzj23d2w0xybxd2x")
+     ("zbus_macros" "5.19.0" "0h4gr26kyhdyn503rgg8h44sjxm8d6n8qbzpd0cdzrmd15fn7419")
+     ("zbus_names" "4.3.5" "1pc8w0m4g8k6f13c2by67fvnc06xib84gw58ivhmjymd9sz14al1")
+     ("zcheapstr" "1.2.0" "084rpjymhbqcb96rbp1a2lhvr2sng1pnvjx52m1h9gnfkrnii7wk")
+     ("zed-async-tar" "0.5.0-zed" "10dq5v0a1ijz5mj7wvzrc9xv64mi9a8ws6nbfgj015z2apvbbx3c")
+     ("zed-font-kit" "0.14.1-zed" "1xdzz6a37y87n4ihnyai94n089j4qf2zkqvjvbnm5y1n1x2qx2d3")
+     ("zed-reqwest" "0.12.15-zed" "0w4r7gh2qjn3s5d20z3r10zss5rqrxxav0ij1jakk1gldxshabdc")
+     ("zed-scap" "0.0.8-zed" "1j4ad4zqd360l5r1n43vll57lfih548w31q2l0ya8cxf0pbkicxn")
+     ("zed-xim" "0.4.0-zed" "0hl62iwc5pnm5px4r1ygl830wpk61gf4vnakpbck9flf27nlc2qc")
+     ("zeno" "0.3.3" "0915lg3b1qiixizic9kwj2bw42x35baxqvl9dn0m2plkj91drwvd")
+     ("zerocopy" "0.8.63" "1n1fm40mq4adw83hvn56j6rhnph0lldccx11jq01l6863f7izzp5")
+     ("zerocopy-derive" "0.8.63" "0zqc4g3yf378dkbsr68h1jjx3n0d4k4zvnxf83bv8gr9hfnd6fl6")
+     ("zerofrom" "0.1.8" "0wjjdj7gdmd0iq91gzkxl7dlv0nhkk80l4bmdpzh3a1yh48mmh0f")
+     ("zerofrom-derive" "0.1.8" "0jhdy4p9c6ja3dynsdck14g2iilq8ai5ch6nsi455x67ys1lcnzp")
+     ("zeroize" "1.9.1" "0yb8iykihpl3hfw5c4silw2lklpfxajkaa9yj1qw6jsy5hwq8c71")
+     ("zeroize_derive" "1.5.0" "0a7kq8srk81pn23xqn7c9jw1jpnfy41ffn802x1zrqqgpdf6al1w")
+     ("zerotrie" "0.2.5" "0gss16krjzk22m57dz5hkdjg99ibj6pa41qr68na7w1jpp1nk8jf")
+     ("zerovec" "0.11.9" "0h3amsfmvqx93grkpy576z5r7nwfxx9bvvd8gq66g8g9rycjg2pm")
+     ("zerovec-derive" "0.11.7" "0ypr1gq2nvb4mvwawcgyknbn408dsjcy3qhsrllxjf3pykdksx63")
+     ("zlib-rs" "0.6.8" "04j158293bx73kv5pj1i89ai411q7fxc9zwk3wkpqgb9gj7fas5j")
+     ("zmij" "1.0.23" "06zwri21nnrl34rwinmvbciap8yk1mrl8qfg9pff7lgspc56sri9")
+     ("zune-core" "0.5.3" "12v5zdwcmjwzlfz61ajchzdaab75cxasqnmwf2hq929n8vypfqym")
+     ("zune-inflate" "0.2.54" "00kg24jh3zqa3i6rg6yksnb71bch9yi1casqydl00s7nw8pk7avk")
+     ("zune-jpeg" "0.5.15" "15kjpn6pywxlwb8w5irfd68x31wi3mb4y1da8bqh7havh5drvg17")
+     ("zvariant" "5.15.1" "1dzvl7la92pc8qyaw9pgfpxgqhy6rn285yscnsn03dm4srn6vgw0")
+     ("zvariant_derive" "5.15.1" "0va8dm4k7rk2iar573lkzfap8g2v2dinw4zcxasm9jx1dd2p49pg")
+     ("zvariant_utils" "4.2.0" "18q80094ci64myzvcp0g2l3c6mnx7b3hsii8lfabc853c51jkl5s"))))
 
-;;; Git checkouts
-
+;;; Git checkouts, by index.
+(define %git-checkouts
+  (vector))
 
 (define codecanvas-cargo-inputs
-  (list rust-adler2-2.0.1
-        rust-aes-0.8.4
-        rust-ahash-0.8.12
-        rust-aho-corasick-1.1.5
-        rust-aligned-0.4.3
-        rust-aligned-vec-0.6.4
-        rust-anyhow-1.0.104
-        rust-ar_archive_writer-0.5.3
-        rust-arbitrary-1.5.0
-        rust-arg_enum_proc_macro-0.3.4
-        rust-arrayref-0.3.9
-        rust-arrayvec-0.7.8
-        rust-as-raw-xcb-connection-1.0.1
-        rust-as-slice-0.2.1
-        rust-ash-0.38.0-1.3.281
-        rust-ash-window-0.13.0
-        rust-ashpd-0.11.1
-        rust-ashpd-0.12.3
-        rust-async-broadcast-0.7.2
-        rust-async-channel-1.9.0
-        rust-async-channel-2.5.0
-        rust-async-compression-0.4.52
-        rust-async-executor-1.14.1
-        rust-async-fs-2.2.0
-        rust-async-global-executor-2.4.1
-        rust-async-io-2.6.0
-        rust-async-lock-3.5.0
-        rust-async-net-2.0.0
-        rust-async-process-2.5.0
-        rust-async-recursion-1.2.0
-        rust-async-signal-0.2.14
-        rust-async-std-1.13.2
-        rust-async-task-4.7.1
-        rust-async-trait-0.1.92
-        rust-async_zip-0.0.17
-        rust-atomic-0.5.3
-        rust-atomic-waker-1.1.2
-        rust-autocfg-1.5.1
-        rust-av-scenechange-0.14.1
-        rust-av1-grain-0.2.5
-        rust-avif-serialize-0.8.9
-        rust-base64-0.22.1
-        rust-bindgen-0.71.1
-        rust-bit-set-0.8.0
-        rust-bit-vec-0.8.0
-        rust-bit_field-0.10.3
-        rust-bitflags-1.3.2
-        rust-bitflags-2.13.2
-        rust-bitstream-io-4.10.0
-        rust-blade-graphics-0.7.1
-        rust-blade-macros-0.3.0
-        rust-blade-util-0.3.0
-        rust-block-0.1.6
-        rust-block-buffer-0.10.4
-        rust-block-buffer-0.12.1
-        rust-block-padding-0.3.3
-        rust-block2-0.6.2
-        rust-blocking-1.7.0
-        rust-bstr-1.13.1
-        rust-built-0.8.1
-        rust-bumpalo-3.20.3
-        rust-bytemuck-1.25.2
-        rust-bytemuck_derive-1.12.1
-        rust-byteorder-1.5.0
-        rust-byteorder-lite-0.1.0
-        rust-bytes-1.12.1
-        rust-calloop-0.13.0
-        rust-calloop-wayland-source-0.3.0
-        rust-cbc-0.1.2
-        rust-cbindgen-0.28.0
-        rust-cc-1.11.1
-        rust-cexpr-0.6.0
-        rust-cfg-if-1.0.5
-        rust-cfg_aliases-0.2.2
-        rust-cgl-0.3.2
-        rust-chacha20-0.10.2
-        rust-cipher-0.4.4
-        rust-clang-sys-1.9.1
-        rust-cocoa-0.25.0
-        rust-cocoa-0.26.0
-        rust-cocoa-foundation-0.1.2
-        rust-cocoa-foundation-0.2.0
-        rust-codespan-reporting-0.12.0
-        rust-color_quant-1.1.0
-        rust-command-fds-0.3.3
-        rust-compression-codecs-0.4.47
-        rust-compression-core-0.4.34
-        rust-concurrent-queue-2.5.0
-        rust-const-oid-0.10.2
-        rust-const-random-0.1.18
-        rust-const-random-macro-0.1.16
-        rust-convert_case-0.4.0
-        rust-core-foundation-0.9.4
-        rust-core-foundation-0.10.0
-        rust-core-foundation-sys-0.8.7
-        rust-core-graphics-0.23.2
-        rust-core-graphics-0.24.0
-        rust-core-graphics-helmer-fork-0.24.0
-        rust-core-graphics-types-0.1.3
-        rust-core-graphics-types-0.2.0
-        rust-core-graphics2-0.4.1
-        rust-core-text-21.0.0
-        rust-core-video-0.4.3
-        rust-core_detect-1.0.0
-        rust-core_maths-0.1.1
-        rust-cosmic-text-0.14.2
-        rust-cpufeatures-0.2.17
-        rust-cpufeatures-0.3.1
-        rust-crc32fast-1.5.4
-        rust-crossbeam-deque-0.8.8
-        rust-crossbeam-epoch-0.9.21
-        rust-crossbeam-queue-0.3.14
-        rust-crossbeam-utils-0.8.23
-        rust-crunchy-0.2.4
-        rust-crypto-common-0.1.7
-        rust-crypto-common-0.2.2
-        rust-ctor-0.4.3
-        rust-ctor-proc-macro-0.0.6
-        rust-data-url-0.3.2
-        rust-deflate64-0.1.12
-        rust-derive_more-0.99.20
-        rust-digest-0.10.7
-        rust-digest-0.11.3
-        rust-dirs-4.0.0
-        rust-dirs-5.0.1
-        rust-dirs-sys-0.3.7
-        rust-dirs-sys-0.4.1
-        rust-dispatch-0.2.0
-        rust-dispatch2-0.3.1
-        rust-displaydoc-0.2.7
-        rust-dlib-0.5.3
-        rust-downcast-rs-1.2.1
-        rust-dtor-0.0.6
-        rust-dtor-proc-macro-0.0.5
-        rust-dunce-1.0.5
-        rust-dwrote-0.11.5
-        rust-dyn-clone-1.0.20
-        rust-either-1.19.0
-        rust-embed-resource-3.0.12
-        rust-encoding_rs-0.8.44
-        rust-endi-1.1.1
-        rust-enumflags2-0.7.12
-        rust-enumflags2_derive-0.7.12
-        rust-equator-0.4.2
-        rust-equator-macro-0.4.2
-        rust-equivalent-1.0.3
-        rust-erased-serde-0.4.11
-        rust-errno-0.3.14
-        rust-etagere-0.2.15
-        rust-euclid-0.22.14
-        rust-event-listener-2.5.3
-        rust-event-listener-5.4.2
-        rust-event-listener-strategy-0.5.4
-        rust-exr-1.74.3
-        rust-fastrand-1.9.0
-        rust-fastrand-2.5.0
-        rust-fax-0.2.7
-        rust-fdeflate-0.3.7
-        rust-filedescriptor-0.8.3
-        rust-filetime-0.2.29
-        rust-find-msvc-tools-0.1.15
-        rust-flate2-1.1.11
-        rust-float-cmp-0.9.0
-        rust-float-ord-0.3.2
-        rust-float_next_after-1.0.0
-        rust-flume-0.11.1
-        rust-fnv-1.0.7
-        rust-foldhash-0.1.5
-        rust-foldhash-0.2.0
-        rust-font-types-0.12.7
-        rust-fontconfig-parser-0.5.8
-        rust-fontdb-0.16.2
-        rust-fontdb-0.23.0
-        rust-foreign-types-0.5.0
-        rust-foreign-types-macros-0.2.4
-        rust-foreign-types-shared-0.3.1
-        rust-form_urlencoded-1.2.2
-        rust-freetype-sys-0.20.1
-        rust-futf-0.1.5
-        rust-futures-0.3.34
-        rust-futures-channel-0.3.34
-        rust-futures-core-0.3.34
-        rust-futures-executor-0.3.34
-        rust-futures-io-0.3.34
-        rust-futures-lite-1.13.0
-        rust-futures-lite-2.6.1
-        rust-futures-macro-0.3.34
-        rust-futures-sink-0.3.34
-        rust-futures-task-0.3.34
-        rust-futures-util-0.3.34
-        rust-generic-array-0.14.7
-        rust-gethostname-1.1.0
-        rust-getrandom-0.2.17
-        rust-getrandom-0.3.4
-        rust-getrandom-0.4.3
-        rust-gif-0.14.2
-        rust-glob-0.3.4
-        rust-globset-0.4.21
-        rust-gloo-timers-0.3.0
-        rust-glow-0.16.0
-        rust-gpu-alloc-0.6.2
-        rust-gpu-alloc-ash-0.7.1
-        rust-gpu-alloc-types-0.3.1
-        rust-gpui-0.2.2
-        rust-gpui-macros-0.2.2
-        rust-gpui_collections-0.2.2
-        rust-gpui_derive_refineable-0.2.2
-        rust-gpui_http_client-0.2.2
-        rust-gpui_media-0.2.2
-        rust-gpui_perf-0.2.2
-        rust-gpui_refineable-0.2.2
-        rust-gpui_semantic_version-0.2.2
-        rust-gpui_sum_tree-0.2.2
-        rust-gpui_util-0.2.2
-        rust-gpui_util_macros-0.2.2
-        rust-grid-0.18.0
-        rust-h2-0.4.20
-        rust-half-2.7.1
-        rust-hashbrown-0.14.5
-        rust-hashbrown-0.15.5
-        rust-hashbrown-0.17.1
-        rust-heck-0.4.1
-        rust-heck-0.5.0
-        rust-hermit-abi-0.5.3
-        rust-hex-0.4.3
-        rust-hexf-parse-0.2.1
-        rust-hidden-trait-0.1.2
-        rust-hkdf-0.12.4
-        rust-hmac-0.12.1
-        rust-home-0.5.12
-        rust-http-1.5.0
-        rust-http-body-1.1.0
-        rust-http-body-util-0.1.5
-        rust-httparse-1.10.1
-        rust-hybrid-array-0.4.15
-        rust-hyper-1.12.0
-        rust-hyper-rustls-0.27.10
-        rust-hyper-util-0.1.21
-        rust-icu_collections-2.4.0
-        rust-icu_locale_core-2.4.0
-        rust-icu_normalizer-2.4.0
-        rust-icu_normalizer_data-2.4.0
-        rust-icu_properties-2.4.0
-        rust-icu_properties_data-2.4.0
-        rust-icu_provider-2.4.0
-        rust-idna-1.1.0
-        rust-idna_adapter-1.2.2
-        rust-image-0.25.10
-        rust-image-webp-0.2.4
-        rust-imagesize-0.13.0
-        rust-imgref-1.12.3
-        rust-indexmap-2.14.2
-        rust-inout-0.1.4
-        rust-instant-0.1.13
-        rust-interpolate_name-0.2.4
-        rust-inventory-0.3.25
-        rust-io-surface-0.16.1
-        rust-ipnet-2.12.2
-        rust-is-docker-0.2.0
-        rust-is-wsl-0.4.0
-        rust-itertools-0.13.0
-        rust-itertools-0.14.0
-        rust-itoa-1.0.19
-        rust-jobserver-0.1.35
-        rust-js-sys-0.3.107
-        rust-khronos-egl-6.0.0
-        rust-kurbo-0.11.3
-        rust-kv-log-macro-1.0.7
-        rust-lazy_static-1.5.1
-        rust-leak-0.1.2
-        rust-leaky-cow-0.1.1
-        rust-lebe-0.5.3
-        rust-libc-0.2.191
-        rust-libfuzzer-sys-0.4.13
-        rust-libloading-0.8.9
-        rust-libm-0.2.16
-        rust-libredox-0.1.25
-        rust-linux-raw-sys-0.4.15
-        rust-linux-raw-sys-0.12.1
-        rust-litemap-0.8.3
-        rust-lock_api-0.4.14
-        rust-log-0.4.35
-        rust-loop9-0.1.5
-        rust-lru-slab-0.1.3
-        rust-lyon-1.0.19
-        rust-lyon_algorithms-1.0.22
-        rust-lyon_geom-1.0.20
-        rust-lyon_path-1.0.19
-        rust-lyon_tessellation-1.0.23
-        rust-mac-0.1.1
-        rust-malloc_buf-0.0.6
-        rust-maybe-rayon-0.1.1
-        rust-md-5-0.10.6
-        rust-memchr-2.8.3
-        rust-memmap2-0.9.12
-        rust-memoffset-0.9.1
-        rust-metal-0.29.0
-        rust-mime-0.3.18
-        rust-mime_guess-2.0.5
-        rust-minimal-lexical-0.2.1
-        rust-miniz_oxide-0.8.9
-        rust-miniz_oxide-0.9.1
-        rust-mint-0.5.9
-        rust-mio-1.2.4
-        rust-moxcms-0.8.1
-        rust-multiversion-0.8.1
-        rust-multiversion-macros-0.8.1
-        rust-multiversion_no_op-1.0.0
-        rust-naga-25.0.1
-        rust-nanorand-0.7.0
-        rust-new_debug_unreachable-1.0.6
-        rust-nix-0.29.0
-        rust-nix-0.31.3
-        rust-no_std_io2-0.9.4
-        rust-nom-7.1.3
-        rust-nom-8.0.0
-        rust-noop_proc_macro-0.3.0
-        rust-ntapi-0.4.3
-        rust-num-0.4.3
-        rust-num-bigint-0.4.8
-        rust-num-bigint-dig-0.8.6
-        rust-num-complex-0.4.6
-        rust-num-derive-0.4.2
-        rust-num-integer-0.1.47
-        rust-num-iter-0.1.46
-        rust-num-rational-0.4.2
-        rust-num-traits-0.2.19
-        rust-num_cpus-1.17.0
-        rust-objc-0.2.7
-        rust-objc-foundation-0.1.1
-        rust-objc2-0.6.5
-        rust-objc2-app-kit-0.3.2
-        rust-objc2-core-foundation-0.3.2
-        rust-objc2-encode-4.1.0
-        rust-objc2-foundation-0.3.2
-        rust-objc2-metal-0.3.2
-        rust-objc2-quartz-core-0.3.2
-        rust-objc2-ui-kit-0.3.2
-        rust-objc_exception-0.1.2
-        rust-objc_id-0.1.1
-        rust-object-0.39.1
-        rust-once_cell-1.21.4
-        rust-oo7-0.5.0
-        rust-open-5.4.5
-        rust-openssl-probe-0.2.2
-        rust-option-ext-0.2.0
-        rust-ordered-stream-0.2.0
-        rust-parking-2.2.1
-        rust-parking_lot-0.12.5
-        rust-parking_lot_core-0.9.12
-        rust-paste-1.0.15
-        rust-pastey-0.1.1
-        rust-pathfinder_geometry-0.5.1
-        rust-pathfinder_simd-0.5.6
-        rust-pbkdf2-0.12.2
-        rust-percent-encoding-2.3.2
-        rust-pico-args-0.5.0
-        rust-pin-project-1.1.13
-        rust-pin-project-internal-1.1.13
-        rust-pin-project-lite-0.2.17
-        rust-pin-utils-0.1.1
-        rust-piper-0.2.5
-        rust-pkg-config-0.3.34
-        rust-png-0.17.16
-        rust-png-0.18.1
-        rust-polling-3.11.0
-        rust-pollster-0.2.5
-        rust-postage-0.5.0
-        rust-potential_utf-0.1.6
-        rust-ppv-lite86-0.2.21
-        rust-prettyplease-0.2.37
-        rust-proc-macro-crate-3.5.0
-        rust-proc-macro-error-attr2-2.0.0
-        rust-proc-macro-error2-2.0.1
-        rust-proc-macro2-1.0.107
-        rust-profiling-1.0.18
-        rust-profiling-procmacros-1.0.18
-        rust-psm-0.1.32
-        rust-pxfm-0.1.30
-        rust-qoi-0.4.1
-        rust-quick-error-2.0.1
-        rust-quick-xml-0.41.0
-        rust-quinn-0.11.12
-        rust-quinn-proto-0.11.19
-        rust-quinn-udp-0.5.16
-        rust-quote-1.0.47
-        rust-r-efi-5.3.0
-        rust-r-efi-6.0.0
-        rust-rand-0.8.8
-        rust-rand-0.9.5
-        rust-rand-0.10.3
-        rust-rand_chacha-0.3.1
-        rust-rand_chacha-0.9.0
-        rust-rand_core-0.6.4
-        rust-rand_core-0.9.5
-        rust-rand_core-0.10.1
-        rust-rand_pcg-0.10.2
-        rust-rangemap-1.8.0
-        rust-rav1e-0.8.1
-        rust-ravif-0.13.0
-        rust-raw-window-handle-0.6.2
-        rust-raw-window-metal-0.4.0
-        rust-rayon-1.12.0
-        rust-rayon-core-1.13.0
-        rust-read-fonts-0.41.0
-        rust-redox_syscall-0.2.16
-        rust-redox_syscall-0.5.18
-        rust-redox_users-0.4.6
-        rust-ref-cast-1.0.27
-        rust-ref-cast-impl-1.0.27
-        rust-regex-1.13.1
-        rust-regex-automata-0.4.18
-        rust-regex-syntax-0.8.11
-        rust-resvg-0.45.1
-        rust-rgb-0.8.53
-        rust-ring-0.17.14
-        rust-roxmltree-0.20.0
-        rust-rust-embed-8.13.0
-        rust-rust-embed-impl-8.13.0
-        rust-rust-embed-utils-8.13.0
-        rust-rustc-hash-1.1.0
-        rust-rustc-hash-2.1.3
-        rust-rustc_version-0.4.1
-        rust-rustix-0.38.44
-        rust-rustix-1.1.6
-        rust-rustls-0.23.46
-        rust-rustls-native-certs-0.8.5
-        rust-rustls-pemfile-2.2.0
-        rust-rustls-pki-types-1.15.1
-        rust-rustls-webpki-0.103.16
-        rust-rustversion-1.0.23
-        rust-rustybuzz-0.14.1
-        rust-rustybuzz-0.20.1
-        rust-ryu-1.0.23
-        rust-same-file-1.0.6
-        rust-schannel-0.1.30
-        rust-schemars-1.2.3
-        rust-schemars_derive-1.2.3
-        rust-scoped-tls-1.0.1
-        rust-scopeguard-1.2.0
-        rust-screencapturekit-0.2.8
-        rust-screencapturekit-sys-0.2.8
-        rust-seahash-4.1.0
-        rust-security-framework-3.7.0
-        rust-security-framework-sys-2.17.0
-        rust-self_cell-1.3.0
-        rust-semver-1.0.28
-        rust-serde-1.0.229
-        rust-serde_core-1.0.229
-        rust-serde_derive-1.0.229
-        rust-serde_derive_internals-0.30.0
-        rust-serde_fmt-1.1.0
-        rust-serde_json-1.0.154
-        rust-serde_json_lenient-0.2.4
-        rust-serde_repr-0.1.21
-        rust-serde_spanned-0.6.9
-        rust-serde_spanned-1.1.3
-        rust-serde_urlencoded-0.7.1
-        rust-sha1_smol-1.0.1
-        rust-sha2-0.10.9
-        rust-sha2-0.11.1
-        rust-shlex-1.3.0
-        rust-shlex-2.0.1
-        rust-signal-hook-registry-1.4.8
-        rust-simd-adler32-0.3.10
-        rust-simd_helpers-0.1.0
-        rust-simdutf8-0.1.5
-        rust-simplecss-0.2.2
-        rust-siphasher-1.0.4
-        rust-skrifa-0.44.0
-        rust-slab-0.4.12
-        rust-slotmap-1.1.1
-        rust-smallvec-1.16.5
-        rust-smol-2.0.2
-        rust-smol_str-0.2.2
-        rust-socket2-0.6.5
-        rust-spin-0.9.9
-        rust-spirv-0.3.0-sdk-1.3.268.0
-        rust-stable_deref_trait-1.2.1
-        rust-stacker-0.1.25
-        rust-stacksafe-0.1.4
-        rust-stacksafe-macro-0.1.4
-        rust-static_assertions-1.1.0
-        rust-strict-num-0.1.1
-        rust-strum-0.26.3
-        rust-strum-0.27.2
-        rust-strum_macros-0.26.4
-        rust-strum_macros-0.27.2
-        rust-subtle-2.6.1
-        rust-sval-2.22.0
-        rust-sval_buffer-2.22.0
-        rust-sval_dynamic-2.22.0
-        rust-sval_fmt-2.22.0
-        rust-sval_json-2.22.0
-        rust-sval_nested-2.22.0
-        rust-sval_ref-2.22.0
-        rust-sval_serde-2.22.0
-        rust-svg_fmt-0.4.5
-        rust-svgtypes-0.15.3
-        rust-swash-0.2.10
-        rust-syn-1.0.109
-        rust-syn-2.0.119
-        rust-syn-3.0.9
-        rust-sync_wrapper-1.0.2
-        rust-synstructure-0.14.0
-        rust-sys-locale-0.3.2
-        rust-sysinfo-0.31.4
-        rust-system-configuration-0.6.1
-        rust-system-configuration-sys-0.6.0
-        rust-taffy-0.9.0
-        rust-take-until-0.2.0
-        rust-tao-core-video-sys-0.2.0
-        rust-target-features-0.1.6
-        rust-tempfile-3.27.0
-        rust-tendril-0.4.3
-        rust-termcolor-1.4.1
-        rust-thiserror-1.0.69
-        rust-thiserror-2.0.21
-        rust-thiserror-impl-1.0.69
-        rust-thiserror-impl-2.0.21
-        rust-tiff-0.11.3
-        rust-tiny-keccak-2.0.2
-        rust-tiny-skia-0.11.4
-        rust-tiny-skia-path-0.11.4
-        rust-tinystr-0.8.5
-        rust-tinyvec-1.13.3
-        rust-tokio-1.54.1
-        rust-tokio-rustls-0.26.6
-        rust-tokio-socks-0.5.3
-        rust-tokio-util-0.7.20
-        rust-toml-0.8.23
-        rust-toml-1.2.1-spec-1.1.0
-        rust-toml_datetime-0.6.11
-        rust-toml_datetime-1.1.3-spec-1.1.0
-        rust-toml_edit-0.22.27
-        rust-toml_edit-0.25.19-spec-1.1.0
-        rust-toml_parser-1.1.5-spec-1.1.0
-        rust-toml_write-0.1.2
-        rust-toml_writer-1.2.0-spec-1.1.0
-        rust-tower-0.5.3
-        rust-tower-layer-0.3.3
-        rust-tower-service-0.3.3
-        rust-tracing-0.1.44
-        rust-tracing-attributes-0.1.31
-        rust-tracing-core-0.1.36
-        rust-try-lock-0.2.5
-        rust-ttf-parser-0.20.0
-        rust-ttf-parser-0.21.1
-        rust-ttf-parser-0.25.1
-        rust-typeid-1.0.3
-        rust-typenum-1.20.1
-        rust-uds_windows-1.2.1
-        rust-unicase-2.10.0
-        rust-unicode-bidi-0.3.18
-        rust-unicode-bidi-mirroring-0.2.0
-        rust-unicode-bidi-mirroring-0.4.0
-        rust-unicode-ccc-0.2.0
-        rust-unicode-ccc-0.4.0
-        rust-unicode-ident-1.0.27
-        rust-unicode-linebreak-0.1.5
-        rust-unicode-properties-0.1.5
-        rust-unicode-script-0.5.9
-        rust-unicode-segmentation-1.13.3
-        rust-unicode-vo-0.1.0
-        rust-unicode-width-0.2.3
-        rust-untrusted-0.9.0
-        rust-ureq-2.12.1
-        rust-url-2.5.8
-        rust-usvg-0.45.1
-        rust-utf-8-0.7.6
-        rust-utf8_iter-1.1.0
-        rust-utf_types-1.0.0
-        rust-uuid-1.29.2
-        rust-v_frame-0.3.9
-        rust-value-bag-1.14.1
-        rust-value-bag-serde1-1.14.1
-        rust-value-bag-sval2-1.14.1
-        rust-version_check-0.9.5
-        rust-vswhom-0.1.0
-        rust-vswhom-sys-0.1.3
-        rust-waker-fn-1.2.0
-        rust-walkdir-2.5.0
-        rust-want-0.3.2
-        rust-wasi-0.11.1-wasi-snapshot-preview1
-        rust-wasip2-1.0.4-wasi-0.2.12
-        rust-wasm-bindgen-0.2.130
-        rust-wasm-bindgen-futures-0.4.80
-        rust-wasm-bindgen-macro-0.2.130
-        rust-wasm-bindgen-macro-support-0.2.130
-        rust-wasm-bindgen-shared-0.2.130
-        rust-wasm-streams-0.4.2
-        rust-wayland-backend-0.3.17
-        rust-wayland-client-0.31.15
-        rust-wayland-cursor-0.31.14
-        rust-wayland-protocols-0.31.2
-        rust-wayland-protocols-0.32.13
-        rust-wayland-protocols-plasma-0.2.0
-        rust-wayland-scanner-0.31.11
-        rust-wayland-sys-0.31.11
-        rust-web-sys-0.3.107
-        rust-web-time-1.1.0
-        rust-webpki-roots-0.26.11
-        rust-webpki-roots-1.0.11
-        rust-weezl-0.1.12
-        rust-which-6.0.3
-        rust-winapi-0.3.9
-        rust-winapi-i686-pc-windows-gnu-0.4.0
-        rust-winapi-util-0.1.11
-        rust-winapi-x86_64-pc-windows-gnu-0.4.0
-        rust-windows-0.57.0
-        rust-windows-0.61.3
-        rust-windows-capture-1.5.0
-        rust-windows-collections-0.2.0
-        rust-windows-core-0.57.0
-        rust-windows-core-0.61.2
-        rust-windows-future-0.2.1
-        rust-windows-implement-0.57.0
-        rust-windows-implement-0.60.2
-        rust-windows-interface-0.57.0
-        rust-windows-interface-0.59.3
-        rust-windows-link-0.1.3
-        rust-windows-link-0.2.1
-        rust-windows-numerics-0.2.0
-        rust-windows-registry-0.4.0
-        rust-windows-registry-0.5.3
-        rust-windows-result-0.1.2
-        rust-windows-result-0.3.4
-        rust-windows-strings-0.3.1
-        rust-windows-strings-0.4.2
-        rust-windows-sys-0.48.0
-        rust-windows-sys-0.52.0
-        rust-windows-sys-0.59.0
-        rust-windows-sys-0.61.2
-        rust-windows-targets-0.48.5
-        rust-windows-targets-0.52.6
-        rust-windows-targets-0.53.5
-        rust-windows-threading-0.1.0
-        rust-windows_aarch64_gnullvm-0.48.5
-        rust-windows_aarch64_gnullvm-0.52.6
-        rust-windows_aarch64_gnullvm-0.53.1
-        rust-windows_aarch64_msvc-0.48.5
-        rust-windows_aarch64_msvc-0.52.6
-        rust-windows_aarch64_msvc-0.53.1
-        rust-windows_i686_gnu-0.48.5
-        rust-windows_i686_gnu-0.52.6
-        rust-windows_i686_gnu-0.53.1
-        rust-windows_i686_gnullvm-0.52.6
-        rust-windows_i686_gnullvm-0.53.1
-        rust-windows_i686_msvc-0.48.5
-        rust-windows_i686_msvc-0.52.6
-        rust-windows_i686_msvc-0.53.1
-        rust-windows_x86_64_gnu-0.48.5
-        rust-windows_x86_64_gnu-0.52.6
-        rust-windows_x86_64_gnu-0.53.1
-        rust-windows_x86_64_gnullvm-0.48.5
-        rust-windows_x86_64_gnullvm-0.52.6
-        rust-windows_x86_64_gnullvm-0.53.1
-        rust-windows_x86_64_msvc-0.48.5
-        rust-windows_x86_64_msvc-0.52.6
-        rust-windows_x86_64_msvc-0.53.1
-        rust-winnow-0.7.15
-        rust-winnow-1.0.5
-        rust-winreg-0.56.0
-        rust-winsafe-0.0.19
-        rust-wio-0.2.2
-        rust-wit-bindgen-0.57.1
-        rust-writeable-0.6.4
-        rust-x11-2.21.0
-        rust-x11-clipboard-0.9.3
-        rust-x11rb-0.13.2
-        rust-x11rb-protocol-0.13.2
-        rust-xcb-1.7.1
-        rust-xcursor-0.3.11
-        rust-xim-ctext-0.3.0
-        rust-xim-parser-0.2.2
-        rust-xkbcommon-0.8.0
-        rust-xkeysym-0.2.1
-        rust-xmlwriter-0.1.0
-        rust-y4m-0.8.0
-        rust-yazi-0.2.2
-        rust-yeslogic-fontconfig-sys-6.0.1
-        rust-yoke-0.8.4
-        rust-yoke-derive-0.8.4
-        rust-zbus-5.19.0
-        rust-zbus_macros-5.19.0
-        rust-zbus_names-4.3.5
-        rust-zcheapstr-1.2.0
-        rust-zed-async-tar-0.5.0-zed
-        rust-zed-font-kit-0.14.1-zed
-        rust-zed-reqwest-0.12.15-zed
-        rust-zed-scap-0.0.8-zed
-        rust-zed-xim-0.4.0-zed
-        rust-zeno-0.3.3
-        rust-zerocopy-0.8.63
-        rust-zerocopy-derive-0.8.63
-        rust-zerofrom-0.1.8
-        rust-zerofrom-derive-0.1.8
-        rust-zeroize-1.9.1
-        rust-zeroize_derive-1.5.0
-        rust-zerotrie-0.2.5
-        rust-zerovec-0.11.9
-        rust-zerovec-derive-0.11.7
-        rust-zlib-rs-0.6.8
-        rust-zmij-1.0.23
-        rust-zune-core-0.5.3
-        rust-zune-inflate-0.2.54
-        rust-zune-jpeg-0.5.15
-        rust-zvariant-5.15.1
-        rust-zvariant_derive-5.15.1
-        rust-zvariant_utils-4.2.0))
+  (crate-selection
+   %crates
+   '(0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27
+     28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51
+     52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75
+     76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 93 92 94 95 96 97 98 99
+     100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117
+     118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135
+     136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153
+     154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171
+     172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189
+     190 191 192 193 194 195 196 197 198 199 200 201 202 203 204 205 206 207
+     208 209 210 211 212 213 214 215 216 217 218 219 220 221 222 223 224 225
+     226 227 228 229 230 231 232 233 234 235 236 237 238 239 240 241 242 243
+     244 245 246 247 248 249 250 251 252 253 254 255 256 257 258 259 260 261
+     262 263 264 265 266 267 268 269 270 271 272 273 274 275 276 278 277 279
+     280 281 282 283 284 285 286 287 288 289 290 291 292 293 294 295 296 297
+     298 299 300 301 302 303 304 305 306 307 308 309 310 311 312 313 314 315
+     316 317 318 319 320 321 322 323 324 325 326 327 328 329 330 331 332 333
+     334 335 336 337 338 339 340 341 342 343 344 345 346 347 348 349 350 351
+     352 353 354 355 356 357 358 359 360 361 362 363 364 365 366 367 368 369
+     370 371 372 373 374 375 376 377 378 379 380 381 382 383 384 385 386 387
+     389 390 388 391 392 394 395 393 396 397 398 399 400 401 402 403 404 405
+     406 407 408 409 410 411 412 413 414 415 416 417 418 419 420 421 422 423
+     424 425 426 427 428 429 430 431 432 433 434 435 436 437 438 439 440 441
+     442 443 444 445 446 447 448 449 450 451 452 453 454 455 456 457 458 459
+     460 461 462 463 464 465 466 467 468 469 470 471 472 473 474 475 476 477
+     478 479 480 481 482 483 484 485 486 487 488 489 490 491 492 493 494 495
+     496 497 498 499 500 501 502 503 504 505 506 507 508 509 510 511 512 513
+     514 515 516 517 518 519 520 521 522 523 524 525 526 527 528 529 530 531
+     532 533 534 535 536 537 538 539 540 541 542 543 544 545 546 547 548 549
+     550 551 552 553 554 555 556 557 558 559 560 561 562 563 564 565 566 567
+     568 569 570 571 572 573 574 575 576 577 578 579 580 581 582 583 584 585
+     586 587 588 589 590 591 592 593 594 595 596 597 598 599 600 601 602 603
+     604 605 606 607 608 609 610 611 612 613 614 615 616 617 618 619 620 621
+     622 623 624 625 626 627 628 629 630 631 632 633 634 635 636 637 638 639
+     640 641 642 643 644 645 646 647 648 649 650 651 652 653 654 655 656 657
+     658 659 660 661 662 663 664 665 666 667 668 669 670 671 672 673 674 675
+     676 677 678 679 680 681 682 683 684 685 686 687 688 689 690 691 692 693
+     694 695 696 697 698 699 700 701 702 703 704 705 706 707 708 709)))
 
 (define codecanvas-git-crates '())
 
 (define codecanvas-zed-bridge-cargo-inputs
-  (list rust-itoa-1.0.19
-        rust-memchr-2.8.3
-        rust-proc-macro2-1.0.107
-        rust-quote-1.0.47
-        rust-serde-1.0.229
-        rust-serde_core-1.0.229
-        rust-serde_derive-1.0.229
-        rust-serde_json-1.0.154
-        rust-syn-3.0.9
-        rust-unicode-ident-1.0.27
-        rust-zmij-1.0.23))
+  (crate-selection
+   %crates
+   '(262 293 374 385 447 448 449 452 502 558 703)))
 
 (define codecanvas-zed-bridge-git-crates '())

@@ -4,496 +4,186 @@
   #:use-module (Lightningbulb packages cargo-git)
   #:export (ladybird-cargo-inputs ladybird-git-crates))
 
-(define rust-adblock-0.13.3
-  (crate "adblock" "0.13.3" "0vb73jcsnr38kaq6brxbgr70k9rqhvz8ns3wmnn14g52csk9cjzl"))
-(define rust-addr-0.15.6
-  (crate "addr" "0.15.6" "1vrbnzv4r7sx65mmi011aiafc7b1866iywnchx8asc72vd0qlfx9"))
-(define rust-aho-corasick-1.1.4
-  (crate "aho-corasick" "1.1.4" "00a32wb2h07im3skkikc495jvncf62jl6s96vwc7bhi70h9imlyx"))
-(define rust-alloc-no-stdlib-3.0.0
-  (crate "alloc-no-stdlib" "3.0.0" "0ync9wrxr8fg5wad8547wd7400f2l2mhxhlm83v6yjdz8zynryy2"))
-(define rust-alloc-stdlib-0.3.0
-  (crate "alloc-stdlib" "0.3.0" "1qc6flsgl4b6231ykik493y8g5418zrba6j1hshvz203g1jihp0b"))
-(define rust-allocator-api2-0.2.21
-  (crate "allocator-api2" "0.2.21" "08zrzs022xwndihvzdn78yqarv2b9696y67i6h78nla3ww87jgb8"))
-(define rust-anstream-1.0.0
-  (crate "anstream" "1.0.0" "13d2bj0xfg012s4rmq44zc8zgy1q8k9yp7yhvfnarscnmwpj2jl2"))
-(define rust-anstyle-1.0.14
-  (crate "anstyle" "1.0.14" "0030szmgj51fxkic1hpakxxgappxzwm6m154a3gfml83lq63l2wl"))
-(define rust-anstyle-parse-1.0.0
-  (crate "anstyle-parse" "1.0.0" "03hkv2690s0crssbnmfkr76kw1k7ah2i6s5amdy9yca2n8w7zkjj"))
-(define rust-anstyle-query-1.1.5
-  (crate "anstyle-query" "1.1.5" "1p6shfpnbghs6jsa0vnqd8bb8gd7pjd0jr7w0j8jikakzmr8zi20"))
-(define rust-anstyle-wincon-3.0.11
-  (crate "anstyle-wincon" "3.0.11" "0zblannm70sk3xny337mz7c6d8q8i24vhbqi42ld8v7q1wjnl7i9"))
-(define rust-anyhow-1.0.104
-  (crate "anyhow" "1.0.104" "0w34jjcm02p5g9kvsjr1dvpw0zs2fi7igi6nr414fkm5gz85w2ik"))
-(define rust-array-init-2.1.0
-  (crate "array-init" "2.1.0" "1z0bh6grrkxlbknq3xyipp42rasngi806y92fiddyb2n99lvfqix"))
-(define rust-arrayvec-0.7.6
-  (crate "arrayvec" "0.7.6" "0l1fz4ccgv6pm609rif37sl5nv5k6lbzi7kkppgzqzh1vwix20kw"))
-(define rust-autocfg-1.5.0
-  (crate "autocfg" "1.5.0" "1s77f98id9l4af4alklmzq46f21c980v13z2r1pcxx6bqgw0d1n0"))
-(define rust-base64-0.22.1
-  (crate "base64" "0.22.1" "1imqzgh7bxcikp5vx3shqvw9j09g9ly0xr0jma0q66i52r7jbcvj"))
-(define rust-bitflags-2.11.0
-  (crate "bitflags" "2.11.0" "1bwjibwry5nfwsfm9kjg2dqx5n5nja9xymwbfl6svnn8jsz6ff44"))
-(define rust-brotli-9.0.0
-  (crate "brotli" "9.0.0" "0ssc7lyjbsw7451vk3yh0gmrm66ikgj2yq9xc9rpiji3bjvm3f7q"))
-(define rust-brotli-decompressor-6.0.1
-  (crate "brotli-decompressor" "6.0.1" "1msbjd00hwgbgg7pdf4cqx5b4my8y4ld98m5dys3rf6s9nyxj74l"))
-(define rust-byteorder-1.5.0
-  (crate "byteorder" "1.5.0" "0jzncxyf404mwqdbspihyzpkndfgda450l0893pz5xj685cg5l0z"))
-(define rust-calendrical_calculations-0.2.4
-  (crate "calendrical_calculations" "0.2.4" "09lwfy6j9ggmzwkg64fxwdl04vpairs6dp3y6n6h91b8vbpddfss"))
-(define rust-cbindgen-0.29.2
-  (crate "cbindgen" "0.29.2" "168pl7jrz6zw7yi4hggqa78fgr8z8g7fyyjhihpw10cf583zvyxy"))
-(define rust-cc-1.5.1
-  (crate "cc" "1.5.1" "0h70pg4050i16fp5v62wqxj0h8ajzvagrwz7bvdj33pfji8i8q7k"))
-(define rust-cfg-if-1.0.4
-  (crate "cfg-if" "1.0.4" "008q28ajc546z5p2hcwdnckmg0hia7rnx52fni04bwqkzyrghc4k"))
-(define rust-chardetng-1.0.0
-  (crate "chardetng" "1.0.0" "0lwbp36klw475vw6c3jqy98frgs1kb2crkm5sgjlw1mm8i599phk"))
-(define rust-clap-4.6.0
-  (crate "clap" "4.6.0" "0l8k0ja5rf4hpn2g98bqv5m6lkh2q6b6likjpmm6fjw3cxdsz4xi"))
-(define rust-clap_builder-4.6.0
-  (crate "clap_builder" "4.6.0" "17q6np22yxhh5y5v53y4l31ps3hlaz45mvz2n2nicr7n3c056jki"))
-(define rust-clap_lex-1.1.0
-  (crate "clap_lex" "1.1.0" "1ycqkpygnlqnndghhcxjb44lzl0nmgsia64x9581030yifxs7m68"))
-(define rust-colorchoice-1.0.5
-  (crate "colorchoice" "1.0.5" "0w75k89hw39p0mnnhlrwr23q50rza1yjki44qvh2mgrnj065a1qx"))
-(define rust-core_detect-1.0.0
-  (crate "core_detect" "1.0.0" "0j0xp1j6f9lrp4ybylc3d0zdg8jq2hkmr1122qyil14qk84q13vz"))
-(define rust-core_maths-0.1.1
-  (crate "core_maths" "0.1.1" "0c0dv11ixxpc9bsx5xasvl98mb1dlprzcm6qq6ls3nsygw0mwx3p"))
-(define rust-displaydoc-0.2.5
-  (crate "displaydoc" "0.2.5" "1q0alair462j21iiqwrr21iabkfnb13d6x5w95lkdg21q2xrqdlp"))
-(define rust-either-1.16.0
-  (crate "either" "1.16.0" "17k7jfbdz7k440h6lws9baz8p9zlxgb41sig3w81h80nwzsjyqli"))
-(define rust-encoding_rs-0.8.42
-  (crate "encoding_rs" "0.8.42" "0ycnbndly2jw5j69jl1r1lm512h2w9vb1dnjp0px46l7a425x64f"))
-(define rust-equivalent-1.0.2
-  (crate "equivalent" "1.0.2" "03swzqznragy8n0x31lqc78g2af054jwivp7lkrbrc0khz74lyl7"))
-(define rust-errno-0.3.14
-  (crate "errno" "0.3.14" "1szgccmh8vgryqyadg8xd58mnwwicf39zmin3bsn63df2wbbgjir"))
-(define rust-fARM64-0.0.2
-  (crate "fARM64" "0.0.2" "1xv0ih08jfjqqlygrmpi7mb7914j77cn2yl47rn6kr3x4i24d507"))
-(define rust-fastrand-2.4.0
-  (crate "fastrand" "2.4.0" "07ysvz2crv66ccs1v8craf2myhkgm89i41jpwspxcdqyv9sdqhx0"))
-(define rust-find-msvc-tools-0.1.14
-  (crate "find-msvc-tools" "0.1.14" "112ljldlv150fpl8xr2jl5czg51k3kdfn6cy5fqdsvkl14sgpp5f"))
-(define rust-flatbuffers-25.12.19
-  (crate "flatbuffers" "25.12.19" "1wvfm49ybn098zknzlim8xpxrfn2y0sazzqyaggav61vgffq7xim"))
-(define rust-flate2-1.1.10
-  (crate "flate2" "1.1.10" "1jvd2cl8j5hyf8imi62y1x7gwzz1hajirni0801yxhds1qp4wqvf"))
-(define rust-foldhash-0.1.5
-  (crate "foldhash" "0.1.5" "1wisr1xlc2bj7hk4rgkcjkz3j2x4dhd1h9lwk7mj8p71qpdgbi6r"))
-(define rust-foldhash-0.2.0
-  (crate "foldhash" "0.2.0" "1nvgylb099s11xpfm1kn2wcsql080nqmnhj1l25bp3r2b35j9kkp"))
-(define rust-form_urlencoded-1.2.2
-  (crate "form_urlencoded" "1.2.2" "1kqzb2qn608rxl3dws04zahcklpplkd5r1vpabwga5l50d2v4k6b"))
-(define rust-getrandom-0.4.2
-  (crate "getrandom" "0.4.2" "0mb5833hf9pvn9dhvxjgfg5dx0m77g8wavvjdpvpnkp9fil1xr8d"))
-(define rust-hashbrown-0.15.5
-  (crate "hashbrown" "0.15.5" "189qaczmjxnikm9db748xyhiw04kpmhm9xj9k9hg0sgx7pjwyacj"))
-(define rust-hashbrown-0.16.1
-  (crate "hashbrown" "0.16.1" "004i3njw38ji3bzdp9z178ba9x3k0c1pgy8x69pj7yfppv4iq7c4"))
-(define rust-hashbrown-0.17.1
-  (crate "hashbrown" "0.17.1" "0jmqz7i4yl6cm7rbn0i2ffkfrmwi6xkmzkaldr2v8bcsx2v0jngd"))
-(define rust-heck-0.5.0
-  (crate "heck" "0.5.0" "1sjmpsdl8czyh9ywl3qcsfsq9a307dg4ni2vnlwgnzzqhc4y0113"))
-(define rust-iced-x86-1.21.0
-  (crate "iced-x86" "1.21.0" "0syz3rmxay68svl34r205g83lpzp6bzzq73l9xyllf3zikzpqi3w"))
-(define rust-icu_calendar-2.3.0
-  (crate "icu_calendar" "2.3.0" "0p5mbs8abia79c0jbffdfwzfqlngzazdxgc0xr76xr18yzr5sraq"))
-(define rust-icu_calendar_data-2.3.0
-  (crate "icu_calendar_data" "2.3.0" "0vn365n97qyxifadzksll6fjn15bqgl5i94al7viy85k7ymcl06w"))
-(define rust-icu_collections-2.2.0
-  (crate "icu_collections" "2.2.0" "070r7xd0pynm0hnc1v2jzlbxka6wf50f81wybf9xg0y82v6x3119"))
-(define rust-icu_locale_core-2.3.0
-  (crate "icu_locale_core" "2.3.0" "1sqdj16wwl7h9y6r7j394av4kpdb7zryz9h169ffwbm9imc2hvnm"))
-(define rust-icu_locale_fallback-2.3.0
-  (crate "icu_locale_fallback" "2.3.0" "1a9gdzpcqf1wj8pn7kzlzmj2laqmn6wfabr4b3my604lgkjzh6i5"))
-(define rust-icu_locale_fallback_data-2.3.0
-  (crate "icu_locale_fallback_data" "2.3.0" "1a639lmgd6ddivlwp74b9v18p3rzb3wa6a8i1hd8z9lgxhi2mkyy"))
-(define rust-icu_normalizer-2.2.0
-  (crate "icu_normalizer" "2.2.0" "1d7krxr0xpc4x9635k1100a24nh0nrc59n65j6yk6gbfkplmwvn5"))
-(define rust-icu_normalizer_data-2.2.0
-  (crate "icu_normalizer_data" "2.2.0" "0f5d5d5fhhr9937m2z6z38fzh6agf14z24kwlr6lyczafypf0fys"))
-(define rust-icu_properties-2.2.0
-  (crate "icu_properties" "2.2.0" "1pkh3s837808cbwxvfagwc28cvwrz2d9h5rl02jwrhm51ryvdqxy"))
-(define rust-icu_properties_data-2.2.0
-  (crate "icu_properties_data" "2.2.0" "052awny0qwkbcbpd5jg2cd7vl5ry26pq4hz1nfsgf10c3qhbnawf"))
-(define rust-icu_provider-2.3.1
-  (crate "icu_provider" "2.3.1" "0wrydhwprwgyka3r3sw6276syjnlw6fpqr2zsm2srvxv7afvnyyj"))
-(define rust-id-arena-2.3.0
-  (crate "id-arena" "2.3.0" "0m6rs0jcaj4mg33gkv98d71w3hridghp5c4yr928hplpkgbnfc1x"))
-(define rust-idna-1.1.0
-  (crate "idna" "1.1.0" "1pp4n7hppm480zcx411dsv9wfibai00wbpgnjj4qj0xa7kr7a21v"))
-(define rust-idna_adapter-1.2.2
-  (crate "idna_adapter" "1.2.2" "0557p76l8hj35r9zn1yv7c6x1c0qbrsffmg80n0yy8361ly3fs6b"))
-(define rust-indexmap-2.13.1
-  (crate "indexmap" "2.13.1" "1zs2af09vgdaix8qzhi3bd12zpn5za7pbc6v0cc0q2ryrfws5a25"))
-(define rust-is_terminal_polyfill-1.70.2
-  (crate "is_terminal_polyfill" "1.70.2" "15anlc47sbz0jfs9q8fhwf0h3vs2w4imc030shdnq54sny5i7jx6"))
-(define rust-itertools-0.14.0
-  (crate "itertools" "0.14.0" "118j6l1vs2mx65dqhwyssbrxpawa90886m3mzafdvyip41w2q69b"))
-(define rust-itoa-1.0.18
-  (crate "itoa" "1.0.18" "10jnd1vpfkb8kj38rlkn2a6k02afvj3qmw054dfpzagrpl6achlg"))
-(define rust-ixdtf-0.6.5
-  (crate "ixdtf" "0.6.5" "1q9y5y6s1fbaqswk541366xyr1hcxv2bg85nijnvwrc4qk3g9sic"))
-(define rust-jxl-0.7.4
-  (crate "jxl" "0.7.4" "11s69mdxyzzp9gb7fj4iffs5n4zb0hrvqwdjfg7k3favppj43c23"))
-(define rust-jxl_macros-0.7.4
-  (crate "jxl_macros" "0.7.4" "0qz6ihkwh02fq441zaaa2g7r6awpy09wcqkmgnhyzqj47v2wj0bl"))
-(define rust-jxl_simd-0.7.4
-  (crate "jxl_simd" "0.7.4" "0bb4l1ivmz7cb6w57dr12gzqp5cxigvh04ksps2p701z3b06a7xs"))
-(define rust-jxl_transforms-0.7.4
-  (crate "jxl_transforms" "0.7.4" "0dqar0zxh5dc1hqls8l7ypksjks6hdy5s5z2qyj3isf1qsbf2wlg"))
-(define rust-lazy_static-1.5.0
-  (crate "lazy_static" "1.5.0" "1zk6dqqni0193xg6iijh7i3i44sryglwgvx20spdvwk3r6sbrlmv"))
-(define rust-leb128fmt-0.1.0
-  (crate "leb128fmt" "0.1.0" "1chxm1484a0bly6anh6bd7a99sn355ymlagnwj3yajafnpldkv89"))
-(define rust-libc-0.2.190
-  (crate "libc" "0.2.190" "0y5yap4bfp7rfsldcbk9pb5alcgygca5xn1n2pmh181zdpf3spff"))
-(define rust-libm-0.2.16
-  (crate "libm" "0.2.16" "10brh0a3qjmbzkr5mf5xqi887nhs5y9layvnki89ykz9xb1wxlmn"))
-(define rust-linux-raw-sys-0.12.1
-  (crate "linux-raw-sys" "0.12.1" "0lwasljrqxjjfk9l2j8lyib1babh2qjlnhylqzl01nihw14nk9ij"))
-(define rust-litemap-0.8.2
-  (crate "litemap" "0.8.2" "1w7628bc7wwcxc4n4s5kw0610xk06710nh2hn5kwwk2wa91z9nlj"))
-(define rust-log-0.4.29
-  (crate "log" "0.4.29" "15q8j9c8g5zpkcw0hnd6cf2z7fxqnvsjh3rw5mv5q10r83i34l2y"))
-(define rust-memchr-2.8.0
-  (crate "memchr" "2.8.0" "0y9zzxcqxvdqg6wyag7vc3h0blhdn7hkq164bxyx2vph8zs5ijpq"))
-(define rust-multiversion_no_op-1.0.0
-  (crate "multiversion_no_op" "1.0.0" "03d2k7xk7vky38q48h08miw4jca34ymckggnrqggn60vlddvagvl"))
-(define rust-num-bigint-0.5.1
-  (crate "num-bigint" "0.5.1" "1h77ycws79m3j1s68jq5pvaiifi9z4b76cjhwqw042m8q05q5rwk"))
-(define rust-num-derive-0.4.2
-  (crate "num-derive" "0.4.2" "00p2am9ma8jgd2v6xpsz621wc7wbn1yqi71g15gc3h67m7qmafgd"))
-(define rust-num-integer-0.1.46
-  (crate "num-integer" "0.1.46" "13w5g54a9184cqlbsq80rnxw4jj4s0d8wv75jsq5r2lms8gncsbr"))
-(define rust-num-traits-0.2.19
-  (crate "num-traits" "0.2.19" "0h984rhdkkqd4ny9cif7y2azl3xdfb7768hb9irhpsch4q3gq787"))
-(define rust-once_cell-1.21.4
-  (crate "once_cell" "1.21.4" "0l1v676wf71kjg2khch4dphwh1jp3291ffiymr2mvy1kxd5kwz4z"))
-(define rust-once_cell_polyfill-1.70.2
-  (crate "once_cell_polyfill" "1.70.2" "1zmla628f0sk3fhjdjqzgxhalr2xrfna958s632z65bjsfv8ljrq"))
-(define rust-percent-encoding-2.3.2
-  (crate "percent-encoding" "2.3.2" "083jv1ai930azvawz2khv7w73xh8mnylk7i578cifndjn5y64kwv"))
-(define rust-potential_utf-0.1.5
-  (crate "potential_utf" "0.1.5" "0r0518fr32xbkgzqap509s3r60cr0iancsg9j1jgf37cyz7b20q1"))
-(define rust-precomputed-hash-0.1.1
-  (crate "precomputed-hash" "0.1.1" "075k9bfy39jhs53cb2fpb9klfakx2glxnf28zdw08ws6lgpq6lwj"))
-(define rust-prettyplease-0.2.37
-  (crate "prettyplease" "0.2.37" "0azn11i1kh0byabhsgab6kqs74zyrg69xkirzgqyhz6xmjnsi727"))
-(define rust-proc-macro2-1.0.106
-  (crate "proc-macro2" "1.0.106" "0d09nczyaj67x4ihqr5p7gxbkz38gxhk4asc0k8q23g9n85hzl4g"))
-(define rust-psl-2.1.210
-  (crate "psl" "2.1.210" "1a6l3k713f9zgrsgcbf9iny0qiiz4iqcwjv5pl66w2zbnbcx9yr7"))
-(define rust-psl-types-2.0.11
-  (crate "psl-types" "2.0.11" "1b3cz1q07iy744a39smykra2j83nv8vmni6la37wnx3ax17jkjrk"))
-(define rust-quote-1.0.45
-  (crate "quote" "1.0.45" "095rb5rg7pbnwdp6v8w5jw93wndwyijgci1b5lw8j1h5cscn3wj1"))
-(define rust-r-efi-6.0.0
-  (crate "r-efi" "6.0.0" "1gyrl2k5fyzj9k7kchg2n296z5881lg7070msabid09asp3wkp7q"))
-(define rust-regex-1.12.3
-  (crate "regex" "1.12.3" "0xp2q0x7ybmpa5zlgaz00p8zswcirj9h8nry3rxxsdwi9fhm81z1"))
-(define rust-regex-automata-0.4.14
-  (crate "regex-automata" "0.4.14" "13xf7hhn4qmgfh784llcp2kzrvljd13lb2b1ca0mwnf15w9d87bf"))
-(define rust-regex-syntax-0.8.10
-  (crate "regex-syntax" "0.8.10" "02jx311ka0daxxc7v45ikzhcl3iydjbbb0mdrpc1xgg8v7c7v2fw"))
-(define rust-rustc-demangle-0.1.28
-  (crate "rustc-demangle" "0.1.28" "1sr083jamg89zcxmchia1pdn584smsy2r32kk9q30a5vm3zmcjxp"))
-(define rust-rustc-hash-2.1.2
-  (crate "rustc-hash" "2.1.2" "1gjdc5bw9982cj176jvgz9rrqf9xvr1q1ddpzywf5qhs7yzhlc4l"))
-(define rust-rustc_version-0.4.1
-  (crate "rustc_version" "0.4.1" "14lvdsmr5si5qbqzrajgb6vfn69k0sfygrvfvr2mps26xwi3mjyg"))
-(define rust-rustix-1.1.4
-  (crate "rustix" "1.1.4" "14511f9yjqh0ix07xjrjpllah3325774gfwi9zpq72sip5jlbzmn"))
-(define rust-rustversion-1.0.23
-  (crate "rustversion" "1.0.23" "07z2a843fs80fawwflj9jwn49k9b0bd0dhhbvy0ar69vaxd72m6g"))
-(define rust-scopeguard-1.2.0
-  (crate "scopeguard" "1.2.0" "0jcz9sd47zlsgcnm1hdw0664krxwb5gczlif4qngj2aif8vky54l"))
-(define rust-seahash-4.1.0
-  (crate "seahash" "4.1.0" "0sxsb64np6bvnppjz5hg4rqpnkczhsl8w8kf2a5lr1c08xppn40w"))
-(define rust-semver-1.0.28
-  (crate "semver" "1.0.28" "1kaimrpy876bcgi8bfj0qqfxk77zm9iz2zhn1hp9hj685z854y4a"))
-(define rust-serde-1.0.228
-  (crate "serde" "1.0.228" "17mf4hhjxv5m90g42wmlbc61hdhlm6j9hwfkpcnd72rpgzm993ls"))
-(define rust-serde_core-1.0.228
-  (crate "serde_core" "1.0.228" "1bb7id2xwx8izq50098s5j2sqrrvk31jbbrjqygyan6ask3qbls1"))
-(define rust-serde_derive-1.0.228
-  (crate "serde_derive" "1.0.228" "0y8xm7fvmr2kjcd029g9fijpndh8csv5m20g4bd76w8qschg4h6m"))
-(define rust-serde_json-1.0.149
-  (crate "serde_json" "1.0.149" "11jdx4vilzrjjd1dpgy67x5lgzr0laplz30dhv75lnf5ffa07z43"))
-(define rust-serde_spanned-1.1.1
-  (crate "serde_spanned" "1.1.1" "09jzk7i6wihn3d8i3wi4j4n98ghi93c3b8m8k64nxq0ijn3vaqk6"))
-(define rust-shlex-2.0.1
-  (crate "shlex" "2.0.1" "1fjsll1cd7d2bcpdij9kd6w62rpbc7qqzvydvs021vsmr1cxvypq"))
-(define rust-simdutf8-0.1.5
-  (crate "simdutf8" "0.1.5" "0vmpf7xaa0dnaikib5jlx6y4dxd3hxqz6l830qb079g7wcsgxag3"))
-(define rust-smallvec-1.16.3
-  (crate "smallvec" "1.16.3" "06z0akmcq2zc9qg22dxda298p50gg3di5ggl3y2nllag8ypwhgav"))
-(define rust-stable_deref_trait-1.2.1
-  (crate "stable_deref_trait" "1.2.1" "15h5h73ppqyhdhx6ywxfj88azmrpml9gl6zp3pwy2malqa6vxqkc"))
-(define rust-strsim-0.11.1
-  (crate "strsim" "0.11.1" "0kzvqlw8hxqb7y598w1s0hxlnmi84sg5vsipp3yg5na5d1rvba3x"))
-(define rust-syn-2.0.117
-  (crate "syn" "2.0.117" "16cv7c0wbn8amxc54n4w15kxlx5ypdmla8s0gxr2l7bv7s0bhrg6"))
-(define rust-syn-3.0.4
-  (crate "syn" "3.0.4" "17v4ac61x0hvj1879ywqzlwhyzg7n9lr9zniwrsif3b1ykfmq9z6"))
-(define rust-synstructure-0.13.2
-  (crate "synstructure" "0.13.2" "1lh9lx3r3jb18f8sbj29am5hm9jymvbwh6jb1izsnnxgvgrp12kj"))
-(define rust-tempfile-3.27.0
-  (crate "tempfile" "3.27.0" "1gblhnyfjsbg9wjg194n89wrzah7jy3yzgnyzhp56f3v9jd7wj9j"))
-(define rust-thiserror-1.0.69
-  (crate "thiserror" "1.0.69" "0lizjay08agcr5hs9yfzzj6axs53a2rgx070a1dsi3jpkcrzbamn"))
-(define rust-thiserror-2.0.20
-  (crate "thiserror" "2.0.20" "0kxs6p295jffxhzaxpxv1dwaaf5iqlm6sx8h0djp6ancbxgj71pc"))
-(define rust-thiserror-impl-1.0.69
-  (crate "thiserror-impl" "1.0.69" "1h84fmn2nai41cxbhk6pqf46bxqq1b344v8yz089w1chzi76rvjg"))
-(define rust-thiserror-impl-2.0.20
-  (crate "thiserror-impl" "2.0.20" "1bwjc94gi0xn5jz26h1a8bjj1wdkvvr6jifamyc4mp9n28zcs15w"))
-(define rust-tinystr-0.8.4
-  (crate "tinystr" "0.8.4" "0hzncw8rgk4syla79qscfml46jm7ll1zdp7kdacc42cj8n8prqmi"))
-(define rust-toml-0.9.12-spec-1.1.0
-  (crate "toml" "0.9.12+spec-1.1.0" "0qwqbrymqn88mg2yqyq3rj52z6p20448z0jxdbpjsbpwg5g894ng"))
-(define rust-toml_datetime-0.7.5-spec-1.1.0
-  (crate "toml_datetime" "0.7.5+spec-1.1.0" "0iqkgvgsxmszpai53dbip7sf2igic39s4dby29dbqf1h9bnwzqcj"))
-(define rust-toml_parser-1.1.2-spec-1.1.0
-  (crate "toml_parser" "1.1.2+spec-1.1.0" "09kmzc55a0j21whm290wlf5a8b18a0qc87a1s8sncrckc6wfkax2"))
-(define rust-toml_writer-1.1.1-spec-1.1.0
-  (crate "toml_writer" "1.1.1+spec-1.1.0" "1nwjhvvrxz8f4ck1qi4xcz2x9qhpci37nrknhxxf9sqk22dsyvbm"))
-(define rust-unicode-ident-1.0.24
-  (crate "unicode-ident" "1.0.24" "0xfs8y1g7syl2iykji8zk5hgfi5jw819f5zsrbaxmlzwsly33r76"))
-(define rust-unicode-xid-0.2.6
-  (crate "unicode-xid" "0.2.6" "0lzqaky89fq0bcrh6jj6bhlz37scfd8c7dsj5dq7y32if56c1hgb"))
-(define rust-url-2.5.8
-  (crate "url" "2.5.8" "1v8f7nx3hpr1qh76if0a04sj08k86amsq4h8cvpw6wvk76jahrzz"))
-(define rust-utf8_iter-1.0.4
-  (crate "utf8_iter" "1.0.4" "1gmna9flnj8dbyd8ba17zigrp9c4c3zclngf5lnb5yvz1ri41hdn"))
-(define rust-utf8parse-0.2.2
-  (crate "utf8parse" "0.2.2" "088807qwjq46azicqwbhlmzwrbkz7l4hpw43sdkdyyk524vdxaq6"))
-(define rust-wasip2-1.0.2-wasi-0.2.9
-  (crate "wasip2" "1.0.2+wasi-0.2.9" "1xdw7v08jpfjdg94sp4lbdgzwa587m5ifpz6fpdnkh02kwizj5wm"))
-(define rust-wasip3-0.4.0-wasi-0.3.0-rc-2026-01-06
-  (crate "wasip3" "0.4.0+wasi-0.3.0-rc-2026-01-06" "19dc8p0y2mfrvgk3qw3c3240nfbylv22mvyxz84dqpgai2zzha2l"))
-(define rust-wasm-encoder-0.244.0
-  (crate "wasm-encoder" "0.244.0" "06c35kv4h42vk3k51xjz1x6hn3mqwfswycmr6ziky033zvr6a04r"))
-(define rust-wasm-metadata-0.244.0
-  (crate "wasm-metadata" "0.244.0" "02f9dhlnryd2l7zf03whlxai5sv26x4spfibjdvc3g9gd8z3a3mv"))
-(define rust-wasmparser-0.244.0
-  (crate "wasmparser" "0.244.0" "1zi821hrlsxfhn39nqpmgzc0wk7ax3dv6vrs5cw6kb0v5v3hgf27"))
-(define rust-windows-link-0.2.1
-  (crate "windows-link" "0.2.1" "1rag186yfr3xx7piv5rg8b6im2dwcf8zldiflvb22xbzwli5507h"))
-(define rust-windows-sys-0.61.2
-  (crate "windows-sys" "0.61.2" "1z7k3y9b6b5h52kid57lvmvm05362zv1v8w0gc7xyv5xphlp44xf"))
-(define rust-winnow-0.7.15
-  (crate "winnow" "0.7.15" "0i9rkl2rqpbnnxlgs20gmkj3nd0b2k8q55mjmpc2ybb84xwxjyfz"))
-(define rust-winnow-1.0.1
-  (crate "winnow" "1.0.1" "1dbji1bwviy08pl74f2qw2m4w9hc4p3vyl3lfj05jdydy59w1nh9"))
-(define rust-wit-bindgen-0.51.0
-  (crate "wit-bindgen" "0.51.0" "19fazgch8sq5cvjv3ynhhfh5d5x08jq2pkw8jfb05vbcyqcr496p"))
-(define rust-wit-bindgen-core-0.51.0
-  (crate "wit-bindgen-core" "0.51.0" "1p2jszqsqbx8k7y8nwvxg65wqzxjm048ba5phaq8r9iy9ildwqga"))
-(define rust-wit-bindgen-rust-0.51.0
-  (crate "wit-bindgen-rust" "0.51.0" "08bzn5fsvkb9x9wyvyx98qglknj2075xk1n7c5jxv15jykh6didp"))
-(define rust-wit-bindgen-rust-macro-0.51.0
-  (crate "wit-bindgen-rust-macro" "0.51.0" "0ymizapzv2id89igxsz2n587y2hlfypf6n8kyp68x976fzyrn3qc"))
-(define rust-wit-component-0.244.0
-  (crate "wit-component" "0.244.0" "1clwxgsgdns3zj2fqnrjcp8y5gazwfa1k0sy5cbk0fsmx4hflrlx"))
-(define rust-wit-parser-0.244.0
-  (crate "wit-parser" "0.244.0" "0dm7avvdxryxd5b02l0g5h6933z1cw5z0d4wynvq2cywq55srj7c"))
-(define rust-writeable-0.6.4
-  (crate "writeable" "0.6.4" "1p3r4s4wbf3dksfpj3xyrn7id5p0f7r74mj6qx6ngjfd6cm2vn1s"))
-(define rust-yoke-0.8.3
-  (crate "yoke" "0.8.3" "1xgyj6c2lxj2bp891ynmhws87c6z7yyv2li1v0ss9di40hxf57vh"))
-(define rust-yoke-derive-0.8.2
-  (crate "yoke-derive" "0.8.2" "13l5y5sz4lqm7rmyakjbh6vwgikxiql51xfff9hq2j485hk4r16y"))
-(define rust-yuv-0.8.19
-  (crate "yuv" "0.8.19" "1ybb1nwy5c86s39d8bc9745id4vz14q122halmr4w2n06lsr55d2"))
-(define rust-zerofrom-0.1.7
-  (crate "zerofrom" "0.1.7" "1py40in4rirc9q8w36q67pld0zk8ssg024xhh0cncxgal7ra3yk9"))
-(define rust-zerofrom-derive-0.1.7
-  (crate "zerofrom-derive" "0.1.7" "18c4wsnznhdxx6m80piil1lbyszdiwsshgjrybqcm4b6qic22lqi"))
-(define rust-zerotrie-0.2.5
-  (crate "zerotrie" "0.2.5" "0gss16krjzk22m57dz5hkdjg99ibj6pa41qr68na7w1jpp1nk8jf"))
-(define rust-zerovec-0.11.8
-  (crate "zerovec" "0.11.8" "1n3xlvyba8riys9s8awy4xp533phqycr78nbsmvdkh86g3hn815v"))
-(define rust-zerovec-derive-0.11.6
-  (crate "zerovec-derive" "0.11.6" "1ni5j8v99x3fcf3l8kp64b7aq4vf8y22jshfq74xs9mxkp1nzprl"))
-(define rust-zlib-rs-0.6.8
-  (crate "zlib-rs" "0.6.8" "04j158293bx73kv5pj1i89ai411q7fxc9zwk3wkpqgb9gj7fas5j"))
-(define rust-zmij-1.0.21
-  (crate "zmij" "1.0.21" "1amb5i6gz7yjb0dnmz5y669674pqmwbj44p4yfxfv2ncgvk8x15q"))
+;;; crates.io crates: (NAME VERSION HASH); projects refer to them by index.
+(define %crates
+  (crate-table
+   '(("adblock" "0.13.3" "0vb73jcsnr38kaq6brxbgr70k9rqhvz8ns3wmnn14g52csk9cjzl")
+     ("addr" "0.15.6" "1vrbnzv4r7sx65mmi011aiafc7b1866iywnchx8asc72vd0qlfx9")
+     ("aho-corasick" "1.1.4" "00a32wb2h07im3skkikc495jvncf62jl6s96vwc7bhi70h9imlyx")
+     ("alloc-no-stdlib" "3.0.0" "0ync9wrxr8fg5wad8547wd7400f2l2mhxhlm83v6yjdz8zynryy2")
+     ("alloc-stdlib" "0.3.0" "1qc6flsgl4b6231ykik493y8g5418zrba6j1hshvz203g1jihp0b")
+     ("allocator-api2" "0.2.21" "08zrzs022xwndihvzdn78yqarv2b9696y67i6h78nla3ww87jgb8")
+     ("anstream" "1.0.0" "13d2bj0xfg012s4rmq44zc8zgy1q8k9yp7yhvfnarscnmwpj2jl2")
+     ("anstyle" "1.0.14" "0030szmgj51fxkic1hpakxxgappxzwm6m154a3gfml83lq63l2wl")
+     ("anstyle-parse" "1.0.0" "03hkv2690s0crssbnmfkr76kw1k7ah2i6s5amdy9yca2n8w7zkjj")
+     ("anstyle-query" "1.1.5" "1p6shfpnbghs6jsa0vnqd8bb8gd7pjd0jr7w0j8jikakzmr8zi20")
+     ("anstyle-wincon" "3.0.11" "0zblannm70sk3xny337mz7c6d8q8i24vhbqi42ld8v7q1wjnl7i9")
+     ("anyhow" "1.0.104" "0w34jjcm02p5g9kvsjr1dvpw0zs2fi7igi6nr414fkm5gz85w2ik")
+     ("array-init" "2.1.0" "1z0bh6grrkxlbknq3xyipp42rasngi806y92fiddyb2n99lvfqix")
+     ("arrayvec" "0.7.6" "0l1fz4ccgv6pm609rif37sl5nv5k6lbzi7kkppgzqzh1vwix20kw")
+     ("autocfg" "1.5.0" "1s77f98id9l4af4alklmzq46f21c980v13z2r1pcxx6bqgw0d1n0")
+     ("base64" "0.22.1" "1imqzgh7bxcikp5vx3shqvw9j09g9ly0xr0jma0q66i52r7jbcvj")
+     ("bitflags" "2.11.0" "1bwjibwry5nfwsfm9kjg2dqx5n5nja9xymwbfl6svnn8jsz6ff44")
+     ("brotli" "9.0.0" "0ssc7lyjbsw7451vk3yh0gmrm66ikgj2yq9xc9rpiji3bjvm3f7q")
+     ("brotli-decompressor" "6.0.1" "1msbjd00hwgbgg7pdf4cqx5b4my8y4ld98m5dys3rf6s9nyxj74l")
+     ("byteorder" "1.5.0" "0jzncxyf404mwqdbspihyzpkndfgda450l0893pz5xj685cg5l0z")
+     ("calendrical_calculations" "0.2.4" "09lwfy6j9ggmzwkg64fxwdl04vpairs6dp3y6n6h91b8vbpddfss")
+     ("cbindgen" "0.29.2" "168pl7jrz6zw7yi4hggqa78fgr8z8g7fyyjhihpw10cf583zvyxy")
+     ("cc" "1.5.1" "0h70pg4050i16fp5v62wqxj0h8ajzvagrwz7bvdj33pfji8i8q7k")
+     ("cfg-if" "1.0.4" "008q28ajc546z5p2hcwdnckmg0hia7rnx52fni04bwqkzyrghc4k")
+     ("chardetng" "1.0.0" "0lwbp36klw475vw6c3jqy98frgs1kb2crkm5sgjlw1mm8i599phk")
+     ("clap" "4.6.0" "0l8k0ja5rf4hpn2g98bqv5m6lkh2q6b6likjpmm6fjw3cxdsz4xi")
+     ("clap_builder" "4.6.0" "17q6np22yxhh5y5v53y4l31ps3hlaz45mvz2n2nicr7n3c056jki")
+     ("clap_lex" "1.1.0" "1ycqkpygnlqnndghhcxjb44lzl0nmgsia64x9581030yifxs7m68")
+     ("colorchoice" "1.0.5" "0w75k89hw39p0mnnhlrwr23q50rza1yjki44qvh2mgrnj065a1qx")
+     ("core_detect" "1.0.0" "0j0xp1j6f9lrp4ybylc3d0zdg8jq2hkmr1122qyil14qk84q13vz")
+     ("core_maths" "0.1.1" "0c0dv11ixxpc9bsx5xasvl98mb1dlprzcm6qq6ls3nsygw0mwx3p")
+     ("displaydoc" "0.2.5" "1q0alair462j21iiqwrr21iabkfnb13d6x5w95lkdg21q2xrqdlp")
+     ("either" "1.16.0" "17k7jfbdz7k440h6lws9baz8p9zlxgb41sig3w81h80nwzsjyqli")
+     ("encoding_rs" "0.8.42" "0ycnbndly2jw5j69jl1r1lm512h2w9vb1dnjp0px46l7a425x64f")
+     ("equivalent" "1.0.2" "03swzqznragy8n0x31lqc78g2af054jwivp7lkrbrc0khz74lyl7")
+     ("errno" "0.3.14" "1szgccmh8vgryqyadg8xd58mnwwicf39zmin3bsn63df2wbbgjir")
+     ("fARM64" "0.0.2" "1xv0ih08jfjqqlygrmpi7mb7914j77cn2yl47rn6kr3x4i24d507")
+     ("fastrand" "2.4.0" "07ysvz2crv66ccs1v8craf2myhkgm89i41jpwspxcdqyv9sdqhx0")
+     ("find-msvc-tools" "0.1.14" "112ljldlv150fpl8xr2jl5czg51k3kdfn6cy5fqdsvkl14sgpp5f")
+     ("flatbuffers" "25.12.19" "1wvfm49ybn098zknzlim8xpxrfn2y0sazzqyaggav61vgffq7xim")
+     ("flate2" "1.1.10" "1jvd2cl8j5hyf8imi62y1x7gwzz1hajirni0801yxhds1qp4wqvf")
+     ("foldhash" "0.1.5" "1wisr1xlc2bj7hk4rgkcjkz3j2x4dhd1h9lwk7mj8p71qpdgbi6r")
+     ("foldhash" "0.2.0" "1nvgylb099s11xpfm1kn2wcsql080nqmnhj1l25bp3r2b35j9kkp")
+     ("form_urlencoded" "1.2.2" "1kqzb2qn608rxl3dws04zahcklpplkd5r1vpabwga5l50d2v4k6b")
+     ("getrandom" "0.4.2" "0mb5833hf9pvn9dhvxjgfg5dx0m77g8wavvjdpvpnkp9fil1xr8d")
+     ("hashbrown" "0.15.5" "189qaczmjxnikm9db748xyhiw04kpmhm9xj9k9hg0sgx7pjwyacj")
+     ("hashbrown" "0.16.1" "004i3njw38ji3bzdp9z178ba9x3k0c1pgy8x69pj7yfppv4iq7c4")
+     ("hashbrown" "0.17.1" "0jmqz7i4yl6cm7rbn0i2ffkfrmwi6xkmzkaldr2v8bcsx2v0jngd")
+     ("heck" "0.5.0" "1sjmpsdl8czyh9ywl3qcsfsq9a307dg4ni2vnlwgnzzqhc4y0113")
+     ("iced-x86" "1.21.0" "0syz3rmxay68svl34r205g83lpzp6bzzq73l9xyllf3zikzpqi3w")
+     ("icu_calendar" "2.3.0" "0p5mbs8abia79c0jbffdfwzfqlngzazdxgc0xr76xr18yzr5sraq")
+     ("icu_calendar_data" "2.3.0" "0vn365n97qyxifadzksll6fjn15bqgl5i94al7viy85k7ymcl06w")
+     ("icu_collections" "2.2.0" "070r7xd0pynm0hnc1v2jzlbxka6wf50f81wybf9xg0y82v6x3119")
+     ("icu_locale_core" "2.3.0" "1sqdj16wwl7h9y6r7j394av4kpdb7zryz9h169ffwbm9imc2hvnm")
+     ("icu_locale_fallback" "2.3.0" "1a9gdzpcqf1wj8pn7kzlzmj2laqmn6wfabr4b3my604lgkjzh6i5")
+     ("icu_locale_fallback_data" "2.3.0" "1a639lmgd6ddivlwp74b9v18p3rzb3wa6a8i1hd8z9lgxhi2mkyy")
+     ("icu_normalizer" "2.2.0" "1d7krxr0xpc4x9635k1100a24nh0nrc59n65j6yk6gbfkplmwvn5")
+     ("icu_normalizer_data" "2.2.0" "0f5d5d5fhhr9937m2z6z38fzh6agf14z24kwlr6lyczafypf0fys")
+     ("icu_properties" "2.2.0" "1pkh3s837808cbwxvfagwc28cvwrz2d9h5rl02jwrhm51ryvdqxy")
+     ("icu_properties_data" "2.2.0" "052awny0qwkbcbpd5jg2cd7vl5ry26pq4hz1nfsgf10c3qhbnawf")
+     ("icu_provider" "2.3.1" "0wrydhwprwgyka3r3sw6276syjnlw6fpqr2zsm2srvxv7afvnyyj")
+     ("id-arena" "2.3.0" "0m6rs0jcaj4mg33gkv98d71w3hridghp5c4yr928hplpkgbnfc1x")
+     ("idna" "1.1.0" "1pp4n7hppm480zcx411dsv9wfibai00wbpgnjj4qj0xa7kr7a21v")
+     ("idna_adapter" "1.2.2" "0557p76l8hj35r9zn1yv7c6x1c0qbrsffmg80n0yy8361ly3fs6b")
+     ("indexmap" "2.13.1" "1zs2af09vgdaix8qzhi3bd12zpn5za7pbc6v0cc0q2ryrfws5a25")
+     ("is_terminal_polyfill" "1.70.2" "15anlc47sbz0jfs9q8fhwf0h3vs2w4imc030shdnq54sny5i7jx6")
+     ("itertools" "0.14.0" "118j6l1vs2mx65dqhwyssbrxpawa90886m3mzafdvyip41w2q69b")
+     ("itoa" "1.0.18" "10jnd1vpfkb8kj38rlkn2a6k02afvj3qmw054dfpzagrpl6achlg")
+     ("ixdtf" "0.6.5" "1q9y5y6s1fbaqswk541366xyr1hcxv2bg85nijnvwrc4qk3g9sic")
+     ("jxl" "0.7.4" "11s69mdxyzzp9gb7fj4iffs5n4zb0hrvqwdjfg7k3favppj43c23")
+     ("jxl_macros" "0.7.4" "0qz6ihkwh02fq441zaaa2g7r6awpy09wcqkmgnhyzqj47v2wj0bl")
+     ("jxl_simd" "0.7.4" "0bb4l1ivmz7cb6w57dr12gzqp5cxigvh04ksps2p701z3b06a7xs")
+     ("jxl_transforms" "0.7.4" "0dqar0zxh5dc1hqls8l7ypksjks6hdy5s5z2qyj3isf1qsbf2wlg")
+     ("lazy_static" "1.5.0" "1zk6dqqni0193xg6iijh7i3i44sryglwgvx20spdvwk3r6sbrlmv")
+     ("leb128fmt" "0.1.0" "1chxm1484a0bly6anh6bd7a99sn355ymlagnwj3yajafnpldkv89")
+     ("libc" "0.2.190" "0y5yap4bfp7rfsldcbk9pb5alcgygca5xn1n2pmh181zdpf3spff")
+     ("libm" "0.2.16" "10brh0a3qjmbzkr5mf5xqi887nhs5y9layvnki89ykz9xb1wxlmn")
+     ("linux-raw-sys" "0.12.1" "0lwasljrqxjjfk9l2j8lyib1babh2qjlnhylqzl01nihw14nk9ij")
+     ("litemap" "0.8.2" "1w7628bc7wwcxc4n4s5kw0610xk06710nh2hn5kwwk2wa91z9nlj")
+     ("log" "0.4.29" "15q8j9c8g5zpkcw0hnd6cf2z7fxqnvsjh3rw5mv5q10r83i34l2y")
+     ("memchr" "2.8.0" "0y9zzxcqxvdqg6wyag7vc3h0blhdn7hkq164bxyx2vph8zs5ijpq")
+     ("multiversion_no_op" "1.0.0" "03d2k7xk7vky38q48h08miw4jca34ymckggnrqggn60vlddvagvl")
+     ("num-bigint" "0.5.1" "1h77ycws79m3j1s68jq5pvaiifi9z4b76cjhwqw042m8q05q5rwk")
+     ("num-derive" "0.4.2" "00p2am9ma8jgd2v6xpsz621wc7wbn1yqi71g15gc3h67m7qmafgd")
+     ("num-integer" "0.1.46" "13w5g54a9184cqlbsq80rnxw4jj4s0d8wv75jsq5r2lms8gncsbr")
+     ("num-traits" "0.2.19" "0h984rhdkkqd4ny9cif7y2azl3xdfb7768hb9irhpsch4q3gq787")
+     ("once_cell" "1.21.4" "0l1v676wf71kjg2khch4dphwh1jp3291ffiymr2mvy1kxd5kwz4z")
+     ("once_cell_polyfill" "1.70.2" "1zmla628f0sk3fhjdjqzgxhalr2xrfna958s632z65bjsfv8ljrq")
+     ("percent-encoding" "2.3.2" "083jv1ai930azvawz2khv7w73xh8mnylk7i578cifndjn5y64kwv")
+     ("potential_utf" "0.1.5" "0r0518fr32xbkgzqap509s3r60cr0iancsg9j1jgf37cyz7b20q1")
+     ("precomputed-hash" "0.1.1" "075k9bfy39jhs53cb2fpb9klfakx2glxnf28zdw08ws6lgpq6lwj")
+     ("prettyplease" "0.2.37" "0azn11i1kh0byabhsgab6kqs74zyrg69xkirzgqyhz6xmjnsi727")
+     ("proc-macro2" "1.0.106" "0d09nczyaj67x4ihqr5p7gxbkz38gxhk4asc0k8q23g9n85hzl4g")
+     ("psl" "2.1.210" "1a6l3k713f9zgrsgcbf9iny0qiiz4iqcwjv5pl66w2zbnbcx9yr7")
+     ("psl-types" "2.0.11" "1b3cz1q07iy744a39smykra2j83nv8vmni6la37wnx3ax17jkjrk")
+     ("quote" "1.0.45" "095rb5rg7pbnwdp6v8w5jw93wndwyijgci1b5lw8j1h5cscn3wj1")
+     ("r-efi" "6.0.0" "1gyrl2k5fyzj9k7kchg2n296z5881lg7070msabid09asp3wkp7q")
+     ("regex" "1.12.3" "0xp2q0x7ybmpa5zlgaz00p8zswcirj9h8nry3rxxsdwi9fhm81z1")
+     ("regex-automata" "0.4.14" "13xf7hhn4qmgfh784llcp2kzrvljd13lb2b1ca0mwnf15w9d87bf")
+     ("regex-syntax" "0.8.10" "02jx311ka0daxxc7v45ikzhcl3iydjbbb0mdrpc1xgg8v7c7v2fw")
+     ("rustc-demangle" "0.1.28" "1sr083jamg89zcxmchia1pdn584smsy2r32kk9q30a5vm3zmcjxp")
+     ("rustc-hash" "2.1.2" "1gjdc5bw9982cj176jvgz9rrqf9xvr1q1ddpzywf5qhs7yzhlc4l")
+     ("rustc_version" "0.4.1" "14lvdsmr5si5qbqzrajgb6vfn69k0sfygrvfvr2mps26xwi3mjyg")
+     ("rustix" "1.1.4" "14511f9yjqh0ix07xjrjpllah3325774gfwi9zpq72sip5jlbzmn")
+     ("rustversion" "1.0.23" "07z2a843fs80fawwflj9jwn49k9b0bd0dhhbvy0ar69vaxd72m6g")
+     ("scopeguard" "1.2.0" "0jcz9sd47zlsgcnm1hdw0664krxwb5gczlif4qngj2aif8vky54l")
+     ("seahash" "4.1.0" "0sxsb64np6bvnppjz5hg4rqpnkczhsl8w8kf2a5lr1c08xppn40w")
+     ("semver" "1.0.28" "1kaimrpy876bcgi8bfj0qqfxk77zm9iz2zhn1hp9hj685z854y4a")
+     ("serde" "1.0.228" "17mf4hhjxv5m90g42wmlbc61hdhlm6j9hwfkpcnd72rpgzm993ls")
+     ("serde_core" "1.0.228" "1bb7id2xwx8izq50098s5j2sqrrvk31jbbrjqygyan6ask3qbls1")
+     ("serde_derive" "1.0.228" "0y8xm7fvmr2kjcd029g9fijpndh8csv5m20g4bd76w8qschg4h6m")
+     ("serde_json" "1.0.149" "11jdx4vilzrjjd1dpgy67x5lgzr0laplz30dhv75lnf5ffa07z43")
+     ("serde_spanned" "1.1.1" "09jzk7i6wihn3d8i3wi4j4n98ghi93c3b8m8k64nxq0ijn3vaqk6")
+     ("shlex" "2.0.1" "1fjsll1cd7d2bcpdij9kd6w62rpbc7qqzvydvs021vsmr1cxvypq")
+     ("simdutf8" "0.1.5" "0vmpf7xaa0dnaikib5jlx6y4dxd3hxqz6l830qb079g7wcsgxag3")
+     ("smallvec" "1.16.3" "06z0akmcq2zc9qg22dxda298p50gg3di5ggl3y2nllag8ypwhgav")
+     ("stable_deref_trait" "1.2.1" "15h5h73ppqyhdhx6ywxfj88azmrpml9gl6zp3pwy2malqa6vxqkc")
+     ("strsim" "0.11.1" "0kzvqlw8hxqb7y598w1s0hxlnmi84sg5vsipp3yg5na5d1rvba3x")
+     ("syn" "2.0.117" "16cv7c0wbn8amxc54n4w15kxlx5ypdmla8s0gxr2l7bv7s0bhrg6")
+     ("syn" "3.0.4" "17v4ac61x0hvj1879ywqzlwhyzg7n9lr9zniwrsif3b1ykfmq9z6")
+     ("synstructure" "0.13.2" "1lh9lx3r3jb18f8sbj29am5hm9jymvbwh6jb1izsnnxgvgrp12kj")
+     ("tempfile" "3.27.0" "1gblhnyfjsbg9wjg194n89wrzah7jy3yzgnyzhp56f3v9jd7wj9j")
+     ("thiserror" "1.0.69" "0lizjay08agcr5hs9yfzzj6axs53a2rgx070a1dsi3jpkcrzbamn")
+     ("thiserror" "2.0.20" "0kxs6p295jffxhzaxpxv1dwaaf5iqlm6sx8h0djp6ancbxgj71pc")
+     ("thiserror-impl" "1.0.69" "1h84fmn2nai41cxbhk6pqf46bxqq1b344v8yz089w1chzi76rvjg")
+     ("thiserror-impl" "2.0.20" "1bwjc94gi0xn5jz26h1a8bjj1wdkvvr6jifamyc4mp9n28zcs15w")
+     ("tinystr" "0.8.4" "0hzncw8rgk4syla79qscfml46jm7ll1zdp7kdacc42cj8n8prqmi")
+     ("toml" "0.9.12+spec-1.1.0" "0qwqbrymqn88mg2yqyq3rj52z6p20448z0jxdbpjsbpwg5g894ng")
+     ("toml_datetime" "0.7.5+spec-1.1.0" "0iqkgvgsxmszpai53dbip7sf2igic39s4dby29dbqf1h9bnwzqcj")
+     ("toml_parser" "1.1.2+spec-1.1.0" "09kmzc55a0j21whm290wlf5a8b18a0qc87a1s8sncrckc6wfkax2")
+     ("toml_writer" "1.1.1+spec-1.1.0" "1nwjhvvrxz8f4ck1qi4xcz2x9qhpci37nrknhxxf9sqk22dsyvbm")
+     ("unicode-ident" "1.0.24" "0xfs8y1g7syl2iykji8zk5hgfi5jw819f5zsrbaxmlzwsly33r76")
+     ("unicode-xid" "0.2.6" "0lzqaky89fq0bcrh6jj6bhlz37scfd8c7dsj5dq7y32if56c1hgb")
+     ("url" "2.5.8" "1v8f7nx3hpr1qh76if0a04sj08k86amsq4h8cvpw6wvk76jahrzz")
+     ("utf8_iter" "1.0.4" "1gmna9flnj8dbyd8ba17zigrp9c4c3zclngf5lnb5yvz1ri41hdn")
+     ("utf8parse" "0.2.2" "088807qwjq46azicqwbhlmzwrbkz7l4hpw43sdkdyyk524vdxaq6")
+     ("wasip2" "1.0.2+wasi-0.2.9" "1xdw7v08jpfjdg94sp4lbdgzwa587m5ifpz6fpdnkh02kwizj5wm")
+     ("wasip3" "0.4.0+wasi-0.3.0-rc-2026-01-06" "19dc8p0y2mfrvgk3qw3c3240nfbylv22mvyxz84dqpgai2zzha2l")
+     ("wasm-encoder" "0.244.0" "06c35kv4h42vk3k51xjz1x6hn3mqwfswycmr6ziky033zvr6a04r")
+     ("wasm-metadata" "0.244.0" "02f9dhlnryd2l7zf03whlxai5sv26x4spfibjdvc3g9gd8z3a3mv")
+     ("wasmparser" "0.244.0" "1zi821hrlsxfhn39nqpmgzc0wk7ax3dv6vrs5cw6kb0v5v3hgf27")
+     ("windows-link" "0.2.1" "1rag186yfr3xx7piv5rg8b6im2dwcf8zldiflvb22xbzwli5507h")
+     ("windows-sys" "0.61.2" "1z7k3y9b6b5h52kid57lvmvm05362zv1v8w0gc7xyv5xphlp44xf")
+     ("winnow" "0.7.15" "0i9rkl2rqpbnnxlgs20gmkj3nd0b2k8q55mjmpc2ybb84xwxjyfz")
+     ("winnow" "1.0.1" "1dbji1bwviy08pl74f2qw2m4w9hc4p3vyl3lfj05jdydy59w1nh9")
+     ("wit-bindgen" "0.51.0" "19fazgch8sq5cvjv3ynhhfh5d5x08jq2pkw8jfb05vbcyqcr496p")
+     ("wit-bindgen-core" "0.51.0" "1p2jszqsqbx8k7y8nwvxg65wqzxjm048ba5phaq8r9iy9ildwqga")
+     ("wit-bindgen-rust" "0.51.0" "08bzn5fsvkb9x9wyvyx98qglknj2075xk1n7c5jxv15jykh6didp")
+     ("wit-bindgen-rust-macro" "0.51.0" "0ymizapzv2id89igxsz2n587y2hlfypf6n8kyp68x976fzyrn3qc")
+     ("wit-component" "0.244.0" "1clwxgsgdns3zj2fqnrjcp8y5gazwfa1k0sy5cbk0fsmx4hflrlx")
+     ("wit-parser" "0.244.0" "0dm7avvdxryxd5b02l0g5h6933z1cw5z0d4wynvq2cywq55srj7c")
+     ("writeable" "0.6.4" "1p3r4s4wbf3dksfpj3xyrn7id5p0f7r74mj6qx6ngjfd6cm2vn1s")
+     ("yoke" "0.8.3" "1xgyj6c2lxj2bp891ynmhws87c6z7yyv2li1v0ss9di40hxf57vh")
+     ("yoke-derive" "0.8.2" "13l5y5sz4lqm7rmyakjbh6vwgikxiql51xfff9hq2j485hk4r16y")
+     ("yuv" "0.8.19" "1ybb1nwy5c86s39d8bc9745id4vz14q122halmr4w2n06lsr55d2")
+     ("zerofrom" "0.1.7" "1py40in4rirc9q8w36q67pld0zk8ssg024xhh0cncxgal7ra3yk9")
+     ("zerofrom-derive" "0.1.7" "18c4wsnznhdxx6m80piil1lbyszdiwsshgjrybqcm4b6qic22lqi")
+     ("zerotrie" "0.2.5" "0gss16krjzk22m57dz5hkdjg99ibj6pa41qr68na7w1jpp1nk8jf")
+     ("zerovec" "0.11.8" "1n3xlvyba8riys9s8awy4xp533phqycr78nbsmvdkh86g3hn815v")
+     ("zerovec-derive" "0.11.6" "1ni5j8v99x3fcf3l8kp64b7aq4vf8y22jshfq74xs9mxkp1nzprl")
+     ("zlib-rs" "0.6.8" "04j158293bx73kv5pj1i89ai411q7fxc9zwk3wkpqgb9gj7fas5j")
+     ("zmij" "1.0.21" "1amb5i6gz7yjb0dnmz5y669674pqmwbj44p4yfxfv2ncgvk8x15q"))))
 
-;;; Git checkouts
-
+;;; Git checkouts, by index.
+(define %git-checkouts
+  (vector))
 
 (define ladybird-cargo-inputs
-  (list rust-adblock-0.13.3
-        rust-addr-0.15.6
-        rust-aho-corasick-1.1.4
-        rust-alloc-no-stdlib-3.0.0
-        rust-alloc-stdlib-0.3.0
-        rust-allocator-api2-0.2.21
-        rust-anstream-1.0.0
-        rust-anstyle-1.0.14
-        rust-anstyle-parse-1.0.0
-        rust-anstyle-query-1.1.5
-        rust-anstyle-wincon-3.0.11
-        rust-anyhow-1.0.104
-        rust-array-init-2.1.0
-        rust-arrayvec-0.7.6
-        rust-autocfg-1.5.0
-        rust-base64-0.22.1
-        rust-bitflags-2.11.0
-        rust-brotli-9.0.0
-        rust-brotli-decompressor-6.0.1
-        rust-byteorder-1.5.0
-        rust-calendrical_calculations-0.2.4
-        rust-cbindgen-0.29.2
-        rust-cc-1.5.1
-        rust-cfg-if-1.0.4
-        rust-chardetng-1.0.0
-        rust-clap-4.6.0
-        rust-clap_builder-4.6.0
-        rust-clap_lex-1.1.0
-        rust-colorchoice-1.0.5
-        rust-core_detect-1.0.0
-        rust-core_maths-0.1.1
-        rust-displaydoc-0.2.5
-        rust-either-1.16.0
-        rust-encoding_rs-0.8.42
-        rust-equivalent-1.0.2
-        rust-errno-0.3.14
-        rust-fARM64-0.0.2
-        rust-fastrand-2.4.0
-        rust-find-msvc-tools-0.1.14
-        rust-flatbuffers-25.12.19
-        rust-flate2-1.1.10
-        rust-foldhash-0.1.5
-        rust-foldhash-0.2.0
-        rust-form_urlencoded-1.2.2
-        rust-getrandom-0.4.2
-        rust-hashbrown-0.15.5
-        rust-hashbrown-0.16.1
-        rust-hashbrown-0.17.1
-        rust-heck-0.5.0
-        rust-iced-x86-1.21.0
-        rust-icu_calendar-2.3.0
-        rust-icu_calendar_data-2.3.0
-        rust-icu_collections-2.2.0
-        rust-icu_locale_core-2.3.0
-        rust-icu_locale_fallback-2.3.0
-        rust-icu_locale_fallback_data-2.3.0
-        rust-icu_normalizer-2.2.0
-        rust-icu_normalizer_data-2.2.0
-        rust-icu_properties-2.2.0
-        rust-icu_properties_data-2.2.0
-        rust-icu_provider-2.3.1
-        rust-id-arena-2.3.0
-        rust-idna-1.1.0
-        rust-idna_adapter-1.2.2
-        rust-indexmap-2.13.1
-        rust-is_terminal_polyfill-1.70.2
-        rust-itertools-0.14.0
-        rust-itoa-1.0.18
-        rust-ixdtf-0.6.5
-        rust-jxl-0.7.4
-        rust-jxl_macros-0.7.4
-        rust-jxl_simd-0.7.4
-        rust-jxl_transforms-0.7.4
-        rust-lazy_static-1.5.0
-        rust-leb128fmt-0.1.0
-        rust-libc-0.2.190
-        rust-libm-0.2.16
-        rust-linux-raw-sys-0.12.1
-        rust-litemap-0.8.2
-        rust-log-0.4.29
-        rust-memchr-2.8.0
-        rust-multiversion_no_op-1.0.0
-        rust-num-bigint-0.5.1
-        rust-num-derive-0.4.2
-        rust-num-integer-0.1.46
-        rust-num-traits-0.2.19
-        rust-once_cell-1.21.4
-        rust-once_cell_polyfill-1.70.2
-        rust-percent-encoding-2.3.2
-        rust-potential_utf-0.1.5
-        rust-precomputed-hash-0.1.1
-        rust-prettyplease-0.2.37
-        rust-proc-macro2-1.0.106
-        rust-psl-2.1.210
-        rust-psl-types-2.0.11
-        rust-quote-1.0.45
-        rust-r-efi-6.0.0
-        rust-regex-1.12.3
-        rust-regex-automata-0.4.14
-        rust-regex-syntax-0.8.10
-        rust-rustc-demangle-0.1.28
-        rust-rustc-hash-2.1.2
-        rust-rustc_version-0.4.1
-        rust-rustix-1.1.4
-        rust-rustversion-1.0.23
-        rust-scopeguard-1.2.0
-        rust-seahash-4.1.0
-        rust-semver-1.0.28
-        rust-serde-1.0.228
-        rust-serde_core-1.0.228
-        rust-serde_derive-1.0.228
-        rust-serde_json-1.0.149
-        rust-serde_spanned-1.1.1
-        rust-shlex-2.0.1
-        rust-simdutf8-0.1.5
-        rust-smallvec-1.16.3
-        rust-stable_deref_trait-1.2.1
-        rust-strsim-0.11.1
-        rust-syn-2.0.117
-        rust-syn-3.0.4
-        rust-synstructure-0.13.2
-        rust-tempfile-3.27.0
-        rust-thiserror-1.0.69
-        rust-thiserror-2.0.20
-        rust-thiserror-impl-1.0.69
-        rust-thiserror-impl-2.0.20
-        rust-tinystr-0.8.4
-        rust-toml-0.9.12-spec-1.1.0
-        rust-toml_datetime-0.7.5-spec-1.1.0
-        rust-toml_parser-1.1.2-spec-1.1.0
-        rust-toml_writer-1.1.1-spec-1.1.0
-        rust-unicode-ident-1.0.24
-        rust-unicode-xid-0.2.6
-        rust-url-2.5.8
-        rust-utf8_iter-1.0.4
-        rust-utf8parse-0.2.2
-        rust-wasip2-1.0.2-wasi-0.2.9
-        rust-wasip3-0.4.0-wasi-0.3.0-rc-2026-01-06
-        rust-wasm-encoder-0.244.0
-        rust-wasm-metadata-0.244.0
-        rust-wasmparser-0.244.0
-        rust-windows-link-0.2.1
-        rust-windows-sys-0.61.2
-        rust-winnow-0.7.15
-        rust-winnow-1.0.1
-        rust-wit-bindgen-0.51.0
-        rust-wit-bindgen-core-0.51.0
-        rust-wit-bindgen-rust-0.51.0
-        rust-wit-bindgen-rust-macro-0.51.0
-        rust-wit-component-0.244.0
-        rust-wit-parser-0.244.0
-        rust-writeable-0.6.4
-        rust-yoke-0.8.3
-        rust-yoke-derive-0.8.2
-        rust-yuv-0.8.19
-        rust-zerofrom-0.1.7
-        rust-zerofrom-derive-0.1.7
-        rust-zerotrie-0.2.5
-        rust-zerovec-0.11.8
-        rust-zerovec-derive-0.11.6
-        rust-zlib-rs-0.6.8
-        rust-zmij-1.0.21))
+  (crate-selection
+   %crates
+   '(0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27
+     28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51
+     52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75
+     76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99
+     100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117
+     118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135
+     136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153
+     154 155 156 157 158 159 160 161)))
 
 (define ladybird-git-crates '())

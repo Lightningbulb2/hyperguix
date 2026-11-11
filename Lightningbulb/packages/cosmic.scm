@@ -149,6 +149,7 @@ at cosmic-wallpapers."
       #:phases
       #~(modify-phases %standard-phases
           #$@(vendor-git-crates-phases git-crates)
+          #$@(fast-cargo-release-phases)
           (add-after 'unpack 'patch-justfile-shebangs
             ;; Recipes like `install-plugins' run through `#!/usr/bin/env
             ;; sh'; the build sandbox has no /usr/bin/env.  (Guix's
