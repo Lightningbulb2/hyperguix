@@ -44,7 +44,7 @@
     (name "codecanvas")
     (version "0.1.0")
     (source (codecanvas-source "CodeCanvas"
-                               "8b0cc8b7953561a6724ced6b6e02cf18433cc64c"))
+                               "a5688ce7b629385659ae7ceafc3a74acce55a59a"))
     (build-system cargo-build-system)
     (arguments
      (list
@@ -74,7 +74,7 @@
      (cons* bash-minimal fontconfig freetype libxcb libxkbcommon mesa
             vulkan-loader wayland
             codecanvas-cargo-inputs))
-    (propagated-inputs (list font-dejavu))
+    (propagated-inputs (list font-dejavu font-liberation))
     (home-page "https://github.com/Lightningbulb2/CodeCanvas")
     (synopsis "Infinite canvas for source code")
     (description
