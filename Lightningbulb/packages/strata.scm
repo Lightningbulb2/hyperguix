@@ -6,9 +6,10 @@
 ;;;
 ;;; The engine is installed as a Strata "component": a folder whose manifest
 ;;; records the hash of every file, so the files must not change after
-;;; packaging, hence no stripping here.  Models and settings stay in the
-;;; user's own folders.  `strata update' can't replace an engine in the
-;;; store; update this package instead.
+;;; packaging, hence no stripping here.  Grafts still rewrite it, so the
+;;; launcher copies the engine into $XDG_DATA_HOME/strata/components and
+;;; recomputes its manifest there (aux-files/strata-seed-components.py).
+;;; Models and settings stay in the user's own XDG folders.
 
 (define-module (Lightningbulb packages strata)
   #:use-module (guix packages)
@@ -142,20 +143,34 @@
               (lambda* (#:key inputs #:allow-other-keys)
                 (let ((bin (string-append #$output "/bin/strata"))
                       (lib (string-append #$output "/lib/strata")))
+                  (copy-file #$(local-file
+                                "aux-files/strata-seed-components.py")
+                             (string-append lib "/strata-seed-components.py"))
                   (mkdir-p (dirname bin))
+                  ;; Everything Strata writes stays in the XDG folders:
+                  ;; components and the install folder (and, by default,
+                  ;; models) under $XDG_DATA_HOME/strata, settings under
+                  ;; $XDG_CONFIG_HOME/strata.  The packaged engine is copied
+                  ;; into the user's components folder, see
+                  ;; strata-seed-components.py for why.
                   (call-with-output-file bin
                     (lambda (port)
                       (format port "#!~a
-: \"${STRATA_INSTALL_DIR:=${XDG_DATA_HOME:-$HOME/.local/share}/strata/install}\"
-export STRATA_INSTALL_DIR
+data=\"${XDG_DATA_HOME:-$HOME/.local/share}/strata\"
+: \"${STRATA_INSTALL_DIR:=$data/install}\"
+: \"${STRATA_COMPONENTS_DIR:=$data/components}\"
+export STRATA_INSTALL_DIR STRATA_COMPONENTS_DIR
+mkdir -p \"$STRATA_INSTALL_DIR\" \"$STRATA_COMPONENTS_DIR\"
+~a -I ~a/strata-seed-components.py ~a/components \"$STRATA_COMPONENTS_DIR\"
 exec ~a ~a/strata.py \"$@\"~%"
                               (search-input-file inputs "bin/bash")
+                              (search-input-file inputs "bin/python3")
+                              lib lib
                               (search-input-file inputs "bin/python3")
                               lib)))
                   (chmod bin #o755)
                   (wrap-program bin
-                    `("GUIX_PYTHONPATH" ":" prefix (,(getenv "GUIX_PYTHONPATH")))
-                    `("STRATA_COMPONENTS_DIR" = (,(string-append lib "/components"))))))))))
+                    `("GUIX_PYTHONPATH" ":" prefix (,(getenv "GUIX_PYTHONPATH"))))))))))
       (native-inputs (list ninja patchelf))
       (inputs
        (list `(,gcc "lib")
@@ -169,6 +184,8 @@ exec ~a ~a/strata.py \"$@\"~%"
              python-pyyaml
              python-regex
              python-requests
+             python-rich                ;the launch screens and monitor
+             python-textual
              python-tqdm))
       (supported-systems '("x86_64-linux"))
       (home-page "https://github.com/Niko1221/Strata")
