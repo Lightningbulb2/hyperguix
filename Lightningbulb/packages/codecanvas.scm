@@ -45,7 +45,7 @@
     (name "codecanvas")
     (version "0.1.0")
     (source (codecanvas-source "CodeCanvas"
-                               "5f91db9c55b3584d875aec18e7fd290bff8d2064"))
+                               "56a92cd00d3972e2f6529ff05d5562adcdfb1938"))
     (build-system cargo-build-system)
     (arguments
      (list
