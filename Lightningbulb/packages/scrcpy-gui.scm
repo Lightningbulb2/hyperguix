@@ -12,6 +12,7 @@
 ;;; falls back to the scrcpy and adb put on its PATH by the wrapper.
 
 (define-module (Lightningbulb packages scrcpy-gui)
+  #:use-module (Lightningbulb packages cargo-git)
   #:use-module (guix packages)
   #:use-module (guix gexp)
   #:use-module (guix git-download)
@@ -62,6 +63,7 @@
                     (guix build utils))
         #:phases
         #~(modify-phases %standard-phases
+            #$@(fast-cargo-release-phases)
             (add-after 'unpack 'build-frontend
               (lambda _
                 (setenv "HOME" (string-append (getcwd) "/.home"))

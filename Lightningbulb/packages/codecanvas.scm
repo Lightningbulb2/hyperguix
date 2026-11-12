@@ -11,6 +11,7 @@
 ;;; Crates are in codecanvas-crates.scm.
 
 (define-module (Lightningbulb packages codecanvas)
+  #:use-module (Lightningbulb packages cargo-git)
   #:use-module (guix packages)
   #:use-module (guix gexp)
   #:use-module (guix git)
@@ -53,6 +54,7 @@
       #:tests? #f                       ;the window toolkit needs a display
       #:phases
       #~(modify-phases %standard-phases
+          #$@(fast-cargo-release-phases)
           (add-after 'install 'install-desktop-file
             (lambda _
               (install-file "packaging/codecanvas.desktop"
@@ -96,6 +98,7 @@ snippet can have its own chat with a local or remote language model.")
       #:install-source? #f
       #:phases
       #~(modify-phases %standard-phases
+          #$@(fast-cargo-release-phases)
           (add-after 'unpack 'install-extension-source
             ;; The extension's source, for reference.  Zed compiles dev
             ;; extensions itself with rustup and the wasm32-wasip2 target,

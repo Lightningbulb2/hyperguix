@@ -28,6 +28,7 @@
 ;;; Runtime, downloaded on first start) is kept off; see 'no-linux-runtime.
 
 (define-module (Lightningbulb packages faforever)
+  #:use-module (Lightningbulb packages cargo-git)
   #:use-module (guix packages)
   #:use-module (guix gexp)
   #:use-module (guix download)
@@ -115,6 +116,7 @@
                     (guix build utils))
         #:phases
         #~(modify-phases %standard-phases
+            #$@(fast-cargo-release-phases)
             (add-after 'unpack 'build-frontend
               (lambda _
                 (let ((top (getcwd)))

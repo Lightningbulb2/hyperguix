@@ -6,6 +6,7 @@
 ;;; from solidcraft-crates.scm; it takes none from git.
 
 (define-module (Lightningbulb packages solidcraft)
+  #:use-module (Lightningbulb packages cargo-git)
   #:use-module (guix packages)
   #:use-module (guix gexp)
   #:use-module (guix git-download)
@@ -54,6 +55,7 @@
         `'("--release" "--package" "solidcraft" "--package" "solidcraft-cli")
         #:phases
         #~(modify-phases %standard-phases
+            #$@(fast-cargo-release-phases)
             (replace 'install
               (lambda _
                 (let* ((app-id "io.tangencylabs.solidcraft")

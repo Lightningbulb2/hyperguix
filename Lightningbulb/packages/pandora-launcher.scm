@@ -16,6 +16,7 @@
 ;;;   * Self-update is off (no PANDORA_UPDATE_PUBKEY is compiled in).
 
 (define-module (Lightningbulb packages pandora-launcher)
+  #:use-module (Lightningbulb packages cargo-git)
   #:use-module (guix packages)
   #:use-module (guix gexp)
   #:use-module (guix git-download)
@@ -63,6 +64,7 @@
       #:tests? #f
       #:phases
       #~(modify-phases %standard-phases
+          #$@(fast-cargo-release-phases)
           (add-after 'unpack 'use-guix-libraries
             (lambda* (#:key inputs #:allow-other-keys)
               ;; "Auto" GLFW/OpenAL only probes FHS directories.
