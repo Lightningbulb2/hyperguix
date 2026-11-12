@@ -19,7 +19,7 @@
 ;;;
 ;;; All of them are Rust workspaces built on egui/wgpu and need Rust 1.95,
 ;;; which Guix provides as `rust-1.95' (the default `rust' is older);
-;;; craft-anything and figcraft need 1.97, from rust-next.scm.  Their
+;;; craft-anything needs 1.97, from rust-next.scm.  Their
 ;;; crates.io dependencies come from craft-crates.scm; crates they take from
 ;;; git (craft-libs, winprint.rs, filmcraft's codec crates, ...) are vendored
 ;;; with the helper in cargo-git.scm.
@@ -45,6 +45,7 @@
   #:use-module (gnu packages xdisorg)
   #:use-module (gnu packages xorg)
   #:use-module (Lightningbulb packages cargo-git)
+  #:use-module (Lightningbulb packages cargo-suite)
   #:use-module (Lightningbulb packages rust-next)
   #:use-module (Lightningbulb packages craft-crates))
 
@@ -198,8 +199,8 @@ fonts it lists (CJK, Arabic, Thai, ...) through CRAFT_FONTS_DIR."
     (license (list license:expat license:asl2.0 license:silofl1.1))))
 
 (define-public photocraft
-  (craft-app "photocraft" "0.21.0" "efb7ebd0c0dab1fc108ee4642aa47c22694271a8"
-             "14l0vm4ajvyn0hafsqw314mp1ill0jx6znspgd1q9pxn3agbsdaf"
+  (craft-app "photocraft" "0.23.0" "9963efcb2f04867b56c564f876befd412b6c3c4e"
+             "1sv9ysx1bygj34y1lny1jyghirklifv9qlljd99qxsb7ljari39v"
              #:cargo-inputs photocraft-cargo-inputs
              #:git-crates photocraft-git-crates
              ;; As in upstream's release builds: open HEIC/HEIF photos.
@@ -215,8 +216,8 @@ including HEIC/HEIF.  It also ships @command{photocraft-cli} for batch
 processing."))
 
 (define-public effectcraft
-  (craft-app "effectcraft" "0.22.0" "42e3c6a6c119d973aa59ab0437487ea6cae6a15d"
-             "1yazjfw1h4n4cr5nli4n1vwjyrwkgvqslpqm3nm303s0v7zq6r8v"
+  (craft-app "effectcraft" "0.24.1" "582344dd4ef462362c02e56e3094de7af01847ab"
+             "0isavqvf2qy84ga2pdsmpg7gk609j16vgjgcfrzxg6kikni8znkn"
              #:cargo-inputs effectcraft-cargo-inputs
              #:git-crates effectcraft-git-crates
              ;; cpal (audio preview).
@@ -230,8 +231,8 @@ and a render queue.  @command{effectcraft-cli} renders projects from the
 command line."))
 
 (define-public filmcraft
-  (craft-app "filmcraft" "0.18.0" "015d5b3ea37e1202a529e6245d3cc021c8c16ffd"
-             "0zy48nj5fsnb1pwgl1iq9ikpq48xsrq4sdb0i9cxhmhdwx8zs7zm"
+  (craft-app "filmcraft" "0.20.1" "cedf0c9bd060eb06a977d532402be2097c9ebe42"
+             "056m39ncjr0jx3bakk7k3vinjjqr0w28gx2cxdxspryjz6ax9ybr"
              #:cargo-inputs filmcraft-cargo-inputs
              #:git-crates filmcraft-git-crates
              #:fonts (craft-fonts "b076417b5880bd4154bd22f00695b1d28c6bea83"
@@ -247,8 +248,8 @@ and containers.  @command{filmcraft-cli} renders and converts projects from
 the command line."))
 
 (define-public lightcraft
-  (craft-app "lightcraft" "0.19.0" "16636c45a63bff3065a6fd31aecc22a6fc15ca53"
-             "03wxx9hg5cppazh7351ybi2cbazq92dzvngmgjh924cvn128w1ji"
+  (craft-app "lightcraft" "0.21.0" "d4f11018adafc3caba8c48da04113e7d44599ef0"
+             "0jv3dw4ssvhsnnrajfaxsb0q18m1gli30jzacm8akvfy6qwgjyf6"
              #:cargo-inputs lightcraft-cargo-inputs
              #:git-crates lightcraft-git-crates
              ;; As in upstream's release builds: open HEIC/HEIF photos.
@@ -265,8 +266,8 @@ vignette and grain.  It opens camera raw files, JPEG, PNG, TIFF, WebP and
 HEIC/HEIF.  @command{lightcraft-cli} renders photos without a window."))
 
 (define-public vectorcraft
-  (craft-app "vectorcraft" "0.22.0" "654749c16eb20b6d3182a96defb66e11d1a9649a"
-             "1031w9n4anrwaghq2dkpqsxmi6qcwgb0kf638fn13il85v0zn9p0"
+  (craft-app "vectorcraft" "0.24.0" "0faabbfe85fd2c02469f53c107f3ec2a2edfac95"
+             "1iyjknfzmwpqz20fkpmd7rizcks8h1k7iliaxb6nvj0h03sg45hm"
              #:cargo-inputs vectorcraft-cargo-inputs
              #:git-crates vectorcraft-git-crates
              #:fonts (craft-fonts "b076417b5880bd4154bd22f00695b1d28c6bea83"
@@ -280,8 +281,8 @@ Illustrator files, and exports PNG, JPEG and WebP.  @command{vectorcraft-cli}
 runs batch jobs without a window."))
 
 (define-public designcraft
-  (craft-app "designcraft" "0.18.0" "58ac6d29b260e033f4291afc4318b507cfd90fd9"
-             "1rj9gm257g8psiz84y95bslnk8dghj8q2ajnf1vw22xzkmvskh6q"
+  (craft-app "designcraft" "0.20.1" "33a467872268c98536231491865b4011b0275b17"
+             "03m2mi711zg1103w67gwc3m9v3h3z9p49giwx4w69jl2mqbizi5f"
              #:cargo-inputs designcraft-cargo-inputs
              #:git-crates designcraft-git-crates
              #:fonts (craft-fonts "b076417b5880bd4154bd22f00695b1d28c6bea83"
@@ -296,8 +297,8 @@ and PDF/A-2b), EPUB, PPTX and PNG.  @command{designcraft-cli} converts and
 exports documents from the command line."))
 
 (define-public pdfcraft
-  (craft-app "pdfcraft" "0.19.0" "8c572792d6760bdc903d6f9a032e3e38e8f71cb8"
-             "16n6lr25qxvzyqq0nnnhb64jk1rnh94f1n138x8akhzkjpa55acs"
+  (craft-app "pdfcraft" "0.21.1" "b503b2e62dfeec5598f344e4e287d9c9cbdb34fa"
+             "0fzhb4qrbj03k60vn1l58ipy5vjh9841lp7qlp8i36zvvb3a4zfr"
              #:cargo-inputs pdfcraft-cargo-inputs
              #:git-crates pdfcraft-git-crates
              #:fonts (craft-fonts "b076417b5880bd4154bd22f00695b1d28c6bea83"
@@ -314,8 +315,8 @@ are kept.  @command{pdfcraft-cli} inspects and renders PDF files from the
 command line."))
 
 (define-public wordcraft
-  (craft-app "wordcraft" "0.16.0" "02a802cbafe45b5c8fecc00490c8f6b78c5ba251"
-             "1rdg748p0x7h603zhx34jcbc18bxxxdvsr42k6q6jprfspvmsipf"
+  (craft-app "wordcraft" "0.18.1" "079f478bd85df7bcc567e3bafa7d7219096f9c3c"
+             "1sv25cjl3bpk4cng2w5y4myxzkvqxdgqlafzlpy702zs4li51h4z"
              #:cargo-inputs wordcraft-cargo-inputs
              #:git-crates wordcraft-git-crates
              #:fonts (craft-fonts "b076417b5880bd4154bd22f00695b1d28c6bea83"
@@ -330,8 +331,8 @@ PDF.  @command{wordcraft-cli} converts, inspects and renders documents from
 the command line."))
 
 (define-public gridcraft
-  (craft-app "gridcraft" "0.17.0" "a6a6a49a0415087474251b08e887a3581fab9e14"
-             "0bj4d5mhm2744jhm0b17mcyvgjikm7svhlwh4r1hxx03926255pp"
+  (craft-app "gridcraft" "0.19.1" "476448d7d9f3a5f8e93fcf7d98b47fd52293fe7f"
+             "1k1csrp90aljgrwhp2799hdw9yrvbna64v7sdzzbyw417y723ngx"
              #:cargo-inputs gridcraft-cargo-inputs
              #:git-crates gridcraft-git-crates
              #:fonts (craft-fonts "b076417b5880bd4154bd22f00695b1d28c6bea83"
@@ -346,8 +347,8 @@ and TSV, and imports XLS, XLSB and ODS data.  @command{gridcraft-cli}
 inspects, converts and evaluates workbooks from the command line."))
 
 (define-public soundcraft
-  (craft-app "soundcraft" "0.18.0" "5ff012ab88490cdfc635ee304c1019885e1b880d"
-             "1511r1r92dgdxnapz1l8abf68f3ibkm12319ymbnbb533vlwy51b"
+  (craft-app "soundcraft" "0.20.1" "a52bbdccbe15342f44e0de1906bf71a621e7a68f"
+             "0k3yn0r3l17qyl7kq4mmpf7s8lj6b5sq8szn71y0wn8a71d3bv21"
              #:cargo-inputs soundcraft-cargo-inputs
              #:git-crates soundcraft-git-crates
              ;; cpal (audio input and output).
@@ -361,8 +362,8 @@ instruments, and CLAP plug-ins.  @command{soundcraft-cli} edits, converts and
 bounces sessions from the command line."))
 
 (define-public cadcraft
-  (craft-app "cadcraft" "0.18.0" "32238e83c2c8bf643994132883e94bc96961f649"
-             "1vxidrp3yr8x3sf6s9zfvxj87s1d6mzdvdsyaj2bsp3ymykzd4a2"
+  (craft-app "cadcraft" "0.20.1" "7526dc62c14e71b3c8d46e73bbf1fa29ef506af1"
+             "1zj4wx4gygafjg21mkjdfm6j3rcnnjxqkbv2dgvkbczkz8zas32p"
              #:cargo-inputs cadcraft-cargo-inputs
              #:git-crates cadcraft-git-crates
              #:fonts (craft-fonts "b076417b5880bd4154bd22f00695b1d28c6bea83"
@@ -376,13 +377,12 @@ hatches and blocks, and reading and writing DXF and DWG drawings.
 the command line."))
 
 (define-public figcraft
-  (craft-app "figcraft" "0.16.0" "f45b261687880e56d1bad11ec82b45131e57ef8b"
-             "1n9i2bnx16479r37wyq7z33nn0km0cicb75kqc58v42lgwh2sm0l"
+  (craft-app "figcraft" "0.18.1" "4acc293c2ec941ac1400837ee7e3ab51780399f8"
+             "1bxhkivs1x7wh99byais9dz0jqps4iigkbcd644kggb1q6ar4s9g"
              #:cargo-inputs figcraft-cargo-inputs
              #:git-crates figcraft-git-crates
-             ;; Despite its rust-version of 1.95, its path code uses
-             ;; isolate_lowest_one, stable since Rust 1.97.
-             #:rust rust-1.97
+             ;; Up to 0.16 its path code used isolate_lowest_one (Rust 1.97);
+             ;; 0.18 no longer does, so it builds with 1.95 in the suite.
              #:fonts (craft-fonts "37827adc41fd165f9a9234ac40f94dbad353aa69"
                                   "1vqsvwd3ix67gbj0q6kzmr2rah78ysc1m84fvf9b4blbzln4rw85")
              ;; yeslogic-fontconfig-sys (system fonts in the font picker).
@@ -396,8 +396,8 @@ WebP and PDF, and opens Figma files.  @command{figcraft-cli} exports,
 converts and renders files from the command line."))
 
 (define-public deckcraft
-  (craft-app "deckcraft" "0.16.0" "a3e2254d3de32ed1718f156f070b54a34b949b54"
-             "10jlix3q1a118b71lr82d72wfv06siiwzriicacfak547qhaihgz"
+  (craft-app "deckcraft" "0.18.1" "7cc73ab1895ed2e30c8afbcada20c70b9ea0a440"
+             "0f2xlj31g6xzmd8s35drrv7dr223x38ild5zhxk5646636z1knlw"
              #:cargo-inputs deckcraft-cargo-inputs
              #:git-crates deckcraft-git-crates
              #:fonts (craft-fonts "37827adc41fd165f9a9234ac40f94dbad353aa69"
@@ -413,8 +413,8 @@ and saves PPTX presentations.  @command{deckcraft-cli} converts and renders
 decks from the command line."))
 
 (define-public texturecraft
-  (craft-app "texturecraft" "0.4.0" "16e9d21516434a63ac457f49ffd09005f649c02f"
-             "0gzyiskdwdycl463xs089k79w431jply9f7jr4zjriisr8hx3kma"
+  (craft-app "texturecraft" "0.6.1" "34a196190fe2daa2f43017a0f32b254cca4836f2"
+             "0l1kknfyywhkaaj6xxd5pcjnk9x4ylg38y0s1bpq0fw6ni6ggr2y"
              #:cargo-inputs texturecraft-cargo-inputs
              #:git-crates texturecraft-git-crates
              #:fonts (craft-fonts "aced4137c022f1f587624d48e81ec77e1914a9cc"
@@ -428,8 +428,8 @@ engines.  @command{texturecraft-cli} bakes and exports from the command line,
 and includes an MCP server for AI agents."))
 
 (define-public craft-anything
-  (craft-app "craft-anything" "0.5.0" "622d023cdfdb91c00df8b9a37c486a2a18fb0917"
-             "0m4i8w8czj9ivxvqc0kvdxyk7l5qrqw1rgsswp149qqpwf65nap1"
+  (craft-app "craft-anything" "0.6.1" "48a9c5a60ff83ff620f98661339be6281a7debc6"
+             "0vislijzag60m3cw7nclqkg0n282mlhprljxwp5a2prwhfnnn9bp"
              #:cargo-inputs craft-anything-cargo-inputs
              #:git-crates craft-anything-git-crates
              ;; Its oxc crates (JavaScript analysis) use APIs stabilized in
@@ -446,8 +446,8 @@ result against the original and refines it.  @command{craft-anything-cli}
 does the same from the command line and includes an MCP server."))
 
 (define-public craft-launcher
-  (craft-app "craft-launcher" "0.16.1" "2d577485fc2684cefd8742fdc735252def3a9daa"
-             "0c8kn2hf7qxpwl7i3xvrbijvrgj54d4xf7gwqbz17fcckgs39sh9"
+  (craft-app "craft-launcher" "0.19.2" "9f950e01ef728a3d32d997d59607051dee98a51d"
+             "0qkriwdixcga6bsjmrqpq229gc9ifj05rnj9p44ma0mf2fagib52"
              #:cargo-inputs craft-launcher-cargo-inputs
              #:git-crates craft-launcher-git-crates
              #:binaries '("artcraft-launcher")
@@ -480,3 +480,35 @@ FilmCraft, PdfCraft and others), opens the installed ones, and can download
 and update upstream's release builds of the others.  Note that those
 prebuilt binaries expect a conventional file system layout and may not run
 on Guix System; prefer the Guix packages of the apps."))
+
+;;; The Craft apps on Rust 1.95 are built together, so that the egui/wgpu
+;;; stack and the other crates they share are compiled once instead of 15
+;;; times (see cargo-suite.scm).  The public names above are replaced by the
+;;; suite's builds of them.  craft-anything needs Rust 1.97 and stays a
+;;; separate package.  Bumping any of these apps rebuilds the suite.
+
+(define-public craft-suite
+  (cargo-suite "craft-suite"
+               ;; figcraft and pdfcraft first: the members most likely to
+               ;; break (figcraft moved off Rust 1.97; pdfcraft pins winprint
+               ;; at two git revisions), so a failure shows up early.
+               (list figcraft pdfcraft photocraft effectcraft filmcraft
+                     lightcraft vectorcraft designcraft wordcraft gridcraft
+                     soundcraft cadcraft deckcraft texturecraft craft-launcher)
+               #:rust rust-1.95))
+
+(set! photocraft (suite-member craft-suite photocraft))
+(set! effectcraft (suite-member craft-suite effectcraft))
+(set! filmcraft (suite-member craft-suite filmcraft))
+(set! lightcraft (suite-member craft-suite lightcraft))
+(set! vectorcraft (suite-member craft-suite vectorcraft))
+(set! designcraft (suite-member craft-suite designcraft))
+(set! pdfcraft (suite-member craft-suite pdfcraft))
+(set! wordcraft (suite-member craft-suite wordcraft))
+(set! gridcraft (suite-member craft-suite gridcraft))
+(set! soundcraft (suite-member craft-suite soundcraft))
+(set! cadcraft (suite-member craft-suite cadcraft))
+(set! figcraft (suite-member craft-suite figcraft))
+(set! deckcraft (suite-member craft-suite deckcraft))
+(set! texturecraft (suite-member craft-suite texturecraft))
+(set! craft-launcher (suite-member craft-suite craft-launcher))

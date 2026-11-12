@@ -51,6 +51,7 @@
   #:use-module (gnu packages xdisorg)
   #:use-module (gnu packages xorg)
   #:use-module (Lightningbulb packages cargo-git)
+  #:use-module (Lightningbulb packages cargo-suite)
   #:use-module (Lightningbulb packages cosmic-crates)
   #:use-module (Lightningbulb packages xwayland))
 
@@ -1138,3 +1139,70 @@ settings, launcher, notifications and the standard COSMIC applications.  Add
 it to your system's packages and choose the \"COSMIC\" session in your display
 manager.")
     (license license:gpl3)))
+
+;;; Most COSMIC components are built together, so that libcosmic, iced,
+;;; wgpu and the rest of the stack they share are compiled once instead of
+;;; once per component (see cargo-suite.scm).  The public names above are
+;;; replaced by the suite's builds of them.  Left out:
+;;;   cosmic-comp        patches smithay, which cosmic-panel builds too;
+;;;   cosmic-screenshot  has no git crates, so it doesn't keep its Cargo.lock;
+;;;   cosmic-greeter     the greetd and D-Bus services refer to it directly,
+;;;                      where nonguix's NVIDIA transformation doesn't reach,
+;;;                      so a system using that transformation builds it
+;;;                      unchanged as well; inside the suite, that would mean
+;;;                      a second, untransformed build of the whole suite.
+;;; Bumping any member rebuilds the suite.
+
+(define-public cosmic-suite
+  (cargo-suite "cosmic-suite"
+               (list
+                cosmic-session
+                cosmic-panel
+                cosmic-applets
+                cosmic-bg
+                cosmic-idle
+                cosmic-osd
+                cosmic-notifications
+                cosmic-launcher
+                cosmic-app-library
+                cosmic-workspaces
+                cosmic-randr
+                cosmic-osk
+                cosmic-settings
+                cosmic-initial-setup
+                xdg-desktop-portal-cosmic
+                cosmic-files
+                cosmic-edit
+                cosmic-term
+                cosmic-store
+                cosmic-player
+                cosmic-viewer
+                cosmic-monitor
+                pop-launcher
+                cosmic-settings-daemon)
+               #:rust rust-1.95))
+
+(set! cosmic-session (suite-member cosmic-suite cosmic-session))
+(set! cosmic-panel (suite-member cosmic-suite cosmic-panel))
+(set! cosmic-applets (suite-member cosmic-suite cosmic-applets))
+(set! cosmic-bg (suite-member cosmic-suite cosmic-bg))
+(set! cosmic-idle (suite-member cosmic-suite cosmic-idle))
+(set! cosmic-osd (suite-member cosmic-suite cosmic-osd))
+(set! cosmic-notifications (suite-member cosmic-suite cosmic-notifications))
+(set! cosmic-launcher (suite-member cosmic-suite cosmic-launcher))
+(set! cosmic-app-library (suite-member cosmic-suite cosmic-app-library))
+(set! cosmic-workspaces (suite-member cosmic-suite cosmic-workspaces))
+(set! cosmic-randr (suite-member cosmic-suite cosmic-randr))
+(set! cosmic-osk (suite-member cosmic-suite cosmic-osk))
+(set! cosmic-settings (suite-member cosmic-suite cosmic-settings))
+(set! cosmic-initial-setup (suite-member cosmic-suite cosmic-initial-setup))
+(set! xdg-desktop-portal-cosmic (suite-member cosmic-suite xdg-desktop-portal-cosmic))
+(set! cosmic-files (suite-member cosmic-suite cosmic-files))
+(set! cosmic-edit (suite-member cosmic-suite cosmic-edit))
+(set! cosmic-term (suite-member cosmic-suite cosmic-term))
+(set! cosmic-store (suite-member cosmic-suite cosmic-store))
+(set! cosmic-player (suite-member cosmic-suite cosmic-player))
+(set! cosmic-viewer (suite-member cosmic-suite cosmic-viewer))
+(set! cosmic-monitor (suite-member cosmic-suite cosmic-monitor))
+(set! pop-launcher (suite-member cosmic-suite pop-launcher))
+(set! cosmic-settings-daemon (suite-member cosmic-suite cosmic-settings-daemon))

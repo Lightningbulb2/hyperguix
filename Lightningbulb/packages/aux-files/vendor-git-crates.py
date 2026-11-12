@@ -107,7 +107,7 @@ def dumps(doc):
 
 # ---- normalization ---------------------------------------------------------
 
-def normalize(manifest, crate_dir, ws_root, ws, vendored, crate_names):
+def normalize(manifest, crate_dir, ws_root, ws, vendored, crate_names, dest_rel):
     """Return a normalized copy of MANIFEST (a dict) for the crate in CRATE_DIR."""
     ws_pkg = ws.get("package", {})
     ws_deps = ws.get("dependencies", {})
@@ -151,7 +151,11 @@ def normalize(manifest, crate_dir, ws_root, ws, vendored, crate_names):
             target = os.path.realpath(os.path.join(base_dir, dep["path"]))
             dep = dict(dep)
             if target in vendored:
-                dep["path"] = "../" + vendored[target]
+                # Relative to where this crate is vendored; most git crates
+                # sit side by side, so this is usually "../NAME-VERSION-git".
+                dep["path"] = os.path.relpath(
+                    os.path.normpath(os.path.join("/v", vendored[target])),
+                    os.path.normpath(os.path.join("/v", dest_rel)))
             else:
                 # Not part of the locked graph (e.g. an unused optional
                 # dependency); let cargo look it up by version instead.
@@ -195,15 +199,15 @@ def normalize(manifest, crate_dir, ws_root, ws, vendored, crate_names):
     return doc
 
 
-def source_replacement(source):
-    """Cargo config lines replacing the git SOURCE with vendored sources."""
+def source_replacement(source, replace_with="vendored-sources"):
+    """Cargo config lines replacing the git SOURCE with REPLACE_WITH."""
     spec = source[len("git+"):].split("#", 1)[0]
     url, _, query = spec.partition("?")
     lines = [f"[source.{key('git+' + spec)}]", f"git = {value(url)}"]
     for k, v in parse_qsl(query):
         if k in ("rev", "branch", "tag"):
             lines.append(f"{k} = {value(v)}")
-    lines.append('replace-with = "vendored-sources"')
+    lines.append(f'replace-with = "{replace_with}"')
     return "\n".join(lines) + "\n"
 
 
@@ -215,18 +219,34 @@ def main():
             if line.strip():
                 entries.append(line.rstrip("\n").split("\t"))
 
-    # Where each locked crate lives, and where its copy will go.
+    # A lockfile can pin the same crate at two git revisions (pdfcraft 0.21:
+    # winprint 0.2.1 at two revs).  One directory source can't hold two
+    # packages with the same name and version, so a git source that would
+    # clash with an earlier one gets a directory source of its own, next to
+    # VENDOR_DIR, named after its commit.
+    own_dir = {}                       # source -> directory, for those
+    first_source = {}                  # (name, version) -> source
+    for name, version, source, checkout, subdir in entries:
+        first = first_source.setdefault((name, version), source)
+        if first != source and source not in own_dir:
+            rev = source.rsplit("#", 1)[-1][:7]
+            own_dir[source] = f"{os.path.basename(vendor_dir.rstrip('/'))}-git-{rev}"
+
+    # Where each locked crate lives, and where its copy will go (relative to
+    # VENDOR_DIR).
     vendored = {}
     for name, version, source, checkout, subdir in entries:
         src = os.path.realpath(os.path.join(checkout, subdir))
-        vendored[src] = f"{name}-{version}-git"
+        rel = f"{name}-{version}-git"
+        vendored[src] = f"../{own_dir[source]}/{rel}" if source in own_dir else rel
     crate_names = {e[0] for e in entries}
 
     os.makedirs(vendor_dir, exist_ok=True)
     sources = []
     for name, version, source, checkout, subdir in entries:
         src = os.path.realpath(os.path.join(checkout, subdir))
-        dest = os.path.join(vendor_dir, vendored[src])
+        dest = os.path.normpath(os.path.join(vendor_dir, vendored[src]))
+        os.makedirs(os.path.dirname(dest), exist_ok=True)
         print(f"vendoring {name} {version} from {source}")
         shutil.copytree(src, dest, symlinks=False, ignore_dangling_symlinks=True,
                         ignore=shutil.ignore_patterns(".git", "target"))
@@ -239,7 +259,8 @@ def main():
         manifest_path = os.path.join(dest, "Cargo.toml")
         manifest = load(manifest_path)
         ws_root, ws = find_workspace_root(src, os.path.realpath(checkout))
-        doc = normalize(manifest, src, ws_root or src, ws, vendored, crate_names)
+        doc = normalize(manifest, src, ws_root or src, ws, vendored, crate_names,
+                        vendored[src])
         os.replace(manifest_path, manifest_path + ".orig")
         with open(manifest_path, "w", encoding="utf-8") as f:
             f.write(dumps(doc))
@@ -252,7 +273,17 @@ def main():
         f.write("\n")
         seen = set()
         for source in sources:
-            block = source_replacement(source)
+            if source in own_dir:
+                name = "vendored-" + own_dir[source]
+                block = source_replacement(source, name)
+            else:
+                block = source_replacement(source)
+            if block not in seen:
+                seen.add(block)
+                f.write("\n" + block)
+        for source, directory in own_dir.items():
+            block = (f"[source.{key('vendored-' + directory)}]\n"
+                     f"directory = {value(os.path.normpath(os.path.join(vendor_dir, '..', directory)))}\n")
             if block not in seen:
                 seen.add(block)
                 f.write("\n" + block)

@@ -25,6 +25,8 @@
   #:use-module (guix download)
   #:use-module (guix git-download)
   #:use-module (guix build-system cargo)
+  #:use-module ((gnu packages base) #:select (make-ld-wrapper))
+  #:use-module (gnu packages mold)
   #:use-module (srfi srfi-1)
   #:export (crate
             crate-table
@@ -117,6 +119,12 @@ Needs python (3.11 or later) among the native inputs."
                          ".cargo/config.toml")
                      "Cargo.lock"))))))
 
+;; mold behind Guix's ld-wrapper, which adds the -rpath flags that let
+;; binaries (cargo's build scripts too) find their libraries; mold called
+;; directly links fine but leaves them unable to load libgcc_s.so.1.
+(define %mold-ld-wrapper
+  (make-ld-wrapper "mold-ld-wrapper" #:binutils mold #:linker "ld.mold"))
+
 (define (fast-cargo-release-phases)
   "Return modify-phases clauses that make release builds faster to compile.
 
@@ -126,11 +134,23 @@ squeezes out a few percent of speed but compiles the biggest crates on one
 core, which is why the Craft apps took 16-26 minutes each.  Cargo's own
 release defaults (16 units, no cross-crate LTO) are used instead.  Also
 drops Guix's scan for bundled binaries, which only prints warnings and took
-up to a minute per package."
+up to a minute per package, and links with mold."
   (list
    #~(delete 'check-for-pregenerated-files)
    #~(add-before 'build 'fast-release-profile
        (lambda _
          ;; Environment variables override Cargo.toml's [profile.release].
          (setenv "CARGO_PROFILE_RELEASE_LTO" "false")
-         (setenv "CARGO_PROFILE_RELEASE_CODEGEN_UNITS" "16")))))
+         (setenv "CARGO_PROFILE_RELEASE_CODEGEN_UNITS" "16")
+         ;; Line tables only add link time here: the strip phase removes
+         ;; debugging information anyway.
+         (setenv "CARGO_PROFILE_RELEASE_DEBUG" "false")
+         ;; Link with mold instead of GNU ld, which links each of these big
+         ;; binaries on one core.  gcc looks for ld.mold in the -B
+         ;; directory.  RUSTFLAGS is already set (cargo-build-system's
+         ;; configure), so append.
+         (setenv "RUSTFLAGS"
+                 (string-append (or (getenv "RUSTFLAGS") "")
+                                " -C link-arg=-fuse-ld=mold"
+                                " -C link-arg=-B"
+                                #$(file-append %mold-ld-wrapper "/bin")))))))
