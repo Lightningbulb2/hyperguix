@@ -19,9 +19,19 @@
 #           as group 1 (default: ^v?(\d+(?:\.\d+)+)$, i.e. no pre-releases)
 #   lock    path of Cargo.lock in the repository (default: Cargo.lock)
 #   pin     overrides the group's `pin'
+#   branch  follow the head of this branch instead of release tags; the pin
+#           then needs no `version' group
+#   versions  (list) further version strings in `file', each read from a
+#           Cargo.toml or package.json of the source: `name' (the package),
+#           `source' (the path) and `pin' (a pattern with a `version' group)
+#   npm-lock  a package-lock.json in the source; every (npm-tarball ...) in
+#           `file' is moved to the version it locks
+#   builds  the packages to build to test this entry (default: its name)
 #
 # Every project of a crates module must be listed, updated or not: the
-# module is regenerated from the lockfiles of all of them.
+# module is regenerated from the lockfiles of all of them.  When a project
+# is not a package of its own, map it with
+# [group.NAME.projects.PROJECT]: `package' and `lock'.
 
 [group.craft]
 file = "Lightningbulb/packages/craft.scm"
@@ -88,3 +98,30 @@ pin = '\(define-public {name}\s+\(let \(\(commit "(?P<commit>[0-9a-f]{40})"\).*?
 
 [group.isocast.packages.isocast]
 url = "https://github.com/anomalyco/isocast"
+
+# One repository, one pin, three packages: the app (rust/), the VS Code
+# extension (vscode/) and the Zed bridge (zed/bridge).  It follows the main
+# branch: every push there becomes an update.
+[group.codecanvas]
+file = "Lightningbulb/packages/codecanvas.scm"
+crates = "Lightningbulb/packages/codecanvas-crates.scm"
+module = "Lightningbulb packages codecanvas-crates"
+pin = '\(define %codecanvas-commit "(?P<commit>[0-9a-f]{40})"\).*?\(base32 "(?P<hash>[0-9a-z]{52})"'
+
+[group.codecanvas.packages.codecanvas]
+url = "https://github.com/Lightningbulb2/CodeCanvas"
+branch = "main"
+npm-lock = "vscode/package-lock.json"
+builds = ["codecanvas", "codecanvas-vscode", "codecanvas-zed-bridge"]
+versions = [
+  { name = "codecanvas", source = "rust/Cargo.toml", pin = '\(name "codecanvas"\)\s+\(version "(?P<version>[^"]+)"\)' },
+  { name = "codecanvas-vscode", source = "vscode/package.json", pin = '\(name "codecanvas-vscode"\)\s+\(version "(?P<version>[^"]+)"\)' },
+  { name = "codecanvas-zed-bridge", source = "zed/bridge/Cargo.toml", pin = '\(name "codecanvas-zed-bridge"\)\s+\(version "(?P<version>[^"]+)"\)' },
+]
+
+[group.codecanvas.projects.codecanvas]
+package = "codecanvas"
+lock = "rust/Cargo.lock"
+[group.codecanvas.projects.codecanvas-zed-bridge]
+package = "codecanvas"
+lock = "zed/bridge/Cargo.lock"

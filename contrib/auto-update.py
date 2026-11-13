@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
 """Move the packages listed in contrib/updates.toml to their latest release.
 
-For each package: find the newest release tag upstream; if the pin in the
-channel is on another commit, fetch that tag, compute its hash, rewrite the
-version, commit and hash in the package module, regenerate the crates module
-its group shares (contrib/cargo-lock-to-guix.py) and update the version in
-the README's package table.
+For each package: find the newest release tag upstream (or, for a package
+that tracks a branch, the branch's head); if the pin in the channel is on
+another commit, fetch it, compute its hash, rewrite the version, commit and
+hash in the package module, regenerate the crates module its group shares
+(contrib/cargo-lock-to-guix.py) and update the version in the README's
+package table.  A source that holds several packages can list further
+version strings to read from its files, and npm tarballs to keep in step
+with a package-lock.json.
 
 Usage:
   auto-update.py [--check] [--commit] [--summary FILE] [PACKAGE ...]
@@ -28,12 +31,14 @@ Checkouts are kept in $GIT_CACHE_DIR (default ~/.cache/lightningbulb-git).
 """
 import argparse
 import hashlib
+import json
 import os
 import re
 import shutil
 import subprocess
 import sys
 import tomllib
+import urllib.request
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CACHE = os.environ.get("GIT_CACHE_DIR",
@@ -148,23 +153,110 @@ def crate_projects(crates_file):
             for s in export.split() if s.endswith("-cargo-inputs")]
 
 
+def project_source(group, project):
+    """Return (package name, package, lockfile path) for PROJECT of the
+    group's crates module, or None if updates.toml doesn't cover it."""
+    spec = group.get("projects", {}).get(project)
+    if spec:
+        return (spec["package"], group["packages"][spec["package"]],
+                spec["lock"])
+    package = group["packages"].get(project)
+    if package is None:
+        return None
+    return project, package, package.get("lock", "Cargo.lock")
+
+
 def regenerate_crates(group):
     """Rebuild the group's crates module from every project's lockfile."""
     args = []
     for project in crate_projects(group["crates"]):
-        package = group["packages"].get(project)
-        if package is None:
+        source = project_source(group, project)
+        if source is None:
             raise Skip(f"{group['crates']} also covers `{project}', which "
                        f"updates.toml doesn't list")
-        commit = current_pin(group, package, project).group("commit")
+        name, package, lock_path = source
+        commit = current_pin(group, package, name).group("commit")
         tree = checkout(package["url"], commit)
-        lock = os.path.join(tree, package.get("lock", "Cargo.lock"))
+        lock = os.path.join(tree, lock_path)
         if not os.path.exists(lock):
-            raise Skip(f"{project}: no {package.get('lock', 'Cargo.lock')} "
-                       f"at {commit[:10]}")
+            raise Skip(f"{project}: no {lock_path} at {commit[:10]}")
         args.append(f"{project}={lock}")
     run(sys.executable, os.path.join(ROOT, "contrib/cargo-lock-to-guix.py"),
         group["module"], os.path.join(ROOT, group["crates"]), *args)
+
+
+def branch_head(url, branch):
+    out = run("git", "ls-remote", url, f"refs/heads/{branch}",
+              env={**os.environ, "GIT_TERMINAL_PROMPT": "0"})
+    if not out.strip():
+        raise Skip(f"no branch {branch} in {url}")
+    return out.split()[0]
+
+
+def version_in(tree, path):
+    """The version a Cargo.toml or package.json in TREE declares."""
+    file = os.path.join(tree, path)
+    if not os.path.exists(file):
+        raise Skip(f"no {path} in the source")
+    if path.endswith(".json"):
+        with open(file, encoding="utf-8") as f:
+            return json.load(f)["version"]
+    with open(file, "rb") as f:
+        data = tomllib.load(f)
+    version = data.get("package", {}).get("version")
+    if not isinstance(version, str):
+        version = data.get("workspace", {}).get("package", {}).get("version")
+    if not isinstance(version, str):
+        raise Skip(f"{path} declares no version")
+    return version
+
+
+def nix_b32(b):
+    alphabet = "0123456789abcdfghijklmnpqrsvwxyz"
+    out = []
+    for i in range((len(b) * 8 - 1) // 5, -1, -1):
+        j, k = divmod(i * 5, 8)
+        c = b[j] >> k
+        if j + 1 < len(b):
+            c |= b[j + 1] << (8 - k)
+        out.append(alphabet[c & 0x1F])
+    return "".join(out)
+
+
+NPM_TARBALL = re.compile(
+    r'\(npm-tarball "(?P<path>[^"]+)"\s+"(?P<hash>[0-9a-z]{52})"\)')
+NPM_REGISTRY = "https://registry.npmjs.org/"
+
+
+def update_npm_tarballs(file, lock_file):
+    """Move each (npm-tarball ...) in FILE to the version LOCK_FILE locks.
+    Return notes on what changed."""
+    with open(lock_file, encoding="utf-8") as f:
+        locked = json.load(f)["packages"]
+    notes = []
+    while True:
+        text = read(file)
+        for match in NPM_TARBALL.finditer(text):
+            name = match.group("path").split("/-/")[0]
+            entry = locked.get(f"node_modules/{name}")
+            if entry is None:
+                raise Skip(f"{name} is no longer in the package lock; the "
+                           f"build needs a look")
+            resolved = entry.get("resolved", "")
+            if not resolved.startswith(NPM_REGISTRY):
+                raise Skip(f"{name} is not locked to the npm registry")
+            path = resolved.removeprefix(NPM_REGISTRY)
+            if path == match.group("path"):
+                continue
+            with urllib.request.urlopen(resolved, timeout=60) as response:
+                digest = hashlib.sha256(response.read()).digest()
+            write(file, replace_groups(text, match,
+                                       {"path": path,
+                                        "hash": nix_b32(digest)}))
+            notes.append(f"npm {name} -> {entry['version']}")
+            break               # positions moved: read the file again
+        else:
+            return notes
 
 
 def balanced(path):
@@ -195,38 +287,67 @@ def balanced(path):
 
 
 def update(group, name, package, check_only):
-    """Update one package.  Return (old version, new version, old commit,
-    new commit), or None when it is already at the latest release."""
+    """Update one package.  Return (old, new, old commit, new commit, notes)
+    where OLD and NEW are what to show (versions, or commits for a package
+    that tracks a branch), or None when there is nothing to update."""
     match = current_pin(group, package, name)
-    old_version, old_commit = match.group("version"), match.group("commit")
-    version, commit = latest_release(package["url"],
+    old_commit = match.group("commit")
+    values = {}
+    if "branch" in package:
+        commit = branch_head(package["url"], package["branch"])
+        if commit == old_commit:
+            return None
+        old, new = old_commit[:10], commit[:10]
+    else:
+        old = match.group("version")
+        new, commit = latest_release(package["url"],
                                      package.get("tags", DEFAULT_TAGS))
-    if commit == old_commit or version == old_version:
-        # Same version on another commit: pinned past the tag on purpose.
-        return None
-    if version_key(version) < version_key(old_version):
-        raise Skip(f"pinned {old_version} is newer than the latest release "
-                   f"{version}")
-    result = (old_version, version, old_commit, commit)
+        if commit == old_commit or new == old:
+            # Same version on another commit: pinned past the tag on purpose.
+            return None
+        if version_key(new) < version_key(old):
+            raise Skip(f"pinned {old} is newer than the latest release {new}")
+        values["version"] = new
+    notes = []
     if check_only:
-        return result
+        return old, new, old_commit, commit, notes
 
     tree = checkout(package["url"], commit)
-    text = replace_groups(read(group["file"]), match,
-                          {"version": version, "commit": commit,
-                           "hash": nar_hash(tree)})
-    write(group["file"], text)
+    values.update(commit=commit, hash=nar_hash(tree))
+    write(group["file"], replace_groups(read(group["file"]), match, values))
+    readme_changes = [(name, old, new)] if "version" in values else []
+
+    # Version strings read from the source's own files.
+    for entry in package.get("versions", []):
+        text = read(group["file"])
+        found = list(re.compile(entry["pin"], re.S).finditer(text))
+        if len(found) != 1:
+            raise Skip(f"the version pattern of `{entry['name']}' matches "
+                       f"{len(found)} times in {group['file']}")
+        before = found[0].group("version")
+        after = version_in(tree, entry["source"])
+        if after != before:
+            write(group["file"],
+                  replace_groups(text, found[0], {"version": after}))
+            notes.append(f"{entry['name']} {before} -> {after}")
+            readme_changes.append((entry["name"], before, after))
+
+    if "npm-lock" in package:
+        notes += update_npm_tarballs(group["file"],
+                                     os.path.join(tree, package["npm-lock"]))
     if "crates" in group:
         regenerate_crates(group)
     for path in filter(None, (group["file"], group.get("crates"))):
         if not balanced(path):
             raise Skip(f"{path} no longer reads as Scheme after the update")
 
-    readme = read("README.md")
-    updated = readme.replace(f"`{name}` {old_version}", f"`{name}` {version}")
+    readme = updated = read("README.md")
+    for package_name, before, after in readme_changes:
+        updated = updated.replace(f"`{package_name}` {before}",
+                                  f"`{package_name}` {after}")
     if updated != readme:
         write("README.md", updated)
-    return result
+    return old, new, old_commit, commit, notes
 
 
 def lint(groups):
@@ -238,9 +359,16 @@ def lint(groups):
                 current_pin(group, package, name)
             except Skip as reason:
                 problems.append(f"{name}: {reason}")
+            text = read(group["file"])
+            for entry in package.get("versions", []):
+                found = len(re.compile(entry["pin"], re.S).findall(text))
+                if found != 1:
+                    problems.append(f"{entry['name']}: the version pattern "
+                                    f"matches {found} times in "
+                                    f"{group['file']} (expected once)")
         if "crates" in group:
             for project in crate_projects(group["crates"]):
-                if project not in group["packages"]:
+                if project_source(group, project) is None:
                     problems.append(f"{group['crates']} covers `{project}', "
                                     f"which updates.toml doesn't list")
     for directory, _, files in os.walk(os.path.join(ROOT, "Lightningbulb")):
@@ -277,6 +405,9 @@ def main():
         sys.exit(1 if problems else 0)
 
     known = {name for group in groups.values() for name in group["packages"]}
+    # Package name -> its manifest entry, for the report.
+    groups_of = {name: package for group in groups.values()
+                 for name, package in group["packages"].items()}
     unknown = set(options.packages) - known
     if unknown:
         sys.exit(f"not in contrib/updates.toml: {', '.join(sorted(unknown))}")
@@ -301,17 +432,19 @@ def main():
                 current.append(name)
                 print(f"{name}: up to date")
                 continue
-            old_version, version, old_commit, commit = result
+            old_version, version, old_commit, commit, notes = result
             updated.append((name, package["url"], *result))
             print(f"{name}: {old_version} -> {version} "
-                  f"({old_commit[:10]} -> {commit[:10]})")
+                  f"({old_commit[:10]} -> {commit[:10]})"
+                  + "".join(f"\n  {note}" for note in notes))
             if options.commit and not options.check:
                 subprocess.run(["git", "-C", ROOT, "add", "--", *files],
                                check=True)
                 subprocess.run(
                     ["git", "-C", ROOT, "commit", "-q", "-m",
                      f"{name}: update to {version}\n\n"
-                     f"{package['url']}\n{old_commit} -> {commit}\n\n"
+                     f"{package['url']}\n{old_commit} -> {commit}\n"
+                     + "".join(f"{note}\n" for note in notes) + "\n"
                      "Automated update: the source was fetched and "
                      "hashed; nothing was built."],
                     check=True)
@@ -322,14 +455,18 @@ def main():
         if updated:
             lines += [f"### Packages {verb}", "",
                       "| Package | From | To | Changes |", "|---|---|---|---|"]
-            for name, url, old_version, version, old_commit, commit in updated:
+            for (name, url, old_version, version, old_commit, commit,
+                 notes) in updated:
                 compare = f"{url}/compare/{old_commit[:10]}...{commit[:10]}"
-                lines.append(f"| `{name}` | {old_version} | {version} | "
-                             f"[compare]({compare}) |")
+                extra = "".join(f"<br>{note}" for note in notes)
+                lines.append(f"| `{name}` | {old_version} | {version}{extra} "
+                             f"| [compare]({compare}) |")
             lines += ["",
                       "Nothing was built. Before merging, build them from a "
                       "checkout of this branch:", "", "```sh",
-                      "guix build -L . " + " ".join(u[0] for u in updated),
+                      "guix build -L . " + " ".join(
+                          " ".join(groups_of[u[0]].get("builds", [u[0]]))
+                          for u in updated),
                       "```", ""]
         if failed:
             lines += ["### Could not be updated", ""]

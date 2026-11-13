@@ -20,9 +20,10 @@ Related repositories:
   and its hyperguix pin in step when the config's design changes.
 - `Lightningbulb2/CodeCanvas`: source of `codecanvas` (`rust/`),
   `codecanvas-vscode` (`vscode/`) and `codecanvas-zed-bridge` (`zed/`), all
-  at one pinned commit. It has no release tags, so it is updated by hand:
-  set `%codecanvas-commit` and the hash, and regenerate
-  `codecanvas-crates.scm` when either `Cargo.lock` changed.
+  at one pinned commit. The automated updates follow its `main` branch:
+  every push there becomes an update (commit, hash, the three version
+  strings, the npm tarballs the VS Code build unpacks, and the crates
+  module).
 
 ## Workflow
 
@@ -113,6 +114,10 @@ Package `guix-bump`; sources `aux-files/guix-bump/bump.scm.in` and
   hashed and that the modules still read as Scheme. Build the updated
   packages (`guix build -L . PACKAGE...` on the `auto-update` branch) before
   merging; the pull request lists the command.
+- Most entries follow release tags; CodeCanvas follows a branch
+  (`branch = "main"`), and shows the other manifest keys in use: `versions`
+  (version strings read from the source's own files), `npm-lock` and
+  `projects` (crates-module projects that aren't packages of their own).
 - Add a package to `updates.toml` only if its update needs no judgment.
   Packages with patches against upstream (COSMIC, Ladybird, Xwayland) stay
   manual. Every project of a shared crates module must be listed.
