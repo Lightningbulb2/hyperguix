@@ -22,6 +22,10 @@ import sys
 import tempfile
 import tomllib
 
+# As Guix's git-fetch does: keep Git LFS pointer files as they are, even
+# where git-lfs is installed, or the hashes computed here would be wrong.
+os.environ["GIT_LFS_SKIP_SMUDGE"] = "1"
+
 CACHE = os.environ.get("GIT_CACHE_DIR", os.path.expanduser("~/.cache/lightningbulb-git"))
 CH = "0123456789abcdfghijklmnpqrsvwxyz"
 

@@ -70,8 +70,8 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ${{ github.workspace }}/../cache
-          key: update-cache-${{ github.run_id }}
-          restore-keys: update-cache-
+          key: update-cache-v2-${{ github.run_id }}
+          restore-keys: update-cache-v2-
 
       - name: Update packages
         id: update

@@ -46,6 +46,11 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CACHE = os.environ.get("GIT_CACHE_DIR",
                        os.path.expanduser("~/.cache/lightningbulb-git"))
 DEFAULT_TAGS = r"^v?(\d+(?:\.\d+)+)$"
+# Guix's git-fetch leaves Git LFS pointer files as they are.  Where git-lfs
+# is installed (GitHub's runners), a plain checkout would replace them by
+# the real files and every hash computed from it would be wrong.  This also
+# reaches the generators run from here.
+os.environ["GIT_LFS_SKIP_SMUDGE"] = "1"
 GIT_ENV = {**os.environ, "GIT_TERMINAL_PROMPT": "0"}
 
 
@@ -194,7 +199,8 @@ def checkout(url, commit, lfs=False):
             # Replace the pointer files by what Git LFS stores.
             run("git", "-C", d, "remote", "add", "origin", url)
             run("git", "-C", d, "lfs", "install", "--local")
-            run("git", "-C", d, "lfs", "pull", "origin", env=GIT_ENV)
+            run("git", "-C", d, "lfs", "pull", "origin",
+                env={**GIT_ENV, "GIT_LFS_SKIP_SMUDGE": "0"})
         shutil.rmtree(os.path.join(d, ".git"))
         open(os.path.join(d, ".lb-done"), "w").close()
     return d

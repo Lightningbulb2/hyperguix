@@ -1713,11 +1713,11 @@
    ;; egui-6d518fc-checkout
    (git-checkout "egui" "https://github.com/storytold/egui.git"
                  "6d518fc799681571963842f95b55a6b68431b15a"
-                 "13isrn3v9mf3gy2gz9l76jaiayjm5hnshx89ih86yd1m22m2wwww")
+                 "1mb3jrzna1q4pd4i54j3a5zirzdgpvf229b5y4cz6pxmla9h2f67")
    ;; egui-725a39f-checkout
    (git-checkout "egui" "https://github.com/storytold/egui.git"
                  "725a39fca940f77149ffbb9c58eef405a16997bc"
-                 "09rprjdkd4xz639ij8kq4qky7l69x85haqn585bhffqqr21i8ca1")
+                 "02f8flvds6al41x7285kcspgy7rviy7ynxj1z4fy2mlz62bh3546")
    ;; filmcraft-d5ead4b-checkout
    (git-checkout "filmcraft" "https://github.com/storytold/filmcraft"
                  "d5ead4ba1ee2f1cd13cb86a4239aee2730a3d9f5"
