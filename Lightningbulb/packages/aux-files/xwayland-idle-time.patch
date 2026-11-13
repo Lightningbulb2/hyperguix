@@ -7,8 +7,12 @@ calls QueryPointer on the root window and counts the user active when the
 pointer is more than 5 pixels from where it last saw it -- and the X11
 pointer only moves over X11 windows.  So each forced reset also toggles an
 8 pixel shift of the position QueryPointer reports to connections that have
-made fewer than 32 requests.  Events, the real pointer and long-lived clients
-(games reading the cursor position) are untouched.
+made fewer than 32 requests, while the pointer is outside X11 windows (on
+the root window, where Xwayland puts it when the pointer is over Wayland
+windows).  Events, the real pointer, long-lived clients and every client
+while the pointer is over an X11 window -- a game -- are untouched: Wine
+opens new connections for new threads, and a shifted position under a
+locked cursor cost games their mouse look.
 
 --- a/dix/events.c
 +++ b/dix/events.c
@@ -21,7 +25,7 @@ made fewer than 32 requests.  Events, the real pointer and long-lived clients
  int
  ProcQueryPointer(ClientPtr client)
  {
-@@ -5386,9 +5388,18 @@
+@@ -5386,9 +5388,22 @@
          .rootY = pSprite->hot.y,
          .child = None
      };
@@ -30,9 +34,13 @@ made fewer than 32 requests.  Events, the real pointer and long-lived clients
 +     * none.  Steam does that: every second it opens a connection, queries
 +     * the pointer and counts a move of more than 5 pixels as activity.
 +     * A forced screen saver reset flips activityPointerNudge; while set,
-+     * shift the position reported to such throwaway connections.  Events
-+     * and long-lived clients (games reading the cursor) are unaffected.  */
-+    if (activityPointerNudge && client->sequence < 32)
++     * shift the position reported to such throwaway connections -- only
++     * while the pointer is on the root window, i.e. over Wayland windows.
++     * Over an X11 window the pointer moves by itself, and a game's new
++     * connections (Wine opens one per thread) must see where it really is.
++     * Events and long-lived clients are unaffected.  */
++    if (activityPointerNudge && client->sequence < 32 &&
++        pSprite->win == pSprite->hot.pScreen->root)
 +        rep.rootX += pSprite->hot.x >= 8 ? -8 : 8;
      if (pSprite->hot.pScreen == pWin->drawable.pScreen) {
          rep.sameScreen = xTrue;

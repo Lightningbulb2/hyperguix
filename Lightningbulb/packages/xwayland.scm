@@ -16,6 +16,8 @@
 ;;; the pointer to move more than 5 pixels, which under
 ;;; Xwayland it only does over X11 windows.  So a reset also shifts the
 ;;; position reported to such short-lived connections by 8 pixels (see the patch).
+;;; Both only while the pointer is outside X11 windows: over a game, resets
+;;; and shifted positions cost Wine games their mouse look and focus.
 ;;;
 ;;; It also finds the system's EGL/GBM drivers (NVIDIA's included) without
 ;;; relying on the environment the compositor passes it; see the wrapper.

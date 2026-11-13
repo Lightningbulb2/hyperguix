@@ -14,6 +14,11 @@
    therefore also shifts the position it reports to such polls by 8 pixels on each
    reset, which is what keeps Steam Online.
 
+   While the pointer is over an X11 window, X11 programs see that input
+   themselves, so no reset is made: each one counts as input in Xwayland
+   and flips that shift, and games (Wine) that had the cursor locked lost
+   their mouse look and the keyboard focus.
+
    Usage: xwayland-activity-relay  */
 
 #include <dbus/dbus.h>
@@ -48,11 +53,31 @@ session_idle_time (DBusConnection *bus)
   return result;
 }
 
-static void
+/* Whether the X11 pointer is over an X11 window.  Over Wayland windows
+   Xwayland keeps it on the root window, with no child under it.  */
+static int
+pointer_over_x11_window (Display *display)
+{
+  Window root, child = None;
+  int root_x, root_y, win_x, win_y;
+  unsigned int mask;
+
+  if (!XQueryPointer (display, DefaultRootWindow (display), &root, &child,
+                      &root_x, &root_y, &win_x, &win_y, &mask))
+    return 0;
+  return child != None;
+}
+
+/* Reset the X11 screen saver unless the pointer is over an X11 window.
+   Return whether it was reset.  */
+static int
 relay_activity (Display *display)
 {
+  if (pointer_over_x11_window (display))
+    return 0;
   XResetScreenSaver (display);
   XSync (display, False);
+  return 1;
 }
 
 /* Milliseconds on a monotonic clock.  */
@@ -108,9 +133,9 @@ main (int argc, char *argv[])
       Display *display = XOpenDisplay (NULL);
       if (display)
         {
-          relay_activity (display);
+          if (relay_activity (display))
+            last_reset = now;
           XCloseDisplay (display);
-          last_reset = now;
         }
     }
 }
