@@ -1,0 +1,412 @@
+;;; guix bump --- move the channel pins in a Guix config file and apply them
+;;;
+;;; A Guix extension: installed under share/guix/extensions, it is run as
+;;; `guix bump'.  See `guix bump --help'.
+;;;
+;;; The config file holds every channel as a (channel ...) form with a
+;;; (commit "...") pin.  `guix bump' rewrites those pins in place, then runs
+;;; `guix pull -C CONFIG' so the running Guix always matches the file.  If
+;;; the pull fails the file is put back as it was.
+
+(define-module (guix extensions bump)
+  #:use-module (guix scripts)
+  #:use-module (guix describe)
+  #:use-module (guix channels)
+  #:use-module (ice-9 format)
+  #:use-module (ice-9 match)
+  #:use-module (ice-9 popen)
+  #:use-module (ice-9 rdelim)
+  #:use-module (ice-9 regex)
+  #:use-module (ice-9 textual-ports)
+  #:use-module (srfi srfi-1)
+  #:export (guix-bump))
+
+;; Replaced with a store file name when the package is built.
+(define %git "@GIT@")
+
+(define (git)
+  (if (string-prefix? "/" %git) %git "git"))
+
+(define (config-file)
+  (or (getenv "GUIX_BUMP_CONFIG")
+      (string-append (getenv "HOME") "/config_cosmic.scm")))
+
+(define (pulled-guix)
+  ;; The Guix that `guix pull' updates; after a pull this is the new one.
+  (let ((file (string-append (getenv "HOME") "/.config/guix/current/bin/guix")))
+    (if (file-exists? file) file "guix")))
+
+(define (die fmt . args)
+  (apply format (current-error-port) (string-append "guix bump: " fmt "~%") args)
+  (exit 1))
+
+(define (say fmt . args)
+  (apply format #t (string-append "~%==> " fmt "~%") args)
+  (force-output))
+
+
+;;;
+;;; Finding and editing the (channel ...) forms.
+;;;
+
+(define (skip-string text i)
+  ;; I is at an opening double quote; return the index after the closing one.
+  (let loop ((i (+ i 1)))
+    (cond ((>= i (string-length text)) i)
+          ((char=? (string-ref text i) #\\) (loop (+ i 2)))
+          ((char=? (string-ref text i) #\") (+ i 1))
+          (else (loop (+ i 1))))))
+
+(define (skip-line text i)
+  (or (string-index text #\newline i) (string-length text)))
+
+(define (form-end text start)
+  ;; START is at an opening parenthesis; return the index after the matching
+  ;; closing one, skipping strings, comments and character literals.
+  (let loop ((i start) (depth 0))
+    (if (>= i (string-length text))
+        i
+        (let ((c (string-ref text i)))
+          (cond ((char=? c #\;) (loop (skip-line text i) depth))
+                ((char=? c #\") (loop (skip-string text i) depth))
+                ((and (char=? c #\#) (< (+ i 1) (string-length text))
+                      (char=? (string-ref text (+ i 1)) #\\))
+                 (loop (+ i 3) depth))
+                ((char=? c #\() (loop (+ i 1) (+ depth 1)))
+                ((char=? c #\))
+                 (if (= depth 1) (+ i 1) (loop (+ i 1) (- depth 1))))
+                (else (loop (+ i 1) depth)))))))
+
+(define (channel-form? text i)
+  (let ((end (+ i (string-length "(channel"))))
+    (and (< end (string-length text))
+         (string=? (substring text i end) "(channel")
+         (char-whitespace? (string-ref text end)))))
+
+(define (channel-forms text)
+  ;; Return ((START . END) ...) for each (channel ...) form in TEXT that is
+  ;; code, not a comment or part of a string.
+  (let loop ((i 0) (result '()))
+    (if (>= i (string-length text))
+        (reverse result)
+        (let ((c (string-ref text i)))
+          (cond ((char=? c #\;) (loop (skip-line text i) result))
+                ((char=? c #\") (loop (skip-string text i) result))
+                ((and (char=? c #\() (channel-form? text i))
+                 (let ((end (form-end text i)))
+                   (loop end (cons (cons i end) result))))
+                (else (loop (+ i 1) result)))))))
+
+;; A pinned channel as written in the file.
+(define (field fields key)
+  (match (assq key fields)
+    ((_ ('quote value)) value)
+    ((_ value) value)
+    (_ #f)))
+
+(define (read-channels text)
+  ;; Return an alist NAME -> ((start . end) url branch commit) in file order.
+  (filter-map
+   (match-lambda
+     ((start . end)
+      (match (false-if-exception
+              (call-with-input-string (substring text start end) read))
+        (('channel fields ...)
+         (let ((name (field fields 'name))
+               (url  (field fields 'url)))
+           (and (symbol? name) (string? url)
+                (list name
+                      (cons start end)
+                      url
+                      (or (field fields 'branch) "master")
+                      (field fields 'commit)))))
+        (_ #f))))
+   (channel-forms text)))
+
+(define %commit-rx
+  (make-regexp "\\(commit[ \t\n]+\"[^\"]*\"\\)"))
+(define %branch-rx
+  (make-regexp "\\(branch[ \t\n]+\"[^\"]*\"\\)"))
+(define %url-rx
+  (make-regexp "\\(url[ \t\n]+\"[^\"]*\"\\)"))
+
+(define (column text index)
+  (let ((newline (string-rindex text #\newline 0 index)))
+    (- index (if newline (+ newline 1) 0))))
+
+(define (set-pin text name commit)
+  ;; Return TEXT with channel NAME pinned to COMMIT.
+  (match (assq name (read-channels text))
+    ((_ (start . end) . _)
+     (let* ((form (substring text start end))
+            (new  (format #f "(commit ~s)" commit))
+            (form (cond ((regexp-exec %commit-rx form)
+                         => (lambda (m)
+                              (string-append (match:prefix m) new
+                                             (match:suffix m))))
+                        ((or (regexp-exec %branch-rx form)
+                             (regexp-exec %url-rx form))
+                         => (lambda (m)
+                              ;; No pin yet: add one under the branch or URL.
+                              (string-append
+                               (substring form 0 (match:end m))
+                               "\n"
+                               (make-string (column text
+                                                    (+ start (match:start m)))
+                                            #\space)
+                               new
+                               (match:suffix m))))
+                        (else
+                         (die "channel '~a' has no (url ...) field" name)))))
+       (string-append (substring text 0 start) form (substring text end))))))
+
+(define (write-config file text)
+  (let ((tmp  (string-append file ".bump-tmp"))
+        (mode (stat:perms (stat file))))
+    (call-with-output-file tmp
+      (lambda (port) (put-string port text)))
+    (chmod tmp mode)
+    (rename-file tmp file)))
+
+
+;;;
+;;; Remote state.
+;;;
+
+(define (latest-commit url branch)
+  (let* ((pipe (open-pipe* OPEN_READ (git) "ls-remote" url
+                           (string-append "refs/heads/" branch)))
+         (line (read-line pipe))
+         (status (close-pipe pipe)))
+    (and (zero? status)
+         (string? line)
+         (match (string-tokenize line)
+           ((commit . _) commit)
+           (_ #f)))))
+
+(define (running-commit name)
+  ;; The commit of channel NAME in the Guix that is running this command.
+  (any (lambda (channel)
+         (and (eq? (channel-name channel) name)
+              (channel-commit channel)))
+       (current-channels)))
+
+(define (short commit)
+  (if commit
+      (substring commit 0 (min 10 (string-length commit)))
+      "-"))
+
+
+;;;
+;;; Running things.
+;;;
+
+(define (run . command)
+  (format #t "~%$ ~a~%" (string-join command " "))
+  (force-output)
+  (let ((status (apply system* command)))
+    (and (zero? status) #t)))
+
+(define (start-sudo-keepalive)
+  ;; Ask for the password now, then keep sudo's timestamp fresh so the
+  ;; reconfigure, maybe an hour away, doesn't stop at a password prompt.
+  (unless (zero? (system* "sudo" "-v"))
+    (die "sudo is needed for the system reconfigure"))
+  (let ((pid (primitive-fork)))
+    (if (zero? pid)
+        (begin
+          (let loop ()
+            (sleep 50)
+            (when (= (getppid) 1) (primitive-exit 0)) ;parent is gone
+            (when (zero? (system* "sudo" "-n" "-v"))
+              (loop)))
+          (primitive-exit 0))
+        pid)))
+
+(define (power-off)
+  (say "Powering off in 60 seconds.  Ctrl-C to cancel.")
+  (sleep 60)
+  (or (run "loginctl" "poweroff")
+      (run "sudo" "shutdown")))
+
+
+;;;
+;;; Commands.
+;;;
+
+(define (show-status file channels)
+  (format #t "Pins in ~a~%~%" file)
+  (format #t "  ~16a ~12a ~12a ~12a~%" "channel" "pinned" "running" "latest")
+  (for-each
+   (match-lambda
+     ((name _ url branch commit)
+      (let ((latest  (latest-commit url branch))
+            (running (running-commit name)))
+        (format #t "  ~16a ~12a ~12a ~12a ~a~%"
+                name (short commit) (short running) (short latest)
+                (cond ((not commit) "not pinned")
+                      ((not latest) "could not reach the repository")
+                      ((not (equal? commit latest)) "update available")
+                      ((not (equal? commit running)) "pinned, not pulled yet")
+                      (else ""))))))
+   channels)
+  (newline))
+
+(define (show-help)
+  (display "Usage: guix bump [OPTION]... [CHANNEL...|all] [-- BUILD-OPTION...]
+Move the channel pins in the config file to the latest commit of each
+channel's branch, then `guix pull' to them.  With no CHANNEL and no action,
+show each channel's pinned, running and latest commit.
+
+  -H, --home       then apply the home environment (guix home reconfigure)
+  -S, --system     then apply the system (sudo guix system reconfigure)
+      --shutdown   power the computer off once everything succeeded
+  -n, --dry-run    show what would change and stop
+  -h, --help       show this help
+
+With an action and no CHANNEL, nothing is bumped: the config as it is now
+gets pulled (if it isn't already) and applied.  BUILD-OPTIONs after `--' are
+passed to pull and reconfigure, for example: -- --cores=6 --max-jobs=6
+
+The config file is $GUIX_BUMP_CONFIG, or ~/config_cosmic.scm.
+`guix nightly' is short for: guix bump all --system --home --shutdown
+"))
+
+(define-command (guix-bump . args)
+  (category extension)
+  (synopsis "move channel pins in the config to the latest commits and pull")
+
+  (define-values (own-args build-options)
+    (let ((tail (member "--" args)))
+      (if tail
+          (values (take args (- (length args) (length tail))) (cdr tail))
+          (values args '()))))
+
+  (define (flag? . names)
+    (any (lambda (name) (member name own-args)) names))
+
+  (when (flag? "-h" "--help")
+    (show-help)
+    (exit 0))
+
+  (define home?     (flag? "-H" "--home"))
+  (define system?   (flag? "-S" "--system"))
+  (define shutdown? (flag? "--shutdown"))
+  (define dry-run?  (flag? "-n" "--dry-run"))
+  (define names
+    (remove (lambda (arg) (string-prefix? "-" arg)) own-args))
+
+  (for-each (lambda (arg)
+              (unless (member arg '("-H" "--home" "-S" "--system" "--shutdown"
+                                    "-n" "--dry-run"))
+                (die "~a: unknown option (see guix bump --help)" arg)))
+            (filter (lambda (arg) (string-prefix? "-" arg)) own-args))
+
+  (define file (config-file))
+  (unless (file-exists? file)
+    (die "~a: no such file (set GUIX_BUMP_CONFIG)" file))
+
+  (define original (call-with-input-file file get-string-all))
+  (define channels (read-channels original))
+  (when (null? channels)
+    (die "~a: found no (channel ...) forms" file))
+
+  (define selected
+    (if (member "all" names)
+        channels
+        (map (lambda (name)
+               (or (assq (string->symbol name) channels)
+                   (die "~a: no such channel; the config has: ~a" name
+                        (string-join (map (compose symbol->string car)
+                                          channels)
+                                     ", "))))
+             names)))
+
+  (cond
+   ((and (null? selected) (not (or home? system? shutdown?)))
+    (show-status file channels))
+   (else
+    (let ()
+    ;; Ask for the password before the long part.
+    (define keepalive
+      (and system? (not dry-run?) (start-sudo-keepalive)))
+
+    (define (finish code)
+      (when keepalive
+        (false-if-exception (kill keepalive SIGTERM)))
+      (exit code))
+
+    ;; 1. Move the pins.
+    (define updated
+      (fold (lambda (channel text)
+              (match channel
+                ((name _ url branch commit)
+                 (let ((latest (latest-commit url branch)))
+                   (cond ((not latest)
+                          (format #t "  ~16a could not reach ~a, left alone~%"
+                                  name url)
+                          text)
+                         ((equal? latest commit)
+                          (format #t "  ~16a ~a  already the latest~%"
+                                  name (short commit))
+                          text)
+                         (else
+                          (format #t "  ~16a ~a -> ~a~%"
+                                  name (short commit) (short latest))
+                          (set-pin text name latest)))))))
+            original
+            selected))
+
+    (when dry-run?
+      (finish 0))
+
+    (define changed? (not (string=? updated original)))
+    (when changed?
+      (write-config file updated))
+
+    ;; 2. Pull, unless the running Guix is already at the file's pins.
+    (define need-pull?
+      (any (match-lambda
+             ((name _ _ _ commit)
+              (not (and commit (equal? commit (running-commit name))))))
+           (read-channels updated)))
+
+    (when need-pull?
+      (say "Pulling Guix to the pins in ~a" file)
+      (unless (apply run (pulled-guix) "pull" "-C" file
+                     "--unsafe-channel-evaluation" "--allow-downgrades"
+                     build-options)
+        (when changed?
+          (write-config file original)
+          (format (current-error-port)
+                  "~%guix bump: pull failed; the pins in ~a are back as they were~%"
+                  file))
+        (finish 1)))
+
+    ;; 3. Apply.
+    (when system?
+      (say "Reconfiguring the system")
+      (unless (apply run "sudo" (pulled-guix) "system" "reconfigure" file
+                     build-options)
+        (format (current-error-port)
+                "~%guix bump: system reconfigure failed; nothing was switched~%")
+        (finish 1)))
+
+    (when home?
+      (say "Reconfiguring the home environment")
+      (unless (apply run (pulled-guix) "home" "reconfigure" file build-options)
+        (format (current-error-port)
+                "~%guix bump: home reconfigure failed; nothing was switched~%")
+        (finish 1)))
+
+    (say "Done.~a"
+         (cond ((or home? system?) "")
+               (need-pull?
+                "  New packages are installed by: guix bump --home")
+               (else "  Nothing to pull.")))
+
+    (when shutdown?
+      (when keepalive
+        (false-if-exception (kill keepalive SIGTERM)))
+      (power-off))
+    (finish 0)))))
