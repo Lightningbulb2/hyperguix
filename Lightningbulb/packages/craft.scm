@@ -248,8 +248,8 @@ and containers.  @command{filmcraft-cli} renders and converts projects from
 the command line."))
 
 (define-public lightcraft
-  (craft-app "lightcraft" "0.21.0" "d4f11018adafc3caba8c48da04113e7d44599ef0"
-             "0jv3dw4ssvhsnnrajfaxsb0q18m1gli30jzacm8akvfy6qwgjyf6"
+  (craft-app "lightcraft" "0.21.1" "361e3bc0c838ffe5e5cea515b1fe5b71951989c6"
+             "1ikj0kp5460nx0ishlvsqhfnxs2sizl5ad8l1cav3md1cq58jans"
              #:cargo-inputs lightcraft-cargo-inputs
              #:git-crates lightcraft-git-crates
              ;; As in upstream's release builds: open HEIC/HEIF photos.
