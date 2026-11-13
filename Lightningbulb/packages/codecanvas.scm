@@ -1,15 +1,12 @@
 ;;; Lightningbulb channel --- CodeCanvas, an infinite canvas for source code
 ;;;
-;;; The desktop app (Rust on GPUI) and the VS Code / VSCodium extension are
-;;; the rust/ and vscode/ directories of one repository,
+;;; The desktop app (Rust on GPUI), the VS Code / VSCodium extension, and the
+;;; Zed extension with the bridge program that connects Zed to the app are
+;;; the rust/, vscode/ and zed/ directories of one repository,
 ;;; https://github.com/Lightningbulb2/CodeCanvas, pinned to one commit
 ;;; (%codecanvas-commit).  To update: push there, then set the commit and its
 ;;; hash (`guix hash -rx .' in a clean checkout, or build once with a wrong
 ;;; hash and copy the one reported).
-;;;
-;;; CodeCanvas-zed (the Zed extension and the bridge program that connects
-;;; it to the app) is not on GitHub yet: its source is a pinned commit of the
-;;; local checkout, read through `git-checkout'.
 ;;;
 ;;; Crates are in codecanvas-crates.scm.
 
@@ -37,7 +34,7 @@
   #:use-module (Lightningbulb packages js-offline)
   #:use-module (Lightningbulb packages codecanvas-crates))
 
-(define %codecanvas-commit "63bee5d21d31d06d86189b8e0c641f21279ad894")
+(define %codecanvas-commit "8e540b5e5f1ba3b7927377e479948f8d54966adb")
 
 (define %codecanvas-source
   ;; Both projects; each package builds in its own directory.
@@ -48,14 +45,7 @@
           (commit %codecanvas-commit)))
     (file-name (git-file-name "codecanvas" (string-take %codecanvas-commit 7)))
     (sha256
-     (base32 "0ni95lh14frxhmnw6mbvgyfg345xxklv11lqnm9cv2l2fl08kb10"))))
-
-(define %codecanvas-zed-base-url "file:///home/Lightningbulb/")
-
-(define (codecanvas-zed-source repository commit)
-  (git-checkout
-   (url (string-append %codecanvas-zed-base-url repository))
-   (commit commit)))
+     (base32 "1k3rbip3jcrwlphaqbd6hi7xzxjahajxg2hrf4pvc293fpsyaxqr"))))
 
 (define-public codecanvas
   (package
@@ -108,8 +98,7 @@ snippet can have its own chat with a local or remote language model.")
   (package
     (name "codecanvas-zed-bridge")
     (version "0.1.0")
-    (source (codecanvas-zed-source "CodeCanvas-zed"
-                               "1d7f3e85f3052935539d10eaea0c2a0ec8ea0192"))
+    (source %codecanvas-source)
     (build-system cargo-build-system)
     (arguments
      (list
@@ -118,7 +107,10 @@ snippet can have its own chat with a local or remote language model.")
       #:phases
       #~(modify-phases %standard-phases
           #$@(fast-cargo-release-phases)
-          (add-after 'unpack 'install-extension-source
+          (add-after 'unpack 'enter-project
+            (lambda _
+              (chdir "zed")))
+          (add-after 'enter-project 'install-extension-source
             ;; The extension's source, for reference.  Zed compiles dev
             ;; extensions itself with rustup and the wasm32-wasip2 target,
             ;; neither of which Guix has, so on Guix System the bridge is
@@ -133,7 +125,7 @@ snippet can have its own chat with a local or remote language model.")
             (lambda _
               (chdir "bridge"))))))
     (inputs codecanvas-zed-bridge-cargo-inputs)
-    (home-page "https://github.com/Lightningbulb2/CodeCanvas-zed")
+    (home-page "https://github.com/Lightningbulb2/CodeCanvas")
     (synopsis "Connects the Zed editor to CodeCanvas")
     (description
      "This is the program the CodeCanvas extension for Zed starts as an MCP
@@ -147,6 +139,7 @@ add it to Zed's @file{settings.json} as a context server:
 @file{share/codecanvas-zed}.")
     (license license:expat)))
 
+;; The versions vscode/package-lock.json locks; keep them in step with it.
 (define %codecanvas-vscode-tarballs
   (list (npm-tarball "@types/node/-/node-20.19.43.tgz"
                      "0gcgcp8d22ajwxy3rxrsa34vwp41k3364qpqkjznvcnjjv5z4qwr")
@@ -176,16 +169,21 @@ add it to Zed's @file{settings.json} as a context server:
             (lambda _
               (chdir "vscode")))
           (replace 'build
+            ;; The build needs only the TypeScript compiler and the type
+            ;; declarations.  They are unpacked straight into node_modules
+            ;; instead of running `npm ci': the lockfile also lists the
+            ;; packaging tool (vsce) and its few hundred dependencies, which
+            ;; this build never uses.
             (lambda _
-              (setenv "HOME" (getcwd))
-              (setenv "npm_config_cache"
-                      (string-append (getcwd) "/.npm-cache"))
-              (let ((registry #$(start-offline-npm-registry
-                                 (offline-npm-registry
-                                  "codecanvas-vscode"
-                                  %codecanvas-vscode-tarballs))))
-                (invoke "npm" "ci" "--ignore-scripts")
-                (kill registry SIGTERM))
+              (for-each
+               (lambda (directory tarball)
+                 (let ((destination (string-append "node_modules/" directory)))
+                   (mkdir-p destination)
+                   (invoke "tar" "-xzf" tarball "-C" destination
+                           "--strip-components=1")))
+               '#$(map (lambda (tarball) (dirname (dirname (car tarball))))
+                       %codecanvas-vscode-tarballs)
+               (list #$@(map cdr %codecanvas-vscode-tarballs)))
               (invoke "node" "node_modules/typescript/bin/tsc" "-p" ".")))
           (replace 'install
             ;; The extension as an unpacked directory (for --extensions-dir)

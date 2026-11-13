@@ -18,8 +18,11 @@ Related repositories:
 - `Lightningbulb2/FineConfig`: a fill-in template of that config. It holds
   exactly three files (README.md, config.scm, LICENSE); keep its structure
   and its hyperguix pin in step when the config's design changes.
-- `Lightningbulb2/CodeCanvas`: source of `codecanvas` (`rust/`) and
-  `codecanvas-vscode` (`vscode/`).
+- `Lightningbulb2/CodeCanvas`: source of `codecanvas` (`rust/`),
+  `codecanvas-vscode` (`vscode/`) and `codecanvas-zed-bridge` (`zed/`), all
+  at one pinned commit. It has no release tags, so it is updated by hand:
+  set `%codecanvas-commit` and the hash, and regenerate
+  `codecanvas-crates.scm` when either `Cargo.lock` changed.
 
 ## Workflow
 
