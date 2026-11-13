@@ -42,7 +42,7 @@ The channel depends on nonguix (`.guix-channel`): several packages use its
 | `openrazer.scm` | `openrazer-kernel-modules`, `%openrazer-keyboard-services` | `razerkbd` only, patched to put the BlackWidow (1532:011a) in driver mode so M1–M5 send F13–F17 |
 | `gpu-unlock.scm` | `gpu-unlock`, `gpu-unlock-firmware`, `%gpu-unlock-services` | full-rate FP16/BF16/TF32 tensor cores on GeForce RTX 20/30/40 (kernel module; firmware from NVIDIA 610.43.03 is nonfree); see *Others* |
 | `strata.scm` | `strata` 0.2.12 | the `strata` command and its CUDA engine (compute capability 8.6, built with CUDA 13.4); no desktop app or picture reader, and `strata update` can't replace the engine |
-| `codecanvas.scm` | `codecanvas`, `codecanvas-vscode`, `codecanvas-zed-bridge` | infinite code canvas; sources are pinned commits of the local `~/CodeCanvas*` checkouts until they are on GitHub (`%codecanvas-base-url`) |
+| `codecanvas.scm` | `codecanvas`, `codecanvas-vscode`, `codecanvas-zed-bridge` | infinite code canvas; the app and the VS Code extension are `rust/` and `vscode/` of github.com/Lightningbulb2/CodeCanvas at one pinned commit (`%codecanvas-commit`); the Zed bridge is still a pinned commit of the local `~/CodeCanvas-zed` checkout|
 | `llama-cpp.scm` | `llama-cpp/latest` (Vulkan, OpenBLAS), `llama-cpp-cuda` (also CUDA, compute capability 8.6) | llama.cpp 0.9.0 with its bundled ggml; Guix has 0.5.0 |
 | `cuda.scm` | `cuda-toolkit` | NVIDIA CUDA 13.4: nvcc, cudart, cuBLAS (from NVIDIA's redist archives; nonfree); `libcuda` comes from the driver |
 | `reboot-to-bios.scm` | `reboot-to-bios` | |

@@ -1,12 +1,15 @@
 ;;; Lightningbulb channel --- CodeCanvas, an infinite canvas for source code
 ;;;
-;;; Three repositories: CodeCanvas (the desktop app, Rust on GPUI),
-;;; CodeCanvas-vscode (the VS Code / VSCodium extension) and CodeCanvas-zed
-;;; (the Zed extension and the bridge program that connects it to the app).
+;;; The desktop app (Rust on GPUI) and the VS Code / VSCodium extension are
+;;; the rust/ and vscode/ directories of one repository,
+;;; https://github.com/Lightningbulb2/CodeCanvas, pinned to one commit
+;;; (%codecanvas-commit).  To update: push there, then set the commit and its
+;;; hash (`guix hash -rx .' in a clean checkout, or build once with a wrong
+;;; hash and copy the one reported).
 ;;;
-;;; The sources are pinned commits of the local checkouts, read through
-;;; `git-checkout', until the repositories are on GitHub: then change
-;;; %codecanvas-base-url and use git-fetch origins with hashes.
+;;; CodeCanvas-zed (the Zed extension and the bridge program that connects
+;;; it to the app) is not on GitHub yet: its source is a pinned commit of the
+;;; local checkout, read through `git-checkout'.
 ;;;
 ;;; Crates are in codecanvas-crates.scm.
 
@@ -15,6 +18,7 @@
   #:use-module (guix packages)
   #:use-module (guix gexp)
   #:use-module (guix git)
+  #:use-module (guix git-download)
   #:use-module (guix build-system cargo)
   #:use-module (guix build-system gnu)
   #:use-module ((guix licenses) #:prefix license:)
@@ -33,19 +37,31 @@
   #:use-module (Lightningbulb packages js-offline)
   #:use-module (Lightningbulb packages codecanvas-crates))
 
-(define %codecanvas-base-url "file:///home/Lightningbulb/")
+(define %codecanvas-commit "63bee5d21d31d06d86189b8e0c641f21279ad894")
 
-(define (codecanvas-source repository commit)
+(define %codecanvas-source
+  ;; Both projects; each package builds in its own directory.
+  (origin
+    (method git-fetch)
+    (uri (git-reference
+          (url "https://github.com/Lightningbulb2/CodeCanvas")
+          (commit %codecanvas-commit)))
+    (file-name (git-file-name "codecanvas" (string-take %codecanvas-commit 7)))
+    (sha256
+     (base32 "0ni95lh14frxhmnw6mbvgyfg345xxklv11lqnm9cv2l2fl08kb10"))))
+
+(define %codecanvas-zed-base-url "file:///home/Lightningbulb/")
+
+(define (codecanvas-zed-source repository commit)
   (git-checkout
-   (url (string-append %codecanvas-base-url repository))
+   (url (string-append %codecanvas-zed-base-url repository))
    (commit commit)))
 
 (define-public codecanvas
   (package
     (name "codecanvas")
     (version "0.1.0")
-    (source (codecanvas-source "CodeCanvas"
-                               "a8f9e87e2d3f8015c58b884ec5295e32fda8bd7b"))
+    (source %codecanvas-source)
     (build-system cargo-build-system)
     (arguments
      (list
@@ -55,6 +71,9 @@
       #:phases
       #~(modify-phases %standard-phases
           #$@(fast-cargo-release-phases)
+          (add-after 'unpack 'enter-project
+            (lambda _
+              (chdir "rust")))
           (add-after 'install 'install-desktop-file
             (lambda _
               (install-file "packaging/codecanvas.desktop"
@@ -89,7 +108,7 @@ snippet can have its own chat with a local or remote language model.")
   (package
     (name "codecanvas-zed-bridge")
     (version "0.1.0")
-    (source (codecanvas-source "CodeCanvas-zed"
+    (source (codecanvas-zed-source "CodeCanvas-zed"
                                "1d7f3e85f3052935539d10eaea0c2a0ec8ea0192"))
     (build-system cargo-build-system)
     (arguments
@@ -142,8 +161,7 @@ add it to Zed's @file{settings.json} as a context server:
   (package
     (name "codecanvas-vscode")
     (version "0.7.6")
-    (source (codecanvas-source "CodeCanvas-vscode"
-                               "fcb36b3c5646c153fc99aa850eaa43bad5992be2"))
+    (source %codecanvas-source)
     (build-system gnu-build-system)
     (arguments
      (list
@@ -154,6 +172,9 @@ add it to Zed's @file{settings.json} as a context server:
       #:phases
       #~(modify-phases %standard-phases
           (delete 'configure)
+          (add-after 'unpack 'enter-project
+            (lambda _
+              (chdir "vscode")))
           (replace 'build
             (lambda _
               (setenv "HOME" (getcwd))
@@ -220,7 +241,7 @@ add it to Zed's @file{settings.json} as a context server:
                   (invoke "zip" "-qrX" vsix "extension.vsixmanifest"
                           "[Content_Types].xml" "extension"))))))))
     (native-inputs (list node zip))
-    (home-page "https://github.com/Lightningbulb2/CodeCanvas-vscode")
+    (home-page "https://github.com/Lightningbulb2/CodeCanvas")
     (synopsis "CodeCanvas extension for VS Code and VSCodium")
     (description
      "This extension opens an infinite canvas for source code inside VS Code
