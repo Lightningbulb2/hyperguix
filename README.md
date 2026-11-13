@@ -1,8 +1,8 @@
 # hyperguix
 
-Lightningbulb's Guix channel: packages Guix doesn't have (or doesn't have in
+A Guix channel of packages Guix doesn't have (or doesn't have in
 a usable form) -- the COSMIC desktop, the Craft apps, launchers, drivers and
-`guix bump`. Modules are named `(Lightningbulb packages <file>)`.
+`guix bump`. Modules are named `(hyperguix packages <file>)`.
 
 ```scheme
 (channel

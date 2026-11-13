@@ -6,11 +6,11 @@ Usage:
 
 e.g.
   guix shell python python-pyyaml curl -- python3 contrib/pnpm-lock-to-guix.py \\
-    "Lightningbulb packages r2modman-deps" \\
-    Lightningbulb/packages/r2modman-deps.scm r2modman ~/src/r2modmanPlus/pnpm-lock.yaml
+    "hyperguix packages r2modman-deps" \\
+    hyperguix/packages/r2modman-deps.scm r2modman ~/src/r2modmanPlus/pnpm-lock.yaml
 
 defines PREFIX-npm-tarballs (a list of (REGISTRY-PATH . ORIGIN) pairs, see
-(Lightningbulb packages js-offline)) and PREFIX-pnpm-tarball (the pnpm
+(hyperguix packages js-offline)) and PREFIX-pnpm-tarball (the pnpm
 release named by package.json's "packageManager" next to the lockfile, or
 PNPM_VERSION).  Tarballs are downloaded once into $NPM_CACHE_DIR (default
 ~/.cache/lightningbulb-npm), checked against the lockfile's integrity and
@@ -101,10 +101,10 @@ def main():
 
 ;;; npm registry tarballs from the upstream pnpm-lock.yaml, restricted to what
 ;;; installs on x86_64-linux.  Each entry is (REGISTRY-PATH . ORIGIN); see
-;;; (Lightningbulb packages js-offline).
+;;; (hyperguix packages js-offline).
 
 (define-module ({module})
-  #:use-module (Lightningbulb packages js-offline)
+  #:use-module (hyperguix packages js-offline)
   #:export ({prefix}-npm-tarballs
             {prefix}-pnpm-tarball))
 

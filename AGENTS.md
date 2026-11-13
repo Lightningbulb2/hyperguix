@@ -7,8 +7,8 @@ working *on* the channel goes here instead.
 
 ## What this is
 
-A Guix channel. Package modules are `Lightningbulb/packages/NAME.scm`,
-named `(Lightningbulb packages NAME)`. It depends on nonguix
+A Guix channel. Package modules are `hyperguix/packages/NAME.scm`,
+named `(hyperguix packages NAME)`. It depends on nonguix
 (`.guix-channel`).
 
 Related repositories:
@@ -60,8 +60,8 @@ config is the only description of the machine.
 
 ## Layout
 
-- `Lightningbulb/packages/*.scm`: package modules (see the README table).
-- `Lightningbulb/packages/aux-files/`: patches, launcher scripts and other
+- `hyperguix/packages/*.scm`: package modules (see the README table).
+- `hyperguix/packages/aux-files/`: patches, launcher scripts and other
   files the packages install.
 - `contrib/`: generators for the dependency modules, and the updater.
 - `.github/workflows/`: automated updates and checks.
@@ -138,14 +138,14 @@ Then regenerate its dependency module from the new lockfiles:
 
 ```sh
 # Rust packages with git dependencies (COSMIC, Craft, Ladybird):
-python3 contrib/cargo-lock-to-guix.py "Lightningbulb packages cosmic-crates" \
-        Lightningbulb/packages/cosmic-crates.scm NAME=path/to/Cargo.lock ...
+python3 contrib/cargo-lock-to-guix.py "hyperguix packages cosmic-crates" \
+        hyperguix/packages/cosmic-crates.scm NAME=path/to/Cargo.lock ...
 # scrcpy-gui and the FAForever client (Cargo.lock + npm/pnpm locks):
-python3 contrib/update-lockfile-deps.py Lightningbulb/packages \
+python3 contrib/update-lockfile-deps.py hyperguix/packages \
         ~/src/scrcpy-gui ~/src/FAForeverRustClient
 # r2modman (pnpm-lock.yaml; also takes the pnpm version as a 5th argument):
-python3 contrib/pnpm-lock-to-guix.py "Lightningbulb packages r2modman-deps" \
-        Lightningbulb/packages/r2modman-deps.scm r2modman path/to/pnpm-lock.yaml
+python3 contrib/pnpm-lock-to-guix.py "hyperguix packages r2modman-deps" \
+        hyperguix/packages/r2modman-deps.scm r2modman path/to/pnpm-lock.yaml
 ```
 
 The generators need git, network access and `guix hash`; set

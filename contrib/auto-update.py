@@ -371,7 +371,7 @@ def lint(groups):
                 if project_source(group, project) is None:
                     problems.append(f"{group['crates']} covers `{project}', "
                                     f"which updates.toml doesn't list")
-    for directory, _, files in os.walk(os.path.join(ROOT, "Lightningbulb")):
+    for directory, _, files in os.walk(os.path.join(ROOT, "hyperguix")):
         for file in files:
             if file.endswith((".scm", ".scm.in")):
                 path = os.path.relpath(os.path.join(directory, file), ROOT)

@@ -34,9 +34,9 @@
 # [group.NAME.projects.PROJECT]: `package' and `lock'.
 
 [group.craft]
-file = "Lightningbulb/packages/craft.scm"
-crates = "Lightningbulb/packages/craft-crates.scm"
-module = "Lightningbulb packages craft-crates"
+file = "hyperguix/packages/craft.scm"
+crates = "hyperguix/packages/craft-crates.scm"
+module = "hyperguix packages craft-crates"
 pin = '\(craft-app "{name}" "(?P<version>[^"]+)" "(?P<commit>[0-9a-f]{40})"\s+"(?P<hash>[0-9a-z]{52})"'
 
 [group.craft.packages.photocraft]
@@ -73,27 +73,27 @@ url = "https://github.com/storytold/craft-anything"
 url = "https://github.com/storytold/craft-launcher"
 
 [group.solidcraft]
-file = "Lightningbulb/packages/solidcraft.scm"
-crates = "Lightningbulb/packages/solidcraft-crates.scm"
-module = "Lightningbulb packages solidcraft-crates"
+file = "hyperguix/packages/solidcraft.scm"
+crates = "hyperguix/packages/solidcraft-crates.scm"
+module = "hyperguix packages solidcraft-crates"
 pin = '\(define-public {name}\s+\(let \(\(commit "(?P<commit>[0-9a-f]{40})"\).*?\(git-version "(?P<version>[^"]+)".*?\(base32 "(?P<hash>[0-9a-z]{52})"'
 
 [group.solidcraft.packages.solidcraft]
 url = "https://github.com/tangency-labs/solidcraft"
 
 [group.mailcraft]
-file = "Lightningbulb/packages/mailcraft.scm"
-crates = "Lightningbulb/packages/mailcraft-crates.scm"
-module = "Lightningbulb packages mailcraft-crates"
+file = "hyperguix/packages/mailcraft.scm"
+crates = "hyperguix/packages/mailcraft-crates.scm"
+module = "hyperguix packages mailcraft-crates"
 pin = '\(define-public {name}\s+\(let \(\(commit "(?P<commit>[0-9a-f]{40})"\).*?\(base-version "(?P<version>[^"]+)"\).*?\(base32 "(?P<hash>[0-9a-z]{52})"'
 
 [group.mailcraft.packages.mailcraft]
 url = "https://github.com/UCS-Care-Group/mailcraft"
 
 [group.isocast]
-file = "Lightningbulb/packages/isocast.scm"
-crates = "Lightningbulb/packages/isocast-crates.scm"
-module = "Lightningbulb packages isocast-crates"
+file = "hyperguix/packages/isocast.scm"
+crates = "hyperguix/packages/isocast-crates.scm"
+module = "hyperguix packages isocast-crates"
 pin = '\(define-public {name}\s+\(let \(\(commit "(?P<commit>[0-9a-f]{40})"\).*?\(base-version "(?P<version>[^"]+)"\).*?\(base32 "(?P<hash>[0-9a-z]{52})"'
 
 [group.isocast.packages.isocast]
@@ -103,9 +103,9 @@ url = "https://github.com/anomalyco/isocast"
 # extension (vscode/) and the Zed bridge (zed/bridge).  It follows the main
 # branch: every push there becomes an update.
 [group.codecanvas]
-file = "Lightningbulb/packages/codecanvas.scm"
-crates = "Lightningbulb/packages/codecanvas-crates.scm"
-module = "Lightningbulb packages codecanvas-crates"
+file = "hyperguix/packages/codecanvas.scm"
+crates = "hyperguix/packages/codecanvas-crates.scm"
+module = "hyperguix packages codecanvas-crates"
 pin = '\(define %codecanvas-commit "(?P<commit>[0-9a-f]{40})"\).*?\(base32 "(?P<hash>[0-9a-z]{52})"'
 
 [group.codecanvas.packages.codecanvas]

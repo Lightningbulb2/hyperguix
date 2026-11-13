@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Regenerate Lightningbulb/packages/rust-crates.scm and node-deps.scm.
+"""Regenerate hyperguix/packages/rust-crates.scm and node-deps.scm.
 
 Usage:
   update-lockfile-deps.py OUT_DIR SCRCPY_GUI_SRC FAFOREVER_SRC [PNPM_VERSION]
 
-OUT_DIR is the Lightningbulb/packages directory; the *_SRC arguments are
+OUT_DIR is the hyperguix/packages directory; the *_SRC arguments are
 checkouts of the commits the packages point at.  Crate hashes come straight
 from Cargo.lock (no download).  npm tarballs are downloaded once (into
 $NPM_CACHE_DIR, default ~/.cache/lightningbulb-npm), checked against the
@@ -119,7 +119,7 @@ def emit(OUT, SG, FA, res):
 ;;; checksums (sha256 of the .crate file) re-encoded in nix-base32, so they
 ;;; can be checked against the lockfile without downloading anything.
 
-(define-module (Lightningbulb packages rust-crates)
+(define-module (hyperguix packages rust-crates)
   #:use-module (guix packages)
   #:use-module (guix download)
   #:use-module (guix build-system cargo)
@@ -144,10 +144,10 @@ def emit(OUT, SG, FA, res):
     L=[HDR, """;;; npm registry tarballs needed to build the web front ends of the Tauri
 ;;; applications, taken from each upstream lockfile (package-lock.json or
 ;;; pnpm-lock.yaml) and restricted to what installs on x86_64-linux.  Each
-;;; entry is (REGISTRY-PATH . ORIGIN); see (Lightningbulb packages js-offline).
+;;; entry is (REGISTRY-PATH . ORIGIN); see (hyperguix packages js-offline).
 
-(define-module (Lightningbulb packages node-deps)
-  #:use-module (Lightningbulb packages js-offline)
+(define-module (hyperguix packages node-deps)
+  #:use-module (hyperguix packages js-offline)
   #:export (scrcpy-gui-npm-tarballs
             faforever-client-npm-tarballs
             faforever-client-pnpm-tarball))
