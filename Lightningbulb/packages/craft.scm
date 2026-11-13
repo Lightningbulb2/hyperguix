@@ -266,8 +266,8 @@ vignette and grain.  It opens camera raw files, JPEG, PNG, TIFF, WebP and
 HEIC/HEIF.  @command{lightcraft-cli} renders photos without a window."))
 
 (define-public vectorcraft
-  (craft-app "vectorcraft" "0.24.0" "0faabbfe85fd2c02469f53c107f3ec2a2edfac95"
-             "1iyjknfzmwpqz20fkpmd7rizcks8h1k7iliaxb6nvj0h03sg45hm"
+  (craft-app "vectorcraft" "0.24.1" "f4922aa7ac99a4f6d56fc68a83a44945207ec610"
+             "0xwl3rpa71ihk1hv5cz9h8gaggxil0mdjk5qbf4wzkil6v1ax9vp"
              #:cargo-inputs vectorcraft-cargo-inputs
              #:git-crates vectorcraft-git-crates
              #:fonts (craft-fonts "b076417b5880bd4154bd22f00695b1d28c6bea83"
