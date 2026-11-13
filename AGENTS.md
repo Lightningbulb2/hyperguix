@@ -101,32 +101,49 @@ Package `guix-bump`; sources `aux-files/guix-bump/bump.scm.in` and
 
 ## Automated updates (GitHub Actions)
 
-- `contrib/updates.toml` lists the packages that are updated mechanically:
-  for each, the upstream repository and a regular expression that finds its
-  version, commit and hash in the module. `contrib/auto-update.py` moves
-  them to the newest release tag and regenerates the group's crates module.
-  `--check` only reports; `--lint` checks the manifest offline.
+- `contrib/updates.toml` lists what is updated automatically, and documents
+  its own keys. `contrib/auto-update.py` does the work: `--check` only
+  reports, `--lint` checks the manifest offline. Run it locally under
+  `guix shell python python-pyyaml curl git-lfs --` (the npm/pnpm
+  generators need PyYAML, the COSMIC LFS sources git-lfs).
+- What an update is, by kind of package:
+  - **Release tags** (Craft suite, SolidCraft, MailCraft, Isocast, Pandora,
+    scrcpy, scrcpy-gui, FAForever, r2modman): newest tag; version, commit,
+    hash; dependency modules regenerated (crates, npm, pnpm); scrcpy's
+    prebuilt server re-hashed.
+  - **A branch** (CodeCanvas `main`, Ladybird `master`): every new head.
+  - **A whole release** (COSMIC, `atomic`): all components move to the same
+    `epoch-X.Y.Z` tag in one commit, once every component has the tag.
+- **Guards**, each of which turns the update into a failure instead of a
+  commit: a patch listed under `patches` no longer applies (`patch
+  --dry-run` against the new source); a path listed under `unchanged`
+  differs between the old and new source (FAForever's `scripts/ensure-*.mjs`,
+  which name the helper binaries pinned by hand; Ladybird's
+  `Meta/CMake/vcpkg`, which Skia/ANGLE/FFmpeg/pdf.js follow); a download or
+  a generator fails; a module no longer reads as Scheme.
 - `.github/workflows/update-packages.yml` runs it daily and on demand, one
-  commit per package, merged straight into `main` after `--lint` passes.
+  commit per update, merged straight into `main` after `--lint` passes.
   (Set the repository variable `AUTO_UPDATE_TARGET` to `pull-request` to get
-  a branch `auto-update` and a pull request to review instead.)
+  a branch `auto-update` and a pull request to review instead.) Each failure
+  opens an issue labelled `auto-update`, titled "Automatic update failed:
+  NAME"; it is closed by the first run in which NAME is fine. Fixing one
+  means doing that update by hand.
   `.github/workflows/check.yml` runs `--lint` on every push.
 - **The workflow builds nothing**, and the owner chose to merge anyway and
-  fix afterwards. It proves the source can be fetched and hashed and that
-  the modules still read as Scheme, no more. So `main` can hold an update
-  that doesn't compile: when a build fails right after an "update to"
-  commit, fix the package or `git revert` that one commit (each update is
-  its own commit for this reason), then push.
-- Most entries follow release tags; CodeCanvas follows a branch
-  (`branch = "main"`), and shows the other manifest keys in use: `versions`
-  (version strings read from the source's own files), `npm-lock` and
-  `projects` (crates-module projects that aren't packages of their own).
-- Add a package to `updates.toml` only if its update needs no judgment.
-  Packages with patches against upstream (COSMIC, Ladybird, Xwayland) stay
-  manual. Every project of a shared crates module must be listed.
-- When you reformat a pin by hand, run `python3 contrib/auto-update.py
-  --lint`: a pin the pattern no longer finds is silently never updated
-  otherwise.
+  fix afterwards. So `main` can hold an update that doesn't compile: when a
+  build fails right after an "update to" commit, fix the package or `git
+  revert` that one commit (each update is its own commit for this reason),
+  then push.
+- Not covered, and why: `xwayland-with-idle-time` has no pin of its own (it
+  patches the Xwayland of the pinned Guix, so it moves with the `guix`
+  channel pin); the smithay patch applies to a vendored crate, not to a
+  component's source; `substitute*` edits can't be checked without a build;
+  COSMIC's explicit `#:version` strings (cosmic-comp, cosmic-workspaces,
+  pop-launcher) and the craft-fonts pins are left alone.
+- When you reformat a pin by hand, add a patch, or add a project to a
+  shared crates module, update `updates.toml` and run `--lint`: a pin the
+  pattern no longer finds is never updated, and a patch that isn't listed is
+  never checked.
 
 ## Updating
 

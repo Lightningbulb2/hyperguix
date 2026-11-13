@@ -1,14 +1,19 @@
 # Keeps the packages listed in contrib/updates.toml at their latest upstream
 # release, using contrib/auto-update.py.
 #
-# Every day (and on demand, from the Actions tab) it looks for new release
-# tags.  For each package that has one it makes a commit: new version,
-# commit and hash, and a regenerated crates module.
+# Every day (and on demand, from the Actions tab) it looks for new releases.
+# For each package that has one it makes a commit: new version, commit and
+# hash, and regenerated dependency modules.
 #
 # Nothing is built here: a runner can't build these packages.  The commits
 # are merged all the same: they go straight to `main', once the modules have
 # passed the offline checks (`auto-update.py --lint').  A package that turns
 # out not to build is fixed, or its update commit reverted, afterwards.
+#
+# An update that can't be made -- a patch of the channel no longer applies,
+# upstream moved something other pins depend on, a download failed -- is not
+# committed.  It becomes an issue labelled `auto-update', which is closed
+# again by the first run in which that package is fine.
 #
 # To review updates first instead, set the repository variable
 # AUTO_UPDATE_TARGET to `pull-request' (Settings > Secrets and variables >
@@ -34,6 +39,7 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  issues: write
 
 concurrency:
   group: update-packages
@@ -42,11 +48,13 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-24.04
-    timeout-minutes: 60
+    timeout-minutes: 120
     env:
       TARGET: ${{ inputs.target || vars.AUTO_UPDATE_TARGET || 'main' }}
       PACKAGES: ${{ inputs.packages }}
-      GIT_CACHE_DIR: ${{ github.workspace }}/../git-cache
+      GIT_CACHE_DIR: ${{ github.workspace }}/../cache/git
+      NPM_CACHE_DIR: ${{ github.workspace }}/../cache/npm
+      GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -56,16 +64,17 @@ jobs:
         # nix-hash computes the same source hash as `guix hash'.
         run: |
           sudo apt-get update -q
-          sudo apt-get install -y -q nix-bin rsync
+          sudo apt-get install -y -q nix-bin rsync git-lfs python3-yaml curl patch jq
 
-      - name: Restore source checkouts
+      - name: Restore source checkouts and npm tarballs
         uses: actions/cache@v4
         with:
-          path: ${{ env.GIT_CACHE_DIR }}
-          key: git-cache-${{ github.run_id }}
-          restore-keys: git-cache-
+          path: ${{ github.workspace }}/../cache
+          key: update-cache-${{ github.run_id }}
+          restore-keys: update-cache-
 
       - name: Update packages
+        id: update
         run: |
           # Commits are made as the repository owner (GitHub no-reply address).
           git config user.name "${{ github.repository_owner }}"
@@ -73,12 +82,15 @@ jobs:
           git switch -C auto-update
           # $PACKAGES is split into words on purpose.
           python3 contrib/auto-update.py --commit \
-                  --summary "$RUNNER_TEMP/summary.md" $PACKAGES
+                  --summary "$RUNNER_TEMP/summary.md" \
+                  --failures "$RUNNER_TEMP/failures.json" $PACKAGES
           cat "$RUNNER_TEMP/summary.md" >> "$GITHUB_STEP_SUMMARY"
           # The gate before anything is pushed.
           python3 contrib/auto-update.py --lint
           echo "count=$(git rev-list --count origin/main..HEAD)" >> "$GITHUB_OUTPUT"
-        id: update
+          # Checkouts nothing has used for three weeks.
+          find "$GIT_CACHE_DIR" -mindepth 1 -maxdepth 1 -mtime +21 \
+               -exec rm -rf {} + 2>/dev/null || true
 
       - name: Merge into main
         if: steps.update.outputs.count != '0' && env.TARGET == 'main'
@@ -86,8 +98,6 @@ jobs:
 
       - name: Push the branch and open a pull request
         if: steps.update.outputs.count != '0' && env.TARGET == 'pull-request'
-        env:
-          GH_TOKEN: ${{ github.token }}
         run: |
           git push --force origin auto-update
           title="Update ${{ steps.update.outputs.count }} package(s)"
@@ -99,3 +109,54 @@ jobs:
             # Settings > Actions > General > Workflow permissions.
             echo "::warning::Could not open a pull request. The updates are on the branch auto-update: ${{ github.server_url }}/${{ github.repository }}/compare/main...auto-update"
           fi
+
+      - name: Open or close issues for updates that could not be made
+        if: always()
+        run: |
+          failures="$RUNNER_TEMP/failures.json"
+          [ -f "$failures" ] || exit 0
+          run_url="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          gh label create auto-update --color FBCA04 --force \
+             --description "An automatic package update that needs a person" >/dev/null
+
+          issue_number() {     # the open auto-update issue titled $1, if any
+            gh issue list --state open --label auto-update --limit 200 \
+               --json number,title \
+               --jq "map(select(.title == \"$1\"))[0].number // empty"
+          }
+
+          jq -c '.failed[]' "$failures" | while read -r item; do
+            name=$(jq -r .name <<<"$item")
+            url=$(jq -r .url <<<"$item")
+            title="Automatic update failed: $name"
+            {
+              echo "The daily update could not move \`$name\` to its latest upstream version, so the package stays where it is."
+              echo
+              echo '```'
+              jq -r .reason <<<"$item"
+              echo '```'
+              echo
+              [ -n "$url" ] && echo "Upstream: $url"
+              echo "Run: $run_url"
+              echo
+              echo "Fix the package by hand (see AGENTS.md, *Automated updates*). This issue closes by itself once a run finds \`$name\` updated or up to date."
+            } > "$RUNNER_TEMP/body.md"
+            number=$(issue_number "$title")
+            if [ -z "$number" ]; then
+              gh issue create --title "$title" --label auto-update \
+                 --body-file "$RUNNER_TEMP/body.md"
+            elif ! gh issue view "$number" --json body,comments \
+                      --jq '[.body, .comments[].body] | join("\n")' \
+                   | grep -qF -- "$(jq -r .reason <<<"$item" | head -n 1)"; then
+              # Still failing, for a new reason.
+              gh issue comment "$number" --body-file "$RUNNER_TEMP/body.md"
+            fi
+          done
+
+          jq -r '.fine[]' "$failures" | while read -r name; do
+            number=$(issue_number "Automatic update failed: $name")
+            if [ -n "$number" ]; then
+              gh issue close "$number" \
+                 --comment "\`$name\` is fine again as of $run_url."
+            fi
+          done
