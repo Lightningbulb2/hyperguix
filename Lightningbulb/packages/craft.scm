@@ -199,8 +199,8 @@ fonts it lists (CJK, Arabic, Thai, ...) through CRAFT_FONTS_DIR."
     (license (list license:expat license:asl2.0 license:silofl1.1))))
 
 (define-public photocraft
-  (craft-app "photocraft" "0.23.0" "9963efcb2f04867b56c564f876befd412b6c3c4e"
-             "1sv9ysx1bygj34y1lny1jyghirklifv9qlljd99qxsb7ljari39v"
+  (craft-app "photocraft" "0.23.1" "45066c48292e92229ada3459a83453439514c83d"
+             "1v6iwr3n2c1gh3ilz567zj5hx1ck41zjbli6x1bza1jh2j8rh70j"
              #:cargo-inputs photocraft-cargo-inputs
              #:git-crates photocraft-git-crates
              ;; As in upstream's release builds: open HEIC/HEIF photos.
