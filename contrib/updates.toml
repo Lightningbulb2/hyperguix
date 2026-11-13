@@ -1,0 +1,90 @@
+# Packages that contrib/auto-update.py keeps at their latest upstream release.
+#
+# Only packages whose update is mechanical belong here: a new commit, its
+# hash, a version string, and (for Rust) a regenerated crates module.
+# Packages that carry patches against upstream (COSMIC, Ladybird, ...) stay
+# manual: a patch that no longer applies needs a person.
+#
+# [group.NAME]
+#   file    the module holding the pins of this group's packages
+#   crates  the generated crates module shared by the group (optional)
+#   module  that module's name, as cargo-lock-to-guix.py wants it
+#   pin     default regular expression locating a package's pin in `file',
+#           with the named groups `version', `commit' and `hash'.  {name}
+#           is replaced by the package name.  `.' matches newlines.
+#
+# [group.NAME.packages.PACKAGE]
+#   url     upstream git repository
+#   tags    regular expression a release tag must match, with the version
+#           as group 1 (default: ^v?(\d+(?:\.\d+)+)$, i.e. no pre-releases)
+#   lock    path of Cargo.lock in the repository (default: Cargo.lock)
+#   pin     overrides the group's `pin'
+#
+# Every project of a crates module must be listed, updated or not: the
+# module is regenerated from the lockfiles of all of them.
+
+[group.craft]
+file = "Lightningbulb/packages/craft.scm"
+crates = "Lightningbulb/packages/craft-crates.scm"
+module = "Lightningbulb packages craft-crates"
+pin = '\(craft-app "{name}" "(?P<version>[^"]+)" "(?P<commit>[0-9a-f]{40})"\s+"(?P<hash>[0-9a-z]{52})"'
+
+[group.craft.packages.photocraft]
+url = "https://github.com/storytold/photocraft"
+[group.craft.packages.effectcraft]
+url = "https://github.com/storytold/effectcraft"
+[group.craft.packages.filmcraft]
+url = "https://github.com/storytold/filmcraft"
+[group.craft.packages.lightcraft]
+url = "https://github.com/storytold/lightcraft"
+[group.craft.packages.vectorcraft]
+url = "https://github.com/storytold/vectorcraft"
+[group.craft.packages.designcraft]
+url = "https://github.com/storytold/designcraft"
+[group.craft.packages.pdfcraft]
+url = "https://github.com/storytold/pdfcraft"
+[group.craft.packages.wordcraft]
+url = "https://github.com/storytold/wordcraft"
+[group.craft.packages.gridcraft]
+url = "https://github.com/storytold/gridcraft"
+[group.craft.packages.soundcraft]
+url = "https://github.com/storytold/soundcraft"
+[group.craft.packages.cadcraft]
+url = "https://github.com/storytold/cadcraft"
+[group.craft.packages.figcraft]
+url = "https://github.com/storytold/figcraft"
+[group.craft.packages.deckcraft]
+url = "https://github.com/storytold/deckcraft"
+[group.craft.packages.texturecraft]
+url = "https://github.com/storytold/texturecraft"
+[group.craft.packages.craft-anything]
+url = "https://github.com/storytold/craft-anything"
+[group.craft.packages.craft-launcher]
+url = "https://github.com/storytold/craft-launcher"
+
+[group.solidcraft]
+file = "Lightningbulb/packages/solidcraft.scm"
+crates = "Lightningbulb/packages/solidcraft-crates.scm"
+module = "Lightningbulb packages solidcraft-crates"
+pin = '\(define-public {name}\s+\(let \(\(commit "(?P<commit>[0-9a-f]{40})"\).*?\(git-version "(?P<version>[^"]+)".*?\(base32 "(?P<hash>[0-9a-z]{52})"'
+
+[group.solidcraft.packages.solidcraft]
+url = "https://github.com/tangency-labs/solidcraft"
+
+[group.mailcraft]
+file = "Lightningbulb/packages/mailcraft.scm"
+crates = "Lightningbulb/packages/mailcraft-crates.scm"
+module = "Lightningbulb packages mailcraft-crates"
+pin = '\(define-public {name}\s+\(let \(\(commit "(?P<commit>[0-9a-f]{40})"\).*?\(base-version "(?P<version>[^"]+)"\).*?\(base32 "(?P<hash>[0-9a-z]{52})"'
+
+[group.mailcraft.packages.mailcraft]
+url = "https://github.com/UCS-Care-Group/mailcraft"
+
+[group.isocast]
+file = "Lightningbulb/packages/isocast.scm"
+crates = "Lightningbulb/packages/isocast-crates.scm"
+module = "Lightningbulb packages isocast-crates"
+pin = '\(define-public {name}\s+\(let \(\(commit "(?P<commit>[0-9a-f]{40})"\).*?\(base-version "(?P<version>[^"]+)"\).*?\(base32 "(?P<hash>[0-9a-z]{52})"'
+
+[group.isocast.packages.isocast]
+url = "https://github.com/anomalyco/isocast"

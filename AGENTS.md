@@ -59,7 +59,8 @@ config is the only description of the machine.
 - `Lightningbulb/packages/*.scm`: package modules (see the README table).
 - `Lightningbulb/packages/aux-files/`: patches, launcher scripts and other
   files the packages install.
-- `contrib/`: generators for the dependency modules.
+- `contrib/`: generators for the dependency modules, and the updater.
+- `.github/workflows/`: automated updates and checks.
 
 Support modules:
 
@@ -93,6 +94,28 @@ Package `guix-bump`; sources `aux-files/guix-bump/bump.scm.in` and
 - To try a change without installing it: build the package, then run with
   `GUIX_EXTENSIONS_PATH=$(guix build -L . guix-bump)/share/guix/extensions`
   and `GUIX_BUMP_CONFIG` pointing at a scratch copy of the config.
+
+## Automated updates (GitHub Actions)
+
+- `contrib/updates.toml` lists the packages that are updated mechanically:
+  for each, the upstream repository and a regular expression that finds its
+  version, commit and hash in the module. `contrib/auto-update.py` moves
+  them to the newest release tag and regenerates the group's crates module.
+  `--check` only reports; `--lint` checks the manifest offline.
+- `.github/workflows/update-packages.yml` runs it daily and on demand, one
+  commit per package, onto the branch `auto-update` with a pull request
+  (or straight to `main` if the repository variable `AUTO_UPDATE_TARGET` is
+  `main`). `.github/workflows/check.yml` runs `--lint` on every push.
+- **The workflow builds nothing.** It proves the source can be fetched and
+  hashed and that the modules still read as Scheme. Build the updated
+  packages (`guix build -L . PACKAGE...` on the `auto-update` branch) before
+  merging; the pull request lists the command.
+- Add a package to `updates.toml` only if its update needs no judgment.
+  Packages with patches against upstream (COSMIC, Ladybird, Xwayland) stay
+  manual. Every project of a shared crates module must be listed.
+- When you reformat a pin by hand, run `python3 contrib/auto-update.py
+  --lint`: a pin the pattern no longer finds is silently never updated
+  otherwise.
 
 ## Updating
 

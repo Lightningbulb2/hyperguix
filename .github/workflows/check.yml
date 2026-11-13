@@ -1,0 +1,23 @@
+# Quick offline checks on every push and pull request: the scripts compile,
+# every .scm file reads as Scheme, and contrib/updates.toml still finds each
+# package's pin.  It does not evaluate or build the packages.
+
+name: Check
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Scripts compile
+        run: python3 -m py_compile contrib/*.py
+      - name: Modules read as Scheme and pins are found
+        run: python3 contrib/auto-update.py --lint

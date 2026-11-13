@@ -1,0 +1,95 @@
+# Keeps the packages listed in contrib/updates.toml at their latest upstream
+# release, using contrib/auto-update.py.
+#
+# Every day (and on demand, from the Actions tab) it looks for new release
+# tags.  For each package that has one it makes a commit: new version,
+# commit and hash, and a regenerated crates module.
+#
+# Nothing is built here: a runner can't build these packages.  So by default
+# the commits go to the branch `auto-update' and a pull request, to be built
+# locally before merging.  To have them go straight to `main' instead, set
+# the repository variable AUTO_UPDATE_TARGET to `main' (Settings > Secrets
+# and variables > Actions > Variables), or pick `main' when running by hand.
+
+name: Update packages
+
+on:
+  schedule:
+    - cron: "23 9 * * *"          # daily, 09:23 UTC
+  workflow_dispatch:
+    inputs:
+      packages:
+        description: "Only these packages (space-separated; empty = all)"
+        default: ""
+      target:
+        description: "Where the update commits go"
+        type: choice
+        options: [pull-request, main]
+        default: pull-request
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: update-packages
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      TARGET: ${{ inputs.target || vars.AUTO_UPDATE_TARGET || 'pull-request' }}
+      PACKAGES: ${{ inputs.packages }}
+      GIT_CACHE_DIR: ${{ github.workspace }}/../git-cache
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install tools
+        # nix-hash computes the same source hash as `guix hash'.
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q nix-bin rsync
+
+      - name: Restore source checkouts
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.GIT_CACHE_DIR }}
+          key: git-cache-${{ github.run_id }}
+          restore-keys: git-cache-
+
+      - name: Update packages
+        run: |
+          # Commits are made as the repository owner (GitHub no-reply address).
+          git config user.name "${{ github.repository_owner }}"
+          git config user.email "${{ github.repository_owner_id }}+${{ github.repository_owner }}@users.noreply.github.com"
+          git switch -C auto-update
+          # $PACKAGES is split into words on purpose.
+          python3 contrib/auto-update.py --commit \
+                  --summary "$RUNNER_TEMP/summary.md" $PACKAGES
+          cat "$RUNNER_TEMP/summary.md" >> "$GITHUB_STEP_SUMMARY"
+          echo "count=$(git rev-list --count origin/main..HEAD)" >> "$GITHUB_OUTPUT"
+        id: update
+
+      - name: Push to main
+        if: steps.update.outputs.count != '0' && env.TARGET == 'main'
+        run: git push origin HEAD:main
+
+      - name: Push the branch and open a pull request
+        if: steps.update.outputs.count != '0' && env.TARGET != 'main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git push --force origin auto-update
+          title="Update ${{ steps.update.outputs.count }} package(s)"
+          if gh pr view auto-update --json state --jq .state 2>/dev/null | grep -q OPEN; then
+            gh pr edit auto-update --title "$title" --body-file "$RUNNER_TEMP/summary.md"
+          elif ! gh pr create --base main --head auto-update \
+                    --title "$title" --body-file "$RUNNER_TEMP/summary.md"; then
+            # Creating pull requests from Actions is off by default:
+            # Settings > Actions > General > Workflow permissions.
+            echo "::warning::Could not open a pull request. The updates are on the branch auto-update: ${{ github.server_url }}/${{ github.repository }}/compare/main...auto-update"
+          fi
