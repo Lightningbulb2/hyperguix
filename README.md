@@ -1,20 +1,20 @@
-# Lightningbulb's Guix channel
+# hyperguix
 
-Packages Guix doesn't have (or doesn't have in a usable form), used by the
-`thekitchen` system config (`~/config_cosmic.scm`). Modules are named
-`(Lightningbulb packages <file>)`.
+Lightningbulb's Guix channel: packages Guix doesn't have (or doesn't have in
+a usable form) -- the COSMIC desktop, the Craft apps, launchers, drivers and
+`guix bump`. Modules are named `(Lightningbulb packages <file>)`.
 
 ```scheme
 (channel
-  (name 'local-channel)
-  (url "file:///home/Lightningbulb/local-channel")
-  (branch "master"))
+  (name 'hyperguix)
+  (url "https://github.com/Lightningbulb2/hyperguix.git")
+  (branch "main")
+  (commit "..."))        ;pin it; `guix bump hyperguix` moves the pin
 ```
 
-Changes only count once committed; then `guix pull -C ~/config_cosmic.scm
---unsafe-channel-evaluation --allow-downgrades` and `sudo guix system
-reconfigure ~/config_cosmic.scm`. To try uncommitted changes:
-`guix build -L ~/local-channel PACKAGE`.
+Changes only count once committed and pushed; then `guix bump hyperguix -H`
+moves the pin in the config (`~/config.scm`), pulls and installs. To try
+uncommitted changes: `guix build -L . PACKAGE` from a checkout.
 
 The channel depends on nonguix (`.guix-channel`): several packages use its
 `linux` kernel, NVIDIA driver, Electron, fonts or binary build systems.
@@ -26,7 +26,7 @@ The channel depends on nonguix (`.guix-channel`): several packages use its
 | `cosmic.scm` | `cosmic` (meta) and all its components, `cosmic-greeter`, `pop-launcher`, `cosmic-icons`, `pop-icon-theme`, `cosmic-sound-theme`, `cosmic-wallpapers` (COSMIC epoch 1.11.0) | see *COSMIC* below |
 | `xwayland.scm` | `xwayland-with-idle-time`, `xwayland-activity-relay` | Xwayland used by cosmic-comp, and the helper that keeps Steam from going Away; see *COSMIC* |
 | `timedated.scm` | `timedated` | systemd's timedated built alone (org.freedesktop.timedate1), for COSMIC Settings |
-| `guix-bump.scm` | `guix-bump` | `guix bump` (move the channel pins in the config to the latest commits, pull, optionally reconfigure) and `guix nightly` (bump all, pull, system + home, power off) |
+| `guix-bump.scm` | `guix-bump` | `guix bump` (move the channel pins in the config to the latest commits, pull, optionally reconfigure; `--undo`, a warning before compiling slow packages, commits the config to its git repository) and `guix nightly` (bump all, pull, system + home, clean up, power off, with a log) |
 | `craft.scm` | `photocraft`, `effectcraft`, `filmcraft`, `pdfcraft`, `lightcraft`, `vectorcraft`, `gridcraft`, `wordcraft`, `soundcraft`, `cadcraft`, `figcraft`, `designcraft`, `deckcraft`, `texturecraft`, `craft-anything`, `craft-launcher` | the storytold "Craft" suite, each with its `*-cli`; craft-anything needs Rust 1.97 (`rust-next.scm`) |
 | `solidcraft.scm` | `solidcraft` 0.30.1 (with `solidcraft-cli`) | Tangency Labs' parametric 3D CAD; crates in `solidcraft-crates.scm` |
 | `ladybird.scm` | `ladybird` (git master, Qt 6.10 calls guarded for Guix's Qt 6.9), plus private Skia 148, ANGLE, ffmpeg 9, curl+OpenSSL | Qt 6 UI; its sandbox needs Landlock (`lsm=landlock,...` kernel argument) |

@@ -7,11 +7,17 @@
 ;;; (commit "...") pin.  `guix bump' rewrites those pins in place, then runs
 ;;; `guix pull -C CONFIG' so the running Guix always matches the file.  If
 ;;; the pull fails the file is put back as it was.
+;;;
+;;; When the config file is in a git repository, each change that was
+;;; pulled or applied is committed there (and pushed, if it has a remote).
+;;; State (the pins before the last change, logs) is kept in
+;;; ~/.local/state/guix-bump.
 
 (define-module (guix extensions bump)
   #:use-module (guix scripts)
   #:use-module (guix describe)
   #:use-module (guix channels)
+  #:use-module ((guix build utils) #:select (mkdir-p))
   #:use-module (ice-9 format)
   #:use-module (ice-9 match)
   #:use-module (ice-9 popen)
@@ -23,13 +29,44 @@
 
 ;; Replaced with a store file name when the package is built.
 (define %git "@GIT@")
+(define %bash "@BASH@")
 
 (define (git)
   (if (string-prefix? "/" %git) %git "git"))
 
+(define (bash)
+  (if (string-prefix? "/" %bash) %bash "sh"))
+
 (define (config-file)
-  (or (getenv "GUIX_BUMP_CONFIG")
-      (string-append (getenv "HOME") "/config_cosmic.scm")))
+  ;; The real file, not a symlink to it: it gets replaced by renaming, and
+  ;; its directory is where git is run.
+  (let ((file (or (getenv "GUIX_BUMP_CONFIG")
+                  (string-append (getenv "HOME") "/config.scm"))))
+    (if (file-exists? file)
+        (canonicalize-path file)
+        file)))
+
+(define (state-directory)
+  (let ((dir (string-append (or (getenv "XDG_STATE_HOME")
+                                (string-append (getenv "HOME") "/.local/state"))
+                            "/guix-bump")))
+    (mkdir-p dir)
+    dir))
+
+(define (previous-pins-file)
+  (string-append (state-directory) "/previous-pins.scm"))
+
+;; File that everything shown is also appended to, or #f.
+(define %log #f)
+
+(define (emit fmt . args)
+  (let ((text (apply format #f fmt args)))
+    (display text)
+    (force-output)
+    (when %log
+      (let ((port (open-file %log "a")))
+        (display text port)
+        (close-port port)))))
 
 (define (pulled-guix)
   ;; The Guix that `guix pull' updates; after a pull this is the new one.
@@ -41,8 +78,7 @@
   (exit 1))
 
 (define (say fmt . args)
-  (apply format #t (string-append "~%==> " fmt "~%") args)
-  (force-output))
+  (apply emit (string-append "~%==> " fmt "~%") args))
 
 
 ;;;
@@ -160,6 +196,12 @@
                          (die "channel '~a' has no (url ...) field" name)))))
        (string-append (substring text 0 start) form (substring text end))))))
 
+(define (pins text)
+  ;; Return ((NAME . COMMIT) ...) as pinned in TEXT.
+  (map (match-lambda
+         ((name _ _ _ commit) (cons name commit)))
+       (read-channels text)))
+
 (define (write-config file text)
   (let ((tmp  (string-append file ".bump-tmp"))
         (mode (stat:perms (stat file))))
@@ -202,10 +244,38 @@
 ;;;
 
 (define (run . command)
-  (format #t "~%$ ~a~%" (string-join command " "))
-  (force-output)
-  (let ((status (apply system* command)))
-    (and (zero? status) #t)))
+  ;; Run COMMAND, showing it; with a log, its output goes there as well.
+  (emit "~%$ ~a~%" (string-join command " "))
+  (zero?
+   (if %log
+       (begin
+         (setenv "GUIX_BUMP_LOG" %log)
+         (apply system* (bash) "-c"
+                "set -o pipefail; \"$@\" 2>&1 | tee -a \"$GUIX_BUMP_LOG\""
+                "sh" command))
+       (apply system* command))))
+
+(define (quietly . command)
+  ;; Run COMMAND with its output discarded; return true on success.
+  (call-with-output-file "/dev/null"
+    (lambda (null)
+      (zero? (with-output-to-port null
+               (lambda ()
+                 (with-error-to-port null
+                   (lambda ()
+                     (apply system* command)))))))))
+
+(define (output-lines . command)
+  ;; Run COMMAND and return what it prints, standard error included, as a
+  ;; list of lines, or #f if it failed.
+  (let* ((pipe (apply open-pipe* OPEN_READ (bash) "-c" "\"$@\" 2>&1" "sh"
+                      command))
+         (lines (let loop ((lines '()))
+                  (let ((line (read-line pipe)))
+                    (if (eof-object? line)
+                        (reverse lines)
+                        (loop (cons line lines)))))))
+    (and (zero? (close-pipe pipe)) lines)))
 
 (define (start-sudo-keepalive)
   ;; Ask for the password now, then keep sudo's timestamp fresh so the
@@ -228,6 +298,108 @@
   (sleep 60)
   (or (run "loginctl" "poweroff")
       (run "sudo" "shutdown")))
+
+
+;;;
+;;; The config file's git repository.
+;;;
+
+(define (commit-config file message)
+  ;; If FILE is in a git repository and differs from what is committed,
+  ;; commit it with MESSAGE and push.
+  (let ((dir  (dirname file))
+        (name (basename file)))
+    (when (and (quietly (git) "-C" dir "rev-parse" "--is-inside-work-tree")
+               (quietly (git) "-C" dir "add" "--" name)
+               (not (quietly (git) "-C" dir "diff" "--cached" "--quiet"
+                             "--" name)))
+      (if (quietly (git) "-C" dir "commit" "-m" message "--" name)
+          (begin
+            (emit "~%Committed ~a: ~a~%" name
+                  (car (string-split message #\newline)))
+            ;; Never stop at a password prompt.
+            (setenv "GIT_TERMINAL_PROMPT" "0")
+            (when (and (pair? (or (output-lines (git) "-C" dir "remote") '()))
+                       (not (quietly (git) "-C" dir "push")))
+              (emit "Could not push ~a; run `git -C ~a push' later.~%"
+                    name dir)))
+          (emit "~%Could not commit ~a in ~a.~%" name dir)))))
+
+
+;;;
+;;; What would be compiled here.
+;;;
+
+(define %heavy-rx
+  ;; Packages that take a long time to compile, so worth a warning when no
+  ;; substitute (ready-made build) is available for them.
+  (make-regexp
+   (or (getenv "GUIX_BUMP_HEAVY")
+       (string-append
+        "^(firefox|icecat|thunderbird|chromium|ungoogled-chromium"
+        "|linux-[0-9]|linux-libre-[0-9]|libreoffice|blender|godot|inkscape"
+        "|gimp|krita|qtwebengine|qtbase|qtdeclarative|webkitgtk|gtk[+-]"
+        "|rust-[0-9]|llvm|clang|gcc-[0-9]|ghc|glibc|mesa|wine|openjdk"
+        "|python-[0-9]|node-[0-9]|texlive|kwin|plasma|obs-[0-9]|handbrake)"))))
+
+(define %drv-rx
+  (make-regexp "^ +/gnu/store/[a-z0-9]+-(.+)\\.drv$"))
+
+(define (to-build guix kind file build-options)
+  ;; Return the names of what `guix KIND reconfigure FILE' would build
+  ;; rather than download, or #f if that could not be determined.
+  (and=> (apply output-lines guix kind "build" file "--dry-run" build-options)
+         (lambda (lines)
+           (filter-map (lambda (line)
+                         (and=> (regexp-exec %drv-rx line)
+                                (lambda (m) (match:substring m 1))))
+                       lines))))
+
+(define (confirm-builds guix kinds file build-options yes?)
+  ;; Warn when applying would compile heavy packages for lack of
+  ;; substitutes, and ask whether to go on.  Return #f to stop.
+  (say "Checking what would have to be compiled here")
+  (let* ((names (delete-duplicates
+                 (append-map (lambda (kind)
+                               (or (to-build guix kind file build-options)
+                                   '()))
+                             kinds)))
+         (heavy (filter (lambda (name) (regexp-exec %heavy-rx name)) names)))
+    (emit "~a items to build locally, ~a of them known to be slow.~%"
+          (length names) (length heavy))
+    (cond ((null? heavy) #t)
+          (else
+           (emit "~%WARNING: no substitute yet for:~%~{  ~a~%~}" heavy)
+           (emit "These would be compiled from source, which can take hours.
+The build farms usually catch up within a day or two.~%")
+           (cond (yes?
+                  (emit "Continuing anyway (--yes).~%")
+                  #t)
+                 (else
+                  (display "Continue anyway? [y/N] ")
+                  (force-output)
+                  (let ((answer (read-line)))
+                    (and (string? answer)
+                         (member (string-downcase (string-trim-both answer))
+                                 '("y" "yes"))
+                         #t))))))))
+
+
+;;;
+;;; Cleaning up.
+;;;
+
+(define (clean-up guix system?)
+  ;; Drop old generations, then collect garbage if the disk is getting full.
+  (let ((keep (or (getenv "GUIX_BUMP_KEEP") "1m"))
+        (free (or (getenv "GUIX_BUMP_FREE") "100G")))
+    (say "Deleting generations older than ~a" keep)
+    (run guix "home" "delete-generations" keep)
+    (run guix "pull" (string-append "--delete-generations=" keep))
+    (when system?
+      (run "sudo" guix "system" "delete-generations" keep))
+    (say "Collecting garbage if less than ~a is free" free)
+    (run guix "gc" (string-append "--free-space=" free))))
 
 
 ;;;
@@ -260,16 +432,31 @@ show each channel's pinned, running and latest commit.
 
   -H, --home       then apply the home environment (guix home reconfigure)
   -S, --system     then apply the system (sudo guix system reconfigure)
+      --undo       put the pins back as they were before the last change,
+                   and pull; add -H / -S to apply that too
+  -y, --yes        don't ask before compiling slow packages from source
+      --gc         afterwards, delete generations older than a month and
+                   collect garbage if less than 100G is free
+      --log        also write everything to a file in ~/.local/state/guix-bump
       --shutdown   power the computer off once everything succeeded
-  -n, --dry-run    show what would change and stop
+  -n, --dry-run    show which pins would move and stop
   -h, --help       show this help
 
 With an action and no CHANNEL, nothing is bumped: the config as it is now
 gets pulled (if it isn't already) and applied.  BUILD-OPTIONs after `--' are
 passed to pull and reconfigure, for example: -- --cores=6 --max-jobs=6
 
-The config file is $GUIX_BUMP_CONFIG, or ~/config_cosmic.scm.
-`guix nightly' is short for: guix bump all --system --home --shutdown
+Before applying freshly pulled pins, the packages that would be compiled
+here for lack of a substitute are checked; if slow ones are among them you
+are asked whether to continue.
+
+The config file is $GUIX_BUMP_CONFIG, or ~/config.scm.  If it is in a git
+repository, every change that was pulled or applied is committed and pushed.
+Environment: GUIX_BUMP_KEEP (1m), GUIX_BUMP_FREE (100G), GUIX_BUMP_HEAVY
+(regexp of slow package names).
+
+`guix nightly' is short for:
+  guix bump all --system --home --yes --gc --log --shutdown
 "))
 
 (define-command (guix-bump . args)
@@ -293,14 +480,22 @@ The config file is $GUIX_BUMP_CONFIG, or ~/config_cosmic.scm.
   (define system?   (flag? "-S" "--system"))
   (define shutdown? (flag? "--shutdown"))
   (define dry-run?  (flag? "-n" "--dry-run"))
+  (define undo?     (flag? "--undo"))
+  (define yes?      (flag? "-y" "--yes"))
+  (define gc?       (flag? "--gc"))
+  (define log?      (flag? "--log"))
   (define names
     (remove (lambda (arg) (string-prefix? "-" arg)) own-args))
 
   (for-each (lambda (arg)
               (unless (member arg '("-H" "--home" "-S" "--system" "--shutdown"
-                                    "-n" "--dry-run"))
+                                    "-n" "--dry-run" "--undo" "-y" "--yes"
+                                    "--gc" "--log"))
                 (die "~a: unknown option (see guix bump --help)" arg)))
             (filter (lambda (arg) (string-prefix? "-" arg)) own-args))
+
+  (when (and undo? (pair? names))
+    (die "--undo takes no channel names: it restores every pin"))
 
   (define file (config-file))
   (unless (file-exists? file)
@@ -322,91 +517,171 @@ The config file is $GUIX_BUMP_CONFIG, or ~/config_cosmic.scm.
                                      ", "))))
              names)))
 
+  (define guix (pulled-guix))
+
   (cond
-   ((and (null? selected) (not (or home? system? shutdown?)))
+   ((and (null? selected)
+         (not (or home? system? shutdown? undo? gc?)))
     (show-status file channels))
    (else
     (let ()
-    ;; Ask for the password before the long part.
-    (define keepalive
-      (and system? (not dry-run?) (start-sudo-keepalive)))
+      (when (and log? (not dry-run?))
+        (set! %log (string-append (state-directory) "/"
+                                  (strftime "%Y-%m-%d-%H%M%S"
+                                            (localtime (current-time)))
+                                  ".log"))
+        (emit "Log: ~a~%" %log))
 
-    (define (finish code)
-      (when keepalive
-        (false-if-exception (kill keepalive SIGTERM)))
-      (exit code))
+      ;; Ask for the password before the long part.
+      (define keepalive
+        (and system? (not dry-run?) (start-sudo-keepalive)))
 
-    ;; 1. Move the pins.
-    (define updated
-      (fold (lambda (channel text)
-              (match channel
-                ((name _ url branch commit)
-                 (let ((latest (latest-commit url branch)))
-                   (cond ((not latest)
-                          (format #t "  ~16a could not reach ~a, left alone~%"
-                                  name url)
-                          text)
-                         ((equal? latest commit)
-                          (format #t "  ~16a ~a  already the latest~%"
-                                  name (short commit))
-                          text)
-                         (else
-                          (format #t "  ~16a ~a -> ~a~%"
-                                  name (short commit) (short latest))
-                          (set-pin text name latest)))))))
-            original
-            selected))
+      (define (finish code)
+        (when keepalive
+          (false-if-exception (kill keepalive SIGTERM)))
+        (when (and %log (not (zero? code)))
+          (emit "~%The log of this run is ~a~%" %log))
+        (exit code))
 
-    (when dry-run?
-      (finish 0))
+      ;; What moved, as "NAME OLD -> NEW" strings, for the commit message.
+      (define moves '())
 
-    (define changed? (not (string=? updated original)))
-    (when changed?
-      (write-config file updated))
+      (define (move text name old new)
+        (emit "  ~16a ~a -> ~a~%" name (short old) (short new))
+        (set! moves
+              (cons (format #f "~a ~a -> ~a" name (short old) (short new))
+                    moves))
+        (set-pin text name new))
 
-    ;; 2. Pull, unless the running Guix is already at the file's pins.
-    (define need-pull?
-      (any (match-lambda
-             ((name _ _ _ commit)
-              (not (and commit (equal? commit (running-commit name))))))
-           (read-channels updated)))
+      ;; 1. Move the pins.
+      (define updated
+        (if undo?
+            (let ((previous
+                   (if (file-exists? (previous-pins-file))
+                       (call-with-input-file (previous-pins-file) read)
+                       (die "nothing to undo: no earlier pins were saved"))))
+              (fold (lambda (channel text)
+                      (match channel
+                        ((name _ _ _ commit)
+                         (let ((old (assq-ref previous name)))
+                           (if (and (string? old) (not (equal? old commit)))
+                               (move text name commit old)
+                               text)))))
+                    original
+                    channels))
+            (fold (lambda (channel text)
+                    (match channel
+                      ((name _ url branch commit)
+                       (let ((latest (latest-commit url branch)))
+                         (cond ((not latest)
+                                (emit "  ~16a could not reach ~a, left alone~%"
+                                      name url)
+                                text)
+                               ((equal? latest commit)
+                                (emit "  ~16a ~a  already the latest~%"
+                                      name (short commit))
+                                text)
+                               (else
+                                (move text name commit latest)))))))
+                  original
+                  selected)))
 
-    (when need-pull?
-      (say "Pulling Guix to the pins in ~a" file)
-      (unless (apply run (pulled-guix) "pull" "-C" file
-                     "--unsafe-channel-evaluation" "--allow-downgrades"
-                     build-options)
-        (when changed?
-          (write-config file original)
-          (format (current-error-port)
-                  "~%guix bump: pull failed; the pins in ~a are back as they were~%"
+      (define changed? (not (string=? updated original)))
+
+      (when (and undo? (not changed?))
+        (emit "The pins are already what they were before the last change.~%"))
+
+      (when dry-run?
+        (finish 0))
+
+      (define earlier-pins
+        (and (file-exists? (previous-pins-file))
+             (call-with-input-file (previous-pins-file) get-string-all)))
+
+      (define (restore-earlier-pins)
+        (if earlier-pins
+            (call-with-output-file (previous-pins-file)
+              (lambda (port) (put-string port earlier-pins)))
+            (false-if-exception (delete-file (previous-pins-file)))))
+
+      (when changed?
+        ;; Remember the pins being replaced, for --undo.
+        (call-with-output-file (previous-pins-file)
+          (lambda (port) (write (pins original) port) (newline port)))
+        (write-config file updated))
+
+      ;; 2. Pull, unless the running Guix is already at the file's pins.
+      (define need-pull?
+        (any (match-lambda
+               ((name _ _ _ commit)
+                (not (and commit (equal? commit (running-commit name))))))
+             (read-channels updated)))
+
+      (when need-pull?
+        (say "Pulling Guix to the pins in ~a" file)
+        (unless (apply run guix "pull" "-C" file
+                       "--unsafe-channel-evaluation" "--allow-downgrades"
+                       build-options)
+          (when changed?
+            (write-config file original)
+            (restore-earlier-pins)
+            (emit "~%guix bump: pull failed; the pins in ~a are back as they were~%"
                   file))
-        (finish 1)))
+          (finish 1)))
 
-    ;; 3. Apply.
-    (when system?
-      (say "Reconfiguring the system")
-      (unless (apply run "sudo" (pulled-guix) "system" "reconfigure" file
-                     build-options)
-        (format (current-error-port)
-                "~%guix bump: system reconfigure failed; nothing was switched~%")
-        (finish 1)))
+      (when changed?
+        (commit-config file
+                       (string-append (if undo? "Undo: " "Bump ")
+                                      (string-join (reverse moves) ", "))))
 
-    (when home?
-      (say "Reconfiguring the home environment")
-      (unless (apply run (pulled-guix) "home" "reconfigure" file build-options)
-        (format (current-error-port)
-                "~%guix bump: home reconfigure failed; nothing was switched~%")
-        (finish 1)))
+      ;; 3. Before applying new pins: would this compile something big?
+      (when (and need-pull? (or home? system?))
+        (unless (confirm-builds guix
+                                (append (if system? '("system") '())
+                                        (if home? '("home") '()))
+                                file build-options yes?)
+          (emit "~%Stopped: the new pins are pulled but nothing was applied.
+`guix bump --undo' puts the old pins back; `guix bump~a~a' applies later.~%"
+                (if system? " --system" "") (if home? " --home" ""))
+          (finish 1)))
 
-    (say "Done.~a"
-         (cond ((or home? system?) "")
-               (need-pull?
-                "  New packages are installed by: guix bump --home")
-               (else "  Nothing to pull.")))
+      ;; 4. Apply.
+      (when system?
+        (say "Reconfiguring the system")
+        (unless (apply run "sudo" guix "system" "reconfigure" file
+                       build-options)
+          (emit "~%guix bump: system reconfigure failed; nothing was switched.
+`guix bump --undo~a' goes back to the pins from before.~%"
+                (if home? " --system --home" " --system"))
+          (finish 1)))
 
-    (when shutdown?
-      (when keepalive
-        (false-if-exception (kill keepalive SIGTERM)))
-      (power-off))
-    (finish 0)))))
+      (when home?
+        (say "Reconfiguring the home environment")
+        (unless (apply run guix "home" "reconfigure" file build-options)
+          (emit "~%guix bump: home reconfigure failed; nothing was switched.
+`guix bump --undo --home' goes back to the pins from before.~%")
+          (finish 1)))
+
+      ;; Edits made by hand that were just applied successfully.
+      (when (or home? system?)
+        (commit-config file
+                       (string-append "Applied to "
+                                      (cond ((and home? system?)
+                                             "system and home")
+                                            (system? "system")
+                                            (else "home")))))
+
+      (when gc?
+        (clean-up guix system?))
+
+      (say "Done.~a"
+           (cond ((or home? system?) "")
+                 (need-pull?
+                  "  New packages are installed by: guix bump --home")
+                 (else "  Nothing to pull.")))
+
+      (when shutdown?
+        (when keepalive
+          (false-if-exception (kill keepalive SIGTERM)))
+        (power-off))
+      (finish 0)))))
