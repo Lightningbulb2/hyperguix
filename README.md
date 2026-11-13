@@ -28,7 +28,7 @@ The channel depends on nonguix (`.guix-channel`): several packages use its
 | `timedated.scm` | `timedated` | systemd's timedated built alone (org.freedesktop.timedate1), for COSMIC Settings |
 | `guix-bump.scm` | `guix-bump` | `guix bump` (move the channel pins in the config to the latest commits, pull, optionally reconfigure; `--undo`, a warning before compiling slow packages, commits the config to its git repository) and `guix nightly` (bump all, pull, system + home, clean up, power off, with a log) |
 | `craft.scm` | `photocraft`, `effectcraft`, `filmcraft`, `pdfcraft`, `lightcraft`, `vectorcraft`, `gridcraft`, `wordcraft`, `soundcraft`, `cadcraft`, `figcraft`, `designcraft`, `deckcraft`, `texturecraft`, `craft-anything`, `craft-launcher` | the storytold "Craft" suite, each with its `*-cli`; craft-anything needs Rust 1.97 (`rust-next.scm`) |
-| `solidcraft.scm` | `solidcraft` 0.30.1 (with `solidcraft-cli`) | Tangency Labs' parametric 3D CAD; crates in `solidcraft-crates.scm` |
+| `solidcraft.scm` | `solidcraft` 0.41.0 (with `solidcraft-cli`) | Tangency Labs' parametric 3D CAD; crates in `solidcraft-crates.scm` |
 | `ladybird.scm` | `ladybird` (git master, Qt 6.10 calls guarded for Guix's Qt 6.9), plus private Skia 148, ANGLE, ffmpeg 9, curl+OpenSSL | Qt 6 UI; its sandbox needs Landlock (`lsm=landlock,...` kernel argument) |
 | `scrcpy.scm`, `scrcpy-gui.scm` | `scrcpy` 5.0.1, `scrcpy-gui` 4.1.0 | Android mirroring |
 | `faforever.scm` | `faforever-client` 0.9.5 | Rust/Tauri FAF client |
