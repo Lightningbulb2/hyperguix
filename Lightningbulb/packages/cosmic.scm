@@ -11,6 +11,7 @@
 ;;; packages and pick "COSMIC" in your display manager's session menu.
 
 (define-module (Lightningbulb packages cosmic)
+  #:use-module (srfi srfi-1)
   #:use-module (guix packages)
   #:use-module (guix gexp)
   #:use-module (guix git-download)
@@ -150,6 +151,38 @@ at cosmic-wallpapers."
       #:phases
       #~(modify-phases %standard-phases
           #$@(vendor-git-crates-phases git-crates)
+          ;; cosmic-client-toolkit handed a finished screen-capture frame
+          ;; to the application before destroying it.  The portal's
+          ;; PipeWire thread could then ask for the next frame first, which
+          ;; the compositor answers with a protocol error ("create_frame
+          ;; sent before the previous frame was destroyed"): the portal
+          ;; died and screen sharing (Discord, OBS) froze on one frame.
+          ;; Destroy the frame first, as cosmic-protocols does upstream
+          ;; since.  In every component using the crate: suite members
+          ;; share its compiled copy.
+          #$@(if (any (lambda (crate)
+                        (equal? (car crate) "cosmic-client-toolkit"))
+                      (or git-crates '()))
+                 (list
+                  #~(add-after 'vendor-git-crates 'destroy-capture-frame-first
+                      (lambda _
+                        (let ((files
+                               (filter
+                                (lambda (f)
+                                  (string-contains
+                                   f "/cosmic-client-toolkit-"))
+                                (find-files "guix-vendor"
+                                            "^dispatch\\.rs$"))))
+                          (when (null? files)
+                            (error "cosmic-client-toolkit's screencopy \
+dispatch.rs not found"))
+                          (substitute* files
+                            (("^ *screencopy_frame\\.destroy\\(\\);\n") "")
+                            (("^( *)app_data\\.(ready|failed)\\(" all indent)
+                             (string-append
+                              indent "screencopy_frame.destroy();\n"
+                              all)))))))
+                 '())
           #$@(fast-cargo-release-phases)
           (add-after 'unpack 'patch-justfile-shebangs
             ;; Recipes like `install-plugins' run through `#!/usr/bin/env
