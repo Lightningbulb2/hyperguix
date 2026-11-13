@@ -5,11 +5,15 @@
 # tags.  For each package that has one it makes a commit: new version,
 # commit and hash, and a regenerated crates module.
 #
-# Nothing is built here: a runner can't build these packages.  So by default
-# the commits go to the branch `auto-update' and a pull request, to be built
-# locally before merging.  To have them go straight to `main' instead, set
-# the repository variable AUTO_UPDATE_TARGET to `main' (Settings > Secrets
-# and variables > Actions > Variables), or pick `main' when running by hand.
+# Nothing is built here: a runner can't build these packages.  The commits
+# are merged all the same: they go straight to `main', once the modules have
+# passed the offline checks (`auto-update.py --lint').  A package that turns
+# out not to build is fixed, or its update commit reverted, afterwards.
+#
+# To review updates first instead, set the repository variable
+# AUTO_UPDATE_TARGET to `pull-request' (Settings > Secrets and variables >
+# Actions > Variables), or pick it when running by hand: the commits then go
+# to the branch `auto-update' and a pull request.
 
 name: Update packages
 
@@ -24,8 +28,8 @@ on:
       target:
         description: "Where the update commits go"
         type: choice
-        options: [pull-request, main]
-        default: pull-request
+        options: [main, pull-request]
+        default: main
 
 permissions:
   contents: write
@@ -40,7 +44,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 60
     env:
-      TARGET: ${{ inputs.target || vars.AUTO_UPDATE_TARGET || 'pull-request' }}
+      TARGET: ${{ inputs.target || vars.AUTO_UPDATE_TARGET || 'main' }}
       PACKAGES: ${{ inputs.packages }}
       GIT_CACHE_DIR: ${{ github.workspace }}/../git-cache
     steps:
@@ -71,15 +75,17 @@ jobs:
           python3 contrib/auto-update.py --commit \
                   --summary "$RUNNER_TEMP/summary.md" $PACKAGES
           cat "$RUNNER_TEMP/summary.md" >> "$GITHUB_STEP_SUMMARY"
+          # The gate before anything is pushed.
+          python3 contrib/auto-update.py --lint
           echo "count=$(git rev-list --count origin/main..HEAD)" >> "$GITHUB_OUTPUT"
         id: update
 
-      - name: Push to main
+      - name: Merge into main
         if: steps.update.outputs.count != '0' && env.TARGET == 'main'
         run: git push origin HEAD:main
 
       - name: Push the branch and open a pull request
-        if: steps.update.outputs.count != '0' && env.TARGET != 'main'
+        if: steps.update.outputs.count != '0' && env.TARGET == 'pull-request'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |

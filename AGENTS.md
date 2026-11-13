@@ -107,13 +107,16 @@ Package `guix-bump`; sources `aux-files/guix-bump/bump.scm.in` and
   them to the newest release tag and regenerates the group's crates module.
   `--check` only reports; `--lint` checks the manifest offline.
 - `.github/workflows/update-packages.yml` runs it daily and on demand, one
-  commit per package, onto the branch `auto-update` with a pull request
-  (or straight to `main` if the repository variable `AUTO_UPDATE_TARGET` is
-  `main`). `.github/workflows/check.yml` runs `--lint` on every push.
-- **The workflow builds nothing.** It proves the source can be fetched and
-  hashed and that the modules still read as Scheme. Build the updated
-  packages (`guix build -L . PACKAGE...` on the `auto-update` branch) before
-  merging; the pull request lists the command.
+  commit per package, merged straight into `main` after `--lint` passes.
+  (Set the repository variable `AUTO_UPDATE_TARGET` to `pull-request` to get
+  a branch `auto-update` and a pull request to review instead.)
+  `.github/workflows/check.yml` runs `--lint` on every push.
+- **The workflow builds nothing**, and the owner chose to merge anyway and
+  fix afterwards. It proves the source can be fetched and hashed and that
+  the modules still read as Scheme, no more. So `main` can hold an update
+  that doesn't compile: when a build fails right after an "update to"
+  commit, fix the package or `git revert` that one commit (each update is
+  its own commit for this reason), then push.
 - Most entries follow release tags; CodeCanvas follows a branch
   (`branch = "main"`), and shows the other manifest keys in use: `versions`
   (version strings read from the source's own files), `npm-lock` and
