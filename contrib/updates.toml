@@ -158,6 +158,17 @@ pin = '\(define %ask-commit "(?P<commit>[0-9a-f]{40})"\).*?\(base32 "(?P<hash>[0
 url = "https://github.com/Lightningbulb2/AskBash"
 branch = "main"
 
+# guix bump, guix nightly and Guix Manager (the owner's): one repository, one
+# pin, two packages (guix-bump, guix-manager).  It follows the main branch.
+# The version is %guix-manager-version, kept by hand.
+[group.guix-manager]
+file = "hyperguix/packages/guix-bump.scm"
+pin = '\(define %guix-manager-commit "(?P<commit>[0-9a-f]{40})"\).*?\(base32 "(?P<hash>[0-9a-z]{52})"'
+
+[group.guix-manager.packages.guix-manager]
+url = "https://github.com/Lightningbulb2/GuixManager"
+branch = "main"
+
 # ---------------------------------------------------------------------------
 # Packages with more to them than a commit and a hash.
 

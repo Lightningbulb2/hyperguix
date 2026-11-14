@@ -1,19 +1,19 @@
-;;; hyperguix --- `guix bump' and `guix nightly'
+;;; hyperguix --- `guix bump', `guix nightly' and Guix Manager
 ;;;
-;;; Two Guix extensions (commands that Guix finds under
-;;; share/guix/extensions of any installed profile):
+;;; https://github.com/Lightningbulb2/GuixManager, at the head of its main
+;;; branch: two Guix extensions (commands that Guix finds under
+;;; share/guix/extensions of any installed profile) and a window on them.
 ;;;
-;;;   guix bump [CHANNEL...|all] [--home] [--system] [--undo] ...
-;;;       move the (commit "...") pins in the config file to the latest
-;;;       commit of each channel, pull, and optionally apply
-;;;   guix nightly
-;;;       guix bump all --system --home --yes --gc --log --shutdown
-;;;
-;;; The config file is $GUIX_BUMP_CONFIG, or ~/config.scm.
+;;;   guix bump ...     move the (commit "...") pins in the config file,
+;;;                     pull, apply; check for, install and remove apps
+;;;   guix nightly      guix bump all --system --home --yes --gc --log
+;;;                     --shutdown
+;;;   guix-manager      the window "Guix Manager"
 
 (define-module (hyperguix packages guix-bump)
   #:use-module (guix packages)
   #:use-module (guix gexp)
+  #:use-module (guix git-download)
   #:use-module (guix build-system copy)
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (gnu packages bash)
@@ -23,27 +23,42 @@
   #:use-module (gnu packages python)
   #:use-module (gnu packages version-control))
 
+(define %guix-manager-commit "db37587331bb0908e9d79728570a9a5b07ae24f7")
+(define %guix-manager-version "2.0")
+
+(define %guix-manager-source
+  (origin
+    (method git-fetch)
+    (uri (git-reference
+          (url "https://github.com/Lightningbulb2/GuixManager")
+          (commit %guix-manager-commit)))
+    (file-name (git-file-name "guix-manager" %guix-manager-version))
+    (sha256
+     (base32 "0fmdvd7ka16xxmnd6fkvv7ghz76kbgcisdgqwh6g2jhmppnvispi"))))
+
 (define-public guix-bump
   (package
     (name "guix-bump")
-    (version "1.5")
-    (source (local-file "aux-files/guix-bump" "guix-bump-source"
-                        #:recursive? #t))
+    (version %guix-manager-version)
+    (source %guix-manager-source)
     (build-system copy-build-system)
     (arguments
      (list
       #:install-plan
-      ;; ".in": `guix pull' compiles every .scm file of a channel.
-      #~'(("bump.scm.in" "share/guix/extensions/guix/extensions/bump.scm")
-          ("nightly.scm.in"
-           "share/guix/extensions/guix/extensions/nightly.scm"))
+      #~'(("extensions" "share/guix/extensions")
+          ("README.md" "share/doc/guix-bump/")
+          ("ARCHITECTURE.md" "share/doc/guix-bump/"))
       #:phases
       #~(modify-phases %standard-phases
-          (add-after 'unpack 'set-git
+          (add-after 'unpack 'refer-to-programs
             (lambda* (#:key inputs #:allow-other-keys)
-              (substitute* "bump.scm.in"
-                (("@GIT@") (search-input-file inputs "bin/git"))
-                (("@BASH@") (search-input-file inputs "bin/bash"))))))))
+              (let ((file "extensions/guix/extensions/bump.scm"))
+                (substitute* file
+                  (("@GIT@") (search-input-file inputs "bin/git"))
+                  (("@BASH@") (search-input-file inputs "bin/bash")))
+                ;; A pattern that matches nothing is not an error, so check.
+                (unless (zero? (system* "grep" "-q" "/bin/git\"" file))
+                  (error "bump.scm: @GIT@ was not replaced"))))))))
     (inputs (list bash-minimal git-minimal))
     ;; So a profile holding this package exports GUIX_EXTENSIONS_PATH even
     ;; when `guix' itself comes from `guix pull' and isn't in the profile.
@@ -51,53 +66,40 @@
      (list (search-path-specification
             (variable "GUIX_EXTENSIONS_PATH")
             (files '("share/guix/extensions")))))
-    (home-page "https://guix.gnu.org")
-    (synopsis "Move channel pins in a Guix config, pull and apply")
+    (home-page "https://github.com/Lightningbulb2/GuixManager")
+    (synopsis "Update, install and remove apps through a Guix config file")
     (description
      "@command{guix bump} rewrites the pinned channel commits in a Guix
 configuration file to the latest ones, runs @command{guix pull} to them and
-can then reconfigure the home environment or the system.  @command{guix
-nightly} does all of it and powers the computer off.")
+can then reconfigure the home environment or the system.  It also lists the
+installed apps that have a newer version, updates one by name, and installs
+or removes apps by editing a list of package names in the configuration
+file.  @command{guix nightly} updates everything and powers the computer
+off.")
     (license license:gpl3+)))
 
 (define-public guix-manager
   (package
     (name "guix-manager")
-    (version "0.2")
-    (source (local-file "aux-files/guix-bump" "guix-bump-source"
-                        #:recursive? #t))
+    (version %guix-manager-version)
+    (source %guix-manager-source)
     (build-system copy-build-system)
     (arguments
      (list
       #:install-plan
-      #~'(("manager.py.in" "bin/guix-manager"))
+      #~'(("guix-manager" "bin/")
+          ("data/io.github.lightningbulb2.GuixManager.desktop"
+           "share/applications/"))
       #:phases
       #~(modify-phases %standard-phases
-          (add-after 'unpack 'set-python
-            (lambda* (#:key inputs #:allow-other-keys)
-              (substitute* "manager.py.in"
-                (("@PYTHON@") (search-input-file inputs "bin/python3")))))
-          (add-after 'install 'install-desktop-file
+          (add-after 'install 'absolute-exec
             (lambda _
-              (chmod (string-append #$output "/bin/guix-manager") #o755)
-              (let ((dir (string-append #$output "/share/applications")))
-                (mkdir-p dir)
-                (call-with-output-file
-                    (string-append
-                     dir "/io.github.lightningbulb2.GuixManager.desktop")
-                  (lambda (port)
-                    (format port "[Desktop Entry]
-Type=Application
-Name=Guix Manager
-Comment=Update, install and remove apps; every change goes into the config
-Exec=~a/bin/guix-manager
-Icon=system-software-update
-Terminal=false
-Categories=System;Settings;GTK;
-Keywords=update;upgrade;install;remove;uninstall;software;packages;guix;bump;
-StartupNotify=true
-" #$output))))))
-          (add-after 'install-desktop-file 'wrap
+              (substitute* (string-append
+                            #$output "/share/applications/"
+                            "io.github.lightningbulb2.GuixManager.desktop")
+                (("^Exec=guix-manager")
+                 (string-append "Exec=" #$output "/bin/guix-manager")))))
+          (add-after 'patch-shebangs 'wrap
             (lambda _
               (wrap-program (string-append #$output "/bin/guix-manager")
                 `("GI_TYPELIB_PATH" ":" prefix (,(getenv "GI_TYPELIB_PATH")))
@@ -120,7 +122,7 @@ StartupNotify=true
            python
            python-pygobject
            vte))
-    (home-page "https://github.com/Lightningbulb2/hyperguix")
+    (home-page "https://github.com/Lightningbulb2/GuixManager")
     (synopsis "Update, install and remove apps through the Guix config")
     (description
      "Guix Manager shows which installed apps have a newer version and

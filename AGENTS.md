@@ -24,6 +24,8 @@ Related repositories:
   every push there becomes an update (commit, hash, the three version
   strings, the npm tarballs the VS Code build unpacks, and the crates
   module).
+- `Lightningbulb2/GuixManager`: source of `guix-bump` and `guix-manager`
+  (see *`guix bump`, `guix nightly` and Guix Manager* below).
 - `Lightningbulb2/AskBash`: source of `ask` (plain Python, no dependency
   module). The automated updates follow its `main` branch. The package
   wires in `llama-cpp/latest`, `man-db` and `bubblewrap` by `substitute*`
@@ -55,9 +57,9 @@ config is the only description of the machine.
   `guix home reconfigure` and `sudo guix system reconfigure` are theirs to
   run unless they ask.
 - **`.scm` files anywhere in the channel are compiled by `guix pull`.** A
-  Scheme file that is not a channel module (for example the `guix bump`
-  extension sources in `aux-files/guix-bump/`) must not end in `.scm`: use
-  `.scm.in` and rename it at install time.
+  Scheme file that is not a channel module (a script or a template under
+  `aux-files/`) must not end in `.scm`: use `.scm.in` and rename it at
+  install time.
 - **Generated modules are never edited by hand** (list below).
 - `reboot-to-bios.scm` is the owner's own module; don't regenerate it.
 - Keep the README's package table current when adding, removing or bumping
@@ -87,51 +89,26 @@ Support modules:
   unmodified.
 - `aux-files/` holds patches and launcher scripts the packages install.
 
-## `guix bump` and `guix nightly`
+## `guix bump`, `guix nightly` and Guix Manager
 
-Package `guix-bump`; sources `aux-files/guix-bump/bump.scm.in` and
-`nightly.scm.in`, installed as Guix extensions (`share/guix/extensions`).
+Packages `guix-bump` (the two Guix extensions) and `guix-manager` (the
+window), both in `guix-bump.scm`, both from
+`Lightningbulb2/GuixManager` at one pinned commit. The automated updates
+follow its `main` branch. Their code, tests, and the notes on how they work
+(`AGENTS.md`, `ARCHITECTURE.md`) are in that repository, checked out at
+`~/src/GuixManager`; change them there, push, and the pin here follows (or
+move it by hand: commit, hash, and `%guix-manager-version` when the
+version changed).
 
-- It finds every `(channel ...)` form in the config by scanning the text
-  (comments and strings skipped) and rewrites the `(commit "...")` inside.
-  It never evaluates the config.
-- The config file is `$GUIX_BUMP_CONFIG` or `~/config.scm`, resolved through
-  symlinks. If it is in a git repository, each change that was pulled or
-  applied is committed and pushed.
-- `guix bump --check` lists installed packages (home and system profile
-  manifests) whose version differs in the Guix of the latest commits. It
-  reads those versions with `guix time-machine -C` on a temporary copy of
-  the config with the pins moved, so it costs what a pull costs the first
-  time, and changes nothing.
-- `guix bump APP`: a name that is not a channel is a package. Its channel
-  (`package-channels`, preferring any channel other than `guix`) is bumped
-  and pulled, then the home is applied, or the system if that is where the
-  package is installed. `guix` asks first and takes `nonguix` along.
-- After applying, it lists what changed version, which of those are still
-  running from the old store item (`/proc/*/exe` and `cmdline`), and
-  suggests a reboot when `/run/current-system/kernel` differs from
-  `/run/booted-system/kernel`.
-- With `home-with-system-service` in the config (the system applies the
-  home), `--system` covers the home and no separate home reconfigure runs.
-- `--install NAME[@VERSION]` / `--remove NAME` edit one list of names in
-  the config, `(define %managed-packages '(...))` or `(define %apps
-  '(...))` (FineConfig), by text (formatting and comments are kept), then
-  run `guix home reconfigure`; on failure the file is put back. Packages
-  the config names any other way are refused, not edited. `--search` and
-  `--installed` only read.
-- `guix-manager` (source `aux-files/guix-bump/manager.py.in`, Python with
-  GTK 4, libadwaita and VTE) is the window "Guix Manager". It only reads
-  `guix bump --check|--search|--installed --porcelain` (tab-separated
-  `channel` / `package` / `result` / `installed` lines, then `done`, on
-  standard output) and runs `guix bump ...` commands in its terminal pane;
-  keep all logic in `bump.scm.in`. Don't launch it from a shell with
-  `LD_LIBRARY_PATH` set (a session started by another app): a second GLib
-  breaks PyGObject.
-- State is in `~/.local/state/guix-bump`: `previous-pins.scm` (for `--undo`)
-  and the logs written by `--log`.
-- To try a change without installing it: build the package, then run with
-  `GUIX_EXTENSIONS_PATH=$(guix build -L . guix-bump)/share/guix/extensions`
-  and `GUIX_BUMP_CONFIG` pointing at a scratch copy of the config.
+- The package replaces `@GIT@` and `@BASH@` in `bump.scm` and checks that it
+  did; `guix-manager` is wrapped with its typelibs and with
+  `GUIX_EXTENSIONS_PATH` pointing at `guix-bump`.
+- The owner's config uses `home-with-system-service` (defined in the
+  config): a system reconfigure applies the home too, and `guix bump
+  --system` therefore covers the home.
+- To try a change without installing it:
+  `GUIX_EXTENSIONS_PATH=~/src/GuixManager/extensions guix bump ...`, with
+  `GUIX_BUMP_CONFIG` pointing at a scratch copy of the config.
 
 ## Automated updates (GitHub Actions)
 
@@ -145,7 +122,8 @@ Package `guix-bump`; sources `aux-files/guix-bump/bump.scm.in` and
     scrcpy, scrcpy-gui, FAForever, r2modman): newest tag; version, commit,
     hash; dependency modules regenerated (crates, npm, pnpm); scrcpy's
     prebuilt server re-hashed.
-  - **A branch** (CodeCanvas `main`, AskBash `main`, Ladybird `master`):
+  - **A branch** (CodeCanvas `main`, AskBash `main`, GuixManager `main`,
+    Ladybird `master`):
     every new head.
   - **A whole release** (COSMIC, `atomic`): all components move to the same
     `epoch-X.Y.Z` tag in one commit, once every component has the tag.
