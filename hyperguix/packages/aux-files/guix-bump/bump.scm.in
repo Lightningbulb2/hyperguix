@@ -63,10 +63,15 @@
 ;; File that everything shown is also appended to, or #f.
 (define %log #f)
 
+;; With --porcelain, what is meant for people goes to standard error and
+;; standard output carries only tab-separated lines for a program.
+(define %porcelain? #f)
+
 (define (emit fmt . args)
-  (let ((text (apply format #f fmt args)))
-    (display text)
-    (force-output)
+  (let ((text (apply format #f fmt args))
+        (port (if %porcelain? (current-error-port) (current-output-port))))
+    (display text port)
+    (force-output port)
     (when %log
       (let ((port (open-file %log "a")))
         (display text port)
@@ -613,6 +618,25 @@ pulled is shown.~%")
                 (else #f)))))
      installed))
 
+  (when %porcelain?
+    ;; channel NAME PINNED LATEST
+    ;; package NAME INSTALLED NEWEST CHANNEL home|system pulled|new
+    (for-each (match-lambda
+                ((name . latest)
+                 (format #t "channel\t~a\t~a\t~a~%" name
+                         (match (assq name channels)
+                           ((_ _ _ _ commit) (or commit "-")))
+                         latest)))
+              moved)
+    (for-each (match-lambda
+                ((name old new channel where pulled?)
+                 (format #t "package\t~a\t~a\t~a\t~a\t~a\t~a~%"
+                         name old new channel where
+                         (if pulled? "pulled" "new"))))
+              rows)
+    (format #t "done~%")
+    (force-output))
+
   (cond ((null? rows)
          (emit "~%Every installed package is at its newest version.~%"))
         (else
@@ -688,6 +712,8 @@ show each channel's pinned, running and latest commit.
 
       --check      change nothing; show which installed packages would get
                    a newer version (of the named channels, or of all)
+      --porcelain  with --check: tab-separated lines on standard output, for
+                   programs (the `Updates' app)
   -H, --home       then apply the home environment (guix home reconfigure)
   -S, --system     then apply the system (sudo guix system reconfigure);
                    this includes the home when the config's system applies
@@ -743,6 +769,7 @@ the kernel or a driver changed.
     (exit 0))
 
   (define check?    (flag? "--check"))
+  (set! %porcelain? (flag? "--porcelain"))
   (define shutdown? (flag? "--shutdown"))
   (define dry-run?  (flag? "-n" "--dry-run"))
   (define undo?     (flag? "--undo"))
@@ -755,7 +782,7 @@ the kernel or a driver changed.
   (for-each (lambda (arg)
               (unless (member arg '("-H" "--home" "-S" "--system" "--shutdown"
                                     "-n" "--dry-run" "--undo" "-y" "--yes"
-                                    "--gc" "--log" "--check"))
+                                    "--gc" "--log" "--check" "--porcelain"))
                 (die "~a: unknown option (see guix bump --help)" arg)))
             (filter (lambda (arg) (string-prefix? "-" arg)) own-args))
 

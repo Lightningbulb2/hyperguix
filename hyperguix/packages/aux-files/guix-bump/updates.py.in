@@ -1,0 +1,388 @@
+#!@PYTHON@
+"""Updates: a window on `guix bump'.
+
+It lists the installed apps that have a newer version (`guix bump --check
+--porcelain') and updates them by running the same commands a person would
+type (`guix bump APP', `guix bump all --home', ...) in a terminal pane, so
+password and yes/no questions are answered there.  It keeps no state and
+decides nothing itself: the command line and this window can't disagree.
+"""
+
+import os
+import sys
+
+import gi
+
+gi.require_version("Gtk", "4.0")
+gi.require_version("Adw", "1")
+gi.require_version("Vte", "3.91")
+from gi.repository import Adw, Gio, GLib, Gtk, Pango, Vte  # noqa: E402
+
+APP_ID = "io.github.lightningbulb2.Updates"
+
+
+def guix():
+    """The `guix' to run: the one `guix pull' maintains, else the PATH's."""
+    pulled = os.path.expanduser("~/.config/guix/current/bin/guix")
+    if os.path.exists(pulled):
+        return pulled
+    return "guix"
+
+
+def short(commit):
+    return commit[:10]
+
+
+class Window(Adw.ApplicationWindow):
+    def __init__(self, app):
+        super().__init__(application=app, title="Updates")
+        self.set_default_size(720, 640)
+        self.busy = False          # a check or an update is running
+        self.packages = []         # rows of the last check
+        self.channels = []
+        self.after_run = None
+
+        # Header: check again, update everything, more.
+        self.check_button = Gtk.Button(icon_name="view-refresh-symbolic",
+                                       tooltip_text="Look for updates")
+        self.check_button.connect("clicked", lambda *_: self.check())
+        self.all_button = Gtk.Button(label="Update all")
+        self.all_button.add_css_class("suggested-action")
+        self.all_button.connect("clicked", lambda *_: self.update_all())
+
+        menu = Gio.Menu()
+        menu.append("Update everything, then power off", "win.nightly")
+        menu.append("Undo the last update", "win.undo")
+        menu.append("Show details", "win.details")
+        for name, callback in (("nightly", self.nightly),
+                               ("undo", self.undo),
+                               ("details", self.toggle_details)):
+            action = Gio.SimpleAction.new(name, None)
+            action.connect("activate", lambda _a, _p, f=callback: f())
+            self.add_action(action)
+        menu_button = Gtk.MenuButton(icon_name="open-menu-symbolic",
+                                     menu_model=menu)
+
+        header = Adw.HeaderBar()
+        header.pack_start(self.check_button)
+        header.pack_end(menu_button)
+        header.pack_end(self.all_button)
+
+        # The page: a status line, the apps, the sources.
+        self.status = Adw.StatusPage()
+        self.status.set_vexpand(True)
+        self.spinner = Gtk.Spinner(halign=Gtk.Align.CENTER)
+        self.spinner.set_size_request(32, 32)
+
+        self.apps_group = Adw.PreferencesGroup(title="Apps")
+        self.sources_group = Adw.PreferencesGroup(
+            title="Sources",
+            description="Where packages come from.  A source can have newer "
+                        "commits without any of your apps changing version.")
+        self.group_rows = {self.apps_group: [], self.sources_group: []}
+        page = Adw.PreferencesPage()
+        page.add(self.apps_group)
+        page.add(self.sources_group)
+        self.page = page
+
+        self.stack = Gtk.Stack(vexpand=True)
+        self.stack.add_named(self.status, "status")
+        self.stack.add_named(page, "list")
+
+        # The terminal pane the commands run in.
+        self.terminal = Vte.Terminal()
+        self.terminal.set_size_request(-1, 220)
+        self.terminal.set_scrollback_lines(20000)
+        self.terminal.set_font(Pango.FontDescription("monospace 10"))
+        self.terminal.connect("child-exited", self.on_child_exited)
+        self.hint = Gtk.Label(xalign=0, margin_start=12, margin_top=6,
+                              margin_bottom=6)
+        self.hint.add_css_class("dim-label")
+        pane = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        pane.append(Gtk.Separator())
+        pane.append(self.hint)
+        pane.append(Gtk.ScrolledWindow(child=self.terminal,
+                                       min_content_height=220))
+        self.revealer = Gtk.Revealer(child=pane)
+
+        self.toasts = Adw.ToastOverlay(child=self.stack)
+        body = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        body.append(self.toasts)
+        body.append(self.revealer)
+
+        view = Adw.ToolbarView(content=body)
+        view.add_top_bar(header)
+        self.set_content(view)
+
+        self.check()
+
+    # -- small helpers ---------------------------------------------------
+
+    def toast(self, text):
+        self.toasts.add_toast(Adw.Toast(title=text))
+
+    def set_busy(self, busy):
+        self.busy = busy
+        self.check_button.set_sensitive(not busy)
+        self.refresh_buttons()
+
+    def refresh_buttons(self):
+        self.all_button.set_sensitive(
+            not self.busy and bool(self.packages or self.channels))
+        for rows in self.group_rows.values():
+            for row in rows:
+                row.button.set_sensitive(not self.busy)
+
+    def show_status(self, icon, title, description="", working=False):
+        self.status.set_icon_name(None if working else icon)
+        self.status.set_child(self.spinner if working else None)
+        if working:
+            self.spinner.start()
+        else:
+            self.spinner.stop()
+        self.status.set_title(title)
+        self.status.set_description(description)
+        self.stack.set_visible_child_name("status")
+
+    def toggle_details(self):
+        self.revealer.set_reveal_child(not self.revealer.get_reveal_child())
+
+    def say(self, text):
+        """Write a line of our own into the terminal pane."""
+        self.terminal.feed(("\r\n\x1b[1m" + text + "\x1b[0m\r\n").encode())
+
+    # -- looking for updates ---------------------------------------------
+
+    def check(self):
+        if self.busy:
+            return
+        self.set_busy(True)
+        self.show_status(
+            None, "Looking for updates",
+            "The first look after new commits prepares the newer Guix, "
+            "which can take several minutes.  Later ones take seconds.",
+            working=True)
+        self.hint.set_text("Looking for updates")
+        self.say("$ guix bump --check")
+        try:
+            process = Gio.Subprocess.new(
+                [guix(), "bump", "--check", "--porcelain"],
+                Gio.SubprocessFlags.STDOUT_PIPE
+                | Gio.SubprocessFlags.STDERR_PIPE)
+        except GLib.Error as error:
+            self.check_failed(error.message)
+            return
+        # Progress, live, in the terminal pane.
+        errors = Gio.DataInputStream.new(process.get_stderr_pipe())
+        self.read_progress(errors)
+        output = Gio.DataInputStream.new(process.get_stdout_pipe())
+        self.read_result(process, output, [])
+
+    def read_progress(self, stream):
+        def on_line(source, result):
+            try:
+                line, _ = source.read_line_finish_utf8(result)
+            except GLib.Error:
+                return
+            if line is None:
+                return
+            self.terminal.feed((line + "\r\n").encode())
+            self.read_progress(stream)
+        stream.read_line_async(GLib.PRIORITY_DEFAULT, None, on_line)
+
+    def read_result(self, process, stream, lines):
+        def on_line(source, result):
+            try:
+                line, _ = source.read_line_finish_utf8(result)
+            except GLib.Error:
+                line = None
+            if line is None:
+                process.wait_async(
+                    None, lambda p, r: self.check_done(p, r, lines))
+                return
+            lines.append(line)
+            self.read_result(process, stream, lines)
+        stream.read_line_async(GLib.PRIORITY_DEFAULT, None, on_line)
+
+    def check_failed(self, why):
+        self.set_busy(False)
+        self.show_status("dialog-warning-symbolic",
+                         "Could not look for updates", why)
+        self.revealer.set_reveal_child(True)
+
+    def check_done(self, process, result, lines):
+        try:
+            process.wait_finish(result)
+        except GLib.Error as error:
+            self.check_failed(error.message)
+            return
+        if not process.get_successful() or "done" not in lines:
+            self.check_failed(
+                "`guix bump --check' failed; the details are below.  "
+                "Is the package guix-bump (1.4 or newer) installed?")
+            return
+        self.packages, self.channels = [], []
+        for line in lines:
+            fields = line.split("\t")
+            if fields[0] == "package" and len(fields) == 7:
+                self.packages.append(dict(
+                    name=fields[1], installed=fields[2], newest=fields[3],
+                    channel=fields[4], where=fields[5],
+                    pulled=fields[6] == "pulled"))
+            elif fields[0] == "channel" and len(fields) == 4:
+                self.channels.append(dict(
+                    name=fields[1], pinned=fields[2], latest=fields[3]))
+        self.set_busy(False)
+        self.fill()
+
+    # -- the list --------------------------------------------------------
+
+    def add_row(self, group, title, subtitle, label, callback):
+        row = Adw.ActionRow(title=GLib.markup_escape_text(title),
+                            subtitle=GLib.markup_escape_text(subtitle))
+        row.button = Gtk.Button(label=label, valign=Gtk.Align.CENTER)
+        row.button.connect("clicked", lambda *_: callback())
+        row.add_suffix(row.button)
+        group.add(row)
+        self.group_rows[group].append(row)
+
+    def fill(self):
+        for group, rows in self.group_rows.items():
+            for row in rows:
+                group.remove(row)
+            rows.clear()
+
+        if not self.packages and not self.channels:
+            self.show_status("emblem-ok-symbolic", "Everything is up to date",
+                             "Every installed app is at its newest version.")
+            self.refresh_buttons()
+            return
+
+        for package in self.packages:
+            notes = [f"{package['installed']} → {package['newest']}",
+                     f"from {package['channel']}"]
+            if package["where"] == "system":
+                notes.append("part of the system: asks for your password")
+            if package["channel"] == "guix":
+                notes.append("updates everything from Guix")
+            self.add_row(self.apps_group, package["name"], "  ·  ".join(notes),
+                         "Update", lambda p=package: self.update_app(p))
+        self.apps_group.set_visible(bool(self.packages))
+        self.apps_group.set_description(
+            "" if self.packages else "No app has a newer version.")
+
+        for channel in self.channels:
+            self.add_row(
+                self.sources_group, channel["name"],
+                f"{short(channel['pinned'])} → {short(channel['latest'])}",
+                "Update", lambda c=channel: self.update_channel(c))
+        self.sources_group.set_visible(bool(self.channels))
+
+        self.stack.set_visible_child_name("list")
+        self.refresh_buttons()
+
+    # -- updating --------------------------------------------------------
+
+    def run(self, arguments, hint, after=None):
+        """Run `guix ARGUMENTS' in the terminal pane."""
+        if self.busy:
+            return
+        self.set_busy(True)
+        self.after_run = after
+        self.hint.set_text(hint + "  If it asks something, click below and "
+                           "type the answer.")
+        self.revealer.set_reveal_child(True)
+        argv = [guix()] + arguments
+        self.say("$ guix " + " ".join(arguments))
+        self.terminal.spawn_async(
+            Vte.PtyFlags.DEFAULT, os.path.expanduser("~"), argv, None,
+            GLib.SpawnFlags.DEFAULT, None, None, -1, None, None)
+        self.terminal.grab_focus()
+
+    def on_child_exited(self, _terminal, status):
+        ok = os.waitstatus_to_exitcode(status) == 0
+        self.set_busy(False)
+        if self.after_run:
+            after, self.after_run = self.after_run, None
+            after(ok)
+            return
+        if ok:
+            self.toast("Done")
+            self.hint.set_text("Done.  Apps that were open keep their old "
+                               "version until you close and reopen them.")
+            self.check()
+        else:
+            self.toast("That did not work; see the details below")
+            self.hint.set_text("That did not work.  Nothing was switched; "
+                               "the reason is in the text below.")
+
+    def confirm(self, heading, body, label, callback):
+        dialog = Adw.AlertDialog(heading=heading, body=body)
+        dialog.add_response("cancel", "Cancel")
+        dialog.add_response("go", label)
+        dialog.set_response_appearance("go", Adw.ResponseAppearance.SUGGESTED)
+        dialog.set_default_response("cancel")
+        dialog.set_close_response("cancel")
+        dialog.connect("response",
+                       lambda _d, response: response == "go" and callback())
+        dialog.present(self)
+
+    def update_app(self, package):
+        name = package["name"]
+        if package["channel"] == "guix" and not package["pulled"]:
+            # `guix bump' would ask this in the terminal; ask it here.
+            self.confirm(
+                "Update everything from Guix?",
+                f"{name} comes from Guix itself.  Updating it updates every "
+                "package Guix provides, which can mean a lot to download or "
+                "compile.",
+                "Update everything",
+                lambda: self.run(["bump", name, "--yes"],
+                                 f"Updating {name} and the rest of Guix."))
+        else:
+            self.run(["bump", name], f"Updating {name}.")
+
+    def update_channel(self, channel):
+        self.run(["bump", channel["name"], "--home"],
+                 f"Updating everything from {channel['name']}.")
+
+    def apply_flags(self):
+        if any(package["where"] == "system" for package in self.packages):
+            return ["--system", "--home"]
+        return ["--home"]
+
+    def update_all(self):
+        self.run(["bump", "all"] + self.apply_flags(), "Updating everything.")
+
+    def nightly(self):
+        self.confirm(
+            "Update everything, then power off?",
+            "Updates every source, applies the system and your apps, cleans "
+            "up old versions and turns the computer off when it has "
+            "finished.  It asks for your password once, now.",
+            "Update and power off",
+            lambda: self.run(["nightly"],
+                             "Updating everything; the computer powers off "
+                             "at the end."))
+
+    def undo(self):
+        self.confirm(
+            "Undo the last update?",
+            "Puts every source back to what it was before the last update "
+            "and applies that to your apps.",
+            "Undo",
+            lambda: self.run(["bump", "--undo", "--home"],
+                             "Going back to before the last update."))
+
+
+class Application(Adw.Application):
+    def __init__(self):
+        super().__init__(application_id=APP_ID)
+
+    def do_activate(self):
+        window = self.props.active_window or Window(self)
+        window.present()
+
+
+if __name__ == "__main__":
+    sys.exit(Application().run(sys.argv))

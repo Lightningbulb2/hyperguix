@@ -108,6 +108,13 @@ Package `guix-bump`; sources `aux-files/guix-bump/bump.scm.in` and
   `/run/booted-system/kernel`.
 - With `home-with-system-service` in the config (the system applies the
   home), `--system` covers the home and no separate home reconfigure runs.
+- `guix-updates` (source `aux-files/guix-bump/updates.py.in`, Python with
+  GTK 4, libadwaita and VTE) is the window "Updates". It only reads `guix
+  bump --check --porcelain` (tab-separated `channel` / `package` lines,
+  then `done`, on standard output) and runs `guix bump ...` commands in its
+  terminal pane; keep all logic in `bump.scm.in`. Don't launch it from a
+  shell with `LD_LIBRARY_PATH` set (a session started by another app): a
+  second GLib breaks PyGObject.
 - State is in `~/.local/state/guix-bump`: `previous-pins.scm` (for `--undo`)
   and the logs written by `--log`.
 - To try a change without installing it: build the package, then run with
