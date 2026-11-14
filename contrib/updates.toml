@@ -149,6 +149,15 @@ lock = "rust/Cargo.lock"
 package = "codecanvas"
 lock = "zed/bridge/Cargo.lock"
 
+# ask (the owner's): plain Python, no lockfile.  It follows the main branch.
+[group.ask]
+file = "hyperguix/packages/ask.scm"
+pin = '\(define %ask-commit "(?P<commit>[0-9a-f]{40})"\).*?\(base32 "(?P<hash>[0-9a-z]{52})"'
+
+[group.ask.packages.ask]
+url = "https://github.com/Lightningbulb2/AskBash"
+branch = "main"
+
 # ---------------------------------------------------------------------------
 # Packages with more to them than a commit and a hash.
 

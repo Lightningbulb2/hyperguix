@@ -24,6 +24,11 @@ Related repositories:
   every push there becomes an update (commit, hash, the three version
   strings, the npm tarballs the VS Code build unpacks, and the crates
   module).
+- `Lightningbulb2/AskBash`: source of `ask` (plain Python, no dependency
+  module). The automated updates follow its `main` branch. The package
+  wires in `llama-cpp/latest`, `man-db` and `bubblewrap` by `substitute*`
+  on `ask/config.py` and `ask/sources.py`, and a phase checks that each
+  substitution took. The models and the index are per user, not packaged.
 
 ## Workflow
 
@@ -133,7 +138,8 @@ Package `guix-bump`; sources `aux-files/guix-bump/bump.scm.in` and
     scrcpy, scrcpy-gui, FAForever, r2modman): newest tag; version, commit,
     hash; dependency modules regenerated (crates, npm, pnpm); scrcpy's
     prebuilt server re-hashed.
-  - **A branch** (CodeCanvas `main`, Ladybird `master`): every new head.
+  - **A branch** (CodeCanvas `main`, AskBash `main`, Ladybird `master`):
+    every new head.
   - **A whole release** (COSMIC, `atomic`): all components move to the same
     `epoch-X.Y.Z` tag in one commit, once every component has the tag.
 - **Guards**, each of which turns the update into a failure instead of a
