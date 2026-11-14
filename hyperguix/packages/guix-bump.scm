@@ -22,7 +22,7 @@
 (define-public guix-bump
   (package
     (name "guix-bump")
-    (version "1.1")
+    (version "1.2")
     (source (local-file "aux-files/guix-bump" "guix-bump-source"
                         #:recursive? #t))
     (build-system copy-build-system)

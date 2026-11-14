@@ -431,7 +431,9 @@ channel's branch, then `guix pull' to them.  With no CHANNEL and no action,
 show each channel's pinned, running and latest commit.
 
   -H, --home       then apply the home environment (guix home reconfigure)
-  -S, --system     then apply the system (sudo guix system reconfigure)
+  -S, --system     then apply the system (sudo guix system reconfigure);
+                   this includes the home when the config's system applies
+                   it (home-with-system-service)
       --undo       put the pins back as they were before the last change,
                    and pull; add -H / -S to apply that too
   -y, --yes        don't ask before compiling slow packages from source
@@ -502,6 +504,15 @@ Environment: GUIX_BUMP_KEEP (1m), GUIX_BUMP_FREE (100G), GUIX_BUMP_HEAVY
     (die "~a: no such file (set GUIX_BUMP_CONFIG)" file))
 
   (define original (call-with-input-file file get-string-all))
+  ;; Does the system in the config apply the home itself?  (A use of
+  ;; `home-with-system-service' at the start of a line, so not a comment.)
+  ;; Then --system covers the home, and reconfiguring the home as well
+  ;; would only add a second, identical generation.
+  (define home-in-system?
+    (->bool (string-match "(^|\n)[ \t]*\\(home-with-system-service[ \t\n]"
+                          original)))
+  (define home-alone?
+    (and home? (not (and system? home-in-system?))))
   (define channels (read-channels original))
   (when (null? channels)
     (die "~a: found no (channel ...) forms" file))
@@ -592,6 +603,13 @@ Environment: GUIX_BUMP_KEEP (1m), GUIX_BUMP_FREE (100G), GUIX_BUMP_HEAVY
         (emit "The pins are already what they were before the last change.~%"))
 
       (when dry-run?
+        (when (or home? system?)
+          (emit "Would apply: ~a.~%"
+                (cond ((and system? home-in-system?)
+                       "the system, which applies the home too")
+                      ((and system? home?) "the system, then the home")
+                      (system? "the system")
+                      (else "the home"))))
         (finish 0))
 
       (define earlier-pins
@@ -638,7 +656,7 @@ Environment: GUIX_BUMP_KEEP (1m), GUIX_BUMP_FREE (100G), GUIX_BUMP_HEAVY
       (when (and need-pull? (or home? system?))
         (unless (confirm-builds guix
                                 (append (if system? '("system") '())
-                                        (if home? '("home") '()))
+                                        (if home-alone? '("home") '()))
                                 file build-options yes?)
           (emit "~%Stopped: the new pins are pulled but nothing was applied.
 `guix bump --undo' puts the old pins back; `guix bump~a~a' applies later.~%"
@@ -655,7 +673,9 @@ Environment: GUIX_BUMP_KEEP (1m), GUIX_BUMP_FREE (100G), GUIX_BUMP_HEAVY
                 (if home? " --system --home" " --system"))
           (finish 1)))
 
-      (when home?
+      (when (and home? (not home-alone?))
+        (say "The home environment was applied with the system"))
+      (when home-alone?
         (say "Reconfiguring the home environment")
         (unless (apply run guix "home" "reconfigure" file build-options)
           (emit "~%guix bump: home reconfigure failed; nothing was switched.
