@@ -26,7 +26,7 @@
 (define-public guix-bump
   (package
     (name "guix-bump")
-    (version "1.4")
+    (version "1.5")
     (source (local-file "aux-files/guix-bump" "guix-bump-source"
                         #:recursive? #t))
     (build-system copy-build-system)
@@ -60,46 +60,46 @@ can then reconfigure the home environment or the system.  @command{guix
 nightly} does all of it and powers the computer off.")
     (license license:gpl3+)))
 
-(define-public guix-updates
+(define-public guix-manager
   (package
-    (name "guix-updates")
-    (version "0.1")
+    (name "guix-manager")
+    (version "0.2")
     (source (local-file "aux-files/guix-bump" "guix-bump-source"
                         #:recursive? #t))
     (build-system copy-build-system)
     (arguments
      (list
       #:install-plan
-      #~'(("updates.py.in" "bin/guix-updates"))
+      #~'(("manager.py.in" "bin/guix-manager"))
       #:phases
       #~(modify-phases %standard-phases
           (add-after 'unpack 'set-python
             (lambda* (#:key inputs #:allow-other-keys)
-              (substitute* "updates.py.in"
+              (substitute* "manager.py.in"
                 (("@PYTHON@") (search-input-file inputs "bin/python3")))))
           (add-after 'install 'install-desktop-file
             (lambda _
-              (chmod (string-append #$output "/bin/guix-updates") #o755)
+              (chmod (string-append #$output "/bin/guix-manager") #o755)
               (let ((dir (string-append #$output "/share/applications")))
                 (mkdir-p dir)
                 (call-with-output-file
                     (string-append
-                     dir "/io.github.lightningbulb2.Updates.desktop")
+                     dir "/io.github.lightningbulb2.GuixManager.desktop")
                   (lambda (port)
                     (format port "[Desktop Entry]
 Type=Application
-Name=Updates
-Comment=See which apps have a newer version and update them
-Exec=~a/bin/guix-updates
+Name=Guix Manager
+Comment=Update, install and remove apps; every change goes into the config
+Exec=~a/bin/guix-manager
 Icon=system-software-update
 Terminal=false
 Categories=System;Settings;GTK;
-Keywords=update;upgrade;guix;bump;
+Keywords=update;upgrade;install;remove;uninstall;software;packages;guix;bump;
 StartupNotify=true
 " #$output))))))
           (add-after 'install-desktop-file 'wrap
             (lambda _
-              (wrap-program (string-append #$output "/bin/guix-updates")
+              (wrap-program (string-append #$output "/bin/guix-manager")
                 `("GI_TYPELIB_PATH" ":" prefix (,(getenv "GI_TYPELIB_PATH")))
                 `("GUIX_PYTHONPATH" ":" prefix (,(getenv "GUIX_PYTHONPATH")))
                 ;; The commands it runs, whatever the profile exports.
@@ -121,10 +121,12 @@ StartupNotify=true
            python-pygobject
            vte))
     (home-page "https://github.com/Lightningbulb2/hyperguix")
-    (synopsis "Window that lists app updates and applies them with guix bump")
+    (synopsis "Update, install and remove apps through the Guix config")
     (description
-     "Updates shows which installed apps have a newer version and updates
-one or all of them.  It is a front end to @command{guix bump}: every button
-runs a @command{guix bump} command in a terminal pane of the window, so the
-configuration file stays the only description of the machine.")
+     "Guix Manager shows which installed apps have a newer version and
+updates them, searches for packages and installs them, and removes apps or
+chooses their version.  It is a front end to @command{guix bump}: every
+button runs a @command{guix bump} command in a terminal pane of the window,
+and every change is written into the configuration file, which stays the
+only description of the machine.")
     (license license:gpl3+)))
