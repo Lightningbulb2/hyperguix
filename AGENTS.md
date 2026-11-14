@@ -93,6 +93,21 @@ Package `guix-bump`; sources `aux-files/guix-bump/bump.scm.in` and
 - The config file is `$GUIX_BUMP_CONFIG` or `~/config.scm`, resolved through
   symlinks. If it is in a git repository, each change that was pulled or
   applied is committed and pushed.
+- `guix bump --check` lists installed packages (home and system profile
+  manifests) whose version differs in the Guix of the latest commits. It
+  reads those versions with `guix time-machine -C` on a temporary copy of
+  the config with the pins moved, so it costs what a pull costs the first
+  time, and changes nothing.
+- `guix bump APP`: a name that is not a channel is a package. Its channel
+  (`package-channels`, preferring any channel other than `guix`) is bumped
+  and pulled, then the home is applied, or the system if that is where the
+  package is installed. `guix` asks first and takes `nonguix` along.
+- After applying, it lists what changed version, which of those are still
+  running from the old store item (`/proc/*/exe` and `cmdline`), and
+  suggests a reboot when `/run/current-system/kernel` differs from
+  `/run/booted-system/kernel`.
+- With `home-with-system-service` in the config (the system applies the
+  home), `--system` covers the home and no separate home reconfigure runs.
 - State is in `~/.local/state/guix-bump`: `previous-pins.scm` (for `--undo`)
   and the logs written by `--log`.
 - To try a change without installing it: build the package, then run with

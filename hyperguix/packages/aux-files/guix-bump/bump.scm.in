@@ -17,6 +17,10 @@
   #:use-module (guix scripts)
   #:use-module (guix describe)
   #:use-module (guix channels)
+  #:use-module (guix packages)
+  #:use-module (guix profiles)
+  #:use-module (gnu packages)
+  #:use-module (ice-9 ftw)
   #:use-module ((guix build utils) #:select (mkdir-p))
   #:use-module (ice-9 format)
   #:use-module (ice-9 match)
@@ -376,14 +380,261 @@ The build farms usually catch up within a day or two.~%")
                   (emit "Continuing anyway (--yes).~%")
                   #t)
                  (else
-                  (display "Continue anyway? [y/N] ")
-                  (force-output)
-                  (let ((answer (read-line)))
-                    (and (string? answer)
-                         (member (string-downcase (string-trim-both answer))
-                                 '("y" "yes"))
-                         #t))))))))
+                  (ask "Continue anyway?")))))))
 
+(define (ask question)
+  ;; Ask a yes/no QUESTION; anything but yes is no.
+  (display (string-append question " [y/N] "))
+  (force-output)
+  (let ((answer (read-line)))
+    (and (string? answer)
+         (member (string-downcase (string-trim-both answer)) '("y" "yes"))
+         #t)))
+
+
+;;;
+;;; Installed and available packages.
+;;;
+
+(define (home-profile)
+  (string-append (getenv "HOME") "/.guix-home/profile"))
+
+(define %system-profile "/run/current-system/profile")
+
+(define (installed-in profile)
+  ;; Return ((NAME VERSION ITEM) ...) for the packages of PROFILE.
+  (or (false-if-exception
+       (map (lambda (entry)
+              (list (manifest-entry-name entry)
+                    (manifest-entry-version entry)
+                    (manifest-entry-item entry)))
+            (manifest-entries (profile-manifest profile))))
+      '()))
+
+(define (available name)
+  ;; Return (VERSION . CHANNEL) for the package called NAME in the Guix
+  ;; running this command, or #f.  `package-channels' lists `guix' for every
+  ;; package, so any other channel it names is the one the package is from.
+  (match (false-if-exception (find-best-packages-by-name name #f))
+    ((p . _)
+     (let ((channels (or (false-if-exception
+                          (map channel-name (package-channels p)))
+                         '())))
+       (cons (package-version p)
+             (or (find (lambda (channel) (not (eq? channel 'guix))) channels)
+                 'guix))))
+    (_ #f)))
+
+(define (processes-using item)
+  ;; Return the names of the running programs started from the store
+  ;; directory ITEM (those of other users can't be seen).
+  (let ((prefix (string-append item "/")))
+    (delete-duplicates
+     (filter-map
+      (lambda (pid)
+        (and (string-every char-numeric? pid)
+             (let* ((dir (string-append "/proc/" pid))
+                    (exe (false-if-exception
+                          (readlink (string-append dir "/exe"))))
+                    (cmd (false-if-exception
+                          (call-with-input-file
+                              (string-append dir "/cmdline")
+                            get-string-all))))
+               (and exe
+                    (or (string-prefix? prefix exe)
+                        (and (string? cmd) (string-contains cmd prefix)))
+                    (basename exe)))))
+      (or (false-if-exception (scandir "/proc")) '())))))
+
+(define (report-changes before after)
+  ;; BEFORE and AFTER are `installed-in' lists of the same profile: say what
+  ;; changed version, and what is still running from a replaced package.
+  (let* ((changed (filter-map
+                   (match-lambda
+                     ((name version item)
+                      (match (assoc name before)
+                        ((_ old-version old-item)
+                         (and (not (equal? item old-item))
+                              (list name old-version version old-item)))
+                        (_ (list name #f version #f)))))
+                   after))
+         (versions (filter (match-lambda
+                             ((_ old new _) (not (equal? old new))))
+                           changed))
+         (running  (filter-map
+                    (match-lambda
+                      ((name _ _ old-item)
+                       (and (string? old-item)
+                            (pair? (processes-using old-item))
+                            name)))
+                    changed)))
+    (unless (null? versions)
+      (emit "~%Updated:~%")
+      (for-each (match-lambda
+                  ((name old new _)
+                   (emit "  ~24a ~a~%" name
+                         (if old
+                             (format #f "~a -> ~a" old new)
+                             (format #f "~a (new)" new)))))
+                versions))
+    (unless (null? running)
+      (emit "~%Open right now in the old version (close and reopen to get the new one):~%  ~a~%"
+            (string-join running ", ")))))
+
+(define (reboot-needed?)
+  ;; Does the system just applied have another kernel or other kernel
+  ;; modules (drivers) than the one that booted?
+  (let ((booted  (false-if-exception
+                  (canonicalize-path "/run/booted-system/kernel")))
+        (current (false-if-exception
+                  (canonicalize-path "/run/current-system/kernel"))))
+    (and booted current (not (string=? booted current)))))
+
+
+;;;
+;;; Which installed packages have a newer version.
+;;;
+
+;; Run by a Guix (`guix repl'): write ((NAME . VERSION) ...), the packages
+;; of the home and of the system of the config file given first, to the file
+;; given second.  It evaluates the config the way `guix home' and `guix
+;; system' do, so each package is the one the config really names.
+(define %versions-script
+  "(use-modules (guix ui) (guix packages) (gnu home) (gnu system)
+             (ice-9 match) (srfi srfi-1))
+(match (reverse (command-line))
+  ((out config . _)
+   (let ((versions
+          (lambda (kind packages)
+            (set-program-arguments (list \"guix\" kind \"build\" config))
+            (or (false-if-exception
+                 (filter-map
+                  (lambda (item)
+                    (match item
+                      ((? package? p)
+                       (cons (package-name p) (package-version p)))
+                      (((? package? p) . _)
+                       (cons (package-name p) (package-version p)))
+                      (_ #f)))
+                  (packages (load* config '((guix profiles) (gnu))))))
+                '()))))
+     (call-with-output-file out
+       (lambda (port)
+         (write (append (versions \"home\" home-environment-packages)
+                        (versions \"system\" operating-system-packages))
+                port))))))
+")
+
+(define (config-versions guix text moved build-options)
+  ;; Return ((NAME . VERSION) ...) for the packages of the config TEXT, as
+  ;; the pulled Guix has them or, when MOVED is not empty, as the Guix of
+  ;; those pins, ((CHANNEL . COMMIT) ...), has them.  #f on failure.
+  (let* ((dir     (state-directory))
+         (config  (string-append dir "/check-config.scm"))
+         (script  (string-append dir "/check-versions.scm"))
+         (output  (string-append dir "/check-result.scm"))
+         (pinned  (fold (lambda (move text)
+                          (set-pin text (car move) (cdr move)))
+                        text moved))
+         (repl    (list "repl" "--" script config output)))
+    (call-with-output-file config (lambda (port) (put-string port pinned)))
+    (call-with-output-file script
+      (lambda (port) (put-string port %versions-script)))
+    (false-if-exception (delete-file output))
+    (let ((ok? (zero? (if (null? moved)
+                          (apply system* guix repl)
+                          (apply system* guix "time-machine" "-C" config
+                                 "--unsafe-channel-evaluation"
+                                 (append build-options (list "--") repl))))))
+      (for-each (lambda (file) (false-if-exception (delete-file file)))
+                (list config script))
+      (and ok? (file-exists? output)
+           (let ((result (call-with-input-file output read)))
+             (delete-file output)
+             result)))))
+
+(define (check guix text channels build-options)
+  ;; Show which installed packages would change version if CHANNELS moved
+  ;; to their latest commits, and which already can.  Changes nothing.
+  (define installed                     ;((NAME VERSION WHERE) ...)
+    (delete-duplicates
+     (append (map (match-lambda ((name version _) (list name version "home")))
+                  (installed-in (home-profile)))
+             (map (match-lambda ((name version _) (list name version "system")))
+                  (installed-in %system-profile)))
+     (lambda (a b) (string=? (car a) (car b)))))
+
+  (emit "Looking for new commits~%")
+  (define moved                         ;((CHANNEL . COMMIT) ...)
+    (filter-map
+     (match-lambda
+       ((name _ url branch commit)
+        (let ((latest (latest-commit url branch)))
+          (cond ((not latest)
+                 (emit "  ~16a could not reach ~a~%" name url)
+                 #f)
+                ((equal? latest commit)
+                 (emit "  ~16a up to date~%" name)
+                 #f)
+                (else
+                 (emit "  ~16a ~a -> ~a~%" name (short commit) (short latest))
+                 (cons name latest))))))
+     channels))
+
+  ;; What the config installs with the Guix already pulled.
+  (define pulled
+    (or (config-versions guix text '() build-options) '()))
+
+  (define newest
+    (cond ((null? moved) '())
+          (else
+           (emit "~%Reading the package versions of those commits.  This prepares that Guix
+as a pull would, which takes minutes the first time.~%")
+           (or (config-versions guix text moved build-options)
+               (begin
+                 (emit "~%guix bump: could not prepare the newer Guix; only what is already
+pulled is shown.~%")
+                 '())))))
+
+  (define rows
+    ;; (NAME INSTALLED NEW CHANNEL WHERE PULLED?)
+    (filter-map
+     (match-lambda
+       ((name version where)
+        (let ((pulled-version (assoc-ref pulled name))
+              (new            (assoc-ref newest name))
+              (channel        (match (available name)
+                                ((_ . channel) channel)
+                                (_ "?"))))
+          (cond ((and new (not (equal? new (or pulled-version version))))
+                 (list name version new channel where #f))
+                ((and pulled-version (not (equal? pulled-version version)))
+                 (list name version pulled-version channel where #t))
+                (else #f)))))
+     installed))
+
+  (cond ((null? rows)
+         (emit "~%Every installed package is at its newest version.~%"))
+        (else
+         (emit "~%  ~24a ~22a ~22a ~10a ~a~%"
+               "package" "installed" "newest" "channel" "in")
+         (for-each (match-lambda
+                     ((name old new channel where pulled?)
+                      (emit "  ~24a ~22a ~22a ~10a ~a~a~%"
+                            name old new channel where
+                            (if pulled? "  (already pulled)" ""))))
+                   rows)
+         (let ((system? (any (match-lambda ((_ _ _ _ where _)
+                                            (string=? where "system")))
+                             rows))
+               (pulled? (every (match-lambda ((_ _ _ _ _ pulled?) pulled?))
+                               rows)))
+           (if pulled?
+               (emit "~%Install them:  guix bump ~a~%"
+                     (if system? "--system" "--home"))
+               (emit "~%Update one:  guix bump ~a~%Update all:  guix bump all ~a~%"
+                     (match rows (((name . _) . _) name))
+                     (if system? "--system" "--home")))))))
 
 ;;;
 ;;; Cleaning up.
@@ -425,11 +676,18 @@ The build farms usually catch up within a day or two.~%")
   (newline))
 
 (define (show-help)
-  (display "Usage: guix bump [OPTION]... [CHANNEL...|all] [-- BUILD-OPTION...]
+  (display "Usage: guix bump [OPTION]... [CHANNEL|APP...|all] [-- BUILD-OPTION...]
 Move the channel pins in the config file to the latest commit of each
 channel's branch, then `guix pull' to them.  With no CHANNEL and no action,
 show each channel's pinned, running and latest commit.
 
+  guix bump --check    list the installed apps that have a newer version
+  guix bump APP        update that app now: move the pin of the channel it
+                       comes from, pull, and apply the home (or the system,
+                       if that is where the app is installed)
+
+      --check      change nothing; show which installed packages would get
+                   a newer version (of the named channels, or of all)
   -H, --home       then apply the home environment (guix home reconfigure)
   -S, --system     then apply the system (sudo guix system reconfigure);
                    this includes the home when the config's system applies
@@ -457,6 +715,12 @@ repository, every change that was pulled or applied is committed and pushed.
 Environment: GUIX_BUMP_KEEP (1m), GUIX_BUMP_FREE (100G), GUIX_BUMP_HEAVY
 (regexp of slow package names).
 
+An app is updated by moving its channel, so the other apps of that channel
+move with it.  For the `guix' channel that is everything Guix provides (and
+`nonguix' moves along): you are asked first.  Afterwards the apps that are
+still open in their old version are listed, and a reboot is suggested when
+the kernel or a driver changed.
+
 `guix nightly' is short for:
   guix bump all --system --home --yes --gc --log --shutdown
 "))
@@ -478,8 +742,7 @@ Environment: GUIX_BUMP_KEEP (1m), GUIX_BUMP_FREE (100G), GUIX_BUMP_HEAVY
     (show-help)
     (exit 0))
 
-  (define home?     (flag? "-H" "--home"))
-  (define system?   (flag? "-S" "--system"))
+  (define check?    (flag? "--check"))
   (define shutdown? (flag? "--shutdown"))
   (define dry-run?  (flag? "-n" "--dry-run"))
   (define undo?     (flag? "--undo"))
@@ -492,7 +755,7 @@ Environment: GUIX_BUMP_KEEP (1m), GUIX_BUMP_FREE (100G), GUIX_BUMP_HEAVY
   (for-each (lambda (arg)
               (unless (member arg '("-H" "--home" "-S" "--system" "--shutdown"
                                     "-n" "--dry-run" "--undo" "-y" "--yes"
-                                    "--gc" "--log"))
+                                    "--gc" "--log" "--check"))
                 (die "~a: unknown option (see guix bump --help)" arg)))
             (filter (lambda (arg) (string-prefix? "-" arg)) own-args))
 
@@ -511,26 +774,64 @@ Environment: GUIX_BUMP_KEEP (1m), GUIX_BUMP_FREE (100G), GUIX_BUMP_HEAVY
   (define home-in-system?
     (->bool (string-match "(^|\n)[ \t]*\\(home-with-system-service[ \t\n]"
                           original)))
-  (define home-alone?
-    (and home? (not (and system? home-in-system?))))
   (define channels (read-channels original))
   (when (null? channels)
     (die "~a: found no (channel ...) forms" file))
 
+  ;; Names that are not channels are apps (packages).
+  (define home-before   (installed-in (home-profile)))
+  (define system-before (installed-in %system-profile))
+  (define apps                          ;((NAME VERSION CHANNEL WHERE) ...)
+    (filter-map
+     (lambda (name)
+       (and (not (string=? name "all"))
+            (not (assq (string->symbol name) channels))
+            (match (available name)
+              ((version . channel)
+               (unless (assq channel channels)
+                 (die "~a comes from the channel '~a', which ~a doesn't pin"
+                      name channel file))
+               (list name version channel
+                     (cond ((assoc name home-before) 'home)
+                           ((assoc name system-before) 'system)
+                           (else #f))))
+              (_
+               (die "~a: neither a channel of the config (~a) nor a package"
+                    name
+                    (string-join (map (compose symbol->string car) channels)
+                                 ", "))))))
+     names))
+  (define (app-in? where)
+    (any (match-lambda ((_ _ _ in) (eq? in where))) apps))
+
+  (define home?   (or (flag? "-H" "--home") (app-in? 'home)))
+  (define system? (or (flag? "-S" "--system") (app-in? 'system)))
+  (define home-alone?
+    (and home? (not (and system? home-in-system?))))
+
   (define selected
-    (if (member "all" names)
-        channels
-        (map (lambda (name)
-               (or (assq (string->symbol name) channels)
-                   (die "~a: no such channel; the config has: ~a" name
-                        (string-join (map (compose symbol->string car)
-                                          channels)
-                                     ", "))))
-             names)))
+    (delete-duplicates
+     (append
+      (if (member "all" names)
+          channels
+          (filter-map (lambda (name) (assq (string->symbol name) channels))
+                      names))
+      ;; The channels the apps come from.  nonguix is written against a
+      ;; particular Guix, so the two move together.
+      (append-map (match-lambda
+                    ((_ _ channel _)
+                     (filter-map (lambda (name) (assq name channels))
+                                 (if (eq? channel 'guix)
+                                     '(guix nonguix)
+                                     (list channel)))))
+                  apps))))
 
   (define guix (pulled-guix))
 
   (cond
+   (check?
+    (check guix original (if (null? selected) channels selected)
+           build-options))
    ((and (null? selected)
          (not (or home? system? shutdown? undo? gc?)))
     (show-status file channels))
@@ -601,6 +902,42 @@ Environment: GUIX_BUMP_KEEP (1m), GUIX_BUMP_FREE (100G), GUIX_BUMP_HEAVY
 
       (when (and undo? (not changed?))
         (emit "The pins are already what they were before the last change.~%"))
+
+      ;; An app that is already the newest there is: nothing to do.
+      (when (and (pair? apps) (not changed?)
+                 (not (flag? "-H" "--home" "-S" "--system"))
+                 (every (match-lambda
+                          ((name version _ where)
+                           (match (assoc name (append home-before
+                                                      system-before))
+                             ((_ installed . _) (equal? installed version))
+                             (_ #f))))
+                        apps))
+        (for-each (match-lambda
+                    ((name version . _)
+                     (emit "~a ~a is installed and is the newest version.~%"
+                           name version)))
+                  apps)
+        (finish 0))
+
+      ;; An app of Guix itself: everything else Guix provides moves too.
+      (when (and (not dry-run?) (not yes?)
+                 (any (match-lambda ((_ _ channel _) (eq? channel 'guix)))
+                      apps)
+                 (not (equal? (assq-ref (pins updated) 'guix)
+                              (assq-ref (pins original) 'guix))))
+        (emit "~%~a comes from Guix itself.  Updating it moves the `guix' pin, and with
+it every package Guix provides: all of them are updated together, which
+can mean a lot to download or compile.~%"
+              (string-join
+               (filter-map (match-lambda
+                             ((name _ channel _)
+                              (and (eq? channel 'guix) name)))
+                           apps)
+               ", "))
+        (unless (ask "Update everything from Guix?")
+          (emit "Nothing was changed.~%")
+          (finish 1)))
 
       (when dry-run?
         (when (or home? system?)
@@ -681,6 +1018,20 @@ Environment: GUIX_BUMP_KEEP (1m), GUIX_BUMP_FREE (100G), GUIX_BUMP_HEAVY
           (emit "~%guix bump: home reconfigure failed; nothing was switched.
 `guix bump --undo --home' goes back to the pins from before.~%")
           (finish 1)))
+
+      (when home?
+        (report-changes home-before (installed-in (home-profile))))
+      (when system?
+        (report-changes system-before (installed-in %system-profile))
+        (when (reboot-needed?)
+          (emit "~%The kernel or a driver changed: reboot to use it.~%")))
+      (for-each (match-lambda
+                  ((name _ _ #f)
+                   (emit "~%~a is not installed: add it to the packages in ~a,
+then run `guix bump --home'.~%"
+                         name file))
+                  (_ #t))
+                apps)
 
       ;; Edits made by hand that were just applied successfully.
       (when (or home? system?)
