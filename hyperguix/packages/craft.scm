@@ -18,8 +18,8 @@
 ;;;   craft-launcher  installer/launcher for the suite
 ;;;
 ;;; All of them are Rust workspaces built on egui/wgpu and need Rust 1.95,
-;;; which Guix provides as `rust-1.95' (the default `rust' is older);
-;;; craft-anything needs 1.97, from rust-next.scm.  Their
+;;; which Guix provides as `rust-1.95'; craft-anything needs `rust-1.97',
+;;; also Guix's.  Their
 ;;; crates.io dependencies come from craft-crates.scm; crates they take from
 ;;; git (craft-libs, winprint.rs, filmcraft's codec crates, ...) are vendored
 ;;; with the helper in cargo-git.scm.
@@ -46,7 +46,6 @@
   #:use-module (gnu packages xorg)
   #:use-module (hyperguix packages cargo-git)
   #:use-module (hyperguix packages cargo-suite)
-  #:use-module (hyperguix packages rust-next)
   #:use-module (hyperguix packages craft-crates))
 
 ;; Libraries winit, wgpu and friends dlopen() at run time; added to RUNPATH.

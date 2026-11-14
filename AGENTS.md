@@ -78,8 +78,6 @@ Support modules:
 - **Generated** (never edit by hand): `cosmic-crates.scm`, `craft-crates.scm`,
   `ladybird-crates.scm`, `rust-crates.scm`, `node-deps.scm`,
   `r2modman-deps.scm`, `solidcraft-crates.scm`, `codecanvas-crates.scm`.
-- `rust-next.scm`: `rust-1.97` (Guix master's definition, bootstrapped from
-  the pinned Guix's rust-1.96), until the Guix pin has it.
 - `cargo-git.scm` with `aux-files/vendor-git-crates.py` vendors crates that
   lockfiles take from git, as `cargo vendor` would, so cargo builds offline.
   It drops `[dev-dependencies]` and the feature entries that name them, and
@@ -192,7 +190,9 @@ so a stale patch silently does nothing.
 
 Pitfalls for new Rust packages:
 
-- Use `#:rust rust-1.95` (or newer); the default `rust` is too old.
+- Pass `#:rust` explicitly (`rust-1.95`, `rust-1.97`: Guix's own) so a
+  package keeps building with the compiler it was tested with when the
+  Guix pin, and with it the default `rust`, moves.
 - cargo-build-system forces system libraries through `*_SYS_USE_PKG_CONFIG`
   and similar variables: grep each `Cargo.lock` for `libgit2-sys`,
   `libsqlite3-sys`, `zstd-sys`, `onig_sys`, `libsodium-sys`, `libssh2-sys`
