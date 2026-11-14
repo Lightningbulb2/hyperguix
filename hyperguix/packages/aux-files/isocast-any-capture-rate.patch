@@ -1,0 +1,22 @@
+Accept screen streams at any frame rate.
+
+A portal that offers its stream at one fixed rate (COSMIC offers the
+display's, e.g. 60/1) has no format in common with a consumer that only
+accepts up to the recording frame rate (30 by default): PipeWire fails the
+link with "no more output formats".
+
+--- a/crates/isocast-platform-linux/src/pipewire_video.rs
++++ b/crates/isocast-platform-linux/src/pipewire_video.rs
+@@ -1389,7 +1389,11 @@
+             Fraction,
+             Fraction { num: fps, denom: 1 },
+             Fraction { num: 0, denom: 1 },
+-            Fraction { num: fps, denom: 1 }
++            // The producer's rate, not ours: a compositor that offers one
++            // fixed rate above `fps` (COSMIC: the display's) would otherwise
++            // share no format with us.  The engine takes frames at its own
++            // pace whatever rate they arrive at.
++            Fraction { num: 1000, denom: 1 }
+         ),
+         property!(
+             F::VideoMaxFramerate,

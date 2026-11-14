@@ -117,6 +117,10 @@ pin = '\(define-public {name}\s+\(let \(\(commit "(?P<commit>[0-9a-f]{40})"\).*?
 
 [group.isocast.packages.isocast]
 url = "https://github.com/anomalyco/isocast"
+patches = [
+  "hyperguix/packages/aux-files/isocast-xdg-folders.patch",
+  "hyperguix/packages/aux-files/isocast-any-capture-rate.patch",
+]
 
 # One repository, one pin, three packages: the app (rust/), the VS Code
 # extension (vscode/) and the Zed bridge (zed/bridge).  It follows the main

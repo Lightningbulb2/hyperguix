@@ -101,9 +101,12 @@
          (file-name (git-file-name name version))
          (sha256
           (base32 "1ivi423aamilqzhw8mjsbk4gs1s7km3qa4wq8ab8lpsymlhsiqyw"))
-         ;; Settings in $XDG_CONFIG_HOME, logs in $XDG_STATE_HOME.
          (patches
-          (list (local-file "aux-files/isocast-xdg-folders.patch")))))
+          (list
+           ;; Settings in $XDG_CONFIG_HOME, logs in $XDG_STATE_HOME.
+           (local-file "aux-files/isocast-xdg-folders.patch")
+           ;; Screen capture on COSMIC, whose portal offers one fixed rate.
+           (local-file "aux-files/isocast-any-capture-rate.patch")))))
       (build-system cargo-build-system)
       (arguments
        (list
