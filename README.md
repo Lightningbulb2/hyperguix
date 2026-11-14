@@ -43,7 +43,7 @@ The channel depends on nonguix (`.guix-channel`): several packages use its
 | `gpu-unlock.scm` | `gpu-unlock`, `gpu-unlock-firmware`, `%gpu-unlock-services` | full-rate FP16/BF16/TF32 tensor cores on GeForce RTX 20/30/40 (kernel module; firmware from NVIDIA 610.43.03 is nonfree); see *Others* |
 | `strata.scm` | `strata` 0.2.12 | the `strata` command and its CUDA engine (compute capability 8.6, built with CUDA 13.4); no desktop app or picture reader, and `strata update` can't replace the engine |
 | `codecanvas.scm` | `codecanvas`, `codecanvas-vscode`, `codecanvas-zed-bridge` | infinite code canvas: the app, the VS Code extension and the Zed bridge are `rust/`, `vscode/` and `zed/` of github.com/Lightningbulb2/CodeCanvas at one pinned commit (`%codecanvas-commit`) |
-| `llama-cpp.scm` | `llama-cpp/latest` (Vulkan, OpenBLAS), `llama-cpp-cuda` (also CUDA, compute capability 8.6) | llama.cpp 0.9.0 with its bundled ggml; Guix has 0.5.0 |
+| `llama-cpp.scm` | `llama-cpp/latest` (Vulkan, OpenBLAS), `llama-cpp-cuda` (also CUDA, compute capability 8.6) | llama.cpp 1.0.0 with its bundled ggml; Guix has 0.7.0 |
 | `cuda.scm` | `cuda-toolkit` | NVIDIA CUDA 13.4: nvcc, cudart, cuBLAS (from NVIDIA's redist archives; nonfree); `libcuda` comes from the driver |
 | `reboot-to-bios.scm` | `reboot-to-bios` | |
 

@@ -1,6 +1,6 @@
 ;;; hyperguix --- llama.cpp, newer than Guix's
 ;;;
-;;; Guix's llama-cpp (0.5.0) is built against its separate ggml package, which
+;;; Guix's llama-cpp (0.7.0) is built against its separate ggml package, which
 ;;; would have to move in step with every llama.cpp release.  This one builds
 ;;; the ggml that llama.cpp carries in its own tree instead, with the backends
 ;;; Guix's ggml enables: Vulkan (NVIDIA, AMD and Intel GPUs through the
@@ -23,7 +23,7 @@
   #:use-module (gnu packages tls)
   #:use-module (hyperguix packages cuda))
 
-(define llama-cpp-ui-build "12110")
+(define llama-cpp-ui-build "12359")
 
 (define llama-cpp-ui
   (origin
@@ -33,12 +33,12 @@
                         "-ui.tar.gz"))
     (file-name "ui.tar.gz")
     (sha256
-     (base32 "1a0xgwshdyr0nik46q7z1x4xivdx5br8hzkjm5gjhgxvdsq4n9xn"))))
+     (base32 "10w6syfsg2fwqx9xvn0qbgmnscdc3amijfsnfy8l3nq8db4d0wp4"))))
 
 (define-public llama-cpp/latest
   (package
     (inherit llama-cpp)
-    (version "0.9.0")
+    (version "1.0.0")
     (source
      (origin
        (method git-fetch)
@@ -47,7 +47,7 @@
              (commit (string-append "v" version))))
        (file-name (git-file-name "llama-cpp" version))
        (sha256
-        (base32 "0dh2bk0zsr6d0fshykn3fazwgmgx1h83q3zwmwabc0ckzajsvfp8"))))
+        (base32 "0c641dk1mhn0s6h5vl2fh2rhc4rnq3514h4anbxrixfaik0y5339"))))
     (arguments
      (substitute-keyword-arguments (package-arguments llama-cpp)
        ((#:configure-flags _)
