@@ -89,6 +89,26 @@
                 (substitute* "src-tauri/src/lib.rs"
                   (("std::env::set_var\\(\"WEBKIT_DISABLE_COMPOSITING_MODE\", \"1\"\\);")
                    ""))))
+            (add-after 'unpack 'cheaper-effects
+              ;; The interface is a web page drawn by WebKitGTK.  Its frosted
+              ;; panels (backdrop blur) and its pulsing status dots, which
+              ;; never stop, make WebKitGTK repaint and re-blur the whole
+              ;; window on every frame: a third of a CPU core while idle,
+              ;; and stutter everywhere.  Chromium-based web views (Windows)
+              ;; don't mind them.  Panels keep their translucent tint.
+              (lambda _
+                (let ((port (open-file "src/index.css" "a")))
+                  (display "
+/* Guix: effects WebKitGTK cannot afford. */
+*, *::before, *::after {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+.animate-pulse, .animate-ping, .animate-bounce {
+  animation: none !important;
+}
+" port)
+                  (close-port port))))
             (add-after 'build-frontend 'enter-tauri-dir
               (lambda _ (chdir "src-tauri")))
             (replace 'build
