@@ -23,7 +23,7 @@
   #:use-module (gnu packages python)
   #:use-module (gnu packages version-control))
 
-(define %guix-manager-commit "fbe1d8a98b3b622d55760faacd2c314a043b3dc5")
+(define %guix-manager-commit "77e62e965e3a6497f9c088bd461f397e5b57c845")
 (define %guix-manager-version "2.2")
 
 (define %guix-manager-source
@@ -34,7 +34,7 @@
           (commit %guix-manager-commit)))
     (file-name (git-file-name "guix-manager" %guix-manager-version))
     (sha256
-     (base32 "0kyrfjlj4dlicprgmwg01dif1rd2kgvd8yanxrxkpfrfq1l2xmph"))))
+     (base32 "165jfja73pk953183k5a1gd7zzbl70iyh1wppkl6pjv0f91xilr1"))))
 
 (define-public guix-bump
   (package
