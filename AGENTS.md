@@ -158,7 +158,12 @@ version changed).
   channel pin); the smithay patch applies to a vendored crate, not to a
   component's source; `substitute*` edits can't be checked without a build;
   COSMIC's explicit `#:version` strings (cosmic-comp, cosmic-workspaces,
-  pop-launcher) and the craft-fonts pins are left alone.
+  pop-launcher) and the craft-fonts pins are left alone.  `klipper.scm` is
+  pinned by hand on purpose: a new klippy can refuse the firmware flashed on
+  the printer's board, so Klipper moves only when the owner will reflash
+  (Moonraker and Fluidd are pinned there too, kept with it).  Its version
+  strings carry `git describe`'s count (`%klipper-revision`), updated with
+  the commit.
 - When you reformat a pin by hand, add a patch, or add a project to a
   shared crates module, update `updates.toml` and run `--lint`: a pin the
   pattern no longer finds is never updated, and a patch that isn't listed is

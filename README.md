@@ -46,6 +46,7 @@ The channel depends on nonguix (`.guix-channel`): several packages use its
 | `codecanvas.scm` | `codecanvas`, `codecanvas-vscode`, `codecanvas-zed-bridge` | infinite code canvas: the app, the VS Code extension and the Zed bridge are `rust/`, `vscode/` and `zed/` of github.com/Lightningbulb2/CodeCanvas at one pinned commit (`%codecanvas-commit`) |
 | `llama-cpp.scm` | `llama-cpp/latest` (Vulkan, OpenBLAS), `llama-cpp-cuda` (also CUDA, compute capability 8.6) | llama.cpp 1.0.0 with its bundled ggml; Guix has 0.7.0 |
 | `cuda.scm` | `cuda-toolkit` | NVIDIA CUDA 13.4: nvcc, cudart, cuBLAS (from NVIDIA's redist archives; nonfree); `libcuda` comes from the driver |
+| `klipper.scm` | `klipper` (0.13.0+827), `moonraker` (0.11.0+4), `fluidd` 1.38.0, `python-streaming-form-data`, `python-periphery` | 3D-printer host: klippy with its C helper prebuilt, Moonraker, and Fluidd's release build; see *Klipper* below |
 | `reboot-to-bios.scm` | `reboot-to-bios` | |
 
 Maintaining the channel (layout, updating packages, pitfalls, conventions)
@@ -153,6 +154,42 @@ rebuilds that build. (`craft-suite` is all of them at once.)
   position (COSMIC's Xwayland primary, DP-1 here), and cosmic-comp shows a
   fullscreen X11 window on the output it is on.  Radmin's prefix is
   `RADMIN_WINEPREFIX`, so a global `WINEPREFIX` doesn't move it.
+
+### Klipper
+
+`klipper`, `moonraker` and `fluidd` are what upstream's install scripts
+(and KIAUH) set up with git checkouts, a virtualenv and systemd units.  Here
+they are ordinary packages: `klippy` and `moonraker` are commands, and the
+services, nginx and the `printer_data` layout are written in the system
+config (the owner's is `latitude.scm` in MyGuixConfig).
+
+- `klippy PRINTER.CFG -l LOG -a SOCKET` and `moonraker -d PRINTER_DATA`,
+  as upstream's service files run them.  The services need the `dialout`
+  group (shepherd starts a service with no supplementary groups unless they
+  are listed).
+- Moonraker without systemd: `[machine] provider: none`.  Its update
+  manager doesn't apply; Guix updates these.  Object processing is off
+  (preprocess-cancellation isn't packaged), and so is `[zeroconf]` (Guix's
+  python-zeroconf is too old).
+- Fluidd is static files in `share/fluidd`, served by nginx with `/websocket`,
+  the API paths and `/webcam/` proxied (upstream's nginx layout).
+- **MCU firmware** is built from a writable checkout at the same commit as
+  the package (`git checkout` the commit in `klipper.scm`), on any Guix
+  machine.  `--pure` matters: `gcc-toolchain` in the same shell puts the
+  host's glibc headers in front of avr-gcc's.
+
+  ```sh
+  # AVR boards (ATmega: older Creality, Prusa Einsy):
+  guix shell --pure bash make python coreutils grep sed gawk findutils \
+      which binutils gcc-cross-avr-toolchain -- make menuconfig   # then: make
+  # ARM boards (STM32, ...): the same without gcc-cross-avr-toolchain, plus
+  #   -e '((@ (gnu packages embedded) make-arm-none-eabi-toolchain-12.3.rel1))'
+  # (no substitute: the first use compiles the cross GCC)
+  ```
+
+  The result is `out/klipper.bin` (copy to the board's SD card) or
+  `out/klipper.elf.hex` (`avrdude`); `make flash FLASH_DEVICE=...` works on
+  the printer host, which has avrdude and dfu-util.
 
 ### Others
 
