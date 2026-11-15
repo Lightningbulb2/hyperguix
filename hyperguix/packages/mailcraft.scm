@@ -35,9 +35,9 @@
         vulkan-loader wayland))
 
 (define-public mailcraft
-  (let ((commit "92eb10c080d2da131bde71dd448bf37413a74d03")
+  (let ((commit "240d1d42fe394cf3274402b180663ba9b43ca180")
         (revision "0")
-        (base-version "0.12.0")
+        (base-version "0.13.0")
         (binaries '("mailcraft" "mailcraft-cli")))
     (package
       (name "mailcraft")
@@ -50,7 +50,7 @@
                (commit commit)))
          (file-name (git-file-name name version))
          (sha256
-          (base32 "17whb7jrl1p93s2q2hidjzkq41w3dsiki1l3nz3m8k32qc3vk8c9"))))
+          (base32 "0y7g06jdy2k8px32p625ch192j6rfn8f97kp9pmgf0dka599q852"))))
       (build-system cargo-build-system)
       (arguments
        (list

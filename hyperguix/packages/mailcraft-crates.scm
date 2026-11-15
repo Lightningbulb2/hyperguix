@@ -18,7 +18,7 @@
      ("adler2" "2.0.1" "1ymy18s9hs7ya1pjc9864l30wk8p2qfqdi7mhhcc5nfakxbij09j")
      ("aead" "0.5.2" "1c32aviraqag7926xcb9sybdm36v5vh9gnxpn4pxdwjc50zl28ni")
      ("aes" "0.8.4" "1853796anlwp4kqim0s6wm1srl4ib621nm0cl2h3c8klsjkgfsdi")
-     ("aes" "0.9.3" "0cpascsyy7mzjmx3q3q0fjz8aqyhcf0slj49dpfc6f4fwxngkw1m")
+     ("aes" "0.9.4" "1labw01pbfwqc8f62k01ppmmdq403si0ifk8ajs1bl20finw63zw")
      ("aes-gcm" "0.10.3" "1lgaqgg1gh9crg435509lqdhajg1m2vgma6f7fdj1qa2yyh10443")
      ("aes-kw" "0.2.1" "131xvnah1magbr8q0lwmg3c13lv54vh41f2z79zmzyyf5lsjpyk9")
      ("ahash" "0.8.12" "0xbsp9rlm5ki017c0w6ay8kjwinwm8knjncci95mii30rmwz25as")
@@ -30,6 +30,7 @@
      ("anyhow" "1.0.104" "0w34jjcm02p5g9kvsjr1dvpw0zs2fi7igi6nr414fkm5gz85w2ik")
      ("apple-native-keyring-store" "1.0.2" "16mv96gx9f90gsjh90n9hpjp8hwk2lz1pa600nm0g7k40gyhnd9b")
      ("arboard" "3.7.0" "05vr0gvk5fgs6xqf38c6b7mvpa3xdpy594lplmb8fb1ic8z5bfdf")
+     ("arc-swap" "1.9.5" "199jy040f53mq2a2mr13i2l8vjqa68yv781p7pl6v7r0a5fjp8l4")
      ("argon2" "0.5.3" "0wn0kk97k49wxidfigmz1pdqmygqzi4h6w72ib7cpq765s4i0diw")
      ("arrayref" "0.3.9" "1jzyp0nvp10dmahaq9a2rnxqdd5wxgbvp8xaibps3zai8c9fi8kn")
      ("arrayvec" "0.7.8" "0mmd8lrijbvg1qp4c5zis5dq41a3mjv2rb6bxkyj9kwaw2k6gyyk")
@@ -90,6 +91,7 @@
      ("calloop-wayland-source" "0.3.0" "086x5mq16prrcwd9k6bw9an0sp8bj9l5daz4ziz5z4snf2c6m9lm")
      ("calloop-wayland-source" "0.4.1" "1yi1c23naqhd8m94q3v366s4cak8l50zy7ldrkqfn0hajkqgr3hk")
      ("camellia" "0.1.0" "0c6f61rf0gzq7x9d2qmp0330pb397aldwdpmwqybbwly9rby4r1j")
+     ("camino" "1.2.6" "14g55g2pn08yb29rqq8nqdbp4cial62x1bn87jga652c9c7d7fmv")
      ("cast5" "0.11.1" "04crg8dj6lxbp3lmdc3filsahxcyvccvhm0gx40g1k5i7mkpvc16")
      ("cbc" "0.2.1" "15l8zvdhfazl994ijjww6b8z0p4a7jrqhb44xc5ixlc8bzpcjbff")
      ("cc" "1.8.0" "0f6q6vc8fj6xn4j1wd4yakiza6lhgwai49gp1zdwgzggh3nwjlb6")
@@ -127,6 +129,7 @@
      ("crossbeam-channel" "0.5.17" "1wcy7y77hw7z5m140114iqxb90gsq062djd9zpkndisvgcrcrc4q")
      ("crossbeam-deque" "0.8.8" "06kip6ay8wcx5y4flg6wxbnyd44ay8308c8lf8y3iglh6v3kybv2")
      ("crossbeam-epoch" "0.9.21" "17bdp2linl0milbmx00s3bda3fphgc85im1gqwa3p6hhhw39hx6w")
+     ("crossbeam-queue" "0.3.14" "1bizbcv98anbink3gr3xhnb757d9vj6pcv7df2f4hybl5xvbvs03")
      ("crossbeam-utils" "0.8.23" "1ilan2nw7fvka8hki80fr57a5dgd4mvcsvwq60437j6yvlwyw7m3")
      ("crunchy" "0.2.4" "1mbp5navim2qr3x48lyvadqblcxc1dm0lqr0swrkkwy2qblvw3s6")
      ("crypto-bigint" "0.5.5" "0xmbdff3g6ii5sbxjxc31xfkv9lrmyril4arh3dzckd4gjsjzj8d")
@@ -220,7 +223,9 @@
      ("foreign-types" "0.5.0" "0rfr2zfxnx9rz3292z5nyk8qs2iirznn5ff3rd4vgdwza6mdjdyp")
      ("foreign-types-macros" "0.2.4" "09aj8wl64pqvm6ix1800khgypdhinwinxhfv7n3yn5b95qc90lga")
      ("foreign-types-shared" "0.3.1" "0nykdvv41a3d4py61bylmlwjhhvdm0b3bcj9vxhqgxaxnp5ik6ma")
+     ("fs-err" "3.3.2" "0aazlhygf35w2ys2y7jcwv1086yq89b1rqcs48sp4vwg7dkmpjdm")
      ("funty" "2.0.0" "177w048bm0046qlzvp33ag3ghqkqw4ncpzcm5lq36gxf2lla7mg6")
+     ("futures-channel" "0.3.34" "1i4kwcanpaphn1ax62ci3nx176kglxqx0gnhzqpqdr1rkpbf7ydi")
      ("futures-core" "0.3.34" "0pjgv4fx0np6hrs5sz5a2phabwv0z70yr51v03injbi44bjrkmlj")
      ("futures-io" "0.3.34" "1v9z6wj92ra18kpv0xig21hgpzrvcwmcr8fszyzh64yyay0zmh2k")
      ("futures-lite" "2.6.1" "1ba4dg26sc168vf60b1a23dv1d8rcf3v3ykz2psb7q70kxh113pp")
@@ -290,6 +295,7 @@
      ("khronos-egl" "6.0.0" "0xnzdx0n1bil06xmh8i1x6dbxvk7kd2m70bbm6nw1qzc43r1vbka")
      ("khronos_api" "3.1.0" "1p0xj5mlbagqyvvnv8wmv3cr7l9y1m153888pxqwg3vk3mg5inz2")
      ("kittest" "0.5.0" "0xcbly4ynrhz2j74pjjn9s88dxq40lcfnpglnyas0sm73dr1mf0b")
+     ("ksni" "0.3.7" "1bwwx78vrrv4havmy711kx1ag9s8kyjc9w8inxs0y54p6ys1rk0v")
      ("kurbo" "0.13.1" "1qjhhjgwr9admlz6r1s7kp38dl8nbd95abhryrnr4av55z1xyq2b")
      ("lazy_static" "1.5.1" "1yqaqmp510xw2ldpw88mx9b5s5qj8flb4rw0wd9ks1zpk9j0z1r0")
      ("libc" "0.2.191" "02i4j7pjh129y92rijaia4576131fa2xjsii1dc3c1fnlv4qgkb5")
@@ -381,6 +387,7 @@
      ("parking_lot" "0.12.5" "06jsqh9aqmc94j2rlm8gpccilqm6bskbd67zf6ypfc0f4m9p91ck")
      ("parking_lot_core" "0.9.12" "1hb4rggy70fwa1w9nb0svbyflzdc69h047482v2z3sx2hmcnh896")
      ("password-hash" "0.5.0" "0ri1mim11zk0a9s40zdi288dfqvmdiryc7lw8vl46b59ifa08vrl")
+     ("pastey" "0.2.3" "1d1mk45ma9w54ppws8x096q96qhqirxmj9j3hchj7fmi1087zrif")
      ("pbkdf2" "0.13.0" "0a867f3jikfwjfni9fhmrjhdb7qcjzjd917lk96m5gy5p3784b8i")
      ("pem-rfc7468" "0.7.0" "04l4852scl4zdva31c1z6jafbak0ni5pi0j38ml108zwzjdrrcw8")
      ("pem-rfc7468" "1.0.0" "1nck8ig71axy21lsick2f9vcw7329mlx2hs88d382wz7w0im8c56")
@@ -542,6 +549,7 @@
      ("synstructure" "0.14.0" "00kzyz38xqvs7x1dn6rp64y0ckly4m7ywf3qk3qkgqfzs3nh85wh")
      ("sysinfo" "0.40.1" "1a5qrxappxpa17aiw2asxc4vwhnjkls00yliycay2k1rw3dkx2hf")
      ("tap" "1.0.1" "0sc3gl4nldqpvyhqi3bbd0l9k7fngrcl4zs47n314nqqk4bpx4sm")
+     ("task-local" "0.1.1" "09k6cvwa0dcqqn7sa639rps8wvan7g8g1xkzd988li2ykr508wi9")
      ("tempfile" "3.27.0" "1gblhnyfjsbg9wjg194n89wrzah7jy3yzgnyzhp56f3v9jd7wj9j")
      ("termcolor" "1.4.1" "0mappjh3fj3p2nmrg4y7qv94rchwi9mzmgmfflr8p2awdj7lyy86")
      ("thiserror" "1.0.69" "0lizjay08agcr5hs9yfzzj6axs53a2rgx070a1dsi3jpkcrzbamn")
@@ -559,14 +567,15 @@
      ("tls_codec" "0.4.2" "0sxzj0pdinn7fsc8aihqgfylsqi7z9jca0aqy3b8kfz28l9f1qhd")
      ("tls_codec_derive" "0.4.2" "1gglj5cxkpv7i3jazffksrfy5h5242kdvsqawjm2yh1915lpcbid")
      ("tokio" "1.53.3" "0kny1nnbpy11dllv6ncxy3n804wh0ddn3msq78rxl744f7x3acyf")
-     ("toml" "1.1.8+spec-1.1.0" "13b7kqvw7aa4x08i03d2fpima1i75v0lqxl0wrmisx6qwh09wj10")
+     ("toml" "1.2.0+spec-1.1.0" "0qg503lsxqgbpn28bspgglmz8m08iqdzxhbmsszxndh4ypwcvzy5")
      ("toml_datetime" "1.1.2+spec-1.1.0" "0lrhcmqvhjr259w4f2kijya7fgi0kpmhg9fb3m144v3cj1kxg1ib")
      ("toml_edit" "0.25.17+spec-1.1.0" "174w1b2fjg1jb0wi7384v1m59g7ga79458i022gafjakpddisr73")
      ("toml_parser" "1.1.5+spec-1.1.0" "0k3lljyi4zxchdklaqghkwbl7wkd2ab1w16hlyniqzid0fl979ms")
-     ("toml_writer" "1.1.3+spec-1.1.0" "0w17cps8mfg7wcwyp0gggi9cpgmxldb9pwl55qp8ssq5zj6bvg86")
+     ("toml_writer" "1.2.0+spec-1.1.0" "0fp14qh313y31pqddn2bhk01l7ygx70f9fxfhgpma77i01vvp780")
      ("tracing" "0.1.44" "006ilqkg1lmfdh3xhg3z762izfwmxcvz0w7m4qx2qajbz9i1drv3")
      ("tracing-attributes" "0.1.31" "1np8d77shfvz0n7camx2bsf1qw0zg331lra0hxb4cdwnxjjwz43l")
      ("tracing-core" "0.1.36" "16mpbz6p8vd6j7sf925k9k8wzvm9vdfsjbynbmaxxyq6v7wwm5yv")
+     ("tray-icon" "0.26.1" "1jfxsqzlp63ljf5y909b9mrggmpzywpjl0zhv3fp95fgis2wap2g")
      ("tree_magic_mini" "3.2.2" "19nm2hkspb8p4gxgk442b1hmbbh9l5fnf7w3nli6rfhw0s85nxmq")
      ("twofish" "0.7.1" "04w0ii2c0c9ws08aw6c7illh9zql22il9lbwjk1mgir30aiq73m7")
      ("type-map" "0.5.1" "143v32wwgpymxfy4y8s694vyq0wdi7li4s5dmms5w59nj2yxnc6b")
@@ -579,6 +588,12 @@
      ("unicode-segmentation" "1.13.3" "1a47zaq83p386r3baq4m018xd5q4q0grdg56i1x042dzn71x7xf6")
      ("unicode-width" "0.2.2" "0m7jjzlcccw716dy9423xxh0clys8pfpllc5smvfxrzdf66h9b5l")
      ("unicode-xid" "0.2.6" "0lzqaky89fq0bcrh6jj6bhlz37scfd8c7dsj5dq7y32if56c1hgb")
+     ("uniffi" "0.32.2" "0ym70jcbidy2ykzbywmq1r0n5r4wraglmzwy0sd98b3a75gpyh3n")
+     ("uniffi_core" "0.32.2" "0sjahxm9rminii881zwzfwr4hag07xv6cnc64a34iapaxzl0llzp")
+     ("uniffi_internal_macros" "0.32.2" "1fi3891b2a4n9g8nxnm99fl1a3c12i84jw0d8ncmsdv4f40ssjqg")
+     ("uniffi_macros" "0.32.2" "0q3w67jga5vzjlylv33njfh1cdywdqlnwgw6dv73jdqmv9c5m1av")
+     ("uniffi_meta" "0.32.2" "0nclbvb4m3yvqzjy4w1i60xr424p7hl518pmasc5bfcw99k8h35g")
+     ("uniffi_pipeline" "0.32.2" "02vbl23hq5l2s46ih8hf8wvz69m6xvd2vj96285wlgaa9c25q3yh")
      ("universal-hash" "0.5.1" "1sh79x677zkncasa95wz05b36134822w6qxmi1ck05fwi33f47gw")
      ("untrusted" "0.9.0" "1ha7ib98vkc538x0z60gfn0fc5whqdd85mb87dvisdcaifi6vjwf")
      ("usvg" "0.49.0" "0b7jzk3sazi7zyv7axj3iq9fn5kv6h7h1ngzsw53j7b4hgp776yh")
@@ -692,19 +707,19 @@
 ;;; Git checkouts, by index.
 (define %git-checkouts
   (vector
-   ;; winit-951b6c1-checkout
+   ;; winit-1477b12-checkout
    (git-checkout "winit" "https://github.com/UCS-Care-Group/winit"
-                 "951b6c131897a80d27a925af7c5da22ea522eb0d"
-                 "04r6w61xbzqjq0y2gvzlcmckg08lk5v4spfx546mp5mamb8fc0yp")))
+                 "1477b126a8c3d3d2add446c93492454ba833074d"
+                 "0flfbsawq1kh3cbr5rw6d3pki1daq35z6j9hgikqymv0nx9xmfkr")))
 
 (define mailcraft-cargo-inputs
   (crate-selection
    %crates
    '(0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27
      28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51
-     52 54 53 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75
+     52 53 55 54 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75
      76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99
-     100 101 102 104 103 105 107 106 108 109 110 111 112 113 114 115 116 117
+     100 101 102 103 104 106 105 107 109 108 110 111 112 113 114 115 116 117
      118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135
      136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153
      154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171
@@ -714,7 +729,7 @@
      226 227 228 229 230 231 232 233 234 235 236 237 238 239 240 241 242 243
      244 245 246 247 248 249 250 251 252 253 254 255 256 257 258 259 260 261
      262 263 264 265 266 267 268 269 270 271 272 273 274 275 276 277 278 279
-     280 281 282 283 284 285 286 287 288 289 291 290 292 293 294 295 296 297
+     280 281 282 283 284 285 286 287 288 289 290 291 292 293 294 295 297 296
      298 299 300 301 302 303 304 305 306 307 308 309 310 311 312 313 314 315
      316 317 318 319 320 321 322 323 324 325 326 327 328 329 330 331 332 333
      334 335 336 337 338 339 340 341 342 343 344 345 346 347 348 349 350 351
@@ -722,9 +737,9 @@
      370 371 372 373 374 375 376 377 378 379 380 381 382 383 384 385 386 387
      388 389 390 391 392 393 394 395 396 397 398 399 400 401 402 403 404 405
      406 407 408 409 410 411 412 413 414 415 416 417 418 419 420 421 422 423
-     425 424 426 428 427 429 430 431 432 433 434 435 436 437 438 439 440 441
-     442 443 444 445 446 447 448 449 450 451 452 453 455 454 456 457 458 459
-     460 461 462 463 464 465 466 467 468 469 470 471 472 473 474 475 476 477
+     424 425 426 427 428 429 430 432 431 433 435 434 436 437 438 439 440 441
+     442 443 444 445 446 447 448 449 450 451 452 453 454 455 456 457 458 459
+     460 462 461 463 464 465 466 467 468 469 470 471 472 473 474 475 476 477
      478 479 480 481 482 483 484 485 486 487 488 489 490 491 492 493 494 495
      496 497 498 499 500 501 502 503 504 505 506 507 508 509 510 511 512 513
      514 515 516 517 518 519 520 521 522 523 524 525 526 527 528 529 530 531
@@ -736,10 +751,11 @@
      622 623 624 625 626 627 628 629 630 631 632 633 634 635 636 637 638 639
      640 641 642 643 644 645 646 647 648 649 650 651 652 653 654 655 656 657
      658 659 660 661 662 663 664 665 666 667 668 669 670 671 672 673 674 675
-     676 677 678 679 680)))
+     676 677 678 679 680 681 682 683 684 685 686 687 688 689 690 691 692 693
+     694 695)))
 
 (define mailcraft-git-crates
   (git-crate-selection
    %git-checkouts
-   '(("dpi" "0.1.1" "git+https://github.com/UCS-Care-Group/winit?rev=951b6c131897a80d27a925af7c5da22ea522eb0d#951b6c131897a80d27a925af7c5da22ea522eb0d" 0 "dpi")
-     ("winit" "0.30.13" "git+https://github.com/UCS-Care-Group/winit?rev=951b6c131897a80d27a925af7c5da22ea522eb0d#951b6c131897a80d27a925af7c5da22ea522eb0d" 0 "."))))
+   '(("dpi" "0.1.1" "git+https://github.com/UCS-Care-Group/winit?rev=1477b126a8c3d3d2add446c93492454ba833074d#1477b126a8c3d3d2add446c93492454ba833074d" 0 "dpi")
+     ("winit" "0.30.13" "git+https://github.com/UCS-Care-Group/winit?rev=1477b126a8c3d3d2add446c93492454ba833074d#1477b126a8c3d3d2add446c93492454ba833074d" 0 "."))))
