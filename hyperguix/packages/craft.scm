@@ -48,7 +48,9 @@
   #:use-module (gnu packages xorg)
   #:use-module (hyperguix packages cargo-git)
   #:use-module (hyperguix packages cargo-suite)
-  #:use-module (hyperguix packages craft-crates))
+  #:use-module (hyperguix packages craft-crates)
+  #:use-module (ice-9 match)
+  #:export (with-craft-suite))
 
 ;; Libraries winit, wgpu and friends dlopen() at run time; added to RUNPATH.
 (define %craft-runtime-libraries
@@ -192,6 +194,8 @@ fonts it lists (CJK, Arabic, Thai, ...) through CRAFT_FONTS_DIR."
              extra-inputs
              cargo-inputs))
     (supported-systems '("x86_64-linux" "aarch64-linux"))
+    ;; For `with-craft-suite'.
+    (properties '((craft-app? . #t)))
     (home-page (string-append "https://github.com/storytold/" repository))
     (synopsis synopsis)
     (description description)
@@ -513,38 +517,108 @@ and update upstream's release builds of the others.  Note that those
 prebuilt binaries expect a conventional file system layout and may not run
 on Guix System; prefer the Guix packages of the apps."))
 
-;;; The Craft apps on Rust 1.95 are built together, so that the egui/wgpu
-;;; stack and the other crates they share are compiled once instead of 15
-;;; times (see cargo-suite.scm).  The public names above are replaced by the
-;;; suite's builds of them.  craft-anything needs Rust 1.97 and stays a
-;;; separate package.  Bumping any of these apps rebuilds the suite.
+;;; Building several Craft apps together.
+;;;
+;;; Each app above is an ordinary package: installing one builds that one.
+;;; Built separately, though, every app compiles the egui/wgpu stack and
+;;; the other crates they share again; the whole suite compiled 10,457
+;;; crates of which 1,582 are distinct.  `with-craft-suite' wraps a home
+;;; environment or an operating system, like nonguix's NVIDIA
+;;; transformation, and builds the Craft apps it installs together, in one
+;;; derivation that compiles what they share once (see cargo-suite.scm):
+;;;
+;;;   (with-craft-suite (home-environment (packages (list photocraft ...))))
+;;;
+;;; Only the apps listed are built, so one app is no dearer than before
+;;; and two share their work.  Apps on different Rust versions go in
+;;; separate suites.  Changing any app of a suite rebuilds that suite.
 
+;; The order members are built in, whatever the order of the config: the
+;; members most likely to break first, so that a failure shows up early
+;; (the newest; figcraft, moved off Rust 1.97; pdfcraft, which pins
+;; winprint at two git revisions).
+(define %craft-suite-order
+  '("materialcraft" "anicraft" "figcraft" "pdfcraft" "photocraft"
+    "effectcraft" "filmcraft" "lightcraft" "vectorcraft" "designcraft"
+    "wordcraft" "gridcraft" "soundcraft" "cadcraft" "deckcraft"
+    "texturecraft" "craft-launcher" "craft-anything"))
+
+(define (craft-app? x)
+  (and (package? x) (assq-ref (package-properties x) 'craft-app?)))
+
+(define (package-rust package)
+  (let loop ((args (package-arguments package)))
+    (match args
+      ((#:rust rust . _) rust)
+      ((_ _ . rest) (loop rest))
+      (_ #f))))
+
+(define (craft-suite-of apps)
+  "Return an alist from each of APPS to the same app built in a suite with
+the others that use the same Rust.  An app alone on its Rust stays as it
+is."
+  (define (position app)
+    (or (list-index (lambda (name) (string=? name (package-name app)))
+                    %craft-suite-order)
+        (length %craft-suite-order)))
+  (append-map
+   (lambda (rust)
+     (let ((members (sort (filter (lambda (app)
+                                    (eq? (package-rust app) rust))
+                                  apps)
+                          (lambda (a b) (< (position a) (position b))))))
+       (if (< (length members) 2)
+           (map (lambda (app) (cons app app)) members)
+           (let ((suite (cargo-suite "craft-suite" members #:rust rust)))
+             (map (lambda (app) (cons app (suite-member suite app)))
+                  members)))))
+   (delete-duplicates (map package-rust apps) eq?)))
+
+(define (with-craft-suite x)
+  "Return X, a home environment or an operating system, with the Craft apps
+among its packages built together (see above)."
+  (define (in module expression)
+    ;; Evaluated there when called, not imported: (gnu system) and (gnu home)
+    ;; are not for package modules to depend on.
+    (eval expression (resolve-module module)))
+  (define (rewrite packages)
+    (let* ((apps (delete-duplicates
+                  (filter-map (match-lambda
+                                ((? craft-app? app) app)
+                                (((? craft-app? app) . _) app)
+                                (_ #f))
+                              packages)
+                  eq?))
+           (built (craft-suite-of apps)))
+      (map (match-lambda
+             ((? craft-app? app) (assq-ref built app))
+             (((? craft-app? app) . rest) (cons (assq-ref built app) rest))
+             (other other))
+           packages)))
+  (cond (((in '(gnu home) 'home-environment?) x)
+         ((in '(gnu home)
+              '(lambda (he rewrite)
+                 (home-environment
+                   (inherit he)
+                   (packages (rewrite (home-environment-packages he))))))
+          x rewrite))
+        (((in '(gnu system) 'operating-system?) x)
+         ((in '(gnu system)
+              '(lambda (os rewrite)
+                 (operating-system
+                   (inherit os)
+                   (packages (rewrite (operating-system-packages os))))))
+          x rewrite))
+        (else (error "with-craft-suite: neither a home environment nor an \
+operating system" x))))
+
+;;; Every Craft app on Rust 1.95 in one suite, for building them all at
+;;; once.  Configurations don't need it: `with-craft-suite' makes the suite
+;;; of the apps they install.
 (define-public craft-suite
   (cargo-suite "craft-suite"
-               ;; The members most likely to break first, so a failure shows
-               ;; up early: the newest (materialcraft, anicraft), figcraft
-               ;; (moved off Rust 1.97) and pdfcraft (winprint at two git
-               ;; revisions).
                (list materialcraft anicraft figcraft pdfcraft photocraft
                      effectcraft filmcraft lightcraft vectorcraft designcraft
                      wordcraft gridcraft soundcraft cadcraft deckcraft
                      texturecraft craft-launcher)
                #:rust rust-1.95))
-
-(set! photocraft (suite-member craft-suite photocraft))
-(set! effectcraft (suite-member craft-suite effectcraft))
-(set! filmcraft (suite-member craft-suite filmcraft))
-(set! lightcraft (suite-member craft-suite lightcraft))
-(set! vectorcraft (suite-member craft-suite vectorcraft))
-(set! designcraft (suite-member craft-suite designcraft))
-(set! pdfcraft (suite-member craft-suite pdfcraft))
-(set! wordcraft (suite-member craft-suite wordcraft))
-(set! gridcraft (suite-member craft-suite gridcraft))
-(set! soundcraft (suite-member craft-suite soundcraft))
-(set! cadcraft (suite-member craft-suite cadcraft))
-(set! figcraft (suite-member craft-suite figcraft))
-(set! deckcraft (suite-member craft-suite deckcraft))
-(set! texturecraft (suite-member craft-suite texturecraft))
-(set! materialcraft (suite-member craft-suite materialcraft))
-(set! anicraft (suite-member craft-suite anicraft))
-(set! craft-launcher (suite-member craft-suite craft-launcher))

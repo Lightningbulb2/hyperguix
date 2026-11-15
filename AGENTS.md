@@ -78,6 +78,14 @@ Support modules:
 - **Generated** (never edit by hand): `cosmic-crates.scm`, `craft-crates.scm`,
   `ladybird-crates.scm`, `rust-crates.scm`, `node-deps.scm`,
   `r2modman-deps.scm`, `solidcraft-crates.scm`, `codecanvas-crates.scm`.
+- `cargo-suite.scm` builds several cargo packages in one derivation that
+  shares their compiled dependencies. COSMIC's components are always one
+  suite (`cosmic-suite`: they move together). The Craft apps are separate
+  packages (property `craft-app?`), and `with-craft-suite` (craft.scm)
+  makes a suite of the ones a home or operating system installs, members
+  sorted by `%craft-suite-order` so the config's order changes nothing. Add
+  a new Craft app to that list (the newest near the front, so a failure
+  shows early).
 - `cargo-git.scm` with `aux-files/vendor-git-crates.py` vendors crates that
   lockfiles take from git, as `cargo vendor` would, so cargo builds offline.
   It drops `[dev-dependencies]` and the feature entries that name them, and

@@ -117,6 +117,24 @@ is covered in [AGENTS.md](AGENTS.md).
 - COSMIC Settings needs the systemd D-Bus services `locale1`, `timedate1` and
   `hostname1`: the config provides localed, `timedated` and gardenhostd.
 
+### Craft apps
+
+Each Craft app is an ordinary package: installing one builds that one.
+Several Craft apps share most of their libraries (egui, wgpu, image
+codecs), so a config that installs more than one should build them
+together, which compiles those libraries once instead of once per app.
+Wrap the home environment (or the operating system) in `with-craft-suite`
+from `(hyperguix packages craft)`, as with nonguix's NVIDIA transformation:
+
+```scheme
+(with-craft-suite
+ (home-environment
+   (packages (list photocraft filmcraft ...))))
+```
+
+Only the Craft apps listed go into that build. Changing any of them
+rebuilds that build. (`craft-suite` is all of them at once.)
+
 ### Wine packages (`radmin-vpn-linux`, `bfme-aio-launcher`)
 
 - Guix's `wine64` has ELF builtins and old-style WoW64, which breaks both
