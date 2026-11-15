@@ -26,6 +26,10 @@
 #
 # [group.NAME.packages.PACKAGE]
 #   url     upstream git repository
+#   apt     instead of `url': a Debian package index (a Packages file) that
+#           lists the package's .deb; the newest version there is taken,
+#           with the hash the index gives.  `apt-package' is the package's
+#           name in the index (default: PACKAGE).  For binary packages.
 #   tags    regular expression a release tag must match, with the version
 #           as group 1 (default: ^v?(\d+(?:\.\d+)+)$, i.e. no pre-releases)
 #   branch  follow the head of this branch instead of release tags
@@ -175,6 +179,16 @@ branch = "main"
 
 # ---------------------------------------------------------------------------
 # Packages with more to them than a commit and a hash.
+
+# Anthropic's Claude desktop app: a .deb from their apt repository.
+[group.claude-desktop]
+file = "hyperguix/packages/claude-desktop.scm"
+pin = '\(name "{name}"\)\s+\(version "(?P<version>[^"]+)"\).*?\(base32 "(?P<hash>[0-9a-z]{52})"'
+
+[group.claude-desktop.packages.claude-desktop]
+apt = "https://downloads.claude.ai/claude-desktop/apt/stable/dists/stable/main/binary-amd64/Packages"
+builds = ["claude-desktop"]
+
 
 [group.pandora-launcher]
 file = "hyperguix/packages/pandora-launcher.scm"

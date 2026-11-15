@@ -95,6 +95,27 @@ def nix_b32(b):
     return "".join(out)
 
 
+def apt_newest(index_url, package_name):
+    """The newest PACKAGE_NAME in the Debian package index at INDEX_URL (a
+    Packages file), as (version, sha256 of its .deb as Guix writes it)."""
+    request = urllib.request.Request(index_url,
+                                     headers={"User-Agent": "curl/8"})
+    try:
+        with urllib.request.urlopen(request, timeout=120) as response:
+            text = response.read().decode()
+    except OSError as error:
+        raise Skip(f"could not read {index_url}: {error}")
+    found = {}
+    for stanza in text.split("\n\n"):
+        fields = dict(re.findall(r"^([A-Za-z0-9-]+): *(.*)$", stanza, re.M))
+        if fields.get("Package") == package_name and "SHA256" in fields:
+            found[fields["Version"]] = fields["SHA256"]
+    if not found:
+        raise Skip(f"no {package_name} in {index_url}")
+    version = max(found, key=version_key)
+    return version, nix_b32(bytes.fromhex(found[version]))
+
+
 def download_hash(url):
     """The sha256 of the file at URL, as Guix writes it."""
     request = urllib.request.Request(url, headers={"User-Agent": "curl/8"})
@@ -306,6 +327,17 @@ def target(group, package, name, force_version=None):
     """Return what NAME should move to, as a dict, or None when it is
     already there.  FORCE_VERSION asks for that release, not the newest."""
     _, old_version, old_commit = pinned(group, package, name)
+    if "apt" in package:
+        version, sha256 = apt_newest(package["apt"],
+                                     package.get("apt-package", name))
+        if version == old_version:
+            return None
+        if version_key(version) < version_key(old_version):
+            raise Skip(f"pinned {old_version} is newer than the newest "
+                       f"package {version}")
+        return {"old": old_version, "new": version, "version": version,
+                "old_version": old_version, "old_commit": None,
+                "commit": None, "hash": sha256}
     if "branch" in package:
         commit = branch_head(package["url"], package["branch"])
         if commit == old_commit:
@@ -416,6 +448,14 @@ def apply(group, package, name, tgt):
     """Rewrite NAME's pins for the update TGT.  Return (notes, README
     changes); raise Skip, leaving files half-changed, if it can't be done."""
     file = package_file(group, package)
+    if "apt" in package:
+        # A binary package: the version and the hash of its .deb, which the
+        # index gives; there is no source tree to check.
+        match = current_pin(group, package, name)
+        write(file, replace_groups(read(file), match,
+                                   {"version": tgt["version"],
+                                    "hash": tgt["hash"]}))
+        return [], [(name, tgt["old_version"], tgt["version"])]
     tree = checkout(package["url"], tgt["commit"], package.get("lfs", False))
     check_patches(package, tree)
     check_unchanged(package, tgt, tree)
@@ -537,7 +577,8 @@ def update_package(group, name, package, check_only):
     tgt = target(group, package, name)
     if tgt is None:
         return None
-    result = {"name": name, "url": package["url"], "old": tgt["old"],
+    result = {"name": name, "url": package.get("url", package.get("apt")),
+              "old": tgt["old"],
               "new": tgt["new"], "old_commit": tgt["old_commit"],
               "commit": tgt["commit"], "notes": [],
               "builds": package.get("builds", [name])}
@@ -706,7 +747,8 @@ def main():
             if not options.check:
                 subprocess.run(["git", "-C", ROOT, "checkout", "--", *files],
                                check=True)
-            url = package["url"] if package else group.get("url", "")
+            url = (package.get("url", package.get("apt", "")) if package
+                   else group.get("url", ""))
             failed.append({"name": name, "reason": str(reason), "url": url})
             print(f"{name}: FAILED: {reason}", file=sys.stderr)
             continue
