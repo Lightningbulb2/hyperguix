@@ -24,7 +24,7 @@
   #:use-module (gnu packages version-control))
 
 (define %guix-manager-commit "77e62e965e3a6497f9c088bd461f397e5b57c845")
-(define %guix-manager-version "2.2")
+(define %guix-manager-version "2.3")
 
 (define %guix-manager-source
   (origin
