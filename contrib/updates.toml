@@ -236,7 +236,6 @@ pin = '\(define %ladybird-commit "(?P<commit>[0-9a-f]{40})"\).*?\(base32 "(?P<ha
 [group.ladybird.packages.ladybird]
 url = "https://github.com/LadybirdBrowser/ladybird"
 branch = "master"
-patches = ["hyperguix/packages/aux-files/ladybird-qt-6.9-contrast.patch"]
 # Skia, ANGLE, FFmpeg and pdf.js are pinned by hand to what these files ask for.
 unchanged = ["Meta/CMake/vcpkg"]
 unchanged-hint = "check whether Skia, ANGLE, FFmpeg, pdf.js or their overlay patches moved; if so update them and %ladybird-ports-commit in ladybird.scm, then update the package by hand"

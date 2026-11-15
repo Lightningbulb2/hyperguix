@@ -188,6 +188,13 @@ Before rebuilding, check that each `substitute*` pattern still matches the
 new source: in this Guix a pattern that matches nothing is **not** an error,
 so a stale patch silently does nothing.
 
+Guix's GCC 15 and 16 have libstdc++ misconfigured for parts of the C
+library: GCC 16 lacks C99 math (`_GLIBCXX11_USE_C99_MATH`), GCC 15 lacks
+`<fenv.h>` (`_GLIBCXX_HAVE_FENV_H`), so the C++ wrapper headers declare
+nothing. Ladybird builds with GCC 15 and passes
+`-D_GLIBCXX_HAVE_FENV_H=1`; another C++ package that fails on `fenv_t` or
+`signbit` needs the same.
+
 Pitfalls for new Rust packages:
 
 - Pass `#:rust` explicitly (`rust-1.95`, `rust-1.97`: Guix's own) so a

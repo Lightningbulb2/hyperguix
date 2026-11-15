@@ -29,6 +29,7 @@
   #:use-module (gnu packages cpp)
   #:use-module (gnu packages curl)
   #:use-module (gnu packages fontutils)
+  #:use-module (gnu packages freedesktop)
   #:use-module (gnu packages gcc)
   #:use-module (gnu packages gl)
   #:use-module (gnu packages glib)
@@ -54,6 +55,7 @@
   #:use-module (gnu packages vulkan)
   #:use-module (gnu packages web)
   #:use-module (gnu packages xdisorg)
+  #:use-module (gnu packages xiph)
   #:use-module (gnu packages xml)
   #:use-module (gnu packages xorg)
   #:use-module (hyperguix packages ladybird-crates)
@@ -61,7 +63,7 @@
   #:export (skia-for-ladybird
             angle-for-ladybird))
 
-(define %ladybird-commit "bf3e277c50a73b5200522d3531e11f401b121870")
+(define %ladybird-commit "110a08dbeff1f70692f52bfb16a7fb97b102092f")
 
 (define %ladybird-source
   (origin
@@ -71,13 +73,13 @@
           (commit %ladybird-commit)))
     (file-name (git-file-name "ladybird" (string-take %ladybird-commit 7)))
     (sha256
-     (base32 "0w49gyf278bjmcxq57lq07j42shdz4n4ad0sbfgj91v35sag28k9"))))
+     (base32 "1srdg59b7c7bk7rv1zmahyla69cw28n62x5xa0kvmyncm8ccdq7j"))))
 
 ;; The tree the dependencies below take their vcpkg overlay port patches
 ;; from.  It has its own pin so that moving %ladybird-commit doesn't rebuild
 ;; Skia, ANGLE, FFmpeg and pdf.js when those patches haven't changed; move it
 ;; when `git diff OLD NEW -- Meta/CMake/vcpkg' shows they have.
-(define %ladybird-ports-commit "b60be2e29b721f4748998e598cda2361d05462f6")
+(define %ladybird-ports-commit "110a08dbeff1f70692f52bfb16a7fb97b102092f")
 
 (define %ladybird-ports-source
   (origin
@@ -87,11 +89,24 @@
           (commit %ladybird-ports-commit)))
     (file-name (git-file-name "ladybird" (string-take %ladybird-ports-commit 7)))
     (sha256
-     (base32 "1aqh7cwjvm5m1zv91gdpf9158x47kp3zy7526wvqk9mci94sv88v"))))
+     (base32 "1srdg59b7c7bk7rv1zmahyla69cw28n62x5xa0kvmyncm8ccdq7j"))))
 
 (define (ladybird-file file)
   "FILE from Ladybird's source tree (a vcpkg overlay port patch, say)."
   (file-append %ladybird-ports-source "/" file))
+
+;; ANGLE's overlay port has not changed since this commit; keeping it here
+;; spares an ANGLE rebuild.  Move it to %ladybird-ports-commit when
+;; `git diff OLD NEW -- Meta/CMake/vcpkg/overlay-ports/angle' shows a change.
+(define %ladybird-angle-ports-source
+  (origin
+    (method git-fetch)
+    (uri (git-reference
+          (url "https://github.com/LadybirdBrowser/ladybird")
+          (commit "b60be2e29b721f4748998e598cda2361d05462f6")))
+    (file-name (git-file-name "ladybird" "b60be2e"))
+    (sha256
+     (base32 "1aqh7cwjvm5m1zv91gdpf9158x47kp3zy7526wvqk9mci94sv88v"))))
 
 
 ;;;
@@ -276,8 +291,9 @@ Cflags: -I${includedir} -I${includedir}/include~%" #$output)))))))))
         #~(modify-phases %standard-phases
             (add-after 'unpack 'add-cmake-buildsystem
               (lambda* (#:key inputs #:allow-other-keys)
-                (let ((port #$(ladybird-file
-                               "Meta/CMake/vcpkg/overlay-ports/angle"))
+                (let ((port #$(file-append
+                               %ladybird-angle-ports-source
+                               "/Meta/CMake/vcpkg/overlay-ports/angle"))
                       (short #$(string-take commit 12)))
                   (for-each (lambda (patch)
                               (invoke "patch" "-p1" "-i"
@@ -389,6 +405,8 @@ system Ladybird uses, provides the OpenGL backend only.")
               "--disable-avfilter" "--enable-swresample" "--disable-swscale"
               "--enable-libdav1d" "--enable-zlib" "--enable-vulkan"
               "--enable-libdrm"
+              ;; The "opus" feature: the encoder, for WebRTC.
+              "--enable-libopus" "--enable-encoder=libopus"
               (string-append "--enable-decoder=vp8,vp9,av1,libdav1d,theora,"
                              "vorbis,opus,flac,mp3float,pcm_u8,pcm_s16le,"
                              "pcm_s24le,pcm_s32le,pcm_f32le,pcm_alaw,"
@@ -400,10 +418,19 @@ system Ladybird uses, provides the OpenGL backend only.")
       #~(modify-phases %standard-phases
           (add-after 'unpack 'apply-ladybird-patch
             (lambda _
-              (invoke "patch" "-p1" "-i"
-                      #$(ladybird-file
-                         "Meta/CMake/vcpkg/overlay-ports/ffmpeg/\
-0100-ladybird-symbol-version-nodes.patch"))))
+              (for-each
+               (lambda (patch)
+                 (invoke "patch" "-p1" "-i" patch))
+               (list #$@(map (lambda (name)
+                               (ladybird-file
+                                (string-append
+                                 "Meta/CMake/vcpkg/overlay-ports/ffmpeg/"
+                                 name)))
+                             '("0100-ladybird-symbol-version-nodes.patch"
+                               "0101-vulkan-decode-dpb-distinct-no-drm-\
+modifiers.patch"
+                               "0102-vulkan-av1-clear-unused-ref-frame-\
+mvs.patch"))))))
           (replace 'configure
             ;; FFmpeg's configure is not Autoconf's.
             (lambda* (#:key configure-flags #:allow-other-keys)
@@ -415,7 +442,7 @@ system Ladybird uses, provides the OpenGL backend only.")
                      (string-append "--prefix=" #$output)
                      configure-flags))))))
     (native-inputs (list nasm pkg-config))
-    (inputs (list dav1d libdrm vulkan-headers vulkan-loader zlib))
+    (inputs (list dav1d libdrm opus vulkan-headers vulkan-loader zlib))
     (home-page "https://ffmpeg.org/")
     (synopsis "Audio and video decoders of FFmpeg, for Ladybird")
     (description
@@ -487,7 +514,12 @@ libraries carry a @code{-ladybird} suffix.")
               (file-name (git-file-name name version))
               (sha256
                (base32
-                "0gdsf5n44kad22x53nkrm6p237s3kwqmr8chjmdl94866wwqrnng"))))
+                "0gdsf5n44kad22x53nkrm6p237s3kwqmr8chjmdl94866wwqrnng"))
+              ;; The overlay port's (port version 1): mimalloc.pc lists
+              ;; libstdc++ when built as C++.
+              (patches
+               (list (ladybird-file "Meta/CMake/vcpkg/overlay-ports/mimalloc/\
+pkgconfig-cxx.diff")))))
     (arguments
      ;; The options of Ladybird's Flatpak build.
      (list #:build-type "Release"
@@ -498,6 +530,58 @@ libraries carry a @code{-ladybird} suffix.")
                    "-DMI_SECURE=ON" "-DMI_USE_CXX=ON")
            #:tests? #f))
     (properties '((hidden? . #t)))))
+
+;; vcpkg.json: "llvm-libc" at a commit of LLVM's main branch.  Only the
+;; headers of libc/, for its header-only math functions, installed under
+;; include/llvm-libc as the overlay port does.
+(define llvm-libc-headers-for-ladybird
+  (let ((commit "e54169423e7ee5d8b41c2f1b6f7a59000c901ee0"))
+    (package
+      (name "llvm-libc-headers-for-ladybird")
+      (version (git-version "23" "0" commit))
+      (source (origin
+                (method url-fetch)
+                (uri (string-append "https://github.com/llvm/llvm-project/"
+                                    "archive/" commit ".tar.gz"))
+                (file-name (string-append "llvm-project-" commit ".tar.gz"))
+                (sha256
+                 (base32
+                  "074cc072ixlgs7l14ha1pllzqbd341wrq47i7y7125npa8byagnv"))))
+      (build-system trivial-build-system)
+      (arguments
+       (list
+        #:modules '((guix build utils))
+        #:builder
+        #~(begin
+            (use-modules (guix build utils))
+            (setenv "PATH" (string-append #$(this-package-native-input "tar")
+                                          "/bin:"
+                                          #$(this-package-native-input "gzip")
+                                          "/bin"))
+            (let ((top (string-append "llvm-project-" #$commit))
+                  (include (string-append #$output "/include/llvm-libc")))
+              (invoke "tar" "xzf" #$source (string-append top "/libc"))
+              (with-directory-excursion (string-append top "/libc")
+                (for-each
+                 (lambda (directory)
+                   (for-each
+                    (lambda (header)
+                      (let ((target (string-append include "/" header)))
+                        (mkdir-p (dirname target))
+                        (copy-file header target)))
+                    (find-files directory "\\.h$")))
+                 '("hdr" "include" "shared" "src/__support"
+                   "src/string/memory_utils"))
+                (install-file "LICENSE.TXT"
+                              (string-append #$output
+                                             "/share/doc/llvm-libc")))))))
+      (native-inputs (list gzip tar))
+      (home-page "https://libc.llvm.org/")
+      (synopsis "Headers of LLVM's libc, for Ladybird's math functions")
+      (description
+       "The headers of LLVM's C library, whose math functions are
+header-only.  Ladybird compiles them into its JavaScript engine.")
+      (license license:asl2.0))))
 
 ;; vcpkg.json: "zmij" 1.2.  Not in Guix.
 (define zmij
@@ -512,7 +596,11 @@ libraries carry a @code{-ladybird} suffix.")
               (file-name (git-file-name name version))
               (sha256
                (base32
-                "1hdiaqpa5300i5iwch4sfszim83fp1gj9ilcwh9d5jwdwcm6knns"))))
+                "1hdiaqpa5300i5iwch4sfszim83fp1gj9ilcwh9d5jwdwcm6knns"))
+              ;; The overlay port's (port version 1).
+              (patches
+               (list (ladybird-file "Meta/CMake/vcpkg/overlay-ports/zmij/\
+001-explicit-array-sizes.patch")))))
     (build-system cmake-build-system)
     (arguments
      (list #:tests? #f
@@ -591,6 +679,9 @@ image and data format decoders.  This is the single-file C release of its
             (for-each (lambda (f) (install-file f (string-append share "/web")))
                       '("web/viewer.html" "web/viewer.mjs" "web/viewer.css"))
             (copy-recursively "web/images" (string-append share "/web/images"))
+            ;; Decoders and their JavaScript fallbacks (6.4 and later).
+            (when (file-exists? "web/wasm")
+              (copy-recursively "web/wasm" (string-append share "/web/wasm")))
             (install-file "web/locale/en-US/viewer.ftl"
                           (string-append share "/web/locale/en-US"))
             (call-with-output-file (string-append share "/web/locale/locale.json")
@@ -625,12 +716,7 @@ holds the viewer files Ladybird embeds.")
   (package
     (name "ladybird")
     (version (git-version "0.0.0" "0" %ladybird-commit))
-    ;; Patched here, not in %ladybird-source: Skia and ANGLE take patches
-    ;; from that tree and would be rebuilt.
-    (source (origin
-              (inherit %ladybird-source)
-              (patches
-               (list (local-file "aux-files/ladybird-qt-6.9-contrast.patch")))))
+    (source %ladybird-source)
     (build-system cmake-build-system)
     (arguments
      (list
@@ -654,6 +740,17 @@ holds the viewer files Ladybird embeds.")
               "-DCMAKE_SKIP_RPATH=OFF"
               (string-append "-DCMAKE_INSTALL_RPATH=" #$output "/lib")
               (string-append "-DICU_ROOT=" #$(this-package-input "icu4c"))
+              ;; Guix's GCC 15 libstdc++ was configured without <fenv.h>
+              ;; (_GLIBCXX_HAVE_FENV_H unset), so its <fenv.h> declares
+              ;; nothing; LLVM libc's math headers need fenv_t from glibc.
+              "-DCMAKE_CXX_FLAGS=-D_GLIBCXX_HAVE_FENV_H=1"
+              (string-append "-DPDFJS_DIR="
+                             #$(this-package-input "pdfjs-for-ladybird")
+                             "/share/pdfjs")
+              (string-append "-DLLVM_LIBC_INCLUDE_DIR="
+                             #$(this-package-input
+                                "llvm-libc-headers-for-ladybird")
+                             "/include")
               ;; Load the APNG-enabled libpng before Qt's plain one: both
               ;; have the same soname, and only the first loaded is used.
               ;; Shared libraries need it too: otherwise ld resolves
@@ -676,16 +773,6 @@ holds the viewer files Ladybird embeds.")
               (substitute* "Meta/CMake/compile_options.cmake"
                 (("add_cxx_compile_options\\(-march=native\\)") "")
                 (("set\\(RUSTC_TARGET_CPU_FLAGS -Ctarget-cpu=native\\)") ""))
-              ;; WebGLCommands.h includes the generated GLFunctions.h, but
-              ;; nothing makes LibCompositing wait for it.
-              (substitute* "Libraries/LibCompositing/CMakeLists.txt"
-                (("^ladybird_lib\\(LibCompositing .*" all)
-                 (string-append
-                  all "add_dependencies(LibCompositing "
-                  "generate_GLFunctions.cpp)\n")))
-              ;; Guix has Qt 6.9; nothing used needs 6.10.
-              (substitute* "UI/Qt/CMakeLists.txt"
-                (("Qt6 6\\.10") "Qt6 6.9"))
               ;; The Landlock sandbox of the Compositor and the video decoder
               ;; allows the FHS library and data directories, plus the
               ;; directories of the libraries loaded so far and the files
@@ -696,24 +783,16 @@ holds the viewer files Ladybird embeds.")
               ;; Vulkan instance creation fails and painting falls back to
               ;; the CPU.  The store is world-readable and immutable.
               (substitute* "Libraries/LibSandbox/GpuDriverPaths.cpp"
-                (("^( *)TRY\\(add_landlock_path_if_exists\\(paths, \"/usr/local/lib\"sv, .*" all indent)
+                (("^( *)TRY\\(add_path_if_exists\\(paths, \"/usr/local/lib\"sv, .*" all indent)
                  (string-append all indent
-                                "TRY(add_landlock_path_if_exists(paths, \""
+                                "TRY(add_path_if_exists(paths, \""
                                 (%store-directory)
-                                "\"sv, LandlockPath::Access::ReadOnly));\n")))
+                                "\"sv, PathRule::Access::ReadOnly));\n")))
               ;; No .git in the checkout.
               (substitute* "Meta/Generators/generate-build-information.py"
                 (("revision, state = git_revision\\(source\\)")
                  (string-append "revision, state = \""
                                 #$%ladybird-commit "\", \"clean\"")))
-              ;; Use the pdf.js viewer from its own package (vcpkg only).
-              (substitute* "UI/cmake/ResourceFiles.cmake"
-                (("if \\(NOT \"\\$\\{VCPKG_INSTALLED_DIR\\}\" STREQUAL \"\" .*")
-                 "if (TRUE)\n")
-                (("set\\(_pdfjs_vcpkg_dir .*")
-                 (string-append "set(_pdfjs_vcpkg_dir \""
-                                #$(this-package-input "pdfjs-for-ladybird")
-                                "/share/pdfjs\")\n")))
               ;; Downloaded at configure time otherwise; this is the
               ;; default LADYBIRD_CACHE_DIR.
               (mkdir-p "Build/caches/HSTSPreload")
@@ -802,6 +881,7 @@ offline = true~%" vendor))))))
            cpptrace
            curl-for-ladybird
            dav1d
+           dbus
            fast-float
            ffmpeg-for-ladybird
            fontconfig
@@ -818,6 +898,7 @@ offline = true~%" vendor))))))
            libtommath
            libwebp
            libxml2
+           llvm-libc-headers-for-ladybird
            mimalloc-for-ladybird
            openssl
            pdfjs-for-ladybird
@@ -833,6 +914,7 @@ offline = true~%" vendor))))))
            vulkan-headers
            vulkan-loader
            vulkan-memory-allocator
+           wayland
            woff2
            wuffs-0.3
            xcb-util-wm
