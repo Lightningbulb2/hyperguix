@@ -86,6 +86,10 @@ url = "https://github.com/storytold/figcraft"
 url = "https://github.com/storytold/deckcraft"
 [group.craft.packages.texturecraft]
 url = "https://github.com/storytold/texturecraft"
+[group.craft.packages.materialcraft]
+url = "https://github.com/storytold/materialcraft"
+[group.craft.packages.anicraft]
+url = "https://github.com/storytold/anicraft"
 [group.craft.packages.craft-anything]
 url = "https://github.com/storytold/craft-anything"
 [group.craft.packages.craft-launcher]

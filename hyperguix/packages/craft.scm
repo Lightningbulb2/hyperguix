@@ -14,6 +14,8 @@
 ;;;   figcraft        interface design    (... on Figma)
 ;;;   deckcraft       presentations       (... on PowerPoint)
 ;;;   texturecraft    texture painting    (... on Substance Painter)
+;;;   materialcraft   procedural materials (... on Substance Designer)
+;;;   anicraft        2D vector animation (... on Animate)
 ;;;   craft-anything  explains how a program works, and helps rebuild it
 ;;;   craft-launcher  installer/launcher for the suite
 ;;;
@@ -426,6 +428,37 @@ maps, drives smart materials from them, and exports texture sets for game
 engines.  @command{texturecraft-cli} bakes and exports from the command line,
 and includes an MCP server for AI agents."))
 
+(define-public materialcraft
+  (craft-app "materialcraft" "0.4.1" "65f7bfd3e5f40d695d03162285879f0f8079ff6c"
+             "0h6563l1235yrwgnasic8s0lzh5wj4lcmbss1flim1p5bdzkliw8"
+             #:cargo-inputs materialcraft-cargo-inputs
+             #:git-crates materialcraft-git-crates
+             #:fonts (craft-fonts "3d9ab3a132ed0eff457e424226a435a901da30d3"
+                                  "0c89azfbjmn9w8737fr3hkpin28449nqkrnws7smb9qf2z6c7ncq")
+             #:synopsis "Node-based designer of procedural PBR materials"
+             #:description
+             "MaterialCraft builds procedural materials from primitives and
+functions in a node graph, in the spirit of Adobe Substance 3D Designer.  The
+result updates live in 2D and on a 3D model, and its maps export for any game
+engine.  @command{materialcraft-cli} evaluates graphs and exports maps from
+the command line."))
+
+(define-public anicraft
+  (craft-app "anicraft" "0.2.1" "d0beaf253274948b55ee9e1107749f9491bff880"
+             "04kcmlbzyvw8biihlxg1ix9wdqfy6q8fgc01m8z1xqhj4mpajbnv"
+             #:cargo-inputs anicraft-cargo-inputs
+             #:git-crates anicraft-git-crates
+             #:fonts (craft-fonts "b076417b5880bd4154bd22f00695b1d28c6bea83"
+                                  "0ix1yqh09iwmrzlqi14j33ix6lp6jmhyq4pv8rxg18a3082db7cd")
+             ;; cpal (sound on the timeline).
+             #:extra-inputs (list alsa-lib)
+             #:synopsis "2D vector animation editor"
+             #:description
+             "AniCraft is a 2D vector animation editor modelled on Adobe
+Animate: a timeline with layers and keyframes, classic and shape tweens,
+onion skinning and a vector drawing stage.  @command{anicraft-cli} renders
+and converts animations from the command line."))
+
 (define-public craft-anything
   (craft-app "craft-anything" "0.6.1" "48a9c5a60ff83ff620f98661339be6281a7debc6"
              "0vislijzag60m3cw7nclqkg0n282mlhprljxwp5a2prwhfnnn9bp"
@@ -488,12 +521,14 @@ on Guix System; prefer the Guix packages of the apps."))
 
 (define-public craft-suite
   (cargo-suite "craft-suite"
-               ;; figcraft and pdfcraft first: the members most likely to
-               ;; break (figcraft moved off Rust 1.97; pdfcraft pins winprint
-               ;; at two git revisions), so a failure shows up early.
-               (list figcraft pdfcraft photocraft effectcraft filmcraft
-                     lightcraft vectorcraft designcraft wordcraft gridcraft
-                     soundcraft cadcraft deckcraft texturecraft craft-launcher)
+               ;; The members most likely to break first, so a failure shows
+               ;; up early: the newest (materialcraft, anicraft), figcraft
+               ;; (moved off Rust 1.97) and pdfcraft (winprint at two git
+               ;; revisions).
+               (list materialcraft anicraft figcraft pdfcraft photocraft
+                     effectcraft filmcraft lightcraft vectorcraft designcraft
+                     wordcraft gridcraft soundcraft cadcraft deckcraft
+                     texturecraft craft-launcher)
                #:rust rust-1.95))
 
 (set! photocraft (suite-member craft-suite photocraft))
@@ -510,4 +545,6 @@ on Guix System; prefer the Guix packages of the apps."))
 (set! figcraft (suite-member craft-suite figcraft))
 (set! deckcraft (suite-member craft-suite deckcraft))
 (set! texturecraft (suite-member craft-suite texturecraft))
+(set! materialcraft (suite-member craft-suite materialcraft))
+(set! anicraft (suite-member craft-suite anicraft))
 (set! craft-launcher (suite-member craft-suite craft-launcher))

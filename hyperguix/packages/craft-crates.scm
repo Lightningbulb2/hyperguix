@@ -2,7 +2,7 @@
 
 (define-module (hyperguix packages craft-crates)
   #:use-module (hyperguix packages cargo-git)
-  #:export (photocraft-cargo-inputs photocraft-git-crates effectcraft-cargo-inputs effectcraft-git-crates filmcraft-cargo-inputs filmcraft-git-crates lightcraft-cargo-inputs lightcraft-git-crates vectorcraft-cargo-inputs vectorcraft-git-crates designcraft-cargo-inputs designcraft-git-crates pdfcraft-cargo-inputs pdfcraft-git-crates wordcraft-cargo-inputs wordcraft-git-crates gridcraft-cargo-inputs gridcraft-git-crates soundcraft-cargo-inputs soundcraft-git-crates cadcraft-cargo-inputs cadcraft-git-crates figcraft-cargo-inputs figcraft-git-crates deckcraft-cargo-inputs deckcraft-git-crates texturecraft-cargo-inputs texturecraft-git-crates craft-anything-cargo-inputs craft-anything-git-crates craft-launcher-cargo-inputs craft-launcher-git-crates))
+  #:export (photocraft-cargo-inputs photocraft-git-crates effectcraft-cargo-inputs effectcraft-git-crates filmcraft-cargo-inputs filmcraft-git-crates lightcraft-cargo-inputs lightcraft-git-crates vectorcraft-cargo-inputs vectorcraft-git-crates designcraft-cargo-inputs designcraft-git-crates pdfcraft-cargo-inputs pdfcraft-git-crates wordcraft-cargo-inputs wordcraft-git-crates gridcraft-cargo-inputs gridcraft-git-crates soundcraft-cargo-inputs soundcraft-git-crates cadcraft-cargo-inputs cadcraft-git-crates figcraft-cargo-inputs figcraft-git-crates deckcraft-cargo-inputs deckcraft-git-crates texturecraft-cargo-inputs texturecraft-git-crates craft-anything-cargo-inputs craft-anything-git-crates craft-launcher-cargo-inputs craft-launcher-git-crates materialcraft-cargo-inputs materialcraft-git-crates anicraft-cargo-inputs anicraft-git-crates))
 
 ;;; crates.io crates: (NAME VERSION HASH); projects refer to them by index.
 (define %crates
@@ -82,6 +82,7 @@
      ("as-slice" "0.2.1" "05j52y1ws8kir5zjxnl48ann0if79sb56p9nm76hvma01r7nnssi")
      ("ash" "0.38.0+1.3.281" "0vx4yf689v1rc680jvy8bnysx5sgd8f33wnp2vqaizh0v0v4kd0b")
      ("asio-sys" "0.4.0" "1f91h1nf6crlzxzdfb7s3jfsgjxyhxpl5br2ahpgqyannvsiqzs7")
+     ("astc-decode" "0.3.1" "0srp1vvdjlx7kr3ws7q910jv13nafx5yr4jn8kxbf81f43k5hq1d")
      ("async-broadcast" "0.7.2" "0ckmqcwyqwbl2cijk1y4r0vy60i89gqc86ijrxzz5f2m4yjqfnj3")
      ("async-channel" "2.5.0" "1ljq24ig8lgs2555myrrjighycpx2mbjgrm3q7lpa6rdsmnxjklj")
      ("async-executor" "1.14.0" "0al1rmxjy7p7r6h50z698q5lwssqs5a2vzmqbazm1z2sv1rgjsy9")
@@ -136,12 +137,19 @@
      ("block2" "0.5.1" "0pyiha5his2grzqr3mynmq244laql2j20992i59asp0gy7mjw4rc")
      ("block2" "0.6.2" "1xcfllzx6c3jc554nmb5qy6xmlkl6l6j5ib4wd11800n0n3rvsyd")
      ("blocking" "1.7.0" "1ykd0gj18r4v4b8r692hds5dsg2w6y9fq4nlxs2l7fbcvwll63m7")
+     ("boa_ast" "0.21.1" "02lfafk3szwflv73h1lb1n9q1j4gzvl7cp56brpkgnjvf40affb3")
      ("boa_ast" "0.22.0" "1msfr84vdgxq2nkg11bbak4lpzl10x68gia6ic8llaspj2hb08cj")
+     ("boa_engine" "0.21.1" "093q2pa0xx9bdad3pfgp4cm00yli0bqffk2xx63qhp4adwrbw88m")
      ("boa_engine" "0.22.0" "1nb0gg4lpmwgd6wp2lhz19ik87d581a1lzmnmmldz6a2vizsysjx")
+     ("boa_gc" "0.21.1" "0l9fb20dwsm6n3x5ma6gp9l8mi0j2af6av8srzx1lqrfryc3lchp")
      ("boa_gc" "0.22.0" "0rnrn5vifz606z53m6njfxhm1fry7asmk14cjz8h445bb2ai30mg")
+     ("boa_interner" "0.21.1" "1sj7ny9d5ywc9jmwv48x7m85cqf5131w0d6g0459ppmw0a5hnl90")
      ("boa_interner" "0.22.0" "1lccnx97ggm6w9hc7i1l1kagzsmhb2kw0hvy078bfp0zg4g66z1i")
+     ("boa_macros" "0.21.1" "0gfj474vbrj85ks12w9xmpyq75kh5rgmmg48wmh3093d2i7wn8jq")
      ("boa_macros" "0.22.0" "0p7sqa72s03cl5v9l33maq1r4xxhgdb8kkv72d2bgx601m2gv0mq")
+     ("boa_parser" "0.21.1" "1nxd98qgswmlqkj8ndw6wkyvphj0rnjsbax806hf74zsm5zrbg9m")
      ("boa_parser" "0.22.0" "1kzv26g92jl6zasj1jg8nh8g5vg96jjkxys70laa5dybr2rq27k4")
+     ("boa_string" "0.21.1" "1phicp1lhj14x595jvxqlw00i487v3q258c80w2djvx7ykbs2bfa")
      ("boa_string" "0.22.0" "03icfvpzpxlvfhfm2cdigi9cl21ibmn53z6bg9ag4nzzpk18dgrh")
      ("borsh" "1.8.1" "02p2lhz49944wc6j5dzr42y1mkrv0znbicg3cl61b9bbda25sg2m")
      ("borsh-derive" "1.8.1" "0mlzrbwzcr7qaky1iap09m0nrzp6crjd79sinj4iz808cxjzxk8j")
@@ -303,6 +311,7 @@
      ("data-url" "0.3.2" "0xl30jidc8s3kh2z3nvnn1nyzhbq5b2wpiqwzj9gjdrndk50n7my")
      ("dbus" "0.9.12" "0bmk4bn1r8isjxbl780nkdd7grjq2r7125g3r34l0hwcrh1rzdis")
      ("dbus-secret-service" "4.1.0" "19jgbqb841kbzmfgaqnbbhsc5ijck7fzl3zvgqyyb2bqvyg512vh")
+     ("dds" "0.2.0" "0s7hlp5qjfq1lcwmynywj9jz9myfria0fjbcc8ajyzdj2y7aa5z9")
      ("defmt" "1.1.1" "1lc8xlfj700xqjmvp7n9hhc1czgpaqkq960iqw6d5fwk9zz3p5g2")
      ("defmt" "1.2.0" "1qg3w0w7f0fn74xp60aci37swsjz6hbrqp3pngbm9js0qxd7k874")
      ("defmt-macros" "1.1.1" "1s2zkcbaj1l306ph1n1gsfm6vzc2sah4acl1qc6pw4x2ghpcgnds")
@@ -420,6 +429,7 @@
      ("find-msvc-tools" "0.1.15" "0j5sh4lb7g8xh6kd67s0vz037ah5hlp9f2rbgbg9f41rqmf92rhw")
      ("fixed_decimal" "0.7.3" "1bjmpk4h7ylsqzpifs22pjr5iq5bvnqxyadvwnz9dvk9yq0gn512")
      ("fixedbitset" "0.5.7" "16fd3v9d2cms2vddf9xhlm56sz4j0zgrk3d2h6v1l7hx760lwrqx")
+     ("fixedbitset" "0.5.9" "0xf1ip8a870acgz03jp5h6gfiqrbdlslsgim51wnsf68bisyq1ar")
      ("flagset" "0.4.7" "1zplx30g76kl5la3ayl9ns5p3diqd9zphbcggqcm4nm7411q5b5p")
      ("flatbuffers" "24.12.23" "15m008mpxhiv9y83vdmppyq1bh190f85g383lg4jx4wnpw6sy6sg")
      ("flate2" "1.1.10" "1jvd2cl8j5hyf8imi62y1x7gwzz1hajirni0801yxhds1qp4wqvf")
@@ -503,6 +513,7 @@
      ("gl" "0.14.0" "015lgy3qpzdw7mnh59a4y4hdjq1fhv7nkqlmh1h6fzc212qxlkm9")
      ("gl_generator" "0.14.0" "0k8j1hmfnff312gy7x1aqjzcm8zxid7ij7dlb8prljib7b1dz58s")
      ("glam" "0.15.2" "0jx587lxz9v9m0ph4dlshfgy0abax1zhlbjj5nvkchz4ir7mbfrs")
+     ("glam" "0.25.0" "1cr80mz1qyc73fvp2d93d4g2svv675fmcrkrzi0bpyajpvcna5hm")
      ("glam" "0.30.10" "1a9as4c2sm3z9sczl2m6gn8fsfmg4iw8rrpinv8i58iphhz47z0r")
      ("glib" "0.18.5" "1r8fw0627nmn19bgk3xpmcfngx3wkn7mcpq5a8ma3risx3valg93")
      ("glib-macros" "0.18.5" "1p5cla53fcp195zp0hkqpmnn7iwmkdswhy7xh34002bw8y7j5c0b")
@@ -579,19 +590,26 @@
      ("iced-x86" "1.21.0" "0syz3rmxay68svl34r205g83lpzp6bzzq73l9xyllf3zikzpqi3w")
      ("icu_casemap" "2.3.0" "1sc4z2vxgqppz15ny2m76gwkixhnr6z1lfpm7j2xwic41l9gvvgj")
      ("icu_casemap_data" "2.3.0" "1s7407sl91wim7xih6f9szvwl5rwi86wza1kcvyfycwdzjhcv7q5")
+     ("icu_collections" "2.0.0" "0izfgypv1hsxlz1h8fc2aak641iyvkak16aaz5b4aqg3s3sp4010")
      ("icu_collections" "2.3.0" "04x59h6vdq0cnpippim1nr471ivlsnnn470sj1d5v864h48d4s7s")
      ("icu_decimal" "2.3.0" "025x1a5mw5j8s22kvywqk088ilrwrpkb19a3kr2w1l52pdazdf4y")
      ("icu_locale_core" "2.3.0" "1sqdj16wwl7h9y6r7j394av4kpdb7zryz9h169ffwbm9imc2hvnm")
+     ("icu_locale_core" "2.4.0" "1h44m6jbiff814wpllybb93010nhlb7l28acvk82hrbwq5brpli5")
      ("icu_locale_fallback" "2.3.0" "1a9gdzpcqf1wj8pn7kzlzmj2laqmn6wfabr4b3my604lgkjzh6i5")
      ("icu_locale_fallback_data" "2.3.0" "1a639lmgd6ddivlwp74b9v18p3rzb3wa6a8i1hd8z9lgxhi2mkyy")
+     ("icu_normalizer" "2.0.1" "1p5fbv4bpjp7gripsriwibrpfaxqaz6masj7r50sjsq30sbsa94b")
      ("icu_normalizer" "2.3.0" "0vv43ixk2wmbxrx7kl33cwkhx1wdyb1q3pa18qkyshan4dgwzy8j")
+     ("icu_normalizer_data" "2.0.0" "1lvjpzxndyhhjyzd1f6vi961gvzhj244nribfpdqxjdgjdl0s880")
      ("icu_normalizer_data" "2.3.0" "1811h0ppb7lwq1q2492p5x6lcmlwmhbmkf69fhyvzcz0scgdlqqm")
      ("icu_pattern" "0.5.0" "1871zi5hxmxr8axxscgl98cxn7d7mw5smr03dcj2rnbb8h8vcg9b")
      ("icu_pattern" "0.5.1" "13xirvi7fxc7lbrapnj5iw1yhy32nywxpqn65m4b137ffq7cwhxw")
      ("icu_plurals" "2.3.0" "14q5zybqlnfz2lb6g2f7vgnzl2svk5in7glp3wy1syzqdrvfcxg4")
+     ("icu_properties" "2.0.2" "19008k6w7jy4jjfbvsfkwqn1siiqvwmgpb4ddr86jpi3qs57pagm")
      ("icu_properties" "2.3.0" "0j51hi8qgf0l6a7qzvnwsc61598w2fpnsklicld6ci9immva4z3y")
+     ("icu_properties_data" "2.0.1" "0cnn3fkq6k88w7p86w7hsd1254s4sl783rpz4p6hlccq74a5k119")
      ("icu_properties_data" "2.3.0" "1akw1gp5rcaiz377xzsnkx8f92qax4kh3lfn9y4rcjj6q4wg1475")
      ("icu_provider" "2.3.1" "0wrydhwprwgyka3r3sw6276syjnlw6fpqr2zsm2srvxv7afvnyyj")
+     ("icu_provider" "2.4.0" "05458rwq7bnw05z1b7dfiyda0wdr56rr0481izp8ii9naqqrjc21")
      ("icu_provider_adapters" "2.3.0" "080qh30iq9xp3akk0a41nzvqds2vlzgwg825ghy7gg2xyp27p26z")
      ("icu_provider_blob" "2.3.0" "03hvrsvvcfyyzjcwv0mm6xwy46fz4yk0bn6qwic3z79imi7v85jr")
      ("icu_segmenter" "2.3.0" "1nxkdl0i9yif3m3rpsgj03nwbywnb3gnlaji09fz2ynnrjppml42")
@@ -599,6 +617,7 @@
      ("id-arena" "2.3.0" "0m6rs0jcaj4mg33gkv98d71w3hridghp5c4yr928hplpkgbnfc1x")
      ("ident_case" "1.0.1" "0fac21q6pwns8gh1hz3nbq15j8fi441ncl6w4vlnd1cmc55kiq5r")
      ("idna" "1.1.0" "1pp4n7hppm480zcx411dsv9wfibai00wbpgnjj4qj0xa7kr7a21v")
+     ("idna_adapter" "1.2.1" "0i0339pxig6mv786nkqcxnwqa87v4m94b2653f6k3aj0jmhfkjis")
      ("idna_adapter" "1.2.2" "0557p76l8hj35r9zn1yv7c6x1c0qbrsffmg80n0yy8361ly3fs6b")
      ("image" "0.25.10" "0131b9fsd5grxf3lchfs2ci0rg8ga2mh1ygai7k2zh1k8cwq1aw5")
      ("image-webp" "0.2.4" "1hz814csyi9283vinzlkix6qpnd6hs3fkw7xl6z2zgm4w7rrypjj")
@@ -614,6 +633,7 @@
      ("inout" "0.2.2" "1iq39s01d3y56j2r6hf75yqhpa7s2ifwr316yzyi0879a9jcwl22")
      ("interpolate_name" "0.2.4" "0q7s5mrfkx4p56dl8q9zq71y1ysdj4shh6f28qf9gly35l21jj63")
      ("intrusive-collections" "0.10.3" "1gh62nbzpi71l0zhzbbx952gxr012yisby4dzlrpgkapc07b4xa2")
+     ("intrusive-collections" "0.9.7" "11hy9ny6rr6qsh289ljrdq20ayw8ik0h4dfzzrgcgs6bwjbhi78q")
      ("io-extras" "0.19.0" "03y0iagxrw0bgzmi9cd8hv5h58xm7iagl762igiqghgwrkj6vz90")
      ("io-lifetimes" "2.0.4" "10s9fyfksnzn056c7zj75y1v43gqvly26j9nrm79drrv9nsjyhq6")
      ("io-lifetimes" "3.0.1" "15ms5ylnbgpx0w06mnjzcbc9519msl142gaw7jafs7zy19bv03rg")
@@ -642,6 +662,7 @@
      ("jpeg-encoder" "0.6.1" "07xhmypkhy5h2pp2hfh31iaalvk4s36di22l959qy1jmmh8xjm5l")
      ("jpeg-encoder" "0.7.1" "19k7jkkw5fv0vmd8cgvgr3w276p6nn986aczdcawlzkgp1s0adx0")
      ("js-sys" "0.3.106" "1icwmpjw54lb7vg5926k5y4y5jbiih0zxhwgjwnzn475v90xk0vq")
+     ("js-sys" "0.3.107" "0fjdb084avbdxqb6n14lzszwn91wg88npasfym7bz2q9ahhrvh4d")
      ("json-escape-simd" "3.1.2" "0cxh8b8nv38jw6s2zkqmlq1l5nv4q377dgqvyfaqpc7110kif835")
      ("jxl-bitstream" "1.1.0" "1zkqlfcfs345lm5za24cwxpnb14vga44d5gnai0fnaby4x9fg05l")
      ("jxl-coding" "1.0.1" "0g4spm38k3wndirn833pqahraq4mkzim1b21n8g6yxsy2b6jp5yd")
@@ -672,6 +693,7 @@
      ("lazy_static" "1.5.1" "1yqaqmp510xw2ldpw88mx9b5s5qj8flb4rw0wd9ks1zpk9j0z1r0")
      ("leb128fmt" "0.1.0" "1chxm1484a0bly6anh6bd7a99sn355ymlagnwj3yajafnpldkv89")
      ("lebe" "0.5.3" "1f459clndzzm35nyd15vj5dlasyagfasp7hcgl6lh2b658rs6ybs")
+     ("lewton" "0.10.2" "0c60fn004awg5c3cvx82d6na2pirf0qdz9w3b93mbcdakbglhyvp")
      ("libappindicator" "0.9.0" "02nwjmm5qqbkvzbz4j1dd50xs0ywr0i2l2scwmxcqs680yb9nn03")
      ("libappindicator-sys" "0.9.0" "1bsw2mcxil3zm4zzdir76i7xnaqaq30cd9qpviccrvdb70hwb7kf")
      ("libc" "0.2.189" "1whjfs375vlng2q6yrbzs73cvp5lm3w1n2gfqajb2vgf7zg3xbry")
@@ -698,6 +720,7 @@
      ("litrs" "1.0.1" "0w0d0gkx9ixccx9c00rq164ih9ak3jdq0jsivrpbh3czjn1y6i27")
      ("lock_api" "0.4.14" "0rg9mhx7vdpajfxvdjmgmlyrn20ligzqvn8ifmaz7dc79gkrjhr2")
      ("log" "0.4.34" "1ihkzn0m33ab79fcl4mkb04n5iwqzbxzyw7l7hazqkffaqzbvy7r")
+     ("log" "0.4.35" "0p002750b2hab9bnlxxrvk5g9dvyaf23kiy39s6wsi6s29nzh5ax")
      ("loop9" "0.1.5" "0qphc1c0cbbx43pwm6isnwzwbg6nsxjh7jah04n1sg5h4p0qgbhg")
      ("lopdf" "0.38.0" "12f2zlrn0brzln93yyw7bs3zka11qcq41v5cl5rd4g5wlbg4y667")
      ("lru-slab" "0.1.3" "07y5xcnggc4f2ki68kzj93aycjc5z0j8y7scs4f31zx66yc4cl20")
@@ -739,6 +762,8 @@
      ("multiversion_no_op" "1.0.0" "03d2k7xk7vky38q48h08miw4jca34ymckggnrqggn60vlddvagvl")
      ("naga" "30.0.1" "0c71da763r85ngb1nxpddc27d1f1srliyn1sfb16llc9ikxx45m6")
      ("naga-types" "30.0.1" "0jcdfqnw4ds5jp69kwydl6plp131h13g9kym7j3n4kvgibszn2jr")
+     ("nanomp3" "0.2.0" "0d9lsapsf69zbdk4j7sx2d36hbywwrvgkqma259fw5rab78aindc")
+     ("nanomp3-core" "0.2.0" "0p7bfhfmihmiwqz99xknpzwjqhi3iwkv6s0ilz0x7lv2wqw25yk3")
      ("ndarray" "0.17.2" "0bbmybr5x36yln5y09s6ijndlca59fr3p0khj1p4lsvs9a0q002j")
      ("ndk" "0.9.0" "1m32zpmi5w1pf3j47k6k5fw395dc7aj8d0mdpsv53lqkprxjxx63")
      ("ndk-context" "0.1.1" "12sai3dqsblsvfd1l1zab0z6xsnlha3xsfl7kagdnmj3an3jvc17")
@@ -773,6 +798,7 @@
      ("num_enum" "0.7.6" "09kg0c2y08npdv0c9dbm4m9a9wz8w2qaiqqxl4gj3v22hj1wl2sx")
      ("num_enum_derive" "0.7.6" "1y0x9z49s27vdas6mglqbv02sgkdmbr8ns2kwspzrp2ra81rh2b8")
      ("num_threads" "0.1.7" "1ngajbmhrgyhzrlc4d5ga9ych1vrfcvfsiqz6zv0h2dpr2wrhwsw")
+     ("num_threads" "0.1.8" "1m1743lc8mycn2hiaihgn9wjry9fws6ja5aipkhzjqb811acdg6a")
      ("objc" "0.2.7" "1cbpf6kz8a244nn1qzl3xyhmp05gsg4n313c9m3567625d3innwi")
      ("objc-sys" "0.3.5" "0423gry7s3rmz8s3pzzm1zy5mdjif75g6dbzc2lf2z0c77fipffd")
      ("objc2" "0.5.2" "015qa2d3vh7c1j2736h5wjrznri7x5ic35vl916c22gzxva8b9s6")
@@ -821,6 +847,7 @@
      ("object" "0.40.0" "170br99f2pl58gaadjmpxbmpwj3zi5jjvq3nc4wx9l5rc41rl8nx")
      ("ocrs" "0.13.1" "0da4c534bm05swvzclys27mbc0wpg432dawpxyc06my7vfkr4h9f")
      ("oem_cp" "2.1.2" "07qf033qjx4n696076rzsgvqnmw3d4i9hbs66vn4lj4z6k9mjycc")
+     ("ogg" "0.8.0" "0vjxmqcv9252aj8byy70iy2krqfjknfcxg11lcyikj11pzlb8lb9")
      ("once_cell" "1.21.4" "0l1v676wf71kjg2khch4dphwh1jp3291ffiymr2mvy1kxd5kwz4z")
      ("once_cell_polyfill" "1.70.2" "1zmla628f0sk3fhjdjqzgxhalr2xrfna958s632z65bjsfv8ljrq")
      ("oneshot" "0.2.1" "033z8p0w8xcnigwapi0w7l5hpizc62rgrgl0z6wkys9cl0b19qng")
@@ -1013,9 +1040,11 @@
      ("regex-automata" "0.4.18" "1cml0rm0ssqfkibh9nh3gy4b6hbsbicj1rihpwf2a4v4nawm71dd")
      ("regex-lite" "0.1.9" "0wzr31ysmiy9sw48i36raqbm1iyk2xnq0lp4zbs6fzi47p3k9f6a")
      ("regex-syntax" "0.8.11" "1m25h5q2wp976fb9gc3dsc9l99svcvd5cri8lncb51c46ydgzxnn")
+     ("regress" "0.10.5" "0j7v33qwc9j4lyi7r59r26nasy82p4d04f0m9ll97a38bqrb4mr0")
      ("regress" "0.12.0" "1hfp145aahp4mb6wpq2kfbf017skz4q1yb6hp9fw3hf316rgivij")
      ("renderdoc-sys" "1.1.0" "0cj8zjs7k0gvchcx3jhpg8r9bbqy8b1hsgbz0flcq2ydn12hmcqr")
      ("reqwest" "0.13.5" "0ac0n0g7xaffc6q3dhn9rixr4h1f0h7533l1smrxv1n1bjkwz88n")
+     ("resize" "0.8.9" "1smznnqmd9g4rvjzpy2qlfv2liw8hq85n1arx17vb5q1bv6mwwki")
      ("resvg" "0.45.1" "0hyz89wyasn0wdnpw7qy5iyl4xv3yx36hk3crb4h6pm5q2c8g4m8")
      ("resvg" "0.47.0" "10cfzm1ldb2vmwcrsdfjdzmb7f4814xh7j746dpsjsi1danq7qcv")
      ("resvg" "0.48.1" "1gcn2590qwl3hzs3qqz1j96j00l1gb8csvkwpw6fi6drjwzq1qv7")
@@ -1027,10 +1056,13 @@
      ("ripemd" "0.2.0" "0ndiv68b08gwaifmzfq49xy3c1ygbb1206968iz2s5xlaqa23m2d")
      ("rmcp" "3.5.1" "0l1k46h2yp616pvkp5d2zz8a1825wqbar5v1w35h80xy9j026l5b")
      ("rmcp" "3.6.0" "09if29cmqqf5bpg2mrxs2wa4hdbdh6smgsjdhcxdhg248yg2xd6f")
+     ("rmcp" "3.8.0" "07wdhyif6shi746f929ljw26hdbcs48m005zcfh3x1w6a60ibgpq")
      ("rmcp-macros" "3.5.1" "0h1bhkz2jdfyp7jpbfcc4xg1z8hblgpwwjqicfx5c203023lknm1")
      ("rmcp-macros" "3.7.0" "12akffbnqiv4xslsax394npvq1wkbj70xpwkslbn4zaxjgvsfzwn")
+     ("rmcp-macros" "3.8.0" "0fdqvfkm0la5ryfcb5nrlidp9cp6k84p5kqk6a5mkxd5akh4h1wb")
      ("roff" "1.1.1" "12c1pibjxdjai80hpalxgqkzn30316x49iry4rdscrcn3mz42g1j")
      ("ron" "0.12.2" "1czbkmp4wz87ngrqrf9k6b5bqd94dd5qw8pb3b2an7nn66ann4c1")
+     ("ron" "0.12.3" "1byflg4fn78h9rzk3j0bzdk45cryd72h5y2nxacl5wlgq6bzxcwp")
      ("roots" "0.0.8" "0n5h88vib8j4mcs05bjhj3yy5bgsr8dflszaqv1gdgivl3zi2bq8")
      ("roxmltree" "0.20.0" "15vw91ps91wkmmgy62khf9zb63bdinvm80957dascbsw7dwvc83c")
      ("roxmltree" "0.21.1" "1fxc3jgvl2rk05bw0hj86azqg6mzlijh06gyi9pw69b1qw84p5pi")
@@ -1063,6 +1095,7 @@
      ("rustls-native-certs" "0.8.4" "0kgazl8zc1sv63qg179bz96ilzh56lzfa5k92ji7d265f4kibdfs")
      ("rustls-native-certs" "0.8.5" "1i5f916arhb4gc5qipmn6d8p81q87fv549xda969i7s6qxfky1sa")
      ("rustls-pki-types" "1.15.1" "15hakk4pcvr5278cazgw9qf2r7gdg09rg5pivbyd3dbyih12aj9g")
+     ("rustls-pki-types" "1.16.0" "1yv38vs71zaxmmx8cx0w8gm0sgi5yn96bzqw3z3dh1kvvvvkabqh")
      ("rustls-platform-verifier" "0.7.1" "164gb7kn9a8c0yrpqv879wf20z611qcfi4xjzf5qpcg2j5j5hrqi")
      ("rustls-platform-verifier-android" "0.2.0" "0pqsbv8656sr3h9jmq0q9848g03irccncywplmc29zs0pk08kipf")
      ("rustls-rustcrypto" "0.0.2-alpha" "0msm09nzw9gp61gs32rvmd6hp6wyb5bm6cakywaqbav3fya5487i")
@@ -1110,6 +1143,7 @@
      ("serde_spanned" "0.6.9" "18vmxq6qfrm110caszxrzibjhy2s54n1g5w1bshxq9kjmz7y0hdz")
      ("serde_spanned" "1.1.1" "09jzk7i6wihn3d8i3wi4j4n98ghi93c3b8m8k64nxq0ijn3vaqk6")
      ("serde_spanned" "1.1.2" "0b0crd16vvp0n81pgh0ldi3apld0ph5ywsrml80y5v2ynnz26xaf")
+     ("serde_spanned" "1.1.3" "10mpm2i41lx4jnp530fjk942myplsibbm302mx8cawcl6q57w64w")
      ("serde_urlencoded" "0.7.1" "1zgklbdaysj3230xivihs30qi5vkhigg323a9m62k8jwf4a1qjfk")
      ("serdect" "0.4.3" "0ghby2vq4k21xlpy3v8897rym4pvvwil5cxw0qjg3z6jrvnqzkv6")
      ("serial2" "0.2.38" "0c07302614zdvb7rfya82mzr7qywq15r4lqc9v71jfvr6ny0js5i")
@@ -1174,6 +1208,7 @@
      ("subtle" "2.6.1" "14ijxaymghbl1p0wql9cib5zlwiina7kall6w7g89csprkgbvhhk")
      ("svgtypes" "0.15.3" "1z4a0b76ww6rf2c8zdapqh2a7r7kmmy7m957q5h5ics4zwgm9iv8")
      ("svgtypes" "0.16.1" "0gdw5a7znyv5sh4a575ddlhkvnvf45dd5grvkflsy78knf85fnv9")
+     ("svgtypes" "0.16.2" "03hjj5rmv2n50xgnfsvhdxm2yc35rsqsq7wcc5q8qqz3jllv24lz")
      ("symphonia" "0.5.5" "0fbhlmvf1m9rb5xdy057vzymvirmzx39gx4hl3x9p7d1630a8wsp")
      ("symphonia" "0.6.1" "0914y0kjfzdrp2xlasqayfaysmd1gjxrxvmmrbhd95mnjrmfzvd7")
      ("symphonia-bundle-flac" "0.5.5" "0xlrdil9prgbwds8j2rd0z8gy9i5h13ca459h2dmv8mfh3hna5f9")
@@ -1233,6 +1268,7 @@
      ("termcolor" "1.4.1" "0mappjh3fj3p2nmrg4y7qv94rchwi9mzmgmfflr8p2awdj7lyy86")
      ("textwrap" "0.16.4" "0jfdxds0k50c3cy5a2s31l37lzp55r0iw75ry9vsb05w79navkvf")
      ("thin-vec" "0.2.20" "0j0p7bqfckv54qv55bz0p229wsc8z8max2rk3h1d51pc8ghxfs25")
+     ("thin-vec" "0.2.21" "0gm6kc1z58h5gaw2ad5pbvkpbm6gprkf4dwx757lmjrqhyxbk96n")
      ("thiserror" "1.0.69" "0lizjay08agcr5hs9yfzzj6axs53a2rgx070a1dsi3jpkcrzbamn")
      ("thiserror" "2.0.21" "17hq1lh5dyr3bkc7zzjrbrp4qgkvhc48kgq1n5fdxkindaw2rr89")
      ("thiserror-impl" "1.0.69" "1h84fmn2nai41cxbhk6pqf46bxqq1b344v8yz089w1chzi76rvjg")
@@ -1269,10 +1305,12 @@
      ("toml" "0.9.12+spec-1.1.0" "0qwqbrymqn88mg2yqyq3rj52z6p20448z0jxdbpjsbpwg5g894ng")
      ("toml" "1.1.6+spec-1.1.0" "0sj0g89pyrkm9g5zaaqsdlclr98xf1chvi8jv9qsn4897xa041lj")
      ("toml" "1.1.8+spec-1.1.0" "13b7kqvw7aa4x08i03d2fpima1i75v0lqxl0wrmisx6qwh09wj10")
+     ("toml" "1.2.1+spec-1.1.0" "1mrcyghs23p7g74w9lzpal3hd3jqp67ayswmy48wgniwhr8mqxfm")
      ("toml_datetime" "0.6.3" "0jsy7v8bdvmzsci6imj8fzgd255fmy5fzp6zsri14yrry7i77nkw")
      ("toml_datetime" "0.7.5+spec-1.1.0" "0iqkgvgsxmszpai53dbip7sf2igic39s4dby29dbqf1h9bnwzqcj")
      ("toml_datetime" "1.1.1+spec-1.1.0" "1mws2mkkf46l7inn77azhm0vdwxngv9vsbhbl0ah33p2c9gzcr9i")
      ("toml_datetime" "1.1.2+spec-1.1.0" "0lrhcmqvhjr259w4f2kijya7fgi0kpmhg9fb3m144v3cj1kxg1ib")
+     ("toml_datetime" "1.1.3+spec-1.1.0" "0jbfdgsl0vw6f394cifqm62d8q0aiiima891v2i7c8fdhg42agqp")
      ("toml_edit" "0.19.15" "08bl7rp5g6jwmfpad9s8jpw8wjrciadpnbaswgywpr9hv9qbfnqv")
      ("toml_edit" "0.20.2" "0f7k5svmxw98fhi28jpcyv7ldr2s3c867pjbji65bdxjpd44svir")
      ("toml_edit" "0.25.15+spec-1.1.0" "0556lgzcvgfy16b8sxskr391s6cbfwnb0r4h5i4k6qw5lnaflh0k")
@@ -1281,6 +1319,7 @@
      ("toml_parser" "1.1.5+spec-1.1.0" "0k3lljyi4zxchdklaqghkwbl7wkd2ab1w16hlyniqzid0fl979ms")
      ("toml_writer" "1.1.2+spec-1.1.0" "1lk6pqf9mac3v1x6282n6a66qx5b18c8f4a23bsd0nk658x3amkx")
      ("toml_writer" "1.1.3+spec-1.1.0" "0w17cps8mfg7wcwyp0gggi9cpgmxldb9pwl55qp8ssq5zj6bvg86")
+     ("toml_writer" "1.2.0+spec-1.1.0" "0fp14qh313y31pqddn2bhk01l7ygx70f9fxfhgpma77i01vvp780")
      ("tower" "0.5.3" "1m5i3a2z1sgs8nnz1hgfq2nr4clpdmizlp1d9qsg358ma5iyzrgb")
      ("tower-http" "0.6.11" "0h08wjgs3hwnq11iwwzlmnabn1h4cl0fzd48svaccvqffkiggz2c")
      ("tower-layer" "0.3.3" "03kq92fdzxin51w8iqix06dcfgydyvx7yr6izjq0p626v9n2l70j")
@@ -1322,6 +1361,7 @@
      ("unicode-segmentation" "1.13.3" "1a47zaq83p386r3baq4m018xd5q4q0grdg56i1x042dzn71x7xf6")
      ("unicode-vo" "0.1.0" "151sha088v9jyfvbg5164xh4dk72g53b82xm4zzbf5dlagzqdlxi")
      ("unicode-width" "0.2.2" "0m7jjzlcccw716dy9423xxh0clys8pfpllc5smvfxrzdf66h9b5l")
+     ("unicode-width" "0.2.3" "0mymrsdklcgys4fndds2h2hasij36gyalcqy4nghb4k9hxqq8wfa")
      ("universal-hash" "0.5.1" "1sh79x677zkncasa95wz05b36134822w6qxmi1ck05fwi33f47gw")
      ("untrusted" "0.7.1" "0jkbqaj9d3v5a91pp3wp9mffvng1nhycx6sh4qkdd9qyr62ccmm1")
      ("untrusted" "0.9.0" "1ha7ib98vkc538x0z60gfn0fc5whqdd85mb87dvisdcaifi6vjwf")
@@ -1369,10 +1409,15 @@
      ("wasi" "0.11.1+wasi-snapshot-preview1" "0jx49r7nbkbhyfrfyhz0bm4817yrnxgd3jiwwwfv0zl439jyrwyc")
      ("wasip2" "1.0.4+wasi-0.2.12" "11wl7lqwq4pbmlmzr6n7bwz0hzy1z6sxc4554bkmrr86w4vznzmn")
      ("wasm-bindgen" "0.2.129" "02flhqld01jqb6vbfyx1gb8s78g1pnq2164daxad93y6mhrlzdcv")
+     ("wasm-bindgen" "0.2.130" "071xi9mqha1vdrxsjgndjgcf0azkl8g5yahkn2qbiiynvla1q650")
      ("wasm-bindgen-futures" "0.4.79" "03k1wcg5j3wqk6vgy6gzcq868vsa9k81dlhqissfk0nrw96v7fiw")
+     ("wasm-bindgen-futures" "0.4.80" "00f5mq5rx8wzbq98svcjbb4r79i7k15d08nb1kb8ldmmghrf052y")
      ("wasm-bindgen-macro" "0.2.129" "0dc5xq09sy1v9ns1fhb0cnyqz5p1wcjjvkdmxskj9qhnbg1x0a9f")
+     ("wasm-bindgen-macro" "0.2.130" "1ncfybmdiczbsjz8a257a13k8n7dnl15khvgjrkbzgcslc11m4vf")
      ("wasm-bindgen-macro-support" "0.2.129" "1dx6w90f14avmhri7ss9lyz03060g6475r4axy3bm7biqf5ill3g")
+     ("wasm-bindgen-macro-support" "0.2.130" "0fm58fh6gkhlmi15rhzvcgz35x5s6kkvi9ik3s1vsmg4h11bb91c")
      ("wasm-bindgen-shared" "0.2.129" "1ilmp5d3sl8lrq9djhcs90gk66yvk8mgwk4sfrvpvkd75b2wkw13")
+     ("wasm-bindgen-shared" "0.2.130" "17iq85zyk1z7hq533c0apj5ix0y0ks35fbszxv31cl3jk0vrq7rv")
      ("wasm-bindgen-test" "0.3.79" "0hkxahwmmnpx8fj9va21k93s8w0rqndbprky3nls102pskgrjx5f")
      ("wasm-bindgen-test-macro" "0.3.79" "17yc4aqhskiv2d9bxdmi3152jsplr3y63951js0idywbcfnbb11v")
      ("wasm-bindgen-test-shared" "0.2.129" "1zh62s42yc0v4n5nx3parg35pvfg68zhcxrvfdiq7n6c8fljlsag")
@@ -1423,9 +1468,11 @@
      ("wayland-server" "0.31.14" "0xad6xz36fyxz5s0lwsj6shdzwsv8pp53pkp75bklwhgpqlrrphd")
      ("wayland-sys" "0.31.11" "1gp3hlkxx13i55lyyi794vnw9a780z3skx0xhj71zr69xwzv5snq")
      ("web-sys" "0.3.106" "195bd1m14w3hsw5fg3sr938mh7y4cb260d0sq6a6brffxjfin9l8")
+     ("web-sys" "0.3.107" "125b0y934gyfwjkd60wnqjf2irmx250dar6vwinhzv7mdxcpklfp")
      ("web-time" "1.1.0" "1fx05yqx83dhx628wb70fyy10yjfq1jpl20qfqhdkymi13rq0ras")
      ("webbrowser" "1.2.4" "151gb2nnp2hbn7898hh0q1vffly811lw4brnpi6j26l2f3kmphv2")
      ("webbrowser" "1.2.5" "1xrdfckpdnjw84v649m0818vjlgyrrl04h2p8r1h3rb6pzxxvj6j")
+     ("webbrowser" "1.2.7" "0nxrg5r513rrnagh5s8bh5izvp7ilcbyps1pc5yn9wlq8v6irsbk")
      ("webpki-root-certs" "1.0.10" "1jzy361hdpb4p7mbpmfnj2lvsj2kqxa5aqfry1xzbfnq7zkq1v2q")
      ("webpki-root-certs" "1.0.11" "0apn96djpc8yj1cp9scvqd8a5wd93ncxla4liwp18360mdjhx7g4")
      ("webpki-root-certs" "1.0.12" "11d5s7zs8rkfppris96pvl71izw2b95vjah9nmai30pvxgf9hc99")
@@ -1569,6 +1616,7 @@
      ("zbus_names" "4.3.5" "1pc8w0m4g8k6f13c2by67fvnc06xib84gw58ivhmjymd9sz14al1")
      ("zbus_xml" "5.2.1" "0ak849z0h42zrfvgmddsbim1abiq8vjp9n6w2s90mjh13816qn6i")
      ("zcheapstr" "1.1.0" "0wwlv70bi2rydvvzfq249q6i51mjx85c4m2wxcx1hra5c18yrbyi")
+     ("zcheapstr" "1.2.0" "084rpjymhbqcb96rbp1a2lhvr2sng1pnvjx52m1h9gnfkrnii7wk")
      ("zerocopy" "0.8.59" "1jq0z0rxrmpzfrvkj3z5gb1anaxczzdiv43k67ay6yr2v7rjpybd")
      ("zerocopy" "0.8.61" "0ri8ajsyghsl0fmwc55k4cj4ky042az0z5yvxd0jxhwqrq2vg7w7")
      ("zerocopy" "0.8.62" "17asjqfdkqmxsx42myw1x5jlb28m5axlf9ifldqpbiy7dbsjnl46")
@@ -1595,6 +1643,7 @@
      ("zip" "9.1.0" "0167fmj70i225bf2gn3li98b4cwdj0sgqb7lwg74qb570c0b11i8")
      ("zip" "9.1.1" "1i7pq40wkxqnzyj8b93qi7v3lacz8i66iba8jwvhqi34v1zq92si")
      ("zip" "9.1.3" "1jvcwaz17n4nywi03bggyw5pdcqcbr2m02iiqacvjd1a2jfv6mhi")
+     ("zip" "9.5.0" "1y2gj5w22fig149z06lx649fxhj6v6zmzs02pz6lmxmg4z2fc007")
      ("zip" "9.5.1" "00m32ya87zdsjmsliq6qimz0yf7ggfmsqlbvxjqzb2mcjza6yiz3")
      ("zlib-rs" "0.6.8" "04j158293bx73kv5pj1i89ai411q7fxc9zwk3wkpqgb9gj7fas5j")
      ("zmij" "1.0.23" "06zwri21nnrl34rwinmvbciap8yk1mrl8qfg9pff7lgspc56sri9")
@@ -1751,58 +1800,58 @@
   (crate-selection
    %crates
    '(4 7 12 14 17 20 23 26 30 32 35 36 38 39 40 42 44 45 50 51 52 53 54 55 56
-     57 58 59 60 61 62 65 67 69 70 71 72 73 75 76 77 79 80 81 82 84 85 86 89
-     90 91 92 93 94 95 96 97 98 103 104 106 108 109 110 114 112 115 116 117
-     118 120 121 122 124 126 127 128 136 137 140 142 144 145 146 147 148 150
-     151 155 156 158 159 164 165 167 169 172 177 180 181 183 184 185 189 190
-     191 192 193 195 196 198 200 201 202 203 204 206 208 209 210 211 213 214
-     215 216 218 221 223 224 226 228 227 229 230 232 234 237 238 247 248 265
-     266 267 268 269 270 271 272 273 276 283 287 288 289 293 302 304 306 312
-     313 318 319 320 321 322 323 324 326 327 328 329 330 331 332 338 354 361
-     362 365 367 368 369 370 376 378 379 381 382 384 385 386 387 388 395 396
-     398 399 400 408 409 411 412 413 415 417 420 421 422 423 424 425 426 427
-     430 431 433 434 435 436 437 438 440 442 443 445 446 447 448 449 450 451
-     452 453 454 480 481 482 483 484 485 487 488 493 494 500 502 503 504 508
-     509 510 511 512 514 520 521 522 523 528 529 530 532 535 538 540 545 546
-     547 548 551 553 554 555 556 558 559 560 567 568 570 571 572 573 574 575
-     576 577 578 579 581 582 583 584 585 586 587 588 590 591 592 593 594 595
-     600 601 603 605 607 608 609 610 611 612 613 614 615 616 617 625 626 627
-     628 629 630 632 634 636 637 638 639 640 641 642 643 644 645 646 647 648
-     650 652 653 655 658 659 661 663 664 669 671 673 675 676 677 678 679 680
-     684 685 683 686 687 689 690 691 692 693 697 706 707 708 710 712 714 715
-     718 720 721 722 724 726 728 729 730 731 733 734 735 736 740 741 742 743
-     744 745 747 749 752 755 756 757 758 760 761 763 764 767 768 770 771 772
-     774 775 776 777 778 779 780 781 782 783 784 785 786 787 788 789 790 791
-     792 793 794 795 796 797 798 799 800 801 802 803 804 805 806 807 814 815
-     817 820 821 824 826 828 829 856 859 860 861 862 864 865 866 867 868 871
-     872 874 875 876 878 879 881 882 884 885 887 888 889 890 891 892 893 894
-     895 896 902 903 904 905 906 907 908 909 911 913 914 916 917 919 920 921
-     923 929 930 931 932 935 936 937 943 944 945 946 948 949 950 951 952 953
-     954 955 956 957 961 959 963 965 966 964 968 969 971 972 978 979 981 982
-     983 985 986 988 989 991 993 994 995 996 999 1000 1002 1003 1005 1007 1008
-     1009 1014 1015 1016 1019 1021 1022 1023 1025 1026 1043 1044 1045 1046
-     1047 1048 1050 1051 1053 1055 1056 1057 1060 1062 1063 1064 1065 1066
-     1067 1071 1072 1075 1077 1078 1079 1080 1086 1087 1088 1089 1090 1092
-     1093 1094 1095 1096 1097 1099 1101 1103 1106 1108 1113 1114 1115 1116
-     1118 1119 1120 1121 1122 1123 1124 1125 1126 1127 1128 1129 1130 1131
-     1133 1134 1135 1137 1138 1140 1144 1145 1146 1147 1148 1149 1150 1151
-     1154 1155 1156 1157 1158 1159 1160 1161 1162 1164 1165 1199 1200 1201
-     1203 1205 1206 1210 1211 1212 1214 1217 1219 1222 1223 1226 1227 1228
-     1229 1233 1234 1235 1236 1237 1239 1241 1243 1244 1245 1246 1252 1253
-     1254 1255 1256 1260 1264 1268 1270 1272 1274 1275 1276 1277 1278 1279
-     1280 1281 1283 1284 1285 1287 1289 1292 1293 1294 1295 1298 1299 1300
-     1301 1302 1304 1308 1309 1311 1312 1313 1314 1316 1317 1319 1322 1324
-     1326 1329 1331 1332 1334 1336 1340 1341 1342 1344 1345 1347 1348 1350
-     1351 1356 1357 1358 1359 1360 1361 1362 1363 1364 1365 1371 1374 1375
-     1376 1377 1378 1381 1398 1401 1403 1404 1405 1406 1407 1408 1409 1410
-     1411 1412 1413 1414 1415 1416 1422 1426 1428 1429 1430 1431 1432 1433
-     1434 1435 1436 1438 1439 1440 1441 1442 1445 1447 1450 1452 1453 1454
-     1456 1458 1459 1462 1464 1466 1467 1469 1471 1474 1477 1480 1483 1485
-     1488 1491 1494 1497 1502 1504 1505 1506 1507 1508 1509 1510 1513 1518
-     1519 1522 1523 1524 1526 1527 1528 1529 1530 1531 1533 1534 1535 1536
-     1537 1539 1544 1546 1549 1552 1553 1554 1556 1558 1560 1561 1562 1566
-     1570 1571 1573 1574 1575 1576 1578 1585 1589 1590 1593 1594 1595 1596
-     1597 1598 1600 1603 1606)))
+     57 58 59 60 61 62 65 67 69 70 71 72 73 76 77 78 80 81 82 83 85 86 87 90
+     91 92 93 94 95 96 97 98 99 104 105 107 109 110 111 115 113 116 117 118
+     119 121 122 123 125 127 128 129 144 145 148 150 152 153 154 155 156 158
+     159 163 164 166 167 172 173 175 177 180 185 188 189 191 192 193 197 198
+     199 200 201 203 204 206 208 209 210 211 212 214 216 217 218 219 221 222
+     223 224 226 229 231 232 234 236 235 237 238 240 242 245 246 255 256 273
+     274 275 276 277 278 279 280 281 284 291 295 296 297 301 311 313 315 321
+     322 327 328 329 330 331 332 333 335 336 337 338 339 340 341 347 363 370
+     371 374 376 377 378 379 385 387 388 390 391 393 394 395 396 397 404 405
+     407 408 409 417 418 420 421 423 425 427 430 431 432 433 434 435 436 437
+     440 441 443 444 445 446 447 448 450 452 453 455 456 457 458 459 460 461
+     462 463 464 490 491 492 493 494 495 497 498 503 504 511 513 514 515 519
+     520 521 522 523 525 531 532 533 534 539 540 541 543 546 549 551 556 557
+     558 559 562 564 565 566 567 569 570 571 578 579 581 582 584 585 586 588
+     589 591 593 594 596 598 600 601 603 604 605 606 608 609 611 612 613 614
+     619 620 622 624 627 628 629 630 631 632 633 634 635 636 637 645 646 647
+     648 649 650 652 654 657 658 659 660 661 662 663 664 665 666 667 668 669
+     671 673 674 676 679 680 682 684 685 691 693 695 697 698 699 700 701 702
+     706 707 705 708 709 711 712 714 715 716 720 729 730 731 733 735 737 738
+     741 743 744 745 747 749 751 752 753 754 758 759 760 761 765 766 767 768
+     769 770 772 774 777 780 781 782 783 785 786 788 789 793 794 796 797 798
+     800 801 802 803 804 805 806 807 808 809 810 811 812 813 814 815 816 817
+     818 819 820 821 822 823 824 825 826 827 828 829 830 831 832 833 841 842
+     844 847 848 851 853 855 856 883 886 887 888 889 891 892 893 894 895 898
+     899 901 902 903 905 906 908 909 911 912 914 915 916 917 918 919 920 921
+     922 923 929 930 931 932 933 934 935 936 938 940 941 943 944 946 947 948
+     950 956 957 958 959 962 963 964 970 971 972 973 975 976 977 978 979 980
+     981 982 983 984 988 986 990 992 993 991 995 996 998 999 1005 1006 1008
+     1009 1010 1012 1013 1015 1016 1018 1020 1021 1022 1023 1026 1027 1029
+     1030 1032 1035 1036 1038 1043 1044 1045 1048 1051 1053 1054 1057 1058
+     1075 1076 1077 1078 1079 1080 1082 1083 1085 1087 1089 1090 1093 1095
+     1096 1097 1098 1099 1100 1104 1105 1108 1110 1111 1112 1113 1119 1120
+     1121 1122 1123 1125 1126 1127 1128 1129 1130 1132 1134 1137 1140 1142
+     1147 1148 1149 1150 1152 1153 1154 1155 1156 1157 1158 1159 1160 1161
+     1162 1163 1164 1165 1167 1168 1169 1171 1172 1174 1178 1179 1180 1181
+     1182 1183 1184 1185 1188 1189 1190 1191 1192 1193 1194 1195 1196 1198
+     1199 1234 1235 1236 1238 1240 1241 1245 1246 1247 1249 1252 1254 1257
+     1258 1262 1263 1264 1265 1269 1270 1271 1272 1273 1275 1277 1279 1280
+     1281 1282 1288 1289 1290 1291 1292 1296 1301 1306 1308 1310 1313 1314
+     1315 1316 1317 1318 1319 1320 1322 1323 1324 1326 1328 1331 1332 1333
+     1334 1337 1338 1339 1340 1341 1343 1347 1348 1350 1351 1352 1353 1356
+     1357 1359 1362 1364 1366 1369 1371 1372 1374 1376 1380 1381 1382 1384
+     1385 1387 1388 1390 1391 1396 1397 1398 1399 1400 1401 1403 1405 1407
+     1409 1416 1419 1420 1421 1422 1423 1426 1443 1446 1448 1449 1450 1451
+     1452 1453 1454 1455 1456 1457 1458 1459 1460 1462 1469 1473 1475 1476
+     1477 1478 1479 1480 1481 1482 1483 1485 1486 1487 1488 1489 1492 1494
+     1497 1499 1500 1501 1503 1505 1506 1509 1511 1513 1514 1516 1518 1521
+     1524 1527 1530 1532 1535 1538 1541 1544 1549 1551 1552 1553 1554 1555
+     1556 1557 1560 1565 1566 1569 1570 1571 1573 1574 1575 1576 1577 1578
+     1580 1581 1582 1583 1584 1586 1591 1593 1596 1599 1600 1601 1603 1605
+     1607 1608 1610 1614 1618 1619 1621 1622 1623 1624 1626 1633 1638 1639
+     1642 1643 1644 1645 1646 1647 1649 1652 1655)))
 
 (define photocraft-git-crates
   (git-crate-selection
@@ -1842,47 +1891,47 @@
 (define effectcraft-cargo-inputs
   (crate-selection
    %crates
-   '(4 7 12 14 17 20 23 26 30 35 39 45 47 48 51 52 53 64 69 70 71 73 75 76 77
-     79 80 81 82 84 85 86 89 90 91 92 93 104 109 110 114 112 115 116 117 122
-     126 127 128 129 130 131 132 133 134 135 136 137 145 147 148 149 150 151
-     155 156 158 159 160 162 167 172 176 181 183 184 185 189 204 210 211 213
-     214 218 221 228 227 229 230 232 237 239 241 242 245 247 248 264 269 270
-     271 272 273 276 283 290 291 305 313 318 319 320 321 322 323 324 331 334
-     335 336 337 354 361 362 363 365 367 368 369 376 378 379 381 382 384 385
-     386 388 389 394 395 397 399 400 408 409 411 412 415 418 422 423 424 425
-     427 434 435 436 437 444 445 447 448 449 451 452 461 464 467 470 473 476
-     479 480 481 483 484 485 488 494 502 504 508 509 510 511 512 514 520 522
-     523 527 528 529 530 532 538 545 547 548 553 556 572 573 574 575 576 577
-     578 579 581 582 583 584 585 586 591 592 593 594 601 606 616 617 624 625
-     626 627 628 629 630 634 650 652 653 655 659 662 663 664 667 673 675 676
-     680 682 684 683 686 687 689 690 698 701 705 710 712 714 719 721 722 726
-     728 729 730 731 732 733 734 735 740 742 744 749 750 753 755 756 757 758
-     761 762 763 764 765 767 768 770 771 772 773 776 778 779 780 781 783 784
-     785 787 791 792 793 795 796 797 799 800 801 802 803 804 805 806 807 814
-     816 817 821 824 826 828 829 859 860 861 866 868 874 875 876 879 882 885
-     888 891 892 893 894 902 903 904 906 907 908 909 911 913 914 916 917 918
-     920 921 929 932 935 937 943 944 945 948 949 950 951 955 956 957 961 959
-     963 966 964 967 969 971 981 982 983 984 985 986 989 993 994 995 996 1005
-     1006 1007 1014 1016 1027 1043 1044 1045 1047 1048 1051 1054 1055 1056
-     1057 1061 1062 1063 1067 1070 1071 1073 1078 1079 1080 1086 1087 1088
-     1089 1090 1091 1092 1093 1094 1096 1099 1101 1108 1114 1115 1126 1127
-     1129 1131 1134 1137 1138 1139 1140 1144 1145 1146 1147 1148 1149 1150
-     1154 1155 1157 1158 1159 1161 1162 1164 1167 1169 1171 1173 1177 1179
-     1181 1184 1188 1192 1194 1196 1198 1200 1201 1205 1206 1208 1209 1215
-     1216 1217 1222 1223 1225 1226 1227 1228 1229 1233 1234 1235 1236 1237
-     1238 1239 1240 1241 1244 1248 1260 1264 1268 1270 1272 1278 1279 1280
-     1283 1289 1291 1292 1294 1295 1298 1299 1302 1304 1306 1307 1309 1312
-     1314 1317 1319 1322 1324 1329 1331 1332 1336 1344 1347 1348 1351 1356
-     1357 1359 1360 1361 1362 1363 1364 1365 1366 1367 1368 1370 1374 1375
-     1376 1377 1378 1380 1397 1400 1403 1404 1405 1406 1407 1408 1409 1410
-     1411 1412 1414 1415 1416 1417 1420 1426 1428 1429 1430 1431 1432 1433
-     1434 1435 1436 1439 1440 1441 1442 1443 1444 1445 1446 1447 1448 1449
-     1450 1451 1452 1453 1454 1455 1456 1457 1458 1459 1460 1461 1462 1463
-     1464 1465 1466 1467 1469 1470 1471 1473 1474 1476 1477 1479 1480 1482
-     1483 1485 1487 1488 1490 1491 1493 1494 1496 1497 1502 1504 1505 1506
-     1510 1513 1518 1519 1522 1523 1524 1531 1533 1534 1536 1546 1550 1552
-     1553 1554 1556 1558 1560 1561 1562 1566 1570 1571 1573 1575 1576 1578
-     1583 1587 1589 1590 1594 1595 1597 1600 1603 1606)))
+   '(4 7 12 14 17 20 23 26 30 35 39 45 47 48 51 52 53 64 69 70 71 73 76 77 78
+     80 81 82 83 85 86 87 90 91 92 93 94 105 110 111 115 113 116 117 118 123
+     127 128 129 131 133 135 137 139 141 143 144 145 153 155 156 157 158 159
+     163 164 166 167 168 170 175 180 184 189 191 192 193 197 212 218 219 221
+     222 226 229 236 235 237 238 240 245 247 249 250 253 255 256 272 277 278
+     279 280 281 284 291 298 299 314 322 327 328 329 330 331 332 333 340 343
+     344 345 346 363 370 371 372 374 376 377 378 385 387 388 390 391 393 394
+     395 397 398 403 404 406 408 409 417 418 420 421 425 428 432 433 434 435
+     437 444 445 446 447 454 455 457 458 459 461 462 471 474 477 480 483 486
+     489 490 491 493 494 495 498 504 513 515 519 520 521 522 523 525 531 533
+     534 538 539 540 541 543 549 556 558 559 564 567 584 585 586 588 589 591
+     593 594 596 598 600 601 603 604 609 611 612 613 620 625 636 637 644 645
+     646 647 648 649 650 654 671 673 674 676 680 683 684 685 689 695 697 698
+     702 704 706 705 708 709 711 712 721 724 728 733 735 737 742 744 745 749
+     751 752 753 754 757 758 759 760 765 767 769 774 775 778 780 781 782 783
+     786 787 788 789 790 793 794 796 797 798 799 802 804 805 806 807 809 810
+     811 813 817 818 819 821 822 823 825 826 827 828 829 830 831 832 833 841
+     843 844 848 851 853 855 856 886 887 888 893 895 901 902 903 906 909 912
+     915 918 919 920 921 929 930 931 933 934 935 936 938 940 941 943 944 945
+     947 948 956 959 962 964 970 971 972 975 976 977 978 982 983 984 988 986
+     990 993 991 994 996 998 1008 1009 1010 1011 1012 1013 1016 1020 1021 1022
+     1023 1032 1034 1035 1043 1045 1059 1075 1076 1077 1079 1080 1083 1086
+     1087 1089 1090 1094 1095 1096 1100 1103 1104 1106 1111 1112 1113 1119
+     1120 1121 1122 1123 1124 1125 1126 1127 1129 1132 1134 1142 1148 1149
+     1160 1161 1163 1165 1168 1171 1172 1173 1174 1178 1179 1180 1181 1182
+     1183 1184 1188 1189 1191 1192 1193 1195 1196 1198 1202 1204 1206 1208
+     1212 1214 1216 1219 1223 1227 1229 1231 1233 1235 1236 1240 1241 1243
+     1244 1250 1251 1252 1257 1258 1260 1262 1263 1264 1265 1269 1270 1271
+     1272 1273 1274 1275 1276 1277 1280 1284 1296 1301 1306 1308 1310 1317
+     1318 1319 1322 1328 1330 1331 1333 1334 1337 1338 1341 1343 1345 1346
+     1348 1351 1353 1357 1359 1362 1364 1369 1371 1372 1376 1384 1387 1388
+     1391 1396 1397 1399 1400 1401 1403 1405 1407 1409 1411 1412 1413 1415
+     1419 1420 1421 1422 1423 1425 1442 1445 1448 1449 1450 1451 1452 1453
+     1454 1455 1456 1457 1459 1460 1462 1463 1467 1473 1475 1476 1477 1478
+     1479 1480 1481 1482 1483 1486 1487 1488 1489 1490 1491 1492 1493 1494
+     1495 1496 1497 1498 1499 1500 1501 1502 1503 1504 1505 1506 1507 1508
+     1509 1510 1511 1512 1513 1514 1516 1517 1518 1520 1521 1523 1524 1526
+     1527 1529 1530 1532 1534 1535 1537 1538 1540 1541 1543 1544 1549 1551
+     1552 1553 1557 1560 1565 1566 1569 1570 1571 1578 1580 1581 1583 1593
+     1597 1599 1600 1601 1603 1605 1607 1608 1610 1614 1618 1619 1621 1623
+     1624 1626 1631 1635 1638 1639 1643 1644 1646 1649 1652 1655)))
 
 (define effectcraft-git-crates
   (git-crate-selection
@@ -1945,49 +1994,49 @@
 (define filmcraft-cargo-inputs
   (crate-selection
    %crates
-   '(5 7 13 14 18 20 23 26 30 31 32 34 35 45 47 48 51 52 53 65 70 71 73 75 76
-     77 79 80 81 82 84 85 86 87 88 89 90 91 92 93 100 104 106 109 110 114 112
-     116 117 122 126 127 128 136 137 145 147 148 149 150 151 153 154 155 156
-     158 159 160 162 172 176 179 181 183 184 186 185 187 189 193 204 210 211
-     213 214 218 221 223 228 227 229 230 232 237 239 242 245 247 248 264 269
-     270 271 272 273 274 276 279 283 284 286 287 288 289 291 302 306 313 318
-     319 320 321 322 323 324 331 332 334 335 340 343 345 354 356 361 362 363
-     365 367 368 369 379 381 382 384 385 386 389 395 397 399 400 402 404 406
-     408 409 411 412 415 418 423 424 425 427 434 435 436 437 442 443 445 446
-     447 448 449 450 451 452 455 456 457 458 461 464 467 470 473 476 479 480
-     481 483 484 485 486 488 491 492 494 497 498 499 502 503 504 508 509 510
-     511 512 513 514 515 517 518 519 520 522 523 528 529 530 544 545 547 548
-     550 551 553 556 567 568 572 573 574 575 576 577 578 579 581 582 583 584
-     585 586 590 591 592 593 594 601 603 611 612 616 617 624 625 626 627 628
-     629 630 634 650 652 653 655 659 661 667 673 675 676 680 684 683 686 687
-     689 690 701 710 712 714 721 722 724 726 728 729 730 731 733 734 735 740
-     742 744 754 755 756 757 758 759 761 762 763 764 767 768 770 771 772 773
-     776 778 779 780 781 783 784 785 787 788 790 791 792 793 796 797 799 800
-     801 802 803 804 805 806 807 808 814 818 820 821 824 826 828 829 851 853
-     857 858 859 860 861 866 868 872 874 875 876 879 882 885 888 891 892 893
-     894 897 899 900 902 903 904 906 907 908 909 910 911 912 913 914 916 917
-     919 920 921 925 927 928 929 930 931 932 935 937 943 944 945 948 949 950
-     951 955 956 957 960 961 959 962 963 965 966 964 967 969 971 981 982 983
-     985 986 989 993 994 995 996 999 1000 1005 1007 1012 1014 1016 1019 1021
-     1026 1029 1043 1044 1045 1047 1048 1051 1053 1055 1056 1057 1058 1059
-     1060 1062 1063 1070 1071 1072 1075 1077 1078 1079 1081 1086 1087 1088
-     1089 1090 1091 1092 1093 1094 1095 1096 1099 1100 1101 1108 1114 1115
-     1116 1126 1127 1129 1131 1134 1137 1138 1140 1144 1145 1146 1147 1148
-     1149 1150 1151 1154 1155 1160 1164 1167 1169 1171 1173 1177 1179 1181
-     1184 1188 1192 1194 1196 1198 1199 1200 1201 1205 1206 1208 1213 1217
-     1218 1222 1223 1226 1227 1228 1229 1233 1234 1235 1236 1241 1252 1253
-     1256 1258 1260 1262 1264 1266 1267 1268 1270 1272 1278 1279 1280 1283
-     1289 1290 1292 1294 1295 1298 1299 1302 1304 1306 1309 1312 1314 1315
-     1317 1319 1322 1324 1329 1331 1332 1336 1344 1347 1348 1350 1351 1356
-     1357 1359 1360 1361 1362 1363 1364 1365 1403 1404 1405 1406 1407 1408
-     1409 1410 1411 1412 1414 1415 1416 1422 1426 1428 1429 1430 1431 1432
-     1433 1434 1435 1436 1439 1440 1441 1442 1443 1445 1447 1448 1450 1452
-     1453 1454 1456 1458 1459 1460 1462 1464 1465 1466 1467 1469 1470 1471
-     1474 1476 1477 1479 1480 1482 1483 1485 1487 1488 1490 1491 1493 1494
-     1496 1497 1500 1502 1504 1505 1506 1510 1513 1518 1519 1522 1523 1524
-     1525 1531 1533 1534 1536 1546 1550 1552 1553 1554 1556 1558 1560 1561
-     1562 1566 1570 1571 1572 1574 1575 1576 1579 1582 1585 1589 1590 1594
-     1597 1600 1603 1606)))
+   '(5 7 13 14 18 20 23 26 30 31 32 34 35 45 47 48 51 52 53 65 70 71 73 76 77
+     78 80 81 82 83 85 86 87 88 89 90 91 92 93 94 101 105 107 110 111 115 113
+     117 118 123 127 128 129 144 145 153 155 156 157 158 159 161 162 163 164
+     166 167 168 170 180 184 187 189 191 192 194 193 195 197 201 212 218 219
+     221 222 226 229 231 236 235 237 238 240 245 247 250 253 255 256 272 277
+     278 279 280 281 282 284 287 291 292 294 295 296 297 299 311 315 322 327
+     328 329 330 331 332 333 340 341 343 344 349 352 354 363 365 370 371 372
+     374 376 377 378 388 390 391 393 394 395 398 404 406 408 409 411 413 415
+     417 418 420 421 425 428 433 434 435 437 444 445 446 447 452 453 455 456
+     457 458 459 460 461 462 465 466 467 468 471 474 477 480 483 486 489 490
+     491 493 494 495 496 498 501 502 504 508 509 510 513 514 515 519 520 521
+     522 523 524 525 526 528 529 530 531 533 534 539 540 541 555 556 558 559
+     561 562 564 567 578 579 584 585 586 588 589 591 593 594 596 598 600 601
+     603 604 608 609 611 612 613 620 622 631 632 636 637 644 645 646 647 648
+     649 650 654 671 673 674 676 680 682 689 695 697 698 702 706 705 708 709
+     711 712 724 733 735 737 744 745 747 749 751 752 753 754 758 759 760 765
+     767 769 779 780 781 782 783 784 786 787 788 789 793 794 796 797 798 799
+     802 804 805 806 807 809 810 811 813 814 816 817 818 819 822 823 825 826
+     827 828 829 830 831 832 833 834 841 845 847 848 851 853 855 856 878 880
+     884 885 886 887 888 893 895 899 901 902 903 906 909 912 915 918 919 920
+     921 924 926 927 929 930 931 933 934 935 936 937 938 939 940 941 943 944
+     946 947 948 952 954 955 956 957 958 959 962 964 970 971 972 975 976 977
+     978 982 983 984 987 988 986 989 990 992 993 991 994 996 998 1008 1009
+     1010 1012 1013 1016 1020 1021 1022 1023 1026 1027 1032 1035 1041 1043
+     1045 1048 1051 1058 1061 1075 1076 1077 1079 1080 1083 1085 1087 1089
+     1090 1091 1092 1093 1095 1096 1103 1104 1105 1108 1110 1111 1112 1114
+     1119 1120 1121 1122 1123 1124 1125 1126 1127 1128 1129 1132 1133 1134
+     1142 1148 1149 1150 1160 1161 1163 1165 1168 1171 1172 1174 1178 1179
+     1180 1181 1182 1183 1184 1185 1188 1189 1194 1198 1202 1204 1206 1208
+     1212 1214 1216 1219 1223 1227 1229 1231 1233 1234 1235 1236 1240 1241
+     1243 1248 1252 1253 1257 1258 1262 1263 1264 1265 1269 1270 1271 1272
+     1277 1288 1289 1292 1294 1296 1299 1301 1304 1305 1306 1308 1310 1317
+     1318 1319 1322 1328 1329 1331 1333 1334 1337 1338 1341 1343 1345 1348
+     1351 1353 1355 1357 1359 1362 1364 1369 1371 1372 1376 1384 1387 1388
+     1390 1391 1396 1397 1399 1400 1401 1403 1405 1407 1409 1448 1449 1450
+     1451 1452 1453 1454 1455 1456 1457 1459 1460 1462 1469 1473 1475 1476
+     1477 1478 1479 1480 1481 1482 1483 1486 1487 1488 1489 1490 1492 1494
+     1495 1497 1499 1500 1501 1503 1505 1506 1507 1509 1511 1512 1513 1514
+     1516 1517 1518 1521 1523 1524 1526 1527 1529 1530 1532 1534 1535 1537
+     1538 1540 1541 1543 1544 1547 1549 1551 1552 1553 1557 1560 1565 1566
+     1569 1570 1571 1572 1578 1580 1581 1583 1593 1597 1599 1600 1601 1603
+     1605 1607 1608 1610 1614 1618 1619 1620 1622 1623 1624 1627 1630 1633
+     1638 1639 1643 1646 1649 1652 1655)))
 
 (define filmcraft-git-crates
   (git-crate-selection
@@ -2021,47 +2070,48 @@
   (crate-selection
    %crates
    '(0 1 4 7 12 14 17 20 23 26 28 30 31 32 34 35 38 39 40 41 42 43 45 51 52 53
-     61 62 64 67 70 71 72 73 75 76 77 79 80 81 82 84 85 86 89 90 91 92 93 94
-     95 96 99 100 104 106 109 110 114 112 116 117 118 121 122 126 127 128 136
-     137 141 142 143 144 145 147 148 149 150 151 155 156 158 159 160 161 162
-     163 172 181 183 184 186 185 187 189 193 204 210 211 212 213 214 216 218
-     221 223 228 227 229 230 232 237 247 248 265 269 270 271 272 273 274 276
-     279 283 284 286 302 306 311 312 313 318 319 320 321 322 323 324 331 333
-     334 335 340 343 345 354 356 362 363 365 367 368 369 375 376 377 378 379
-     381 382 384 385 386 390 391 395 397 399 400 402 404 408 409 411 412 415
-     418 423 424 425 427 434 435 436 439 445 447 448 449 451 452 459 460 461
-     462 463 464 465 466 467 468 469 470 471 472 473 474 475 476 477 478 479
-     480 481 482 483 484 485 486 488 489 494 502 504 508 509 510 511 512 514
-     515 520 522 523 524 528 529 530 545 546 547 548 550 551 553 556 572 573
-     574 575 576 577 578 579 581 582 583 584 585 586 593 594 600 601 603 605
-     611 612 615 616 617 623 625 626 627 628 629 630 631 633 634 636 637 638
-     639 640 641 642 643 644 645 646 647 648 650 652 653 655 659 662 669 671
-     673 675 676 680 684 683 686 687 689 690 691 703 704 705 707 710 712 714
-     716 721 722 723 726 727 728 730 731 732 733 734 735 736 740 741 742 744
-     747 751 752 754 755 756 757 758 759 760 761 762 763 764 766 767 768 770
-     771 772 776 778 781 783 784 785 787 791 792 793 796 797 799 800 801 802
-     803 804 805 806 807 810 814 818 819 821 824 826 828 829 833 851 853 859
-     860 861 866 867 872 874 875 876 879 882 885 888 891 892 893 894 897 899
-     900 902 903 904 906 907 908 909 910 911 912 913 914 916 917 919 920 921
-     925 929 932 935 936 937 941 942 943 944 945 948 949 950 951 955 956 957
-     960 961 959 962 963 965 966 964 967 969 971 978 979 980 981 982 983 984
-     985 986 989 990 993 994 995 996 1005 1007 1012 1014 1015 1016 1029 1042
-     1043 1044 1045 1047 1048 1051 1054 1055 1056 1057 1058 1059 1061 1062
-     1063 1069 1070 1071 1073 1078 1079 1081 1086 1087 1088 1089 1090 1091
-     1092 1093 1094 1096 1099 1101 1108 1114 1115 1116 1126 1127 1128 1129
-     1131 1134 1137 1138 1140 1144 1145 1146 1147 1149 1150 1151 1154 1155
-     1164 1200 1201 1204 1205 1206 1207 1208 1217 1222 1223 1226 1227 1228
-     1229 1230 1233 1234 1235 1236 1241 1244 1248 1260 1264 1268 1270 1272
-     1278 1279 1280 1283 1285 1289 1290 1292 1294 1295 1296 1297 1298 1299
-     1302 1304 1308 1309 1312 1314 1315 1317 1318 1322 1329 1331 1332 1336
-     1340 1344 1347 1348 1351 1356 1357 1359 1360 1361 1362 1363 1364 1365
-     1403 1404 1405 1406 1407 1408 1409 1410 1411 1412 1414 1415 1416 1420
-     1423 1426 1428 1429 1430 1431 1432 1433 1434 1435 1436 1441 1445 1447
-     1450 1452 1453 1454 1456 1458 1459 1462 1464 1466 1467 1469 1471 1474
-     1477 1480 1483 1485 1488 1491 1494 1497 1502 1504 1505 1506 1510 1513
-     1518 1519 1522 1523 1524 1525 1531 1533 1534 1536 1539 1545 1546 1548
-     1550 1552 1553 1554 1556 1558 1560 1561 1562 1566 1570 1571 1573 1574
-     1575 1576 1579 1583 1587 1589 1590 1594 1597 1598 1600 1603 1606)))
+     61 62 64 67 70 71 72 73 76 77 78 80 81 82 83 85 86 87 90 91 92 93 94 95
+     96 97 100 101 105 107 110 111 115 113 117 118 119 122 123 127 128 129 144
+     145 149 150 151 152 153 155 156 157 158 159 163 164 166 167 168 169 170
+     171 180 189 191 192 194 193 195 197 201 212 218 219 220 221 222 224 226
+     229 231 236 235 237 238 240 245 255 256 273 277 278 279 280 281 282 284
+     287 291 292 294 311 315 320 321 322 327 328 329 330 331 332 333 340 342
+     343 344 349 352 354 363 365 371 372 374 376 377 378 384 385 386 387 388
+     390 391 393 394 395 399 400 404 406 408 409 411 413 417 418 420 421 425
+     428 433 434 435 437 444 445 446 449 455 457 458 459 461 462 469 470 471
+     472 473 474 475 476 477 478 479 480 481 482 483 484 485 486 487 488 489
+     490 491 492 493 494 495 496 498 499 504 513 515 519 520 521 522 523 525
+     526 531 533 534 535 539 540 541 556 557 558 559 561 562 564 567 584 585
+     586 588 589 591 593 594 596 598 600 601 603 604 612 613 619 620 622 624
+     631 632 635 636 637 643 645 646 647 648 649 650 651 653 654 657 658 659
+     660 661 662 663 664 665 666 667 668 669 671 673 674 676 680 683 691 693
+     695 697 698 702 706 705 708 709 711 712 714 726 727 728 730 733 735 737
+     739 744 745 746 749 750 751 753 754 757 758 759 760 761 765 766 767 769
+     772 776 777 779 780 781 782 783 784 785 786 787 788 789 792 793 794 796
+     797 798 802 804 807 809 810 811 813 817 818 819 822 823 825 826 827 828
+     829 830 831 832 833 836 841 845 846 848 851 853 855 856 860 878 880 886
+     887 888 893 894 899 901 902 903 906 909 912 915 918 919 920 921 924 926
+     927 929 930 931 933 934 935 936 937 938 939 940 941 943 944 946 947 948
+     952 956 959 962 963 964 968 969 970 971 972 975 976 977 978 982 983 984
+     987 988 986 989 990 992 993 991 994 996 998 1005 1006 1007 1008 1009 1010
+     1011 1012 1013 1016 1017 1020 1021 1022 1023 1032 1035 1041 1043 1044
+     1045 1061 1074 1075 1076 1077 1079 1080 1083 1086 1087 1089 1090 1091
+     1092 1094 1095 1096 1102 1103 1104 1106 1111 1112 1114 1119 1120 1121
+     1122 1123 1124 1125 1126 1127 1129 1132 1134 1142 1148 1149 1150 1160
+     1161 1162 1163 1165 1168 1171 1172 1174 1178 1179 1180 1181 1183 1184
+     1185 1188 1189 1198 1235 1236 1239 1240 1241 1242 1243 1252 1257 1258
+     1262 1263 1264 1265 1266 1269 1270 1271 1272 1277 1280 1284 1296 1301
+     1306 1308 1310 1317 1318 1319 1322 1324 1328 1329 1331 1333 1334 1335
+     1336 1337 1338 1341 1343 1347 1348 1351 1353 1355 1357 1358 1362 1369
+     1371 1372 1376 1380 1384 1387 1388 1391 1396 1397 1399 1400 1401 1403
+     1405 1407 1409 1448 1449 1450 1451 1452 1453 1454 1455 1456 1457 1459
+     1460 1462 1467 1470 1473 1475 1476 1477 1478 1479 1480 1481 1482 1483
+     1488 1492 1494 1497 1499 1500 1501 1503 1505 1506 1509 1511 1513 1514
+     1516 1518 1521 1524 1527 1530 1532 1535 1538 1541 1544 1549 1551 1552
+     1553 1557 1560 1565 1566 1569 1570 1571 1572 1578 1580 1581 1583 1586
+     1592 1593 1595 1597 1599 1600 1601 1603 1605 1607 1608 1610 1614 1618
+     1619 1621 1622 1623 1624 1627 1631 1635 1638 1639 1643 1646 1647 1649
+     1652 1655)))
 
 (define lightcraft-git-crates
   (git-crate-selection
@@ -2093,49 +2143,49 @@
 (define vectorcraft-cargo-inputs
   (crate-selection
    %crates
-   '(4 7 12 14 17 20 23 26 30 32 35 40 42 45 51 52 53 61 65 69 70 71 73 75 76
-     77 79 80 81 83 84 85 86 89 90 91 92 93 97 98 103 104 106 109 110 114 112
-     116 117 122 126 127 128 136 137 140 142 145 147 148 150 151 155 157 158
-     159 175 178 181 183 184 185 189 193 205 206 208 209 210 211 213 214 216
-     219 221 223 228 227 229 230 232 237 238 247 248 265 268 269 270 271 272
-     273 276 283 293 302 304 306 312 313 318 319 320 321 322 323 324 331 355
-     361 362 365 367 368 369 380 381 382 384 385 386 395 397 399 400 408 410
-     411 412 413 415 417 420 421 423 424 425 426 429 432 434 435 436 437 440
-     443 445 447 448 449 450 451 452 480 481 482 483 484 485 487 488 494 502
-     504 508 509 510 511 512 514 520 521 522 523 524 528 529 530 532 538 545
-     546 547 548 553 554 555 556 558 559 560 567 568 572 573 574 575 576 577
-     578 579 581 582 583 584 585 586 587 588 591 592 593 594 595 596 597 601
-     603 610 611 612 616 617 625 626 627 628 629 630 632 634 636 637 638 639
-     640 641 642 643 644 645 646 647 648 650 652 653 655 658 659 662 663 669
-     673 675 676 680 684 683 686 688 689 690 693 708 710 712 714 718 721 722
-     725 726 728 729 730 731 733 734 735 740 742 744 756 761 763 764 767 769
-     770 771 772 776 778 781 783 784 785 787 789 791 792 793 796 797 799 800
-     801 802 803 804 805 806 807 814 819 821 824 825 826 828 829 859 860 861
-     870 871 872 874 875 876 878 879 881 882 884 885 887 888 890 891 892 893
-     894 902 903 904 905 906 907 908 909 911 913 914 916 917 919 921 929 930
-     931 932 935 937 938 945 948 949 950 951 952 953 954 955 956 957 959 965
-     964 968 969 971 982 983 985 986 988 989 990 991 994 995 997 1005 1007
-     1008 1009 1011 1014 1015 1016 1025 1027 1043 1044 1045 1047 1049 1051
-     1054 1055 1056 1057 1061 1062 1063 1064 1065 1066 1067 1071 1073 1078
-     1079 1080 1086 1087 1088 1089 1090 1092 1093 1094 1096 1097 1099 1102
-     1103 1106 1108 1114 1115 1116 1118 1119 1120 1121 1122 1123 1124 1125
-     1126 1127 1129 1130 1131 1133 1134 1135 1137 1138 1142 1144 1145 1146
-     1147 1148 1149 1150 1151 1154 1155 1157 1158 1159 1161 1162 1163 1164
-     1165 1166 1199 1200 1202 1203 1205 1206 1211 1212 1217 1222 1223 1226
-     1227 1228 1229 1232 1233 1234 1235 1236 1237 1238 1239 1240 1241 1244
-     1245 1246 1251 1254 1257 1261 1265 1269 1271 1273 1274 1275 1276 1277
-     1278 1279 1280 1283 1284 1285 1288 1289 1292 1294 1295 1298 1299 1300
-     1301 1302 1305 1308 1309 1311 1312 1313 1314 1316 1317 1319 1322 1324
-     1326 1328 1329 1331 1332 1338 1344 1347 1348 1351 1356 1357 1358 1359
-     1360 1361 1362 1363 1364 1365 1372 1374 1375 1376 1377 1378 1382 1399
-     1402 1403 1404 1405 1406 1407 1408 1409 1410 1411 1412 1414 1415 1416
-     1418 1420 1426 1427 1428 1429 1430 1431 1432 1433 1434 1435 1436 1441
-     1445 1447 1450 1452 1453 1454 1456 1458 1459 1462 1464 1466 1467 1469
-     1471 1474 1477 1480 1483 1485 1488 1491 1494 1497 1502 1504 1505 1506
-     1510 1513 1516 1518 1519 1522 1523 1524 1526 1527 1528 1531 1533 1534
-     1535 1536 1537 1538 1546 1550 1552 1553 1554 1556 1559 1560 1561 1565
-     1569 1570 1571 1573 1574 1575 1576 1578 1587 1589 1590 1593 1594 1596
-     1597 1598 1601 1604 1606)))
+   '(4 7 12 14 17 20 23 26 30 32 35 40 42 45 51 52 53 61 65 69 70 71 73 76 77
+     78 80 81 82 84 85 86 87 90 91 92 93 94 98 99 104 105 107 110 111 115 113
+     117 118 123 127 128 129 144 145 148 150 153 155 156 158 159 163 165 166
+     167 183 186 189 191 192 193 197 201 213 214 216 217 218 219 221 222 224
+     227 229 231 236 235 237 238 240 245 246 255 256 273 276 277 278 279 280
+     281 284 291 301 311 313 315 321 322 327 328 329 330 331 332 333 340 364
+     370 371 374 376 377 378 389 390 391 393 394 395 404 406 408 409 417 419
+     420 421 423 425 427 430 431 433 434 435 436 439 442 444 445 446 447 450
+     453 455 457 458 459 460 461 462 490 491 492 493 494 495 497 498 504 513
+     515 519 520 521 522 523 525 531 532 533 534 535 539 540 541 543 549 556
+     557 558 559 564 565 566 567 569 570 571 578 579 584 585 586 588 589 591
+     593 594 596 598 600 601 603 604 605 606 609 611 612 613 614 615 616 620
+     622 630 631 632 636 637 645 646 647 648 649 650 652 654 657 658 659 660
+     661 662 663 664 665 666 667 668 669 671 673 674 676 679 680 683 684 691
+     695 697 698 702 706 705 708 710 711 712 716 731 733 735 737 741 744 745
+     748 749 751 752 753 754 758 759 760 765 767 769 781 786 788 789 793 795
+     796 797 798 802 804 807 809 810 811 813 815 817 818 819 822 823 825 826
+     827 828 829 830 831 832 833 841 846 848 851 852 853 855 856 886 887 888
+     897 898 899 901 902 903 905 906 908 909 911 912 914 915 917 918 919 920
+     921 929 930 931 932 933 934 935 936 938 940 941 943 944 946 948 956 957
+     958 959 962 964 965 972 975 976 977 978 979 980 981 982 983 984 986 992
+     991 995 996 998 1009 1010 1012 1013 1015 1016 1017 1018 1021 1022 1024
+     1032 1035 1036 1038 1040 1043 1044 1045 1057 1059 1075 1076 1077 1079
+     1081 1083 1086 1087 1089 1090 1094 1095 1096 1097 1098 1099 1100 1104
+     1106 1111 1112 1113 1119 1120 1121 1122 1123 1125 1126 1127 1129 1130
+     1132 1135 1137 1140 1142 1148 1149 1150 1152 1153 1154 1155 1156 1157
+     1158 1159 1160 1161 1163 1164 1165 1167 1168 1169 1171 1172 1176 1178
+     1179 1180 1181 1182 1183 1184 1185 1188 1189 1191 1192 1193 1195 1196
+     1197 1198 1199 1200 1234 1235 1237 1238 1240 1241 1246 1247 1252 1257
+     1258 1262 1263 1264 1265 1268 1269 1270 1271 1272 1273 1274 1275 1276
+     1277 1280 1281 1282 1287 1290 1293 1297 1302 1307 1309 1311 1313 1314
+     1315 1316 1317 1318 1319 1322 1323 1324 1327 1328 1331 1333 1334 1337
+     1338 1339 1340 1341 1344 1347 1348 1350 1351 1352 1353 1356 1357 1359
+     1362 1364 1366 1368 1369 1371 1372 1378 1384 1387 1388 1391 1396 1397
+     1398 1399 1400 1401 1403 1405 1407 1409 1417 1419 1420 1421 1422 1423
+     1427 1444 1447 1448 1449 1450 1451 1452 1453 1454 1455 1456 1457 1459
+     1460 1462 1464 1467 1473 1474 1475 1476 1477 1478 1479 1480 1481 1482
+     1483 1488 1492 1494 1497 1499 1500 1501 1503 1505 1506 1509 1511 1513
+     1514 1516 1518 1521 1524 1527 1530 1532 1535 1538 1541 1544 1549 1551
+     1552 1553 1557 1560 1563 1565 1566 1569 1570 1571 1573 1574 1575 1578
+     1580 1581 1582 1583 1584 1585 1593 1597 1599 1600 1601 1603 1606 1607
+     1608 1613 1617 1618 1619 1621 1622 1623 1624 1626 1635 1638 1639 1642
+     1643 1645 1646 1647 1650 1653 1655)))
 
 (define vectorcraft-git-crates
   (git-crate-selection
@@ -2181,47 +2231,47 @@
   (crate-selection
    %crates
    '(5 8 13 15 18 21 24 27 30 35 36 37 40 42 45 51 52 53 61 63 65 69 70 71 73
-     75 76 77 79 80 81 83 84 85 86 89 90 91 92 93 97 98 103 104 106 111 109
-     110 113 114 112 116 117 122 126 127 128 136 137 140 142 145 147 148 150
-     151 155 157 158 159 166 167 171 181 183 184 185 189 205 206 208 209 210
-     211 213 214 216 219 221 223 228 227 229 230 232 235 237 238 247 248 265
-     268 269 270 271 272 273 276 283 293 302 304 306 308 312 313 318 319 320
-     321 322 323 324 331 355 361 362 365 367 368 369 380 381 382 384 385 386
-     393 395 397 399 400 408 410 411 412 413 415 416 417 420 421 422 423 424
-     425 426 429 430 431 434 435 436 437 440 443 445 447 448 449 450 451 452
-     480 481 482 483 484 485 488 494 500 502 504 508 509 510 511 512 514 520
-     521 522 523 524 528 529 530 532 538 542 544 545 547 548 553 554 555 556
-     558 559 560 561 567 568 572 573 574 575 576 577 578 580 581 582 583 584
-     585 586 591 592 593 594 596 601 610 611 612 615 616 617 625 626 627 628
-     629 630 634 650 652 653 655 656 659 662 669 673 675 676 680 682 684 683
-     686 688 689 690 693 710 713 714 718 719 721 722 725 726 728 729 730 731
-     733 734 735 740 742 744 750 756 761 763 764 767 769 770 771 772 776 778
-     781 783 784 785 787 791 792 793 796 797 799 800 801 802 803 804 805 806
-     807 814 817 820 821 824 825 827 828 829 830 831 859 860 861 870 871 872
-     874 875 876 878 879 881 882 884 885 887 888 889 890 891 892 893 894 902
-     903 904 906 907 908 909 911 913 914 916 917 919 921 929 930 931 932 933
-     935 937 945 947 948 949 950 951 952 953 954 955 956 957 959 965 964 968
-     969 971 982 983 985 986 988 989 990 991 994 995 997 1002 1003 1005 1007
-     1008 1010 1014 1015 1016 1024 1025 1027 1043 1044 1045 1047 1048 1051
-     1054 1055 1056 1057 1061 1062 1063 1064 1066 1067 1071 1073 1078 1079
-     1080 1086 1087 1088 1089 1090 1092 1093 1094 1096 1097 1099 1102 1103
-     1106 1108 1114 1115 1116 1118 1119 1120 1121 1122 1123 1124 1125 1126
-     1127 1129 1130 1131 1133 1134 1135 1137 1138 1142 1144 1145 1146 1147
-     1148 1150 1151 1154 1155 1157 1159 1161 1162 1163 1164 1166 1199 1200
-     1202 1203 1205 1206 1211 1212 1217 1222 1223 1226 1227 1228 1229 1232
-     1233 1234 1235 1236 1237 1238 1239 1240 1242 1244 1245 1246 1252 1254
-     1257 1261 1265 1269 1271 1273 1274 1275 1276 1277 1278 1279 1280 1283
-     1284 1285 1289 1292 1294 1295 1298 1299 1300 1301 1302 1305 1308 1309
-     1311 1312 1313 1314 1316 1317 1319 1322 1324 1327 1329 1331 1332 1339
-     1341 1342 1344 1345 1347 1348 1351 1356 1357 1358 1359 1360 1361 1362
-     1363 1364 1365 1366 1367 1368 1403 1404 1405 1406 1407 1408 1409 1410
-     1411 1412 1414 1415 1416 1418 1420 1426 1428 1429 1430 1431 1432 1433
-     1434 1435 1436 1441 1445 1447 1450 1452 1453 1454 1456 1458 1459 1462
-     1464 1466 1467 1469 1471 1474 1477 1480 1483 1485 1488 1491 1494 1497
-     1502 1504 1505 1506 1510 1513 1516 1518 1519 1522 1523 1524 1526 1527
-     1528 1531 1533 1534 1535 1536 1537 1538 1541 1547 1550 1552 1553 1554
-     1556 1559 1560 1561 1565 1569 1570 1571 1573 1574 1575 1577 1579 1581
-     1586 1589 1590 1592 1594 1597 1601 1604 1606)))
+     76 77 78 80 81 82 84 85 86 87 90 91 92 93 94 98 99 104 105 107 112 110
+     111 114 115 113 117 118 123 127 128 129 144 145 148 150 153 155 156 158
+     159 163 165 166 167 174 175 179 189 191 192 193 197 213 214 216 217 218
+     219 221 222 224 227 229 231 236 235 237 238 240 243 245 246 255 256 273
+     276 277 278 279 280 281 284 291 301 311 313 315 317 321 322 327 328 329
+     330 331 332 333 340 364 370 371 374 376 377 378 389 390 391 393 394 395
+     402 404 406 408 409 417 419 420 421 423 425 426 427 430 431 432 433 434
+     435 436 439 440 441 444 445 446 447 450 453 455 457 458 459 460 461 462
+     490 491 492 493 494 495 498 504 511 513 515 519 520 521 522 523 525 531
+     532 533 534 535 539 540 541 543 549 553 555 556 558 559 564 565 566 567
+     569 570 571 572 578 579 584 585 586 588 589 591 593 595 596 598 600 601
+     603 604 609 611 612 613 615 620 630 631 632 635 636 637 645 646 647 648
+     649 650 654 671 673 674 676 677 680 683 691 695 697 698 702 704 706 705
+     708 710 711 712 716 733 736 737 741 742 744 745 748 749 751 752 753 754
+     758 759 760 765 767 769 775 781 786 788 789 793 795 796 797 798 802 804
+     807 809 810 811 813 817 818 819 822 823 825 826 827 828 829 830 831 832
+     833 841 844 847 848 851 852 854 855 856 857 858 886 887 888 897 898 899
+     901 902 903 905 906 908 909 911 912 914 915 916 917 918 919 920 921 929
+     930 931 933 934 935 936 938 940 941 943 944 946 948 956 957 958 959 960
+     962 964 972 974 975 976 977 978 979 980 981 982 983 984 986 992 991 995
+     996 998 1009 1010 1012 1013 1015 1016 1017 1018 1021 1022 1024 1029 1030
+     1032 1035 1036 1039 1043 1044 1045 1056 1057 1059 1075 1076 1077 1079
+     1080 1083 1086 1087 1089 1090 1094 1095 1096 1097 1099 1100 1104 1106
+     1111 1112 1113 1119 1120 1121 1122 1123 1125 1126 1127 1129 1130 1132
+     1135 1137 1140 1142 1148 1149 1150 1152 1153 1154 1155 1156 1157 1158
+     1159 1160 1161 1163 1164 1165 1167 1168 1169 1171 1172 1176 1178 1179
+     1180 1181 1182 1184 1185 1188 1189 1191 1193 1195 1196 1197 1198 1200
+     1234 1235 1237 1238 1240 1241 1246 1247 1252 1257 1258 1262 1263 1264
+     1265 1268 1269 1270 1271 1272 1273 1274 1275 1276 1278 1280 1281 1282
+     1288 1290 1293 1297 1302 1307 1309 1311 1313 1314 1315 1316 1317 1318
+     1319 1322 1323 1324 1328 1331 1333 1334 1337 1338 1339 1340 1341 1344
+     1347 1348 1350 1351 1352 1353 1356 1357 1359 1362 1364 1367 1369 1371
+     1372 1379 1381 1382 1384 1385 1387 1388 1391 1396 1397 1398 1399 1400
+     1401 1403 1405 1407 1409 1411 1412 1413 1448 1449 1450 1451 1452 1453
+     1454 1455 1456 1457 1459 1460 1462 1464 1467 1473 1475 1476 1477 1478
+     1479 1480 1481 1482 1483 1488 1492 1494 1497 1499 1500 1501 1503 1505
+     1506 1509 1511 1513 1514 1516 1518 1521 1524 1527 1530 1532 1535 1538
+     1541 1544 1549 1551 1552 1553 1557 1560 1563 1565 1566 1569 1570 1571
+     1573 1574 1575 1578 1580 1581 1582 1583 1584 1585 1588 1594 1597 1599
+     1600 1601 1603 1606 1607 1608 1613 1617 1618 1619 1621 1622 1623 1625
+     1627 1629 1634 1638 1639 1641 1643 1646 1650 1653 1655)))
 
 (define designcraft-git-crates
   (git-crate-selection
@@ -2269,50 +2319,50 @@
   (crate-selection
    %crates
    '(4 7 12 14 17 20 23 26 30 33 35 36 39 40 42 45 51 52 53 61 65 69 70 71 73
-     75 76 77 79 80 81 82 84 85 86 89 90 91 92 93 97 98 101 103 104 106 109
-     110 114 112 116 117 122 123 125 126 127 128 129 130 131 132 133 134 135
-     136 137 138 139 140 142 145 147 148 150 151 155 156 158 159 170 172 181
-     183 184 185 189 194 204 206 207 208 209 210 211 213 214 218 221 223 222
-     228 227 229 230 232 237 241 246 247 248 264 268 269 270 271 272 273 275
-     276 277 278 281 283 285 286 290 293 302 303 304 305 309 313 314 318 319
-     320 321 322 323 324 331 336 337 339 341 344 346 354 357 361 362 365 367
-     368 369 370 376 378 379 381 382 384 385 386 394 395 397 399 400 403 405
-     408 409 411 412 413 414 415 417 420 421 422 423 424 425 426 427 430 434
-     435 436 437 440 443 444 445 447 448 449 450 451 452 480 481 483 484 485
-     488 494 500 502 504 508 509 510 511 512 514 516 520 521 522 523 527 528
-     529 530 532 538 545 547 548 552 553 554 555 556 557 558 559 560 567 568
-     572 573 574 575 576 577 578 579 581 582 583 584 585 586 587 588 591 592
-     593 595 601 604 606 610 616 617 625 626 627 628 629 630 634 649 650 652
-     653 655 658 659 667 673 675 676 680 684 683 686 687 689 690 693 709 710
-     712 714 718 721 722 725 726 728 729 730 731 733 734 735 740 742 744 753
-     756 758 761 762 763 764 765 767 768 770 771 772 776 778 781 783 784 785
-     787 791 792 793 796 797 799 800 801 802 803 804 805 806 807 812 814 816
-     821 824 826 828 829 852 854 855 859 860 861 868 869 871 872 873 874 875
-     876 878 879 881 882 884 885 887 888 889 890 891 892 893 894 898 901 902
-     903 904 905 906 907 908 909 911 913 914 916 917 918 921 924 926 929 930
-     931 932 935 937 945 948 949 950 951 952 953 954 955 956 957 959 965 964
-     968 969 971 972 982 983 985 986 987 988 989 991 994 995 996 1002 1003
-     1005 1006 1007 1008 1009 1013 1014 1015 1016 1017 1023 1025 1027 1028
-     1031 1032 1033 1034 1035 1036 1037 1038 1039 1040 1041 1043 1044 1045
-     1047 1049 1051 1052 1054 1055 1056 1057 1061 1062 1063 1066 1067 1071
-     1072 1078 1079 1082 1086 1087 1088 1089 1090 1092 1093 1094 1096 1097
-     1099 1101 1103 1104 1106 1107 1108 1109 1110 1114 1115 1116 1117 1118
-     1119 1120 1121 1122 1123 1124 1125 1126 1127 1129 1130 1131 1133 1134
-     1135 1137 1138 1139 1140 1144 1145 1146 1147 1148 1150 1151 1152 1153
-     1154 1155 1157 1159 1161 1162 1164 1165 1199 1200 1201 1203 1205 1206
-     1211 1212 1215 1216 1217 1222 1223 1225 1226 1227 1228 1229 1231 1233
-     1234 1235 1236 1237 1239 1241 1244 1245 1246 1248 1254 1257 1260 1264
-     1268 1270 1272 1274 1275 1276 1277 1278 1279 1280 1283 1284 1289 1292
-     1293 1294 1295 1298 1299 1302 1304 1307 1309 1312 1314 1316 1317 1319
-     1322 1324 1326 1329 1331 1332 1336 1342 1344 1347 1348 1351 1356 1357
-     1358 1359 1360 1361 1362 1363 1364 1365 1403 1404 1405 1406 1407 1408
-     1409 1410 1411 1412 1414 1415 1416 1417 1419 1426 1427 1428 1429 1430
-     1431 1432 1433 1434 1435 1436 1441 1445 1447 1450 1452 1453 1454 1456
-     1458 1459 1462 1464 1466 1467 1469 1471 1474 1477 1480 1483 1485 1488
-     1491 1494 1497 1502 1504 1505 1506 1510 1513 1515 1518 1519 1522 1523
-     1524 1526 1527 1528 1531 1533 1534 1535 1536 1537 1546 1550 1552 1553
-     1554 1556 1558 1560 1561 1562 1566 1570 1571 1572 1574 1575 1576 1578
-     1587 1589 1590 1594 1597 1600 1603 1606)))
+     76 77 78 80 81 82 83 85 86 87 90 91 92 93 94 98 99 102 104 105 107 110
+     111 115 113 117 118 123 124 126 127 128 129 131 133 135 137 139 141 143
+     144 145 146 147 148 150 153 155 156 158 159 163 164 166 167 178 180 189
+     191 192 193 197 202 212 214 215 216 217 218 219 221 222 226 229 231 230
+     236 235 237 238 240 245 249 254 255 256 272 276 277 278 279 280 281 283
+     284 285 286 289 291 293 294 298 301 311 312 313 314 318 322 323 327 328
+     329 330 331 332 333 340 345 346 348 350 353 355 363 366 370 371 374 376
+     377 378 379 385 387 388 390 391 393 394 395 403 404 406 408 409 412 414
+     417 418 420 421 423 424 425 427 430 431 432 433 434 435 436 437 440 444
+     445 446 447 450 453 454 455 457 458 459 460 461 462 490 491 493 494 495
+     498 504 511 513 515 519 520 521 522 523 525 527 531 532 533 534 538 539
+     540 541 543 549 556 558 559 563 564 565 566 567 568 569 570 571 578 579
+     584 585 586 588 589 591 593 594 596 598 600 601 603 604 605 606 609 611
+     612 614 620 623 625 630 636 637 645 646 647 648 649 650 654 670 671 673
+     674 676 679 680 689 695 697 698 702 706 705 708 709 711 712 716 732 733
+     735 737 741 744 745 748 749 751 752 753 754 758 759 760 765 767 769 778
+     781 783 786 787 788 789 790 793 794 796 797 798 802 804 807 809 810 811
+     813 817 818 819 822 823 825 826 827 828 829 830 831 832 833 838 841 843
+     848 851 853 855 856 879 881 882 886 887 888 895 896 898 899 900 901 902
+     903 905 906 908 909 911 912 914 915 916 917 918 919 920 921 925 928 929
+     930 931 932 933 934 935 936 938 940 941 943 944 945 948 951 953 956 957
+     958 959 962 964 972 975 976 977 978 979 980 981 982 983 984 986 992 991
+     995 996 998 999 1009 1010 1012 1013 1014 1015 1016 1018 1021 1022 1023
+     1029 1030 1032 1034 1035 1036 1038 1042 1043 1044 1045 1046 1054 1057
+     1059 1060 1063 1064 1065 1066 1067 1068 1069 1070 1071 1072 1073 1075
+     1076 1077 1079 1081 1083 1084 1086 1087 1089 1090 1094 1095 1096 1099
+     1100 1104 1105 1111 1112 1115 1119 1120 1121 1122 1123 1125 1126 1127
+     1129 1130 1132 1134 1137 1138 1140 1141 1142 1143 1144 1148 1149 1150
+     1151 1152 1153 1154 1155 1156 1157 1158 1159 1160 1161 1163 1164 1165
+     1167 1168 1169 1171 1172 1173 1174 1178 1179 1180 1181 1182 1184 1185
+     1186 1187 1188 1189 1191 1193 1195 1196 1198 1199 1234 1235 1236 1238
+     1240 1241 1246 1247 1250 1251 1252 1257 1258 1260 1262 1263 1264 1265
+     1267 1269 1270 1271 1272 1273 1275 1277 1280 1281 1282 1284 1290 1293
+     1296 1301 1306 1308 1310 1313 1314 1315 1316 1317 1318 1319 1322 1323
+     1328 1331 1332 1333 1334 1337 1338 1341 1343 1346 1348 1351 1353 1356
+     1357 1359 1362 1364 1366 1369 1371 1372 1376 1382 1384 1387 1388 1391
+     1396 1397 1398 1399 1400 1401 1403 1405 1407 1409 1448 1449 1450 1451
+     1452 1453 1454 1455 1456 1457 1459 1460 1462 1463 1466 1473 1474 1475
+     1476 1477 1478 1479 1480 1481 1482 1483 1488 1492 1494 1497 1499 1500
+     1501 1503 1505 1506 1509 1511 1513 1514 1516 1518 1521 1524 1527 1530
+     1532 1535 1538 1541 1544 1549 1551 1552 1553 1557 1560 1562 1565 1566
+     1569 1570 1571 1573 1574 1575 1578 1580 1581 1582 1583 1584 1593 1597
+     1599 1600 1601 1603 1605 1607 1608 1610 1614 1618 1619 1620 1622 1623
+     1624 1626 1635 1638 1639 1643 1646 1649 1652 1655)))
 
 (define pdfcraft-git-crates
   (git-crate-selection
@@ -2351,45 +2401,46 @@
   (crate-selection
    %crates
    '(4 7 12 14 17 20 23 26 30 33 35 36 40 42 45 51 52 53 61 62 65 69 70 71 73
-     75 76 77 79 80 81 83 84 85 86 89 90 91 92 93 97 98 103 104 106 109 110
-     114 112 116 117 122 123 126 127 128 136 137 140 142 145 147 148 150 151
-     155 157 158 159 173 178 181 183 184 185 188 189 194 205 206 207 208 209
-     210 211 213 214 216 218 221 223 222 228 227 229 230 232 237 246 247 248
-     264 268 269 270 271 272 273 276 277 282 283 302 304 306 307 312 313 314
-     318 319 320 321 322 323 324 331 355 361 362 365 367 368 369 379 381 382
-     384 385 386 395 397 399 400 401 408 409 411 412 413 415 417 420 421 422
-     423 424 425 426 428 433 434 435 436 437 440 443 445 447 448 449 450 451
-     452 480 481 482 483 484 485 488 494 502 504 508 509 510 511 512 514 520
-     521 522 523 524 528 529 530 532 533 534 536 537 538 539 541 545 547 548
-     552 553 554 555 556 557 558 559 560 567 568 572 573 574 575 576 577 578
-     580 581 582 583 584 585 586 591 592 593 594 596 601 604 610 611 612 616
-     617 625 626 627 628 629 630 634 652 653 655 659 662 669 673 675 676 680
-     684 683 686 687 689 690 693 710 712 714 718 721 722 725 726 729 730 731
-     733 734 735 740 742 744 756 761 763 764 767 769 770 771 772 776 778 781
-     783 784 785 787 789 791 792 793 796 797 799 800 801 802 803 804 805 806
-     807 814 820 821 824 825 826 828 829 859 860 861 863 870 871 872 874 875
-     876 878 879 881 882 884 885 887 888 891 892 893 894 902 903 904 906 907
-     908 909 911 913 914 916 917 919 921 929 930 931 932 935 937 945 948 949
-     950 951 952 953 954 955 956 957 959 965 964 968 969 971 982 983 985 986
-     988 989 990 991 994 995 996 1002 1003 1005 1007 1008 1014 1016 1027 1043
-     1044 1045 1047 1048 1051 1054 1055 1056 1057 1061 1062 1063 1065 1066
-     1067 1071 1073 1078 1079 1086 1087 1088 1089 1090 1092 1093 1094 1096
-     1097 1099 1101 1103 1106 1107 1108 1109 1114 1115 1116 1118 1119 1120
-     1121 1122 1123 1124 1125 1126 1127 1129 1131 1133 1134 1135 1137 1138
-     1140 1144 1145 1146 1147 1148 1150 1151 1154 1155 1157 1161 1162 1163
-     1164 1199 1200 1201 1203 1205 1206 1211 1212 1217 1222 1223 1226 1227
-     1228 1229 1232 1233 1234 1235 1236 1240 1241 1244 1245 1246 1249 1254
-     1257 1260 1264 1268 1270 1272 1274 1275 1276 1277 1278 1279 1280 1283
-     1284 1289 1292 1294 1295 1298 1299 1302 1304 1306 1308 1309 1311 1312
-     1314 1316 1317 1319 1322 1324 1329 1331 1332 1337 1344 1347 1348 1351
-     1356 1357 1358 1359 1360 1361 1362 1363 1364 1365 1403 1404 1405 1406
-     1407 1408 1409 1410 1411 1412 1414 1415 1416 1417 1420 1424 1426 1428
-     1429 1430 1431 1432 1433 1434 1435 1436 1441 1445 1447 1450 1452 1453
-     1454 1456 1458 1459 1462 1464 1466 1467 1469 1471 1474 1477 1480 1483
-     1485 1488 1491 1494 1497 1502 1504 1505 1506 1510 1513 1516 1518 1519
-     1520 1522 1523 1524 1526 1527 1528 1531 1533 1534 1535 1536 1538 1544
-     1547 1550 1552 1553 1554 1556 1558 1560 1561 1563 1567 1570 1571 1573
-     1574 1575 1577 1579 1581 1585 1589 1590 1591 1594 1597 1600 1603 1606)))
+     76 77 78 80 81 82 84 85 86 87 90 91 92 93 94 98 99 104 105 107 110 111
+     115 113 117 118 123 124 127 128 129 144 145 148 150 153 155 156 158 159
+     163 165 166 167 181 186 189 191 192 193 196 197 202 213 214 215 216 217
+     218 219 221 222 224 226 229 231 230 236 235 237 238 240 245 254 255 256
+     272 276 277 278 279 280 281 284 285 290 291 311 313 315 316 321 322 323
+     327 328 329 330 331 332 333 340 364 370 371 374 376 377 378 388 390 391
+     393 394 395 404 406 408 409 410 417 418 420 421 423 425 427 430 431 432
+     433 434 435 436 438 443 444 445 446 447 450 453 455 457 458 459 460 461
+     462 490 491 492 493 494 495 498 504 513 515 519 520 521 522 523 525 531
+     532 533 534 535 539 540 541 543 544 545 547 548 549 550 552 556 558 559
+     563 564 565 566 567 568 569 570 571 578 579 584 585 586 588 589 591 593
+     595 596 598 600 601 603 604 609 611 612 613 615 620 623 630 631 632 636
+     637 645 646 647 648 649 650 654 673 674 676 680 683 691 695 697 698 702
+     706 705 708 709 711 712 716 733 735 737 741 744 745 748 749 752 753 754
+     758 759 760 765 767 769 781 786 788 789 793 795 796 797 798 802 804 807
+     809 810 811 813 815 817 818 819 822 823 825 826 827 828 829 830 831 832
+     833 841 847 848 851 852 853 855 856 886 887 888 890 897 898 899 901 902
+     903 905 906 908 909 911 912 914 915 918 919 920 921 929 930 931 933 934
+     935 936 938 940 941 943 944 946 948 956 957 958 959 962 964 972 975 976
+     977 978 979 980 981 982 983 984 986 992 991 995 996 998 1009 1010 1012
+     1013 1015 1016 1017 1018 1021 1022 1023 1029 1030 1032 1035 1036 1043
+     1045 1059 1075 1076 1077 1079 1080 1083 1086 1087 1089 1090 1094 1095
+     1096 1098 1099 1100 1104 1106 1111 1112 1119 1120 1121 1122 1123 1125
+     1126 1127 1129 1130 1132 1134 1137 1140 1141 1142 1143 1148 1149 1150
+     1152 1153 1154 1155 1156 1157 1158 1159 1160 1161 1163 1165 1167 1168
+     1169 1171 1172 1174 1178 1179 1180 1181 1182 1184 1185 1188 1189 1191
+     1195 1196 1197 1198 1234 1235 1236 1238 1240 1241 1246 1247 1252 1257
+     1258 1262 1263 1264 1265 1268 1269 1270 1271 1272 1276 1277 1280 1281
+     1282 1285 1290 1293 1296 1301 1306 1308 1310 1313 1314 1315 1316 1317
+     1318 1319 1322 1323 1328 1331 1333 1334 1337 1338 1341 1343 1345 1347
+     1348 1350 1351 1353 1356 1357 1359 1362 1364 1369 1371 1372 1377 1384
+     1387 1388 1391 1396 1397 1398 1399 1400 1401 1403 1405 1407 1409 1448
+     1449 1450 1451 1452 1453 1454 1455 1456 1457 1459 1460 1462 1463 1467
+     1471 1473 1475 1476 1477 1478 1479 1480 1481 1482 1483 1488 1492 1494
+     1497 1499 1500 1501 1503 1505 1506 1509 1511 1513 1514 1516 1518 1521
+     1524 1527 1530 1532 1535 1538 1541 1544 1549 1551 1552 1553 1557 1560
+     1563 1565 1566 1567 1569 1570 1571 1573 1574 1575 1578 1580 1581 1582
+     1583 1585 1591 1594 1597 1599 1600 1601 1603 1605 1607 1608 1611 1615
+     1618 1619 1621 1622 1623 1625 1627 1629 1633 1638 1639 1640 1643 1646
+     1649 1652 1655)))
 
 (define wordcraft-git-crates
   (git-crate-selection
@@ -2429,44 +2480,44 @@
 (define gridcraft-cargo-inputs
   (crate-selection
    %crates
-   '(4 7 12 14 17 20 23 26 30 33 35 36 45 51 52 53 61 63 65 69 70 71 73 75 76
-     77 79 80 81 83 84 85 86 89 90 91 92 93 97 98 103 104 106 111 109 113 114
-     116 117 122 123 126 127 128 145 147 148 150 151 155 157 158 159 173 181
-     183 184 185 189 194 204 206 208 209 210 211 213 216 218 221 223 228 227
-     229 230 232 237 246 247 248 264 268 269 270 271 272 273 276 277 283 302
-     304 306 308 312 313 314 318 319 320 321 322 323 324 331 355 361 362 365
-     367 368 369 379 381 382 384 385 386 392 395 397 399 400 408 409 411 412
-     413 415 420 421 422 423 424 425 428 434 435 436 437 440 443 445 447 448
-     449 450 451 452 480 481 482 483 484 485 494 502 504 508 509 510 511 512
-     514 520 521 522 523 528 529 530 545 547 548 553 554 555 556 557 558 559
-     560 567 568 572 573 574 575 576 577 578 580 581 582 583 584 585 586 591
-     592 593 601 604 610 611 612 616 617 625 626 627 628 629 630 634 650 652
-     653 655 659 660 662 668 673 675 676 680 684 683 686 687 689 690 693 710
-     712 714 718 721 722 725 726 728 729 730 731 733 734 735 740 742 744 756
-     761 763 764 767 769 770 771 772 776 778 781 783 784 785 787 791 792 793
-     796 797 799 800 801 802 803 804 805 806 807 814 819 821 824 826 828 829
-     859 860 861 871 872 874 875 876 877 879 880 882 883 885 886 888 891 892
-     893 894 902 903 904 906 907 908 909 911 913 914 916 917 919 921 929 930
-     931 932 935 945 949 950 951 952 953 954 955 956 957 960 959 965 964 968
-     971 973 974 975 976 977 982 983 985 986 989 994 995 996 1002 1003 1004
-     1005 1007 1008 1014 1016 1027 1043 1044 1045 1047 1048 1051 1053 1055
-     1056 1057 1061 1062 1066 1067 1071 1072 1078 1079 1080 1083 1086 1087
-     1088 1089 1090 1092 1093 1094 1096 1097 1099 1101 1103 1106 1107 1108
-     1109 1114 1115 1116 1118 1119 1120 1121 1122 1123 1124 1125 1126 1127
-     1129 1131 1134 1137 1138 1140 1144 1145 1146 1147 1148 1150 1151 1154
-     1155 1157 1161 1162 1164 1199 1200 1201 1203 1205 1206 1211 1212 1217
-     1222 1223 1226 1227 1228 1229 1233 1234 1235 1236 1237 1239 1241 1244
-     1245 1246 1249 1254 1257 1260 1264 1268 1270 1272 1274 1275 1276 1277
-     1278 1279 1280 1283 1284 1289 1292 1294 1295 1299 1302 1304 1308 1309
-     1312 1314 1316 1317 1319 1322 1324 1329 1331 1332 1337 1344 1347 1348
-     1351 1357 1358 1359 1360 1361 1362 1363 1364 1365 1403 1404 1405 1406
-     1407 1408 1409 1410 1411 1412 1414 1415 1416 1422 1426 1428 1429 1430
-     1431 1432 1433 1434 1435 1436 1441 1445 1447 1450 1452 1453 1454 1456
-     1458 1459 1462 1464 1466 1467 1469 1471 1474 1477 1480 1483 1485 1488
-     1491 1494 1497 1502 1504 1505 1506 1510 1513 1518 1519 1522 1523 1524
-     1526 1527 1528 1531 1533 1534 1535 1536 1547 1550 1552 1553 1554 1556
-     1558 1560 1561 1563 1567 1570 1571 1573 1574 1575 1577 1579 1581 1585
-     1589 1590 1591 1594 1597 1600 1603 1606)))
+   '(4 7 12 14 17 20 23 26 30 33 35 36 45 51 52 53 61 63 65 69 70 71 73 76 77
+     78 80 81 82 84 85 86 87 90 91 92 93 94 98 99 104 105 107 112 110 114 115
+     117 118 123 124 127 128 129 153 155 156 158 159 163 165 166 167 181 189
+     191 192 193 197 202 212 214 216 217 218 219 221 224 226 229 231 236 235
+     237 238 240 245 254 255 256 272 276 277 278 279 280 281 284 285 291 311
+     313 315 317 321 322 323 327 328 329 330 331 332 333 340 364 370 371 374
+     376 377 378 388 390 391 393 394 395 401 404 406 408 409 417 418 420 421
+     423 425 430 431 432 433 434 435 438 444 445 446 447 450 453 455 457 458
+     459 460 461 462 490 491 492 493 494 495 504 513 515 519 520 521 522 523
+     525 531 532 533 534 539 540 541 556 558 559 564 565 566 567 568 569 570
+     571 578 579 584 585 586 588 589 591 593 595 596 598 600 601 603 604 609
+     611 612 620 623 630 631 632 636 637 645 646 647 648 649 650 654 671 673
+     674 676 680 681 683 690 695 697 698 702 706 705 708 709 711 712 716 733
+     735 737 741 744 745 748 749 751 752 753 754 758 759 760 765 767 769 781
+     786 788 789 793 795 796 797 798 802 804 807 809 810 811 813 817 818 819
+     822 823 825 826 827 828 829 830 831 832 833 841 846 848 851 853 855 856
+     886 887 888 898 899 901 902 903 904 906 907 909 910 912 913 915 918 919
+     920 921 929 930 931 933 934 935 936 938 940 941 943 944 946 948 956 957
+     958 959 962 972 976 977 978 979 980 981 982 983 984 987 986 992 991 995
+     998 1000 1001 1002 1003 1004 1009 1010 1012 1013 1016 1021 1022 1023 1029
+     1030 1031 1032 1035 1036 1043 1045 1059 1075 1076 1077 1079 1080 1083
+     1085 1087 1089 1090 1094 1095 1099 1100 1104 1105 1111 1112 1113 1116
+     1119 1120 1121 1122 1123 1125 1126 1127 1129 1130 1132 1134 1137 1140
+     1141 1142 1143 1148 1149 1150 1152 1153 1154 1155 1156 1157 1158 1159
+     1160 1161 1163 1165 1168 1171 1172 1174 1178 1179 1180 1181 1182 1184
+     1185 1188 1189 1191 1195 1196 1198 1234 1235 1236 1238 1240 1241 1246
+     1247 1252 1257 1258 1262 1263 1264 1265 1269 1270 1271 1272 1273 1275
+     1277 1280 1281 1282 1285 1290 1293 1296 1301 1306 1308 1310 1313 1314
+     1315 1316 1317 1318 1319 1322 1323 1328 1331 1333 1334 1338 1341 1343
+     1347 1348 1351 1353 1356 1357 1359 1362 1364 1369 1371 1372 1377 1384
+     1387 1388 1391 1397 1398 1399 1400 1401 1403 1405 1407 1409 1448 1449
+     1450 1451 1452 1453 1454 1455 1456 1457 1459 1460 1462 1469 1473 1475
+     1476 1477 1478 1479 1480 1481 1482 1483 1488 1492 1494 1497 1499 1500
+     1501 1503 1505 1506 1509 1511 1513 1514 1516 1518 1521 1524 1527 1530
+     1532 1535 1538 1541 1544 1549 1551 1552 1553 1557 1560 1565 1566 1569
+     1570 1571 1573 1574 1575 1578 1580 1581 1582 1583 1594 1597 1599 1600
+     1601 1603 1605 1607 1608 1611 1615 1618 1619 1621 1622 1623 1625 1627
+     1629 1633 1638 1639 1640 1643 1646 1649 1652 1655)))
 
 (define gridcraft-git-crates
   (git-crate-selection
@@ -2501,41 +2552,41 @@
   (crate-selection
    %crates
    '(5 8 13 15 18 21 24 27 30 35 36 45 46 49 51 52 53 56 57 58 59 60 61 65 69
-     70 71 73 74 75 76 77 79 80 81 83 84 85 86 89 90 91 92 93 104 108 109 110
-     114 112 116 117 122 126 127 128 136 137 145 147 148 150 151 155 157 158
-     159 171 177 181 183 184 185 189 195 196 197 198 200 201 202 203 205 210
-     211 213 215 216 217 219 221 228 227 229 230 232 237 240 243 247 248 265
-     269 270 271 272 273 276 283 291 306 312 313 318 319 320 321 322 323 324
-     331 355 362 365 367 368 369 380 381 382 384 385 386 389 395 397 399 400
-     408 410 411 412 415 423 424 425 429 434 435 436 437 443 445 447 448 449
-     451 452 480 481 482 483 484 485 494 502 503 504 508 509 510 511 512 514
-     520 522 523 528 529 530 545 547 548 553 556 572 573 574 575 576 577 578
-     580 581 582 583 584 585 586 591 592 593 601 611 612 613 614 616 617 625
-     626 627 628 629 630 634 650 652 653 655 659 662 669 673 674 675 676 680
-     684 683 686 688 689 690 702 710 713 714 720 721 722 726 728 730 731 733
-     734 735 740 742 743 744 755 756 757 758 761 763 764 767 769 770 771 772
-     773 775 776 778 779 780 781 783 784 785 787 791 792 793 796 797 799 800
-     801 802 803 804 805 806 807 814 815 820 821 824 827 828 829 859 860 861
-     874 875 876 879 882 885 888 891 892 893 894 902 903 904 906 907 908 909
-     911 913 914 916 917 919 921 922 923 929 932 935 937 945 948 949 950 951
-     955 956 957 959 964 969 971 982 983 985 986 989 994 995 997 1002 1003
-     1004 1005 1007 1014 1016 1022 1043 1044 1045 1046 1047 1048 1051 1054
-     1055 1056 1057 1061 1062 1063 1071 1073 1078 1079 1080 1086 1087 1088
-     1089 1090 1092 1093 1094 1096 1099 1102 1108 1113 1114 1115 1126 1127
-     1129 1131 1134 1137 1138 1142 1144 1145 1146 1147 1150 1154 1155 1156
-     1157 1160 1164 1168 1170 1172 1174 1176 1178 1180 1182 1183 1185 1187
-     1189 1191 1193 1195 1197 1200 1202 1205 1206 1217 1222 1223 1226 1227
-     1228 1229 1233 1234 1235 1236 1237 1239 1242 1252 1261 1265 1269 1271
-     1273 1278 1279 1280 1281 1283 1289 1292 1294 1295 1298 1299 1302 1305
-     1309 1312 1314 1317 1319 1322 1324 1329 1331 1332 1334 1339 1344 1347
-     1348 1351 1353 1356 1357 1359 1360 1361 1362 1363 1364 1365 1403 1404
-     1405 1406 1407 1408 1409 1410 1411 1412 1414 1415 1416 1418 1420 1426
-     1428 1429 1430 1431 1432 1433 1434 1435 1436 1441 1445 1447 1450 1452
-     1453 1454 1456 1458 1459 1462 1464 1466 1467 1469 1471 1474 1477 1480
-     1483 1485 1488 1491 1494 1497 1502 1504 1505 1506 1510 1513 1518 1519
-     1522 1523 1524 1531 1533 1534 1536 1547 1550 1552 1553 1554 1556 1559
-     1560 1561 1565 1569 1570 1571 1573 1575 1577 1579 1587 1589 1590 1594
-     1597 1601 1604 1606)))
+     70 71 73 74 76 77 78 80 81 82 84 85 86 87 90 91 92 93 94 105 109 110 111
+     115 113 117 118 123 127 128 129 144 145 153 155 156 158 159 163 165 166
+     167 179 185 189 191 192 193 197 203 204 205 206 208 209 210 211 213 218
+     219 221 223 224 225 227 229 236 235 237 238 240 245 248 251 255 256 273
+     277 278 279 280 281 284 291 299 315 321 322 327 328 329 330 331 332 333
+     340 364 371 374 376 377 378 389 390 391 393 394 395 398 404 406 408 409
+     417 419 420 421 425 433 434 435 439 444 445 446 447 453 455 457 458 459
+     461 462 490 491 492 493 494 495 504 513 514 515 519 520 521 522 523 525
+     531 533 534 539 540 541 556 558 559 564 567 584 585 586 588 589 591 593
+     595 596 598 600 601 603 604 609 611 612 620 631 632 633 634 636 637 645
+     646 647 648 649 650 654 671 673 674 676 680 683 691 695 696 697 698 702
+     706 705 708 710 711 712 725 733 736 737 743 744 745 749 751 753 754 758
+     759 760 765 767 768 769 780 781 782 783 786 788 789 793 795 796 797 798
+     799 801 802 804 805 806 807 809 810 811 813 817 818 819 822 823 825 826
+     827 828 829 830 831 832 833 841 842 847 848 851 854 855 856 886 887 888
+     901 902 903 906 909 912 915 918 919 920 921 929 930 931 933 934 935 936
+     938 940 941 943 944 946 948 949 950 956 959 962 964 972 975 976 977 978
+     982 983 984 986 991 996 998 1009 1010 1012 1013 1016 1021 1022 1024 1029
+     1030 1031 1032 1035 1043 1045 1053 1075 1076 1077 1078 1079 1080 1083
+     1086 1087 1089 1090 1094 1095 1096 1104 1106 1111 1112 1113 1119 1120
+     1121 1122 1123 1125 1126 1127 1129 1132 1135 1142 1147 1148 1149 1160
+     1161 1163 1165 1168 1171 1172 1176 1178 1179 1180 1181 1184 1188 1189
+     1190 1191 1194 1198 1203 1205 1207 1209 1211 1213 1215 1217 1218 1220
+     1222 1224 1226 1228 1230 1232 1235 1237 1240 1241 1252 1257 1258 1262
+     1263 1264 1265 1269 1270 1271 1272 1273 1275 1278 1288 1297 1302 1307
+     1309 1311 1317 1318 1319 1320 1322 1328 1331 1333 1334 1337 1338 1341
+     1344 1348 1351 1353 1357 1359 1362 1364 1369 1371 1372 1374 1379 1384
+     1387 1388 1391 1393 1396 1397 1399 1400 1401 1403 1405 1407 1409 1448
+     1449 1450 1451 1452 1453 1454 1455 1456 1457 1459 1460 1462 1464 1467
+     1473 1475 1476 1477 1478 1479 1480 1481 1482 1483 1488 1492 1494 1497
+     1499 1500 1501 1503 1505 1506 1509 1511 1513 1514 1516 1518 1521 1524
+     1527 1530 1532 1535 1538 1541 1544 1549 1551 1552 1553 1557 1560 1565
+     1566 1569 1570 1571 1578 1580 1581 1583 1594 1597 1599 1600 1601 1603
+     1606 1607 1608 1613 1617 1618 1619 1621 1623 1625 1627 1635 1638 1639
+     1643 1646 1650 1653 1655)))
 
 (define soundcraft-git-crates
   (git-crate-selection
@@ -2567,39 +2618,39 @@
   (crate-selection
    %crates
    '(2 5 8 13 15 18 21 24 27 30 35 45 51 52 53 56 57 58 59 60 61 65 69 70 71
-     73 75 76 77 79 80 81 83 84 85 86 89 90 91 92 93 103 104 107 109 114 116
-     117 122 126 127 128 145 147 148 149 150 151 155 157 158 159 171 181 183
-     184 189 196 198 200 201 202 203 205 210 211 213 214 215 216 219 221 228
-     227 229 230 232 237 238 247 265 269 270 271 272 273 276 283 306 312 313
-     318 319 320 321 322 323 324 331 355 361 362 365 367 368 369 370 380 381
-     382 384 385 386 395 397 399 400 408 410 411 412 415 417 419 424 425 426
-     429 434 435 436 437 445 447 448 449 451 452 480 481 482 483 484 485 488
-     494 502 504 508 509 510 511 512 514 520 522 523 525 526 528 529 530 532
-     538 543 545 547 548 549 553 556 572 573 574 575 576 577 578 580 581 582
-     583 584 585 586 587 588 591 592 593 594 596 601 611 612 613 616 617 625
-     626 627 628 629 630 634 650 652 653 655 659 662 669 673 675 676 680 684
-     683 686 688 689 690 694 695 696 710 713 714 720 721 722 726 728 729 730
-     731 733 734 735 739 740 742 743 744 756 761 763 764 767 769 770 771 772
-     776 778 781 783 784 785 787 791 792 793 796 797 799 800 801 802 803 804
-     805 806 807 813 814 815 820 821 824 827 828 829 859 860 861 870 874 875
-     876 877 879 882 885 886 888 891 892 893 894 902 903 904 906 907 908 909
-     911 913 914 916 917 919 921 929 932 935 945 949 950 951 955 956 957 971
-     982 983 985 986 988 989 992 994 995 997 1007 1014 1016 1022 1023 1030
-     1043 1044 1045 1047 1048 1051 1054 1055 1056 1057 1061 1062 1066 1071
-     1073 1078 1079 1086 1087 1088 1089 1090 1092 1093 1094 1096 1099 1102
-     1108 1114 1115 1126 1127 1129 1131 1133 1134 1136 1137 1138 1142 1144
-     1145 1146 1147 1150 1154 1155 1157 1159 1160 1163 1164 1200 1202 1205
-     1206 1217 1222 1223 1226 1227 1228 1229 1233 1234 1235 1236 1238 1240
-     1242 1244 1252 1261 1265 1269 1271 1273 1278 1279 1280 1283 1289 1292
-     1293 1294 1295 1299 1302 1305 1308 1309 1312 1314 1317 1319 1322 1324
-     1329 1331 1332 1334 1339 1344 1347 1348 1351 1357 1359 1360 1361 1362
-     1363 1364 1365 1403 1404 1405 1406 1407 1408 1409 1410 1411 1412 1414
-     1415 1416 1418 1420 1426 1428 1429 1430 1431 1432 1433 1434 1435 1436
-     1441 1445 1447 1450 1452 1453 1454 1456 1458 1459 1462 1464 1466 1467
-     1469 1471 1474 1477 1480 1483 1485 1488 1491 1494 1497 1502 1504 1505
-     1506 1510 1513 1516 1518 1519 1522 1523 1524 1531 1533 1534 1536 1538
-     1547 1550 1552 1553 1554 1556 1559 1560 1561 1565 1569 1570 1571 1573
-     1575 1577 1579 1587 1589 1590 1594 1597 1601 1604 1606)))
+     73 76 77 78 80 81 82 84 85 86 87 90 91 92 93 94 104 105 108 110 115 117
+     118 123 127 128 129 153 155 156 157 158 159 163 165 166 167 179 189 191
+     192 197 204 206 208 209 210 211 213 218 219 221 222 223 224 227 229 236
+     235 237 238 240 245 246 255 273 277 278 279 280 281 284 291 315 321 322
+     327 328 329 330 331 332 333 340 364 370 371 374 376 377 378 379 389 390
+     391 393 394 395 404 406 408 409 417 419 420 421 425 427 429 434 435 436
+     439 444 445 446 447 455 457 458 459 461 462 490 491 492 493 494 495 498
+     504 513 515 519 520 521 522 523 525 531 533 534 536 537 539 540 541 543
+     549 554 556 558 559 560 564 567 584 585 586 588 589 591 593 595 596 598
+     600 601 603 604 605 606 609 611 612 613 615 620 631 632 633 636 637 645
+     646 647 648 649 650 654 671 673 674 676 680 683 691 695 697 698 702 706
+     705 708 710 711 712 717 718 719 733 736 737 743 744 745 749 751 752 753
+     754 758 759 760 764 765 767 768 769 781 786 788 789 793 795 796 797 798
+     802 804 807 809 810 811 813 817 818 819 822 823 825 826 827 828 829 830
+     831 832 833 839 841 842 847 848 851 854 855 856 886 887 888 897 901 902
+     903 904 906 909 912 913 915 918 919 920 921 929 930 931 933 934 935 936
+     938 940 941 943 944 946 948 956 959 962 972 976 977 978 982 983 984 998
+     1009 1010 1012 1013 1015 1016 1019 1021 1022 1024 1035 1043 1045 1053
+     1054 1062 1075 1076 1077 1079 1080 1083 1086 1087 1089 1090 1094 1095
+     1099 1104 1106 1111 1112 1119 1120 1121 1122 1123 1125 1126 1127 1129
+     1132 1135 1142 1148 1149 1160 1161 1163 1165 1167 1168 1170 1171 1172
+     1176 1178 1179 1180 1181 1184 1188 1189 1191 1193 1194 1197 1198 1235
+     1237 1240 1241 1252 1257 1258 1262 1263 1264 1265 1269 1270 1271 1272
+     1274 1276 1278 1280 1288 1297 1302 1307 1309 1311 1317 1318 1319 1322
+     1328 1331 1332 1333 1334 1338 1341 1344 1347 1348 1351 1353 1357 1359
+     1362 1364 1369 1371 1372 1374 1379 1384 1387 1388 1391 1397 1399 1400
+     1401 1403 1405 1407 1409 1448 1449 1450 1451 1452 1453 1454 1455 1456
+     1457 1459 1460 1462 1464 1467 1473 1475 1476 1477 1478 1479 1480 1481
+     1482 1483 1488 1492 1494 1497 1499 1500 1501 1503 1505 1506 1509 1511
+     1513 1514 1516 1518 1521 1524 1527 1530 1532 1535 1538 1541 1544 1549
+     1551 1552 1553 1557 1560 1563 1565 1566 1569 1570 1571 1578 1580 1581
+     1583 1585 1594 1597 1599 1600 1601 1603 1606 1607 1608 1613 1617 1618
+     1619 1621 1623 1625 1627 1635 1638 1639 1643 1646 1650 1653 1655)))
 
 (define cadcraft-git-crates
   (git-crate-selection
@@ -2633,43 +2684,43 @@
   (crate-selection
    %crates
    '(5 8 13 15 18 21 24 27 30 35 36 45 51 52 53 56 57 58 59 60 63 65 66 69 70
-     71 73 75 76 77 79 80 81 83 84 85 86 89 90 91 92 93 103 104 109 110 114
-     112 116 117 122 123 126 127 128 136 137 145 147 148 150 151 155 157 158
-     159 171 181 183 184 185 189 196 198 199 201 202 203 205 210 211 213 214
-     215 219 221 222 228 227 229 230 231 232 233 236 237 238 247 248 265 269
-     270 271 272 273 276 277 280 283 292 293 297 299 301 306 308 310 313 314
-     316 317 318 319 320 321 322 323 324 331 355 359 360 362 365 367 368 369
-     371 372 380 381 382 384 385 386 395 397 399 400 408 410 411 412 415 417
-     422 423 424 425 426 429 430 432 433 434 435 436 437 445 447 448 449 451
-     452 480 481 483 484 485 488 494 502 504 508 509 510 511 512 514 520 522
-     523 524 528 529 530 545 547 548 553 556 557 572 573 574 575 576 577 578
-     580 581 582 583 584 585 586 587 588 591 592 593 594 596 597 598 599 601
-     613 616 617 618 619 620 625 626 627 628 629 630 634 650 652 653 659 663
-     669 673 675 676 680 681 684 683 686 688 689 690 710 713 714 721 722 726
-     728 730 731 733 734 735 740 742 744 756 761 763 764 767 769 770 771 772
-     776 778 781 783 784 785 787 789 791 792 793 796 797 799 800 801 802 803
-     804 805 806 807 814 815 821 823 824 827 828 829 859 860 861 863 870 874
-     875 876 879 882 885 888 890 891 892 893 894 902 903 904 906 907 908 909
-     911 913 914 916 917 919 921 929 932 935 937 945 948 949 950 951 955 956
-     957 959 966 964 969 970 971 982 983 985 986 988 989 990 991 994 995 997
-     998 1002 1003 1005 1007 1014 1016 1022 1025 1027 1043 1044 1045 1047 1048
-     1051 1054 1055 1056 1057 1061 1062 1063 1064 1065 1066 1068 1071 1073
-     1078 1079 1080 1086 1087 1088 1089 1090 1092 1093 1094 1096 1099 1102
-     1107 1108 1114 1115 1126 1127 1129 1130 1131 1133 1134 1135 1137 1138
-     1142 1144 1145 1146 1147 1149 1150 1154 1155 1157 1158 1160 1163 1164
-     1166 1200 1202 1205 1206 1217 1222 1223 1226 1227 1228 1229 1233 1234
-     1235 1236 1237 1238 1239 1240 1242 1244 1252 1261 1265 1269 1271 1273
-     1278 1279 1280 1283 1285 1286 1289 1292 1294 1295 1298 1299 1300 1301
-     1302 1305 1309 1311 1312 1313 1314 1317 1319 1322 1324 1328 1329 1331
-     1332 1334 1339 1344 1347 1348 1351 1356 1357 1359 1360 1361 1362 1363
-     1364 1365 1371 1374 1375 1376 1377 1378 1381 1398 1401 1403 1404 1405
-     1406 1407 1408 1409 1410 1411 1412 1414 1415 1416 1418 1420 1424 1426
-     1428 1429 1430 1431 1432 1433 1434 1435 1436 1437 1441 1445 1447 1450
-     1452 1453 1454 1456 1458 1459 1462 1464 1466 1467 1469 1471 1474 1477
-     1480 1483 1485 1488 1491 1494 1497 1502 1504 1505 1506 1510 1513 1516
-     1518 1519 1522 1523 1524 1531 1533 1534 1536 1537 1538 1544 1547 1550
-     1552 1553 1554 1556 1559 1560 1561 1565 1569 1570 1571 1573 1575 1577
-     1579 1580 1586 1589 1590 1592 1594 1597 1601 1604 1606)))
+     71 73 76 77 78 80 81 82 84 85 86 87 90 91 92 93 94 104 105 110 111 115
+     113 117 118 123 124 127 128 129 144 145 153 155 156 158 159 163 165 166
+     167 179 189 191 192 193 197 204 206 207 209 210 211 213 218 219 221 222
+     223 227 229 230 236 235 237 238 239 240 241 244 245 246 255 256 273 277
+     278 279 280 281 284 285 288 291 300 301 306 308 310 315 317 319 322 323
+     325 326 327 328 329 330 331 332 333 340 364 368 369 371 374 376 377 378
+     380 381 389 390 391 393 394 395 404 406 408 409 417 419 420 421 425 427
+     432 433 434 435 436 439 440 442 443 444 445 446 447 455 457 458 459 461
+     462 490 491 493 494 495 498 504 513 515 519 520 521 522 523 525 531 533
+     534 535 539 540 541 556 558 559 564 567 568 584 585 586 588 589 591 593
+     595 596 598 600 601 603 604 605 606 609 611 612 613 615 616 617 618 620
+     633 636 637 638 639 640 645 646 647 648 649 650 654 671 673 674 680 684
+     691 695 697 698 702 703 706 705 708 710 711 712 733 736 737 744 745 749
+     751 753 754 758 759 760 765 767 769 781 786 788 789 793 795 796 797 798
+     802 804 807 809 810 811 813 815 817 818 819 822 823 825 826 827 828 829
+     830 831 832 833 841 842 848 850 851 854 855 856 886 887 888 890 897 901
+     902 903 906 909 912 915 917 918 919 920 921 929 930 931 933 934 935 936
+     938 940 941 943 944 946 948 956 959 962 964 972 975 976 977 978 982 983
+     984 986 993 991 996 997 998 1009 1010 1012 1013 1015 1016 1017 1018 1021
+     1022 1024 1025 1029 1030 1032 1035 1043 1045 1053 1057 1059 1075 1076
+     1077 1079 1080 1083 1086 1087 1089 1090 1094 1095 1096 1097 1098 1099
+     1101 1104 1106 1111 1112 1113 1119 1120 1121 1122 1123 1125 1126 1127
+     1129 1132 1135 1141 1142 1148 1149 1160 1161 1163 1164 1165 1167 1168
+     1169 1171 1172 1176 1178 1179 1180 1181 1183 1184 1188 1189 1191 1192
+     1194 1197 1198 1200 1235 1237 1240 1241 1252 1257 1258 1262 1263 1264
+     1265 1269 1270 1271 1272 1273 1274 1275 1276 1278 1280 1288 1297 1302
+     1307 1309 1311 1317 1318 1319 1322 1324 1325 1328 1331 1333 1334 1337
+     1338 1339 1340 1341 1344 1348 1350 1351 1352 1353 1357 1359 1362 1364
+     1368 1369 1371 1372 1374 1379 1384 1387 1388 1391 1396 1397 1399 1400
+     1401 1403 1405 1407 1409 1416 1419 1420 1421 1422 1423 1426 1443 1446
+     1448 1449 1450 1451 1452 1453 1454 1455 1456 1457 1459 1460 1462 1464
+     1467 1471 1473 1475 1476 1477 1478 1479 1480 1481 1482 1483 1484 1488
+     1492 1494 1497 1499 1500 1501 1503 1505 1506 1509 1511 1513 1514 1516
+     1518 1521 1524 1527 1530 1532 1535 1538 1541 1544 1549 1551 1552 1553
+     1557 1560 1563 1565 1566 1569 1570 1571 1578 1580 1581 1583 1584 1585
+     1591 1594 1597 1599 1600 1601 1603 1606 1607 1608 1613 1617 1618 1619
+     1621 1623 1625 1627 1628 1634 1638 1639 1641 1643 1646 1650 1653 1655)))
 
 (define figcraft-git-crates
   (git-crate-selection
@@ -2709,42 +2760,42 @@
 (define deckcraft-cargo-inputs
   (crate-selection
    %crates
-   '(4 7 12 14 17 20 23 26 30 35 45 47 48 51 52 53 61 63 65 69 70 71 73 75 76
-     77 79 80 81 83 84 85 86 89 90 91 92 93 103 104 109 114 116 117 122 126
-     127 128 145 147 148 150 151 155 157 158 159 167 173 176 181 183 184 189
-     204 210 211 213 214 216 218 221 228 227 229 230 232 237 238 239 242 247
-     264 269 270 271 272 273 276 283 291 306 308 312 313 318 319 320 321 322
-     323 324 331 355 361 362 365 367 368 369 379 381 382 384 385 386 389 395
-     397 399 400 408 409 411 412 415 417 422 424 425 426 428 434 435 436 437
-     445 447 448 449 451 452 480 481 482 483 484 485 488 494 502 504 508 509
-     510 511 512 514 520 522 523 524 528 529 530 533 537 538 541 547 548 553
-     556 562 563 564 565 566 567 568 572 573 574 575 576 577 578 579 581 582
-     583 584 585 586 591 592 593 594 596 601 611 612 616 617 624 625 626 627
-     628 629 630 634 652 653 655 659 662 668 673 675 676 680 684 683 686 687
-     689 690 701 710 712 714 719 721 722 726 729 730 731 733 734 735 740 742
-     744 750 756 757 761 763 764 767 769 770 771 772 773 776 778 779 780 781
-     783 784 785 787 791 792 793 796 797 799 800 801 802 803 804 805 806 807
-     814 817 819 821 824 825 826 828 829 859 860 861 870 874 875 876 879 882
-     885 888 891 892 893 894 902 903 904 906 907 908 909 911 913 914 916 917
-     919 921 929 932 935 945 949 950 951 955 956 957 971 982 983 985 986 988
-     989 990 991 994 995 996 1007 1014 1016 1043 1044 1045 1047 1048 1051 1054
-     1055 1056 1057 1061 1062 1064 1066 1071 1073 1078 1079 1086 1087 1088
-     1089 1090 1092 1093 1094 1096 1099 1101 1108 1114 1115 1126 1127 1129
-     1131 1133 1134 1135 1137 1138 1140 1144 1145 1146 1147 1150 1154 1155
-     1157 1163 1164 1167 1169 1171 1173 1175 1177 1179 1181 1184 1186 1188
-     1190 1192 1194 1196 1198 1200 1201 1205 1206 1217 1222 1223 1226 1227
-     1228 1229 1232 1233 1234 1235 1236 1240 1241 1249 1260 1264 1268 1270
-     1272 1278 1279 1280 1283 1285 1289 1292 1294 1295 1299 1300 1301 1302
-     1304 1306 1309 1311 1312 1314 1317 1319 1322 1324 1329 1331 1332 1337
-     1344 1347 1348 1351 1357 1359 1360 1361 1362 1363 1364 1365 1366 1367
-     1368 1403 1404 1405 1406 1407 1408 1409 1410 1411 1412 1414 1415 1416
-     1417 1420 1426 1428 1429 1430 1431 1432 1433 1434 1435 1436 1441 1443
-     1445 1447 1448 1450 1452 1453 1454 1456 1458 1459 1460 1462 1464 1465
-     1466 1467 1469 1470 1471 1474 1476 1477 1479 1480 1482 1483 1485 1487
-     1488 1490 1491 1493 1494 1496 1497 1502 1504 1505 1506 1510 1513 1516
-     1518 1519 1522 1523 1524 1531 1533 1534 1536 1538 1546 1550 1552 1553
-     1554 1556 1558 1560 1561 1563 1567 1570 1571 1573 1575 1576 1578 1581
-     1585 1589 1590 1591 1594 1597 1600 1603 1606)))
+   '(4 7 12 14 17 20 23 26 30 35 45 47 48 51 52 53 61 63 65 69 70 71 73 76 77
+     78 80 81 82 84 85 86 87 90 91 92 93 94 104 105 110 115 117 118 123 127
+     128 129 153 155 156 158 159 163 165 166 167 175 181 184 189 191 192 197
+     212 218 219 221 222 224 226 229 236 235 237 238 240 245 246 247 250 255
+     272 277 278 279 280 281 284 291 299 315 317 321 322 327 328 329 330 331
+     332 333 340 364 370 371 374 376 377 378 388 390 391 393 394 395 398 404
+     406 408 409 417 418 420 421 425 427 432 434 435 436 438 444 445 446 447
+     455 457 458 459 461 462 490 491 492 493 494 495 498 504 513 515 519 520
+     521 522 523 525 531 533 534 535 539 540 541 544 548 549 552 558 559 564
+     567 573 574 575 576 577 578 579 584 585 586 588 589 591 593 594 596 598
+     600 601 603 604 609 611 612 613 615 620 631 632 636 637 644 645 646 647
+     648 649 650 654 673 674 676 680 683 690 695 697 698 702 706 705 708 709
+     711 712 724 733 735 737 742 744 745 749 752 753 754 758 759 760 765 767
+     769 775 781 782 786 788 789 793 795 796 797 798 799 802 804 805 806 807
+     809 810 811 813 817 818 819 822 823 825 826 827 828 829 830 831 832 833
+     841 844 846 848 851 852 853 855 856 886 887 888 897 901 902 903 906 909
+     912 915 918 919 920 921 929 930 931 933 934 935 936 938 940 941 943 944
+     946 948 956 959 962 972 976 977 978 982 983 984 998 1009 1010 1012 1013
+     1015 1016 1017 1018 1021 1022 1023 1035 1043 1045 1075 1076 1077 1079
+     1080 1083 1086 1087 1089 1090 1094 1095 1097 1099 1104 1106 1111 1112
+     1119 1120 1121 1122 1123 1125 1126 1127 1129 1132 1134 1142 1148 1149
+     1160 1161 1163 1165 1167 1168 1169 1171 1172 1174 1178 1179 1180 1181
+     1184 1188 1189 1191 1197 1198 1202 1204 1206 1208 1210 1212 1214 1216
+     1219 1221 1223 1225 1227 1229 1231 1233 1235 1236 1240 1241 1252 1257
+     1258 1262 1263 1264 1265 1268 1269 1270 1271 1272 1276 1277 1285 1296
+     1301 1306 1308 1310 1317 1318 1319 1322 1324 1328 1331 1333 1334 1338
+     1339 1340 1341 1343 1345 1348 1350 1351 1353 1357 1359 1362 1364 1369
+     1371 1372 1377 1384 1387 1388 1391 1397 1399 1400 1401 1403 1405 1407
+     1409 1411 1412 1413 1448 1449 1450 1451 1452 1453 1454 1455 1456 1457
+     1459 1460 1462 1463 1467 1473 1475 1476 1477 1478 1479 1480 1481 1482
+     1483 1488 1490 1492 1494 1495 1497 1499 1500 1501 1503 1505 1506 1507
+     1509 1511 1512 1513 1514 1516 1517 1518 1521 1523 1524 1526 1527 1529
+     1530 1532 1534 1535 1537 1538 1540 1541 1543 1544 1549 1551 1552 1553
+     1557 1560 1563 1565 1566 1569 1570 1571 1578 1580 1581 1583 1585 1593
+     1597 1599 1600 1601 1603 1605 1607 1608 1611 1615 1618 1619 1621 1623
+     1624 1626 1629 1633 1638 1639 1640 1643 1646 1649 1652 1655)))
 
 (define deckcraft-git-crates
   (git-crate-selection
@@ -2778,40 +2829,40 @@
 (define texturecraft-cargo-inputs
   (crate-selection
    %crates
-   '(5 8 13 15 18 21 24 27 30 35 45 50 51 52 53 64 70 71 73 75 76 77 79 80 81
-     83 84 85 86 89 90 91 92 93 102 103 104 109 114 115 116 117 122 126 127
-     128 145 147 148 149 150 151 155 158 164 165 174 181 183 184 189 204 210
-     211 213 218 221 228 227 229 230 232 247 264 269 270 271 272 273 276 283
-     287 288 289 306 313 318 319 320 321 322 323 324 331 332 355 362 368 369
-     370 380 381 382 384 385 386 388 395 397 399 400 408 409 411 412 415 424
-     425 429 434 435 436 438 442 443 445 446 447 448 449 450 451 452 480 481
-     483 484 485 494 495 496 502 504 505 506 507 508 509 510 511 512 514 520
-     522 523 528 529 530 547 548 553 556 567 568 572 573 574 575 576 577 578
-     580 581 582 583 584 585 586 590 593 594 601 602 607 608 609 610 616 617
-     625 626 627 628 629 630 634 650 652 653 655 659 662 664 668 673 675 676
-     680 684 683 686 688 689 690 697 706 710 712 714 717 721 722 725 726 728
-     730 731 733 734 735 740 742 744 749 755 756 761 763 764 767 769 770 771
-     772 776 778 781 783 784 785 787 791 792 793 795 796 797 799 800 801 802
-     803 804 805 806 807 814 822 824 826 828 829 859 860 861 866 868 874 875
-     876 879 882 885 888 891 892 893 894 902 903 904 906 907 908 909 911 913
-     914 916 917 919 921 929 932 935 943 944 945 949 950 951 955 956 957 971
-     981 982 983 985 986 989 992 993 994 995 996 999 1000 1007 1014 1016 1018
-     1020 1023 1043 1044 1045 1047 1048 1050 1051 1054 1055 1056 1057 1061
-     1062 1071 1073 1075 1077 1078 1079 1086 1087 1088 1089 1090 1092 1093
-     1094 1095 1096 1099 1102 1108 1114 1115 1126 1127 1129 1131 1132 1134
-     1136 1137 1138 1141 1144 1147 1148 1150 1154 1155 1160 1164 1200 1202
-     1205 1206 1210 1217 1222 1223 1226 1227 1228 1229 1233 1234 1235 1236
-     1242 1247 1250 1253 1255 1257 1261 1265 1269 1271 1273 1278 1279 1280
-     1283 1289 1291 1293 1294 1295 1299 1302 1305 1310 1312 1314 1317 1320
-     1323 1325 1330 1331 1333 1335 1338 1344 1347 1349 1351 1357 1359 1360
-     1361 1362 1363 1364 1365 1403 1404 1405 1406 1407 1410 1411 1412 1414
-     1415 1416 1420 1426 1428 1429 1430 1431 1432 1433 1434 1435 1436 1439
-     1440 1441 1442 1445 1447 1450 1452 1453 1454 1456 1458 1459 1462 1464
-     1466 1467 1468 1469 1471 1472 1474 1477 1478 1480 1481 1483 1484 1485
-     1486 1488 1489 1491 1492 1494 1495 1497 1498 1502 1504 1505 1506 1509
-     1510 1514 1517 1518 1519 1522 1523 1524 1531 1533 1534 1536 1547 1550
-     1552 1553 1554 1556 1558 1560 1561 1565 1569 1570 1571 1573 1575 1577
-     1579 1584 1589 1590 1592 1594 1595 1597 1600 1603 1606)))
+   '(5 8 13 15 18 21 24 27 30 35 45 50 51 52 53 64 70 71 73 76 77 78 80 81 82
+     84 85 86 87 90 91 92 93 94 103 104 105 110 115 116 117 118 123 127 128
+     129 153 155 156 157 158 159 163 166 172 173 182 189 191 192 197 212 218
+     219 221 226 229 236 235 237 238 240 255 272 277 278 279 280 281 284 291
+     295 296 297 315 322 327 328 329 330 331 332 333 340 341 364 371 377 378
+     379 389 390 391 393 394 395 397 404 406 408 409 417 418 420 421 425 434
+     435 439 444 445 446 448 452 453 455 456 457 458 459 460 461 462 490 491
+     493 494 495 504 505 507 513 515 516 517 518 519 520 521 522 523 525 531
+     533 534 539 540 541 558 559 564 567 578 579 584 585 586 588 589 591 593
+     595 596 598 600 601 603 604 608 612 613 620 621 627 628 629 630 636 637
+     645 646 647 648 649 650 654 671 673 674 676 680 683 685 690 695 697 698
+     702 706 705 708 710 711 712 720 729 733 735 737 740 744 745 748 749 751
+     753 754 758 759 760 765 767 769 774 780 781 786 788 789 793 795 796 797
+     798 802 804 807 809 810 811 813 817 818 819 821 822 823 825 826 827 828
+     829 830 831 832 833 841 849 851 853 855 856 886 887 888 893 895 901 902
+     903 906 909 912 915 918 919 920 921 929 930 931 933 934 935 936 938 940
+     941 943 944 946 948 956 959 962 970 971 972 976 977 978 982 983 984 998
+     1008 1009 1010 1012 1013 1016 1019 1020 1021 1022 1023 1026 1027 1035
+     1043 1045 1047 1050 1054 1075 1076 1077 1079 1080 1082 1083 1086 1087
+     1089 1090 1094 1095 1104 1106 1108 1110 1111 1112 1119 1120 1121 1122
+     1123 1125 1126 1127 1128 1129 1132 1135 1142 1148 1149 1160 1161 1163
+     1165 1166 1168 1170 1171 1172 1175 1178 1181 1182 1184 1188 1189 1194
+     1198 1235 1237 1240 1241 1245 1252 1257 1258 1262 1263 1264 1265 1269
+     1270 1271 1272 1278 1283 1286 1289 1291 1293 1297 1302 1307 1309 1311
+     1317 1318 1319 1322 1328 1330 1332 1333 1334 1338 1341 1344 1349 1351
+     1353 1357 1360 1363 1365 1370 1371 1373 1375 1378 1384 1387 1389 1391
+     1397 1399 1400 1401 1403 1405 1407 1409 1448 1449 1450 1451 1452 1455
+     1456 1457 1459 1460 1462 1467 1473 1475 1476 1477 1478 1479 1480 1481
+     1482 1483 1486 1487 1488 1489 1492 1494 1497 1499 1500 1501 1503 1505
+     1506 1509 1511 1513 1514 1515 1516 1518 1519 1521 1524 1525 1527 1528
+     1530 1531 1532 1533 1535 1536 1538 1539 1541 1542 1544 1545 1549 1551
+     1552 1553 1556 1557 1561 1564 1565 1566 1569 1570 1571 1578 1580 1581
+     1583 1594 1597 1599 1600 1601 1603 1605 1607 1608 1613 1617 1618 1619
+     1621 1623 1625 1627 1632 1638 1639 1641 1643 1644 1646 1649 1652 1655)))
 
 (define texturecraft-git-crates
   (git-crate-selection
@@ -2841,53 +2892,53 @@
   (crate-selection
    %crates
    '(3 6 9 10 11 16 19 22 25 29 30 32 35 36 45 51 52 53 55 56 57 58 59 60 61
-     63 64 68 69 70 71 73 75 76 77 78 79 80 81 83 84 85 86 89 90 91 92 93 100
-     103 104 105 106 108 109 114 116 117 119 122 124 126 127 128 145 146 147
-     148 149 150 151 152 155 157 158 159 168 169 174 177 180 181 182 183 184
-     185 189 193 195 196 198 201 202 204 210 211 213 214 215 216 218 220 221
-     223 225 226 228 227 229 230 232 237 241 244 247 248 249 250 251 252 253
-     254 255 256 257 258 259 260 261 262 263 264 269 270 271 272 273 274 276
-     280 283 293 294 295 302 306 312 313 315 317 318 319 320 321 322 323 324
-     325 326 327 328 329 330 331 332 340 342 347 348 349 350 351 352 353 355
-     356 358 359 360 361 362 364 366 368 369 370 373 374 379 381 382 383 384
-     385 386 395 397 399 400 402 407 408 409 415 417 423 424 425 428 434 435
-     436 437 441 442 443 445 447 448 449 450 451 452 453 454 480 481 482 483
-     484 485 488 490 493 494 501 503 504 508 509 510 511 512 514 515 520 522
-     523 528 529 530 531 545 547 548 550 551 553 556 569 572 574 575 576 577
-     578 582 583 584 587 588 589 591 592 593 594 595 601 603 611 612 613 614
-     615 616 617 625 626 627 628 629 630 634 635 650 651 652 653 654 658 659
-     662 663 668 670 673 675 676 677 678 679 680 684 685 683 686 688 689 690
-     699 702 710 711 712 714 720 721 722 726 728 729 730 731 733 734 735 737
-     738 740 742 743 744 746 751 752 753 754 755 756 758 759 760 761 763 764
-     767 769 770 771 772 774 775 776 777 778 779 780 781 782 783 784 785 786
-     787 788 789 790 791 792 793 794 796 797 798 799 800 801 802 803 804 805
-     806 807 809 811 814 815 819 822 823 824 826 828 832 834 835 836 837 838
-     839 840 841 842 843 844 845 846 847 848 849 850 851 853 859 860 861 872
-     874 875 878 879 881 882 884 885 887 888 890 891 892 893 894 895 896 897
-     900 902 903 904 905 906 907 908 909 911 913 914 915 916 917 919 920 921
-     925 929 932 934 935 939 940 945 949 950 951 955 956 957 958 960 959 962
-     965 964 971 982 983 985 986 989 994 995 996 998 999 1000 1001 1002 1003
-     1005 1007 1009 1012 1014 1015 1016 1023 1025 1029 1042 1043 1044 1045
-     1047 1048 1051 1054 1055 1056 1057 1060 1062 1065 1071 1073 1074 1076
-     1078 1079 1081 1084 1085 1086 1087 1088 1089 1091 1092 1093 1094 1095
-     1096 1098 1099 1102 1105 1106 1108 1111 1112 1113 1114 1115 1116 1126
-     1127 1129 1130 1131 1134 1137 1138 1141 1143 1144 1145 1146 1147 1149
-     1150 1151 1154 1155 1157 1160 1164 1165 1200 1202 1205 1206 1214 1216
-     1217 1219 1222 1223 1224 1226 1227 1228 1229 1233 1234 1235 1236 1237
-     1239 1241 1244 1249 1259 1261 1263 1265 1269 1271 1273 1278 1279 1280
-     1289 1292 1293 1294 1295 1302 1303 1305 1312 1314 1317 1318 1321 1324
-     1326 1331 1332 1334 1338 1343 1346 1349 1350 1351 1352 1354 1355 1357
-     1359 1360 1361 1362 1363 1364 1365 1369 1371 1373 1379 1380 1381 1383
-     1384 1385 1386 1387 1388 1389 1390 1391 1392 1393 1394 1395 1396 1398
-     1401 1403 1404 1405 1406 1407 1408 1409 1410 1411 1412 1413 1414 1415
-     1416 1417 1421 1425 1426 1428 1429 1430 1431 1432 1433 1435 1436 1438
-     1439 1440 1441 1442 1445 1447 1450 1452 1453 1454 1456 1458 1462 1464
-     1466 1467 1468 1469 1471 1472 1474 1477 1478 1480 1481 1483 1484 1485
-     1486 1488 1489 1491 1492 1494 1495 1497 1498 1499 1501 1502 1503 1504
-     1505 1506 1510 1511 1512 1519 1521 1522 1523 1524 1529 1530 1531 1532
-     1533 1534 1536 1537 1540 1542 1543 1546 1550 1551 1552 1553 1554 1555
-     1556 1557 1558 1560 1561 1564 1568 1570 1571 1573 1574 1575 1576 1578
-     1588 1589 1590 1594 1597 1599 1600 1602 1603 1605 1606)))
+     63 64 68 69 70 71 73 76 77 78 79 80 81 82 84 85 86 87 90 91 92 93 94 101
+     104 105 106 107 109 110 115 117 118 120 123 125 127 128 129 153 154 155
+     156 157 158 159 160 163 165 166 167 176 177 182 185 188 189 190 191 192
+     193 197 201 203 204 206 209 210 212 218 219 221 222 223 224 226 228 229
+     231 233 234 236 235 237 238 240 245 249 252 255 256 257 258 259 260 261
+     262 263 264 265 266 267 268 269 270 271 272 277 278 279 280 281 282 284
+     288 291 301 302 303 311 315 321 322 324 326 327 328 329 330 331 332 333
+     334 335 336 337 338 339 340 341 349 351 356 357 358 359 360 361 362 364
+     365 367 368 369 370 371 373 375 377 378 379 382 383 388 390 391 392 393
+     394 395 404 406 408 409 411 416 417 418 425 427 433 434 435 438 444 445
+     446 447 451 452 453 455 457 458 459 460 461 462 463 464 490 491 492 493
+     494 495 498 500 503 504 512 514 515 519 520 521 522 523 525 526 531 533
+     534 539 540 541 542 556 558 559 561 562 564 567 580 584 586 588 589 591
+     593 598 600 601 605 606 607 609 611 612 613 614 620 622 631 632 633 634
+     635 636 637 645 646 647 648 649 650 654 656 671 672 673 674 675 679 680
+     683 684 690 692 695 697 698 699 700 701 702 706 707 705 708 710 711 712
+     722 725 733 734 735 737 743 744 745 749 751 752 753 754 758 759 760 762
+     763 765 767 768 769 771 776 777 778 779 780 781 783 784 785 786 788 789
+     793 795 796 797 798 800 801 802 803 804 805 806 807 808 809 810 811 812
+     813 814 815 816 817 818 819 820 822 823 824 825 826 827 828 829 830 831
+     832 833 835 837 841 842 846 849 850 851 853 855 859 861 862 863 864 865
+     866 867 868 869 870 871 872 873 874 875 876 877 878 880 886 887 888 899
+     901 902 905 906 908 909 911 912 914 915 917 918 919 920 921 922 923 924
+     927 929 930 931 932 933 934 935 936 938 940 941 942 943 944 946 947 948
+     952 956 959 961 962 966 967 972 976 977 978 982 983 984 985 987 986 989
+     992 991 998 1009 1010 1012 1013 1016 1021 1022 1023 1025 1026 1027 1028
+     1029 1030 1032 1035 1038 1041 1043 1044 1045 1054 1057 1061 1074 1075
+     1076 1077 1079 1080 1083 1086 1087 1089 1090 1093 1095 1098 1104 1106
+     1107 1109 1111 1112 1114 1117 1118 1119 1120 1121 1122 1124 1125 1126
+     1127 1128 1129 1131 1132 1135 1139 1140 1142 1145 1146 1147 1148 1149
+     1150 1160 1161 1163 1164 1165 1168 1171 1172 1175 1177 1178 1179 1180
+     1181 1183 1184 1185 1188 1189 1191 1194 1198 1199 1235 1237 1240 1241
+     1249 1251 1252 1254 1257 1258 1259 1262 1263 1264 1265 1269 1270 1271
+     1272 1273 1275 1277 1280 1285 1295 1297 1300 1302 1307 1309 1311 1317
+     1318 1319 1328 1331 1332 1333 1334 1341 1342 1344 1351 1353 1357 1358
+     1361 1364 1366 1371 1372 1374 1378 1383 1386 1389 1390 1391 1392 1394
+     1395 1397 1399 1400 1401 1403 1405 1407 1409 1414 1416 1418 1424 1425
+     1426 1428 1429 1430 1431 1432 1433 1434 1435 1436 1437 1438 1439 1440
+     1441 1443 1446 1448 1449 1450 1451 1452 1453 1454 1455 1456 1457 1458
+     1459 1460 1462 1463 1468 1472 1473 1475 1476 1477 1478 1479 1480 1482
+     1483 1485 1486 1487 1488 1489 1492 1494 1497 1499 1500 1501 1503 1505
+     1509 1511 1513 1514 1515 1516 1518 1519 1521 1524 1525 1527 1528 1530
+     1531 1532 1533 1535 1536 1538 1539 1541 1542 1544 1545 1546 1548 1549
+     1550 1551 1552 1553 1557 1558 1559 1566 1568 1569 1570 1571 1576 1577
+     1578 1579 1580 1581 1583 1584 1587 1589 1590 1593 1597 1598 1599 1600
+     1601 1602 1603 1604 1605 1607 1608 1612 1616 1618 1619 1621 1622 1623
+     1624 1626 1637 1638 1639 1643 1646 1648 1649 1651 1652 1654 1655)))
 
 (define craft-anything-git-crates
   (git-crate-selection
@@ -2898,42 +2949,42 @@
   (crate-selection
    %crates
    '(4 7 12 14 17 20 23 26 30 35 36 45 51 52 53 56 57 58 59 60 61 64 69 70 71
-     73 75 76 77 79 80 81 83 84 85 86 87 88 89 90 91 92 93 103 104 106 109 114
-     116 117 122 126 127 128 145 147 148 150 151 153 154 155 157 158 159 173
-     179 181 183 184 189 204 210 211 213 215 216 218 221 223 228 227 229 230
-     232 247 264 269 270 271 272 273 276 283 284 286 293 296 298 300 302 305
-     312 313 315 316 317 318 319 320 321 322 323 324 331 343 345 355 362 365
-     367 368 369 370 371 372 379 381 382 384 385 386 395 397 399 400 404 406
-     408 409 411 412 415 417 424 425 428 434 435 436 437 443 445 446 447 448
-     449 451 452 455 456 457 458 480 481 482 483 484 485 491 492 494 497 498
-     499 502 504 508 509 510 511 512 513 514 517 518 519 520 522 523 528 529
-     530 544 545 547 548 553 556 572 573 574 575 576 577 578 579 581 582 583
-     584 585 586 591 592 593 595 601 611 612 613 616 617 618 619 620 621 622
-     625 626 627 628 629 630 634 650 652 653 655 657 658 659 662 665 666 668
-     672 673 675 676 680 684 683 686 687 689 690 700 710 712 714 721 722 726
-     728 730 731 733 734 735 740 742 744 748 756 761 763 764 767 769 770 771
-     772 776 778 781 783 784 785 787 791 792 793 796 797 799 800 801 802 803
-     804 805 806 807 814 815 819 821 823 824 826 828 829 857 858 859 860 861
-     868 872 874 875 876 879 882 885 888 890 891 892 893 894 900 902 903 904
-     905 906 907 908 909 911 913 914 916 917 919 921 927 928 929 930 931 932
-     935 945 949 950 951 955 956 957 965 971 982 983 985 986 989 994 995 996
-     998 1002 1003 1005 1007 1009 1014 1015 1016 1023 1025 1043 1044 1045 1047
-     1048 1051 1053 1055 1056 1057 1061 1062 1071 1072 1078 1079 1086 1087
-     1088 1089 1090 1092 1093 1094 1096 1099 1100 1102 1108 1114 1115 1116
-     1126 1127 1129 1130 1131 1134 1137 1138 1140 1144 1145 1146 1147 1150
-     1151 1154 1155 1157 1164 1165 1199 1200 1201 1205 1206 1213 1217 1218
-     1220 1221 1222 1223 1226 1227 1228 1229 1233 1234 1235 1236 1237 1239
-     1241 1249 1258 1261 1262 1265 1266 1267 1269 1271 1273 1278 1279 1280
-     1282 1283 1289 1292 1293 1294 1295 1299 1302 1304 1309 1312 1314 1317
-     1319 1322 1324 1326 1329 1331 1332 1334 1338 1344 1347 1348 1350 1351
-     1357 1359 1360 1361 1362 1363 1364 1365 1403 1404 1405 1406 1407 1408
-     1409 1410 1411 1412 1414 1415 1416 1417 1422 1426 1428 1429 1430 1431
-     1432 1433 1434 1435 1436 1439 1440 1441 1442 1445 1447 1450 1452 1453
-     1454 1456 1458 1459 1462 1464 1466 1467 1469 1471 1474 1475 1477 1480
-     1483 1485 1488 1491 1494 1497 1500 1502 1504 1505 1506 1510 1513 1518
-     1519 1522 1523 1524 1531 1533 1534 1536 1537 1546 1550 1552 1553 1554
-     1556 1558 1560 1561 1564 1568 1570 1571 1573 1575 1576 1578 1587 1589
-     1590 1591 1594 1597 1600 1603 1606)))
+     73 76 77 78 80 81 82 84 85 86 87 88 89 90 91 92 93 94 104 105 107 110 115
+     117 118 123 127 128 129 153 155 156 158 159 161 162 163 165 166 167 181
+     187 189 191 192 197 212 218 219 221 223 224 226 229 231 236 235 237 238
+     240 255 272 277 278 279 280 281 284 291 292 294 301 305 307 309 311 314
+     321 322 324 325 326 327 328 329 330 331 332 333 340 352 354 364 371 374
+     376 377 378 379 380 381 388 390 391 393 394 395 404 406 408 409 413 415
+     417 418 420 421 425 427 434 435 438 444 445 446 447 453 455 456 457 458
+     459 461 462 465 466 467 468 490 491 492 493 494 495 501 502 504 508 509
+     510 513 515 519 520 521 522 523 524 525 528 529 530 531 533 534 539 540
+     541 555 556 558 559 564 567 584 585 586 588 589 591 593 594 596 598 600
+     601 603 604 609 611 612 614 620 631 632 633 636 637 638 639 640 641 642
+     645 646 647 648 649 650 654 671 673 674 676 678 679 680 683 687 688 690
+     694 695 697 698 702 706 705 708 709 711 712 723 733 735 737 744 745 749
+     751 753 754 758 759 760 765 767 769 773 781 786 788 789 793 795 796 797
+     798 802 804 807 809 810 811 813 817 818 819 822 823 825 826 827 828 829
+     830 831 832 833 841 842 846 848 850 851 853 855 856 884 885 886 887 888
+     895 899 901 902 903 906 909 912 915 917 918 919 920 921 927 929 930 931
+     932 933 934 935 936 938 940 941 943 944 946 948 954 955 956 957 958 959
+     962 972 976 977 978 982 983 984 992 998 1009 1010 1012 1013 1016 1021
+     1022 1023 1025 1029 1030 1032 1035 1038 1043 1044 1045 1054 1057 1075
+     1076 1077 1079 1080 1083 1085 1087 1089 1090 1094 1095 1104 1105 1111
+     1112 1119 1120 1121 1122 1123 1125 1126 1127 1129 1132 1133 1135 1142
+     1148 1149 1150 1160 1161 1163 1164 1165 1168 1171 1172 1174 1178 1179
+     1180 1181 1184 1185 1188 1189 1191 1198 1199 1234 1235 1236 1240 1241
+     1248 1252 1253 1255 1256 1257 1258 1262 1263 1264 1265 1269 1270 1271
+     1272 1273 1275 1277 1285 1294 1297 1299 1302 1304 1305 1307 1309 1311
+     1317 1318 1319 1321 1322 1328 1331 1332 1333 1334 1338 1341 1343 1348
+     1351 1353 1357 1359 1362 1364 1366 1369 1371 1372 1374 1378 1384 1387
+     1388 1390 1391 1397 1399 1400 1401 1403 1405 1407 1409 1448 1449 1450
+     1451 1452 1453 1454 1455 1456 1457 1459 1460 1462 1463 1469 1473 1475
+     1476 1477 1478 1479 1480 1481 1482 1483 1486 1487 1488 1489 1492 1494
+     1497 1499 1500 1501 1503 1505 1506 1509 1511 1513 1514 1516 1518 1521
+     1522 1524 1527 1530 1532 1535 1538 1541 1544 1547 1549 1551 1552 1553
+     1557 1560 1565 1566 1569 1570 1571 1578 1580 1581 1583 1584 1593 1597
+     1599 1600 1601 1603 1605 1607 1608 1612 1616 1618 1619 1621 1623 1624
+     1626 1635 1638 1639 1640 1643 1646 1649 1652 1655)))
 
 (define craft-launcher-git-crates
   (git-crate-selection
@@ -2958,3 +3009,110 @@
      ("egui_demo_lib" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 23 "crates/egui_demo_lib")
      ("egui_inspection" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 23 "crates/egui_inspection")
      ("egui_system_font_provider" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 23 "crates/egui_system_font_provider"))))
+
+(define materialcraft-cargo-inputs
+  (crate-selection
+   %crates
+   '(5 8 13 15 18 21 24 27 30 35 45 50 51 52 53 61 63 65 69 70 71 73 75 76 77
+     78 80 81 82 84 85 86 87 90 91 92 93 94 103 104 105 110 115 116 117 118
+     123 127 128 129 153 155 156 157 158 159 163 166 172 173 179 189 191 192
+     197 213 218 219 221 222 224 227 229 233 236 235 237 238 240 255 273 277
+     278 279 280 281 284 291 295 296 297 301 304 315 317 321 322 327 328 329
+     330 331 332 333 340 341 364 371 377 378 379 389 390 391 393 394 395 397
+     404 406 408 409 417 419 420 421 425 427 434 435 439 444 445 446 448 452
+     453 455 456 457 458 459 460 461 462 490 491 492 493 494 495 498 504 505
+     506 507 513 515 516 517 518 519 520 521 522 523 525 531 533 534 539 540
+     541 558 559 564 567 578 579 584 585 586 588 589 591 593 595 596 598 600
+     601 603 604 608 612 613 615 620 621 627 628 629 630 631 632 636 637 645
+     646 647 648 649 650 655 671 673 674 676 680 683 685 691 695 697 698 702
+     706 705 708 710 711 713 729 733 736 737 740 744 745 748 749 751 753 754
+     758 759 760 765 767 769 780 781 786 788 789 793 795 796 797 798 802 804
+     807 809 810 811 813 817 818 819 822 823 825 826 827 828 829 830 831 832
+     833 841 847 849 851 854 855 856 886 887 888 893 895 901 902 903 906 909
+     912 915 917 918 919 920 921 929 930 931 933 934 935 936 938 940 941 943
+     944 946 948 956 959 962 970 971 972 976 977 978 982 983 984 998 1008 1009
+     1010 1012 1013 1016 1020 1021 1022 1024 1026 1027 1035 1037 1039 1043
+     1044 1045 1049 1052 1055 1057 1059 1075 1076 1077 1079 1081 1082 1083
+     1086 1087 1089 1090 1094 1095 1104 1106 1108 1110 1111 1112 1119 1120
+     1121 1122 1123 1125 1126 1127 1128 1129 1132 1135 1142 1148 1149 1160
+     1161 1163 1164 1165 1168 1171 1172 1176 1178 1181 1182 1184 1188 1189
+     1191 1194 1198 1201 1235 1237 1240 1241 1252 1257 1258 1262 1263 1264
+     1265 1269 1270 1271 1272 1274 1276 1278 1283 1288 1289 1291 1293 1297
+     1302 1307 1309 1311 1317 1318 1319 1322 1328 1331 1332 1333 1334 1338
+     1341 1344 1349 1351 1354 1357 1360 1363 1365 1367 1370 1371 1373 1375
+     1379 1384 1387 1389 1391 1397 1399 1400 1402 1404 1406 1408 1410 1448
+     1449 1450 1451 1452 1455 1456 1457 1459 1461 1462 1467 1473 1475 1476
+     1477 1478 1479 1480 1481 1482 1483 1488 1492 1494 1497 1499 1500 1501
+     1503 1505 1506 1509 1511 1513 1514 1515 1516 1518 1519 1521 1524 1525
+     1527 1528 1530 1531 1532 1533 1535 1536 1538 1539 1541 1542 1544 1545
+     1549 1551 1552 1553 1556 1557 1561 1565 1566 1569 1570 1571 1578 1580
+     1581 1583 1584 1594 1597 1599 1600 1601 1603 1606 1607 1609 1613 1617
+     1618 1619 1621 1622 1623 1625 1627 1628 1636 1638 1639 1641 1643 1644
+     1646 1650 1653 1655)))
+
+(define materialcraft-git-crates
+  (git-crate-selection
+   %git-checkouts
+   '(("craft-dialogs" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 7 "crates/dialogs")
+     ("craft-fonts-build" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 7 "crates/fonts-build")
+     ("craft-i18n" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 7 "crates/i18n")
+     ("craft-keymap" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 7 "crates/keymap")
+     ("craft-menu" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 7 "crates/menu")
+     ("craft-quit" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 7 "crates/quit")
+     ("craft-ui" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 7 "crates/ui")
+     ("craft-update" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 7 "crates/update")
+     ("craft-window" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 7 "crates/window")
+     ("ecolor" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 23 "crates/ecolor")
+     ("eframe" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 23 "crates/eframe")
+     ("egui" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 23 "crates/egui")
+     ("egui-wgpu" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 23 "crates/egui-wgpu")
+     ("egui-winit" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 23 "crates/egui-winit")
+     ("egui_glow" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 23 "crates/egui_glow")
+     ("egui_kittest" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 23 "crates/egui_kittest")
+     ("emath" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 23 "crates/emath")
+     ("epaint" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 23 "crates/epaint")
+     ("epaint_default_fonts" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 23 "crates/epaint_default_fonts")
+     ("winit" "0.30.13" "git+https://github.com/storytold/winit.git?rev=a517b3846ee8457d84ee4975110bfda6797c44dc#a517b3846ee8457d84ee4975110bfda6797c44dc" 27 "."))))
+
+(define anicraft-cargo-inputs
+  (crate-selection
+   %crates
+   '(3 6 9 10 11 16 19 22 25 30 35 36 39 45 46 49 51 52 53 65 70 71 73 76 77
+     78 80 81 82 84 85 86 87 90 91 92 93 94 105 110 115 117 118 123 127 128
+     129 130 132 134 136 138 140 142 153 155 156 157 158 159 163 165 166 167
+     175 179 189 191 192 197 213 219 221 222 227 229 233 236 235 237 238 240
+     246 248 249 251 255 273 278 279 280 281 284 291 298 299 315 322 327 328
+     329 330 331 332 333 340 345 346 351 356 357 358 359 361 364 367 371 377
+     378 382 383 385 387 389 390 391 393 394 395 403 404 406 408 409 417 419
+     422 425 434 435 439 441 444 445 446 447 453 454 455 457 458 459 461 462
+     490 491 493 494 495 498 504 512 515 519 520 521 522 523 525 531 533 534
+     538 539 540 541 558 559 564 567 583 587 590 592 597 599 602 609 610 612
+     620 626 635 636 637 645 646 647 648 649 650 654 673 674 680 684 686 691
+     695 697 698 702 706 705 708 710 711 712 725 733 736 737 742 744 745 749
+     753 754 755 756 758 759 760 765 767 775 777 781 782 783 786 788 789 791
+     793 795 796 797 798 799 801 802 804 805 806 807 809 810 811 813 817 818
+     819 822 823 825 826 827 828 829 830 831 832 833 840 841 844 849 851 853
+     855 886 887 888 893 901 902 905 908 911 914 918 919 920 921 929 930 931
+     932 933 934 935 936 938 940 941 944 946 947 948 956 959 962 972 976 977
+     978 982 983 984 988 990 993 998 1009 1010 1012 1013 1016 1021 1022 1024
+     1029 1030 1032 1033 1035 1043 1045 1075 1076 1077 1079 1080 1083 1086
+     1088 1089 1090 1094 1095 1100 1104 1106 1111 1112 1119 1120 1121 1122
+     1125 1126 1127 1129 1132 1136 1142 1148 1149 1160 1161 1163 1165 1168
+     1171 1172 1173 1176 1178 1179 1180 1181 1183 1184 1188 1189 1192 1198
+     1235 1237 1239 1240 1241 1250 1251 1252 1257 1258 1261 1262 1263 1264
+     1265 1269 1270 1271 1272 1278 1280 1288 1298 1303 1307 1309 1312 1317
+     1318 1319 1324 1328 1331 1333 1334 1341 1344 1351 1353 1357 1360 1363
+     1364 1370 1371 1373 1375 1379 1383 1386 1389 1391 1397 1399 1400 1401
+     1403 1405 1407 1409 1411 1412 1413 1417 1419 1420 1421 1422 1423 1427
+     1444 1447 1448 1449 1450 1451 1452 1453 1454 1455 1456 1457 1459 1460
+     1462 1465 1468 1473 1475 1476 1477 1478 1479 1480 1481 1482 1483 1488
+     1492 1494 1497 1499 1500 1501 1503 1505 1509 1511 1513 1514 1516 1518
+     1521 1524 1527 1530 1532 1535 1538 1541 1544 1546 1549 1551 1552 1553
+     1557 1565 1566 1569 1570 1571 1578 1580 1581 1583 1594 1597 1599 1600
+     1601 1603 1606 1607 1608 1613 1617 1618 1619 1621 1622 1623 1625 1627
+     1637 1638 1639 1643 1646 1650 1653 1655)))
+
+(define anicraft-git-crates
+  (git-crate-selection
+   %git-checkouts
+   '(("craft-update" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6ac2a6a34ae83fc0f0bfb25a569ba6388b72266a#6ac2a6a34ae83fc0f0bfb25a569ba6388b72266a" 6 "crates/update"))))
