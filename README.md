@@ -182,9 +182,14 @@ config (the owner's is `latitude.scm` in MyGuixConfig).
   # AVR boards (ATmega: older Creality, Prusa Einsy):
   guix shell --pure bash make python coreutils grep sed gawk findutils \
       which binutils gcc-cross-avr-toolchain -- make menuconfig   # then: make
-  # ARM boards (STM32, ...): the same without gcc-cross-avr-toolchain, plus
-  #   -e '((@ (gnu packages embedded) make-arm-none-eabi-toolchain-12.3.rel1))'
-  # (no substitute: the first use compiles the cross GCC)
+  # ARM boards (STM32, ...): the nano toolchain (Klipper links newlib-nano),
+  # and the toolchain's preprocessor for the linker script (no host cpp here):
+  guix shell --pure bash make python coreutils grep sed gawk findutils \
+      which binutils \
+      -e '((@ (gnu packages embedded) make-arm-none-eabi-nano-toolchain-12.3.rel1))' \
+      -- make menuconfig            # then: make CPP=arm-none-eabi-cpp
+  # (no substitute: the first use compiles the cross GCC, newlib-nano and
+  # libstdc++, about an hour)
   ```
 
   The result is `out/klipper.bin` (copy to the board's SD card) or
