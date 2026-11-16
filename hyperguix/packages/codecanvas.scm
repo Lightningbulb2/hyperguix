@@ -34,7 +34,7 @@
   #:use-module (hyperguix packages js-offline)
   #:use-module (hyperguix packages codecanvas-crates))
 
-(define %codecanvas-commit "8e540b5e5f1ba3b7927377e479948f8d54966adb")
+(define %codecanvas-commit "00daa320894130941d170d1dc82fd19e1c2d4cd8")
 
 (define %codecanvas-source
   ;; Both projects; each package builds in its own directory.
@@ -45,7 +45,7 @@
           (commit %codecanvas-commit)))
     (file-name (git-file-name "codecanvas" (string-take %codecanvas-commit 7)))
     (sha256
-     (base32 "1k3rbip3jcrwlphaqbd6hi7xzxjahajxg2hrf4pvc293fpsyaxqr"))))
+     (base32 "0kx9c0vdj4f0i16cmmnncrm1r7q80iqanyak7is511l993vnns7s"))))
 
 (define-public codecanvas
   (package
@@ -153,7 +153,7 @@ add it to Zed's @file{settings.json} as a context server:
 (define-public codecanvas-vscode
   (package
     (name "codecanvas-vscode")
-    (version "0.7.6")
+    (version "0.7.7")
     (source %codecanvas-source)
     (build-system gnu-build-system)
     (arguments
