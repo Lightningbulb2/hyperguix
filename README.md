@@ -46,7 +46,7 @@ The channel depends on nonguix (`.guix-channel`): several packages use its
 | `codecanvas.scm` | `codecanvas`, `codecanvas-vscode`, `codecanvas-zed-bridge` | infinite code canvas: the app, the VS Code extension and the Zed bridge are `rust/`, `vscode/` and `zed/` of github.com/Lightningbulb2/CodeCanvas at one pinned commit (`%codecanvas-commit`) |
 | `llama-cpp.scm` | `llama-cpp/latest` (Vulkan, OpenBLAS), `llama-cpp-cuda` (also CUDA, compute capability 8.6) | llama.cpp 1.0.0 with its bundled ggml; Guix has 0.7.0 |
 | `cuda.scm` | `cuda-toolkit` | NVIDIA CUDA 13.4: nvcc, cudart, cuBLAS (from NVIDIA's redist archives; nonfree); `libcuda` comes from the driver |
-| `klipper.scm` | `klipper` (0.13.0+827), `moonraker` (0.11.0+4), `fluidd` 1.38.0, `python-streaming-form-data`, `python-periphery` | 3D-printer host: klippy with its C helper prebuilt, Moonraker, and Fluidd's release build; see *Klipper* below |
+| `klipper.scm` | `klipper` (0.13.0+827), `klipper-e3v3se` (jpcurti's Ender-3 V3 SE fork, 0.13.0+919), `moonraker` (0.11.0+4), `fluidd` 1.38.0, `python-streaming-form-data`, `python-periphery` | 3D-printer host: klippy with its C helper prebuilt, Moonraker, and Fluidd's release build; see *Klipper* below |
 | `reboot-to-bios.scm` | `reboot-to-bios` | |
 
 Maintaining the channel (layout, updating packages, pitfalls, conventions)
@@ -195,6 +195,15 @@ config (the owner's is `latitude.scm` in MyGuixConfig).
   The result is `out/klipper.bin` (copy to the board's SD card) or
   `out/klipper.elf.hex` (`avrdude`); `make flash FLASH_DEVICE=...` works on
   the printer host, which has avrdude and dfu-util.
+- **`klipper-e3v3se`** is [jpcurti's fork](https://github.com/jpcurti/ender3-v3-se-klipper-with-display)
+  for the Creality Ender-3 V3 SE: it drives the printer's own screen
+  (`[e3v3se_display]`, which needs Creality's display firmware 1.0.6) and the
+  load-cell Z offset probe (`[prtouch]`).  Its MCU firmware comes from a
+  checkout of the fork at the package's commit, with the fork's
+  `test/configs/displayv3se.config` (STM32F103, 28KiB bootloader, USART1,
+  serial bridge on USART2): `cp test/configs/displayv3se.config .config`,
+  then `make olddefconfig` and `make CPP=arm-none-eabi-cpp` in the ARM shell
+  above.
 
 ### Others
 

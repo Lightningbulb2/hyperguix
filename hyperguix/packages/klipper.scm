@@ -185,6 +185,52 @@ configurations in @file{lib/klipper/config}.  The micro-controller
 firmware is built separately from Klipper's source.")
     (license license:gpl3)))
 
+;; The Creality Ender-3 V3 SE: jpcurti's fork (itself a fork of 0xD34D's),
+;; which drives the printer's own screen through a serial bridge in the
+;; MCU firmware (`e3v3se_display') and adds the load-cell Z offset probe
+;; (`prtouch').  It needs the screen on Creality's display firmware 1.0.6,
+;; and MCU firmware built from this same commit with the serial bridge on
+;; USART2.  Pinned by hand, like klipper.
+(define %klipper-e3v3se-commit "d74d36bb69bd8c561a169fd99e8c83e254318562")
+(define %klipper-e3v3se-base-version "0.13.0")
+(define %klipper-e3v3se-revision "919")   ;commits since upstream's v0.13.0
+
+(define-public klipper-e3v3se
+  (package
+    (inherit klipper)
+    (name "klipper-e3v3se")
+    (version (git-version %klipper-e3v3se-base-version
+                          %klipper-e3v3se-revision
+                          %klipper-e3v3se-commit))
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/jpcurti/ender3-v3-se-klipper-with-display")
+             (commit %klipper-e3v3se-commit)))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "02ifcjw3a5b5xddx4yysd18ghi6bfklyk7lz9lrm3ha95x4mfg09"))))
+    (arguments
+     (substitute-keyword-arguments (package-arguments klipper)
+       ((#:phases phases)
+        #~(modify-phases #$phases
+            (replace 'write-version
+              (lambda _
+                (call-with-output-file "klippy/.version"
+                  (lambda (port)
+                    (format port "v~a-~a-g~a~%"
+                            #$%klipper-e3v3se-base-version
+                            #$%klipper-e3v3se-revision
+                            #$(string-take %klipper-e3v3se-commit 8))))))))))
+    (home-page "https://github.com/jpcurti/ender3-v3-se-klipper-with-display")
+    (synopsis "Klipper host for the Ender-3 V3 SE, with its screen")
+    (description "This is Klipper's host program, @command{klippy}, from a
+fork for the Creality Ender-3 V3 SE: it drives the printer's own screen
+(@code{[e3v3se_display]}) through a serial bridge in the micro-controller
+firmware, and adds the printer's load-cell Z offset probe
+(@code{[prtouch]}).  The screen must run Creality's display firmware 1.0.6.")))
+
 (define %moonraker-commit "b559b9a81161f958a43c2f527b6ad96f73310d5d")
 (define %moonraker-base-version "0.11.0")
 (define %moonraker-revision "4")
