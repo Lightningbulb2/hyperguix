@@ -18,13 +18,14 @@
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (gnu packages bash)
   #:use-module (gnu packages glib)
+  #:use-module (gnu packages linux)
   #:use-module (gnu packages gnome)
   #:use-module (gnu packages gtk)
   #:use-module (gnu packages python)
   #:use-module (gnu packages version-control))
 
 (define %guix-manager-commit "1105e172cd132b362184c8f3b369fa145a8a8bc9")
-(define %guix-manager-version "2.3")
+(define %guix-manager-version "2.4")
 
 (define %guix-manager-source
   (origin
@@ -108,6 +109,11 @@ off.")
                 `("GUIX_EXTENSIONS_PATH" ":" prefix
                   (,(string-append #$(this-package-input "guix-bump")
                                    "/share/guix/extensions")))
+                ;; setsid, which Cancel uses to stop a background query and
+                ;; everything it started.
+                `("PATH" ":" suffix
+                  (,(string-append #$(this-package-input "util-linux")
+                                   "/bin")))
                 ;; Symbolic icons, on desktops without the Adwaita theme.
                 `("XDG_DATA_DIRS" ":" suffix
                   (,(string-append #$(this-package-input "adwaita-icon-theme")
@@ -121,6 +127,7 @@ off.")
            libadwaita
            python
            python-pygobject
+           util-linux
            vte))
     (home-page "https://github.com/Lightningbulb2/GuixManager")
     (synopsis "Update, install and remove apps through the Guix config")
