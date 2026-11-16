@@ -91,10 +91,10 @@
                         "0yzxnd053bhm4jxqn92dy4xil9gpn9fm1zby7w8gvjzkh5s8wm7d"))
 
 (define-public faforever-client
-  (let ((commit "f42bfc52d182ac17db68e1a3351408f15ccfaf31")) ;tag v0.9.5
+  (let ((commit "84068d4997596dff6a3c349b4b58b5280ec553f8")) ;tag v1.0.0
     (package
       (name "faforever-client")
-      (version "0.9.5")
+      (version "1.0.0")
       (source
        (origin
          (method git-fetch)
@@ -103,7 +103,7 @@
                (commit commit)))
          (file-name (git-file-name name version))
          (sha256
-          (base32 "0bw60c8ssii7kr1g3glpc2mdd8acqkqaqrx09skz7zkkskz8r73x"))))
+          (base32 "0s33kzdgxxd10v4rqf1qvb95zlzbfxss85v0vhprh687y9jy5d34"))))
       (build-system cargo-build-system)
       (arguments
        (list
