@@ -23,6 +23,7 @@
      ("aes-gcm" "0.10.3" "1lgaqgg1gh9crg435509lqdhajg1m2vgma6f7fdj1qa2yyh10443")
      ("aes-kw" "0.2.1" "131xvnah1magbr8q0lwmg3c13lv54vh41f2z79zmzyyf5lsjpyk9")
      ("ahash" "0.8.12" "0xbsp9rlm5ki017c0w6ay8kjwinwm8knjncci95mii30rmwz25as")
+     ("aho-corasick" "1.1.5" "1fhjkp2nbs7gg4y1b68hpc8028rpax8aiscfh9b60q78m4pn90n9")
      ("alloc-no-stdlib" "2.0.4" "1cy6r2sfv5y5cigv86vms7n5nlwhx1rbyxwcraqnmm1rxiib2yyc")
      ("alloc-stdlib" "0.2.4" "159iyap790nflvdhl1gbkxp9l5w4x7qp5ybg01wx490jx4cs0xhf")
      ("allocator-api2" "0.2.21" "08zrzs022xwndihvzdn78yqarv2b9696y67i6h78nla3ww87jgb8")
@@ -97,6 +98,7 @@
      ("cap-primitives" "4.0.3" "060bjj8vfi57hnnvl0hgxkcwrcyd0vllgsx8s40lgx6jkxr78pwb")
      ("cap-std" "4.0.3" "1f4idhxrdhyipha795w6fz4sc583q3nc4yl0fvicz8ng8bi7iv61")
      ("cast5" "0.11.1" "04crg8dj6lxbp3lmdc3filsahxcyvccvhm0gx40g1k5i7mkpvc16")
+     ("cavalier_contours" "0.9.0" "0lgadyapk3jqin3fzi2hinjb3lql9022pwb56pcy9ib9m4w61q45")
      ("cbc" "0.1.2" "19l9y9ccv1ffg6876hshd123f2f8v7zbkc4nkckqycxf8fajmd96")
      ("cbc" "0.2.1" "15l8zvdhfazl994ijjww6b8z0p4a7jrqhb44xc5ixlc8bzpcjbff")
      ("cc" "1.6.0" "0c3n82hdi355xa6z9x4zgnpjwsh1szkkcs0zl8q8nl5ggk874j7p")
@@ -106,6 +108,7 @@
      ("cgl" "0.3.2" "1zs7skrsyrsm759vfy2cygkx52fx91b567a12bpaz1sf4d8hbv8c")
      ("chacha20" "0.10.2" "01hvvbgdmqkcgs2s4f12s9wa5h2gbq05rqvypv61azlwd55mxhv5")
      ("chardetng" "0.1.17" "1spikjcnblwa5n1nnk46fxkwn86yfiqxgs47h4yaw23vbfvg1f0l")
+     ("chrono" "0.4.45" "09rkcgk6is2sdhqs9142zv8xqnj8ryx8m9hknllqwyv9wxi9x9qs")
      ("ciborium" "0.2.2" "03hgfw4674im1pdqblcp77m7rc8x2v828si5570ga5q9dzyrzrj2")
      ("ciborium-io" "0.2.2" "0my7s5g24hvp1rs1zd1cxapz94inrvqpdf1rslrvxj8618gfmbq5")
      ("ciborium-ll" "0.2.2" "1n8g4j5rwkfs3rzfi6g1p7ngmz6m5yxsksryzf5k72ll7mjknrjp")
@@ -180,6 +183,7 @@
      ("dispatch2" "0.3.1" "0f5xmnbzpaz1g80m27kd804p75nswh0ikb6wvqh4ba3x9rz3c3hy")
      ("displaydoc" "0.2.7" "1a42mwpgpwcqq2qqgkcc630wvsc2p2dkmgacjnclginwfz9js8y6")
      ("dlib" "0.5.3" "0jpr4smrwrv8xj70mz4ixnbc6ljm82f12z2mz1hv89056y3wv3mb")
+     ("doctest-file" "1.1.1" "0nfkscv8gf3ixhradrmwm3f2p6sc0ab0psah7c8976ha9zkh9ny2")
      ("document-features" "0.2.12" "0qcgpialq3zgvjmsvar9n6v10rfbv6mk6ajl46dd4pj5hn3aif6l")
      ("downcast-rs" "1.2.1" "1lmrq383d1yszp7mg5i7i56b17x2lnn3kb91jwsq0zykvg2jbcvm")
      ("dpi" "0.1.2" "0xhsvzgjvdch2fwmfc9vkb708b0q59b6imypyjlgbiigyb74rcfq")
@@ -243,6 +247,8 @@
      ("futures-task" "0.3.34" "1zfilqs8nwlfqz4prk7ihvpp5avvzins87ibzlxzq5fhs7ipshfd")
      ("futures-util" "0.3.34" "1g3r9ghzq7c2fh34lis43i72xavk9p84npgfwgb5vfpqcwjajl0d")
      ("generic-array" "0.14.7" "16lyyrzrljfq424c3n8kfwkqihlimmsg5nhshbbp48np3yjrqr45")
+     ("gerber-types" "0.7.0" "1ajha71vlnhrc4b6wzii8za3nqw07a6kp9qparslc53kiw43y422")
+     ("gerber_parser" "0.5.0" "1hcdmxfy7k9d0n0sxrnl564pahz7jrfw8xpjncw2xnhd1h0pbxkk")
      ("gethostname" "1.1.0" "1n6bj9gh503ggjblfjcai96gmxynxsrykaynljlrfdra34q95m0v")
      ("getrandom" "0.2.17" "1l2ac6jfj9xhpjjgmcx6s1x89bbnw9x6j9258yy6xjkzpq0bqapz")
      ("getrandom" "0.3.4" "1zbpvpicry9lrbjmkd4msgj3ihff1q92i334chk7pzf46xffz7c9")
@@ -278,6 +284,8 @@
      ("http" "1.5.0" "1q4wpz5hb4cf37g3jrdyffrpa6ngidmd9wrfph92fddzprl3b3ci")
      ("httparse" "1.10.1" "11ycd554bw2dkgw0q61xsa7a4jn1wb1xbfacmf3dbwsikvkkvgvd")
      ("hybrid-array" "0.4.15" "05wsyp2n5gyf49qk51mblj9qyb15aay74m6fwmf74mpv1pqn9y17")
+     ("iana-time-zone" "0.1.65" "0w64khw5p8s4nzwcf36bwnsmqzf61vpwk9ca1920x82bk6nwj6z3")
+     ("iana-time-zone-haiku" "0.1.2" "17r6jmj31chn7xs9698r122mapq85mfnv98bb4pg6spm0si2f67k")
      ("icu_collections" "2.3.0" "04x59h6vdq0cnpippim1nr471ivlsnnn470sj1d5v864h48d4s7s")
      ("icu_locale_core" "2.3.0" "1sqdj16wwl7h9y6r7j394av4kpdb7zryz9h169ffwbm9imc2hvnm")
      ("icu_normalizer" "2.3.0" "0vv43ixk2wmbxrx7kl33cwkhx1wdyb1q3pa18qkyshan4dgwzy8j")
@@ -296,6 +304,7 @@
      ("inflections" "1.1.1" "0yl3gas612q25c72lwf04405i87yxr02vgv3ckcnz2fyvhpmhmx2")
      ("inout" "0.1.4" "008xfl1jn9rxsq19phnhbimccf4p64880jmnpg59wqi07kk117w7")
      ("inout" "0.2.6" "1ydvvz2v7pbgmaixjmhnbqf0a9mp84d6ngyx8bpkbhzzy09hqn1s")
+     ("interprocess" "2.4.8" "0w4ck219vj593d9677s1hv4zrgz0x83xw7g4d2zvvqssmx9x83hg")
      ("io-extras" "0.19.0" "03y0iagxrw0bgzmi9cd8hv5h58xm7iagl762igiqghgwrkj6vz90")
      ("io-lifetimes" "2.0.4" "10s9fyfksnzn056c7zj75y1v43gqvly26j9nrm79drrv9nsjyhq6")
      ("io-lifetimes" "3.0.1" "15ms5ylnbgpx0w06mnjzcbc9519msl142gaw7jafs7zy19bv03rg")
@@ -317,6 +326,8 @@
      ("khronos-egl" "6.0.0" "0xnzdx0n1bil06xmh8i1x6dbxvk7kd2m70bbm6nw1qzc43r1vbka")
      ("khronos_api" "3.1.0" "1p0xj5mlbagqyvvnv8wmv3cr7l9y1m153888pxqwg3vk3mg5inz2")
      ("kurbo" "0.13.1" "1qjhhjgwr9admlz6r1s7kp38dl8nbd95abhryrnr4av55z1xyq2b")
+     ("lazy-regex" "3.6.2" "0rwz871b2b2cw9baigpqpjgxv7njll51gjf8vjgs4819lblcr8ph")
+     ("lazy-regex-proc_macros" "3.6.2" "19mshs9gbnjmfq4xqzgnvp95yi068vn5089bzysfswcc3lgln7kg")
      ("lazy_static" "1.5.1" "1yqaqmp510xw2ldpw88mx9b5s5qj8flb4rw0wd9ks1zpk9j0z1r0")
      ("leb128fmt" "0.1.0" "1chxm1484a0bly6anh6bd7a99sn355ymlagnwj3yajafnpldkv89")
      ("libc" "0.2.190" "0y5yap4bfp7rfsldcbk9pb5alcgygca5xn1n2pmh181zdpf3spff")
@@ -466,12 +477,15 @@
      ("rayon" "1.12.0" "0vcj63xgnk72c30vdrak7dhl53snnaqv9x2faf1d94hzg1kb2fgv")
      ("rayon-core" "1.13.0" "14dbr0sq83a6lf1rfjq5xdpk5r6zgzvmzs5j6110vlv2007qpq92")
      ("read-fonts" "0.41.0" "02c7q458gz6cfsyryiss5w6xp0k8dl2n4l1gncjrhidg9mkpssh4")
+     ("recvmsg" "1.0.0" "0xa173gbg1cx8q7wyzi6c4kmcsz5rka68r4jb6kg14icskax9vfk")
      ("redox_syscall" "0.4.1" "1aiifyz5dnybfvkk4cdab9p2kmphag1yad6iknc7aszlxxldf8j7")
      ("redox_syscall" "0.5.18" "0b9n38zsxylql36vybw18if68yc9jczxmbyzdwyhb9sifmag4azd")
      ("redox_syscall" "0.9.4" "03p257wq9i52i5h5ns9v0xx03fycgcq17bdcwwqzmil7ka9p0ybk")
      ("ref-cast" "1.0.27" "1hv5sf0j7b65gz2g57c3wp0fzr5r3807dywf6fap455lwjs0yi3y")
      ("ref-cast-impl" "1.0.27" "0fnzgkvddgl9xs3884x5ypi9rd0dgc1p5vd1k4b74lw49ybdiv4j")
      ("regalloc2" "0.15.2" "11bzk983566d84xpm0v76jhmm2skalvlhqymypadd40mwvl14xvm")
+     ("regex" "1.13.1" "1391a0a4100ik8cp7l577p3ip3haqq03rd9c5vdr7vcfdixj687h")
+     ("regex-automata" "0.4.18" "1cml0rm0ssqfkibh9nh3gy4b6hbsbicj1rihpwf2a4v4nawm71dd")
      ("regex-syntax" "0.8.11" "1m25h5q2wp976fb9gc3dsc9l99svcvd5cri8lncb51c46ydgzxnn")
      ("renderdoc-sys" "1.1.0" "0cj8zjs7k0gvchcx3jhpg8r9bbqy8b1hsgbz0flcq2ydn12hmcqr")
      ("replace_with" "0.1.8" "1178jh03h5vnbjhdrq4rwzdib3jviapnrp64h7gihasf4wz3sx2i")
@@ -552,10 +566,13 @@
      ("spirv" "0.4.0+sdk-1.4.341.0" "0kvlfqliwrrbdca9cpvwy43avimxkmzx4gjbmy34rn7b22liwmyr")
      ("spki" "0.7.3" "17fj8k5fmx4w9mp27l970clrh5qa7r5sjdvbsln987xhb34dc7nr")
      ("stable_deref_trait" "1.2.1" "15h5h73ppqyhdhx6ywxfj88azmrpml9gl6zp3pwy2malqa6vxqkc")
+     ("static_aabb2d_index" "2.1.0" "0m34ghlfnxfx6sfnbrgfyy6z2zd3z3q959hfgls6l56xwil36xbs")
      ("static_assertions" "1.1.0" "0gsl6xmw10gvn3zs1rv99laj5ig7ylffnh71f9l34js4nr4r7sx2")
      ("strict-num" "0.1.1" "0cb7l1vhb8zj90mzm8avlk815k40sql9515s865rqdrdfavvldv6")
      ("stringprep" "0.1.5" "1cb3jis4h2b767csk272zw92lc6jzfzvh8d6m1cd86yqjb9z6kbv")
      ("strsim" "0.11.1" "0kzvqlw8hxqb7y598w1s0hxlnmi84sg5vsipp3yg5na5d1rvba3x")
+     ("strum" "0.27.2" "1ksb9jssw4bg9kmv9nlgp2jqa4vnsa3y4q9zkppvl952q7vdc8xg")
+     ("strum_macros" "0.27.2" "19xwikxma0yi70fxkcy1yxcv0ica8gf3jnh5gj936jza8lwcx5bn")
      ("subtle" "2.6.1" "14ijxaymghbl1p0wql9cib5zlwiina7kall6w7g89csprkgbvhhk")
      ("syn" "2.0.119" "15vjy620l91a3q4n4f4gzhnflmdr6pnm38v2m6cpk86i8av32a47")
      ("syn" "3.0.6" "1vmw7s58rzrs926nv5m06x7qbgswm1aa9iw3s1bj5var47kyi4w5")
@@ -584,6 +601,7 @@
      ("tracing" "0.1.44" "006ilqkg1lmfdh3xhg3z762izfwmxcvz0w7m4qx2qajbz9i1drv3")
      ("tracing-attributes" "0.1.31" "1np8d77shfvz0n7camx2bsf1qw0zg331lra0hxb4cdwnxjjwz43l")
      ("tracing-core" "0.1.36" "16mpbz6p8vd6j7sf925k9k8wzvm9vdfsjbynbmaxxyq6v7wwm5yv")
+     ("trash" "5.2.9" "05q3q290qzw56r7wn8czvpzmlr8cchx2ylpqqjdd4rb92pzb72dy")
      ("tree_magic_mini" "3.2.2" "19nm2hkspb8p4gxgk442b1hmbbh9l5fnf7w3nli6rfhw0s85nxmq")
      ("ttf-parser" "0.25.1" "0cbgqglcwwjg3hirwq6xlza54w04mb5x02kf7zx4hrw50xmr1pyj")
      ("twofish" "0.7.1" "04w0ii2c0c9ws08aw6c7illh9zql22il9lbwjk1mgir30aiq73m7")
@@ -607,6 +625,7 @@
      ("ureq" "3.4.2" "1z6pmhf27s54f3sn2ja1rnqsrnbnjq2lr5xzpl5nwwmpx45w4yls")
      ("ureq-proto" "0.6.4" "1gl32l71mdak562scwp66vpsjr894bbbvdk1ix2rwmnarird2vzq")
      ("url" "2.5.8" "1v8f7nx3hpr1qh76if0a04sj08k86amsq4h8cvpw6wvk76jahrzz")
+     ("urlencoding" "2.1.3" "1nj99jp37k47n0hvaz5fvz7z6jd0sb4ppvfy3nphr1zbnyixpy6s")
      ("utf8-zero" "0.8.1" "0vjsmwd1k2wwlsn1phi7mrcjxn4bv8fzk24caxyaw2slr51s1h5q")
      ("utf8_iter" "1.0.4" "1gmna9flnj8dbyd8ba17zigrp9c4c3zclngf5lnb5yvz1ri41hdn")
      ("uuid" "1.27.0" "16h5h6bf5ybh1lj97lcdl41g7fqbiczpavpsb0zf3b63p4v7s9wp")
@@ -669,6 +688,7 @@
      ("wgpu-hal" "30.0.1" "0n1gspk030pdnl9my57yzqcf8b9k5rws12v26z12ny8sarcgpdxn")
      ("wgpu-naga-bridge" "30.0.1" "10f0ap8d4sg2is02li66crjkz0la8d0mhnlwzlmsddvv25rjxxnj")
      ("wgpu-types" "30.0.1" "11lj4r0178s6b808vxyxxdf8ys24kl2qnl56g31b9gfvzgqxdnlr")
+     ("widestring" "1.2.1" "0wg4qdbs70xqnlbm8wb0bs4idm2mxk3b6kaqwllsncmb2cqrq1kj")
      ("winapi" "0.3.9" "06gl025x418lchw1wxj64ycr7gha83m44cjr5sarhynd9xkrm0sw")
      ("winapi-i686-pc-windows-gnu" "0.4.0" "1dmpa6mvcvzz16zg6d5vrfy4bxgg541wxrcip7cnshi06v38ffxc")
      ("winapi-util" "0.1.11" "08hdl7mkll7pz8whg869h58c1r9y7in0w0pk8fm24qc77k0b39y2")
@@ -769,8 +789,8 @@
      28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51
      52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75
      76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99
-     100 101 102 103 104 105 106 107 108 109 110 111 113 112 114 116 115 117
-     118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135
+     100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 116 115 117
+     119 118 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135
      136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153
      154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171
      172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189
@@ -781,15 +801,15 @@
      262 263 264 265 266 267 268 269 270 271 272 273 274 275 276 277 278 279
      280 281 282 283 284 285 286 287 288 289 290 291 292 293 294 295 296 297
      298 299 300 301 302 303 304 305 306 307 308 309 310 311 312 313 314 315
-     316 317 319 318 320 321 322 323 324 325 326 327 328 329 330 331 332 333
+     316 317 318 319 320 321 322 323 324 325 326 327 328 330 329 331 332 333
      334 335 336 337 338 339 340 341 342 343 344 345 346 347 348 349 350 351
      352 353 354 355 356 357 358 359 360 361 362 363 364 365 366 367 368 369
      370 371 372 373 374 375 376 377 378 379 380 381 382 383 384 385 386 387
      388 389 390 391 392 393 394 395 396 397 398 399 400 401 402 403 404 405
      406 407 408 409 410 411 412 413 414 415 416 417 418 419 420 421 422 423
      424 425 426 427 428 429 430 431 432 433 434 435 436 437 438 439 440 441
-     442 443 444 445 447 446 448 450 449 451 452 453 454 455 456 457 458 459
-     460 461 462 463 464 465 466 467 468 469 470 471 472 473 474 475 476 477
+     442 443 444 445 446 447 448 449 450 451 452 453 454 455 456 458 457 459
+     461 460 462 463 464 465 466 467 468 469 470 471 472 473 474 475 476 477
      478 479 480 481 482 483 484 485 486 487 488 489 490 491 492 493 494 495
      496 497 498 499 500 501 502 503 504 505 506 507 508 509 510 511 512 513
      514 515 516 517 518 519 520 521 522 523 524 525 526 527 528 529 530 531
@@ -805,6 +825,7 @@
      694 695 696 697 698 699 700 701 702 703 704 705 706 707 708 709 710 711
      712 713 714 715 716 717 718 719 720 721 722 723 724 725 726 727 728 729
      730 731 732 733 734 735 736 737 738 739 740 741 742 743 744 745 746 747
-     748 749)))
+     748 749 750 751 752 753 754 755 756 757 758 759 760 761 762 763 764 765
+     766 767 768 769)))
 
 (define solidcraft-git-crates '())
