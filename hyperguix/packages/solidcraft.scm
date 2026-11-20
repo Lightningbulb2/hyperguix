@@ -28,12 +28,12 @@
         vulkan-loader wayland))
 
 (define-public solidcraft
-  (let ((commit "e151d5ea6866fb055e011379153fb1cae0566f22")
+  (let ((commit "e8ce12ef78fe76281a04b7242a9ce059ff7d5067")
         (revision "0")
         (binaries '("solidcraft" "solidcraft-cli")))
     (package
       (name "solidcraft")
-      (version (git-version "0.44.1" revision commit))
+      (version (git-version "0.45.0" revision commit))
       (source
        (origin
          (method git-fetch)
@@ -42,7 +42,7 @@
                (commit commit)))
          (file-name (git-file-name name version))
          (sha256
-          (base32 "1gyyf6qd3nk4l42a1b74n1c9i2b46bj0w8ghzrna7y965i0z2d7i"))))
+          (base32 "0gl56j0aq51bhky0hz2s3f2l0jkh3j8fg1ql4jyf4kir76rmwvb3"))))
       (build-system cargo-build-system)
       (arguments
        (list
