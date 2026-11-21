@@ -548,6 +548,7 @@
      ("sha2" "0.11.1" "06ddr559jvwx17d7847l6i1g4hrlwy39j0yimjwwfskxxfdhdms7")
      ("sha3" "0.10.9" "0x1qv415b59x9vw4afr3fh98bcca9z6pg1yg6i05lhax6hl71zbp")
      ("shlex" "2.0.1" "1fjsll1cd7d2bcpdij9kd6w62rpbc7qqzvydvs021vsmr1cxvypq")
+     ("signal-hook" "0.4.5" "0pj3d322mh5v117493dhs542h0gq03hqs998nfdh96nmsckzm7xj")
      ("signal-hook-registry" "1.4.8" "06vc7pmnki6lmxar3z31gkyg9cw7py5x9g7px70gy2hil75nkny4")
      ("signature" "2.2.0" "1pi9hd5vqfr3q3k49k37z06p7gs5si0in32qia4mmr1dancr6m3p")
      ("simd-adler32" "0.3.10" "1sny4y2qa5mwyxx5x59ln2p02vsdh92004njlslnx98imjc9489s")
@@ -832,6 +833,6 @@
      712 713 714 715 716 717 718 719 720 721 722 723 724 725 726 727 728 729
      730 731 732 733 734 735 736 737 738 739 740 741 742 743 744 745 746 747
      748 749 750 751 752 753 754 755 756 757 758 759 760 761 762 763 764 765
-     766 767 768 769 770 771 772 773 774 775)))
+     766 767 768 769 770 771 772 773 774 775 776)))
 
 (define solidcraft-git-crates '())
