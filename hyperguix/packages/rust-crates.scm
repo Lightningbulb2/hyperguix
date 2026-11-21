@@ -1540,8 +1540,8 @@
   (crate "zerovec-derive" "0.11.3" "0m85qj92mmfvhjra6ziqky5b1p4kcmp5069k7kfadp5hr8jw8pb2"))
 (define rust-zip-8.6.0
   (crate "zip" "8.6.0" "16w0aiqiymyy6kjri0aykkmh45pbk6a6ck69hxhal0hm72ssc11d"))
-(define rust-zip-9.0.4
-  (crate "zip" "9.0.4" "08nwkmhl2ayrnw7vk8al3fxx88vbx0a2hwnjhfgz8kd58x5i2m59"))
+(define rust-zip-9.0.5
+  (crate "zip" "9.0.5" "07m1h3sqmaxkpxwjqfsqsa5az4x1jsrhb0ds0i1b1lr9lrnrf13f"))
 (define rust-zlib-rs-0.6.3
   (crate "zlib-rs" "0.6.3" "04qmv85amq6sv73bzqgvnlsk9mnrl97rygzf2v4zjcx1807d9qrv"))
 (define rust-zlib-rs-0.6.8
@@ -2747,7 +2747,7 @@
         rust-zerotrie-0.2.4
         rust-zerovec-0.11.6
         rust-zerovec-derive-0.11.3
-        rust-zip-9.0.4
+        rust-zip-9.0.5
         rust-zlib-rs-0.6.8
         rust-zmij-1.0.21
         rust-zopfli-0.8.3

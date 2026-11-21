@@ -32,7 +32,7 @@ The channel depends on nonguix (`.guix-channel`): several packages use its
 | `solidcraft.scm` | `solidcraft` 0.46.0 (with `solidcraft-cli`) | Tangency Labs' parametric 3D CAD; crates in `solidcraft-crates.scm` |
 | `ladybird.scm` | `ladybird` (git master), plus private Skia 148, ANGLE, ffmpeg 9, LLVM libc headers, curl+OpenSSL | Qt 6 UI; its sandbox needs Landlock (`lsm=landlock,...` kernel argument) |
 | `scrcpy.scm`, `scrcpy-gui.scm` | `scrcpy` 5.0.1, `scrcpy-gui` 4.1.0 | Android mirroring |
-| `faforever.scm` | `faforever-client` 1.0.0 | Rust/Tauri FAF client |
+| `faforever.scm` | `faforever-client` 1.0.2 | Rust/Tauri FAF client |
 | `pandora-launcher.scm` | `pandora-launcher` 6.0.0 | Minecraft launcher on Guix JDKs |
 | `r2modman.scm` | `r2modman` 3.2.21 | built from source, runs on nonguix's Electron 38 |
 | `radmin-vpn.scm` | `radmin-vpn-linux`, `wine64-wow64`, `wine64-wow64/prefix-update` | Radmin VPN under Wine; the Wine variants are also used by `bfme.scm` |
