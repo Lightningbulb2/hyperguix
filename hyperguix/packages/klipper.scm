@@ -105,6 +105,19 @@ and serial peripheral I/O from user space on Linux.")
         (wrap-program bin
           `("GUIX_PYTHONPATH" prefix ,(list (getenv "GUIX_PYTHONPATH")))))))
 
+;; NumPy 2.4 requires x86-64-v2 (SSE4.2, POPCNT) by default and refuses to
+;; import without it, which leaves out Core 2-era printer hosts (a Core 2
+;; Duo P8700 has SSE4.1 at most): SHAPER_CALIBRATE and MEASURE_AXES_NOISE
+;; then shut Klipper down.  Without a CPU baseline it imports anywhere, and
+;; still picks its SSE4.2/AVX code at run time where the CPU has it.
+(define python-numpy/no-cpu-baseline
+  (package
+    (inherit python-numpy)
+    (arguments
+     (substitute-keyword-arguments (package-arguments python-numpy)
+       ((#:configure-flags _ #f)
+        ''(("setup-args" . #("-Dcpu-baseline=none"))))))))
+
 (define %klipper-commit "29d4ec2d6d840ee839333306003a400da186d41d")
 (define %klipper-base-version "0.13.0")
 (define %klipper-revision "827")      ;commits since the tag (git describe)
@@ -174,7 +187,8 @@ import chelper; chelper.get_ffi()")
            python-pyserial
            python-can
            python-msgspec
-           python-numpy))           ;input shaping: SHAPER_CALIBRATE
+           ;; Input shaping: SHAPER_CALIBRATE, MEASURE_AXES_NOISE.
+           python-numpy/no-cpu-baseline))
     (home-page "https://www.klipper3d.org/")
     (synopsis "3D-printer firmware: the host half (klippy)")
     (description "Klipper is 3D-printer firmware that runs its motion
