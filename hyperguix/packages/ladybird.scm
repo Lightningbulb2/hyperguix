@@ -113,6 +113,15 @@
 ;;; Dependencies Guix lacks or has in an incompatible version.
 ;;;
 
+;; A libpng with APNG and png_set_cICP (1.6.45 or later).  Guix commit
+;; 193313dc9e6 moved libpng-apng to 1.6.59 and removed libpng-apng-next
+;; (1.6.50); before it, libpng-apng was 1.6.39.  Take -next while the pinned
+;; Guix still has it; drop this once the guix pin is past that commit.
+(define libpng-apng-for-ladybird
+  (let ((next (module-variable (resolve-interface '(gnu packages image))
+                               'libpng-apng-next)))
+    (if next (variable-ref next) libpng-apng)))
+
 ;; vcpkg.json: "skia" 148.  Guix has 112.
 (define skia-for-ladybird
   (let ((commit "e7c90ecca9444fe09598f1630ab7cee2c0ee027a") ;chrome/m148
@@ -214,7 +223,7 @@ Libs: -L${libdir} -lskia -lskcms
 Cflags: -I${includedir} -I${includedir}/include~%" #$output)))))))))
       (native-inputs (list gn ninja pkg-config python-wrapper))
       (inputs (list expat fontconfig freetype harfbuzz icu4c-78 libjpeg-turbo
-                    libpng-apng-next libwebp mesa vulkan-headers
+                    libpng-apng-for-ladybird libwebp mesa vulkan-headers
                     vulkan-memory-allocator zlib))
       (synopsis "2D graphics library (version for Ladybird)"))))
 
@@ -893,7 +902,7 @@ offline = true~%" vendor))))))
            libdrm
            libedit
            libjpeg-turbo
-           libpng-apng-next
+           libpng-apng-for-ladybird
            libpsl
            libtommath
            libwebp
