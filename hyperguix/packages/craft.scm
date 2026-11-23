@@ -286,8 +286,8 @@ Illustrator files, and exports PNG, JPEG and WebP.  @command{vectorcraft-cli}
 runs batch jobs without a window."))
 
 (define-public designcraft
-  (craft-app "designcraft" "0.20.1" "33a467872268c98536231491865b4011b0275b17"
-             "03m2mi711zg1103w67gwc3m9v3h3z9p49giwx4w69jl2mqbizi5f"
+  (craft-app "designcraft" "0.21.1" "7470feae15b824534c842b7888952e63f6493003"
+             "0r3ggw9gfhyhx7big6ssf270j2jdy9kxn5xqbl62vkxf8430dq6y"
              #:cargo-inputs designcraft-cargo-inputs
              #:git-crates designcraft-git-crates
              #:fonts (craft-fonts "b076417b5880bd4154bd22f00695b1d28c6bea83"
