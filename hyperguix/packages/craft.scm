@@ -302,8 +302,8 @@ and PDF/A-2b), EPUB, PPTX and PNG.  @command{designcraft-cli} converts and
 exports documents from the command line."))
 
 (define-public pdfcraft
-  (craft-app "pdfcraft" "0.21.1" "b503b2e62dfeec5598f344e4e287d9c9cbdb34fa"
-             "0fzhb4qrbj03k60vn1l58ipy5vjh9841lp7qlp8i36zvvb3a4zfr"
+  (craft-app "pdfcraft" "0.22.0" "ac140f809d554981a5276d748e6193fcf4d4bdfa"
+             "0s37aq5vmr2inh0b02ad67g8cljppm21zqhbgnclf1ncfg8p3zga"
              #:cargo-inputs pdfcraft-cargo-inputs
              #:git-crates pdfcraft-git-crates
              #:fonts (craft-fonts "b076417b5880bd4154bd22f00695b1d28c6bea83"
