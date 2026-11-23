@@ -221,8 +221,8 @@ including HEIC/HEIF.  It also ships @command{photocraft-cli} for batch
 processing."))
 
 (define-public effectcraft
-  (craft-app "effectcraft" "0.24.1" "582344dd4ef462362c02e56e3094de7af01847ab"
-             "0isavqvf2qy84ga2pdsmpg7gk609j16vgjgcfrzxg6kikni8znkn"
+  (craft-app "effectcraft" "0.25.1" "f5ce0dc56803a47ea9e483f400ab1c24426caa50"
+             "027p5hghngmaf0sp3233jgcpkbisrcva1yl18ag02kj61qsr819a"
              #:cargo-inputs effectcraft-cargo-inputs
              #:git-crates effectcraft-git-crates
              ;; cpal (audio preview).
