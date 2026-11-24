@@ -47,7 +47,10 @@
       (build-system cargo-build-system)
       (arguments
        (list
-        #:rust rust-1.95
+        ;; Upstream builds with 1.99 (rust-toolchain.toml); 0.48.1's
+        ;; viewport-gpu crate makes rustc 1.95 fail with an internal
+        ;; compiler error ("broken MIR" in pass_times.rs).
+        #:rust rust-1.98
         #:install-source? #f
         ;; The test suites need a GPU and a display, and would build the
         ;; whole workspace a second time.
