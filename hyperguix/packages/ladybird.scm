@@ -63,7 +63,7 @@
   #:export (skia-for-ladybird
             angle-for-ladybird))
 
-(define %ladybird-commit "eae01b006b0ba85524e793cb1f362de191a4d41c")
+(define %ladybird-commit "7942cec73ca9034da4d0a44e4119eff91dfe6df8")
 
 (define %ladybird-source
   (origin
@@ -73,7 +73,7 @@
           (commit %ladybird-commit)))
     (file-name (git-file-name "ladybird" (string-take %ladybird-commit 7)))
     (sha256
-     (base32 "1cqznsd5lhzg5fpir6f33lig67dfhnq6p8r2ims36ry8x682ky5x"))))
+     (base32 "0q6z3y2g5w6kspxgbvc50qm1ahpmq8h1084rgdmcbzk385v0q3ns"))))
 
 ;; The tree the dependencies below take their vcpkg overlay port patches
 ;; from.  It has its own pin so that moving %ladybird-commit doesn't rebuild
