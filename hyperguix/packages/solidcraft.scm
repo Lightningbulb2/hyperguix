@@ -12,6 +12,7 @@
   #:use-module (guix git-download)
   #:use-module (guix build-system cargo)
   #:use-module ((guix licenses) #:prefix license:)
+  #:use-module (gnu packages compression)
   #:use-module (gnu packages elf)
   #:use-module (gnu packages freedesktop)
   #:use-module (gnu packages gl)
@@ -111,7 +112,9 @@
                              (string-append #$output "/bin/" program)))
                    '#$binaries)))))))
       (native-inputs (list patchelf pkg-config))
-      (inputs (append %solidcraft-runtime-libraries solidcraft-cargo-inputs))
+      ;; zstd: cargo-build-system sets ZSTD_SYS_USE_PKG_CONFIG for zstd-sys.
+      (inputs (append (list `(,zstd "lib")) %solidcraft-runtime-libraries
+                      solidcraft-cargo-inputs))
       (supported-systems '("x86_64-linux" "aarch64-linux"))
       (home-page "https://solidcraft.io")
       (synopsis "Parametric 3D CAD application")
