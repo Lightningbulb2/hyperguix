@@ -63,7 +63,7 @@
   #:export (skia-for-ladybird
             angle-for-ladybird))
 
-(define %ladybird-commit "110a08dbeff1f70692f52bfb16a7fb97b102092f")
+(define %ladybird-commit "eae01b006b0ba85524e793cb1f362de191a4d41c")
 
 (define %ladybird-source
   (origin
@@ -73,7 +73,7 @@
           (commit %ladybird-commit)))
     (file-name (git-file-name "ladybird" (string-take %ladybird-commit 7)))
     (sha256
-     (base32 "1srdg59b7c7bk7rv1zmahyla69cw28n62x5xa0kvmyncm8ccdq7j"))))
+     (base32 "1cqznsd5lhzg5fpir6f33lig67dfhnq6p8r2ims36ry8x682ky5x"))))
 
 ;; The tree the dependencies below take their vcpkg overlay port patches
 ;; from.  It has its own pin so that moving %ladybird-commit doesn't rebuild
@@ -651,12 +651,12 @@ image and data format decoders.  This is the single-file C release of its
 0.3 series.")
     (license license:asl2.0)))
 
-;; vcpkg.json: "pdfjs" 6.4.299.  This is Mozilla's release build (generated
+;; vcpkg.json: "pdfjs" 6.5.438.  This is Mozilla's release build (generated
 ;; JavaScript), patched for Ladybird as the vcpkg overlay port does.
 (define pdfjs-for-ladybird
   (package
     (name "pdfjs-for-ladybird")
-    (version "6.4.299")
+    (version "6.5.438")
     (source (origin
               (method url-fetch)
               (uri (string-append "https://github.com/mozilla/pdf.js/"
@@ -664,7 +664,7 @@ image and data format decoders.  This is the single-file C release of its
                                   "/pdfjs-" version "-dist.zip"))
               (sha256
                (base32
-                "0vfqxf9pyc4fbpji6ih3bi7qf5gcpxvs2s755y3lqrrzxyvmw97j"))))
+                "18bb1i4yahn9xmxqhpq5lhjaajgmlxwc3b826lz884cr3ni9pgpw"))))
     (build-system trivial-build-system)
     (arguments
      (list
@@ -904,9 +904,7 @@ offline = true~%" vendor))))))
            libjpeg-turbo
            libpng-apng-for-ladybird
            libpsl
-           libtommath
            libwebp
-           libxml2
            llvm-libc-headers-for-ladybird
            mimalloc-for-ladybird
            openssl
