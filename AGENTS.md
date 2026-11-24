@@ -106,8 +106,9 @@ follow its `main` branch. Their code, tests, and the notes on how they work
 move it by hand: commit, hash, and `%guix-manager-version` when the
 version changed).
 
-- The package replaces `@GIT@` and `@BASH@` in `bump.scm` and checks that it
-  did; `guix-manager` is wrapped with its typelibs and with
+- The package replaces `@GIT@`, `@BASH@` and `@SCREEN_OFF@` in `bump.scm`
+  and checks that it did, and compiles `screen-off/` (the C helper behind
+  `guix nightly`'s blank screens: wayland, wayland-protocols, wlr-protocols); `guix-manager` is wrapped with its typelibs and with
   `GUIX_EXTENSIONS_PATH` pointing at `guix-bump`.
 - The owner's config uses `home-with-system-service` (defined in the
   config): a system reconfigure applies the home too, and `guix bump

@@ -7,7 +7,7 @@
 ;;;   guix bump ...     move the (commit "...") pins in the config file,
 ;;;                     pull, apply; check for, install and remove apps
 ;;;   guix nightly      guix bump all --system --home --yes --gc --log
-;;;                     --shutdown
+;;;                     --shutdown --screen-off
 ;;;   guix-manager      the window "Guix Manager"
 
 (define-module (hyperguix packages guix-bump)
@@ -17,15 +17,17 @@
   #:use-module (guix build-system copy)
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (gnu packages bash)
+  #:use-module (gnu packages freedesktop)
   #:use-module (gnu packages glib)
   #:use-module (gnu packages linux)
+  #:use-module (gnu packages pkg-config)
   #:use-module (gnu packages gnome)
   #:use-module (gnu packages gtk)
   #:use-module (gnu packages python)
   #:use-module (gnu packages version-control))
 
-(define %guix-manager-commit "1105e172cd132b362184c8f3b369fa145a8a8bc9")
-(define %guix-manager-version "2.4")
+(define %guix-manager-commit "05e38e5d682dbfe025431c1ffec7c255687ec53b")
+(define %guix-manager-version "2.5")
 
 (define %guix-manager-source
   (origin
@@ -35,7 +37,7 @@
           (commit %guix-manager-commit)))
     (file-name (git-file-name "guix-manager" %guix-manager-version))
     (sha256
-     (base32 "0drvpzxhdqiz3kfzc4jfr9sg0jv5vf6nk0cg6g8gz91klhsk34gl"))))
+     (base32 "1b2rsr41ybci5ksfcxm0h7hi7jwa811f741pf53f28qaljynv76h"))))
 
 (define-public guix-bump
   (package
@@ -47,6 +49,7 @@
      (list
       #:install-plan
       #~'(("extensions" "share/guix/extensions")
+          ("screen-off/screen-off" "libexec/guix-bump/")
           ("README.md" "share/doc/guix-bump/")
           ("ARCHITECTURE.md" "share/doc/guix-bump/"))
       #:phases
@@ -56,11 +59,22 @@
               (let ((file "extensions/guix/extensions/bump.scm"))
                 (substitute* file
                   (("@GIT@") (search-input-file inputs "bin/git"))
-                  (("@BASH@") (search-input-file inputs "bin/bash")))
+                  (("@BASH@") (search-input-file inputs "bin/bash"))
+                  (("@SCREEN_OFF@")
+                   (string-append #$output "/libexec/guix-bump/screen-off")))
                 ;; A pattern that matches nothing is not an error, so check.
                 (unless (zero? (system* "grep" "-q" "/bin/git\"" file))
-                  (error "bump.scm: @GIT@ was not replaced"))))))))
-    (inputs (list bash-minimal git-minimal))
+                  (error "bump.scm: @GIT@ was not replaced"))
+                (unless (zero? (system* "grep" "-q" "guix-bump/screen-off\""
+                                        file))
+                  (error "bump.scm: @SCREEN_OFF@ was not replaced")))))
+          ;; The helper behind --screen-off (turns the screens off while
+          ;; guix nightly runs); C, since Guile has no Wayland client.
+          (add-after 'refer-to-programs 'build-screen-off
+            (lambda _
+              (invoke "make" "-C" "screen-off" "CC=gcc"))))))
+    (native-inputs (list pkg-config wayland wayland-protocols wlr-protocols))
+    (inputs (list bash-minimal git-minimal wayland))
     ;; So a profile holding this package exports GUIX_EXTENSIONS_PATH even
     ;; when `guix' itself comes from `guix pull' and isn't in the profile.
     (native-search-paths
@@ -76,7 +90,7 @@ can then reconfigure the home environment or the system.  It also lists the
 installed apps that have a newer version, updates one by name, and installs
 or removes apps by editing a list of package names in the configuration
 file.  @command{guix nightly} updates everything and powers the computer
-off.")
+off, with the screens off while it works.")
     (license license:gpl3+)))
 
 (define-public guix-manager
