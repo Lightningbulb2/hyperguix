@@ -84,6 +84,7 @@
      ("byteorder-lite" "0.1.0" "15alafmz4b9az56z6x7glcbcb6a8bfgyd109qc3bvx07zx4fj7wg")
      ("bytes" "1.12.1" "017z19dpg4f942h051m7bpnzcgng042hhcpd7bmg7bjjqd42lrgw")
      ("cadmpeg-codec-freecad" "0.6.12" "0452f6vx751ygg9pf1lnd0lvccqazizkp5s5q27i3ylflgyiqiz1")
+     ("cadmpeg-codec-iges" "0.6.12" "0rkaqvxpp3lfi1li7ngmacl1lqdvfnr6nl9v8kgm53cdhxcfjihh")
      ("cadmpeg-codec-rhino" "0.6.12" "10xsck8v8iqlhijm5h413dy6bbdr9mnmjdr2nfllmjxnk15i77yw")
      ("cadmpeg-codec-step" "0.6.12" "15yyx1id9gaig60xym5b50804n4k626dx8mwp3q940kpsgfqp5h2")
      ("cadmpeg-codec-usd" "0.6.12" "1vdygdz7a1ipkgxcyr63290lzn44xashrp98ppcjdhjklpir4b9q")
@@ -183,6 +184,8 @@
      ("des" "0.8.1" "07kshslxanmg0g6007scvglfhg6mli2a8qzhx4kxx4z9ik781pgz")
      ("digest" "0.10.7" "14p2n6ih29x81akj097lvz7wi9b6b9hvls0lwrv7b6xwyy0s5ncy")
      ("digest" "0.11.3" "1hnmhd4rkybr11292w42pz9ppzx1h49glrhqg107k4s1b2xnvpgi")
+     ("directories-next" "2.0.0" "1g1vq8d8mv0vp0l317gh9y46ipqg2fxjnbc7lnjhwqbsv4qf37ik")
+     ("dirs-sys-next" "0.1.2" "0kavhavdxv4phzj4l0psvh55hszwnr0rcz8sxbvx20pyqi2a3gaf")
      ("dispatch" "0.2.0" "0fwjr9b7582ic5689zxj8lf7zl94iklhlns3yivrnv8c9fxr635x")
      ("dispatch2" "0.3.1" "0f5xmnbzpaz1g80m27kd804p75nswh0ikb6wvqh4ba3x9rz3c3hy")
      ("displaydoc" "0.2.7" "1a42mwpgpwcqq2qqgkcc630wvsc2p2dkmgacjnclginwfz9js8y6")
@@ -481,6 +484,7 @@
      ("redox_syscall" "0.4.1" "1aiifyz5dnybfvkk4cdab9p2kmphag1yad6iknc7aszlxxldf8j7")
      ("redox_syscall" "0.5.18" "0b9n38zsxylql36vybw18if68yc9jczxmbyzdwyhb9sifmag4azd")
      ("redox_syscall" "0.9.4" "03p257wq9i52i5h5ns9v0xx03fycgcq17bdcwwqzmil7ka9p0ybk")
+     ("redox_users" "0.4.6" "0hya2cxx6hxmjfxzv9n8rjl5igpychav7zfi1f81pz6i4krry05s")
      ("ref-cast" "1.0.27" "1hv5sf0j7b65gz2g57c3wp0fzr5r3807dywf6fap455lwjs0yi3y")
      ("ref-cast-impl" "1.0.27" "0fnzgkvddgl9xs3884x5ypi9rd0dgc1p5vd1k4b74lw49ybdiv4j")
      ("regalloc2" "0.15.2" "11bzk983566d84xpm0v76jhmm2skalvlhqymypadd40mwvl14xvm")
@@ -599,7 +603,9 @@
      ("tinystr" "0.8.4" "0hzncw8rgk4syla79qscfml46jm7ll1zdp7kdacc42cj8n8prqmi")
      ("tinyvec" "1.13.3" "1vphg4gnlpykjy5h4v7r8nl38ij4zr9qyh7qd34ddvwjyqaa6g7x")
      ("tokio" "1.53.2" "0i202ksji8q2asvii0adzgi8m0z93z3j7apn62qfh8d6qzy92pz9")
+     ("toml" "0.9.12+spec-1.1.0" "0qwqbrymqn88mg2yqyq3rj52z6p20448z0jxdbpjsbpwg5g894ng")
      ("toml" "1.1.8+spec-1.1.0" "13b7kqvw7aa4x08i03d2fpima1i75v0lqxl0wrmisx6qwh09wj10")
+     ("toml_datetime" "0.7.5+spec-1.1.0" "0iqkgvgsxmszpai53dbip7sf2igic39s4dby29dbqf1h9bnwzqcj")
      ("toml_datetime" "1.1.2+spec-1.1.0" "0lrhcmqvhjr259w4f2kijya7fgi0kpmhg9fb3m144v3cj1kxg1ib")
      ("toml_edit" "0.25.15+spec-1.1.0" "0556lgzcvgfy16b8sxskr391s6cbfwnb0r4h5i4k6qw5lnaflh0k")
      ("toml_parser" "1.1.5+spec-1.1.0" "0k3lljyi4zxchdklaqghkwbl7wkd2ab1w16hlyniqzid0fl979ms")
@@ -657,6 +663,7 @@
      ("wasmprinter" "0.254.2" "0laz7sac2cnkxpvr11day3j3y9gnyxgrp1j21zvq9wzkf3rch0wb")
      ("wasmtime" "48.0.9" "0620cc6ir75w3bah348rxvyi7axb5wbx94d7wxz5v06ksdsbbjki")
      ("wasmtime-environ" "48.0.9" "1v2c48vbdbfarh22lgr0wzc9k0jbnla7f2bwcr6szcbfpvd9dpn2")
+     ("wasmtime-internal-cache" "48.0.9" "10lc13m0brzg3xllkalsq77zn21bydf84m2kkg84mg1i1kh98qjy")
      ("wasmtime-internal-component-macro" "48.0.9" "1pbdi6al6xcf4ccf7b6zrap0q10c4vdxk43dls04pazfzvp8q4n9")
      ("wasmtime-internal-component-util" "48.0.9" "1q6bm24pvmmsxj15snnyp6nbk9n750q6l9j7y0s1rsc1hf7fs5b7")
      ("wasmtime-internal-core" "48.0.9" "0s5rw2rxk7g5f4amxgz0jzdsq9cdh6g58vjsggd0vv1lbjlazhks")
@@ -666,6 +673,7 @@
      ("wasmtime-internal-jit-icache-coherence" "48.0.9" "0q9h12fbkwqzxq1y4chh0fj7fsw2cg7iagx6fy1h22ip6bq67027")
      ("wasmtime-internal-unwinder" "48.0.9" "1jfrdisc6ixfm390nqfnxiz1508wc15wnal4dc7rzsmcip7lzync")
      ("wasmtime-internal-versioned-export-macros" "48.0.9" "128y5sdjgls4m25wnv53vj5agmqp5gsyhcgwivggjm6p1mh64z7i")
+     ("wasmtime-internal-winch" "48.0.9" "159x1pjsfxb4qp1jax7zqrr395ismrfwrxd6ks3phrr1581h77c4")
      ("wasmtime-internal-wit-bindgen" "48.0.9" "1y51h27yf0x3mxidy64x7n8qrspmaiv5xjcwyb4q4qrv0k6xr0ih")
      ("wast" "263.0.0" "1iq7p5q1svfbxdh8i44nawvwsyd9zb05vg2qqfhill0vb37hpnb9")
      ("wat" "1.263.0" "1xyqlwb6qwh9v1igp9psql7bja656yckz7z8if1z3cw3lyncbjdv")
@@ -700,6 +708,7 @@
      ("winapi-i686-pc-windows-gnu" "0.4.0" "1dmpa6mvcvzz16zg6d5vrfy4bxgg541wxrcip7cnshi06v38ffxc")
      ("winapi-util" "0.1.11" "08hdl7mkll7pz8whg869h58c1r9y7in0w0pk8fm24qc77k0b39y2")
      ("winapi-x86_64-pc-windows-gnu" "0.4.0" "0gqq64czqb64kskjryj8isp62m2sgvx25yyj3kpc2myh85w24bki")
+     ("winch-codegen" "48.0.9" "1nldf0c928lj1hdngbn74cyz4yijjia1y2dbc4bv58bdyayisl4x")
      ("windows" "0.62.2" "10457l9ihrbw8j79z2v4plyjxkf6xvb5npd0lqwmkh702gpaszsj")
      ("windows-collections" "0.3.2" "0436rjbkqn3j9m2v2lcmwwk0l3n2r57yvqb7fcy4m8d8y5ddkci3")
      ("windows-core" "0.62.2" "1swxpv1a8qvn3bkxv8cn663238h2jccq35ff3nsj61jdsca3ms5q")
@@ -733,6 +742,7 @@
      ("windows_x86_64_gnullvm" "0.53.1" "1qbspgv4g3q0vygkg8rnql5c6z3caqv38japiynyivh75ng1gyhg")
      ("windows_x86_64_msvc" "0.52.6" "1v7rb5cibyzx8vak29pdrk8nx9hycsjs4w0jgms08qk49jl6v7sq")
      ("windows_x86_64_msvc" "0.53.1" "0l6npq76vlq4ksn4bwsncpr8508mk0gmznm6wnhjg95d19gzzfyn")
+     ("winnow" "0.7.15" "0i9rkl2rqpbnnxlgs20gmkj3nd0b2k8q55mjmpc2ybb84xwxjyfz")
      ("winnow" "1.0.4" "10fzxipa7lx16172p3aca9j60hzbqgjki2f95kqksd5qywcp7f93")
      ("winreg" "0.56.0" "046a5jpvc0yzr9c0wgik743k6yalr2f0bchy4c0nz7sazyh34vvx")
      ("winx" "0.36.4" "0bgls70sd0lxyhbklbs6ccchx0r2bbz0rcmgwxibhn0ryxvd6grz")
@@ -776,6 +786,9 @@
      ("zlib-rs" "0.6.8" "04j158293bx73kv5pj1i89ai411q7fxc9zwk3wkpqgb9gj7fas5j")
      ("zmij" "1.0.23" "06zwri21nnrl34rwinmvbciap8yk1mrl8qfg9pff7lgspc56sri9")
      ("zopfli" "0.8.3" "0jaj5dyh3mks0805h4ldrsh5pwq4i2jc9dc9zwjm91k3gmwxhp7h")
+     ("zstd" "0.13.5" "0y2ja8n53753h3y33qq1syzp9zl01klxvj85k45lp4gcyd6g1bah")
+     ("zstd-safe" "7.4.1" "069qcna3mzzvgz7114nxna6fcl86hn8906z4zfs8j33jd2nr93a9")
+     ("zstd-sys" "2.1.3+zstd.1.5.7" "0b85q1bjkibbnf2v05mh58kd0ys0w6vqvb4pv7cqyhjp09ns0agp")
      ("zune-core" "0.5.3" "12v5zdwcmjwzlfz61ajchzdaab75cxasqnmwf2hq929n8vypfqym")
      ("zune-jpeg" "0.5.15" "15kjpn6pywxlwb8w5irfd68x31wi3mb4y1da8bqh7havh5drvg17")
      ("zvariant" "4.2.0" "1zl1ika7zd9bxkd0bqc78h9bykvk6xc98965iz1p3i51p452k110")
@@ -797,7 +810,7 @@
      52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75
      76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99
      100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117
-     119 118 120 122 121 123 124 125 126 127 128 129 130 131 132 133 134 135
+     118 120 119 121 123 122 124 125 126 127 128 129 130 131 132 133 134 135
      136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153
      154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171
      172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189
@@ -808,15 +821,15 @@
      262 263 264 265 266 267 268 269 270 271 272 273 274 275 276 277 278 279
      280 281 282 283 284 285 286 287 288 289 290 291 292 293 294 295 296 297
      298 299 300 301 302 303 304 305 306 307 308 309 310 311 312 313 314 315
-     316 317 318 319 320 321 322 323 324 325 326 328 327 329 330 331 332 333
+     316 317 318 319 320 321 322 323 324 325 326 327 328 329 331 330 332 333
      334 335 336 337 338 339 340 341 342 343 344 345 346 347 348 349 350 351
      352 353 354 355 356 357 358 359 360 361 362 363 364 365 366 367 368 369
      370 371 372 373 374 375 376 377 378 379 380 381 382 383 384 385 386 387
      388 389 390 391 392 393 394 395 396 397 398 399 400 401 402 403 404 405
      406 407 408 409 410 411 412 413 414 415 416 417 418 419 420 421 422 423
      424 425 426 427 428 429 430 431 432 433 434 435 436 437 438 439 440 441
-     442 443 444 445 446 447 448 449 450 451 452 453 454 455 456 458 457 459
-     461 460 462 463 464 465 466 467 468 469 470 471 472 473 474 475 476 477
+     442 443 444 445 446 447 448 449 450 451 452 453 454 455 456 457 458 459
+     461 460 462 464 463 465 466 467 468 469 470 471 472 473 474 475 476 477
      478 479 480 481 482 483 484 485 486 487 488 489 490 491 492 493 494 495
      496 497 498 499 500 501 502 503 504 505 506 507 508 509 510 511 512 513
      514 515 516 517 518 519 520 521 522 523 524 525 526 527 528 529 530 531
@@ -833,6 +846,7 @@
      712 713 714 715 716 717 718 719 720 721 722 723 724 725 726 727 728 729
      730 731 732 733 734 735 736 737 738 739 740 741 742 743 744 745 746 747
      748 749 750 751 752 753 754 755 756 757 758 759 760 761 762 763 764 765
-     766 767 768 769 770 771 772 773 774 775 776)))
+     766 767 768 769 770 771 772 773 774 775 776 777 778 779 780 781 782 783
+     784 785 786 787 788 789)))
 
 (define solidcraft-git-crates '())
