@@ -154,7 +154,9 @@ version changed).
   build fails right after an "update to" commit, fix the package or `git
   revert` that one commit (each update is its own commit for this reason),
   then push.
-- Not covered, and why: `xwayland-with-idle-time` has no pin of its own (it
+- Not covered, and why: `uefi-shell` (`grub-usb-keyboard.scm`) is a binary
+  release pinned by hand (no tags to follow; a new shell changes nothing for
+  GRUB). `xwayland-with-idle-time` has no pin of its own (it
   patches the Xwayland of the pinned Guix, so it moves with the `guix`
   channel pin); the smithay patch applies to a vendored crate, not to a
   component's source; `substitute*` edits can't be checked without a build;

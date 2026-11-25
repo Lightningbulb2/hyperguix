@@ -48,6 +48,7 @@ The channel depends on nonguix (`.guix-channel`): several packages use its
 | `cuda.scm` | `cuda-toolkit` | NVIDIA CUDA 13.4: nvcc, cudart, cuBLAS (from NVIDIA's redist archives; nonfree); `libcuda` comes from the driver |
 | `klipper.scm` | `klipper` (0.13.0+827), `klipper-e3v3se` (jpcurti's Ender-3 V3 SE fork, 0.13.0+919), `moonraker` (0.11.0+4), `fluidd` 1.38.0, `python-streaming-form-data`, `python-periphery` | 3D-printer host: klippy with its C helper prebuilt, Moonraker, and Fluidd's release build; see *Klipper* below |
 | `reboot-to-bios.scm` | `reboot-to-bios` | |
+| `grub-usb-keyboard.scm` | `grub-efi-usb-keyboard-bootloader`, `uefi-shell` (EDK2 shell 2.2, pbatard's 26H2 build) | GRUB with a USB keyboard under the firmware's Ultra Fast boot; see *Others* |
 
 Maintaining the channel (layout, updating packages, pitfalls, conventions)
 is covered in [AGENTS.md](AGENTS.md).
@@ -252,6 +253,18 @@ config (the owner's is `latitude.scm` in MyGuixConfig).
   libpng-apng (1.6.50) is forced on executables *and* shared libraries
   (`-L`, `-rpath-link`, `--no-as-needed`); otherwise ld finds Qt's plain
   1.6.39, which lacks `png_set_cICP`.
+- **grub-efi-usb-keyboard-bootloader**: use it in place of
+  `grub-efi-bootloader` (same configuration) when the firmware's Ultra Fast
+  boot leaves GRUB without a keyboard: GRUB has no xHCI driver and borrows
+  the firmware's, which Ultra Fast never connects.  Each reconfigure installs
+  GRUB as usual, then `\EFI\usbgrub\` (the UEFI shell and a `startup.nsh`
+  that runs `connect -r` and then `\EFI\Guix\grubx64.efi`) and a firmware
+  boot entry "GRUB (USB keyboard)" put first in BootOrder (grub-install moves
+  "Guix" first every time).  If the shell can't start GRUB it exits and the
+  firmware boots "Guix" directly.  Needs Secure Boot off (the shell isn't
+  signed, but neither is Guix's GRUB).  To go back, switch to
+  `grub-efi-bootloader`, reconfigure, and delete the entry
+  (`efibootmgr -b NNNN -B`).
 - **openrazer-kernel-modules**: in driver mode the keyboard's own backlight
   and macro-recording keys stop working; turn it off with the kernel
   argument `razerkbd.driver_mode=0`.
