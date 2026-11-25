@@ -56,7 +56,7 @@
   #:use-module (hyperguix packages cosmic-crates)
   #:use-module (hyperguix packages xwayland))
 
-(define %cosmic-version "1.11.0")
+(define %cosmic-version "1.12.0")
 
 (define* (cosmic-source name commit hash #:key lfs?)
   "Return the source of pop-os/NAME at COMMIT.  When LFS? is true, also fetch
@@ -302,12 +302,12 @@ dispatch.rs not found"))
 ;;;
 
 (define-public cosmic-comp
-  (cosmic-component "cosmic-comp" "46b26e63ca22a7acb27adf0c4708ba62a48d356d"
-                    "075nndi9yr562mc5azcrs9xlf284g670g85n8a8nkqny5i5fxglh"
+  (cosmic-component "cosmic-comp" "0681eaf68324d2afd8cac175d1e10a22b7d34cdf"
+                    "05sidvw93398hrkd2d3smrp7kjfb98j63jihan5gmqzk4gb002cx"
                     #:version "1.0.0"
                     #:cargo-inputs cosmic-comp-cargo-inputs
                     #:build-env '(("GIT_HASH"
-                                   . "46b26e63ca22a7acb27adf0c4708ba62a48d356d"))
+                                   . "0681eaf68324d2afd8cac175d1e10a22b7d34cdf"))
                     #:git-crates cosmic-comp-git-crates
                     #:extra-inputs (list libdisplay-info
                                          libseat ;Guix's seatd drops lib/ and include/
@@ -411,8 +411,8 @@ workspaces, multi-monitor and multi-GPU support, and XWayland."))
 
 (define-public cosmic-session
   (cosmic-component
-   "cosmic-session" "3fe5d42eda0c3121e67a62b1f67d06f67ecbb09d"
-   "1x10ykid3n42d5n1zhnc0cai39ynlkanqyshnvl5kz2w7rghkq7g"
+   "cosmic-session" "3eaaa04844de1f5d8b1327471fd6fa8dd6cc3444"
+   "0jw3ibx9d83746zlvmz8ggd2xkn0swbwabx8czzjwc1rdcx0y65q"
    #:cargo-inputs cosmic-session-cargo-inputs
    #:git-crates cosmic-session-git-crates
    #:extra-inputs (list bash-minimal)
@@ -496,8 +496,8 @@ session file display managers list."))
 
 (define-public cosmic-settings-daemon
   (cosmic-component "cosmic-settings-daemon"
-                    "2df041e6e90757782a7884729ae3723e86cee122"
-                    "0i8wjnjk9j70jhr5z027qf868gqghjfrw5c3wr5y2py05ai4br0a"
+                    "03ea96f3fa0e118491b9186a9a2df94cb6cadbee"
+                    "1znxa8mhm3zb5syp7zvbgphm8f6fbj0mc40svp77dhx4p53gmcr2"
                     #:cargo-inputs cosmic-settings-daemon-cargo-inputs
                     #:git-crates cosmic-settings-daemon-git-crates
                     #:extra-inputs (list pipewire `(,glib "bin"))
@@ -545,8 +545,8 @@ themes and appearance, brightness and volume keys, input devices, and other
 system integration."))
 
 (define-public cosmic-panel
-  (cosmic-component "cosmic-panel" "69d506ca58d5fcd05205cc77aec5a9e58aac2df6"
-                    "1pb3qaz2wjkvgmqrs2pfbslblyxdzdq9zh81jj79l014lzhh7f5p"
+  (cosmic-component "cosmic-panel" "7e3dc12e50d80181b8f935a33e5896e3a76ec096"
+                    "1xnhxwwy7l84mfscxaj4wb7alvxi8vdrk6xxskldpb3m2x5h5skl"
                     #:cargo-inputs cosmic-panel-cargo-inputs
                     #:git-crates cosmic-panel-git-crates
                     #:synopsis "Panel and dock of the COSMIC desktop"
@@ -555,8 +555,8 @@ system integration."))
 the applets shown in them."))
 
 (define-public cosmic-applets
-  (cosmic-component "cosmic-applets" "ef6c9e62f64dab0e4a3d03c75d369f75279fea51"
-                    "0xifrswkw0yg3srpxbgigsdzca4ppy14hgnsqvy5hhz4mm1pcxl7"
+  (cosmic-component "cosmic-applets" "c0fca14c85d3f0f2c32065dbc5b3c6382afe89d8"
+                    "1n9hsbsqn9aznc1cn8z5bx4bbcymiaf8b1kf2xpwly4y7ybjdakh"
                     #:cargo-inputs cosmic-applets-cargo-inputs
                     #:git-crates cosmic-applets-git-crates
                     #:extra-phases
@@ -596,8 +596,8 @@ battery, Bluetooth, network, notifications, power, status area (tray),
 tiling, time, workspaces, input sources and accessibility."))
 
 (define-public cosmic-bg
-  (cosmic-component "cosmic-bg" "09e93d38798d2fc2ac53d03e4988800c179c8dea"
-                    "0fbvpvxyfzv0hsv250a9rdhy81xv3sx6s11nhqlmrr7r3hpsrjhg"
+  (cosmic-component "cosmic-bg" "54c39c4f387b1bdc3aecd75071342026b7d8aef3"
+                    "1412f5648lfxa7zlcj9jyw532rb7bfssp42n3l3xd6n48znbnr61"
                     #:cargo-inputs cosmic-bg-cargo-inputs
                     #:git-crates cosmic-bg-git-crates
                     #:extra-inputs (list dav1d)
@@ -611,8 +611,8 @@ tiling, time, workspaces, input sources and accessibility."))
 output, from images, colors or gradients."))
 
 (define-public cosmic-idle
-  (cosmic-component "cosmic-idle" "6d6f07af60bb307882cdcbd0bda0a6fc76bd0df3"
-                    "0chm03yrzcbnwy1v4kw1kqpkjaccmqabk1666cw3ng4yz5ha8m4g"
+  (cosmic-component "cosmic-idle" "63a1605b0d7027e88e82402623ee0373106bf806"
+                    "10mw2bkawgg1npb9cml7k56zsh7x907kwinhqf7y9bls5dky4lv9"
                     #:cargo-inputs cosmic-idle-cargo-inputs
                     #:git-crates cosmic-idle-git-crates
                     #:extra-phases
@@ -637,8 +637,8 @@ output, from images, colors or gradients."))
 the configured idle time."))
 
 (define-public cosmic-osd
-  (cosmic-component "cosmic-osd" "552753febb27baa2f54c6098033d4bd60a7473ed"
-                    "16wqwbqfm3x0mjvm04cva31xyca74r12pjnbid9b4f43lnidf13v"
+  (cosmic-component "cosmic-osd" "3d8f746c02a3720a713bad0ec2fa21d280f2ed81"
+                    "1drlhr8dlyifax7pf11ambwfq5x33xsjr3h75ziqy5l0m91krh56"
                     #:cargo-inputs cosmic-osd-cargo-inputs
                     #:git-crates cosmic-osd-git-crates
                     ;; Guix's polkit service installs the setuid helper here.
@@ -652,8 +652,8 @@ brightness, ...) and acts as its polkit authentication agent."))
 
 (define-public cosmic-notifications
   (cosmic-component "cosmic-notifications"
-                    "4fac3f9a8fc50fb93941e031383ec98312d62280"
-                    "0vlfc8zcl8iarfhxfk3qq64c6p56mal2kg9drk0hmh6nk9zpl2xm"
+                    "ec04a74d4f68be668d4b4b1e8f6a78ea413e167c"
+                    "1nywk56fdvw0kigp7vlx4nwndjxw8b4vanvh44x21mgnqpd6jn8a"
                     #:cargo-inputs cosmic-notifications-cargo-inputs
                     #:git-crates cosmic-notifications-git-crates
                     #:synopsis "Notification daemon of the COSMIC desktop"
@@ -662,8 +662,8 @@ brightness, ...) and acts as its polkit authentication agent."))
 notification service for the COSMIC desktop."))
 
 (define-public cosmic-launcher
-  (cosmic-component "cosmic-launcher" "29c1bac5e8f9f83b9e2cef03bb0259a04ffd7f2a"
-                    "00rznp18994jb7zf3yb3hsmvwx2fhqxgvl8mh9k4l1s6dn2s1fcc"
+  (cosmic-component "cosmic-launcher" "dc4be6132f74bab898e855372243576a270ac80d"
+                    "0m177hsasq78nkil3k2zd4zk4smb7n5wa7zclrp4zgki4ncavrrh"
                     #:cargo-inputs cosmic-launcher-cargo-inputs
                     #:git-crates cosmic-launcher-git-crates
                     #:synopsis "Application launcher of the COSMIC desktop"
@@ -673,8 +673,8 @@ to pop-launcher's search plugins."))
 
 (define-public cosmic-app-library
   (cosmic-component "cosmic-app-library"
-                    "c19e73ef7d4160d42a5943790cdc7da95ee1c9f9"
-                    "18i46f1awhbh808m4i4m2g16zdah19r41ldlr8815klkqxmfn6qx"
+                    "d95cb7a285e699f69857ef0b7fa8921610cd96f9"
+                    "08hqqrwfnznx39bspzq41y1n7pap5jn381hhyscw7qvlbwfb8pba"
                     #:cargo-inputs cosmic-app-library-cargo-inputs
                     #:git-crates cosmic-app-library-git-crates
                     #:synopsis "Application library of the COSMIC desktop"
@@ -684,8 +684,8 @@ applications, with user-defined folders."))
 
 (define-public cosmic-workspaces
   (cosmic-component "cosmic-workspaces"
-                    "cb953ea0e6fb45ac8f62f9c52f1347c971388e03"
-                    "1lff84w1nvw0m0x1zdfvx8018vbw056y3zqqwk6v5mbw097yw4sl"
+                    "f244ea6da0ce17076579d69a6379071c677f3fa7"
+                    "0gspphyydm3yqxhq7lyabianmrf8h4g63jcmplknyycqw9d711mg"
                     #:repository "cosmic-workspaces-epoch"
                     #:version "1.0.12"
                     #:cargo-inputs cosmic-workspaces-epoch-cargo-inputs
@@ -705,8 +705,8 @@ applications, with user-defined folders."))
 and lets you move windows between them."))
 
 (define-public cosmic-randr
-  (cosmic-component "cosmic-randr" "f1a97655c97e8799bf4a37a8f5103a8ab5e5068d"
-                    "02sk9s270hypszdsq9icwvyhk2mhx9j140fp1imc3y2s9aidzvzx"
+  (cosmic-component "cosmic-randr" "51d8089a5d3c32470a54621ede580e499cd1e93e"
+                    "135pgs7xrdyrkaqh2imci3lxlhkmx7pbxx92fjcv0qv50h2ghf07"
                     #:cargo-inputs cosmic-randr-cargo-inputs
                     #:git-crates cosmic-randr-git-crates
                     #:license license:mpl2.0
@@ -716,8 +716,8 @@ and lets you move windows between them."))
 refresh rate, position, scale) of the COSMIC compositor."))
 
 (define-public cosmic-screenshot
-  (cosmic-component "cosmic-screenshot" "45549f7e940d495ecee9268f58824668814e970c"
-                    "084j0sl4abfnz7bd2fsdkav48xd32b19wy42gnn8qqsdxa7r5cid"
+  (cosmic-component "cosmic-screenshot" "0c7eb5779d451fe1158593fdd165345ed5f411b6"
+                    "1hs3mdmqp9pzpp2pfvksgh4zp35r8kcj0310r1ggxyj7da9rgd0b"
                     #:cargo-inputs cosmic-screenshot-cargo-inputs
                     #:git-crates cosmic-screenshot-git-crates
                     #:synopsis "Screenshot tool of the COSMIC desktop"
@@ -726,8 +726,8 @@ refresh rate, position, scale) of the COSMIC compositor."))
 portal."))
 
 (define-public cosmic-osk
-  (cosmic-component "cosmic-osk" "6b146a2b0a23d88ae84223ad06c6813bda5a9386"
-                    "0dv3d5d3a3kqc6v01ihcq0d3ccgxmciis4rz1bkcrr1b30rh23xg"
+  (cosmic-component "cosmic-osk" "588a52bd73c99c60714d3645ede583decbe78a20"
+                    "199lgxlkq1a44p8h9l2amv7g988lndabdykaihcj0sj7n0z2qc29"
                     #:cargo-inputs cosmic-osk-cargo-inputs
                     #:git-crates cosmic-osk-git-crates
                     #:synopsis "On-screen keyboard of the COSMIC desktop"
@@ -735,8 +735,8 @@ portal."))
                     "cosmic-osk is COSMIC's on-screen keyboard."))
 
 (define-public cosmic-settings
-  (cosmic-component "cosmic-settings" "fede96f61107a86438d3eedd694425188ee959e4"
-                    "0n1bqmnq2dvci3rk2f18il2c31rqc9bw3962wx4sqk0r5myq9hlr"
+  (cosmic-component "cosmic-settings" "33991c179a75e736b43488c6fc67af7604b5a3fa"
+                    "04y5767g8ykzdq7b2cg108wjh99imlsr8716zbs6bkpysm6byf97"
                     #:cargo-inputs cosmic-settings-cargo-inputs
                     #:git-crates cosmic-settings-git-crates
                     #:extra-inputs (list dav1d)
@@ -767,8 +767,8 @@ panel and dock, displays, input, sound, networking, users, and more."))
 
 (define-public cosmic-initial-setup
   (cosmic-component "cosmic-initial-setup"
-                    "53cf2ed49235bce97a10d177ee53d4699c876560"
-                    "1p9psvkpg5bd2clgs4p17kcmqv3zfxbdrk76wgnj8z87yw2z644w"
+                    "edf9290b601d0ebcf432cb858479309246221a1f"
+                    "1rq7zn63v74l3gniaw6i5n000mbg71k0amkflb1pxwn2gffsgdiq"
                     ;; Theme previews (built-in and extra) are in Git LFS.
                     #:lfs? #t
                     #:cargo-inputs cosmic-initial-setup-cargo-inputs
@@ -807,8 +807,8 @@ both are set in the operating-system declaration."))
 
 (define-public xdg-desktop-portal-cosmic
   (cosmic-component "xdg-desktop-portal-cosmic"
-                    "f25d7717e7b8fa8d7757659855e39948cbff88e5"
-                    "1jm6l2i75syjjs11s5bnmxn756g5fkkvsfwvplvwxfif4kn83ih1"
+                    "e046d1f29669e24d76fa7042e88e91dca8cdb782"
+                    "1bnfl2bfgkapasgk1a5vcih1qb3hg20knls2y7nx5a9mjm1lizqq"
                     #:cargo-inputs xdg-desktop-portal-cosmic-cargo-inputs
                     #:git-crates xdg-desktop-portal-cosmic-git-crates
                     #:extra-inputs (list gstreamer pipewire)
@@ -831,8 +831,8 @@ by browsers for screen sharing."))
 ;;;
 
 (define-public cosmic-files
-  (cosmic-component "cosmic-files" "b2fbce2eb1e62c79a982067c2117cebd9d5adce3"
-                    "1jx4z6bg0adkxr3693xda1slc4xflcgqba3bxxljshyajilvxnrn"
+  (cosmic-component "cosmic-files" "f120c0cc6f994b577e88943f7cd98dd561561400"
+                    "138xnfizwwv03kva9l1a8bdpa4b732p2bvyvf11yn2xbh3s7h6gp"
                     #:cargo-inputs cosmic-files-cargo-inputs
                     #:git-crates cosmic-files-git-crates
                     #:synopsis "File manager of the COSMIC desktop"
@@ -841,8 +841,8 @@ by browsers for screen sharing."))
 search, network and trash locations, and desktop-icon support."))
 
 (define-public cosmic-edit
-  (cosmic-component "cosmic-edit" "ec8375c65090ee9547885a2d9bf94a6630f5fbd9"
-                    "073khhldrypjwnl393yplf2phwhpd8kdx5k9wz87phmm4svnp3p3"
+  (cosmic-component "cosmic-edit" "a741508e8465b2aea6a5496b93b329f148487aed"
+                    "1v9q5y29755x3s82kw9mdgvj0hcn840sla0ycxxg1l5xibxpwsas"
                     #:cargo-inputs cosmic-edit-cargo-inputs
                     #:git-crates cosmic-edit-git-crates
                     ;; Guix's cargo-build-system sets RUSTONIG_SYSTEM_LIBONIG,
@@ -854,8 +854,8 @@ search, network and trash locations, and desktop-icon support."))
 highlighting, project folders, search and replace, and Git status."))
 
 (define-public cosmic-term
-  (cosmic-component "cosmic-term" "b209f70c3f0a53dc578df4aac01594c3ccc90449"
-                    "1ilwh7ksvbki11sp9v3pay141ka8ag4fckcyhsgwzpn9i4079fd6"
+  (cosmic-component "cosmic-term" "92b3fb5451e28d27059c2adc5379b6aee420b8c9"
+                    "1v9jm1ik4wgn9sql6ampy3hckvyb1wzlhfclj78aazfj1rijmk6j"
                     #:cargo-inputs cosmic-term-cargo-inputs
                     #:git-crates cosmic-term-git-crates
                     #:synopsis "Terminal emulator of the COSMIC desktop"
@@ -864,8 +864,8 @@ highlighting, project folders, search and replace, and Git status."))
 alacritty_terminal, with tabs, split panes and themes."))
 
 (define-public cosmic-store
-  (cosmic-component "cosmic-store" "63e765027f07e1f6d9c79179bd1c2b1595ac7492"
-                    "1jjj28vcva1zdrrcjz84fddcrqypnw0vdg5fmyd7dj8ic4bmd2kc"
+  (cosmic-component "cosmic-store" "9a89876261fda1db95f9cf03b6d8f852efa8d0be"
+                    "0mfb8wyf36ym3hg4qsgbc27xwhsjkg3d3z8ilgcsdj6zbmpa0by1"
                     #:cargo-inputs cosmic-store-cargo-inputs
                     #:git-crates cosmic-store-git-crates
                     #:extra-inputs (list flatpak)
@@ -877,11 +877,11 @@ remotes."))
 
 (define-public cosmic-player
   (cosmic-component
-   "cosmic-player" "34a41f247a37eb681dd5c27c832e2d1f3c1dc1e4"
-   "07jvqslkn6rcqcsn7bccl8w22yjpp2zzr1kr9yjakv38snyz34qi"
+   "cosmic-player" "eb64fd13052930a41856369e9a0887045ae33948"
+   "1xdb2cafc4lxypz6hgdjwqv51bra9i1g7iv3c9hihdsni7dc6wxb"
    #:cargo-inputs cosmic-player-cargo-inputs
    ;; No .git in the checkout for vergen to read.
-   #:build-env '(("VERGEN_GIT_SHA" . "34a41f247a37eb681dd5c27c832e2d1f3c1dc1e4"))
+   #:build-env '(("VERGEN_GIT_SHA" . "eb64fd13052930a41856369e9a0887045ae33948"))
    #:git-crates cosmic-player-git-crates
    #:extra-inputs (list bash-minimal gstreamer gst-plugins-base gst-plugins-good
                         gst-plugins-bad gst-libav)
@@ -897,8 +897,8 @@ remotes."))
    "COSMIC Media Player plays audio and video files through GStreamer."))
 
 (define-public cosmic-viewer
-  (cosmic-component "cosmic-viewer" "300210f1c7d86ba14a43602e40dd5fe1deb16703"
-                    "1sj8h9gjvc1vhsgw9isq89wrbxjh39wdbn7q9xfv0v0i7x0wc7qx"
+  (cosmic-component "cosmic-viewer" "067c4fd0dba16a57a029aff40a0410af45bbe580"
+                    "1bqz5hydbqkfsml41daxmkpww4lc5gyjij952qzqa5h3rhjmk781"
                     #:cargo-inputs cosmic-viewer-cargo-inputs
                     #:git-crates cosmic-viewer-git-crates
                     #:extra-inputs (list libheif libjpeg-turbo-3) ;turbojpeg-sys wants >= 3.0
@@ -918,8 +918,8 @@ remotes."))
 camera formats, with a gallery of the surrounding folder."))
 
 (define-public cosmic-monitor
-  (cosmic-component "cosmic-monitor" "d79ff440dfa899ea6e9a3019dcfd9f9e8a44448d"
-                    "153n3hh98ravbb535x9kmwvmxf5dzfp5f1qwwpbgz9qknxznbwy2"
+  (cosmic-component "cosmic-monitor" "41302aae87edd69ae07de173cfa62d9e95278c86"
+                    "10ff5mpzf5370cqapa52s5v21wdvcj0gfj1xrwrqjmay0wqzx356"
                     #:cargo-inputs cosmic-monitor-cargo-inputs
                     #:git-crates cosmic-monitor-git-crates
                     #:synopsis "System monitor of the COSMIC desktop"
@@ -928,15 +928,15 @@ camera formats, with a gallery of the surrounding folder."))
 disk, network and GPU usage."))
 
 (define-public cosmic-greeter
-  (cosmic-component "cosmic-greeter" "f7be8f2965f81cca1c5c98a6c685d39afe7dfce0"
-                    "1x5yv75c0ddwq5a5wv4l1jarzcjjxg9q6rqmpwndhirws2l397pp"
+  (cosmic-component "cosmic-greeter" "d01786a53f82e1f1ad1fa9ca1634f0a4906fd84c"
+                    "1yadcfxa7yj7zbix4zwxk94148gyjfg2wgqa8jpimhdxbywbbc65"
                     ;; Its built-in login background is in Git LFS.
                     #:lfs? #t
                     #:cargo-inputs cosmic-greeter-cargo-inputs
                     ;; build.rs only skips git (absent in Guix checkouts)
                     ;; when both of these are set.
                     #:build-env '(("VERGEN_GIT_SHA"
-                                   . "f7be8f2965f81cca1c5c98a6c685d39afe7dfce0")
+                                   . "d01786a53f82e1f1ad1fa9ca1634f0a4906fd84c")
                                   ("VERGEN_GIT_COMMIT_DATE" . "2026-10-20"))
                     #:git-crates cosmic-greeter-git-crates
                     #:extra-inputs (list bash-minimal coreutils dav1d linux-pam)

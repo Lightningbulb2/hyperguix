@@ -23,7 +23,7 @@ The channel depends on nonguix (`.guix-channel`): several packages use its
 
 | Module | Package(s) | Notes |
 | --- | --- | --- |
-| `cosmic.scm` | `cosmic` (meta) and all its components, `cosmic-greeter`, `pop-launcher`, `cosmic-icons`, `pop-icon-theme`, `cosmic-sound-theme`, `cosmic-wallpapers` (COSMIC epoch 1.11.0) | see *COSMIC* below |
+| `cosmic.scm` | `cosmic` (meta) and all its components, `cosmic-greeter`, `pop-launcher`, `cosmic-icons`, `pop-icon-theme`, `cosmic-sound-theme`, `cosmic-wallpapers` (COSMIC epoch 1.12.0) | see *COSMIC* below |
 | `xwayland.scm` | `xwayland-with-idle-time`, `xwayland-activity-relay` | Xwayland used by cosmic-comp, and the helper that keeps Steam from going Away; see *COSMIC* |
 | `timedated.scm` | `timedated` | systemd's timedated built alone (org.freedesktop.timedate1), for COSMIC Settings |
 | `ask.scm` | `ask` | `ask QUESTION` recommends installed commands for a question, answered locally (llama.cpp, an index of the man pages, `guix` sub-commands and `--help`); `ask models --fetch` once, then `ask index` |
