@@ -117,6 +117,7 @@
         #:phases
         #~(modify-phases %standard-phases
             #$@(fast-cargo-release-phases)
+            #$@(cargo-progress-phases)
             (add-after 'unpack 'build-frontend
               (lambda _
                 (let ((top (getcwd)))

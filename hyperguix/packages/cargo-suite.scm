@@ -123,8 +123,9 @@ named after each member."
                (lambda* (#:key inputs outputs search-paths #:allow-other-keys)
                  (define top (getcwd))
                  (define (shared dir) (string-append top "/" dir))
+                 (define entries (list #$@(map member-build members)))
                  (for-each
-                  (lambda (entry)
+                  (lambda (entry part)
                     (let* ((name (car entry))
                            (build (cadr entry))
                            (out (assoc-ref outputs name))
@@ -136,6 +137,12 @@ named after each member."
                             (begin
                               (chdir dir)
                               (setenv "out" out)
+                              ;; For the progress bar (cargo-progress-phases
+                              ;; in cargo-git.scm): the whole suite's share.
+                              (setenv "CARGO_PROGRESS_PART"
+                                      (number->string part))
+                              (setenv "CARGO_PROGRESS_PARTS"
+                                      (number->string (length entries)))
                               (primitive-exit
                                (with-exception-handler
                                    (lambda (e)
@@ -170,7 +177,8 @@ named after each member."
                                            (lambda (d)
                                              (string-suffix? "-git" d)))))
                       (delete-file-recursively dir)))
-                  (list #$@(map member-build members)))
+                  entries
+                  (iota (length entries) 1))
                  (mkdir-p #$output)
                  (call-with-output-file (string-append #$output "/members")
                    (lambda (port)

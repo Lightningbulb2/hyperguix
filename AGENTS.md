@@ -90,6 +90,15 @@ Support modules:
   lockfiles take from git, as `cargo vendor` would, so cargo builds offline.
   It drops `[dev-dependencies]` and the feature entries that name them, and
   `contrib/cargo-lock-to-guix.py` also vendors `[[patch.unused]]` git crates.
+  It also holds the phases every Rust package splices in:
+  `fast-cargo-release-phases` (cargo's release defaults, mold) and
+  `cargo-progress-phases`, which puts a `cargo` wrapper on PATH so the
+  build shows a progress bar: cargo draws its bar without a terminal, and
+  `aux-files/cargo-progress.awk` turns it into the `[245/1870]` lines Guix
+  reads (in a suite, `[ 44%]` for the whole suite, from
+  `CARGO_PROGRESS_PART`/`CARGO_PROGRESS_PARTS`, set by `cargo-suite`).
+  Guix shows the bar only on a terminal and while one build runs. Give a
+  new Rust package both.
 - `js-offline.scm` serves pinned npm tarballs from a throw-away 127.0.0.1
   registry during a build, so `npm ci` / `pnpm install --frozen-lockfile` run
   unmodified.

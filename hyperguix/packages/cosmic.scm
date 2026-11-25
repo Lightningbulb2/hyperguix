@@ -184,6 +184,7 @@ dispatch.rs not found"))
                               all)))))))
                  '())
           #$@(fast-cargo-release-phases)
+          #$@(cargo-progress-phases)
           (add-after 'unpack 'patch-justfile-shebangs
             ;; Recipes like `install-plugins' run through `#!/usr/bin/env
             ;; sh'; the build sandbox has no /usr/bin/env.  (Guix's

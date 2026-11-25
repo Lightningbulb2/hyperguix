@@ -65,6 +65,7 @@
       #:phases
       #~(modify-phases %standard-phases
           #$@(fast-cargo-release-phases)
+          #$@(cargo-progress-phases)
           (add-after 'unpack 'use-guix-libraries
             (lambda* (#:key inputs #:allow-other-keys)
               ;; "Auto" GLFW/OpenAL only probes FHS directories.

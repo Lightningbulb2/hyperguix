@@ -61,6 +61,7 @@
       #:phases
       #~(modify-phases %standard-phases
           #$@(fast-cargo-release-phases)
+          #$@(cargo-progress-phases)
           (add-after 'unpack 'enter-project
             (lambda _
               (chdir "rust")))
@@ -107,6 +108,7 @@ snippet can have its own chat with a local or remote language model.")
       #:phases
       #~(modify-phases %standard-phases
           #$@(fast-cargo-release-phases)
+          #$@(cargo-progress-phases)
           (add-after 'unpack 'enter-project
             (lambda _
               (chdir "zed")))

@@ -65,6 +65,7 @@
         #~(modify-phases %standard-phases
             #$@(vendor-git-crates-phases mailcraft-git-crates)
             #$@(fast-cargo-release-phases)
+            #$@(cargo-progress-phases)
             (add-before 'build 'set-build-sha
               (lambda _
                 ;; Upstream reads it from .git, which a Guix checkout lacks.

@@ -126,6 +126,7 @@
         #~(modify-phases %standard-phases
             #$@(vendor-git-crates-phases isocast-git-crates)
             #$@(fast-cargo-release-phases)
+            #$@(cargo-progress-phases)
             (add-after 'unpack 'use-system-opus
               (lambda _
                 ;; The bundled libopus is built with cmake; link Guix's.

@@ -35,7 +35,8 @@
             git-crate
             git-crate-selection
             vendor-git-crates-phases
-            fast-cargo-release-phases))
+            fast-cargo-release-phases
+            cargo-progress-phases))
 
 (define (crate name version hash)
   "Origin of crates.io crate NAME at VERSION (HASH is its Cargo.lock
@@ -154,3 +155,40 @@ up to a minute per package, and links with mold."
                                 " -C link-arg=-fuse-ld=mold"
                                 " -C link-arg=-B"
                                 #$(file-append %mold-ld-wrapper "/bin")))))))
+
+(define %cargo-progress-filter
+  (local-file "aux-files/cargo-progress.awk"))
+
+(define (cargo-progress-phases)
+  "Return modify-phases clauses that give the build a progress bar.
+
+Guix draws one for a build whose log has lines like \"[245/1870]\" (as Ninja
+prints), but cargo only draws its own bar on a terminal.  From the build
+phase on, `cargo' on PATH is a wrapper that makes cargo draw it anyway and
+passes its standard error through aux-files/cargo-progress.awk, which turns
+the bar into such lines.  Standard output and the exit status are cargo's
+own, and justfiles and Makefiles that run `cargo' get the wrapper too."
+  (list
+   #~(add-before 'build 'cargo-progress
+       (lambda _
+         (let* ((dir (string-append (or (getenv "TMPDIR") "/tmp")
+                                    "/cargo-progress"))
+                (wrapper (string-append dir "/cargo"))
+                (cargo (which "cargo")))
+           (unless (or (not cargo) (string=? cargo wrapper))
+             (mkdir-p dir)
+             (call-with-output-file wrapper
+               (lambda (port)
+                 (display
+                  (string-append
+                   "#!" (which "bash") "\n"
+                   "export CARGO_TERM_PROGRESS_WHEN=always\n"
+                   "export CARGO_TERM_PROGRESS_WIDTH=100\n"
+                   "exec 3>&1\n"
+                   "'" cargo "' \"$@\" 2>&1 1>&3 3>&- |"
+                   " '" (which "gawk") "' -f '" #$%cargo-progress-filter
+                   "' >&2\n"
+                   "exit \"${PIPESTATUS[0]}\"\n")
+                  port)))
+             (chmod wrapper #o555)
+             (setenv "PATH" (string-append dir ":" (getenv "PATH")))))))))
