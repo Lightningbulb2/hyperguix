@@ -249,14 +249,26 @@ url = "https://github.com/ebkr/r2modmanPlus"
 file = "hyperguix/packages/ladybird.scm"
 crates = "hyperguix/packages/ladybird-crates.scm"
 module = "hyperguix packages ladybird-crates"
-pin = '\(define %ladybird-commit "(?P<commit>[0-9a-f]{40})"\).*?\(base32 "(?P<hash>[0-9a-z]{52})"'
+pin = '\(define %ladybird-version "(?P<version>[^"]+)"\)\s*\(define %ladybird-commit "(?P<commit>[0-9a-f]{40})"\).*?\(base32 "(?P<hash>[0-9a-z]{52})"'
 
 [group.ladybird.packages.ladybird]
 url = "https://github.com/LadybirdBrowser/ladybird"
-branch = "master"
-# Skia, ANGLE, FFmpeg and pdf.js are pinned by hand to what these files ask for.
-unchanged = ["Meta/CMake/vcpkg"]
-unchanged-hint = "check whether Skia, ANGLE, FFmpeg, pdf.js or their overlay patches moved; if so update them and %ladybird-ports-commit in ladybird.scm, then update the package by hand"
+# Releases (alpha), tagged YYYY.WW.N on release branches.
+tags = '^(\d{4}\.\d+\.\d+)$'
+# Skia, ANGLE, FFmpeg, pdf.js, mimalloc, zmij, LLVM libc and wuffs are pinned
+# by hand to what these overlay ports ask for (their version, their patches).
+# The other ports (curl, ICU...) are Guix's packages, unpatched.
+unchanged = [
+  "Meta/CMake/vcpkg/overlay-ports/angle",
+  "Meta/CMake/vcpkg/overlay-ports/ffmpeg",
+  "Meta/CMake/vcpkg/overlay-ports/llvm-libc",
+  "Meta/CMake/vcpkg/overlay-ports/mimalloc",
+  "Meta/CMake/vcpkg/overlay-ports/pdfjs",
+  "Meta/CMake/vcpkg/overlay-ports/skia",
+  "Meta/CMake/vcpkg/overlay-ports/wuffs",
+  "Meta/CMake/vcpkg/overlay-ports/zmij",
+]
+unchanged-hint = "update the packages they pin in ladybird.scm (version, hash, overlay patches) and move %ladybird-ports-commit (or the ANGLE ports pin) to the new release, then update the package by hand"
 
 # COSMIC is released as a whole ("epoch"): every component gets the tag.
 [group.cosmic]

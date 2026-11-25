@@ -30,7 +30,7 @@ The channel depends on nonguix (`.guix-channel`): several packages use its
 | `guix-bump.scm` | `guix-bump`, `guix-manager` | `guix bump` (move the channel pins in the config to the latest commits, pull, optionally reconfigure; `--check` lists apps with a newer version, `guix bump APP` updates one; `--search`, `--install`, `--remove` and `--installed` manage a list of package names in the config; `--undo`, a warning before compiling slow packages, commits the config to its git repository), `guix nightly` (bump all, pull, system + home, clean up, power off, with a log; the screens are off while it runs, `--screen-on` keeps them on) and Guix Manager (`guix-manager`), a window with Updates, Install and Installed pages that runs those commands in a terminal pane |
 | `craft.scm` | `photocraft`, `effectcraft`, `filmcraft`, `pdfcraft`, `lightcraft`, `vectorcraft`, `gridcraft`, `wordcraft`, `soundcraft`, `cadcraft`, `figcraft`, `designcraft`, `deckcraft`, `texturecraft`, `materialcraft`, `anicraft`, `craft-anything`, `craft-launcher` | the storytold "Craft" suite, each with its `*-cli` |
 | `solidcraft.scm` | `solidcraft` 0.49.1 (with `solidcraft-cli`) | Tangency Labs' parametric 3D CAD; crates in `solidcraft-crates.scm` |
-| `ladybird.scm` | `ladybird` (git master), plus private Skia 148, ANGLE, ffmpeg 9, LLVM libc headers, curl+OpenSSL | Qt 6 UI; its sandbox needs Landlock (`lsm=landlock,...` kernel argument) |
+| `ladybird.scm` | `ladybird` 2026.47.8 (alpha releases), plus private Skia 148, ANGLE, ffmpeg 9, LLVM libc headers, curl+OpenSSL | Qt 6 UI; its sandbox needs Landlock (`lsm=landlock,...` kernel argument) |
 | `scrcpy.scm`, `scrcpy-gui.scm` | `scrcpy` 5.0.1, `scrcpy-gui` 4.1.0 | Android mirroring |
 | `faforever.scm` | `faforever-client` 1.0.2 | Rust/Tauri FAF client |
 | `pandora-launcher.scm` | `pandora-launcher` 6.0.0 | Minecraft launcher on Guix JDKs |
@@ -248,8 +248,9 @@ config (the owner's is `latitude.scm` in MyGuixConfig).
   edit screen for one boot, to turn it off.
 - **ladybird**: Skia, ANGLE, FFmpeg and pdf.js take their vcpkg overlay
   patches from a separately pinned Ladybird tree (`%ladybird-ports-commit`),
-  so moving `%ladybird-commit` doesn't rebuild them; move it too when
-  `git diff OLD NEW -- Meta/CMake/vcpkg` isn't empty.
+  so moving `%ladybird-commit` doesn't rebuild them; move it too when the
+  overlay ports those packages follow (listed under `unchanged` in
+  `contrib/updates.toml`) change between releases.
   libpng-apng (1.6.50) is forced on executables *and* shared libraries
   (`-L`, `-rpath-link`, `--no-as-needed`); otherwise ld finds Qt's plain
   1.6.39, which lacks `png_set_cICP`.

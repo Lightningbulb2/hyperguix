@@ -126,11 +126,10 @@ version changed).
   generators need PyYAML, the COSMIC LFS sources git-lfs).
 - What an update is, by kind of package:
   - **Release tags** (Craft suite, SolidCraft, MailCraft, Isocast, Pandora,
-    scrcpy, scrcpy-gui, FAForever, r2modman): newest tag; version, commit,
+    scrcpy, scrcpy-gui, FAForever, r2modman, Ladybird): newest tag; version, commit,
     hash; dependency modules regenerated (crates, npm, pnpm); scrcpy's
     prebuilt server re-hashed.
-  - **A branch** (CodeCanvas `main`, AskBash `main`, GuixManager `main`,
-    Ladybird `master`):
+  - **A branch** (CodeCanvas `main`, AskBash `main`, GuixManager `main`):
     every new head.
   - **A whole release** (COSMIC, `atomic`): all components move to the same
     `epoch-X.Y.Z` tag in one commit, once every component has the tag.
@@ -138,8 +137,9 @@ version changed).
   commit: a patch listed under `patches` no longer applies (`patch
   --dry-run` against the new source); a path listed under `unchanged`
   differs between the old and new source (FAForever's `scripts/ensure-*.mjs`,
-  which name the helper binaries pinned by hand; Ladybird's
-  `Meta/CMake/vcpkg`, which Skia/ANGLE/FFmpeg/pdf.js follow); a download or
+  which name the helper binaries pinned by hand; the Ladybird vcpkg
+  overlay ports that Skia, ANGLE, FFmpeg, pdf.js and the other private
+  dependencies follow); a download or
   a generator fails; a module no longer reads as Scheme.
 - `.github/workflows/update-packages.yml` runs it daily and on demand, one
   commit per update, merged straight into `main` after `--lint` passes.

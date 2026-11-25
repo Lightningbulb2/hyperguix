@@ -63,7 +63,10 @@
   #:export (skia-for-ladybird
             angle-for-ladybird))
 
-(define %ladybird-commit "7942cec73ca9034da4d0a44e4119eff91dfe6df8")
+;; Ladybird's releases (alpha since 2026.47.7) are tagged on release/YYYY.WW
+;; branches cut from master; the tag is annotated, so the commit is pinned.
+(define %ladybird-version "2026.47.8")
+(define %ladybird-commit "0be55a57cc07ed258362c631a13a10bb4f6d707a")
 
 (define %ladybird-source
   (origin
@@ -71,14 +74,15 @@
     (uri (git-reference
           (url "https://github.com/LadybirdBrowser/ladybird")
           (commit %ladybird-commit)))
-    (file-name (git-file-name "ladybird" (string-take %ladybird-commit 7)))
+    (file-name (git-file-name "ladybird" %ladybird-version))
     (sha256
-     (base32 "0q6z3y2g5w6kspxgbvc50qm1ahpmq8h1084rgdmcbzk385v0q3ns"))))
+     (base32 "1l490jh24hmamh2qhqh2p4rhl17pmlv4g7vri0c0gyw8c922b318"))))
 
 ;; The tree the dependencies below take their vcpkg overlay port patches
 ;; from.  It has its own pin so that moving %ladybird-commit doesn't rebuild
 ;; Skia, ANGLE, FFmpeg and pdf.js when those patches haven't changed; move it
-;; when `git diff OLD NEW -- Meta/CMake/vcpkg' shows they have.
+;; when `git diff OLD NEW -- Meta/CMake/vcpkg/overlay-ports' shows that the
+;; ports of the packages below have (contrib/updates.toml lists them).
 (define %ladybird-ports-commit "110a08dbeff1f70692f52bfb16a7fb97b102092f")
 
 (define %ladybird-ports-source
@@ -724,7 +728,7 @@ holds the viewer files Ladybird embeds.")
 (define-public ladybird
   (package
     (name "ladybird")
-    (version (git-version "0.0.0" "0" %ladybird-commit))
+    (version %ladybird-version)
     (source %ladybird-source)
     (build-system cmake-build-system)
     (arguments
@@ -747,6 +751,8 @@ holds the viewer files Ladybird embeds.")
               "-DENABLE_INSTALL_HEADERS=OFF"
               "-DENABLE_INSTALL_FREEDESKTOP_FILES=ON"
               "-DCMAKE_SKIP_RPATH=OFF"
+              ;; A release: the version in the About page and the metainfo.
+              (string-append "-DLADYBIRD_VERSION=" #$version)
               (string-append "-DCMAKE_INSTALL_RPATH=" #$output "/lib")
               (string-append "-DICU_ROOT=" #$(this-package-input "icu4c"))
               ;; Guix's GCC 15 libstdc++ was configured without <fenv.h>
@@ -905,6 +911,7 @@ offline = true~%" vendor))))))
            libpng-apng-for-ladybird
            libpsl
            libwebp
+           libxml2
            llvm-libc-headers-for-ladybird
            mimalloc-for-ladybird
            openssl
