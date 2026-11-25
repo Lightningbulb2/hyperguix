@@ -765,6 +765,7 @@
      ("mio" "1.2.4" "1vl6px9zy0pwhlwnw3cknsqyzkg8bcpiwiq4cgicf2fwgywfv20p")
      ("moxcms" "0.8.1" "0jz4fd5f7pdn1rngqc96lxriqjkym1lswdhdbjr037s8p9ac31dv")
      ("moxcms" "0.9.1" "0c2qfx8pq2n41fz7c3zcwmmpabdqd6r3jrxnlvwy670q2yvpfq1r")
+     ("mslnk" "0.1.8" "0xjw6xaavlq9zcq9vjk8zyarvf92g3d905pkjdm4jzqb2l877jc6")
      ("muda" "0.21.2" "00xwp28wx0v9i8brdr0kwjdkc6chd5znphy5g4lfc5l92yffhh23")
      ("multiversion" "0.8.1" "0xihqpndds450pjz00qrry3jcwycjsw7jzp4py1myxfh46z6i2pb")
      ("multiversion-macros" "0.8.1" "1q9mrsfiimiv6m1yrimwa8vndhxhs0p8aif6hwfs5njf7qy0qpm0")
@@ -1489,6 +1490,7 @@
      ("webpki-root-certs" "1.0.9" "16qw59hxn1lln1615kb9rjy16pfxd1x8m9f9w6vwv36c5am58rdr")
      ("webpki-roots" "1.0.10" "1na80y0p8a3dk62brj7fx1kscjhf52vlxrxzbbbcg3x3r0h8w70w")
      ("webpki-roots" "1.0.11" "0wgidma8qmksdhmx8pnbpg8m1zx08llqbqz7gn7br1xjnaxq1wpm")
+     ("webpki-roots" "1.0.12" "15qjddsxq07bvzb8456m3r5zazp71slqsb9ck4f73a0n3hqcjrbj")
      ("webpki-roots" "1.0.9" "0apja04243wz3vi26pqjg4sq8cqaac66prj490sgb1crlc4rvkbx")
      ("weezl" "0.1.12" "122a1dhha6cib5az4ihcqlh60ns2bi6rskdv875p94lbvj6wk2m2")
      ("weezl" "0.2.1" "1lpkc3iy9hkdx416sinhlvq861kmr2avvvyrasq6anw2xzjhijnl")
@@ -1584,6 +1586,7 @@
      ("write-fonts" "0.54.1" "01fphiwkm867hbk4yq4s1znf7cncg32glzg0i41bkkcbgvx6qwam")
      ("write16" "1.0.0" "0dnryvrrbrnl7vvf5vb1zkmwldhjkf2n5znliviam7bm4900z2fi")
      ("writeable" "0.6.4" "1p3r4s4wbf3dksfpj3xyrn7id5p0f7r74mj6qx6ngjfd6cm2vn1s")
+     ("wuff" "0.2.10" "1p8jfwc5jm1dh7fkd241956i14s7whjr5zg3n9rfj7ixgfsr5agn")
      ("wuff" "0.2.9" "0gcbbglssvgh6mgqbmsxgv45flzi691qg1d9z4gmzdkpcf07n2i0")
      ("wyz" "0.5.1" "1vdrfy7i2bznnzjdl9vvrzljvs4s3qm8bnlgqwln6a941gy61wq5")
      ("x11-dl" "2.21.0" "0vsiq62xpcfm0kn9zjw5c9iycvccxl22jya8wnk18lyxzqj5jwrq")
@@ -1677,6 +1680,10 @@
 ;;; Git checkouts, by index.
 (define %git-checkouts
   (vector
+   ;; craft-ai-integrations-0d76ea0-checkout
+   (git-checkout "craft-ai-integrations" "https://github.com/storytold/craft-ai-integrations"
+                 "0d76ea02a06299a5a6eee1993863fbcafe9c2cc3"
+                 "03nq433w4lwlslchibw47clkz708m0zp36wz3g0dka94wimg36i6")
    ;; craft-libs-010702e-checkout
    (git-checkout "craft-libs" "https://github.com/storytold/craft-libs"
                  "010702ee9b030844c852939095b1da0d0656a890"
@@ -1685,6 +1692,10 @@
    (git-checkout "craft-libs" "https://github.com/storytold/craft-libs"
                  "01315d9c92b5b0e69082d35ca56099461a1efd45"
                  "1qkgi79gdp1b0qhn457awn2sfiqm6cvzdpvzfls7ymf8i98c8q4h")
+   ;; craft-libs-05b99ee-checkout
+   (git-checkout "craft-libs" "https://github.com/storytold/craft-libs"
+                 "05b99ee5dcd64f2c954a693ef361301214ddc3c7"
+                 "02y1r1zwjdahd461gggjz1h5k3vppkjmlv7wdmb05rgvmnxzcwm7")
    ;; craft-libs-068e079-checkout
    (git-checkout "craft-libs" "https://github.com/storytold/craft-libs"
                  "068e079c7be4b100a8a6b305b31ac881e069727e"
@@ -1913,74 +1924,74 @@
      655 656 657 659 661 664 665 666 667 668 669 670 671 672 673 674 675 676
      678 680 681 683 686 687 689 691 692 698 700 702 704 705 706 707 708 709
      713 714 712 715 716 718 719 721 722 723 727 736 737 738 740 742 744 745
-     748 750 751 752 754 756 758 761 762 763 767 768 769 770 774 775 776 777
-     778 779 781 783 786 789 790 791 792 794 795 797 798 802 803 805 806 807
-     809 810 811 812 813 814 815 816 817 818 819 820 821 822 823 824 825 826
-     827 828 829 830 831 832 833 834 835 836 837 838 839 840 841 842 850 851
-     853 856 857 860 862 864 865 892 895 896 897 898 900 901 902 903 904 907
-     908 910 911 912 914 915 917 918 920 921 923 924 925 926 927 928 929 930
-     931 932 938 939 940 941 942 943 944 945 947 949 950 952 953 955 956 957
-     959 965 966 967 968 971 972 973 979 980 981 982 984 985 986 987 988 989
-     990 991 992 993 997 995 999 1001 1002 1000 1004 1005 1007 1008 1014 1015
-     1017 1018 1019 1021 1022 1024 1025 1027 1029 1030 1031 1032 1035 1036
-     1038 1039 1041 1044 1045 1047 1052 1053 1054 1057 1060 1062 1063 1066
-     1067 1084 1085 1086 1087 1088 1089 1091 1092 1094 1096 1098 1099 1102
-     1104 1105 1106 1107 1108 1109 1113 1114 1117 1119 1120 1121 1122 1128
-     1129 1130 1131 1132 1134 1135 1136 1137 1138 1139 1141 1143 1146 1149
-     1151 1156 1157 1158 1159 1161 1162 1163 1164 1165 1166 1167 1168 1169
-     1170 1171 1172 1173 1174 1176 1177 1178 1180 1181 1183 1187 1188 1189
-     1190 1191 1192 1193 1194 1197 1198 1199 1200 1201 1202 1203 1204 1205
-     1207 1208 1243 1244 1245 1247 1249 1250 1254 1255 1256 1258 1261 1264
-     1267 1268 1272 1273 1274 1275 1279 1280 1281 1282 1283 1285 1287 1289
-     1290 1291 1292 1298 1299 1300 1301 1302 1306 1311 1316 1318 1320 1323
-     1324 1325 1326 1327 1328 1329 1330 1332 1333 1334 1336 1338 1341 1342
-     1343 1344 1347 1348 1349 1350 1351 1353 1357 1358 1360 1361 1362 1363
-     1366 1367 1369 1372 1374 1376 1379 1381 1382 1384 1386 1390 1391 1392
-     1394 1395 1397 1398 1400 1401 1406 1407 1408 1409 1410 1411 1413 1415
-     1417 1419 1426 1429 1430 1431 1432 1433 1436 1453 1456 1458 1459 1460
-     1461 1462 1463 1464 1465 1466 1467 1468 1469 1470 1472 1479 1483 1485
-     1486 1487 1488 1489 1490 1491 1492 1493 1495 1496 1497 1498 1499 1502
-     1504 1507 1509 1510 1511 1513 1515 1516 1519 1521 1523 1524 1526 1528
-     1531 1534 1537 1540 1542 1545 1548 1551 1554 1559 1561 1562 1563 1564
-     1565 1566 1567 1570 1575 1576 1579 1580 1581 1583 1584 1585 1586 1587
-     1588 1590 1591 1592 1593 1594 1596 1601 1603 1606 1609 1610 1611 1613
-     1615 1617 1618 1620 1624 1628 1629 1631 1632 1633 1634 1636 1643 1648
-     1649 1652 1653 1654 1655 1656 1657 1659 1662 1665)))
+     748 750 751 752 754 756 759 762 763 764 768 769 770 771 775 776 777 778
+     779 780 782 784 787 790 791 792 793 795 796 798 799 803 804 806 807 808
+     810 811 812 813 814 815 816 817 818 819 820 821 822 823 824 825 826 827
+     828 829 830 831 832 833 834 835 836 837 838 839 840 841 842 843 851 852
+     854 857 858 861 863 865 866 893 896 897 898 899 901 902 903 904 905 908
+     909 911 912 913 915 916 918 919 921 922 924 925 926 927 928 929 930 931
+     932 933 939 940 941 942 943 944 945 946 948 950 951 953 954 956 957 958
+     960 966 967 968 969 972 973 974 980 981 982 983 985 986 987 988 989 990
+     991 992 993 994 998 996 1000 1002 1003 1001 1005 1006 1008 1009 1015 1016
+     1018 1019 1020 1022 1023 1025 1026 1028 1030 1031 1032 1033 1036 1037
+     1039 1040 1042 1045 1046 1048 1053 1054 1055 1058 1061 1063 1064 1067
+     1068 1085 1086 1087 1088 1089 1090 1092 1093 1095 1097 1099 1100 1103
+     1105 1106 1107 1108 1109 1110 1114 1115 1118 1120 1121 1122 1123 1129
+     1130 1131 1132 1133 1135 1136 1137 1138 1139 1140 1142 1144 1147 1150
+     1152 1157 1158 1159 1160 1162 1163 1164 1165 1166 1167 1168 1169 1170
+     1171 1172 1173 1174 1175 1177 1178 1179 1181 1182 1184 1188 1189 1190
+     1191 1192 1193 1194 1195 1198 1199 1200 1201 1202 1203 1204 1205 1206
+     1208 1209 1244 1245 1246 1248 1250 1251 1255 1256 1257 1259 1262 1265
+     1268 1269 1273 1274 1275 1276 1280 1281 1282 1283 1284 1286 1288 1290
+     1291 1292 1293 1299 1300 1301 1302 1303 1307 1312 1317 1319 1321 1324
+     1325 1326 1327 1328 1329 1330 1331 1333 1334 1335 1337 1339 1342 1343
+     1344 1345 1348 1349 1350 1351 1352 1354 1358 1359 1361 1362 1363 1364
+     1367 1368 1370 1373 1375 1377 1380 1382 1383 1385 1387 1391 1392 1393
+     1395 1396 1398 1399 1401 1402 1407 1408 1409 1410 1411 1412 1414 1416
+     1418 1420 1427 1430 1431 1432 1433 1434 1437 1454 1457 1459 1460 1461
+     1462 1463 1464 1465 1466 1467 1468 1469 1470 1471 1473 1480 1485 1487
+     1488 1489 1490 1491 1492 1493 1494 1495 1497 1498 1499 1500 1501 1504
+     1506 1509 1511 1512 1513 1515 1517 1518 1521 1523 1525 1526 1528 1530
+     1533 1536 1539 1542 1544 1547 1550 1553 1556 1561 1563 1564 1565 1566
+     1567 1568 1569 1572 1577 1578 1582 1583 1584 1586 1587 1588 1589 1590
+     1591 1593 1594 1595 1596 1597 1599 1604 1606 1609 1612 1613 1614 1616
+     1618 1620 1621 1623 1627 1631 1632 1634 1635 1636 1637 1639 1646 1651
+     1652 1655 1656 1657 1658 1659 1660 1662 1665 1668)))
 
 (define photocraft-git-crates
   (git-crate-selection
    %git-checkouts
-   '(("craft-docpath" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/docpath")
-     ("craft-fonts-build" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/fonts-build")
-     ("craft-heif" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=081078bb1b44aeedfa5bef3d4f13d978dc77510a#081078bb1b44aeedfa5bef3d4f13d978dc77510a" 3 "crates/heif")
-     ("craft-i18n" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/i18n")
-     ("craft-jpeg" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/jpeg")
-     ("craft-pcraft-format" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=b8f7d93b00dfb8f172938f3d2d796ae62dcfe123#b8f7d93b00dfb8f172938f3d2d796ae62dcfe123" 28 "crates/pcraft-format")
-     ("craft-pdf" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/pdf")
-     ("craft-print" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/print")
-     ("craft-ui" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/ui")
-     ("craft-update" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/update")
-     ("craft-winprint-gdi" "0.1.0" "git+https://github.com/storytold/winprint.rs?rev=64e7afd4d1483512385012c340ecaaaf0f3beb7f#64e7afd4d1483512385012c340ecaaaf0f3beb7f" 49 "crates/gdi")
-     ("ecolor" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/ecolor")
-     ("eframe" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/eframe")
-     ("egui" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui")
-     ("egui-wgpu" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui-wgpu")
-     ("egui-winit" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui-winit")
-     ("egui_extras" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_extras")
-     ("egui_glow" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_glow")
-     ("egui_kittest" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_kittest")
-     ("emath" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/emath")
-     ("epaint" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/epaint")
-     ("epaint_default_fonts" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/epaint_default_fonts")
-     ("hayro" "0.7.1" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "vendor/hayro")
-     ("hayro-interpret" "0.7.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "vendor/hayro-interpret")
-     ("hayro-jbig2" "0.3.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "vendor/hayro-jbig2")
-     ("hayro-syntax" "0.7.2" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "vendor/hayro-syntax")
-     ("winit" "0.30.13" "git+https://github.com/storytold/winit.git?rev=a517b3846ee8457d84ee4975110bfda6797c44dc#a517b3846ee8457d84ee4975110bfda6797c44dc" 46 ".")
-     ("winprint" "0.2.1" "git+https://github.com/storytold/winprint.rs?rev=bc06a7c48b768eb27a828c7986f6d2868b245ee0#bc06a7c48b768eb27a828c7986f6d2868b245ee0" 52 ".")
-     ("egui_demo_lib" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_demo_lib")
-     ("egui_inspection" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_inspection")
-     ("egui_system_font_provider" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_system_font_provider"))))
+   '(("craft-docpath" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/docpath")
+     ("craft-fonts-build" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/fonts-build")
+     ("craft-heif" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=081078bb1b44aeedfa5bef3d4f13d978dc77510a#081078bb1b44aeedfa5bef3d4f13d978dc77510a" 5 "crates/heif")
+     ("craft-i18n" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/i18n")
+     ("craft-jpeg" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/jpeg")
+     ("craft-pcraft-format" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=b8f7d93b00dfb8f172938f3d2d796ae62dcfe123#b8f7d93b00dfb8f172938f3d2d796ae62dcfe123" 30 "crates/pcraft-format")
+     ("craft-pdf" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/pdf")
+     ("craft-print" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/print")
+     ("craft-ui" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/ui")
+     ("craft-update" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/update")
+     ("craft-winprint-gdi" "0.1.0" "git+https://github.com/storytold/winprint.rs?rev=64e7afd4d1483512385012c340ecaaaf0f3beb7f#64e7afd4d1483512385012c340ecaaaf0f3beb7f" 51 "crates/gdi")
+     ("ecolor" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/ecolor")
+     ("eframe" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/eframe")
+     ("egui" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui")
+     ("egui-wgpu" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui-wgpu")
+     ("egui-winit" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui-winit")
+     ("egui_extras" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_extras")
+     ("egui_glow" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_glow")
+     ("egui_kittest" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_kittest")
+     ("emath" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/emath")
+     ("epaint" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/epaint")
+     ("epaint_default_fonts" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/epaint_default_fonts")
+     ("hayro" "0.7.1" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "vendor/hayro")
+     ("hayro-interpret" "0.7.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "vendor/hayro-interpret")
+     ("hayro-jbig2" "0.3.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "vendor/hayro-jbig2")
+     ("hayro-syntax" "0.7.2" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "vendor/hayro-syntax")
+     ("winit" "0.30.13" "git+https://github.com/storytold/winit.git?rev=a517b3846ee8457d84ee4975110bfda6797c44dc#a517b3846ee8457d84ee4975110bfda6797c44dc" 48 ".")
+     ("winprint" "0.2.1" "git+https://github.com/storytold/winprint.rs?rev=bc06a7c48b768eb27a828c7986f6d2868b245ee0#bc06a7c48b768eb27a828c7986f6d2868b245ee0" 54 ".")
+     ("egui_demo_lib" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_demo_lib")
+     ("egui_inspection" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_inspection")
+     ("egui_system_font_provider" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_system_font_provider"))))
 
 (define effectcraft-cargo-inputs
   (crate-selection
@@ -1999,122 +2010,122 @@
      573 590 591 592 594 595 597 599 600 602 604 606 607 609 610 615 617 618
      619 626 631 632 642 643 644 651 652 653 654 655 656 657 661 678 680 681
      683 687 690 691 692 696 700 702 704 705 709 711 713 712 715 716 718 719
-     728 731 735 737 738 740 742 744 745 749 751 752 756 758 761 762 763 766
-     767 768 769 770 774 775 776 778 781 783 784 786 787 789 790 791 792 794
-     795 796 797 798 799 802 803 805 806 807 808 811 813 814 815 816 818 819
-     820 822 826 827 828 830 831 832 834 835 836 837 838 839 840 841 842 850
-     852 853 857 860 862 864 865 895 896 897 902 903 904 906 910 911 912 915
-     918 921 924 927 928 929 930 938 939 940 942 943 944 945 947 949 950 952
-     953 954 956 957 965 968 971 972 973 979 980 981 984 985 986 987 991 992
-     993 997 995 999 1002 1000 1003 1005 1007 1014 1017 1018 1019 1020 1021
-     1022 1025 1027 1029 1030 1031 1032 1040 1041 1043 1044 1052 1054 1068
-     1084 1085 1086 1088 1089 1092 1095 1096 1098 1099 1103 1104 1105 1108
-     1109 1112 1113 1115 1120 1121 1122 1128 1129 1130 1131 1132 1133 1134
-     1135 1136 1138 1141 1143 1151 1157 1158 1169 1170 1171 1172 1174 1177
-     1178 1180 1181 1182 1183 1187 1188 1189 1190 1191 1192 1193 1197 1198
-     1200 1201 1202 1204 1205 1207 1211 1212 1213 1214 1215 1216 1217 1218
-     1220 1221 1222 1223 1224 1225 1226 1227 1228 1229 1231 1232 1233 1235
-     1236 1237 1238 1239 1240 1241 1242 1244 1245 1249 1250 1252 1253 1259
-     1260 1261 1267 1268 1270 1272 1273 1274 1275 1279 1280 1281 1282 1283
-     1284 1285 1286 1287 1290 1294 1306 1311 1316 1318 1320 1327 1328 1329
-     1332 1338 1340 1341 1343 1344 1347 1348 1351 1353 1355 1356 1358 1361
-     1363 1367 1369 1372 1374 1379 1381 1382 1386 1390 1394 1397 1398 1401
-     1406 1407 1409 1410 1411 1413 1415 1417 1419 1421 1422 1423 1425 1429
-     1430 1431 1432 1433 1435 1452 1455 1458 1459 1460 1461 1462 1463 1464
-     1465 1466 1467 1469 1470 1472 1473 1477 1483 1485 1486 1487 1488 1489
-     1490 1491 1492 1493 1496 1497 1498 1499 1500 1501 1502 1503 1504 1505
-     1506 1507 1508 1509 1510 1511 1512 1513 1514 1515 1516 1517 1518 1519
-     1520 1521 1522 1523 1524 1526 1527 1528 1530 1531 1533 1534 1536 1537
-     1539 1540 1542 1544 1545 1547 1548 1550 1551 1553 1554 1559 1561 1562
-     1563 1567 1570 1575 1576 1579 1580 1581 1588 1590 1591 1593 1596 1603
-     1607 1609 1610 1611 1613 1615 1617 1618 1620 1624 1628 1629 1631 1633
-     1634 1636 1641 1645 1648 1649 1653 1654 1656 1659 1662 1665)))
+     728 731 735 737 738 740 742 744 745 749 751 752 756 759 762 763 764 767
+     768 769 770 771 775 776 777 779 782 784 785 787 788 790 791 792 793 795
+     796 797 798 799 800 803 804 806 807 808 809 812 814 815 816 817 819 820
+     821 823 827 828 829 831 832 833 835 836 837 838 839 840 841 842 843 851
+     853 854 858 861 863 865 866 896 897 898 903 904 905 907 911 912 913 916
+     919 922 925 928 929 930 931 939 940 941 943 944 945 946 948 950 951 953
+     954 955 957 958 966 969 972 973 974 980 981 982 985 986 987 988 992 993
+     994 998 996 1000 1003 1001 1004 1006 1008 1015 1018 1019 1020 1021 1022
+     1023 1026 1028 1030 1031 1032 1033 1041 1042 1044 1045 1053 1055 1069
+     1085 1086 1087 1089 1090 1093 1096 1097 1099 1100 1104 1105 1106 1109
+     1110 1113 1114 1116 1121 1122 1123 1129 1130 1131 1132 1133 1134 1135
+     1136 1137 1139 1142 1144 1152 1158 1159 1170 1171 1172 1173 1175 1178
+     1179 1181 1182 1183 1184 1188 1189 1190 1191 1192 1193 1194 1198 1199
+     1201 1202 1203 1205 1206 1208 1212 1213 1214 1215 1216 1217 1218 1219
+     1221 1222 1223 1224 1225 1226 1227 1228 1229 1230 1232 1233 1234 1236
+     1237 1238 1239 1240 1241 1242 1243 1245 1246 1250 1251 1253 1254 1260
+     1261 1262 1268 1269 1271 1273 1274 1275 1276 1280 1281 1282 1283 1284
+     1285 1286 1287 1288 1291 1295 1307 1312 1317 1319 1321 1328 1329 1330
+     1333 1339 1341 1342 1344 1345 1348 1349 1352 1354 1356 1357 1359 1362
+     1364 1368 1370 1373 1375 1380 1382 1383 1387 1391 1395 1398 1399 1402
+     1407 1408 1410 1411 1412 1414 1416 1418 1420 1422 1423 1424 1426 1430
+     1431 1432 1433 1434 1436 1453 1456 1459 1460 1461 1462 1463 1464 1465
+     1466 1467 1468 1470 1471 1473 1474 1478 1485 1487 1488 1489 1490 1491
+     1492 1493 1494 1495 1498 1499 1500 1501 1502 1503 1504 1505 1506 1507
+     1508 1509 1510 1511 1512 1513 1514 1515 1516 1517 1518 1519 1520 1521
+     1522 1523 1524 1525 1526 1528 1529 1530 1532 1533 1535 1536 1538 1539
+     1541 1542 1544 1546 1547 1549 1550 1552 1553 1555 1556 1561 1563 1564
+     1565 1569 1572 1577 1578 1582 1583 1584 1591 1593 1594 1596 1599 1606
+     1610 1612 1613 1614 1616 1618 1620 1621 1623 1627 1631 1632 1634 1636
+     1637 1639 1644 1648 1651 1652 1656 1657 1659 1662 1665 1668)))
 
 (define effectcraft-git-crates
   (git-crate-selection
    %git-checkouts
-   '(("craft-aaf" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/aaf")
-     ("craft-aep" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87#5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87" 15 "crates/aep")
-     ("craft-audio" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=30596f73c5ef851ba3dad9cf145669f391e2eb0d#30596f73c5ef851ba3dad9cf145669f391e2eb0d" 7 "crates/audio")
-     ("craft-audio" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/audio")
-     ("craft-cfb" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/cfb")
-     ("craft-cms" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=58964adec11197594d9b6b79a94ae6232221211a#58964adec11197594d9b6b79a94ae6232221211a" 14 "crates/cms")
-     ("craft-codepage" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87#5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87" 15 "crates/codepage")
-     ("craft-color" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/color")
-     ("craft-doc" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87#5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87" 15 "crates/doc")
-     ("craft-docpath" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87#5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87" 15 "crates/docpath")
-     ("craft-dpx" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/dpx")
-     ("craft-dpx" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87#5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87" 15 "crates/dpx")
-     ("craft-ecproj-format" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87#5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87" 15 "crates/ecproj-format")
-     ("craft-eps" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=068e079c7be4b100a8a6b305b31ac881e069727e#068e079c7be4b100a8a6b305b31ac881e069727e" 2 "crates/eps")
-     ("craft-exr" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/exr")
-     ("craft-exr" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=3b8e426a260695af840a2cd79a064d40778f939e#3b8e426a260695af840a2cd79a064d40778f939e" 10 "crates/exr")
-     ("craft-fonts-build" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87#5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87" 15 "crates/fonts-build")
-     ("craft-frame" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/frame")
-     ("craft-gif" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=ba25ccd233934d1b2f74e3c0f235168bf5f13ef3#ba25ccd233934d1b2f74e3c0f235168bf5f13ef3" 29 "crates/gif")
-     ("craft-hdr" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/hdr")
-     ("craft-i18n" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87#5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87" 15 "crates/i18n")
-     ("craft-jpeg" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/jpeg")
-     ("craft-jsonrpc" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=bc186ca719958fcce3b6ee24794277eabed14609#bc186ca719958fcce3b6ee24794277eabed14609" 31 "crates/jsonrpc")
-     ("craft-lottie" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87#5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87" 15 "crates/lottie")
-     ("craft-media" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=30596f73c5ef851ba3dad9cf145669f391e2eb0d#30596f73c5ef851ba3dad9cf145669f391e2eb0d" 7 "crates/media")
-     ("craft-media" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/media")
-     ("craft-media-source" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/media-source")
-     ("craft-mesh" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87#5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87" 15 "crates/mesh")
-     ("craft-mime" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87#5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87" 15 "crates/mime")
-     ("craft-pcraft-format" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87#5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87" 15 "crates/pcraft-format")
-     ("craft-pdf" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=068e079c7be4b100a8a6b305b31ac881e069727e#068e079c7be4b100a8a6b305b31ac881e069727e" 2 "crates/pdf")
-     ("craft-ps" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=068e079c7be4b100a8a6b305b31ac881e069727e#068e079c7be4b100a8a6b305b31ac881e069727e" 2 "crates/ps")
-     ("craft-psd" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/psd")
-     ("craft-psd" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=53198114310dbc2b41e18e4eaf2fd83e69964189#53198114310dbc2b41e18e4eaf2fd83e69964189" 13 "crates/psd")
-     ("craft-quit" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87#5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87" 15 "crates/quit")
-     ("craft-raw" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/raw")
-     ("craft-sniff" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/sniff")
-     ("craft-svg" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=3dff4793f1a5bd1f99a4fe3280d48f515158dff3#3dff4793f1a5bd1f99a4fe3280d48f515158dff3" 11 "crates/svg")
-     ("craft-tga" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/tga")
-     ("craft-tiff" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/tiff")
-     ("craft-time" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=0d6dd8bed815b8366869a800d2bf22588ca62dcb#0d6dd8bed815b8366869a800d2bf22588ca62dcb" 4 "crates/time")
-     ("craft-time" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/time")
-     ("craft-timeline" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=0d6dd8bed815b8366869a800d2bf22588ca62dcb#0d6dd8bed815b8366869a800d2bf22588ca62dcb" 4 "crates/timeline")
-     ("craft-timeline" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/timeline")
-     ("craft-ui" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87#5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87" 15 "crates/ui")
-     ("craft-update" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87#5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87" 15 "crates/update")
-     ("craft-vectorcraft-format" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87#5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87" 15 "crates/vectorcraft-format")
-     ("craft-video" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/video")
-     ("craft-webp" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87#5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87" 15 "crates/webp")
-     ("craft-xml" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/xml")
-     ("craft-xml" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=3dff4793f1a5bd1f99a4fe3280d48f515158dff3#3dff4793f1a5bd1f99a4fe3280d48f515158dff3" 11 "crates/xml")
-     ("craft-y4m" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/y4m")
-     ("craft-zip" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87#5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87" 15 "crates/zip")
-     ("ecolor" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/ecolor")
-     ("eframe" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/eframe")
-     ("egui" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui")
-     ("egui-wgpu" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui-wgpu")
-     ("egui-winit" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui-winit")
-     ("egui_extras" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_extras")
-     ("egui_glow" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_glow")
-     ("egui_kittest" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_kittest")
-     ("emath" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/emath")
-     ("epaint" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/epaint")
-     ("epaint_default_fonts" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/epaint_default_fonts")
-     ("filmcraft-bitstream" "0.20.1" "git+https://github.com/storytold/filmcraft?rev=e7345f6e04a9bb921c2613a6aa92d162edf39b3b#e7345f6e04a9bb921c2613a6aa92d162edf39b3b" 43 "crates/bitstream")
-     ("filmcraft-cfb" "0.20.1" "git+https://github.com/storytold/filmcraft?rev=e7345f6e04a9bb921c2613a6aa92d162edf39b3b#e7345f6e04a9bb921c2613a6aa92d162edf39b3b" 43 "crates/cfb")
-     ("filmcraft-codecs" "0.20.1" "git+https://github.com/storytold/filmcraft?rev=e7345f6e04a9bb921c2613a6aa92d162edf39b3b#e7345f6e04a9bb921c2613a6aa92d162edf39b3b" 43 "crates/codecs")
-     ("filmcraft-color" "0.20.1" "git+https://github.com/storytold/filmcraft?rev=e7345f6e04a9bb921c2613a6aa92d162edf39b3b#e7345f6e04a9bb921c2613a6aa92d162edf39b3b" 43 "crates/color")
-     ("filmcraft-dng" "0.20.1" "git+https://github.com/storytold/filmcraft?rev=e7345f6e04a9bb921c2613a6aa92d162edf39b3b#e7345f6e04a9bb921c2613a6aa92d162edf39b3b" 43 "crates/dng")
-     ("filmcraft-frame" "0.20.1" "git+https://github.com/storytold/filmcraft?rev=e7345f6e04a9bb921c2613a6aa92d162edf39b3b#e7345f6e04a9bb921c2613a6aa92d162edf39b3b" 43 "crates/frame")
-     ("filmcraft-geom" "0.20.1" "git+https://github.com/storytold/filmcraft?rev=e7345f6e04a9bb921c2613a6aa92d162edf39b3b#e7345f6e04a9bb921c2613a6aa92d162edf39b3b" 43 "crates/geom")
-     ("filmcraft-interchange" "0.20.1" "git+https://github.com/storytold/filmcraft?rev=e7345f6e04a9bb921c2613a6aa92d162edf39b3b#e7345f6e04a9bb921c2613a6aa92d162edf39b3b" 43 "crates/interchange")
-     ("filmcraft-isobmff" "0.20.1" "git+https://github.com/storytold/filmcraft?rev=e7345f6e04a9bb921c2613a6aa92d162edf39b3b#e7345f6e04a9bb921c2613a6aa92d162edf39b3b" 43 "crates/isobmff")
-     ("filmcraft-matroska" "0.20.1" "git+https://github.com/storytold/filmcraft?rev=e7345f6e04a9bb921c2613a6aa92d162edf39b3b#e7345f6e04a9bb921c2613a6aa92d162edf39b3b" 43 "crates/matroska")
-     ("filmcraft-media" "0.20.1" "git+https://github.com/storytold/filmcraft?rev=e7345f6e04a9bb921c2613a6aa92d162edf39b3b#e7345f6e04a9bb921c2613a6aa92d162edf39b3b" 43 "crates/media")
-     ("filmcraft-project" "0.20.1" "git+https://github.com/storytold/filmcraft?rev=e7345f6e04a9bb921c2613a6aa92d162edf39b3b#e7345f6e04a9bb921c2613a6aa92d162edf39b3b" 43 "crates/project")
-     ("filmcraft-time" "0.20.1" "git+https://github.com/storytold/filmcraft?rev=e7345f6e04a9bb921c2613a6aa92d162edf39b3b#e7345f6e04a9bb921c2613a6aa92d162edf39b3b" 43 "crates/time")
-     ("hayro-jbig2" "0.3.0" "git+https://github.com/storytold/craft-libs?rev=068e079c7be4b100a8a6b305b31ac881e069727e#068e079c7be4b100a8a6b305b31ac881e069727e" 2 "vendor/hayro-jbig2")
-     ("hayro-syntax" "0.7.2" "git+https://github.com/storytold/craft-libs?rev=068e079c7be4b100a8a6b305b31ac881e069727e#068e079c7be4b100a8a6b305b31ac881e069727e" 2 "vendor/hayro-syntax")
-     ("vectorcraft-geom" "0.18.0" "git+https://github.com/storytold/vectorcraft.git?rev=6b3a6b8788ebcb420d69449199cbdf323888d27e#6b3a6b8788ebcb420d69449199cbdf323888d27e" 45 "crates/geom")
-     ("vectorcraft-pathops" "0.18.0" "git+https://github.com/storytold/vectorcraft.git?rev=6b3a6b8788ebcb420d69449199cbdf323888d27e#6b3a6b8788ebcb420d69449199cbdf323888d27e" 45 "crates/pathops")
-     ("winit" "0.30.13" "git+https://github.com/storytold/winit.git?rev=a517b3846ee8457d84ee4975110bfda6797c44dc#a517b3846ee8457d84ee4975110bfda6797c44dc" 46 "."))))
+   '(("craft-aaf" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/aaf")
+     ("craft-aep" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87#5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87" 17 "crates/aep")
+     ("craft-audio" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=30596f73c5ef851ba3dad9cf145669f391e2eb0d#30596f73c5ef851ba3dad9cf145669f391e2eb0d" 9 "crates/audio")
+     ("craft-audio" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/audio")
+     ("craft-cfb" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/cfb")
+     ("craft-cms" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=58964adec11197594d9b6b79a94ae6232221211a#58964adec11197594d9b6b79a94ae6232221211a" 16 "crates/cms")
+     ("craft-codepage" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87#5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87" 17 "crates/codepage")
+     ("craft-color" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/color")
+     ("craft-doc" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87#5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87" 17 "crates/doc")
+     ("craft-docpath" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87#5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87" 17 "crates/docpath")
+     ("craft-dpx" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/dpx")
+     ("craft-dpx" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87#5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87" 17 "crates/dpx")
+     ("craft-ecproj-format" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87#5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87" 17 "crates/ecproj-format")
+     ("craft-eps" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=068e079c7be4b100a8a6b305b31ac881e069727e#068e079c7be4b100a8a6b305b31ac881e069727e" 4 "crates/eps")
+     ("craft-exr" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/exr")
+     ("craft-exr" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=3b8e426a260695af840a2cd79a064d40778f939e#3b8e426a260695af840a2cd79a064d40778f939e" 12 "crates/exr")
+     ("craft-fonts-build" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87#5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87" 17 "crates/fonts-build")
+     ("craft-frame" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/frame")
+     ("craft-gif" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=ba25ccd233934d1b2f74e3c0f235168bf5f13ef3#ba25ccd233934d1b2f74e3c0f235168bf5f13ef3" 31 "crates/gif")
+     ("craft-hdr" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/hdr")
+     ("craft-i18n" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87#5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87" 17 "crates/i18n")
+     ("craft-jpeg" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/jpeg")
+     ("craft-jsonrpc" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=bc186ca719958fcce3b6ee24794277eabed14609#bc186ca719958fcce3b6ee24794277eabed14609" 33 "crates/jsonrpc")
+     ("craft-lottie" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87#5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87" 17 "crates/lottie")
+     ("craft-media" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=30596f73c5ef851ba3dad9cf145669f391e2eb0d#30596f73c5ef851ba3dad9cf145669f391e2eb0d" 9 "crates/media")
+     ("craft-media" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/media")
+     ("craft-media-source" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/media-source")
+     ("craft-mesh" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87#5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87" 17 "crates/mesh")
+     ("craft-mime" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87#5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87" 17 "crates/mime")
+     ("craft-pcraft-format" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87#5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87" 17 "crates/pcraft-format")
+     ("craft-pdf" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=068e079c7be4b100a8a6b305b31ac881e069727e#068e079c7be4b100a8a6b305b31ac881e069727e" 4 "crates/pdf")
+     ("craft-ps" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=068e079c7be4b100a8a6b305b31ac881e069727e#068e079c7be4b100a8a6b305b31ac881e069727e" 4 "crates/ps")
+     ("craft-psd" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/psd")
+     ("craft-psd" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=53198114310dbc2b41e18e4eaf2fd83e69964189#53198114310dbc2b41e18e4eaf2fd83e69964189" 15 "crates/psd")
+     ("craft-quit" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87#5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87" 17 "crates/quit")
+     ("craft-raw" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/raw")
+     ("craft-sniff" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/sniff")
+     ("craft-svg" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=3dff4793f1a5bd1f99a4fe3280d48f515158dff3#3dff4793f1a5bd1f99a4fe3280d48f515158dff3" 13 "crates/svg")
+     ("craft-tga" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/tga")
+     ("craft-tiff" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/tiff")
+     ("craft-time" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=0d6dd8bed815b8366869a800d2bf22588ca62dcb#0d6dd8bed815b8366869a800d2bf22588ca62dcb" 6 "crates/time")
+     ("craft-time" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/time")
+     ("craft-timeline" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=0d6dd8bed815b8366869a800d2bf22588ca62dcb#0d6dd8bed815b8366869a800d2bf22588ca62dcb" 6 "crates/timeline")
+     ("craft-timeline" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/timeline")
+     ("craft-ui" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87#5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87" 17 "crates/ui")
+     ("craft-update" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87#5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87" 17 "crates/update")
+     ("craft-vectorcraft-format" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87#5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87" 17 "crates/vectorcraft-format")
+     ("craft-video" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/video")
+     ("craft-webp" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87#5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87" 17 "crates/webp")
+     ("craft-xml" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/xml")
+     ("craft-xml" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=3dff4793f1a5bd1f99a4fe3280d48f515158dff3#3dff4793f1a5bd1f99a4fe3280d48f515158dff3" 13 "crates/xml")
+     ("craft-y4m" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/y4m")
+     ("craft-zip" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87#5a7a63a21dd03dd1a2bc6c308a3a6ce818caae87" 17 "crates/zip")
+     ("ecolor" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/ecolor")
+     ("eframe" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/eframe")
+     ("egui" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui")
+     ("egui-wgpu" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui-wgpu")
+     ("egui-winit" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui-winit")
+     ("egui_extras" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_extras")
+     ("egui_glow" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_glow")
+     ("egui_kittest" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_kittest")
+     ("emath" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/emath")
+     ("epaint" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/epaint")
+     ("epaint_default_fonts" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/epaint_default_fonts")
+     ("filmcraft-bitstream" "0.20.1" "git+https://github.com/storytold/filmcraft?rev=e7345f6e04a9bb921c2613a6aa92d162edf39b3b#e7345f6e04a9bb921c2613a6aa92d162edf39b3b" 45 "crates/bitstream")
+     ("filmcraft-cfb" "0.20.1" "git+https://github.com/storytold/filmcraft?rev=e7345f6e04a9bb921c2613a6aa92d162edf39b3b#e7345f6e04a9bb921c2613a6aa92d162edf39b3b" 45 "crates/cfb")
+     ("filmcraft-codecs" "0.20.1" "git+https://github.com/storytold/filmcraft?rev=e7345f6e04a9bb921c2613a6aa92d162edf39b3b#e7345f6e04a9bb921c2613a6aa92d162edf39b3b" 45 "crates/codecs")
+     ("filmcraft-color" "0.20.1" "git+https://github.com/storytold/filmcraft?rev=e7345f6e04a9bb921c2613a6aa92d162edf39b3b#e7345f6e04a9bb921c2613a6aa92d162edf39b3b" 45 "crates/color")
+     ("filmcraft-dng" "0.20.1" "git+https://github.com/storytold/filmcraft?rev=e7345f6e04a9bb921c2613a6aa92d162edf39b3b#e7345f6e04a9bb921c2613a6aa92d162edf39b3b" 45 "crates/dng")
+     ("filmcraft-frame" "0.20.1" "git+https://github.com/storytold/filmcraft?rev=e7345f6e04a9bb921c2613a6aa92d162edf39b3b#e7345f6e04a9bb921c2613a6aa92d162edf39b3b" 45 "crates/frame")
+     ("filmcraft-geom" "0.20.1" "git+https://github.com/storytold/filmcraft?rev=e7345f6e04a9bb921c2613a6aa92d162edf39b3b#e7345f6e04a9bb921c2613a6aa92d162edf39b3b" 45 "crates/geom")
+     ("filmcraft-interchange" "0.20.1" "git+https://github.com/storytold/filmcraft?rev=e7345f6e04a9bb921c2613a6aa92d162edf39b3b#e7345f6e04a9bb921c2613a6aa92d162edf39b3b" 45 "crates/interchange")
+     ("filmcraft-isobmff" "0.20.1" "git+https://github.com/storytold/filmcraft?rev=e7345f6e04a9bb921c2613a6aa92d162edf39b3b#e7345f6e04a9bb921c2613a6aa92d162edf39b3b" 45 "crates/isobmff")
+     ("filmcraft-matroska" "0.20.1" "git+https://github.com/storytold/filmcraft?rev=e7345f6e04a9bb921c2613a6aa92d162edf39b3b#e7345f6e04a9bb921c2613a6aa92d162edf39b3b" 45 "crates/matroska")
+     ("filmcraft-media" "0.20.1" "git+https://github.com/storytold/filmcraft?rev=e7345f6e04a9bb921c2613a6aa92d162edf39b3b#e7345f6e04a9bb921c2613a6aa92d162edf39b3b" 45 "crates/media")
+     ("filmcraft-project" "0.20.1" "git+https://github.com/storytold/filmcraft?rev=e7345f6e04a9bb921c2613a6aa92d162edf39b3b#e7345f6e04a9bb921c2613a6aa92d162edf39b3b" 45 "crates/project")
+     ("filmcraft-time" "0.20.1" "git+https://github.com/storytold/filmcraft?rev=e7345f6e04a9bb921c2613a6aa92d162edf39b3b#e7345f6e04a9bb921c2613a6aa92d162edf39b3b" 45 "crates/time")
+     ("hayro-jbig2" "0.3.0" "git+https://github.com/storytold/craft-libs?rev=068e079c7be4b100a8a6b305b31ac881e069727e#068e079c7be4b100a8a6b305b31ac881e069727e" 4 "vendor/hayro-jbig2")
+     ("hayro-syntax" "0.7.2" "git+https://github.com/storytold/craft-libs?rev=068e079c7be4b100a8a6b305b31ac881e069727e#068e079c7be4b100a8a6b305b31ac881e069727e" 4 "vendor/hayro-syntax")
+     ("vectorcraft-geom" "0.18.0" "git+https://github.com/storytold/vectorcraft.git?rev=6b3a6b8788ebcb420d69449199cbdf323888d27e#6b3a6b8788ebcb420d69449199cbdf323888d27e" 47 "crates/geom")
+     ("vectorcraft-pathops" "0.18.0" "git+https://github.com/storytold/vectorcraft.git?rev=6b3a6b8788ebcb420d69449199cbdf323888d27e#6b3a6b8788ebcb420d69449199cbdf323888d27e" 47 "crates/pathops")
+     ("winit" "0.30.13" "git+https://github.com/storytold/winit.git?rev=a517b3846ee8457d84ee4975110bfda6797c44dc#a517b3846ee8457d84ee4975110bfda6797c44dc" 48 "."))))
 
 (define filmcraft-cargo-inputs
   (crate-selection
@@ -2134,62 +2145,62 @@
      567 568 570 573 584 585 590 591 592 594 595 597 599 600 602 604 606 607
      609 610 614 615 617 618 619 626 628 638 639 643 644 651 652 653 654 655
      656 657 661 678 680 681 683 687 689 696 702 704 705 709 713 712 715 716
-     718 719 731 740 742 744 751 752 754 756 758 761 762 763 767 768 769 774
-     776 778 788 789 790 791 792 793 795 796 797 798 802 803 805 806 807 808
-     811 813 814 815 816 818 819 820 822 823 825 826 827 828 831 832 834 835
-     836 837 838 839 840 841 842 843 850 854 856 857 860 862 864 865 887 889
-     893 894 895 896 897 902 904 908 910 911 912 915 918 921 924 927 928 929
-     930 933 935 936 938 939 940 942 943 944 945 946 947 948 949 950 952 953
-     955 956 957 961 963 964 965 966 967 968 971 973 979 980 981 984 985 986
-     987 991 992 993 996 997 995 998 999 1001 1002 1000 1003 1005 1007 1017
-     1018 1019 1021 1022 1025 1029 1030 1031 1032 1035 1036 1041 1044 1050
-     1052 1054 1057 1060 1067 1070 1084 1085 1086 1088 1089 1092 1094 1096
-     1098 1099 1100 1101 1102 1104 1105 1112 1113 1114 1117 1119 1120 1121
-     1123 1128 1129 1130 1131 1132 1133 1134 1135 1136 1137 1138 1141 1142
-     1143 1151 1157 1158 1159 1169 1170 1172 1174 1177 1180 1181 1183 1187
-     1188 1189 1190 1191 1192 1193 1194 1197 1198 1203 1207 1211 1213 1215
-     1217 1221 1223 1225 1228 1232 1236 1238 1240 1242 1243 1244 1245 1249
-     1250 1252 1257 1261 1263 1267 1268 1272 1273 1274 1275 1279 1280 1281
-     1282 1287 1298 1299 1302 1304 1306 1309 1311 1314 1315 1316 1318 1320
-     1327 1328 1329 1332 1338 1339 1341 1343 1344 1347 1348 1351 1353 1355
-     1358 1361 1363 1365 1367 1369 1372 1374 1379 1381 1382 1386 1394 1397
-     1398 1400 1401 1406 1407 1409 1410 1411 1413 1415 1417 1419 1458 1459
-     1460 1461 1462 1463 1464 1465 1466 1467 1469 1470 1472 1479 1483 1485
-     1486 1487 1488 1489 1490 1491 1492 1493 1496 1497 1498 1499 1500 1502
-     1504 1505 1507 1509 1510 1511 1513 1515 1516 1517 1519 1521 1522 1523
-     1524 1526 1527 1528 1531 1533 1534 1536 1537 1539 1540 1542 1544 1545
-     1547 1548 1550 1551 1553 1554 1557 1559 1561 1562 1563 1567 1570 1575
-     1576 1579 1580 1581 1582 1588 1590 1591 1593 1603 1607 1609 1610 1611
-     1613 1615 1617 1618 1620 1624 1628 1629 1630 1632 1633 1634 1637 1640
-     1643 1648 1649 1653 1656 1659 1662 1665)))
+     718 719 731 740 742 744 751 752 754 756 759 762 763 764 768 769 770 775
+     777 779 789 790 791 792 793 794 796 797 798 799 803 804 806 807 808 809
+     812 814 815 816 817 819 820 821 823 824 826 827 828 829 832 833 835 836
+     837 838 839 840 841 842 843 844 851 855 857 858 861 863 865 866 888 890
+     894 895 896 897 898 903 905 909 911 912 913 916 919 922 925 928 929 930
+     931 934 936 937 939 940 941 943 944 945 946 947 948 949 950 951 953 954
+     956 957 958 962 964 965 966 967 968 969 972 974 980 981 982 985 986 987
+     988 992 993 994 997 998 996 999 1000 1002 1003 1001 1004 1006 1008 1018
+     1019 1020 1022 1023 1026 1030 1031 1032 1033 1036 1037 1042 1045 1051
+     1053 1055 1058 1061 1068 1071 1085 1086 1087 1089 1090 1093 1095 1097
+     1099 1100 1101 1102 1103 1105 1106 1113 1114 1115 1118 1120 1121 1122
+     1124 1129 1130 1131 1132 1133 1134 1135 1136 1137 1138 1139 1142 1143
+     1144 1152 1158 1159 1160 1170 1171 1173 1175 1178 1181 1182 1184 1188
+     1189 1190 1191 1192 1193 1194 1195 1198 1199 1204 1208 1212 1214 1216
+     1218 1222 1224 1226 1229 1233 1237 1239 1241 1243 1244 1245 1246 1250
+     1251 1253 1258 1262 1264 1268 1269 1273 1274 1275 1276 1280 1281 1282
+     1283 1288 1299 1300 1303 1305 1307 1310 1312 1315 1316 1317 1319 1321
+     1328 1329 1330 1333 1339 1340 1342 1344 1345 1348 1349 1352 1354 1356
+     1359 1362 1364 1366 1368 1370 1373 1375 1380 1382 1383 1387 1395 1398
+     1399 1401 1402 1407 1408 1410 1411 1412 1414 1416 1418 1420 1459 1460
+     1461 1462 1463 1464 1465 1466 1467 1468 1470 1471 1473 1480 1485 1487
+     1488 1489 1490 1491 1492 1493 1494 1495 1498 1499 1500 1501 1502 1504
+     1506 1507 1509 1511 1512 1513 1515 1517 1518 1519 1521 1523 1524 1525
+     1526 1528 1529 1530 1533 1535 1536 1538 1539 1541 1542 1544 1546 1547
+     1549 1550 1552 1553 1555 1556 1559 1561 1563 1564 1565 1569 1572 1577
+     1578 1582 1583 1584 1585 1591 1593 1594 1596 1606 1610 1612 1613 1614
+     1616 1618 1620 1621 1623 1627 1631 1632 1633 1635 1636 1637 1640 1643
+     1646 1651 1652 1656 1659 1662 1665 1668)))
 
 (define filmcraft-git-crates
   (git-crate-selection
    %git-checkouts
-   '(("craft-audio" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=b72cb4d68ca09cf067f144afc1f13abe1e82e1ed#b72cb4d68ca09cf067f144afc1f13abe1e82e1ed" 26 "crates/audio")
-     ("craft-docpath" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=b72cb4d68ca09cf067f144afc1f13abe1e82e1ed#b72cb4d68ca09cf067f144afc1f13abe1e82e1ed" 26 "crates/docpath")
-     ("craft-fonts-build" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=b72cb4d68ca09cf067f144afc1f13abe1e82e1ed#b72cb4d68ca09cf067f144afc1f13abe1e82e1ed" 26 "crates/fonts-build")
-     ("craft-i18n" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=b72cb4d68ca09cf067f144afc1f13abe1e82e1ed#b72cb4d68ca09cf067f144afc1f13abe1e82e1ed" 26 "crates/i18n")
-     ("craft-media" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=b72cb4d68ca09cf067f144afc1f13abe1e82e1ed#b72cb4d68ca09cf067f144afc1f13abe1e82e1ed" 26 "crates/media")
-     ("craft-ui" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=b72cb4d68ca09cf067f144afc1f13abe1e82e1ed#b72cb4d68ca09cf067f144afc1f13abe1e82e1ed" 26 "crates/ui")
-     ("craft-update" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=b72cb4d68ca09cf067f144afc1f13abe1e82e1ed#b72cb4d68ca09cf067f144afc1f13abe1e82e1ed" 26 "crates/update")
-     ("craft-web-api" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=fd5e2feff6ea25bed371a99cc732b3968d621505#fd5e2feff6ea25bed371a99cc732b3968d621505" 40 "crates/web-api")
-     ("craft-web-host" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=fd5e2feff6ea25bed371a99cc732b3968d621505#fd5e2feff6ea25bed371a99cc732b3968d621505" 40 "crates/web-host")
-     ("ecolor" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/ecolor")
-     ("eframe" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/eframe")
-     ("egui" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui")
-     ("egui-wgpu" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui-wgpu")
-     ("egui-winit" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui-winit")
-     ("egui_extras" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_extras")
-     ("egui_glow" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_glow")
-     ("egui_kittest" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_kittest")
-     ("emath" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/emath")
-     ("epaint" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/epaint")
-     ("epaint_default_fonts" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/epaint_default_fonts")
-     ("winit" "0.30.13" "git+https://github.com/storytold/winit.git?rev=a517b3846ee8457d84ee4975110bfda6797c44dc#a517b3846ee8457d84ee4975110bfda6797c44dc" 46 ".")
-     ("egui_demo_lib" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_demo_lib")
-     ("egui_inspection" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_inspection")
-     ("egui_system_font_provider" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_system_font_provider"))))
+   '(("craft-audio" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=b72cb4d68ca09cf067f144afc1f13abe1e82e1ed#b72cb4d68ca09cf067f144afc1f13abe1e82e1ed" 28 "crates/audio")
+     ("craft-docpath" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=b72cb4d68ca09cf067f144afc1f13abe1e82e1ed#b72cb4d68ca09cf067f144afc1f13abe1e82e1ed" 28 "crates/docpath")
+     ("craft-fonts-build" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=b72cb4d68ca09cf067f144afc1f13abe1e82e1ed#b72cb4d68ca09cf067f144afc1f13abe1e82e1ed" 28 "crates/fonts-build")
+     ("craft-i18n" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=b72cb4d68ca09cf067f144afc1f13abe1e82e1ed#b72cb4d68ca09cf067f144afc1f13abe1e82e1ed" 28 "crates/i18n")
+     ("craft-media" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=b72cb4d68ca09cf067f144afc1f13abe1e82e1ed#b72cb4d68ca09cf067f144afc1f13abe1e82e1ed" 28 "crates/media")
+     ("craft-ui" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=b72cb4d68ca09cf067f144afc1f13abe1e82e1ed#b72cb4d68ca09cf067f144afc1f13abe1e82e1ed" 28 "crates/ui")
+     ("craft-update" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=b72cb4d68ca09cf067f144afc1f13abe1e82e1ed#b72cb4d68ca09cf067f144afc1f13abe1e82e1ed" 28 "crates/update")
+     ("craft-web-api" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=fd5e2feff6ea25bed371a99cc732b3968d621505#fd5e2feff6ea25bed371a99cc732b3968d621505" 42 "crates/web-api")
+     ("craft-web-host" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=fd5e2feff6ea25bed371a99cc732b3968d621505#fd5e2feff6ea25bed371a99cc732b3968d621505" 42 "crates/web-host")
+     ("ecolor" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/ecolor")
+     ("eframe" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/eframe")
+     ("egui" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui")
+     ("egui-wgpu" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui-wgpu")
+     ("egui-winit" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui-winit")
+     ("egui_extras" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_extras")
+     ("egui_glow" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_glow")
+     ("egui_kittest" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_kittest")
+     ("emath" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/emath")
+     ("epaint" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/epaint")
+     ("epaint_default_fonts" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/epaint_default_fonts")
+     ("winit" "0.30.13" "git+https://github.com/storytold/winit.git?rev=a517b3846ee8457d84ee4975110bfda6797c44dc#a517b3846ee8457d84ee4975110bfda6797c44dc" 48 ".")
+     ("egui_demo_lib" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_demo_lib")
+     ("egui_inspection" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_inspection")
+     ("egui_system_font_provider" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_system_font_provider"))))
 
 (define lightcraft-cargo-inputs
   (crate-selection
@@ -2211,59 +2222,59 @@
      638 639 642 643 644 650 652 653 654 655 656 657 658 660 661 664 665 666
      667 668 669 670 671 672 673 674 675 676 678 680 681 683 687 690 698 700
      702 704 705 709 713 712 715 716 718 719 721 733 734 735 737 740 742 744
-     746 751 752 753 756 757 758 762 763 766 767 768 769 770 774 775 776 778
-     781 785 786 788 789 790 791 792 793 794 795 796 797 798 801 802 803 805
-     806 807 811 813 816 818 819 820 822 826 827 828 831 832 834 835 836 837
-     838 839 840 841 842 845 850 854 855 857 860 862 864 865 869 887 889 895
-     896 897 902 903 908 910 911 912 915 918 921 924 927 928 929 930 933 935
-     936 938 939 940 942 943 944 945 946 947 948 949 950 952 953 955 956 957
-     961 965 968 971 972 973 977 978 979 980 981 984 985 986 987 991 992 993
-     996 997 995 998 999 1001 1002 1000 1003 1005 1007 1014 1015 1016 1017
-     1018 1019 1020 1021 1022 1025 1026 1029 1030 1031 1032 1041 1044 1050
-     1052 1053 1054 1070 1083 1084 1085 1086 1088 1089 1092 1095 1096 1098
-     1099 1100 1101 1103 1104 1105 1111 1112 1113 1115 1120 1121 1123 1128
-     1129 1130 1131 1132 1133 1134 1135 1136 1138 1141 1143 1151 1157 1158
-     1159 1169 1170 1171 1172 1174 1177 1180 1181 1183 1187 1188 1189 1190
-     1192 1193 1194 1197 1198 1207 1244 1245 1248 1249 1250 1251 1252 1261
-     1267 1268 1272 1273 1274 1275 1276 1279 1280 1281 1282 1287 1290 1294
-     1306 1311 1316 1318 1320 1327 1328 1329 1332 1334 1338 1339 1341 1343
-     1344 1345 1346 1347 1348 1351 1353 1357 1358 1361 1363 1365 1367 1368
-     1372 1379 1381 1382 1386 1390 1394 1397 1398 1401 1406 1407 1409 1410
-     1411 1413 1415 1417 1419 1458 1459 1460 1461 1462 1463 1464 1465 1466
-     1467 1469 1470 1472 1477 1480 1483 1485 1486 1487 1488 1489 1490 1491
-     1492 1493 1498 1502 1504 1507 1509 1510 1511 1513 1515 1516 1519 1521
-     1523 1524 1526 1528 1531 1534 1537 1540 1542 1545 1548 1551 1554 1559
-     1561 1562 1563 1567 1570 1575 1576 1579 1580 1581 1582 1588 1590 1591
-     1593 1596 1602 1603 1605 1607 1609 1610 1611 1613 1615 1617 1618 1620
-     1624 1628 1629 1631 1632 1633 1634 1637 1641 1645 1648 1649 1653 1656
-     1657 1659 1662 1665)))
+     746 751 752 753 756 757 759 763 764 767 768 769 770 771 775 776 777 779
+     782 786 787 789 790 791 792 793 794 795 796 797 798 799 802 803 804 806
+     807 808 812 814 817 819 820 821 823 827 828 829 832 833 835 836 837 838
+     839 840 841 842 843 846 851 855 856 858 861 863 865 866 870 888 890 896
+     897 898 903 904 909 911 912 913 916 919 922 925 928 929 930 931 934 936
+     937 939 940 941 943 944 945 946 947 948 949 950 951 953 954 956 957 958
+     962 966 969 972 973 974 978 979 980 981 982 985 986 987 988 992 993 994
+     997 998 996 999 1000 1002 1003 1001 1004 1006 1008 1015 1016 1017 1018
+     1019 1020 1021 1022 1023 1026 1027 1030 1031 1032 1033 1042 1045 1051
+     1053 1054 1055 1071 1084 1085 1086 1087 1089 1090 1093 1096 1097 1099
+     1100 1101 1102 1104 1105 1106 1112 1113 1114 1116 1121 1122 1124 1129
+     1130 1131 1132 1133 1134 1135 1136 1137 1139 1142 1144 1152 1158 1159
+     1160 1170 1171 1172 1173 1175 1178 1181 1182 1184 1188 1189 1190 1191
+     1193 1194 1195 1198 1199 1208 1245 1246 1249 1250 1251 1252 1253 1262
+     1268 1269 1273 1274 1275 1276 1277 1280 1281 1282 1283 1288 1291 1295
+     1307 1312 1317 1319 1321 1328 1329 1330 1333 1335 1339 1340 1342 1344
+     1345 1346 1347 1348 1349 1352 1354 1358 1359 1362 1364 1366 1368 1369
+     1373 1380 1382 1383 1387 1391 1395 1398 1399 1402 1407 1408 1410 1411
+     1412 1414 1416 1418 1420 1459 1460 1461 1462 1463 1464 1465 1466 1467
+     1468 1470 1471 1473 1478 1481 1485 1487 1488 1489 1490 1491 1492 1493
+     1494 1495 1500 1504 1506 1509 1511 1512 1513 1515 1517 1518 1521 1523
+     1525 1526 1528 1530 1533 1536 1539 1542 1544 1547 1550 1553 1556 1561
+     1563 1564 1565 1569 1572 1577 1578 1582 1583 1584 1585 1591 1593 1594
+     1596 1599 1605 1606 1608 1610 1612 1613 1614 1616 1618 1620 1621 1623
+     1627 1631 1632 1634 1635 1636 1637 1640 1644 1648 1651 1652 1656 1659
+     1660 1662 1665 1668)))
 
 (define lightcraft-git-crates
   (git-crate-selection
    %git-checkouts
-   '(("craft-crw" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=f3b62ec61f45534392376492fc5ad33047375205#f3b62ec61f45534392376492fc5ad33047375205" 37 "crates/crw")
-     ("craft-docpath" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=c5a1cbfb5f9049f9270955caffb5bee5997aebf7#c5a1cbfb5f9049f9270955caffb5bee5997aebf7" 33 "crates/docpath")
-     ("craft-fonts-build" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=c5a1cbfb5f9049f9270955caffb5bee5997aebf7#c5a1cbfb5f9049f9270955caffb5bee5997aebf7" 33 "crates/fonts-build")
-     ("craft-i18n" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=c5a1cbfb5f9049f9270955caffb5bee5997aebf7#c5a1cbfb5f9049f9270955caffb5bee5997aebf7" 33 "crates/i18n")
-     ("craft-tiff" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=3b3104981bb3093904a12e44d6a3b41c6c4c39c8#3b3104981bb3093904a12e44d6a3b41c6c4c39c8" 9 "crates/tiff")
-     ("craft-ui" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=c5a1cbfb5f9049f9270955caffb5bee5997aebf7#c5a1cbfb5f9049f9270955caffb5bee5997aebf7" 33 "crates/ui")
-     ("craft-update" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/update")
-     ("craft-window" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=c5a1cbfb5f9049f9270955caffb5bee5997aebf7#c5a1cbfb5f9049f9270955caffb5bee5997aebf7" 33 "crates/window")
-     ("ecolor" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/ecolor")
-     ("eframe" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/eframe")
-     ("egui" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui")
-     ("egui-wgpu" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui-wgpu")
-     ("egui-winit" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui-winit")
-     ("egui_extras" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_extras")
-     ("egui_glow" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_glow")
-     ("egui_kittest" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_kittest")
-     ("emath" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/emath")
-     ("epaint" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/epaint")
-     ("epaint_default_fonts" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/epaint_default_fonts")
-     ("winit" "0.30.13" "git+https://github.com/storytold/winit.git?rev=a517b3846ee8457d84ee4975110bfda6797c44dc#a517b3846ee8457d84ee4975110bfda6797c44dc" 46 ".")
-     ("egui_demo_lib" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_demo_lib")
-     ("egui_inspection" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_inspection")
-     ("egui_system_font_provider" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_system_font_provider"))))
+   '(("craft-crw" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=f3b62ec61f45534392376492fc5ad33047375205#f3b62ec61f45534392376492fc5ad33047375205" 39 "crates/crw")
+     ("craft-docpath" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=c5a1cbfb5f9049f9270955caffb5bee5997aebf7#c5a1cbfb5f9049f9270955caffb5bee5997aebf7" 35 "crates/docpath")
+     ("craft-fonts-build" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=c5a1cbfb5f9049f9270955caffb5bee5997aebf7#c5a1cbfb5f9049f9270955caffb5bee5997aebf7" 35 "crates/fonts-build")
+     ("craft-i18n" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=c5a1cbfb5f9049f9270955caffb5bee5997aebf7#c5a1cbfb5f9049f9270955caffb5bee5997aebf7" 35 "crates/i18n")
+     ("craft-tiff" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=3b3104981bb3093904a12e44d6a3b41c6c4c39c8#3b3104981bb3093904a12e44d6a3b41c6c4c39c8" 11 "crates/tiff")
+     ("craft-ui" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=c5a1cbfb5f9049f9270955caffb5bee5997aebf7#c5a1cbfb5f9049f9270955caffb5bee5997aebf7" 35 "crates/ui")
+     ("craft-update" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/update")
+     ("craft-window" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=c5a1cbfb5f9049f9270955caffb5bee5997aebf7#c5a1cbfb5f9049f9270955caffb5bee5997aebf7" 35 "crates/window")
+     ("ecolor" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/ecolor")
+     ("eframe" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/eframe")
+     ("egui" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui")
+     ("egui-wgpu" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui-wgpu")
+     ("egui-winit" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui-winit")
+     ("egui_extras" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_extras")
+     ("egui_glow" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_glow")
+     ("egui_kittest" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_kittest")
+     ("emath" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/emath")
+     ("epaint" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/epaint")
+     ("epaint_default_fonts" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/epaint_default_fonts")
+     ("winit" "0.30.13" "git+https://github.com/storytold/winit.git?rev=a517b3846ee8457d84ee4975110bfda6797c44dc#a517b3846ee8457d84ee4975110bfda6797c44dc" 48 ".")
+     ("egui_demo_lib" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_demo_lib")
+     ("egui_inspection" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_inspection")
+     ("egui_system_font_provider" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_system_font_provider"))))
 
 (define vectorcraft-cargo-inputs
   (crate-selection
@@ -2283,74 +2294,74 @@
      628 637 638 639 643 644 652 653 654 655 656 657 659 661 664 665 666 667
      668 669 670 671 672 673 674 675 676 678 680 681 683 686 687 690 691 698
      702 704 705 709 713 712 715 717 718 719 723 738 740 742 744 748 751 752
-     755 756 758 761 762 763 767 768 769 774 776 778 790 795 797 798 802 804
-     805 806 807 811 813 816 818 819 820 822 824 826 827 828 831 832 834 835
-     836 837 838 839 840 841 842 850 855 857 860 861 862 864 865 895 896 897
-     906 907 908 910 911 912 914 915 917 918 920 921 923 924 926 927 928 929
-     930 938 939 940 941 942 943 944 945 947 949 950 952 953 955 957 965 966
-     967 968 971 973 974 981 984 985 986 987 988 989 990 991 992 993 995 1001
-     1000 1004 1005 1007 1018 1019 1021 1022 1024 1025 1026 1027 1030 1031
-     1033 1041 1044 1045 1047 1049 1052 1053 1054 1066 1068 1084 1085 1086
-     1088 1090 1092 1095 1096 1098 1099 1103 1104 1105 1106 1107 1108 1109
-     1113 1115 1120 1121 1122 1128 1129 1130 1131 1132 1134 1135 1136 1138
-     1139 1141 1144 1146 1149 1151 1157 1158 1159 1161 1162 1163 1164 1165
-     1166 1167 1168 1169 1170 1172 1173 1174 1176 1177 1178 1180 1181 1185
-     1187 1188 1189 1190 1191 1192 1193 1194 1197 1198 1200 1201 1202 1204
-     1205 1206 1207 1208 1209 1243 1244 1246 1247 1249 1250 1255 1256 1261
-     1267 1268 1272 1273 1274 1275 1278 1279 1280 1281 1282 1283 1284 1285
-     1286 1287 1290 1291 1292 1297 1300 1303 1307 1312 1317 1319 1321 1323
-     1324 1325 1326 1327 1328 1329 1332 1333 1334 1337 1338 1341 1343 1344
-     1347 1348 1349 1350 1351 1354 1357 1358 1360 1361 1362 1363 1366 1367
-     1369 1372 1374 1376 1378 1379 1381 1382 1388 1394 1397 1398 1401 1406
-     1407 1408 1409 1410 1411 1413 1415 1417 1419 1427 1429 1430 1431 1432
-     1433 1437 1454 1457 1458 1459 1460 1461 1462 1463 1464 1465 1466 1467
-     1469 1470 1472 1474 1477 1483 1484 1485 1486 1487 1488 1489 1490 1491
-     1492 1493 1498 1502 1504 1507 1509 1510 1511 1513 1515 1516 1519 1521
-     1523 1524 1526 1528 1531 1534 1537 1540 1542 1545 1548 1551 1554 1559
-     1561 1562 1563 1567 1570 1573 1575 1576 1579 1580 1581 1583 1584 1585
-     1588 1590 1591 1592 1593 1594 1595 1603 1607 1609 1610 1611 1613 1616
-     1617 1618 1623 1627 1628 1629 1631 1632 1633 1634 1636 1645 1648 1649
-     1652 1653 1655 1656 1657 1660 1663 1665)))
+     755 756 759 762 763 764 768 769 770 775 777 779 791 796 798 799 803 805
+     806 807 808 812 814 817 819 820 821 823 825 827 828 829 832 833 835 836
+     837 838 839 840 841 842 843 851 856 858 861 862 863 865 866 896 897 898
+     907 908 909 911 912 913 915 916 918 919 921 922 924 925 927 928 929 930
+     931 939 940 941 942 943 944 945 946 948 950 951 953 954 956 958 966 967
+     968 969 972 974 975 982 985 986 987 988 989 990 991 992 993 994 996 1002
+     1001 1005 1006 1008 1019 1020 1022 1023 1025 1026 1027 1028 1031 1032
+     1034 1042 1045 1046 1048 1050 1053 1054 1055 1067 1069 1085 1086 1087
+     1089 1091 1093 1096 1097 1099 1100 1104 1105 1106 1107 1108 1109 1110
+     1114 1116 1121 1122 1123 1129 1130 1131 1132 1133 1135 1136 1137 1139
+     1140 1142 1145 1147 1150 1152 1158 1159 1160 1162 1163 1164 1165 1166
+     1167 1168 1169 1170 1171 1173 1174 1175 1177 1178 1179 1181 1182 1186
+     1188 1189 1190 1191 1192 1193 1194 1195 1198 1199 1201 1202 1203 1205
+     1206 1207 1208 1209 1210 1244 1245 1247 1248 1250 1251 1256 1257 1262
+     1268 1269 1273 1274 1275 1276 1279 1280 1281 1282 1283 1284 1285 1286
+     1287 1288 1291 1292 1293 1298 1301 1304 1308 1313 1318 1320 1322 1324
+     1325 1326 1327 1328 1329 1330 1333 1334 1335 1338 1339 1342 1344 1345
+     1348 1349 1350 1351 1352 1355 1358 1359 1361 1362 1363 1364 1367 1368
+     1370 1373 1375 1377 1379 1380 1382 1383 1389 1395 1398 1399 1402 1407
+     1408 1409 1410 1411 1412 1414 1416 1418 1420 1428 1430 1431 1432 1433
+     1434 1438 1455 1458 1459 1460 1461 1462 1463 1464 1465 1466 1467 1468
+     1470 1471 1473 1475 1478 1485 1486 1487 1488 1489 1490 1491 1492 1493
+     1494 1495 1500 1504 1506 1509 1511 1512 1513 1515 1517 1518 1521 1523
+     1525 1526 1528 1530 1533 1536 1539 1542 1544 1547 1550 1553 1556 1561
+     1563 1564 1565 1569 1572 1575 1577 1578 1582 1583 1584 1586 1587 1588
+     1591 1593 1594 1595 1596 1597 1598 1606 1610 1612 1613 1614 1616 1619
+     1620 1621 1626 1630 1631 1632 1634 1635 1636 1637 1639 1648 1651 1652
+     1655 1656 1658 1659 1660 1663 1666 1668)))
 
 (define vectorcraft-git-crates
   (git-crate-selection
    %git-checkouts
-   '(("craft-docpath" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb#9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb" 22 "crates/docpath")
-     ("craft-fonts-build" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=bb8320f5fa5d20fa78a026d0de06fe4e2f08a099#bb8320f5fa5d20fa78a026d0de06fe4e2f08a099" 30 "crates/fonts-build")
-     ("craft-i18n" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=bb8320f5fa5d20fa78a026d0de06fe4e2f08a099#bb8320f5fa5d20fa78a026d0de06fe4e2f08a099" 30 "crates/i18n")
-     ("craft-keymap" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb#9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb" 22 "crates/keymap")
-     ("craft-pdf" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb#9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb" 22 "crates/pdf")
-     ("craft-print" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb#9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb" 22 "crates/print")
-     ("craft-proof" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb#9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb" 22 "crates/proof")
-     ("craft-ui" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=bb8320f5fa5d20fa78a026d0de06fe4e2f08a099#bb8320f5fa5d20fa78a026d0de06fe4e2f08a099" 30 "crates/ui")
-     ("craft-update" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/update")
-     ("craft-vectorcraft-format" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/vectorcraft-format")
-     ("craft-web-api" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=fd5e2feff6ea25bed371a99cc732b3968d621505#fd5e2feff6ea25bed371a99cc732b3968d621505" 40 "crates/web-api")
-     ("craft-window" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb#9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb" 22 "crates/window")
-     ("craft-winprint-gdi" "0.1.0" "git+https://github.com/storytold/winprint.rs?rev=417ac3c4d14d3da5485a99c7d5ce8f05664ec312#417ac3c4d14d3da5485a99c7d5ce8f05664ec312" 47 "crates/gdi")
-     ("ecolor" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/ecolor")
-     ("eframe" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/eframe")
-     ("egui" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui")
-     ("egui-wgpu" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui-wgpu")
-     ("egui-winit" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui-winit")
-     ("egui_extras" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_extras")
-     ("egui_glow" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_glow")
-     ("egui_kittest" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_kittest")
-     ("emath" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/emath")
-     ("epaint" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/epaint")
-     ("epaint_default_fonts" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/epaint_default_fonts")
-     ("hayro-cmap" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb#9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb" 22 "vendor/hayro-cmap")
-     ("hayro-interpret" "0.7.0" "git+https://github.com/storytold/craft-libs?rev=9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb#9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb" 22 "vendor/hayro-interpret")
-     ("hayro-jbig2" "0.3.0" "git+https://github.com/storytold/craft-libs?rev=9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb#9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb" 22 "vendor/hayro-jbig2")
-     ("hayro-postscript" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb#9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb" 22 "vendor/hayro-postscript")
-     ("hayro-syntax" "0.7.2" "git+https://github.com/storytold/craft-libs?rev=9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb#9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb" 22 "vendor/hayro-syntax")
-     ("krilla" "0.8.2" "git+https://github.com/storytold/craft-libs?rev=9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb#9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb" 22 "vendor/krilla")
-     ("linesweeper" "0.5.0" "git+https://github.com/storytold/craft-libs?rev=481f66d287b2a06845f3667a19daf35f0fe958ed#481f66d287b2a06845f3667a19daf35f0fe958ed" 12 "vendor/linesweeper")
-     ("winit" "0.30.13" "git+https://github.com/storytold/winit.git?rev=a517b3846ee8457d84ee4975110bfda6797c44dc#a517b3846ee8457d84ee4975110bfda6797c44dc" 46 ".")
-     ("winprint" "0.2.1" "git+https://github.com/storytold/winprint.rs?rev=5f80b9baf6b58937c401656634e42d33f00ddf49#5f80b9baf6b58937c401656634e42d33f00ddf49" 48 ".")
-     ("egui_demo_lib" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_demo_lib")
-     ("egui_inspection" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_inspection")
-     ("egui_system_font_provider" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_system_font_provider"))))
+   '(("craft-docpath" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb#9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb" 24 "crates/docpath")
+     ("craft-fonts-build" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=bb8320f5fa5d20fa78a026d0de06fe4e2f08a099#bb8320f5fa5d20fa78a026d0de06fe4e2f08a099" 32 "crates/fonts-build")
+     ("craft-i18n" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=bb8320f5fa5d20fa78a026d0de06fe4e2f08a099#bb8320f5fa5d20fa78a026d0de06fe4e2f08a099" 32 "crates/i18n")
+     ("craft-keymap" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb#9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb" 24 "crates/keymap")
+     ("craft-pdf" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb#9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb" 24 "crates/pdf")
+     ("craft-print" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb#9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb" 24 "crates/print")
+     ("craft-proof" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb#9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb" 24 "crates/proof")
+     ("craft-ui" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=bb8320f5fa5d20fa78a026d0de06fe4e2f08a099#bb8320f5fa5d20fa78a026d0de06fe4e2f08a099" 32 "crates/ui")
+     ("craft-update" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/update")
+     ("craft-vectorcraft-format" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/vectorcraft-format")
+     ("craft-web-api" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=fd5e2feff6ea25bed371a99cc732b3968d621505#fd5e2feff6ea25bed371a99cc732b3968d621505" 42 "crates/web-api")
+     ("craft-window" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb#9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb" 24 "crates/window")
+     ("craft-winprint-gdi" "0.1.0" "git+https://github.com/storytold/winprint.rs?rev=417ac3c4d14d3da5485a99c7d5ce8f05664ec312#417ac3c4d14d3da5485a99c7d5ce8f05664ec312" 49 "crates/gdi")
+     ("ecolor" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/ecolor")
+     ("eframe" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/eframe")
+     ("egui" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui")
+     ("egui-wgpu" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui-wgpu")
+     ("egui-winit" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui-winit")
+     ("egui_extras" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_extras")
+     ("egui_glow" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_glow")
+     ("egui_kittest" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_kittest")
+     ("emath" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/emath")
+     ("epaint" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/epaint")
+     ("epaint_default_fonts" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/epaint_default_fonts")
+     ("hayro-cmap" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb#9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb" 24 "vendor/hayro-cmap")
+     ("hayro-interpret" "0.7.0" "git+https://github.com/storytold/craft-libs?rev=9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb#9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb" 24 "vendor/hayro-interpret")
+     ("hayro-jbig2" "0.3.0" "git+https://github.com/storytold/craft-libs?rev=9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb#9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb" 24 "vendor/hayro-jbig2")
+     ("hayro-postscript" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb#9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb" 24 "vendor/hayro-postscript")
+     ("hayro-syntax" "0.7.2" "git+https://github.com/storytold/craft-libs?rev=9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb#9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb" 24 "vendor/hayro-syntax")
+     ("krilla" "0.8.2" "git+https://github.com/storytold/craft-libs?rev=9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb#9be9a63782298ab59cd9b7a42ee9cba4f42a5ccb" 24 "vendor/krilla")
+     ("linesweeper" "0.5.0" "git+https://github.com/storytold/craft-libs?rev=481f66d287b2a06845f3667a19daf35f0fe958ed#481f66d287b2a06845f3667a19daf35f0fe958ed" 14 "vendor/linesweeper")
+     ("winit" "0.30.13" "git+https://github.com/storytold/winit.git?rev=a517b3846ee8457d84ee4975110bfda6797c44dc#a517b3846ee8457d84ee4975110bfda6797c44dc" 48 ".")
+     ("winprint" "0.2.1" "git+https://github.com/storytold/winprint.rs?rev=5f80b9baf6b58937c401656634e42d33f00ddf49#5f80b9baf6b58937c401656634e42d33f00ddf49" 50 ".")
+     ("egui_demo_lib" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_demo_lib")
+     ("egui_inspection" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_inspection")
+     ("egui_system_font_provider" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_system_font_provider"))))
 
 (define designcraft-cargo-inputs
   (crate-selection
@@ -2370,114 +2381,114 @@
      577 578 584 585 590 591 592 594 595 597 599 601 602 604 606 607 609 610
      615 617 618 619 621 622 626 630 637 638 639 642 643 644 652 653 654 655
      656 657 659 661 678 680 681 683 684 687 690 692 698 702 704 705 709 713
-     712 715 717 718 719 723 738 740 743 744 748 749 751 752 755 756 758 759
-     760 761 762 763 767 768 769 774 776 778 784 790 795 797 798 802 804 805
-     806 807 811 813 816 818 819 820 822 826 827 828 831 832 834 835 836 837
-     838 839 840 841 842 850 853 856 857 860 861 863 864 865 866 867 895 896
-     897 906 907 908 910 911 912 914 915 917 918 920 921 923 924 925 926 927
-     928 929 930 938 939 940 942 943 944 945 947 949 950 952 953 955 957 965
-     966 967 968 969 971 973 981 982 983 984 985 986 987 988 989 990 991 992
-     993 995 1001 1000 1004 1005 1007 1018 1019 1021 1022 1024 1025 1026 1027
-     1030 1031 1033 1038 1039 1041 1044 1045 1048 1049 1052 1053 1054 1065
-     1066 1068 1084 1085 1086 1088 1089 1092 1095 1096 1098 1099 1103 1104
-     1105 1106 1108 1109 1113 1115 1120 1121 1122 1128 1129 1130 1131 1132
-     1134 1135 1136 1138 1139 1141 1144 1146 1149 1150 1151 1152 1157 1158
-     1159 1161 1162 1163 1164 1165 1166 1167 1168 1169 1170 1172 1173 1174
-     1176 1177 1178 1180 1181 1185 1187 1188 1189 1190 1191 1193 1194 1197
-     1198 1200 1202 1204 1205 1206 1207 1209 1243 1244 1246 1247 1249 1250
-     1255 1256 1261 1262 1267 1268 1272 1273 1274 1275 1278 1279 1280 1281
-     1282 1283 1284 1285 1286 1288 1290 1291 1292 1298 1300 1303 1307 1312
-     1317 1319 1321 1323 1324 1325 1326 1327 1328 1329 1332 1333 1334 1338
-     1341 1343 1344 1347 1348 1349 1350 1351 1354 1357 1358 1360 1361 1362
-     1363 1366 1367 1369 1372 1374 1377 1378 1379 1381 1382 1389 1392 1394
-     1397 1398 1401 1406 1407 1408 1409 1410 1411 1413 1415 1417 1419 1421
-     1422 1423 1458 1459 1460 1461 1462 1463 1464 1465 1466 1467 1469 1470
-     1472 1474 1477 1483 1485 1486 1487 1488 1489 1490 1491 1492 1493 1498
-     1502 1504 1507 1509 1510 1511 1513 1515 1516 1519 1521 1523 1524 1526
-     1528 1531 1534 1537 1540 1542 1545 1548 1551 1554 1559 1561 1562 1563
-     1567 1570 1573 1575 1576 1579 1580 1581 1583 1584 1585 1588 1590 1591
-     1592 1593 1594 1595 1598 1604 1607 1609 1610 1611 1613 1616 1617 1618
-     1623 1627 1628 1629 1631 1632 1633 1635 1637 1639 1644 1648 1649 1651
-     1653 1654 1656 1657 1660 1663 1665)))
+     712 715 717 718 719 723 738 740 743 744 748 749 751 752 755 756 759 760
+     761 762 763 764 768 769 770 775 777 779 785 791 796 798 799 803 805 806
+     807 808 812 814 817 819 820 821 823 827 828 829 832 833 835 836 837 838
+     839 840 841 842 843 851 854 857 858 861 862 864 865 866 867 868 896 897
+     898 907 908 909 911 912 913 915 916 918 919 921 922 924 925 926 927 928
+     929 930 931 939 940 941 943 944 945 946 948 950 951 953 954 956 958 966
+     967 968 969 970 972 974 982 983 984 985 986 987 988 989 990 991 992 993
+     994 996 1002 1001 1005 1006 1008 1019 1020 1022 1023 1025 1026 1027 1028
+     1031 1032 1034 1039 1040 1042 1045 1046 1049 1050 1053 1054 1055 1066
+     1067 1069 1085 1086 1087 1089 1090 1093 1096 1097 1099 1100 1104 1105
+     1106 1107 1109 1110 1114 1116 1121 1122 1123 1129 1130 1131 1132 1133
+     1135 1136 1137 1139 1140 1142 1145 1147 1150 1151 1152 1153 1158 1159
+     1160 1162 1163 1164 1165 1166 1167 1168 1169 1170 1171 1173 1174 1175
+     1177 1178 1179 1181 1182 1186 1188 1189 1190 1191 1192 1194 1195 1198
+     1199 1201 1203 1205 1206 1207 1208 1210 1244 1245 1247 1248 1250 1251
+     1256 1257 1262 1263 1268 1269 1273 1274 1275 1276 1279 1280 1281 1282
+     1283 1284 1285 1286 1287 1289 1291 1292 1293 1299 1301 1304 1308 1313
+     1318 1320 1322 1324 1325 1326 1327 1328 1329 1330 1333 1334 1335 1339
+     1342 1344 1345 1348 1349 1350 1351 1352 1355 1358 1359 1361 1362 1363
+     1364 1367 1368 1370 1373 1375 1378 1379 1380 1382 1383 1390 1393 1395
+     1398 1399 1402 1407 1408 1409 1410 1411 1412 1414 1416 1418 1420 1422
+     1423 1424 1459 1460 1461 1462 1463 1464 1465 1466 1467 1468 1470 1471
+     1473 1475 1478 1485 1487 1488 1489 1490 1491 1492 1493 1494 1495 1500
+     1504 1506 1509 1511 1512 1513 1515 1517 1518 1521 1523 1525 1526 1528
+     1530 1533 1536 1539 1542 1544 1547 1550 1553 1556 1561 1563 1564 1565
+     1569 1572 1575 1577 1578 1582 1583 1584 1586 1587 1588 1591 1593 1594
+     1595 1596 1597 1598 1601 1607 1610 1612 1613 1614 1616 1619 1620 1621
+     1626 1630 1631 1632 1634 1635 1636 1638 1640 1642 1647 1651 1652 1654
+     1656 1657 1659 1660 1663 1666 1668)))
 
 (define designcraft-git-crates
   (git-crate-selection
    %git-checkouts
-   '(("craft-atomic" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/atomic")
-     ("craft-cfb" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/cfb")
-     ("craft-cms" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/cms")
-     ("craft-codepage" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/codepage")
-     ("craft-csv" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/csv")
-     ("craft-dds" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/dds")
-     ("craft-designcraft-format" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/designcraft-format")
-     ("craft-dialogs" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/dialogs")
-     ("craft-docpath" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/docpath")
-     ("craft-document-bundle" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/document-bundle")
-     ("craft-docx" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/docx")
-     ("craft-drawingml" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/drawingml")
-     ("craft-eps" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/eps")
-     ("craft-epub" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/epub")
-     ("craft-file-formats" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/file-formats")
-     ("craft-fonts-build" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/fonts-build")
-     ("craft-i18n" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/i18n")
-     ("craft-idml" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/idml")
-     ("craft-image-codecs" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/image-codecs")
-     ("craft-indd" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/indd")
-     ("craft-jpeg" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/jpeg")
-     ("craft-keymap" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/keymap")
-     ("craft-math" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/math")
-     ("craft-mcp-server" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/mcp-server")
-     ("craft-metadata" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/metadata")
-     ("craft-mime" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/mime")
-     ("craft-offcrypto" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/offcrypto")
-     ("craft-opc" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/opc")
-     ("craft-pdf" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/pdf")
-     ("craft-pptx" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/pptx")
-     ("craft-prepress" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/prepress")
-     ("craft-print" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/print")
-     ("craft-ps" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/ps")
-     ("craft-psd" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/psd")
-     ("craft-rtf" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/rtf")
-     ("craft-sheet" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/sheet")
-     ("craft-svg" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/svg")
-     ("craft-tiff" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/tiff")
-     ("craft-ui" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/ui")
-     ("craft-update" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/update")
-     ("craft-window" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/window")
-     ("craft-winprint-gdi" "0.1.0" "git+https://github.com/storytold/winprint.rs?rev=64e7afd4d1483512385012c340ecaaaf0f3beb7f#64e7afd4d1483512385012c340ecaaaf0f3beb7f" 49 "crates/gdi")
-     ("craft-wordmodel" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/wordmodel")
-     ("craft-xlsx" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/xlsx")
-     ("craft-xml" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/xml")
-     ("craft-zip" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "crates/zip")
-     ("ecolor" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/ecolor")
-     ("eframe" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/eframe")
-     ("egui" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui")
-     ("egui-wgpu" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui-wgpu")
-     ("egui-winit" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui-winit")
-     ("egui_extras" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_extras")
-     ("egui_glow" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_glow")
-     ("egui_kittest" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_kittest")
-     ("emath" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/emath")
-     ("epaint" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/epaint")
-     ("epaint_default_fonts" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/epaint_default_fonts")
-     ("hayro" "0.7.1" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "vendor/hayro")
-     ("hayro-cmap" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "vendor/hayro-cmap")
-     ("hayro-interpret" "0.7.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "vendor/hayro-interpret")
-     ("hayro-jbig2" "0.3.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "vendor/hayro-jbig2")
-     ("hayro-postscript" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "vendor/hayro-postscript")
-     ("hayro-syntax" "0.7.2" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "vendor/hayro-syntax")
-     ("indd" "0.1.0" "git+https://github.com/storytold/indd-utils?rev=7f3060e5bce78d21ea70e0d5eacb96edce15dfbe#7f3060e5bce78d21ea70e0d5eacb96edce15dfbe" 44 ".")
-     ("krilla" "0.8.2" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "vendor/krilla")
-     ("linesweeper" "0.5.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "vendor/linesweeper")
-     ("vectorcraft-geom" "0.18.0" "git+https://github.com/storytold/vectorcraft.git?rev=6b3a6b8788ebcb420d69449199cbdf323888d27e#6b3a6b8788ebcb420d69449199cbdf323888d27e" 45 "crates/geom")
-     ("vectorcraft-pathops" "0.18.0" "git+https://github.com/storytold/vectorcraft.git?rev=6b3a6b8788ebcb420d69449199cbdf323888d27e#6b3a6b8788ebcb420d69449199cbdf323888d27e" 45 "crates/pathops")
-     ("vello_common" "0.0.8" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "vendor/vello_common")
-     ("vello_cpu" "0.0.8" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 8 "vendor/vello_cpu")
-     ("winit" "0.30.13" "git+https://github.com/storytold/winit.git?rev=a517b3846ee8457d84ee4975110bfda6797c44dc#a517b3846ee8457d84ee4975110bfda6797c44dc" 46 ".")
-     ("winprint" "0.2.1" "git+https://github.com/storytold/winprint.rs?rev=8ae097ef941b432b0e7671b1ec3a506800e65e57#8ae097ef941b432b0e7671b1ec3a506800e65e57" 51 ".")
-     ("egui_demo_lib" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_demo_lib")
-     ("egui_inspection" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_inspection")
-     ("egui_system_font_provider" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_system_font_provider"))))
+   '(("craft-atomic" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/atomic")
+     ("craft-cfb" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/cfb")
+     ("craft-cms" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/cms")
+     ("craft-codepage" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/codepage")
+     ("craft-csv" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/csv")
+     ("craft-dds" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/dds")
+     ("craft-designcraft-format" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/designcraft-format")
+     ("craft-dialogs" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/dialogs")
+     ("craft-docpath" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/docpath")
+     ("craft-document-bundle" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/document-bundle")
+     ("craft-docx" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/docx")
+     ("craft-drawingml" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/drawingml")
+     ("craft-eps" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/eps")
+     ("craft-epub" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/epub")
+     ("craft-file-formats" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/file-formats")
+     ("craft-fonts-build" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/fonts-build")
+     ("craft-i18n" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/i18n")
+     ("craft-idml" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/idml")
+     ("craft-image-codecs" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/image-codecs")
+     ("craft-indd" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/indd")
+     ("craft-jpeg" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/jpeg")
+     ("craft-keymap" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/keymap")
+     ("craft-math" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/math")
+     ("craft-mcp-server" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/mcp-server")
+     ("craft-metadata" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/metadata")
+     ("craft-mime" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/mime")
+     ("craft-offcrypto" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/offcrypto")
+     ("craft-opc" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/opc")
+     ("craft-pdf" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/pdf")
+     ("craft-pptx" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/pptx")
+     ("craft-prepress" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/prepress")
+     ("craft-print" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/print")
+     ("craft-ps" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/ps")
+     ("craft-psd" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/psd")
+     ("craft-rtf" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/rtf")
+     ("craft-sheet" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/sheet")
+     ("craft-svg" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/svg")
+     ("craft-tiff" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/tiff")
+     ("craft-ui" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/ui")
+     ("craft-update" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/update")
+     ("craft-window" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/window")
+     ("craft-winprint-gdi" "0.1.0" "git+https://github.com/storytold/winprint.rs?rev=64e7afd4d1483512385012c340ecaaaf0f3beb7f#64e7afd4d1483512385012c340ecaaaf0f3beb7f" 51 "crates/gdi")
+     ("craft-wordmodel" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/wordmodel")
+     ("craft-xlsx" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/xlsx")
+     ("craft-xml" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/xml")
+     ("craft-zip" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "crates/zip")
+     ("ecolor" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/ecolor")
+     ("eframe" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/eframe")
+     ("egui" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui")
+     ("egui-wgpu" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui-wgpu")
+     ("egui-winit" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui-winit")
+     ("egui_extras" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_extras")
+     ("egui_glow" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_glow")
+     ("egui_kittest" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_kittest")
+     ("emath" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/emath")
+     ("epaint" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/epaint")
+     ("epaint_default_fonts" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/epaint_default_fonts")
+     ("hayro" "0.7.1" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "vendor/hayro")
+     ("hayro-cmap" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "vendor/hayro-cmap")
+     ("hayro-interpret" "0.7.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "vendor/hayro-interpret")
+     ("hayro-jbig2" "0.3.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "vendor/hayro-jbig2")
+     ("hayro-postscript" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "vendor/hayro-postscript")
+     ("hayro-syntax" "0.7.2" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "vendor/hayro-syntax")
+     ("indd" "0.1.0" "git+https://github.com/storytold/indd-utils?rev=7f3060e5bce78d21ea70e0d5eacb96edce15dfbe#7f3060e5bce78d21ea70e0d5eacb96edce15dfbe" 46 ".")
+     ("krilla" "0.8.2" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "vendor/krilla")
+     ("linesweeper" "0.5.0" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "vendor/linesweeper")
+     ("vectorcraft-geom" "0.18.0" "git+https://github.com/storytold/vectorcraft.git?rev=6b3a6b8788ebcb420d69449199cbdf323888d27e#6b3a6b8788ebcb420d69449199cbdf323888d27e" 47 "crates/geom")
+     ("vectorcraft-pathops" "0.18.0" "git+https://github.com/storytold/vectorcraft.git?rev=6b3a6b8788ebcb420d69449199cbdf323888d27e#6b3a6b8788ebcb420d69449199cbdf323888d27e" 47 "crates/pathops")
+     ("vello_common" "0.0.8" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "vendor/vello_common")
+     ("vello_cpu" "0.0.8" "git+https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be35625e252cc4f06aa375b3b428521faea37d" 10 "vendor/vello_cpu")
+     ("winit" "0.30.13" "git+https://github.com/storytold/winit.git?rev=a517b3846ee8457d84ee4975110bfda6797c44dc#a517b3846ee8457d84ee4975110bfda6797c44dc" 48 ".")
+     ("winprint" "0.2.1" "git+https://github.com/storytold/winprint.rs?rev=8ae097ef941b432b0e7671b1ec3a506800e65e57#8ae097ef941b432b0e7671b1ec3a506800e65e57" 53 ".")
+     ("egui_demo_lib" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_demo_lib")
+     ("egui_inspection" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_inspection")
+     ("egui_system_font_provider" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_system_font_provider"))))
 
 (define pdfcraft-cargo-inputs
   (crate-selection
@@ -2498,124 +2509,124 @@
      575 576 577 584 585 590 591 592 594 595 597 599 600 602 604 606 607 609
      610 611 612 615 617 618 619 620 626 629 632 637 643 644 652 653 654 655
      656 657 659 661 677 678 680 681 683 686 687 692 696 702 704 705 709 713
-     712 715 716 718 719 723 738 739 740 742 744 748 751 752 755 756 758 759
-     760 761 762 763 767 768 769 774 776 778 787 790 792 795 796 797 798 799
-     802 803 805 806 807 811 813 816 818 819 820 822 826 827 828 831 832 834
-     835 836 837 838 839 840 841 842 847 850 852 857 860 862 864 865 888 890
-     891 895 896 897 904 905 907 908 909 910 911 912 914 915 917 918 920 921
-     923 924 925 926 927 928 929 930 934 937 938 939 940 941 942 943 944 945
-     947 949 950 952 953 954 957 960 962 965 966 967 968 971 973 981 982 984
-     985 986 987 988 989 990 991 992 993 995 1001 1000 1004 1005 1007 1008
-     1018 1019 1021 1022 1023 1024 1025 1027 1030 1031 1032 1038 1039 1041
-     1043 1044 1045 1047 1051 1052 1053 1054 1055 1063 1066 1068 1069 1072
-     1073 1074 1075 1076 1077 1078 1079 1080 1081 1082 1084 1085 1086 1088
-     1090 1092 1093 1095 1096 1098 1099 1103 1104 1105 1108 1109 1113 1114
-     1120 1121 1124 1128 1129 1130 1131 1132 1134 1135 1136 1138 1139 1141
-     1143 1146 1147 1149 1150 1151 1152 1153 1157 1158 1159 1160 1161 1162
-     1163 1164 1165 1166 1167 1168 1169 1170 1172 1173 1174 1176 1177 1178
-     1180 1181 1182 1183 1187 1188 1189 1190 1191 1193 1194 1195 1196 1197
-     1198 1200 1202 1204 1205 1207 1208 1243 1244 1245 1247 1249 1250 1255
-     1256 1259 1260 1261 1262 1267 1268 1270 1272 1273 1274 1275 1277 1279
-     1280 1281 1282 1283 1285 1287 1290 1291 1292 1294 1300 1303 1306 1311
-     1316 1318 1320 1323 1324 1325 1326 1327 1328 1329 1332 1333 1338 1341
-     1342 1343 1344 1347 1348 1351 1353 1356 1358 1361 1363 1366 1367 1369
-     1372 1374 1376 1379 1381 1382 1386 1392 1394 1397 1398 1401 1406 1407
-     1408 1409 1410 1411 1413 1415 1417 1419 1458 1459 1460 1461 1462 1463
-     1464 1465 1466 1467 1469 1470 1472 1473 1476 1483 1484 1485 1486 1487
-     1488 1489 1490 1491 1492 1493 1498 1502 1504 1507 1509 1510 1511 1513
-     1515 1516 1519 1521 1523 1524 1526 1528 1531 1534 1537 1540 1542 1545
-     1548 1551 1554 1559 1561 1562 1563 1567 1570 1572 1575 1576 1579 1580
-     1581 1583 1584 1585 1588 1590 1591 1592 1593 1594 1603 1607 1609 1610
-     1611 1613 1615 1617 1618 1620 1624 1628 1629 1630 1632 1633 1634 1636
-     1645 1648 1649 1653 1654 1656 1657 1659 1662 1665)))
+     712 715 716 718 719 723 738 739 740 742 744 748 751 752 755 756 759 760
+     761 762 763 764 768 769 770 775 777 779 788 791 793 796 797 798 799 800
+     803 804 806 807 808 812 814 817 819 820 821 823 827 828 829 832 833 835
+     836 837 838 839 840 841 842 843 848 851 853 858 861 863 865 866 889 891
+     892 896 897 898 905 906 908 909 910 911 912 913 915 916 918 919 921 922
+     924 925 926 927 928 929 930 931 935 938 939 940 941 942 943 944 945 946
+     948 950 951 953 954 955 958 961 963 966 967 968 969 972 974 982 983 985
+     986 987 988 989 990 991 992 993 994 996 1002 1001 1005 1006 1008 1009
+     1019 1020 1022 1023 1024 1025 1026 1028 1031 1032 1033 1039 1040 1042
+     1044 1045 1046 1048 1052 1053 1054 1055 1056 1064 1067 1069 1070 1073
+     1074 1075 1076 1077 1078 1079 1080 1081 1082 1083 1085 1086 1087 1089
+     1091 1093 1094 1096 1097 1099 1100 1104 1105 1106 1109 1110 1114 1115
+     1121 1122 1125 1129 1130 1131 1132 1133 1135 1136 1137 1139 1140 1142
+     1144 1147 1148 1150 1151 1152 1153 1154 1158 1159 1160 1161 1162 1163
+     1164 1165 1166 1167 1168 1169 1170 1171 1173 1174 1175 1177 1178 1179
+     1181 1182 1183 1184 1188 1189 1190 1191 1192 1194 1195 1196 1197 1198
+     1199 1201 1203 1205 1206 1208 1209 1244 1245 1246 1248 1250 1251 1256
+     1257 1260 1261 1262 1263 1268 1269 1271 1273 1274 1275 1276 1278 1280
+     1281 1282 1283 1284 1286 1288 1291 1292 1293 1295 1301 1304 1307 1312
+     1317 1319 1321 1324 1325 1326 1327 1328 1329 1330 1333 1334 1339 1342
+     1343 1344 1345 1348 1349 1352 1354 1357 1359 1362 1364 1367 1368 1370
+     1373 1375 1377 1380 1382 1383 1387 1393 1395 1398 1399 1402 1407 1408
+     1409 1410 1411 1412 1414 1416 1418 1420 1459 1460 1461 1462 1463 1464
+     1465 1466 1467 1468 1470 1471 1473 1474 1477 1485 1486 1487 1488 1489
+     1490 1491 1492 1493 1494 1495 1500 1504 1506 1509 1511 1512 1513 1515
+     1517 1518 1521 1523 1525 1526 1528 1530 1533 1536 1539 1542 1544 1547
+     1550 1553 1556 1561 1563 1564 1565 1569 1572 1574 1577 1578 1582 1583
+     1584 1586 1587 1588 1591 1593 1594 1595 1596 1597 1606 1610 1612 1613
+     1614 1616 1618 1620 1621 1623 1627 1631 1632 1633 1635 1636 1637 1639
+     1648 1651 1652 1656 1657 1659 1660 1662 1665 1668)))
 
 (define pdfcraft-git-crates
   (git-crate-selection
    %git-checkouts
-   '(("craft-cfb" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3#b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3" 27 "crates/cfb")
-     ("craft-cms" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=8503f24cb845268f47f97e829491114fe9ad1bfa#8503f24cb845268f47f97e829491114fe9ad1bfa" 20 "crates/cms")
-     ("craft-cms" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e2dc681a3#e2dc681a3ad8a47038da2f11ddd2c5e1c0454991" 35 "crates/cms")
-     ("craft-codepage" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=1546550b0d4b79b8156a1fefaac8b3b317a4aee0#1546550b0d4b79b8156a1fefaac8b3b317a4aee0" 5 "crates/codepage")
-     ("craft-codepage" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3#b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3" 27 "crates/codepage")
-     ("craft-csv" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e2dc681a3#e2dc681a3ad8a47038da2f11ddd2c5e1c0454991" 35 "crates/csv")
-     ("craft-dds" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=a7c6c9d61c6b36f4aec55b044f257340083fd571#a7c6c9d61c6b36f4aec55b044f257340083fd571" 25 "crates/dds")
-     ("craft-docpath" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e2dc681a3#e2dc681a3ad8a47038da2f11ddd2c5e1c0454991" 35 "crates/docpath")
-     ("craft-docx" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3#b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3" 27 "crates/docx")
-     ("craft-drawingml" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=010702ee9b030844c852939095b1da0d0656a890#010702ee9b030844c852939095b1da0d0656a890" 0 "crates/drawingml")
-     ("craft-drawingml" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3#b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3" 27 "crates/drawingml")
-     ("craft-flow" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3#b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3" 27 "crates/flow")
-     ("craft-flow" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=fbb3f47f7ae712192586984af11ca8f6c0f64d33#fbb3f47f7ae712192586984af11ca8f6c0f64d33" 39 "crates/flow")
-     ("craft-fonts-build" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e2dc681a3#e2dc681a3ad8a47038da2f11ddd2c5e1c0454991" 35 "crates/fonts-build")
-     ("craft-html" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=1546550b0d4b79b8156a1fefaac8b3b317a4aee0#1546550b0d4b79b8156a1fefaac8b3b317a4aee0" 5 "crates/html")
-     ("craft-html" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=fbb3f47f7ae712192586984af11ca8f6c0f64d33#fbb3f47f7ae712192586984af11ca8f6c0f64d33" 39 "crates/html")
-     ("craft-i18n" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e2dc681a3#e2dc681a3ad8a47038da2f11ddd2c5e1c0454991" 35 "crates/i18n")
-     ("craft-image-codecs" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=a7c6c9d61c6b36f4aec55b044f257340083fd571#a7c6c9d61c6b36f4aec55b044f257340083fd571" 25 "crates/image-codecs")
-     ("craft-jpeg" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=a7c6c9d61c6b36f4aec55b044f257340083fd571#a7c6c9d61c6b36f4aec55b044f257340083fd571" 25 "crates/jpeg")
-     ("craft-jpeg" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e2dc681a3#e2dc681a3ad8a47038da2f11ddd2c5e1c0454991" 35 "crates/jpeg")
-     ("craft-jsonrpc" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=fbb2d4b299d87191a79444c6e4e02d69d9325059#fbb2d4b299d87191a79444c6e4e02d69d9325059" 38 "crates/jsonrpc")
-     ("craft-keymap" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e2dc681a3#e2dc681a3ad8a47038da2f11ddd2c5e1c0454991" 35 "crates/keymap")
-     ("craft-markdown" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=fbb3f47f7ae712192586984af11ca8f6c0f64d33#fbb3f47f7ae712192586984af11ca8f6c0f64d33" 39 "crates/markdown")
-     ("craft-math" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3#b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3" 27 "crates/math")
-     ("craft-math" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=fbb3f47f7ae712192586984af11ca8f6c0f64d33#fbb3f47f7ae712192586984af11ca8f6c0f64d33" 39 "crates/math")
-     ("craft-mcp-server" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=fbb2d4b299d87191a79444c6e4e02d69d9325059#fbb2d4b299d87191a79444c6e4e02d69d9325059" 38 "crates/mcp-server")
-     ("craft-menu" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e2dc681a3#e2dc681a3ad8a47038da2f11ddd2c5e1c0454991" 35 "crates/menu")
-     ("craft-metadata" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=a7c6c9d61c6b36f4aec55b044f257340083fd571#a7c6c9d61c6b36f4aec55b044f257340083fd571" 25 "crates/metadata")
-     ("craft-metafile" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3#b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3" 27 "crates/metafile")
-     ("craft-mime" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=1546550b0d4b79b8156a1fefaac8b3b317a4aee0#1546550b0d4b79b8156a1fefaac8b3b317a4aee0" 5 "crates/mime")
-     ("craft-mime" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3#b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3" 27 "crates/mime")
-     ("craft-offcrypto" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3#b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3" 27 "crates/offcrypto")
-     ("craft-opc" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=010702ee9b030844c852939095b1da0d0656a890#010702ee9b030844c852939095b1da0d0656a890" 0 "crates/opc")
-     ("craft-opc" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3#b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3" 27 "crates/opc")
-     ("craft-pdf" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=9eb02be84f21898e247daeb2af5827c9fe85a3a0#9eb02be84f21898e247daeb2af5827c9fe85a3a0" 23 "crates/pdf")
-     ("craft-pkcs7" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=bc4aae37bb219049596327fca971046dab0b78be#bc4aae37bb219049596327fca971046dab0b78be" 32 "crates/pkcs7")
-     ("craft-pptx" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=010702ee9b030844c852939095b1da0d0656a890#010702ee9b030844c852939095b1da0d0656a890" 0 "crates/pptx")
-     ("craft-prc" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e2dc681a3#e2dc681a3ad8a47038da2f11ddd2c5e1c0454991" 35 "crates/prc")
-     ("craft-print" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e2dc681a3#e2dc681a3ad8a47038da2f11ddd2c5e1c0454991" 35 "crates/print")
-     ("craft-quit" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e2dc681a3#e2dc681a3ad8a47038da2f11ddd2c5e1c0454991" 35 "crates/quit")
-     ("craft-rtf" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3#b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3" 27 "crates/rtf")
-     ("craft-stream-codecs" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=9eb02be84f21898e247daeb2af5827c9fe85a3a0#9eb02be84f21898e247daeb2af5827c9fe85a3a0" 23 "crates/stream-codecs")
-     ("craft-tiff" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=a7c6c9d61c6b36f4aec55b044f257340083fd571#a7c6c9d61c6b36f4aec55b044f257340083fd571" 25 "crates/tiff")
-     ("craft-tiff" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e2dc681a3#e2dc681a3ad8a47038da2f11ddd2c5e1c0454991" 35 "crates/tiff")
-     ("craft-ui" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e2dc681a3#e2dc681a3ad8a47038da2f11ddd2c5e1c0454991" 35 "crates/ui")
-     ("craft-update" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e2dc681a3#e2dc681a3ad8a47038da2f11ddd2c5e1c0454991" 35 "crates/update")
-     ("craft-web-api" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=fd5e2feff6ea25bed371a99cc732b3968d621505#fd5e2feff6ea25bed371a99cc732b3968d621505" 40 "crates/web-api")
-     ("craft-web-host" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=fd5e2feff6ea25bed371a99cc732b3968d621505#fd5e2feff6ea25bed371a99cc732b3968d621505" 40 "crates/web-host")
-     ("craft-winprint-gdi" "0.1.0" "git+https://github.com/storytold/winprint.rs?rev=64e7afd4d1483512385012c340ecaaaf0f3beb7f#64e7afd4d1483512385012c340ecaaaf0f3beb7f" 49 "crates/gdi")
-     ("craft-wordmodel" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3#b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3" 27 "crates/wordmodel")
-     ("craft-wordmodel" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=fbb3f47f7ae712192586984af11ca8f6c0f64d33#fbb3f47f7ae712192586984af11ca8f6c0f64d33" 39 "crates/wordmodel")
-     ("craft-xfa" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=23acc704933a9a5619a5cd1cddc9bb1fb5a9b2d3#23acc704933a9a5619a5cd1cddc9bb1fb5a9b2d3" 6 "crates/xfa")
-     ("craft-xfdf" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=1546550b0d4b79b8156a1fefaac8b3b317a4aee0#1546550b0d4b79b8156a1fefaac8b3b317a4aee0" 5 "crates/xfdf")
-     ("craft-xml" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=010702ee9b030844c852939095b1da0d0656a890#010702ee9b030844c852939095b1da0d0656a890" 0 "crates/xml")
-     ("craft-xml" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=1546550b0d4b79b8156a1fefaac8b3b317a4aee0#1546550b0d4b79b8156a1fefaac8b3b317a4aee0" 5 "crates/xml")
-     ("craft-xml" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=23acc704933a9a5619a5cd1cddc9bb1fb5a9b2d3#23acc704933a9a5619a5cd1cddc9bb1fb5a9b2d3" 6 "crates/xml")
-     ("craft-xml" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3#b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3" 27 "crates/xml")
-     ("craft-xml" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=fbb3f47f7ae712192586984af11ca8f6c0f64d33#fbb3f47f7ae712192586984af11ca8f6c0f64d33" 39 "crates/xml")
-     ("craft-zip" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=010702ee9b030844c852939095b1da0d0656a890#010702ee9b030844c852939095b1da0d0656a890" 0 "crates/zip")
-     ("craft-zip" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3#b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3" 27 "crates/zip")
-     ("craft-zip" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e2dc681a3#e2dc681a3ad8a47038da2f11ddd2c5e1c0454991" 35 "crates/zip")
-     ("ecolor" "0.37.0" "git+https://github.com/storytold/egui.git?rev=725a39fca940f77149ffbb9c58eef405a16997bc#725a39fca940f77149ffbb9c58eef405a16997bc" 42 "crates/ecolor")
-     ("eframe" "0.37.0" "git+https://github.com/storytold/egui.git?rev=725a39fca940f77149ffbb9c58eef405a16997bc#725a39fca940f77149ffbb9c58eef405a16997bc" 42 "crates/eframe")
-     ("egui" "0.37.0" "git+https://github.com/storytold/egui.git?rev=725a39fca940f77149ffbb9c58eef405a16997bc#725a39fca940f77149ffbb9c58eef405a16997bc" 42 "crates/egui")
-     ("egui-wgpu" "0.37.0" "git+https://github.com/storytold/egui.git?rev=725a39fca940f77149ffbb9c58eef405a16997bc#725a39fca940f77149ffbb9c58eef405a16997bc" 42 "crates/egui-wgpu")
-     ("egui-winit" "0.37.0" "git+https://github.com/storytold/egui.git?rev=725a39fca940f77149ffbb9c58eef405a16997bc#725a39fca940f77149ffbb9c58eef405a16997bc" 42 "crates/egui-winit")
-     ("egui_extras" "0.37.0" "git+https://github.com/storytold/egui.git?rev=725a39fca940f77149ffbb9c58eef405a16997bc#725a39fca940f77149ffbb9c58eef405a16997bc" 42 "crates/egui_extras")
-     ("egui_glow" "0.37.0" "git+https://github.com/storytold/egui.git?rev=725a39fca940f77149ffbb9c58eef405a16997bc#725a39fca940f77149ffbb9c58eef405a16997bc" 42 "crates/egui_glow")
-     ("egui_kittest" "0.37.0" "git+https://github.com/storytold/egui.git?rev=725a39fca940f77149ffbb9c58eef405a16997bc#725a39fca940f77149ffbb9c58eef405a16997bc" 42 "crates/egui_kittest")
-     ("emath" "0.37.0" "git+https://github.com/storytold/egui.git?rev=725a39fca940f77149ffbb9c58eef405a16997bc#725a39fca940f77149ffbb9c58eef405a16997bc" 42 "crates/emath")
-     ("epaint" "0.37.0" "git+https://github.com/storytold/egui.git?rev=725a39fca940f77149ffbb9c58eef405a16997bc#725a39fca940f77149ffbb9c58eef405a16997bc" 42 "crates/epaint")
-     ("epaint_default_fonts" "0.37.0" "git+https://github.com/storytold/egui.git?rev=725a39fca940f77149ffbb9c58eef405a16997bc#725a39fca940f77149ffbb9c58eef405a16997bc" 42 "crates/epaint_default_fonts")
-     ("hayro" "0.7.1" "git+https://github.com/storytold/craft-libs?rev=9eb02be84f21898e247daeb2af5827c9fe85a3a0#9eb02be84f21898e247daeb2af5827c9fe85a3a0" 23 "vendor/hayro")
-     ("hayro-cmap" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=9eb02be84f21898e247daeb2af5827c9fe85a3a0#9eb02be84f21898e247daeb2af5827c9fe85a3a0" 23 "vendor/hayro-cmap")
-     ("hayro-interpret" "0.7.0" "git+https://github.com/storytold/craft-libs?rev=9eb02be84f21898e247daeb2af5827c9fe85a3a0#9eb02be84f21898e247daeb2af5827c9fe85a3a0" 23 "vendor/hayro-interpret")
-     ("hayro-jbig2" "0.3.0" "git+https://github.com/storytold/craft-libs?rev=9eb02be84f21898e247daeb2af5827c9fe85a3a0#9eb02be84f21898e247daeb2af5827c9fe85a3a0" 23 "vendor/hayro-jbig2")
-     ("hayro-postscript" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e7873217287876f76a045550369c90a541693c33#e7873217287876f76a045550369c90a541693c33" 36 "vendor/hayro-postscript")
-     ("hayro-syntax" "0.7.2" "git+https://github.com/storytold/craft-libs?rev=9eb02be84f21898e247daeb2af5827c9fe85a3a0#9eb02be84f21898e247daeb2af5827c9fe85a3a0" 23 "vendor/hayro-syntax")
-     ("winit" "0.30.13" "git+https://github.com/storytold/winit.git?rev=a517b3846ee8457d84ee4975110bfda6797c44dc#a517b3846ee8457d84ee4975110bfda6797c44dc" 46 ".")
-     ("winprint" "0.2.1" "git+https://github.com/storytold/winprint.rs?rev=5f80b9baf6b58937c401656634e42d33f00ddf49#5f80b9baf6b58937c401656634e42d33f00ddf49" 48 ".")
-     ("winprint" "0.2.1" "git+https://github.com/storytold/winprint.rs?rev=72951d7455ebcab569fbd9386c513d3d9f53fb02#72951d7455ebcab569fbd9386c513d3d9f53fb02" 50 ".")
-     ("egui_demo_lib" "0.37.0" "git+https://github.com/storytold/egui.git?rev=725a39fca940f77149ffbb9c58eef405a16997bc#725a39fca940f77149ffbb9c58eef405a16997bc" 42 "crates/egui_demo_lib")
-     ("egui_inspection" "0.37.0" "git+https://github.com/storytold/egui.git?rev=725a39fca940f77149ffbb9c58eef405a16997bc#725a39fca940f77149ffbb9c58eef405a16997bc" 42 "crates/egui_inspection")
-     ("egui_system_font_provider" "0.37.0" "git+https://github.com/storytold/egui.git?rev=725a39fca940f77149ffbb9c58eef405a16997bc#725a39fca940f77149ffbb9c58eef405a16997bc" 42 "crates/egui_system_font_provider"))))
+   '(("craft-cfb" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3#b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3" 29 "crates/cfb")
+     ("craft-cms" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=8503f24cb845268f47f97e829491114fe9ad1bfa#8503f24cb845268f47f97e829491114fe9ad1bfa" 22 "crates/cms")
+     ("craft-cms" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e2dc681a3#e2dc681a3ad8a47038da2f11ddd2c5e1c0454991" 37 "crates/cms")
+     ("craft-codepage" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=1546550b0d4b79b8156a1fefaac8b3b317a4aee0#1546550b0d4b79b8156a1fefaac8b3b317a4aee0" 7 "crates/codepage")
+     ("craft-codepage" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3#b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3" 29 "crates/codepage")
+     ("craft-csv" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e2dc681a3#e2dc681a3ad8a47038da2f11ddd2c5e1c0454991" 37 "crates/csv")
+     ("craft-dds" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=a7c6c9d61c6b36f4aec55b044f257340083fd571#a7c6c9d61c6b36f4aec55b044f257340083fd571" 27 "crates/dds")
+     ("craft-docpath" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e2dc681a3#e2dc681a3ad8a47038da2f11ddd2c5e1c0454991" 37 "crates/docpath")
+     ("craft-docx" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3#b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3" 29 "crates/docx")
+     ("craft-drawingml" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=010702ee9b030844c852939095b1da0d0656a890#010702ee9b030844c852939095b1da0d0656a890" 1 "crates/drawingml")
+     ("craft-drawingml" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3#b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3" 29 "crates/drawingml")
+     ("craft-flow" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3#b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3" 29 "crates/flow")
+     ("craft-flow" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=fbb3f47f7ae712192586984af11ca8f6c0f64d33#fbb3f47f7ae712192586984af11ca8f6c0f64d33" 41 "crates/flow")
+     ("craft-fonts-build" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e2dc681a3#e2dc681a3ad8a47038da2f11ddd2c5e1c0454991" 37 "crates/fonts-build")
+     ("craft-html" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=1546550b0d4b79b8156a1fefaac8b3b317a4aee0#1546550b0d4b79b8156a1fefaac8b3b317a4aee0" 7 "crates/html")
+     ("craft-html" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=fbb3f47f7ae712192586984af11ca8f6c0f64d33#fbb3f47f7ae712192586984af11ca8f6c0f64d33" 41 "crates/html")
+     ("craft-i18n" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e2dc681a3#e2dc681a3ad8a47038da2f11ddd2c5e1c0454991" 37 "crates/i18n")
+     ("craft-image-codecs" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=a7c6c9d61c6b36f4aec55b044f257340083fd571#a7c6c9d61c6b36f4aec55b044f257340083fd571" 27 "crates/image-codecs")
+     ("craft-jpeg" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=a7c6c9d61c6b36f4aec55b044f257340083fd571#a7c6c9d61c6b36f4aec55b044f257340083fd571" 27 "crates/jpeg")
+     ("craft-jpeg" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e2dc681a3#e2dc681a3ad8a47038da2f11ddd2c5e1c0454991" 37 "crates/jpeg")
+     ("craft-jsonrpc" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=fbb2d4b299d87191a79444c6e4e02d69d9325059#fbb2d4b299d87191a79444c6e4e02d69d9325059" 40 "crates/jsonrpc")
+     ("craft-keymap" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e2dc681a3#e2dc681a3ad8a47038da2f11ddd2c5e1c0454991" 37 "crates/keymap")
+     ("craft-markdown" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=fbb3f47f7ae712192586984af11ca8f6c0f64d33#fbb3f47f7ae712192586984af11ca8f6c0f64d33" 41 "crates/markdown")
+     ("craft-math" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3#b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3" 29 "crates/math")
+     ("craft-math" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=fbb3f47f7ae712192586984af11ca8f6c0f64d33#fbb3f47f7ae712192586984af11ca8f6c0f64d33" 41 "crates/math")
+     ("craft-mcp-server" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=fbb2d4b299d87191a79444c6e4e02d69d9325059#fbb2d4b299d87191a79444c6e4e02d69d9325059" 40 "crates/mcp-server")
+     ("craft-menu" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e2dc681a3#e2dc681a3ad8a47038da2f11ddd2c5e1c0454991" 37 "crates/menu")
+     ("craft-metadata" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=a7c6c9d61c6b36f4aec55b044f257340083fd571#a7c6c9d61c6b36f4aec55b044f257340083fd571" 27 "crates/metadata")
+     ("craft-metafile" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3#b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3" 29 "crates/metafile")
+     ("craft-mime" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=1546550b0d4b79b8156a1fefaac8b3b317a4aee0#1546550b0d4b79b8156a1fefaac8b3b317a4aee0" 7 "crates/mime")
+     ("craft-mime" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3#b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3" 29 "crates/mime")
+     ("craft-offcrypto" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3#b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3" 29 "crates/offcrypto")
+     ("craft-opc" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=010702ee9b030844c852939095b1da0d0656a890#010702ee9b030844c852939095b1da0d0656a890" 1 "crates/opc")
+     ("craft-opc" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3#b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3" 29 "crates/opc")
+     ("craft-pdf" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=9eb02be84f21898e247daeb2af5827c9fe85a3a0#9eb02be84f21898e247daeb2af5827c9fe85a3a0" 25 "crates/pdf")
+     ("craft-pkcs7" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=bc4aae37bb219049596327fca971046dab0b78be#bc4aae37bb219049596327fca971046dab0b78be" 34 "crates/pkcs7")
+     ("craft-pptx" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=010702ee9b030844c852939095b1da0d0656a890#010702ee9b030844c852939095b1da0d0656a890" 1 "crates/pptx")
+     ("craft-prc" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e2dc681a3#e2dc681a3ad8a47038da2f11ddd2c5e1c0454991" 37 "crates/prc")
+     ("craft-print" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e2dc681a3#e2dc681a3ad8a47038da2f11ddd2c5e1c0454991" 37 "crates/print")
+     ("craft-quit" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e2dc681a3#e2dc681a3ad8a47038da2f11ddd2c5e1c0454991" 37 "crates/quit")
+     ("craft-rtf" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3#b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3" 29 "crates/rtf")
+     ("craft-stream-codecs" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=9eb02be84f21898e247daeb2af5827c9fe85a3a0#9eb02be84f21898e247daeb2af5827c9fe85a3a0" 25 "crates/stream-codecs")
+     ("craft-tiff" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=a7c6c9d61c6b36f4aec55b044f257340083fd571#a7c6c9d61c6b36f4aec55b044f257340083fd571" 27 "crates/tiff")
+     ("craft-tiff" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e2dc681a3#e2dc681a3ad8a47038da2f11ddd2c5e1c0454991" 37 "crates/tiff")
+     ("craft-ui" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e2dc681a3#e2dc681a3ad8a47038da2f11ddd2c5e1c0454991" 37 "crates/ui")
+     ("craft-update" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e2dc681a3#e2dc681a3ad8a47038da2f11ddd2c5e1c0454991" 37 "crates/update")
+     ("craft-web-api" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=fd5e2feff6ea25bed371a99cc732b3968d621505#fd5e2feff6ea25bed371a99cc732b3968d621505" 42 "crates/web-api")
+     ("craft-web-host" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=fd5e2feff6ea25bed371a99cc732b3968d621505#fd5e2feff6ea25bed371a99cc732b3968d621505" 42 "crates/web-host")
+     ("craft-winprint-gdi" "0.1.0" "git+https://github.com/storytold/winprint.rs?rev=64e7afd4d1483512385012c340ecaaaf0f3beb7f#64e7afd4d1483512385012c340ecaaaf0f3beb7f" 51 "crates/gdi")
+     ("craft-wordmodel" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3#b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3" 29 "crates/wordmodel")
+     ("craft-wordmodel" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=fbb3f47f7ae712192586984af11ca8f6c0f64d33#fbb3f47f7ae712192586984af11ca8f6c0f64d33" 41 "crates/wordmodel")
+     ("craft-xfa" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=23acc704933a9a5619a5cd1cddc9bb1fb5a9b2d3#23acc704933a9a5619a5cd1cddc9bb1fb5a9b2d3" 8 "crates/xfa")
+     ("craft-xfdf" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=1546550b0d4b79b8156a1fefaac8b3b317a4aee0#1546550b0d4b79b8156a1fefaac8b3b317a4aee0" 7 "crates/xfdf")
+     ("craft-xml" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=010702ee9b030844c852939095b1da0d0656a890#010702ee9b030844c852939095b1da0d0656a890" 1 "crates/xml")
+     ("craft-xml" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=1546550b0d4b79b8156a1fefaac8b3b317a4aee0#1546550b0d4b79b8156a1fefaac8b3b317a4aee0" 7 "crates/xml")
+     ("craft-xml" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=23acc704933a9a5619a5cd1cddc9bb1fb5a9b2d3#23acc704933a9a5619a5cd1cddc9bb1fb5a9b2d3" 8 "crates/xml")
+     ("craft-xml" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3#b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3" 29 "crates/xml")
+     ("craft-xml" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=fbb3f47f7ae712192586984af11ca8f6c0f64d33#fbb3f47f7ae712192586984af11ca8f6c0f64d33" 41 "crates/xml")
+     ("craft-zip" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=010702ee9b030844c852939095b1da0d0656a890#010702ee9b030844c852939095b1da0d0656a890" 1 "crates/zip")
+     ("craft-zip" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3#b8eaa8e2f3561f9fa27fcf3b7f67ce915e93caa3" 29 "crates/zip")
+     ("craft-zip" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e2dc681a3#e2dc681a3ad8a47038da2f11ddd2c5e1c0454991" 37 "crates/zip")
+     ("ecolor" "0.37.0" "git+https://github.com/storytold/egui.git?rev=725a39fca940f77149ffbb9c58eef405a16997bc#725a39fca940f77149ffbb9c58eef405a16997bc" 44 "crates/ecolor")
+     ("eframe" "0.37.0" "git+https://github.com/storytold/egui.git?rev=725a39fca940f77149ffbb9c58eef405a16997bc#725a39fca940f77149ffbb9c58eef405a16997bc" 44 "crates/eframe")
+     ("egui" "0.37.0" "git+https://github.com/storytold/egui.git?rev=725a39fca940f77149ffbb9c58eef405a16997bc#725a39fca940f77149ffbb9c58eef405a16997bc" 44 "crates/egui")
+     ("egui-wgpu" "0.37.0" "git+https://github.com/storytold/egui.git?rev=725a39fca940f77149ffbb9c58eef405a16997bc#725a39fca940f77149ffbb9c58eef405a16997bc" 44 "crates/egui-wgpu")
+     ("egui-winit" "0.37.0" "git+https://github.com/storytold/egui.git?rev=725a39fca940f77149ffbb9c58eef405a16997bc#725a39fca940f77149ffbb9c58eef405a16997bc" 44 "crates/egui-winit")
+     ("egui_extras" "0.37.0" "git+https://github.com/storytold/egui.git?rev=725a39fca940f77149ffbb9c58eef405a16997bc#725a39fca940f77149ffbb9c58eef405a16997bc" 44 "crates/egui_extras")
+     ("egui_glow" "0.37.0" "git+https://github.com/storytold/egui.git?rev=725a39fca940f77149ffbb9c58eef405a16997bc#725a39fca940f77149ffbb9c58eef405a16997bc" 44 "crates/egui_glow")
+     ("egui_kittest" "0.37.0" "git+https://github.com/storytold/egui.git?rev=725a39fca940f77149ffbb9c58eef405a16997bc#725a39fca940f77149ffbb9c58eef405a16997bc" 44 "crates/egui_kittest")
+     ("emath" "0.37.0" "git+https://github.com/storytold/egui.git?rev=725a39fca940f77149ffbb9c58eef405a16997bc#725a39fca940f77149ffbb9c58eef405a16997bc" 44 "crates/emath")
+     ("epaint" "0.37.0" "git+https://github.com/storytold/egui.git?rev=725a39fca940f77149ffbb9c58eef405a16997bc#725a39fca940f77149ffbb9c58eef405a16997bc" 44 "crates/epaint")
+     ("epaint_default_fonts" "0.37.0" "git+https://github.com/storytold/egui.git?rev=725a39fca940f77149ffbb9c58eef405a16997bc#725a39fca940f77149ffbb9c58eef405a16997bc" 44 "crates/epaint_default_fonts")
+     ("hayro" "0.7.1" "git+https://github.com/storytold/craft-libs?rev=9eb02be84f21898e247daeb2af5827c9fe85a3a0#9eb02be84f21898e247daeb2af5827c9fe85a3a0" 25 "vendor/hayro")
+     ("hayro-cmap" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=9eb02be84f21898e247daeb2af5827c9fe85a3a0#9eb02be84f21898e247daeb2af5827c9fe85a3a0" 25 "vendor/hayro-cmap")
+     ("hayro-interpret" "0.7.0" "git+https://github.com/storytold/craft-libs?rev=9eb02be84f21898e247daeb2af5827c9fe85a3a0#9eb02be84f21898e247daeb2af5827c9fe85a3a0" 25 "vendor/hayro-interpret")
+     ("hayro-jbig2" "0.3.0" "git+https://github.com/storytold/craft-libs?rev=9eb02be84f21898e247daeb2af5827c9fe85a3a0#9eb02be84f21898e247daeb2af5827c9fe85a3a0" 25 "vendor/hayro-jbig2")
+     ("hayro-postscript" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e7873217287876f76a045550369c90a541693c33#e7873217287876f76a045550369c90a541693c33" 38 "vendor/hayro-postscript")
+     ("hayro-syntax" "0.7.2" "git+https://github.com/storytold/craft-libs?rev=9eb02be84f21898e247daeb2af5827c9fe85a3a0#9eb02be84f21898e247daeb2af5827c9fe85a3a0" 25 "vendor/hayro-syntax")
+     ("winit" "0.30.13" "git+https://github.com/storytold/winit.git?rev=a517b3846ee8457d84ee4975110bfda6797c44dc#a517b3846ee8457d84ee4975110bfda6797c44dc" 48 ".")
+     ("winprint" "0.2.1" "git+https://github.com/storytold/winprint.rs?rev=5f80b9baf6b58937c401656634e42d33f00ddf49#5f80b9baf6b58937c401656634e42d33f00ddf49" 50 ".")
+     ("winprint" "0.2.1" "git+https://github.com/storytold/winprint.rs?rev=72951d7455ebcab569fbd9386c513d3d9f53fb02#72951d7455ebcab569fbd9386c513d3d9f53fb02" 52 ".")
+     ("egui_demo_lib" "0.37.0" "git+https://github.com/storytold/egui.git?rev=725a39fca940f77149ffbb9c58eef405a16997bc#725a39fca940f77149ffbb9c58eef405a16997bc" 44 "crates/egui_demo_lib")
+     ("egui_inspection" "0.37.0" "git+https://github.com/storytold/egui.git?rev=725a39fca940f77149ffbb9c58eef405a16997bc#725a39fca940f77149ffbb9c58eef405a16997bc" 44 "crates/egui_inspection")
+     ("egui_system_font_provider" "0.37.0" "git+https://github.com/storytold/egui.git?rev=725a39fca940f77149ffbb9c58eef405a16997bc#725a39fca940f77149ffbb9c58eef405a16997bc" 44 "crates/egui_system_font_provider"))))
 
 (define wordcraft-cargo-inputs
   (crate-selection
@@ -2634,68 +2645,68 @@
      569 570 571 572 573 574 575 576 577 584 585 590 591 592 594 595 597 599
      601 602 604 606 607 609 610 615 617 618 619 621 626 629 637 638 639 643
      644 652 653 654 655 656 657 661 680 681 683 687 690 698 702 704 705 709
-     713 712 715 716 718 719 723 740 742 744 748 751 752 755 756 761 762 763
-     767 768 769 774 776 778 790 795 797 798 802 804 805 806 807 811 813 816
-     818 819 820 822 824 826 827 828 831 832 834 835 836 837 838 839 840 841
-     842 850 856 857 860 861 862 864 865 895 896 897 899 906 907 908 910 911
-     912 914 915 917 918 920 921 923 924 927 928 929 930 938 939 940 942 943
-     944 945 947 949 950 952 953 955 957 965 966 967 968 971 973 981 984 985
-     986 987 988 989 990 991 992 993 995 1001 1000 1004 1005 1007 1018 1019
-     1021 1022 1024 1025 1026 1027 1030 1031 1032 1038 1039 1041 1044 1045
-     1052 1054 1068 1084 1085 1086 1088 1089 1092 1095 1096 1098 1099 1103
-     1104 1105 1107 1108 1109 1113 1115 1120 1121 1128 1129 1130 1131 1132
-     1134 1135 1136 1138 1139 1141 1143 1146 1149 1150 1151 1152 1157 1158
-     1159 1161 1162 1163 1164 1165 1166 1167 1168 1169 1170 1172 1174 1176
-     1177 1178 1180 1181 1183 1187 1188 1189 1190 1191 1193 1194 1197 1198
-     1200 1204 1205 1206 1207 1243 1244 1245 1247 1249 1250 1255 1256 1261
-     1267 1268 1272 1273 1274 1275 1278 1279 1280 1281 1282 1286 1287 1290
-     1291 1292 1295 1300 1303 1306 1311 1316 1318 1320 1323 1324 1325 1326
-     1327 1328 1329 1332 1333 1338 1341 1343 1344 1347 1348 1351 1353 1355
-     1357 1358 1360 1361 1363 1366 1367 1369 1372 1374 1379 1381 1382 1387
-     1394 1397 1398 1401 1406 1407 1408 1409 1410 1411 1413 1415 1417 1419
-     1458 1459 1460 1461 1462 1463 1464 1465 1466 1467 1469 1470 1472 1473
-     1477 1481 1483 1485 1486 1487 1488 1489 1490 1491 1492 1493 1498 1502
-     1504 1507 1509 1510 1511 1513 1515 1516 1519 1521 1523 1524 1526 1528
-     1531 1534 1537 1540 1542 1545 1548 1551 1554 1559 1561 1562 1563 1567
-     1570 1573 1575 1576 1577 1579 1580 1581 1583 1584 1585 1588 1590 1591
-     1592 1593 1595 1601 1604 1607 1609 1610 1611 1613 1615 1617 1618 1621
-     1625 1628 1629 1631 1632 1633 1635 1637 1639 1643 1648 1649 1650 1653
-     1656 1659 1662 1665)))
+     713 712 715 716 718 719 723 740 742 744 748 751 752 755 756 762 763 764
+     768 769 770 775 777 779 791 796 798 799 803 805 806 807 808 812 814 817
+     819 820 821 823 825 827 828 829 832 833 835 836 837 838 839 840 841 842
+     843 851 857 858 861 862 863 865 866 896 897 898 900 907 908 909 911 912
+     913 915 916 918 919 921 922 924 925 928 929 930 931 939 940 941 943 944
+     945 946 948 950 951 953 954 956 958 966 967 968 969 972 974 982 985 986
+     987 988 989 990 991 992 993 994 996 1002 1001 1005 1006 1008 1019 1020
+     1022 1023 1025 1026 1027 1028 1031 1032 1033 1039 1040 1042 1045 1046
+     1053 1055 1069 1085 1086 1087 1089 1090 1093 1096 1097 1099 1100 1104
+     1105 1106 1108 1109 1110 1114 1116 1121 1122 1129 1130 1131 1132 1133
+     1135 1136 1137 1139 1140 1142 1144 1147 1150 1151 1152 1153 1158 1159
+     1160 1162 1163 1164 1165 1166 1167 1168 1169 1170 1171 1173 1175 1177
+     1178 1179 1181 1182 1184 1188 1189 1190 1191 1192 1194 1195 1198 1199
+     1201 1205 1206 1207 1208 1244 1245 1246 1248 1250 1251 1256 1257 1262
+     1268 1269 1273 1274 1275 1276 1279 1280 1281 1282 1283 1287 1288 1291
+     1292 1293 1296 1301 1304 1307 1312 1317 1319 1321 1324 1325 1326 1327
+     1328 1329 1330 1333 1334 1339 1342 1344 1345 1348 1349 1352 1354 1356
+     1358 1359 1361 1362 1364 1367 1368 1370 1373 1375 1380 1382 1383 1388
+     1395 1398 1399 1402 1407 1408 1409 1410 1411 1412 1414 1416 1418 1420
+     1459 1460 1461 1462 1463 1464 1465 1466 1467 1468 1470 1471 1473 1474
+     1478 1482 1485 1487 1488 1489 1490 1491 1492 1493 1494 1495 1500 1504
+     1506 1509 1511 1512 1513 1515 1517 1518 1521 1523 1525 1526 1528 1530
+     1533 1536 1539 1542 1544 1547 1550 1553 1556 1561 1563 1564 1565 1569
+     1572 1575 1577 1578 1580 1582 1583 1584 1586 1587 1588 1591 1593 1594
+     1595 1596 1598 1604 1607 1610 1612 1613 1614 1616 1618 1620 1621 1624
+     1628 1631 1632 1634 1635 1636 1638 1640 1642 1646 1651 1652 1653 1656
+     1659 1662 1665 1668)))
 
 (define wordcraft-git-crates
   (git-crate-selection
    %git-checkouts
-   '(("craft-atomic" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=762a06a4c6b48b522b7d4de84a87917ef90265e6#762a06a4c6b48b522b7d4de84a87917ef90265e6" 19 "crates/atomic")
-     ("craft-font-catalog" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=762a06a4c6b48b522b7d4de84a87917ef90265e6#762a06a4c6b48b522b7d4de84a87917ef90265e6" 19 "crates/font-catalog")
-     ("craft-font-store" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=762a06a4c6b48b522b7d4de84a87917ef90265e6#762a06a4c6b48b522b7d4de84a87917ef90265e6" 19 "crates/font-store")
-     ("craft-fonts-build" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0" 21 "crates/fonts-build")
-     ("craft-i18n" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0" 21 "crates/i18n")
-     ("craft-pdf" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/pdf")
-     ("craft-print" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=a3e0b5a9440d18f19422a9dca13516747b7d3181#a3e0b5a9440d18f19422a9dca13516747b7d3181" 24 "crates/print")
-     ("craft-proof" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=01315d9c92b5b0e69082d35ca56099461a1efd45#01315d9c92b5b0e69082d35ca56099461a1efd45" 1 "crates/proof")
-     ("craft-ui" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0" 21 "crates/ui")
-     ("craft-update" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/update")
-     ("craft-web-api" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=fd5e2feff6ea25bed371a99cc732b3968d621505#fd5e2feff6ea25bed371a99cc732b3968d621505" 40 "crates/web-api")
-     ("craft-web-host" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=fd5e2feff6ea25bed371a99cc732b3968d621505#fd5e2feff6ea25bed371a99cc732b3968d621505" 40 "crates/web-host")
-     ("craft-window" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0" 21 "crates/window")
-     ("craft-winprint-gdi" "0.1.0" "git+https://github.com/storytold/winprint.rs?rev=417ac3c4d14d3da5485a99c7d5ce8f05664ec312#417ac3c4d14d3da5485a99c7d5ce8f05664ec312" 47 "crates/gdi")
-     ("ecolor" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/ecolor")
-     ("eframe" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/eframe")
-     ("egui" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui")
-     ("egui-wgpu" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui-wgpu")
-     ("egui-winit" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui-winit")
-     ("egui_extras" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_extras")
-     ("egui_glow" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_glow")
-     ("egui_kittest" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_kittest")
-     ("emath" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/emath")
-     ("epaint" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/epaint")
-     ("epaint_default_fonts" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/epaint_default_fonts")
-     ("krilla" "0.8.2" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "vendor/krilla")
-     ("winit" "0.30.13" "git+https://github.com/storytold/winit.git?rev=a517b3846ee8457d84ee4975110bfda6797c44dc#a517b3846ee8457d84ee4975110bfda6797c44dc" 46 ".")
-     ("winprint" "0.2.1" "git+https://github.com/storytold/winprint.rs?rev=5f80b9baf6b58937c401656634e42d33f00ddf49#5f80b9baf6b58937c401656634e42d33f00ddf49" 48 ".")
-     ("egui_demo_lib" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_demo_lib")
-     ("egui_inspection" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_inspection")
-     ("egui_system_font_provider" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_system_font_provider"))))
+   '(("craft-atomic" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=762a06a4c6b48b522b7d4de84a87917ef90265e6#762a06a4c6b48b522b7d4de84a87917ef90265e6" 21 "crates/atomic")
+     ("craft-font-catalog" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=762a06a4c6b48b522b7d4de84a87917ef90265e6#762a06a4c6b48b522b7d4de84a87917ef90265e6" 21 "crates/font-catalog")
+     ("craft-font-store" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=762a06a4c6b48b522b7d4de84a87917ef90265e6#762a06a4c6b48b522b7d4de84a87917ef90265e6" 21 "crates/font-store")
+     ("craft-fonts-build" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0" 23 "crates/fonts-build")
+     ("craft-i18n" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0" 23 "crates/i18n")
+     ("craft-pdf" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/pdf")
+     ("craft-print" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=a3e0b5a9440d18f19422a9dca13516747b7d3181#a3e0b5a9440d18f19422a9dca13516747b7d3181" 26 "crates/print")
+     ("craft-proof" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=01315d9c92b5b0e69082d35ca56099461a1efd45#01315d9c92b5b0e69082d35ca56099461a1efd45" 2 "crates/proof")
+     ("craft-ui" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0" 23 "crates/ui")
+     ("craft-update" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/update")
+     ("craft-web-api" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=fd5e2feff6ea25bed371a99cc732b3968d621505#fd5e2feff6ea25bed371a99cc732b3968d621505" 42 "crates/web-api")
+     ("craft-web-host" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=fd5e2feff6ea25bed371a99cc732b3968d621505#fd5e2feff6ea25bed371a99cc732b3968d621505" 42 "crates/web-host")
+     ("craft-window" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0" 23 "crates/window")
+     ("craft-winprint-gdi" "0.1.0" "git+https://github.com/storytold/winprint.rs?rev=417ac3c4d14d3da5485a99c7d5ce8f05664ec312#417ac3c4d14d3da5485a99c7d5ce8f05664ec312" 49 "crates/gdi")
+     ("ecolor" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/ecolor")
+     ("eframe" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/eframe")
+     ("egui" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui")
+     ("egui-wgpu" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui-wgpu")
+     ("egui-winit" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui-winit")
+     ("egui_extras" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_extras")
+     ("egui_glow" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_glow")
+     ("egui_kittest" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_kittest")
+     ("emath" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/emath")
+     ("epaint" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/epaint")
+     ("epaint_default_fonts" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/epaint_default_fonts")
+     ("krilla" "0.8.2" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "vendor/krilla")
+     ("winit" "0.30.13" "git+https://github.com/storytold/winit.git?rev=a517b3846ee8457d84ee4975110bfda6797c44dc#a517b3846ee8457d84ee4975110bfda6797c44dc" 48 ".")
+     ("winprint" "0.2.1" "git+https://github.com/storytold/winprint.rs?rev=5f80b9baf6b58937c401656634e42d33f00ddf49#5f80b9baf6b58937c401656634e42d33f00ddf49" 50 ".")
+     ("egui_demo_lib" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_demo_lib")
+     ("egui_inspection" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_inspection")
+     ("egui_system_font_provider" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_system_font_provider"))))
 
 (define gridcraft-cargo-inputs
   (crate-selection
@@ -2713,60 +2724,60 @@
      577 584 585 590 591 592 594 595 597 599 601 602 604 606 607 609 610 615
      617 618 626 629 637 638 639 643 644 652 653 654 655 656 657 661 678 680
      681 683 687 688 690 697 702 704 705 709 713 712 715 716 718 719 723 740
-     742 744 748 751 752 755 756 758 761 762 763 767 768 769 774 776 778 790
-     795 797 798 802 804 805 806 807 811 813 816 818 819 820 822 826 827 828
-     831 832 834 835 836 837 838 839 840 841 842 850 855 857 860 862 864 865
-     895 896 897 907 908 910 911 912 913 915 916 918 919 921 922 924 927 928
-     929 930 938 939 940 942 943 944 945 947 949 950 952 953 955 957 965 966
-     967 968 971 981 985 986 987 988 989 990 991 992 993 996 995 1001 1000
-     1004 1007 1009 1010 1011 1012 1013 1018 1019 1021 1022 1025 1030 1031
-     1032 1038 1039 1040 1041 1044 1045 1052 1054 1068 1084 1085 1086 1088
-     1089 1092 1094 1096 1098 1099 1103 1104 1108 1109 1113 1114 1120 1121
-     1122 1125 1128 1129 1130 1131 1132 1134 1135 1136 1138 1139 1141 1143
-     1146 1149 1150 1151 1152 1157 1158 1159 1161 1162 1163 1164 1165 1166
-     1167 1168 1169 1170 1172 1174 1177 1180 1181 1183 1187 1188 1189 1190
-     1191 1193 1194 1197 1198 1200 1204 1205 1207 1243 1244 1245 1247 1249
-     1250 1255 1256 1261 1267 1268 1272 1273 1274 1275 1279 1280 1281 1282
-     1283 1285 1287 1290 1291 1292 1295 1300 1303 1306 1311 1316 1318 1320
-     1323 1324 1325 1326 1327 1328 1329 1332 1333 1338 1341 1343 1344 1348
-     1351 1353 1357 1358 1361 1363 1366 1367 1369 1372 1374 1379 1381 1382
-     1387 1394 1397 1398 1401 1407 1408 1409 1410 1411 1413 1415 1417 1419
-     1458 1459 1460 1461 1462 1463 1464 1465 1466 1467 1469 1470 1472 1479
-     1483 1485 1486 1487 1488 1489 1490 1491 1492 1493 1498 1502 1504 1507
-     1509 1510 1511 1513 1515 1516 1519 1521 1523 1524 1526 1528 1531 1534
-     1537 1540 1542 1545 1548 1551 1554 1559 1561 1562 1563 1567 1570 1575
-     1576 1579 1580 1581 1583 1584 1585 1588 1590 1591 1592 1593 1604 1607
-     1609 1610 1611 1613 1615 1617 1618 1621 1625 1628 1629 1631 1632 1633
-     1635 1637 1639 1643 1648 1649 1650 1653 1656 1659 1662 1665)))
+     742 744 748 751 752 755 756 759 762 763 764 768 769 770 775 777 779 791
+     796 798 799 803 805 806 807 808 812 814 817 819 820 821 823 827 828 829
+     832 833 835 836 837 838 839 840 841 842 843 851 856 858 861 863 865 866
+     896 897 898 908 909 911 912 913 914 916 917 919 920 922 923 925 928 929
+     930 931 939 940 941 943 944 945 946 948 950 951 953 954 956 958 966 967
+     968 969 972 982 986 987 988 989 990 991 992 993 994 997 996 1002 1001
+     1005 1008 1010 1011 1012 1013 1014 1019 1020 1022 1023 1026 1031 1032
+     1033 1039 1040 1041 1042 1045 1046 1053 1055 1069 1085 1086 1087 1089
+     1090 1093 1095 1097 1099 1100 1104 1105 1109 1110 1114 1115 1121 1122
+     1123 1126 1129 1130 1131 1132 1133 1135 1136 1137 1139 1140 1142 1144
+     1147 1150 1151 1152 1153 1158 1159 1160 1162 1163 1164 1165 1166 1167
+     1168 1169 1170 1171 1173 1175 1178 1181 1182 1184 1188 1189 1190 1191
+     1192 1194 1195 1198 1199 1201 1205 1206 1208 1244 1245 1246 1248 1250
+     1251 1256 1257 1262 1268 1269 1273 1274 1275 1276 1280 1281 1282 1283
+     1284 1286 1288 1291 1292 1293 1296 1301 1304 1307 1312 1317 1319 1321
+     1324 1325 1326 1327 1328 1329 1330 1333 1334 1339 1342 1344 1345 1349
+     1352 1354 1358 1359 1362 1364 1367 1368 1370 1373 1375 1380 1382 1383
+     1388 1395 1398 1399 1402 1408 1409 1410 1411 1412 1414 1416 1418 1420
+     1459 1460 1461 1462 1463 1464 1465 1466 1467 1468 1470 1471 1473 1480
+     1485 1487 1488 1489 1490 1491 1492 1493 1494 1495 1500 1504 1506 1509
+     1511 1512 1513 1515 1517 1518 1521 1523 1525 1526 1528 1530 1533 1536
+     1539 1542 1544 1547 1550 1553 1556 1561 1563 1564 1565 1569 1572 1577
+     1578 1582 1583 1584 1586 1587 1588 1591 1593 1594 1595 1596 1607 1610
+     1612 1613 1614 1616 1618 1620 1621 1624 1628 1631 1632 1634 1635 1636
+     1638 1640 1642 1646 1651 1652 1653 1656 1659 1662 1665 1668)))
 
 (define gridcraft-git-crates
   (git-crate-selection
    %git-checkouts
-   '(("craft-fonts-build" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/fonts-build")
-     ("craft-i18n" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/i18n")
-     ("craft-print" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/print")
-     ("craft-ui" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/ui")
-     ("craft-update" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/update")
-     ("craft-web-api" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=fd5e2feff6ea25bed371a99cc732b3968d621505#fd5e2feff6ea25bed371a99cc732b3968d621505" 40 "crates/web-api")
-     ("craft-web-host" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=fd5e2feff6ea25bed371a99cc732b3968d621505#fd5e2feff6ea25bed371a99cc732b3968d621505" 40 "crates/web-host")
-     ("craft-window" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/window")
-     ("craft-winprint-gdi" "0.1.0" "git+https://github.com/storytold/winprint.rs?rev=64e7afd4d1483512385012c340ecaaaf0f3beb7f#64e7afd4d1483512385012c340ecaaaf0f3beb7f" 49 "crates/gdi")
-     ("ecolor" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/ecolor")
-     ("eframe" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/eframe")
-     ("egui" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui")
-     ("egui-wgpu" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui-wgpu")
-     ("egui-winit" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui-winit")
-     ("egui_extras" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_extras")
-     ("egui_glow" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_glow")
-     ("egui_kittest" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_kittest")
-     ("emath" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/emath")
-     ("epaint" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/epaint")
-     ("epaint_default_fonts" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/epaint_default_fonts")
-     ("winit" "0.30.13" "git+https://github.com/storytold/winit.git?rev=a517b3846ee8457d84ee4975110bfda6797c44dc#a517b3846ee8457d84ee4975110bfda6797c44dc" 46 ".")
-     ("winprint" "0.2.1" "git+https://github.com/storytold/winprint.rs?rev=bc06a7c48b768eb27a828c7986f6d2868b245ee0#bc06a7c48b768eb27a828c7986f6d2868b245ee0" 52 ".")
-     ("egui_demo_lib" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_demo_lib")
-     ("egui_inspection" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_inspection")
-     ("egui_system_font_provider" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_system_font_provider"))))
+   '(("craft-fonts-build" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/fonts-build")
+     ("craft-i18n" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/i18n")
+     ("craft-print" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/print")
+     ("craft-ui" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/ui")
+     ("craft-update" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/update")
+     ("craft-web-api" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=fd5e2feff6ea25bed371a99cc732b3968d621505#fd5e2feff6ea25bed371a99cc732b3968d621505" 42 "crates/web-api")
+     ("craft-web-host" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=fd5e2feff6ea25bed371a99cc732b3968d621505#fd5e2feff6ea25bed371a99cc732b3968d621505" 42 "crates/web-host")
+     ("craft-window" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/window")
+     ("craft-winprint-gdi" "0.1.0" "git+https://github.com/storytold/winprint.rs?rev=64e7afd4d1483512385012c340ecaaaf0f3beb7f#64e7afd4d1483512385012c340ecaaaf0f3beb7f" 51 "crates/gdi")
+     ("ecolor" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/ecolor")
+     ("eframe" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/eframe")
+     ("egui" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui")
+     ("egui-wgpu" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui-wgpu")
+     ("egui-winit" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui-winit")
+     ("egui_extras" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_extras")
+     ("egui_glow" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_glow")
+     ("egui_kittest" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_kittest")
+     ("emath" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/emath")
+     ("epaint" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/epaint")
+     ("epaint_default_fonts" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/epaint_default_fonts")
+     ("winit" "0.30.13" "git+https://github.com/storytold/winit.git?rev=a517b3846ee8457d84ee4975110bfda6797c44dc#a517b3846ee8457d84ee4975110bfda6797c44dc" 48 ".")
+     ("winprint" "0.2.1" "git+https://github.com/storytold/winprint.rs?rev=bc06a7c48b768eb27a828c7986f6d2868b245ee0#bc06a7c48b768eb27a828c7986f6d2868b245ee0" 54 ".")
+     ("egui_demo_lib" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_demo_lib")
+     ("egui_inspection" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_inspection")
+     ("egui_system_font_provider" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_system_font_provider"))))
 
 (define soundcraft-cargo-inputs
   (crate-selection
@@ -2783,56 +2794,56 @@
      537 539 540 545 546 547 562 564 565 570 573 590 591 592 594 595 597 599
      601 602 604 606 607 609 610 615 617 618 626 638 639 640 641 643 644 652
      653 654 655 656 657 661 678 680 681 683 687 690 698 702 703 704 705 709
-     713 712 715 717 718 719 732 740 743 744 750 751 752 756 758 762 763 767
-     768 769 774 776 777 778 789 790 791 792 795 797 798 802 804 805 806 807
-     808 810 811 813 814 815 816 818 819 820 822 826 827 828 831 832 834 835
-     836 837 838 839 840 841 842 850 851 856 857 860 863 864 865 895 896 897
-     910 911 912 915 918 921 924 927 928 929 930 938 939 940 942 943 944 945
-     947 949 950 952 953 955 957 958 959 965 968 971 973 981 984 985 986 987
-     991 992 993 995 1000 1005 1007 1018 1019 1021 1022 1025 1030 1031 1033
-     1038 1039 1040 1041 1044 1052 1054 1062 1084 1085 1086 1087 1088 1089
-     1092 1095 1096 1098 1099 1103 1104 1105 1113 1115 1120 1121 1122 1128
-     1129 1130 1131 1132 1134 1135 1136 1138 1141 1144 1151 1156 1157 1158
-     1169 1170 1172 1174 1177 1180 1181 1185 1187 1188 1189 1190 1193 1197
-     1198 1199 1200 1203 1207 1212 1214 1216 1218 1220 1222 1224 1226 1227
-     1229 1231 1233 1235 1237 1239 1241 1244 1246 1249 1250 1261 1267 1268
-     1272 1273 1274 1275 1279 1280 1281 1282 1283 1285 1288 1298 1307 1312
-     1317 1319 1321 1327 1328 1329 1330 1332 1338 1341 1343 1344 1347 1348
-     1351 1354 1358 1361 1363 1367 1369 1372 1374 1379 1381 1382 1384 1389
-     1394 1397 1398 1401 1403 1406 1407 1409 1410 1411 1413 1415 1417 1419
-     1458 1459 1460 1461 1462 1463 1464 1465 1466 1467 1469 1470 1472 1474
-     1477 1483 1485 1486 1487 1488 1489 1490 1491 1492 1493 1498 1502 1504
-     1507 1509 1510 1511 1513 1515 1516 1519 1521 1523 1524 1526 1528 1531
-     1534 1537 1540 1542 1545 1548 1551 1554 1559 1561 1562 1563 1567 1570
-     1575 1576 1579 1580 1581 1588 1590 1591 1593 1604 1607 1609 1610 1611
-     1613 1616 1617 1618 1623 1627 1628 1629 1631 1633 1635 1637 1645 1648
-     1649 1653 1656 1660 1663 1665)))
+     713 712 715 717 718 719 732 740 743 744 750 751 752 756 759 763 764 768
+     769 770 775 777 778 779 790 791 792 793 796 798 799 803 805 806 807 808
+     809 811 812 814 815 816 817 819 820 821 823 827 828 829 832 833 835 836
+     837 838 839 840 841 842 843 851 852 857 858 861 864 865 866 896 897 898
+     911 912 913 916 919 922 925 928 929 930 931 939 940 941 943 944 945 946
+     948 950 951 953 954 956 958 959 960 966 969 972 974 982 985 986 987 988
+     992 993 994 996 1001 1006 1008 1019 1020 1022 1023 1026 1031 1032 1034
+     1039 1040 1041 1042 1045 1053 1055 1063 1085 1086 1087 1088 1089 1090
+     1093 1096 1097 1099 1100 1104 1105 1106 1114 1116 1121 1122 1123 1129
+     1130 1131 1132 1133 1135 1136 1137 1139 1142 1145 1152 1157 1158 1159
+     1170 1171 1173 1175 1178 1181 1182 1186 1188 1189 1190 1191 1194 1198
+     1199 1200 1201 1204 1208 1213 1215 1217 1219 1221 1223 1225 1227 1228
+     1230 1232 1234 1236 1238 1240 1242 1245 1247 1250 1251 1262 1268 1269
+     1273 1274 1275 1276 1280 1281 1282 1283 1284 1286 1289 1299 1308 1313
+     1318 1320 1322 1328 1329 1330 1331 1333 1339 1342 1344 1345 1348 1349
+     1352 1355 1359 1362 1364 1368 1370 1373 1375 1380 1382 1383 1385 1390
+     1395 1398 1399 1402 1404 1407 1408 1410 1411 1412 1414 1416 1418 1420
+     1459 1460 1461 1462 1463 1464 1465 1466 1467 1468 1470 1471 1473 1475
+     1478 1485 1487 1488 1489 1490 1491 1492 1493 1494 1495 1500 1504 1506
+     1509 1511 1512 1513 1515 1517 1518 1521 1523 1525 1526 1528 1530 1533
+     1536 1539 1542 1544 1547 1550 1553 1556 1561 1563 1564 1565 1569 1572
+     1577 1578 1582 1583 1584 1591 1593 1594 1596 1607 1610 1612 1613 1614
+     1616 1619 1620 1621 1626 1630 1631 1632 1634 1636 1638 1640 1648 1651
+     1652 1656 1659 1663 1666 1668)))
 
 (define soundcraft-git-crates
   (git-crate-selection
    %git-checkouts
-   '(("craft-audio" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=75895c0321d8cb6e175a42466cba050352b117c5#75895c0321d8cb6e175a42466cba050352b117c5" 18 "crates/audio")
-     ("craft-docpath" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/docpath")
-     ("craft-fonts-build" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/fonts-build")
-     ("craft-i18n" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/i18n")
-     ("craft-media" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=75895c0321d8cb6e175a42466cba050352b117c5#75895c0321d8cb6e175a42466cba050352b117c5" 18 "crates/media")
-     ("craft-ui" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/ui")
-     ("craft-update" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/update")
-     ("ecolor" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/ecolor")
-     ("eframe" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/eframe")
-     ("egui" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui")
-     ("egui-wgpu" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui-wgpu")
-     ("egui-winit" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui-winit")
-     ("egui_extras" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_extras")
-     ("egui_glow" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_glow")
-     ("egui_kittest" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_kittest")
-     ("emath" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/emath")
-     ("epaint" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/epaint")
-     ("epaint_default_fonts" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/epaint_default_fonts")
-     ("winit" "0.30.13" "git+https://github.com/storytold/winit.git?rev=a517b3846ee8457d84ee4975110bfda6797c44dc#a517b3846ee8457d84ee4975110bfda6797c44dc" 46 ".")
-     ("egui_demo_lib" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_demo_lib")
-     ("egui_inspection" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_inspection")
-     ("egui_system_font_provider" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_system_font_provider"))))
+   '(("craft-audio" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=75895c0321d8cb6e175a42466cba050352b117c5#75895c0321d8cb6e175a42466cba050352b117c5" 20 "crates/audio")
+     ("craft-docpath" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/docpath")
+     ("craft-fonts-build" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/fonts-build")
+     ("craft-i18n" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/i18n")
+     ("craft-media" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=75895c0321d8cb6e175a42466cba050352b117c5#75895c0321d8cb6e175a42466cba050352b117c5" 20 "crates/media")
+     ("craft-ui" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/ui")
+     ("craft-update" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/update")
+     ("ecolor" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/ecolor")
+     ("eframe" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/eframe")
+     ("egui" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui")
+     ("egui-wgpu" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui-wgpu")
+     ("egui-winit" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui-winit")
+     ("egui_extras" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_extras")
+     ("egui_glow" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_glow")
+     ("egui_kittest" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_kittest")
+     ("emath" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/emath")
+     ("epaint" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/epaint")
+     ("epaint_default_fonts" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/epaint_default_fonts")
+     ("winit" "0.30.13" "git+https://github.com/storytold/winit.git?rev=a517b3846ee8457d84ee4975110bfda6797c44dc#a517b3846ee8457d84ee4975110bfda6797c44dc" 48 ".")
+     ("egui_demo_lib" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_demo_lib")
+     ("egui_inspection" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_inspection")
+     ("egui_system_font_provider" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_system_font_provider"))))
 
 (define cadcraft-cargo-inputs
   (crate-selection
@@ -2849,56 +2860,56 @@
      555 560 562 564 565 566 570 573 590 591 592 594 595 597 599 601 602 604
      606 607 609 610 611 612 615 617 618 619 621 626 638 639 640 643 644 652
      653 654 655 656 657 661 678 680 681 683 687 690 698 702 704 705 709 713
-     712 715 717 718 719 724 725 726 740 743 744 750 751 752 756 758 761 762
-     763 767 768 769 773 774 776 777 778 790 795 797 798 802 804 805 806 807
-     811 813 816 818 819 820 822 826 827 828 831 832 834 835 836 837 838 839
-     840 841 842 848 850 851 856 857 860 863 864 865 895 896 897 906 910 911
-     912 913 915 918 921 922 924 927 928 929 930 938 939 940 942 943 944 945
-     947 949 950 952 953 955 957 965 968 971 981 985 986 987 991 992 993 1007
-     1018 1019 1021 1022 1024 1025 1028 1030 1031 1033 1044 1052 1054 1062
-     1063 1071 1084 1085 1086 1088 1089 1092 1095 1096 1098 1099 1103 1104
-     1108 1113 1115 1120 1121 1128 1129 1130 1131 1132 1134 1135 1136 1138
-     1141 1144 1151 1157 1158 1169 1170 1172 1174 1176 1177 1179 1180 1181
-     1185 1187 1188 1189 1190 1193 1197 1198 1200 1202 1203 1206 1207 1244
-     1246 1249 1250 1261 1267 1268 1272 1273 1274 1275 1279 1280 1281 1282
-     1284 1286 1288 1290 1298 1307 1312 1317 1319 1321 1327 1328 1329 1332
-     1338 1341 1342 1343 1344 1348 1351 1354 1357 1358 1361 1363 1367 1369
-     1372 1374 1379 1381 1382 1384 1389 1394 1397 1398 1401 1407 1409 1410
-     1411 1413 1415 1417 1419 1458 1459 1460 1461 1462 1463 1464 1465 1466
-     1467 1469 1470 1472 1474 1477 1483 1485 1486 1487 1488 1489 1490 1491
-     1492 1493 1498 1502 1504 1507 1509 1510 1511 1513 1515 1516 1519 1521
-     1523 1524 1526 1528 1531 1534 1537 1540 1542 1545 1548 1551 1554 1559
-     1561 1562 1563 1567 1570 1573 1575 1576 1579 1580 1581 1588 1590 1591
-     1593 1595 1604 1607 1609 1610 1611 1613 1616 1617 1618 1623 1627 1628
-     1629 1631 1633 1635 1637 1645 1648 1649 1653 1656 1660 1663 1665)))
+     712 715 717 718 719 724 725 726 740 743 744 750 751 752 756 759 762 763
+     764 768 769 770 774 775 777 778 779 791 796 798 799 803 805 806 807 808
+     812 814 817 819 820 821 823 827 828 829 832 833 835 836 837 838 839 840
+     841 842 843 849 851 852 857 858 861 864 865 866 896 897 898 907 911 912
+     913 914 916 919 922 923 925 928 929 930 931 939 940 941 943 944 945 946
+     948 950 951 953 954 956 958 966 969 972 982 986 987 988 992 993 994 1008
+     1019 1020 1022 1023 1025 1026 1029 1031 1032 1034 1045 1053 1055 1063
+     1064 1072 1085 1086 1087 1089 1090 1093 1096 1097 1099 1100 1104 1105
+     1109 1114 1116 1121 1122 1129 1130 1131 1132 1133 1135 1136 1137 1139
+     1142 1145 1152 1158 1159 1170 1171 1173 1175 1177 1178 1180 1181 1182
+     1186 1188 1189 1190 1191 1194 1198 1199 1201 1203 1204 1207 1208 1245
+     1247 1250 1251 1262 1268 1269 1273 1274 1275 1276 1280 1281 1282 1283
+     1285 1287 1289 1291 1299 1308 1313 1318 1320 1322 1328 1329 1330 1333
+     1339 1342 1343 1344 1345 1349 1352 1355 1358 1359 1362 1364 1368 1370
+     1373 1375 1380 1382 1383 1385 1390 1395 1398 1399 1402 1408 1410 1411
+     1412 1414 1416 1418 1420 1459 1460 1461 1462 1463 1464 1465 1466 1467
+     1468 1470 1471 1473 1475 1478 1485 1487 1488 1489 1490 1491 1492 1493
+     1494 1495 1500 1504 1506 1509 1511 1512 1513 1515 1517 1518 1521 1523
+     1525 1526 1528 1530 1533 1536 1539 1542 1544 1547 1550 1553 1556 1561
+     1563 1564 1565 1569 1572 1575 1577 1578 1582 1583 1584 1591 1593 1594
+     1596 1598 1607 1610 1612 1613 1614 1616 1619 1620 1621 1626 1630 1631
+     1632 1634 1636 1638 1640 1648 1651 1652 1656 1659 1663 1666 1668)))
 
 (define cadcraft-git-crates
   (git-crate-selection
    %git-checkouts
-   '(("craft-docpath" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0" 21 "crates/docpath")
-     ("craft-fonts-build" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0" 21 "crates/fonts-build")
-     ("craft-i18n" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0" 21 "crates/i18n")
-     ("craft-pdf" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0" 21 "crates/pdf")
-     ("craft-ui" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0" 21 "crates/ui")
-     ("craft-update" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/update")
-     ("craft-web-api" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=fd5e2feff6ea25bed371a99cc732b3968d621505#fd5e2feff6ea25bed371a99cc732b3968d621505" 40 "crates/web-api")
-     ("craft-web-host" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=fd5e2feff6ea25bed371a99cc732b3968d621505#fd5e2feff6ea25bed371a99cc732b3968d621505" 40 "crates/web-host")
-     ("craft-window" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0" 21 "crates/window")
-     ("ecolor" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/ecolor")
-     ("eframe" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/eframe")
-     ("egui" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui")
-     ("egui-wgpu" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui-wgpu")
-     ("egui-winit" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui-winit")
-     ("egui_extras" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_extras")
-     ("egui_glow" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_glow")
-     ("egui_kittest" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_kittest")
-     ("emath" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/emath")
-     ("epaint" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/epaint")
-     ("epaint_default_fonts" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/epaint_default_fonts")
-     ("hayro-jbig2" "0.3.0" "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0" 21 "vendor/hayro-jbig2")
-     ("hayro-syntax" "0.7.2" "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0" 21 "vendor/hayro-syntax")
-     ("krilla" "0.8.2" "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0" 21 "vendor/krilla")
-     ("winit" "0.30.13" "git+https://github.com/storytold/winit.git?rev=a517b3846ee8457d84ee4975110bfda6797c44dc#a517b3846ee8457d84ee4975110bfda6797c44dc" 46 "."))))
+   '(("craft-docpath" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0" 23 "crates/docpath")
+     ("craft-fonts-build" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0" 23 "crates/fonts-build")
+     ("craft-i18n" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0" 23 "crates/i18n")
+     ("craft-pdf" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0" 23 "crates/pdf")
+     ("craft-ui" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0" 23 "crates/ui")
+     ("craft-update" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/update")
+     ("craft-web-api" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=fd5e2feff6ea25bed371a99cc732b3968d621505#fd5e2feff6ea25bed371a99cc732b3968d621505" 42 "crates/web-api")
+     ("craft-web-host" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=fd5e2feff6ea25bed371a99cc732b3968d621505#fd5e2feff6ea25bed371a99cc732b3968d621505" 42 "crates/web-host")
+     ("craft-window" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0" 23 "crates/window")
+     ("ecolor" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/ecolor")
+     ("eframe" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/eframe")
+     ("egui" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui")
+     ("egui-wgpu" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui-wgpu")
+     ("egui-winit" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui-winit")
+     ("egui_extras" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_extras")
+     ("egui_glow" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_glow")
+     ("egui_kittest" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_kittest")
+     ("emath" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/emath")
+     ("epaint" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/epaint")
+     ("epaint_default_fonts" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/epaint_default_fonts")
+     ("hayro-jbig2" "0.3.0" "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0" 23 "vendor/hayro-jbig2")
+     ("hayro-syntax" "0.7.2" "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0" 23 "vendor/hayro-syntax")
+     ("krilla" "0.8.2" "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0" 23 "vendor/krilla")
+     ("winit" "0.30.13" "git+https://github.com/storytold/winit.git?rev=a517b3846ee8457d84ee4975110bfda6797c44dc#a517b3846ee8457d84ee4975110bfda6797c44dc" 48 "."))))
 
 (define figcraft-cargo-inputs
   (crate-selection
@@ -2917,66 +2928,66 @@
      601 602 604 606 607 609 610 611 612 615 617 618 619 621 622 623 624 626
      640 643 644 645 646 647 652 653 654 655 656 657 661 678 680 681 687 691
      698 702 704 705 709 710 713 712 715 717 718 719 740 743 744 751 752 756
-     758 762 763 767 768 769 774 776 778 790 795 797 798 802 804 805 806 807
-     811 813 816 818 819 820 822 824 826 827 828 831 832 834 835 836 837 838
-     839 840 841 842 850 851 857 859 860 863 864 865 895 896 897 899 906 910
-     911 912 915 918 921 924 926 927 928 929 930 938 939 940 942 943 944 945
-     947 949 950 952 953 955 957 965 968 971 973 981 984 985 986 987 991 992
-     993 995 1002 1000 1005 1006 1007 1018 1019 1021 1022 1024 1025 1026 1027
-     1030 1031 1033 1034 1038 1039 1041 1044 1052 1054 1062 1066 1068 1084
-     1085 1086 1088 1089 1092 1095 1096 1098 1099 1103 1104 1105 1106 1107
-     1108 1110 1113 1115 1120 1121 1122 1128 1129 1130 1131 1132 1134 1135
-     1136 1138 1141 1144 1150 1151 1157 1158 1169 1170 1172 1173 1174 1176
-     1177 1178 1180 1181 1185 1187 1188 1189 1190 1192 1193 1197 1198 1200
-     1201 1203 1206 1207 1209 1244 1246 1249 1250 1261 1267 1268 1272 1273
-     1274 1275 1279 1280 1281 1282 1283 1284 1285 1286 1288 1290 1298 1307
-     1312 1317 1319 1321 1327 1328 1329 1332 1334 1335 1338 1341 1343 1344
-     1347 1348 1349 1350 1351 1354 1358 1360 1361 1362 1363 1367 1369 1372
-     1374 1378 1379 1381 1382 1384 1389 1394 1397 1398 1401 1406 1407 1409
-     1410 1411 1413 1415 1417 1419 1426 1429 1430 1431 1432 1433 1436 1453
-     1456 1458 1459 1460 1461 1462 1463 1464 1465 1466 1467 1469 1470 1472
-     1474 1477 1481 1483 1485 1486 1487 1488 1489 1490 1491 1492 1493 1494
-     1498 1502 1504 1507 1509 1510 1511 1513 1515 1516 1519 1521 1523 1524
-     1526 1528 1531 1534 1537 1540 1542 1545 1548 1551 1554 1559 1561 1562
-     1563 1567 1570 1573 1575 1576 1579 1580 1581 1588 1590 1591 1593 1594
-     1595 1601 1604 1607 1609 1610 1611 1613 1616 1617 1618 1623 1627 1628
-     1629 1631 1633 1635 1637 1638 1644 1648 1649 1651 1653 1656 1660 1663
-     1665)))
+     759 763 764 768 769 770 775 777 779 791 796 798 799 803 805 806 807 808
+     812 814 817 819 820 821 823 825 827 828 829 832 833 835 836 837 838 839
+     840 841 842 843 851 852 858 860 861 864 865 866 896 897 898 900 907 911
+     912 913 916 919 922 925 927 928 929 930 931 939 940 941 943 944 945 946
+     948 950 951 953 954 956 958 966 969 972 974 982 985 986 987 988 992 993
+     994 996 1003 1001 1006 1007 1008 1019 1020 1022 1023 1025 1026 1027 1028
+     1031 1032 1034 1035 1039 1040 1042 1045 1053 1055 1063 1067 1069 1085
+     1086 1087 1089 1090 1093 1096 1097 1099 1100 1104 1105 1106 1107 1108
+     1109 1111 1114 1116 1121 1122 1123 1129 1130 1131 1132 1133 1135 1136
+     1137 1139 1142 1145 1151 1152 1158 1159 1170 1171 1173 1174 1175 1177
+     1178 1179 1181 1182 1186 1188 1189 1190 1191 1193 1194 1198 1199 1201
+     1202 1204 1207 1208 1210 1245 1247 1250 1251 1262 1268 1269 1273 1274
+     1275 1276 1280 1281 1282 1283 1284 1285 1286 1287 1289 1291 1299 1308
+     1313 1318 1320 1322 1328 1329 1330 1333 1335 1336 1339 1342 1344 1345
+     1348 1349 1350 1351 1352 1355 1359 1361 1362 1363 1364 1368 1370 1373
+     1375 1379 1380 1382 1383 1385 1390 1395 1398 1399 1402 1407 1408 1410
+     1411 1412 1414 1416 1418 1420 1427 1430 1431 1432 1433 1434 1437 1454
+     1457 1459 1460 1461 1462 1463 1464 1465 1466 1467 1468 1470 1471 1473
+     1475 1478 1482 1485 1487 1488 1489 1490 1491 1492 1493 1494 1495 1496
+     1500 1504 1506 1509 1511 1512 1513 1515 1517 1518 1521 1523 1525 1526
+     1528 1530 1533 1536 1539 1542 1544 1547 1550 1553 1556 1561 1563 1564
+     1565 1569 1572 1575 1577 1578 1582 1583 1584 1591 1593 1594 1596 1597
+     1598 1604 1607 1610 1612 1613 1614 1616 1619 1620 1621 1626 1630 1631
+     1632 1634 1636 1638 1640 1641 1647 1651 1652 1654 1656 1659 1663 1666
+     1668)))
 
 (define figcraft-git-crates
   (git-crate-selection
    %git-checkouts
-   '(("craft-atomic" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545#e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545" 34 "crates/atomic")
-     ("craft-docpath" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545#e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545" 34 "crates/docpath")
-     ("craft-font-catalog" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545#e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545" 34 "crates/font-catalog")
-     ("craft-font-store" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545#e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545" 34 "crates/font-store")
-     ("craft-fonts-build" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545#e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545" 34 "crates/fonts-build")
-     ("craft-i18n" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545#e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545" 34 "crates/i18n")
-     ("craft-keymap" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545#e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545" 34 "crates/keymap")
-     ("craft-menu" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545#e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545" 34 "crates/menu")
-     ("craft-quit" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545#e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545" 34 "crates/quit")
-     ("craft-settings" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545#e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545" 34 "crates/settings")
-     ("craft-ui" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545#e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545" 34 "crates/ui")
-     ("craft-update" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/update")
-     ("craft-web-api" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=fd5e2feff6ea25bed371a99cc732b3968d621505#fd5e2feff6ea25bed371a99cc732b3968d621505" 40 "crates/web-api")
-     ("craft-web-host" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=fd5e2feff6ea25bed371a99cc732b3968d621505#fd5e2feff6ea25bed371a99cc732b3968d621505" 40 "crates/web-host")
-     ("craft-window" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545#e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545" 34 "crates/window")
-     ("ecolor" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/ecolor")
-     ("eframe" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/eframe")
-     ("egui" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui")
-     ("egui-wgpu" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui-wgpu")
-     ("egui-winit" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui-winit")
-     ("egui_extras" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_extras")
-     ("egui_glow" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_glow")
-     ("emath" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/emath")
-     ("epaint" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/epaint")
-     ("epaint_default_fonts" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/epaint_default_fonts")
-     ("krilla" "0.8.2" "git+https://github.com/storytold/craft-libs?rev=e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545#e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545" 34 "vendor/krilla")
-     ("winit" "0.30.13" "git+https://github.com/storytold/winit.git?rev=a517b3846ee8457d84ee4975110bfda6797c44dc#a517b3846ee8457d84ee4975110bfda6797c44dc" 46 ".")
-     ("egui_demo_lib" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_demo_lib")
-     ("egui_inspection" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_inspection")
-     ("egui_kittest" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_kittest")
-     ("egui_system_font_provider" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_system_font_provider"))))
+   '(("craft-atomic" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545#e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545" 36 "crates/atomic")
+     ("craft-docpath" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545#e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545" 36 "crates/docpath")
+     ("craft-font-catalog" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545#e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545" 36 "crates/font-catalog")
+     ("craft-font-store" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545#e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545" 36 "crates/font-store")
+     ("craft-fonts-build" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545#e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545" 36 "crates/fonts-build")
+     ("craft-i18n" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545#e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545" 36 "crates/i18n")
+     ("craft-keymap" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545#e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545" 36 "crates/keymap")
+     ("craft-menu" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545#e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545" 36 "crates/menu")
+     ("craft-quit" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545#e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545" 36 "crates/quit")
+     ("craft-settings" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545#e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545" 36 "crates/settings")
+     ("craft-ui" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545#e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545" 36 "crates/ui")
+     ("craft-update" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/update")
+     ("craft-web-api" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=fd5e2feff6ea25bed371a99cc732b3968d621505#fd5e2feff6ea25bed371a99cc732b3968d621505" 42 "crates/web-api")
+     ("craft-web-host" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=fd5e2feff6ea25bed371a99cc732b3968d621505#fd5e2feff6ea25bed371a99cc732b3968d621505" 42 "crates/web-host")
+     ("craft-window" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545#e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545" 36 "crates/window")
+     ("ecolor" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/ecolor")
+     ("eframe" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/eframe")
+     ("egui" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui")
+     ("egui-wgpu" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui-wgpu")
+     ("egui-winit" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui-winit")
+     ("egui_extras" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_extras")
+     ("egui_glow" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_glow")
+     ("emath" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/emath")
+     ("epaint" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/epaint")
+     ("epaint_default_fonts" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/epaint_default_fonts")
+     ("krilla" "0.8.2" "git+https://github.com/storytold/craft-libs?rev=e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545#e11f9d9aebea5f6b8e74643c1ea1ed172ba5f545" 36 "vendor/krilla")
+     ("winit" "0.30.13" "git+https://github.com/storytold/winit.git?rev=a517b3846ee8457d84ee4975110bfda6797c44dc#a517b3846ee8457d84ee4975110bfda6797c44dc" 48 ".")
+     ("egui_demo_lib" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_demo_lib")
+     ("egui_inspection" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_inspection")
+     ("egui_kittest" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_kittest")
+     ("egui_system_font_provider" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_system_font_provider"))))
 
 (define deckcraft-cargo-inputs
   (crate-selection
@@ -2993,59 +3004,59 @@
      573 579 580 581 582 583 584 585 590 591 592 594 595 597 599 600 602 604
      606 607 609 610 615 617 618 619 621 626 638 639 643 644 651 652 653 654
      655 656 657 661 680 681 683 687 690 697 702 704 705 709 713 712 715 716
-     718 719 731 740 742 744 749 751 752 756 761 762 763 767 768 769 774 776
-     778 784 790 791 795 797 798 802 804 805 806 807 808 811 813 814 815 816
-     818 819 820 822 826 827 828 831 832 834 835 836 837 838 839 840 841 842
-     850 853 855 857 860 861 862 864 865 895 896 897 906 910 911 912 915 918
-     921 924 927 928 929 930 938 939 940 942 943 944 945 947 949 950 952 953
-     955 957 965 968 971 981 985 986 987 991 992 993 1007 1018 1019 1021 1022
-     1024 1025 1026 1027 1030 1031 1032 1044 1052 1054 1084 1085 1086 1088
-     1089 1092 1095 1096 1098 1099 1103 1104 1106 1108 1113 1115 1120 1121
-     1128 1129 1130 1131 1132 1134 1135 1136 1138 1141 1143 1151 1157 1158
-     1169 1170 1172 1174 1176 1177 1178 1180 1181 1183 1187 1188 1189 1190
-     1193 1197 1198 1200 1206 1207 1211 1213 1215 1217 1219 1221 1223 1225
-     1228 1230 1232 1234 1236 1238 1240 1242 1244 1245 1249 1250 1261 1267
-     1268 1272 1273 1274 1275 1278 1279 1280 1281 1282 1286 1287 1295 1306
-     1311 1316 1318 1320 1327 1328 1329 1332 1334 1338 1341 1343 1344 1348
-     1349 1350 1351 1353 1355 1358 1360 1361 1363 1367 1369 1372 1374 1379
-     1381 1382 1387 1394 1397 1398 1401 1407 1409 1410 1411 1413 1415 1417
-     1419 1421 1422 1423 1458 1459 1460 1461 1462 1463 1464 1465 1466 1467
-     1469 1470 1472 1473 1477 1483 1485 1486 1487 1488 1489 1490 1491 1492
-     1493 1498 1500 1502 1504 1505 1507 1509 1510 1511 1513 1515 1516 1517
-     1519 1521 1522 1523 1524 1526 1527 1528 1531 1533 1534 1536 1537 1539
-     1540 1542 1544 1545 1547 1548 1550 1551 1553 1554 1559 1561 1562 1563
-     1567 1570 1573 1575 1576 1579 1580 1581 1588 1590 1591 1593 1595 1603
-     1607 1609 1610 1611 1613 1615 1617 1618 1621 1625 1628 1629 1631 1633
-     1634 1636 1639 1643 1648 1649 1650 1653 1656 1659 1662 1665)))
+     718 719 731 740 742 744 749 751 752 756 762 763 764 768 769 770 775 777
+     779 785 791 792 796 798 799 803 805 806 807 808 809 812 814 815 816 817
+     819 820 821 823 827 828 829 832 833 835 836 837 838 839 840 841 842 843
+     851 854 856 858 861 862 863 865 866 896 897 898 907 911 912 913 916 919
+     922 925 928 929 930 931 939 940 941 943 944 945 946 948 950 951 953 954
+     956 958 966 969 972 982 986 987 988 992 993 994 1008 1019 1020 1022 1023
+     1025 1026 1027 1028 1031 1032 1033 1045 1053 1055 1085 1086 1087 1089
+     1090 1093 1096 1097 1099 1100 1104 1105 1107 1109 1114 1116 1121 1122
+     1129 1130 1131 1132 1133 1135 1136 1137 1139 1142 1144 1152 1158 1159
+     1170 1171 1173 1175 1177 1178 1179 1181 1182 1184 1188 1189 1190 1191
+     1194 1198 1199 1201 1207 1208 1212 1214 1216 1218 1220 1222 1224 1226
+     1229 1231 1233 1235 1237 1239 1241 1243 1245 1246 1250 1251 1262 1268
+     1269 1273 1274 1275 1276 1279 1280 1281 1282 1283 1287 1288 1296 1307
+     1312 1317 1319 1321 1328 1329 1330 1333 1335 1339 1342 1344 1345 1349
+     1350 1351 1352 1354 1356 1359 1361 1362 1364 1368 1370 1373 1375 1380
+     1382 1383 1388 1395 1398 1399 1402 1408 1410 1411 1412 1414 1416 1418
+     1420 1422 1423 1424 1459 1460 1461 1462 1463 1464 1465 1466 1467 1468
+     1470 1471 1473 1474 1478 1485 1487 1488 1489 1490 1491 1492 1493 1494
+     1495 1500 1502 1504 1506 1507 1509 1511 1512 1513 1515 1517 1518 1519
+     1521 1523 1524 1525 1526 1528 1529 1530 1533 1535 1536 1538 1539 1541
+     1542 1544 1546 1547 1549 1550 1552 1553 1555 1556 1561 1563 1564 1565
+     1569 1572 1575 1577 1578 1582 1583 1584 1591 1593 1594 1596 1598 1606
+     1610 1612 1613 1614 1616 1618 1620 1621 1624 1628 1631 1632 1634 1636
+     1637 1639 1642 1646 1651 1652 1653 1656 1659 1662 1665 1668)))
 
 (define deckcraft-git-crates
   (git-crate-selection
    %git-checkouts
-   '(("craft-audio" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=75895c0321d8cb6e175a42466cba050352b117c5#75895c0321d8cb6e175a42466cba050352b117c5" 18 "crates/audio")
-     ("craft-fonts-build" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/fonts-build")
-     ("craft-i18n" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/i18n")
-     ("craft-media" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=75895c0321d8cb6e175a42466cba050352b117c5#75895c0321d8cb6e175a42466cba050352b117c5" 18 "crates/media")
-     ("craft-pdf" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/pdf")
-     ("craft-ui" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/ui")
-     ("craft-update" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/update")
-     ("craft-web-api" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=fd5e2feff6ea25bed371a99cc732b3968d621505#fd5e2feff6ea25bed371a99cc732b3968d621505" 40 "crates/web-api")
-     ("craft-web-host" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=fd5e2feff6ea25bed371a99cc732b3968d621505#fd5e2feff6ea25bed371a99cc732b3968d621505" 40 "crates/web-host")
-     ("ecolor" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/ecolor")
-     ("eframe" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/eframe")
-     ("egui" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui")
-     ("egui-wgpu" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui-wgpu")
-     ("egui-winit" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui-winit")
-     ("egui_extras" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_extras")
-     ("egui_glow" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_glow")
-     ("egui_kittest" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_kittest")
-     ("emath" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/emath")
-     ("epaint" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/epaint")
-     ("epaint_default_fonts" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/epaint_default_fonts")
-     ("krilla" "0.8.2" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "vendor/krilla")
-     ("winit" "0.30.13" "git+https://github.com/storytold/winit.git?rev=a517b3846ee8457d84ee4975110bfda6797c44dc#a517b3846ee8457d84ee4975110bfda6797c44dc" 46 ".")
-     ("egui_demo_lib" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_demo_lib")
-     ("egui_inspection" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_inspection")
-     ("egui_system_font_provider" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_system_font_provider"))))
+   '(("craft-audio" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=75895c0321d8cb6e175a42466cba050352b117c5#75895c0321d8cb6e175a42466cba050352b117c5" 20 "crates/audio")
+     ("craft-fonts-build" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/fonts-build")
+     ("craft-i18n" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/i18n")
+     ("craft-media" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=75895c0321d8cb6e175a42466cba050352b117c5#75895c0321d8cb6e175a42466cba050352b117c5" 20 "crates/media")
+     ("craft-pdf" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/pdf")
+     ("craft-ui" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/ui")
+     ("craft-update" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/update")
+     ("craft-web-api" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=fd5e2feff6ea25bed371a99cc732b3968d621505#fd5e2feff6ea25bed371a99cc732b3968d621505" 42 "crates/web-api")
+     ("craft-web-host" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=fd5e2feff6ea25bed371a99cc732b3968d621505#fd5e2feff6ea25bed371a99cc732b3968d621505" 42 "crates/web-host")
+     ("ecolor" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/ecolor")
+     ("eframe" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/eframe")
+     ("egui" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui")
+     ("egui-wgpu" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui-wgpu")
+     ("egui-winit" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui-winit")
+     ("egui_extras" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_extras")
+     ("egui_glow" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_glow")
+     ("egui_kittest" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_kittest")
+     ("emath" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/emath")
+     ("epaint" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/epaint")
+     ("epaint_default_fonts" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/epaint_default_fonts")
+     ("krilla" "0.8.2" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "vendor/krilla")
+     ("winit" "0.30.13" "git+https://github.com/storytold/winit.git?rev=a517b3846ee8457d84ee4975110bfda6797c44dc#a517b3846ee8457d84ee4975110bfda6797c44dc" 48 ".")
+     ("egui_demo_lib" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_demo_lib")
+     ("egui_inspection" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_inspection")
+     ("egui_system_font_provider" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_system_font_provider"))))
 
 (define texturecraft-cargo-inputs
   (crate-selection
@@ -3061,53 +3072,53 @@
      539 540 545 546 547 564 565 570 573 584 585 590 591 592 594 595 597 599
      601 602 604 606 607 609 610 614 618 619 626 627 634 635 636 637 643 644
      652 653 654 655 656 657 661 678 680 681 683 687 690 692 697 702 704 705
-     709 713 712 715 717 718 719 727 736 740 742 744 747 751 752 755 756 758
-     762 763 767 768 769 774 776 778 783 789 790 795 797 798 802 804 805 806
-     807 811 813 816 818 819 820 822 826 827 828 830 831 832 834 835 836 837
-     838 839 840 841 842 850 858 860 862 864 865 895 896 897 902 904 910 911
-     912 915 918 921 924 927 928 929 930 938 939 940 942 943 944 945 947 949
-     950 952 953 955 957 965 968 971 979 980 981 985 986 987 991 992 993 1007
-     1017 1018 1019 1021 1022 1025 1028 1029 1030 1031 1032 1035 1036 1044
-     1052 1054 1056 1059 1063 1084 1085 1086 1088 1089 1091 1092 1095 1096
-     1098 1099 1103 1104 1113 1115 1117 1119 1120 1121 1128 1129 1130 1131
-     1132 1134 1135 1136 1137 1138 1141 1144 1151 1157 1158 1169 1170 1172
-     1174 1175 1177 1179 1180 1181 1184 1187 1190 1191 1193 1197 1198 1203
-     1207 1244 1246 1249 1250 1254 1261 1267 1268 1272 1273 1274 1275 1279
-     1280 1281 1282 1288 1293 1296 1299 1301 1303 1307 1312 1317 1319 1321
-     1327 1328 1329 1332 1338 1340 1342 1343 1344 1348 1351 1354 1359 1361
-     1363 1367 1370 1373 1375 1380 1381 1383 1385 1388 1394 1397 1399 1401
-     1407 1409 1410 1411 1413 1415 1417 1419 1458 1459 1460 1461 1462 1465
-     1466 1467 1469 1470 1472 1477 1483 1485 1486 1487 1488 1489 1490 1491
-     1492 1493 1496 1497 1498 1499 1502 1504 1507 1509 1510 1511 1513 1515
-     1516 1519 1521 1523 1524 1525 1526 1528 1529 1531 1534 1535 1537 1538
-     1540 1541 1542 1543 1545 1546 1548 1549 1551 1552 1554 1555 1559 1561
-     1562 1563 1566 1567 1571 1574 1575 1576 1579 1580 1581 1588 1590 1591
-     1593 1604 1607 1609 1610 1611 1613 1615 1617 1618 1623 1627 1628 1629
-     1631 1633 1635 1637 1642 1648 1649 1651 1653 1654 1656 1659 1662 1665)))
+     709 713 712 715 717 718 719 727 736 740 742 744 747 751 752 755 756 759
+     763 764 768 769 770 775 777 779 784 790 791 796 798 799 803 805 806 807
+     808 812 814 817 819 820 821 823 827 828 829 831 832 833 835 836 837 838
+     839 840 841 842 843 851 859 861 863 865 866 896 897 898 903 905 911 912
+     913 916 919 922 925 928 929 930 931 939 940 941 943 944 945 946 948 950
+     951 953 954 956 958 966 969 972 980 981 982 986 987 988 992 993 994 1008
+     1018 1019 1020 1022 1023 1026 1029 1030 1031 1032 1033 1036 1037 1045
+     1053 1055 1057 1060 1064 1085 1086 1087 1089 1090 1092 1093 1096 1097
+     1099 1100 1104 1105 1114 1116 1118 1120 1121 1122 1129 1130 1131 1132
+     1133 1135 1136 1137 1138 1139 1142 1145 1152 1158 1159 1170 1171 1173
+     1175 1176 1178 1180 1181 1182 1185 1188 1191 1192 1194 1198 1199 1204
+     1208 1245 1247 1250 1251 1255 1262 1268 1269 1273 1274 1275 1276 1280
+     1281 1282 1283 1289 1294 1297 1300 1302 1304 1308 1313 1318 1320 1322
+     1328 1329 1330 1333 1339 1341 1343 1344 1345 1349 1352 1355 1360 1362
+     1364 1368 1371 1374 1376 1381 1382 1384 1386 1389 1395 1398 1400 1402
+     1408 1410 1411 1412 1414 1416 1418 1420 1459 1460 1461 1462 1463 1466
+     1467 1468 1470 1471 1473 1478 1485 1487 1488 1489 1490 1491 1492 1493
+     1494 1495 1498 1499 1500 1501 1504 1506 1509 1511 1512 1513 1515 1517
+     1518 1521 1523 1525 1526 1527 1528 1530 1531 1533 1536 1537 1539 1540
+     1542 1543 1544 1545 1547 1548 1550 1551 1553 1554 1556 1557 1561 1563
+     1564 1565 1568 1569 1573 1576 1577 1578 1582 1583 1584 1591 1593 1594
+     1596 1607 1610 1612 1613 1614 1616 1618 1620 1621 1626 1630 1631 1632
+     1634 1636 1638 1640 1645 1651 1652 1654 1656 1657 1659 1662 1665 1668)))
 
 (define texturecraft-git-crates
   (git-crate-selection
    %git-checkouts
-   '(("craft-dialogs" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/dialogs")
-     ("craft-fonts-build" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/fonts-build")
-     ("craft-i18n" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/i18n")
-     ("craft-keymap" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/keymap")
-     ("craft-menu" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/menu")
-     ("craft-quit" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/quit")
-     ("craft-ui" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/ui")
-     ("craft-update" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/update")
-     ("craft-window" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/window")
-     ("ecolor" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/ecolor")
-     ("eframe" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/eframe")
-     ("egui" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui")
-     ("egui-wgpu" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui-wgpu")
-     ("egui-winit" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui-winit")
-     ("egui_glow" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_glow")
-     ("egui_kittest" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_kittest")
-     ("emath" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/emath")
-     ("epaint" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/epaint")
-     ("epaint_default_fonts" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/epaint_default_fonts")
-     ("winit" "0.30.13" "git+https://github.com/storytold/winit.git?rev=a517b3846ee8457d84ee4975110bfda6797c44dc#a517b3846ee8457d84ee4975110bfda6797c44dc" 46 "."))))
+   '(("craft-dialogs" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/dialogs")
+     ("craft-fonts-build" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/fonts-build")
+     ("craft-i18n" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/i18n")
+     ("craft-keymap" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/keymap")
+     ("craft-menu" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/menu")
+     ("craft-quit" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/quit")
+     ("craft-ui" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/ui")
+     ("craft-update" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/update")
+     ("craft-window" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/window")
+     ("ecolor" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/ecolor")
+     ("eframe" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/eframe")
+     ("egui" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui")
+     ("egui-wgpu" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui-wgpu")
+     ("egui-winit" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui-winit")
+     ("egui_glow" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_glow")
+     ("egui_kittest" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_kittest")
+     ("emath" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/emath")
+     ("epaint" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/epaint")
+     ("epaint_default_fonts" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/epaint_default_fonts")
+     ("winit" "0.30.13" "git+https://github.com/storytold/winit.git?rev=a517b3846ee8457d84ee4975110bfda6797c44dc#a517b3846ee8457d84ee4975110bfda6797c44dc" 48 "."))))
 
 (define craft-anything-cargo-inputs
   (crate-selection
@@ -3129,107 +3140,117 @@
      599 604 606 607 611 612 613 615 617 618 619 620 626 628 638 639 640 641
      642 643 644 652 653 654 655 656 657 661 663 678 679 680 681 682 686 687
      690 691 697 699 702 704 705 706 707 708 709 713 714 712 715 717 718 719
-     729 732 740 741 742 744 750 751 752 756 758 761 762 763 767 768 769 771
-     772 774 776 777 778 780 785 786 787 788 789 790 792 793 794 795 797 798
-     802 804 805 806 807 809 810 811 812 813 814 815 816 817 818 819 820 821
-     822 823 824 825 826 827 828 829 831 832 833 834 835 836 837 838 839 840
-     841 842 844 846 850 851 855 858 859 860 862 864 868 870 871 872 873 874
-     875 876 877 878 879 880 881 882 883 884 885 886 887 889 895 896 897 908
-     910 911 914 915 917 918 920 921 923 924 926 927 928 929 930 931 932 933
-     936 938 939 940 941 942 943 944 945 947 949 950 951 952 953 955 956 957
-     961 965 968 970 971 975 976 981 985 986 987 991 992 993 994 996 995 998
-     1001 1000 1007 1018 1019 1021 1022 1025 1030 1031 1032 1034 1035 1036
-     1037 1038 1039 1041 1044 1047 1050 1052 1053 1054 1063 1066 1070 1083
-     1084 1085 1086 1088 1089 1092 1095 1096 1098 1099 1102 1104 1107 1113
-     1115 1116 1118 1120 1121 1123 1126 1127 1128 1129 1130 1131 1133 1134
-     1135 1136 1137 1138 1140 1141 1144 1148 1149 1151 1154 1155 1156 1157
-     1158 1159 1169 1170 1172 1173 1174 1177 1180 1181 1184 1186 1187 1188
-     1189 1190 1192 1193 1194 1197 1198 1200 1203 1207 1208 1244 1246 1249
-     1250 1258 1260 1261 1264 1267 1268 1269 1272 1273 1274 1275 1279 1280
-     1281 1282 1283 1285 1287 1290 1295 1305 1307 1310 1312 1317 1319 1321
-     1327 1328 1329 1338 1341 1342 1343 1344 1351 1352 1354 1361 1363 1367
-     1368 1371 1374 1376 1381 1382 1384 1388 1393 1396 1399 1400 1401 1402
-     1404 1405 1407 1409 1410 1411 1413 1415 1417 1419 1424 1426 1428 1434
-     1435 1436 1438 1439 1440 1441 1442 1443 1444 1445 1446 1447 1448 1449
-     1450 1451 1453 1456 1458 1459 1460 1461 1462 1463 1464 1465 1466 1467
-     1468 1469 1470 1472 1473 1478 1482 1483 1485 1486 1487 1488 1489 1490
-     1492 1493 1495 1496 1497 1498 1499 1502 1504 1507 1509 1510 1511 1513
-     1515 1519 1521 1523 1524 1525 1526 1528 1529 1531 1534 1535 1537 1538
-     1540 1541 1542 1543 1545 1546 1548 1549 1551 1552 1554 1555 1556 1558
-     1559 1560 1561 1562 1563 1567 1568 1569 1576 1578 1579 1580 1581 1586
-     1587 1588 1589 1590 1591 1593 1594 1597 1599 1600 1603 1607 1608 1609
-     1610 1611 1612 1613 1614 1615 1617 1618 1622 1626 1628 1629 1631 1632
-     1633 1634 1636 1647 1648 1649 1653 1656 1658 1659 1661 1662 1664 1665)))
+     729 732 740 741 742 744 750 751 752 756 759 762 763 764 768 769 770 772
+     773 775 777 778 779 781 786 787 788 789 790 791 793 794 795 796 798 799
+     803 805 806 807 808 810 811 812 813 814 815 816 817 818 819 820 821 822
+     823 824 825 826 827 828 829 830 832 833 834 835 836 837 838 839 840 841
+     842 843 845 847 851 852 856 859 860 861 863 865 869 871 872 873 874 875
+     876 877 878 879 880 881 882 883 884 885 886 887 888 890 896 897 898 909
+     911 912 915 916 918 919 921 922 924 925 927 928 929 930 931 932 933 934
+     937 939 940 941 942 943 944 945 946 948 950 951 952 953 954 956 957 958
+     962 966 969 971 972 976 977 982 986 987 988 992 993 994 995 997 996 999
+     1002 1001 1008 1019 1020 1022 1023 1026 1031 1032 1033 1035 1036 1037
+     1038 1039 1040 1042 1045 1048 1051 1053 1054 1055 1064 1067 1071 1084
+     1085 1086 1087 1089 1090 1093 1096 1097 1099 1100 1103 1105 1108 1114
+     1116 1117 1119 1121 1122 1124 1127 1128 1129 1130 1131 1132 1134 1135
+     1136 1137 1138 1139 1141 1142 1145 1149 1150 1152 1155 1156 1157 1158
+     1159 1160 1170 1171 1173 1174 1175 1178 1181 1182 1185 1187 1188 1189
+     1190 1191 1193 1194 1195 1198 1199 1201 1204 1208 1209 1245 1247 1250
+     1251 1259 1261 1262 1265 1268 1269 1270 1273 1274 1275 1276 1280 1281
+     1282 1283 1284 1286 1288 1291 1296 1306 1308 1311 1313 1318 1320 1322
+     1328 1329 1330 1339 1342 1343 1344 1345 1352 1353 1355 1362 1364 1368
+     1369 1372 1375 1377 1382 1383 1385 1389 1394 1397 1400 1401 1402 1403
+     1405 1406 1408 1410 1411 1412 1414 1416 1418 1420 1425 1427 1429 1435
+     1436 1437 1439 1440 1441 1442 1443 1444 1445 1446 1447 1448 1449 1450
+     1451 1452 1454 1457 1459 1460 1461 1462 1463 1464 1465 1466 1467 1468
+     1469 1470 1471 1473 1474 1479 1484 1485 1487 1488 1489 1490 1491 1492
+     1494 1495 1497 1498 1499 1500 1501 1504 1506 1509 1511 1512 1513 1515
+     1517 1521 1523 1525 1526 1527 1528 1530 1531 1533 1536 1537 1539 1540
+     1542 1543 1544 1545 1547 1548 1550 1551 1553 1554 1556 1557 1558 1560
+     1561 1562 1563 1564 1565 1569 1570 1571 1578 1581 1582 1583 1584 1589
+     1590 1591 1592 1593 1594 1596 1597 1600 1602 1603 1606 1610 1611 1612
+     1613 1614 1615 1616 1617 1618 1620 1621 1625 1629 1631 1632 1634 1635
+     1636 1637 1639 1650 1651 1652 1656 1659 1661 1662 1664 1665 1667 1668)))
 
 (define craft-anything-git-crates
   (git-crate-selection
    %git-checkouts
-   '(("craft-update" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6ac2a6a34ae83fc0f0bfb25a569ba6388b72266a#6ac2a6a34ae83fc0f0bfb25a569ba6388b72266a" 16 "crates/update"))))
+   '(("craft-update" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6ac2a6a34ae83fc0f0bfb25a569ba6388b72266a#6ac2a6a34ae83fc0f0bfb25a569ba6388b72266a" 18 "crates/update"))))
 
 (define craft-launcher-cargo-inputs
   (crate-selection
    %crates
-   '(4 7 12 14 17 20 23 26 30 36 37 46 52 53 54 57 58 59 60 61 62 65 70 71 72
-     74 77 78 79 81 82 83 85 86 87 88 89 90 91 92 93 94 95 105 106 108 111 116
-     119 120 125 129 130 131 157 159 160 162 163 165 166 167 169 170 171 185
-     191 193 195 196 201 216 222 223 225 227 228 230 233 236 241 240 242 243
-     245 260 277 282 283 284 285 286 289 296 297 299 306 310 312 314 316 319
-     326 327 329 330 331 332 333 334 335 336 337 338 345 357 359 369 376 379
-     381 382 383 384 385 386 393 395 396 398 399 400 410 412 414 415 419 421
-     423 424 426 427 431 433 440 441 444 450 451 452 453 459 461 462 463 464
-     465 467 468 471 472 473 474 496 497 498 499 500 501 507 508 510 514 515
-     516 519 521 525 526 527 528 529 530 531 534 535 536 537 539 540 545 546
-     547 561 562 564 565 570 573 590 591 592 594 595 597 599 600 602 604 606
-     607 609 610 615 617 618 620 626 638 639 640 643 644 645 646 647 648 649
-     652 653 654 655 656 657 661 678 680 681 683 685 686 687 690 694 695 697
-     701 702 704 705 709 713 712 715 716 718 719 730 740 742 744 751 752 756
-     758 762 763 767 768 769 774 776 778 782 790 795 797 798 802 804 805 806
-     807 811 813 816 818 819 820 822 826 827 828 831 832 834 835 836 837 838
-     839 840 841 842 850 851 855 857 859 860 862 864 865 893 894 895 896 897
-     904 908 910 911 912 915 918 921 924 926 927 928 929 930 936 938 939 940
-     941 942 943 944 945 947 949 950 952 953 955 957 963 964 965 966 967 968
-     971 981 985 986 987 991 992 993 1001 1007 1018 1019 1021 1022 1025 1030
-     1031 1032 1034 1038 1039 1041 1044 1047 1052 1053 1054 1063 1066 1084
-     1085 1086 1088 1089 1092 1094 1096 1098 1099 1103 1104 1113 1114 1120
-     1121 1128 1129 1130 1131 1132 1134 1135 1136 1138 1141 1142 1144 1151
-     1157 1158 1159 1169 1170 1172 1173 1174 1177 1180 1181 1183 1187 1188
-     1189 1190 1193 1194 1197 1198 1200 1207 1208 1243 1244 1245 1249 1250
-     1257 1261 1263 1265 1266 1267 1268 1272 1273 1274 1275 1279 1280 1281
-     1282 1283 1285 1287 1295 1304 1307 1309 1312 1314 1315 1317 1319 1321
-     1327 1328 1329 1331 1332 1338 1341 1342 1343 1344 1348 1351 1353 1358
-     1361 1363 1367 1369 1372 1374 1376 1379 1381 1382 1384 1388 1394 1397
-     1398 1400 1401 1407 1409 1410 1411 1413 1415 1417 1419 1458 1459 1460
-     1461 1462 1463 1464 1465 1466 1467 1469 1470 1472 1473 1479 1483 1485
-     1486 1487 1488 1489 1490 1491 1492 1493 1496 1497 1498 1499 1502 1504
-     1507 1509 1510 1511 1513 1515 1516 1519 1521 1523 1524 1526 1528 1531
-     1532 1534 1537 1540 1542 1545 1548 1551 1554 1557 1559 1561 1562 1563
-     1567 1570 1575 1576 1579 1580 1581 1588 1590 1591 1593 1594 1603 1607
-     1609 1610 1611 1613 1615 1617 1618 1622 1626 1628 1629 1631 1633 1634
-     1636 1645 1648 1649 1650 1653 1656 1659 1662 1665)))
+   '(4 7 12 14 17 20 23 26 30 36 37 42 46 51 52 53 54 57 58 59 60 61 62 65 70
+     71 72 74 77 78 79 81 82 83 85 86 87 88 89 90 91 92 93 94 95 105 106 108
+     111 116 119 120 125 129 130 131 155 157 159 160 161 162 163 165 166 167
+     169 170 171 176 185 191 193 195 196 201 216 222 223 225 227 228 230 233
+     236 241 240 242 243 245 260 277 282 283 284 285 286 289 296 297 299 306
+     310 312 314 316 319 326 327 329 330 331 332 333 334 335 336 337 338 345
+     357 359 369 376 379 381 382 383 384 385 386 393 395 396 398 399 400 410
+     412 414 415 419 421 423 424 426 427 431 433 440 441 444 449 450 451 452
+     453 454 459 461 462 463 464 465 467 468 471 472 473 474 496 497 498 499
+     500 501 507 508 510 514 515 516 519 521 525 526 527 528 529 530 531 534
+     535 536 537 539 540 541 545 546 547 561 562 564 565 570 573 590 591 592
+     594 595 597 599 600 602 604 606 607 609 610 615 617 618 620 626 634 635
+     636 637 638 639 640 643 644 645 646 647 648 649 652 653 654 655 656 657
+     661 678 680 681 683 685 686 687 690 694 695 697 701 702 704 705 709 713
+     712 715 716 718 719 730 736 740 742 744 751 752 756 758 759 763 764 768
+     769 770 775 777 779 783 791 796 798 799 803 805 806 807 808 812 814 817
+     819 820 821 823 825 827 828 829 832 833 835 836 837 838 839 840 841 842
+     843 851 852 856 858 860 861 863 865 866 894 895 896 897 898 900 905 909
+     911 912 913 916 919 922 925 927 928 929 930 931 937 939 940 941 942 943
+     944 945 946 948 950 951 953 954 956 958 964 965 966 967 968 969 972 982
+     986 987 988 992 993 994 1002 1008 1019 1020 1022 1023 1026 1027 1028 1031
+     1032 1033 1035 1039 1040 1042 1045 1048 1053 1054 1055 1064 1067 1069
+     1085 1086 1087 1089 1090 1092 1093 1095 1097 1099 1100 1104 1105 1108
+     1114 1115 1121 1122 1129 1130 1131 1132 1133 1135 1136 1137 1139 1142
+     1143 1145 1152 1158 1159 1160 1170 1171 1173 1174 1175 1178 1179 1181
+     1182 1184 1188 1189 1190 1191 1194 1195 1198 1199 1201 1208 1209 1244
+     1245 1246 1250 1251 1258 1262 1264 1266 1267 1268 1269 1273 1274 1275
+     1276 1280 1281 1282 1283 1284 1286 1288 1296 1305 1308 1310 1313 1315
+     1316 1318 1320 1322 1328 1329 1330 1332 1333 1339 1342 1343 1344 1345
+     1349 1352 1354 1359 1362 1364 1368 1370 1373 1375 1377 1380 1382 1383
+     1385 1389 1395 1398 1399 1401 1402 1408 1410 1411 1412 1414 1416 1418
+     1420 1459 1460 1461 1462 1463 1464 1465 1466 1467 1468 1470 1471 1473
+     1474 1480 1483 1485 1487 1488 1489 1490 1491 1492 1493 1494 1495 1498
+     1499 1500 1501 1504 1506 1509 1511 1512 1513 1515 1517 1518 1521 1523
+     1525 1526 1528 1530 1533 1534 1536 1539 1542 1544 1547 1550 1553 1556
+     1559 1561 1563 1564 1565 1568 1569 1572 1577 1578 1579 1582 1583 1584
+     1591 1593 1594 1596 1597 1604 1606 1610 1612 1613 1614 1616 1618 1620
+     1621 1625 1629 1631 1632 1634 1636 1637 1639 1648 1651 1652 1653 1656
+     1659 1662 1665 1668)))
 
 (define craft-launcher-git-crates
   (git-crate-selection
    %git-checkouts
-   '(("craft-fonts-build" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0" 21 "crates/fonts-build")
-     ("craft-i18n" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0" 21 "crates/i18n")
-     ("craft-quit" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0" 21 "crates/quit")
-     ("craft-ui" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0#92d392cff132eaf53e13afff77f38b5c11b73aa0" 21 "crates/ui")
-     ("craft-update" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/update")
-     ("ecolor" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/ecolor")
-     ("eframe" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/eframe")
-     ("egui" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui")
-     ("egui-wgpu" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui-wgpu")
-     ("egui-winit" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui-winit")
-     ("egui_extras" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_extras")
-     ("egui_glow" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_glow")
-     ("egui_kittest" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_kittest")
-     ("emath" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/emath")
-     ("epaint" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/epaint")
-     ("epaint_default_fonts" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/epaint_default_fonts")
-     ("winit" "0.30.13" "git+https://github.com/storytold/winit.git?rev=a517b3846ee8457d84ee4975110bfda6797c44dc#a517b3846ee8457d84ee4975110bfda6797c44dc" 46 ".")
-     ("egui_demo_lib" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_demo_lib")
-     ("egui_inspection" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_inspection")
-     ("egui_system_font_provider" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_system_font_provider"))))
+   '(("craft-ai-agents" "0.1.0" "git+https://github.com/storytold/craft-ai-integrations?rev=0d76ea02a06299a5a6eee1993863fbcafe9c2cc3#0d76ea02a06299a5a6eee1993863fbcafe9c2cc3" 0 "crates/ai-agents")
+     ("craft-ai-mcp" "0.1.0" "git+https://github.com/storytold/craft-ai-integrations?rev=0d76ea02a06299a5a6eee1993863fbcafe9c2cc3#0d76ea02a06299a5a6eee1993863fbcafe9c2cc3" 0 "crates/ai-mcp")
+     ("craft-atomic" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=05b99ee5dcd64f2c954a693ef361301214ddc3c7#05b99ee5dcd64f2c954a693ef361301214ddc3c7" 3 "crates/atomic")
+     ("craft-flags" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=05b99ee5dcd64f2c954a693ef361301214ddc3c7#05b99ee5dcd64f2c954a693ef361301214ddc3c7" 3 "crates/flags")
+     ("craft-font-catalog" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=05b99ee5dcd64f2c954a693ef361301214ddc3c7#05b99ee5dcd64f2c954a693ef361301214ddc3c7" 3 "crates/font-catalog")
+     ("craft-font-manager" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=05b99ee5dcd64f2c954a693ef361301214ddc3c7#05b99ee5dcd64f2c954a693ef361301214ddc3c7" 3 "crates/font-manager")
+     ("craft-font-os-windows" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=05b99ee5dcd64f2c954a693ef361301214ddc3c7#05b99ee5dcd64f2c954a693ef361301214ddc3c7" 3 "crates/font-os-windows")
+     ("craft-font-store" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=05b99ee5dcd64f2c954a693ef361301214ddc3c7#05b99ee5dcd64f2c954a693ef361301214ddc3c7" 3 "crates/font-store")
+     ("craft-fonts-build" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=05b99ee5dcd64f2c954a693ef361301214ddc3c7#05b99ee5dcd64f2c954a693ef361301214ddc3c7" 3 "crates/fonts-build")
+     ("craft-i18n" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=05b99ee5dcd64f2c954a693ef361301214ddc3c7#05b99ee5dcd64f2c954a693ef361301214ddc3c7" 3 "crates/i18n")
+     ("craft-quit" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=05b99ee5dcd64f2c954a693ef361301214ddc3c7#05b99ee5dcd64f2c954a693ef361301214ddc3c7" 3 "crates/quit")
+     ("craft-ui" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=05b99ee5dcd64f2c954a693ef361301214ddc3c7#05b99ee5dcd64f2c954a693ef361301214ddc3c7" 3 "crates/ui")
+     ("craft-update" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=05b99ee5dcd64f2c954a693ef361301214ddc3c7#05b99ee5dcd64f2c954a693ef361301214ddc3c7" 3 "crates/update")
+     ("ecolor" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/ecolor")
+     ("eframe" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/eframe")
+     ("egui" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui")
+     ("egui-wgpu" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui-wgpu")
+     ("egui-winit" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui-winit")
+     ("egui_extras" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_extras")
+     ("egui_glow" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_glow")
+     ("egui_kittest" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_kittest")
+     ("emath" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/emath")
+     ("epaint" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/epaint")
+     ("epaint_default_fonts" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/epaint_default_fonts")
+     ("winit" "0.30.13" "git+https://github.com/storytold/winit.git?rev=a517b3846ee8457d84ee4975110bfda6797c44dc#a517b3846ee8457d84ee4975110bfda6797c44dc" 48 ".")
+     ("egui_demo_lib" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_demo_lib")
+     ("egui_inspection" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_inspection")
+     ("egui_system_font_provider" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_system_font_provider"))))
 
 (define materialcraft-cargo-inputs
   (crate-selection
@@ -3246,54 +3267,54 @@
      547 564 565 570 573 584 585 590 591 592 594 595 597 599 601 602 604 606
      607 609 610 614 618 619 621 626 627 634 635 636 637 638 639 643 644 652
      653 654 655 656 657 662 678 680 681 683 687 690 692 698 702 704 705 709
-     713 712 715 717 718 720 736 740 743 744 747 751 752 755 756 758 762 763
-     767 768 769 774 776 778 789 790 795 797 798 802 804 805 806 807 811 813
-     816 818 819 820 822 826 827 828 831 832 834 835 836 837 838 839 840 841
-     842 850 856 858 860 863 864 865 895 896 897 902 904 910 911 912 915 918
-     921 924 926 927 928 929 930 938 939 940 942 943 944 945 947 949 950 952
-     953 955 957 965 968 971 979 980 981 985 986 987 991 992 993 1007 1017
-     1018 1019 1021 1022 1025 1029 1030 1031 1033 1035 1036 1044 1046 1048
-     1052 1053 1054 1058 1061 1064 1066 1068 1084 1085 1086 1088 1090 1091
-     1092 1095 1096 1098 1099 1103 1104 1113 1115 1117 1119 1120 1121 1128
-     1129 1130 1131 1132 1134 1135 1136 1137 1138 1141 1144 1151 1157 1158
-     1169 1170 1172 1173 1174 1177 1180 1181 1185 1187 1190 1191 1193 1197
-     1198 1200 1203 1207 1210 1244 1246 1249 1250 1261 1267 1268 1272 1273
-     1274 1275 1279 1280 1281 1282 1284 1286 1288 1293 1298 1299 1301 1303
-     1307 1312 1317 1319 1321 1327 1328 1329 1332 1338 1341 1342 1343 1344
-     1348 1351 1354 1359 1361 1364 1367 1370 1373 1375 1377 1380 1381 1383
-     1385 1389 1394 1397 1399 1401 1407 1409 1410 1412 1414 1416 1418 1420
-     1458 1459 1460 1461 1462 1465 1466 1467 1469 1471 1472 1477 1483 1485
-     1486 1487 1488 1489 1490 1491 1492 1493 1498 1502 1504 1507 1509 1510
-     1511 1513 1515 1516 1519 1521 1523 1524 1525 1526 1528 1529 1531 1534
-     1535 1537 1538 1540 1541 1542 1543 1545 1546 1548 1549 1551 1552 1554
-     1555 1559 1561 1562 1563 1566 1567 1571 1575 1576 1579 1580 1581 1588
-     1590 1591 1593 1594 1604 1607 1609 1610 1611 1613 1616 1617 1619 1623
-     1627 1628 1629 1631 1632 1633 1635 1637 1638 1646 1648 1649 1651 1653
-     1654 1656 1660 1663 1665)))
+     713 712 715 717 718 720 736 740 743 744 747 751 752 755 756 759 763 764
+     768 769 770 775 777 779 790 791 796 798 799 803 805 806 807 808 812 814
+     817 819 820 821 823 827 828 829 832 833 835 836 837 838 839 840 841 842
+     843 851 857 859 861 864 865 866 896 897 898 903 905 911 912 913 916 919
+     922 925 927 928 929 930 931 939 940 941 943 944 945 946 948 950 951 953
+     954 956 958 966 969 972 980 981 982 986 987 988 992 993 994 1008 1018
+     1019 1020 1022 1023 1026 1030 1031 1032 1034 1036 1037 1045 1047 1049
+     1053 1054 1055 1059 1062 1065 1067 1069 1085 1086 1087 1089 1091 1092
+     1093 1096 1097 1099 1100 1104 1105 1114 1116 1118 1120 1121 1122 1129
+     1130 1131 1132 1133 1135 1136 1137 1138 1139 1142 1145 1152 1158 1159
+     1170 1171 1173 1174 1175 1178 1181 1182 1186 1188 1191 1192 1194 1198
+     1199 1201 1204 1208 1211 1245 1247 1250 1251 1262 1268 1269 1273 1274
+     1275 1276 1280 1281 1282 1283 1285 1287 1289 1294 1299 1300 1302 1304
+     1308 1313 1318 1320 1322 1328 1329 1330 1333 1339 1342 1343 1344 1345
+     1349 1352 1355 1360 1362 1365 1368 1371 1374 1376 1378 1381 1382 1384
+     1386 1390 1395 1398 1400 1402 1408 1410 1411 1413 1415 1417 1419 1421
+     1459 1460 1461 1462 1463 1466 1467 1468 1470 1472 1473 1478 1485 1487
+     1488 1489 1490 1491 1492 1493 1494 1495 1500 1504 1506 1509 1511 1512
+     1513 1515 1517 1518 1521 1523 1525 1526 1527 1528 1530 1531 1533 1536
+     1537 1539 1540 1542 1543 1544 1545 1547 1548 1550 1551 1553 1554 1556
+     1557 1561 1563 1564 1565 1568 1569 1573 1577 1578 1582 1583 1584 1591
+     1593 1594 1596 1597 1607 1610 1612 1613 1614 1616 1619 1620 1622 1626
+     1630 1631 1632 1634 1635 1636 1638 1640 1641 1649 1651 1652 1654 1656
+     1657 1659 1663 1666 1668)))
 
 (define materialcraft-git-crates
   (git-crate-selection
    %git-checkouts
-   '(("craft-dialogs" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/dialogs")
-     ("craft-fonts-build" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/fonts-build")
-     ("craft-i18n" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/i18n")
-     ("craft-keymap" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/keymap")
-     ("craft-menu" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/menu")
-     ("craft-quit" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/quit")
-     ("craft-ui" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/ui")
-     ("craft-update" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/update")
-     ("craft-window" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 17 "crates/window")
-     ("ecolor" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/ecolor")
-     ("eframe" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/eframe")
-     ("egui" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui")
-     ("egui-wgpu" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui-wgpu")
-     ("egui-winit" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui-winit")
-     ("egui_glow" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_glow")
-     ("egui_kittest" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/egui_kittest")
-     ("emath" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/emath")
-     ("epaint" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/epaint")
-     ("epaint_default_fonts" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 41 "crates/epaint_default_fonts")
-     ("winit" "0.30.13" "git+https://github.com/storytold/winit.git?rev=a517b3846ee8457d84ee4975110bfda6797c44dc#a517b3846ee8457d84ee4975110bfda6797c44dc" 46 "."))))
+   '(("craft-dialogs" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/dialogs")
+     ("craft-fonts-build" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/fonts-build")
+     ("craft-i18n" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/i18n")
+     ("craft-keymap" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/keymap")
+     ("craft-menu" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/menu")
+     ("craft-quit" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/quit")
+     ("craft-ui" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/ui")
+     ("craft-update" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/update")
+     ("craft-window" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6e03f65bf45181db77ba6229716e6624db9eb25b#6e03f65bf45181db77ba6229716e6624db9eb25b" 19 "crates/window")
+     ("ecolor" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/ecolor")
+     ("eframe" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/eframe")
+     ("egui" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui")
+     ("egui-wgpu" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui-wgpu")
+     ("egui-winit" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui-winit")
+     ("egui_glow" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_glow")
+     ("egui_kittest" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/egui_kittest")
+     ("emath" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/emath")
+     ("epaint" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/epaint")
+     ("epaint_default_fonts" "0.37.0" "git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc799681571963842f95b55a6b68431b15a" 43 "crates/epaint_default_fonts")
+     ("winit" "0.30.13" "git+https://github.com/storytold/winit.git?rev=a517b3846ee8457d84ee4975110bfda6797c44dc#a517b3846ee8457d84ee4975110bfda6797c44dc" 48 "."))))
 
 (define anicraft-cargo-inputs
   (crate-selection
@@ -3310,30 +3331,30 @@
      544 545 546 547 564 565 570 573 589 593 596 598 603 605 608 615 616 618
      626 633 642 643 644 652 653 654 655 656 657 661 680 681 687 691 693 698
      702 704 705 709 713 712 715 717 718 719 732 740 743 744 749 751 752 756
-     762 763 764 765 767 768 769 774 776 784 786 790 791 792 795 797 798 800
-     802 804 805 806 807 808 810 811 813 814 815 816 818 819 820 822 826 827
-     828 831 832 834 835 836 837 838 839 840 841 842 849 850 853 858 860 862
-     864 895 896 897 902 910 911 914 917 920 923 927 928 929 930 938 939 940
-     941 942 943 944 945 947 949 950 953 955 956 957 965 968 971 981 985 986
-     987 991 992 993 997 999 1002 1007 1018 1019 1021 1022 1025 1030 1031 1033
-     1038 1039 1041 1042 1044 1052 1054 1084 1085 1086 1088 1089 1092 1095
-     1097 1098 1099 1103 1104 1109 1113 1115 1120 1121 1128 1129 1130 1131
-     1134 1135 1136 1138 1141 1145 1151 1157 1158 1169 1170 1172 1174 1177
-     1180 1181 1182 1185 1187 1188 1189 1190 1192 1193 1197 1198 1201 1207
-     1244 1246 1248 1249 1250 1259 1260 1261 1267 1268 1271 1272 1273 1274
-     1275 1279 1280 1281 1282 1288 1290 1298 1308 1313 1317 1319 1322 1327
-     1328 1329 1334 1338 1341 1343 1344 1351 1354 1361 1363 1367 1370 1373
-     1374 1380 1381 1383 1385 1389 1393 1396 1399 1401 1407 1409 1410 1411
-     1413 1415 1417 1419 1421 1422 1423 1427 1429 1430 1431 1432 1433 1437
-     1454 1457 1458 1459 1460 1461 1462 1463 1464 1465 1466 1467 1469 1470
-     1472 1475 1478 1483 1485 1486 1487 1488 1489 1490 1491 1492 1493 1498
-     1502 1504 1507 1509 1510 1511 1513 1515 1519 1521 1523 1524 1526 1528
-     1531 1534 1537 1540 1542 1545 1548 1551 1554 1556 1559 1561 1562 1563
-     1567 1575 1576 1579 1580 1581 1588 1590 1591 1593 1604 1607 1609 1610
-     1611 1613 1616 1617 1618 1623 1627 1628 1629 1631 1632 1633 1635 1637
-     1647 1648 1649 1653 1656 1660 1663 1665)))
+     763 764 765 766 768 769 770 775 777 785 787 791 792 793 796 798 799 801
+     803 805 806 807 808 809 811 812 814 815 816 817 819 820 821 823 827 828
+     829 832 833 835 836 837 838 839 840 841 842 843 850 851 854 859 861 863
+     865 896 897 898 903 911 912 915 918 921 924 928 929 930 931 939 940 941
+     942 943 944 945 946 948 950 951 954 956 957 958 966 969 972 982 986 987
+     988 992 993 994 998 1000 1003 1008 1019 1020 1022 1023 1026 1031 1032
+     1034 1039 1040 1042 1043 1045 1053 1055 1085 1086 1087 1089 1090 1093
+     1096 1098 1099 1100 1104 1105 1110 1114 1116 1121 1122 1129 1130 1131
+     1132 1135 1136 1137 1139 1142 1146 1152 1158 1159 1170 1171 1173 1175
+     1178 1181 1182 1183 1186 1188 1189 1190 1191 1193 1194 1198 1199 1202
+     1208 1245 1247 1249 1250 1251 1260 1261 1262 1268 1269 1272 1273 1274
+     1275 1276 1280 1281 1282 1283 1289 1291 1299 1309 1314 1318 1320 1323
+     1328 1329 1330 1335 1339 1342 1344 1345 1352 1355 1362 1364 1368 1371
+     1374 1375 1381 1382 1384 1386 1390 1394 1397 1400 1402 1408 1410 1411
+     1412 1414 1416 1418 1420 1422 1423 1424 1428 1430 1431 1432 1433 1434
+     1438 1455 1458 1459 1460 1461 1462 1463 1464 1465 1466 1467 1468 1470
+     1471 1473 1476 1479 1485 1487 1488 1489 1490 1491 1492 1493 1494 1495
+     1500 1504 1506 1509 1511 1512 1513 1515 1517 1521 1523 1525 1526 1528
+     1530 1533 1536 1539 1542 1544 1547 1550 1553 1556 1558 1561 1563 1564
+     1565 1569 1577 1578 1582 1583 1584 1591 1593 1594 1596 1607 1610 1612
+     1613 1614 1616 1619 1620 1621 1626 1630 1631 1632 1634 1635 1636 1638
+     1640 1650 1651 1652 1656 1659 1663 1666 1668)))
 
 (define anicraft-git-crates
   (git-crate-selection
    %git-checkouts
-   '(("craft-update" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6ac2a6a34ae83fc0f0bfb25a569ba6388b72266a#6ac2a6a34ae83fc0f0bfb25a569ba6388b72266a" 16 "crates/update"))))
+   '(("craft-update" "0.1.0" "git+https://github.com/storytold/craft-libs?rev=6ac2a6a34ae83fc0f0bfb25a569ba6388b72266a#6ac2a6a34ae83fc0f0bfb25a569ba6388b72266a" 18 "crates/update"))))
