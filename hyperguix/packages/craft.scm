@@ -483,8 +483,8 @@ result against the original and refines it.  @command{craft-anything-cli}
 does the same from the command line and includes an MCP server."))
 
 (define-public craft-launcher
-  (craft-app "craft-launcher" "0.20.1" "bbc4d524f32c7d126308950b1309403044a40ffa"
-             "076l72xdg518j78nm4xcjz7p5xv0315m8njwqazlqnr9pgyj1gzp"
+  (craft-app "craft-launcher" "0.20.3" "a40055347e0e28f80adb7d9c066f46d6af1fe737"
+             "12yx99bmwcyn6vvbxdhynzi54ihi85bw930nwn6jy0dsbmnha1r3"
              #:cargo-inputs craft-launcher-cargo-inputs
              #:git-crates craft-launcher-git-crates
              #:binaries '("artcraft-launcher")
