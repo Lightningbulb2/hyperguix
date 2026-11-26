@@ -321,8 +321,8 @@ are kept.  @command{pdfcraft-cli} inspects and renders PDF files from the
 command line."))
 
 (define-public wordcraft
-  (craft-app "wordcraft" "0.18.1" "079f478bd85df7bcc567e3bafa7d7219096f9c3c"
-             "1sv25cjl3bpk4cng2w5y4myxzkvqxdgqlafzlpy702zs4li51h4z"
+  (craft-app "wordcraft" "0.19.1" "5d658dc033f3139926839bffd6ae0eef558c210c"
+             "0ciq3glfcvaf929ljqb9p3ykfzk1bvsndw7hx527579j6dx4qqyx"
              #:cargo-inputs wordcraft-cargo-inputs
              #:git-crates wordcraft-git-crates
              #:fonts (craft-fonts "b076417b5880bd4154bd22f00695b1d28c6bea83"
