@@ -65,8 +65,8 @@
 
 ;; Ladybird's releases (alpha since 2026.47.7) are tagged on release/YYYY.WW
 ;; branches cut from master; the tag is annotated, so the commit is pinned.
-(define %ladybird-version "2026.47.8")
-(define %ladybird-commit "0be55a57cc07ed258362c631a13a10bb4f6d707a")
+(define %ladybird-version "2026.48.0")
+(define %ladybird-commit "5eb636e3ecfac0bdfdc6d56558cba8ac9b71d514")
 
 (define %ladybird-source
   (origin
@@ -76,7 +76,7 @@
           (commit %ladybird-commit)))
     (file-name (git-file-name "ladybird" %ladybird-version))
     (sha256
-     (base32 "1l490jh24hmamh2qhqh2p4rhl17pmlv4g7vri0c0gyw8c922b318"))))
+     (base32 "0z57zm0fz3z8552g4wsbyy3p893p5s0kci9yn2gcq4vd0qrgrbzv"))))
 
 ;; The tree the dependencies below take their vcpkg overlay port patches
 ;; from.  It has its own pin so that moving %ladybird-commit doesn't rebuild
