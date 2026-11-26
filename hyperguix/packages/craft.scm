@@ -402,8 +402,8 @@ WebP and PDF, and opens Figma files.  @command{figcraft-cli} exports,
 converts and renders files from the command line."))
 
 (define-public deckcraft
-  (craft-app "deckcraft" "0.18.1" "7cc73ab1895ed2e30c8afbcada20c70b9ea0a440"
-             "0f2xlj31g6xzmd8s35drrv7dr223x38ild5zhxk5646636z1knlw"
+  (craft-app "deckcraft" "0.19.1" "4a980c33ddf37eb64157777fcaeab6d19baa5878"
+             "01ic48i4fzknd7igjsz82kf70x310vphr6iz36f44iivqhmlk54w"
              #:cargo-inputs deckcraft-cargo-inputs
              #:git-crates deckcraft-git-crates
              #:fonts (craft-fonts "37827adc41fd165f9a9234ac40f94dbad353aa69"
