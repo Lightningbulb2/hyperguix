@@ -567,6 +567,7 @@
      ("slab" "0.4.12" "1xcwik6s6zbd3lf51kkrcicdq2j4c1fw0yjdai2apy9467i0sy8c")
      ("slotmap" "1.1.1" "0f20xf53zaysx9ydzkwwqm6hsjyb8lj2j6amhg57iln3jcy8rmdx")
      ("smallvec" "1.16.2" "13iai5hhwyp8z0pbn8r11q4j5956jaxhcbvvf2drm17f1q7myfgr")
+     ("smed-client" "0.1.0" "1gmpbnnkdqh3xjpwvg5l7x2h4r88zijv7lbm1v2p5py3mzqca60a")
      ("smithay-client-toolkit" "0.19.2" "05h05hg4dn3v6br5jbdbs5nalk076a64s7fn6i01nqzby2hxwmrl")
      ("smithay-client-toolkit" "0.20.0" "1h2cacmsh9zpw6sgmap49zx7cqhksfwas91mm40i5cz2ylwdl4h5")
      ("smithay-clipboard" "0.7.3" "09hjm3dyjq4s3nxfzi65bg95hv540fi5zr5xad879xrryw1lqw3i")
@@ -850,6 +851,6 @@
      730 731 732 733 734 735 736 737 738 739 740 741 742 743 744 745 746 747
      748 749 750 751 752 753 754 755 756 757 758 759 760 761 762 763 764 765
      766 767 768 769 770 771 772 773 774 775 776 777 778 779 780 781 782 783
-     784 785 786 787 788 789 790 791 792)))
+     784 785 786 787 788 789 790 791 792 793)))
 
 (define solidcraft-git-crates '())
